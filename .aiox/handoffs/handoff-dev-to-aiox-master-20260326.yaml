@@ -1,0 +1,43 @@
+handoff:
+  from_agent: dev
+  to_agent: aiox-master
+  timestamp: "2026-03-26"
+  consumed: false
+
+  context_summary: |
+    Usuário é dono de uma empresa de coprodução de experts e está desenvolvendo
+    o app Lingrow (app de idiomas, tipo Anki melhorado). Leigo em tecnologia,
+    mas muito receptivo a aprender. Está descobrindo o potencial do AIOX agora.
+
+  work_done:
+    - Criada página de captura mobile para "Os Novos Donos Ópticos"
+      (curso para donos de óticas) em lingrow-app/capture-page/index.html
+    - Design dark luxury com dourado, foto real da especialista, countdown,
+      animações, stats — completamente refeito do zero
+
+  decisions:
+    - Stack recomendado para SDR WhatsApp: Z-API + n8n + Claude API + Supabase
+    - Custo estimado: R$200-300/mês
+    - Projetos diferentes = pastas separadas, cada um com seu AIOX
+    - Claude Sonnet é vantagem sobre GPT-4 para português
+
+  user_interests:
+    - Criar agente SDR integrado ao WhatsApp para vender curso de óticos
+    - Entender como organizar múltiplos projetos no AIOX
+    - Sistema completo: qualificação de leads, quebra de objeção, agenda reunião
+
+  next_action: |
+    Usuário quer avançar no sistema SDR completo (WhatsApp + IA).
+    Sugerir ativar @architect para desenhar a arquitetura do projeto
+    ou *create agent para criar o agente SDR customizado.
+
+  projects:
+    - name: Lingrow
+      path: lingrow-app/
+      status: nascendo
+      type: app mobile de idiomas
+
+    - name: Empresa de Coprodução de Experts
+      path: ainda não criado
+      status: planejamento
+      type: automação comercial / SDR

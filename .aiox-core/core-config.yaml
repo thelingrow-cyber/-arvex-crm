@@ -1,0 +1,29 @@
+markdownExploder: true
+project:
+  name: ARVEX
+  description: Empresa de Coprodução de Experts
+  type: greenfield
+  installedAt: '2026-03-26T00:00:00.000Z'
+  version: 2.1.0
+user_profile: bob
+ide:
+  selected:
+    - claude-code
+  configs:
+    claude-code: true
+    vscode: false
+    codex: false
+    gemini: false
+    cursor: false
+    github-copilot: false
+    antigravity: false
+    zed: false
+    claude-desktop: false
+mcp:
+  enabled: false
+  configLocation: .claude/mcp.json
+  servers: []
+qa:
+  qaLocation: docs/qa
+boundary:
+  frameworkProtection: true
