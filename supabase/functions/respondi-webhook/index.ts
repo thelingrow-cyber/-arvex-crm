@@ -1,0 +1,66 @@
+import { createClient } from "jsr:@supabase/supabase-js@2";
+
+Deno.serve(async (req: Request) => {
+  try {
+    const body = await req.json();
+    console.log("BODY:", JSON.stringify(body));
+
+    const answers = body?.respondent?.raw_answers || [];
+
+    const get = (id: string) => answers.find((a: any) => a.question.question_id === id);
+    const arr = (v: any) => [].concat(v || []).join(", ");
+
+    const nomeObj   = get("015f6a58f57a");
+    const telObj    = get("x2sckxc03maq");
+    const lojaObj   = get("xbun8ezavigg");
+    const colabObj  = get("xeljido7mzb");
+    const perfilObj = get("xbx99fbcapm");
+    const fatObj    = get("xqk9eo3025bh");
+    const desafObj  = get("x22e7kijok7w");
+    const tempoObj  = get("xh05c2mb06aw");
+    const travaObj  = get("xzkxhk6sw1i");
+    const compObj   = get("x1v402tyug49");
+
+    const nome    = nomeObj?.answer || "";
+    const telData = telObj?.answer || {};
+    const tel     = typeof telData === "object"
+      ? (telData.country || "55") + telData.phone
+      : String(telData);
+    const loja = lojaObj?.answer || "";
+
+    const obs = [
+      loja              ? "@ da loja: " + loja                     : "",
+      colabObj?.answer  ? "Colaboradores: " + arr(colabObj.answer)  : "",
+      perfilObj?.answer ? "Perfil: "        + arr(perfilObj.answer) : "",
+      fatObj?.answer    ? "Faturamento: "   + arr(fatObj.answer)    : "",
+      desafObj?.answer  ? "Desafio: "       + arr(desafObj.answer)  : "",
+      tempoObj?.answer  ? "Tempo: "         + arr(tempoObj.answer)  : "",
+      travaObj?.answer  ? "Trava: "         + travaObj.answer       : "",
+      compObj?.answer   ? "Comprometimento: " + compObj.answer + "/5" : "",
+    ].filter(Boolean).join(" | ");
+
+    console.log("nome:", nome, "tel:", tel, "loja:", loja);
+
+    if (!nome) return new Response("sem nome", { status: 400 });
+
+    const sb = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    const { error } = await sb.from("leads").insert({
+      nome,
+      tel,
+      expert: "Cindy Batista",
+      origem: "Respondi",
+      status: "novo",
+      obs,
+    });
+
+    console.log("insert error:", error);
+    return new Response("ok", { status: 200 });
+  } catch (e) {
+    console.log("ERRO:", e.message);
+    return new Response("erro: " + e.message, { status: 500 });
+  }
+});
