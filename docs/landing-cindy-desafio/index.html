@@ -25,7 +25,6 @@
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      min-height: 100vh;
     }
 
     /* ── TOPBAR ── */
@@ -65,15 +64,13 @@
     }
     .topbar__row2 svg { width:14px; height:14px; opacity:.6; flex-shrink:0; }
 
-    /* ── HERO: foto tela cheia com gradiente ── */
+    /* ── FOTO: altura fixa, teto cortado ── */
     .hero {
       position: relative;
       width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      height: 46vh;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .hero__img {
@@ -82,35 +79,36 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 28%;
+      object-position: center 60%;
       display: block;
-      filter: brightness(0.68);
+      filter: brightness(0.65);
     }
 
+    /* gradiente suave só na base — sem preto forte */
     .hero__overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        transparent        0%,
-        transparent        38%,
-        rgba(20,20,20,0.40) 52%,
-        rgba(20,20,20,0.78) 66%,
-        rgba(20,20,20,0.95) 80%,
+        transparent          0%,
+        transparent          50%,
+        rgba(20,20,20,0.20)  68%,
+        rgba(20,20,20,0.60)  82%,
         rgba(20,20,20,1.00) 100%
       );
     }
 
-    /* ── BADGE sobre o gradiente ── */
+    /* ── BADGE overlap ── */
     .badge-wrap {
-      position: relative;
-      z-index: 5;
       display: flex;
       justify-content: center;
-      margin-bottom: 12px;
+      margin-top: -38px;
+      position: relative;
+      z-index: 5;
+      margin-bottom: 14px;
     }
     .badge {
-      background: rgba(20,10,0,0.15);
+      background: rgba(20,10,0,0.18);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1.5px solid rgba(200,150,60,0.50);
@@ -133,9 +131,8 @@
     .badge__name {
       font-family: 'Lora', serif;
       font-size: 24px;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--white);
-      letter-spacing: 0.02em;
       line-height: 1.1;
     }
     .badge__name span { color: var(--gold-lt); }
@@ -148,20 +145,10 @@
       margin-top: 2px;
     }
 
-    /* ── CONTEÚDO sobre o gradiente ── */
+    /* ── CONTEÚDO: fundo escuro sólido ── */
     .hero__content {
-      position: relative;
-      z-index: 5;
-      padding: 0 22px 32px;
-    }
-
-    .hero__footer {
-      position: relative;
-      z-index: 5;
-      padding: 0 22px 32px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
+      background: var(--dark);
+      padding: 0 22px 36px;
     }
 
     .urgency-tag {
@@ -177,7 +164,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold-lt);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .urgency-tag::before {
       content: '';
@@ -197,30 +184,25 @@
       font-weight: 700;
       line-height: 1.20;
       color: var(--white);
-      margin-bottom: 14px;
-      letter-spacing: -0.01em;
+      margin-bottom: 12px;
     }
-    .headline em {
-      font-style: italic;
-      color: var(--gold-lt);
-    }
+    .headline em { font-style: italic; color: var(--gold-lt); }
 
     .sub {
       font-size: 13px;
       line-height: 1.55;
       color: var(--muted);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .sub strong { color: var(--white); font-weight: 600; }
 
-    /* ── CTA ── */
     .cta {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
-      padding: 17px 20px;
+      padding: 16px 20px;
       background: linear-gradient(135deg, #C8963C 0%, #E8B86D 100%);
       border-radius: 50px;
       text-decoration: none;
@@ -229,16 +211,22 @@
       letter-spacing: 0.04em;
       color: #0D0D0D;
       text-transform: uppercase;
-      box-shadow: 0 8px 32px rgba(200,150,60,0.45);
-      transition: transform .18s, box-shadow .18s;
+      box-shadow: 0 8px 32px rgba(200,150,60,0.40);
     }
-    .cta:active { transform: scale(.97); }
     .cta svg { width:20px; height:20px; flex-shrink:0; }
+
+    .footer {
+      background: var(--dark);
+      padding: 16px 22px 32px;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(245,240,232,0.25);
+    }
   </style>
 </head>
 <body>
 
-  <!-- TOPBAR fora da foto -->
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar__row1">
       <span>✦</span>
@@ -255,21 +243,23 @@
     </div>
   </div>
 
+  <!-- FOTO -->
   <section class="hero">
     <img class="hero__img" src="https://cindyb.com.br/wp-content/uploads/2026/04/cindy-scaled.jpg" alt="Cindy Batista" />
     <div class="hero__overlay"></div>
+  </section>
 
-    <!-- BADGE -->
-    <div class="badge-wrap">
-      <div class="badge">
-        <span class="badge__eyebrow">Desafio:</span>
-        <span class="badge__name">Ótica <span>10X</span></span>
-        <span class="badge__sub">— ao vivo —</span>
-      </div>
+  <!-- BADGE overlap -->
+  <div class="badge-wrap">
+    <div class="badge">
+      <span class="badge__eyebrow">Desafio:</span>
+      <span class="badge__name">Ótica <span>10X</span></span>
+      <span class="badge__sub">— ao vivo —</span>
     </div>
+  </div>
 
-    <!-- CONTEÚDO -->
-    <div class="hero__content">
+  <!-- CONTEÚDO -->
+  <div class="hero__content">
     <div class="urgency-tag">Vagas limitadas</div>
     <h1 class="headline">
       Desenhe a estratégia do seu pico de faturamento de <em>Maio</em> — em 3 dias.
@@ -286,13 +276,10 @@
     </a>
   </div>
 
-    <!-- RODAPÉ -->
-    <div class="hero__footer">
-      Ao clicar você será direcionado ao grupo VIP no WhatsApp<br/>
-      <span style="color:rgba(245,240,232,0.25);font-size:11px;">© 2026 Cindy Batista · cindyb.com.br</span>
-    </div>
-
-  </section>
+  <div class="footer">
+    Ao clicar você será direcionado ao grupo VIP no WhatsApp<br/>
+    © 2026 Cindy Batista · cindyb.com.br
+  </div>
 
 </body>
 </html>
