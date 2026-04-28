@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARVEX — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0d10;
+      --surface:   #131318;
+      --surface2:  #1a1a22;
+      --border:    rgba(255,255,255,0.06);
+      --border2:   rgba(255,255,255,0.10);
+      --text:      #e2e2e9;
+      --muted:     rgba(226,226,233,0.45);
+      --muted2:    rgba(226,226,233,0.25);
+      --purple:    #5e6ad2;
+      --purple-lt: rgba(94,106,210,0.15);
+      --green:     #26b05e;
+      --green-lt:  rgba(38,176,94,0.14);
+      --yellow:    #f2a20c;
+      --yellow-lt: rgba(242,162,12,0.14);
+      --red:       #e8432d;
+      --red-lt:    rgba(232,67,45,0.14);
+      --orange:    #e87032;
+      --sidebar-w: 220px;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+      height: 100%;
+    }
+
+    /* ── LAYOUT ── */
+    .app { display: flex; height: 100vh; overflow: hidden; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 16px 0;
+      overflow-y: auto;
+    }
+
+    .sidebar__logo {
+      padding: 0 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .sidebar__logo-icon {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #5e6ad2, #9d6fd9);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+    .sidebar__logo-name { font-weight: 600; font-size: 14px; letter-spacing: 0.04em; }
+    .sidebar__logo-tag { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+
+    .sidebar__section {
+      padding: 12px 16px 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    .sidebar__item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 16px;
+      border-radius: 0;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 400;
+      transition: background .12s, color .12s;
+      text-decoration: none;
+    }
+    .sidebar__item:hover { background: var(--surface2); color: var(--text); }
+    .sidebar__item.active { background: var(--surface2); color: var(--text); }
+    .sidebar__item .dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .sidebar__item .count {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--muted2);
+      background: var(--surface2);
+      padding: 1px 6px;
+      border-radius: 20px;
+    }
+
+    .sidebar__avatar-group {
+      margin-top: auto;
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .member {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 12px; color: var(--muted);
+    }
+    .member__avatar {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .member__name { font-weight: 500; color: var(--text); }
+    .member__role { font-size: 10px; color: var(--muted); }
+
+    /* ── MAIN ── */
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+    /* header */
+    .header {
+      padding: 0 28px;
+      height: 52px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .header__title { font-size: 14px; font-weight: 600; }
+    .header__sub { font-size: 12px; color: var(--muted); }
+    .header__spacer { flex: 1; }
+    .header__date {
+      font-size: 11px; color: var(--muted);
+      background: var(--surface2);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border2);
+    }
+
+    /* scroll area */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ── STATS ROW ── */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .stat__label { font-size: 11px; color: var(--muted); margin-bottom: 6px; font-weight: 500; letter-spacing: 0.04em; }
+    .stat__value { font-size: 26px; font-weight: 700; line-height: 1; color: var(--text); }
+    .stat__sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .stat__pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 600; padding: 2px 7px;
+      border-radius: 20px; margin-top: 6px;
+    }
+    .pill--green { background: var(--green-lt); color: var(--green); }
+    .pill--yellow { background: var(--yellow-lt); color: var(--yellow); }
+    .pill--purple { background: var(--purple-lt); color: var(--purple); }
+    .pill--red { background: var(--red-lt); color: var(--red); }
+
+    /* ── MISSÕES ── */
+    .missions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .mission-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .mission-card__header {
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mission-card__avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .mission-card__name { font-weight: 600; font-size: 13px; }
+    .mission-card__role { font-size: 11px; color: var(--muted); }
+    .mission-card__badge {
+      margin-left: auto;
+      font-size: 10px; font-weight: 600; padding: 3px 8px;
+      border-radius: 20px;
+    }
+    .mission-card__mission {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mission-card__mission-label { font-size: 10px; color: var(--muted); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .mission-card__mission-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .mission-card__mission-deadline {
+      font-size: 11px; color: var(--muted); margin-top: 5px;
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    /* progress bar */
+    .progress { padding: 10px 16px 14px; }
+    .progress__top { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .progress__label { font-size: 11px; color: var(--muted); }
+    .progress__pct { font-size: 11px; font-weight: 600; }
+    .progress__bar { height: 4px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
+    .progress__fill { height: 100%; border-radius: 99px; }
+
+    /* tasks list */
+    .tasks { display: flex; flex-direction: column; }
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      transition: background .1s;
+    }
+    .task:last-child { border-bottom: none; }
+    .task:hover { background: var(--surface2); }
+    .task__status {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .task__status svg { width: 8px; height: 8px; }
+    .status--todo { border-color: rgba(226,226,233,0.2); }
+    .status--doing { border-color: var(--purple); background: var(--purple-lt); }
+    .status--done { border-color: var(--green); background: var(--green-lt); }
+    .status--blocked { border-color: var(--red); background: var(--red-lt); }
+
+    .task__text { flex: 1; font-size: 12.5px; color: var(--text); }
+    .task__text.done { color: var(--muted); text-decoration: line-through; }
+    .task__priority {
+      font-size: 10px; font-weight: 600; padding: 2px 6px;
+      border-radius: 4px; flex-shrink: 0;
+    }
+    .p--alta { background: var(--red-lt); color: var(--red); }
+    .p--media { background: var(--yellow-lt); color: var(--yellow); }
+    .p--baixa { background: var(--green-lt); color: var(--green); }
+
+    /* ── SEÇÃO TITLE ── */
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: -8px;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">A</div>
+      <div>
+        <div class="sidebar__logo-name">ARVEX</div>
+        <div class="sidebar__logo-tag">CO-PRODUÇÃO</div>
+      </div>
+    </div>
+
+    <span class="sidebar__section">Visão Geral</span>
+    <a class="sidebar__item active">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </a>
+    <a class="sidebar__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Tarefas
+      <span class="count">12</span>
+    </a>
+    <a class="sidebar__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Missões
+      <span class="count">3</span>
+    </a>
+    <a class="sidebar__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Métricas
+    </a>
+
+    <span class="sidebar__section" style="margin-top:8px">Frentes</span>
+    <a class="sidebar__item">
+      <span class="dot" style="background:#5e6ad2"></span>
+      Cindy Batista
+      <span class="count">5</span>
+    </a>
+    <a class="sidebar__item">
+      <span class="dot" style="background:#26b05e"></span>
+      Dr. Alex
+      <span class="count">4</span>
+    </a>
+    <a class="sidebar__item">
+      <span class="dot" style="background:#e87032"></span>
+      Vitor / ARVEX
+      <span class="count">3</span>
+    </a>
+
+    <div class="sidebar__avatar-group">
+      <div class="member">
+        <div class="member__avatar" style="background:linear-gradient(135deg,#5e6ad2,#9d6fd9)">V</div>
+        <div>
+          <div class="member__name">Vitor Simões</div>
+          <div class="member__role">Fundador ARVEX</div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="member__avatar" style="background:linear-gradient(135deg,#5e6ad2,#7c6fd9)">C</div>
+        <div>
+          <div class="member__name">Cindy Batista</div>
+          <div class="member__role">Especialista Ótica</div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="member__avatar" style="background:linear-gradient(135deg,#26b05e,#1a8a49)">A</div>
+        <div>
+          <div class="member__name">Dr. Alex</div>
+          <div class="member__role">Especialista HOF</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <header class="header">
+      <div>
+        <div class="header__title">Dashboard ARVEX</div>
+      </div>
+      <span class="header__sub">—</span>
+      <span class="header__sub">3 frentes ativas</span>
+      <div class="header__spacer"></div>
+      <div class="header__date">Abril 2026</div>
+    </header>
+
+    <div class="content">
+
+      <!-- STATS -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__label">Tarefas Totais</div>
+          <div class="stat__value">18</div>
+          <div class="stat__pill pill--purple">3 frentes ativas</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Concluídas</div>
+          <div class="stat__value">4</div>
+          <div class="stat__pill pill--green">22% concluído</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Em Andamento</div>
+          <div class="stat__value">3</div>
+          <div class="stat__pill pill--yellow">Semana 20/04</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Bloqueadas</div>
+          <div class="stat__value">1</div>
+          <div class="stat__pill pill--red">Atenção</div>
+        </div>
+      </div>
+
+      <!-- MISSÕES -->
+      <div class="section-title">Missões Ativas</div>
+      <div class="missions-grid">
+
+        <!-- CINDY -->
+        <div class="mission-card">
+          <div class="mission-card__header">
+            <div class="mission-card__avatar" style="background:linear-gradient(135deg,#5e6ad2,#9d6fd9)">C</div>
+            <div>
+              <div class="mission-card__name">Cindy Batista</div>
+              <div class="mission-card__role">Especialista em Ótica</div>
+            </div>
+            <span class="mission-card__badge pill--purple">Em curso</span>
+          </div>
+          <div class="mission-card__mission">
+            <div class="mission-card__mission-label">Missão</div>
+            <div class="mission-card__mission-text">Lançar o Desafio Ótica 10X — 1ª Edição</div>
+            <div class="mission-card__mission-deadline">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              04–06 de Maio · Ao Vivo
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress__top">
+              <span class="progress__label">Progresso geral</span>
+              <span class="progress__pct" style="color:var(--purple)">72%</span>
+            </div>
+            <div class="progress__bar">
+              <div class="progress__fill" style="width:72%;background:var(--purple)"></div>
+            </div>
+          </div>
+          <div class="tasks">
+            <div class="task">
+              <div class="task__status status--done">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="task__text done">Landing page captura</span>
+              <span class="task__priority p--alta">Alta</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--done">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="task__text done">Grupo VIP criado</span>
+              <span class="task__priority p--alta">Alta</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--done">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="task__text done">Playbook SDR unificado</span>
+              <span class="task__priority p--media">Média</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--doing"></div>
+              <span class="task__text">Tráfego pago — campanha</span>
+              <span class="task__priority p--alta">Alta</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Sequência de aquecimento</span>
+              <span class="task__priority p--media">Média</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DR. ALEX -->
+        <div class="mission-card">
+          <div class="mission-card__header">
+            <div class="mission-card__avatar" style="background:linear-gradient(135deg,#26b05e,#1a8a49)">A</div>
+            <div>
+              <div class="mission-card__name">Dr. Alex</div>
+              <div class="mission-card__role">Especialista HOF</div>
+            </div>
+            <span class="mission-card__badge pill--red">Virada</span>
+          </div>
+          <div class="mission-card__mission">
+            <div class="mission-card__mission-label">Missão</div>
+            <div class="mission-card__mission-text">Novo funil direto — anúncio → página → oferta → closer</div>
+            <div class="mission-card__mission-deadline">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Semana 20/04 — decisões críticas pendentes
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress__top">
+              <span class="progress__label">Progresso geral</span>
+              <span class="progress__pct" style="color:var(--red)">12%</span>
+            </div>
+            <div class="progress__bar">
+              <div class="progress__fill" style="width:12%;background:var(--red)"></div>
+            </div>
+          </div>
+          <div class="tasks">
+            <div class="task" style="background:rgba(232,67,45,0.04)">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Call de alinhamento com Dr. Alex</span>
+              <span class="task__priority p--alta">Alta</span>
+            </div>
+            <div class="task" style="background:rgba(232,67,45,0.04)">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Definir nova estratégia e funil</span>
+              <span class="task__priority p--alta">Alta</span>
+            </div>
+            <div class="task" style="background:rgba(232,67,45,0.04)">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Bater martelo na oferta</span>
+              <span class="task__priority p--alta">Alta</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Montar metodologia completa</span>
+              <span class="task__priority p--media">Média</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Montar aulas para gravar</span>
+              <span class="task__priority p--media">Média</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Escrever criativos</span>
+              <span class="task__priority p--baixa">Baixa</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Criar página de captura</span>
+              <span class="task__priority p--baixa">Baixa</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">Montar roteiro de closer</span>
+              <span class="task__priority p--baixa">Baixa</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VITOR / ARVEX -->
+        <div class="mission-card">
+          <div class="mission-card__header">
+            <div class="mission-card__avatar" style="background:linear-gradient(135deg,#e87032,#c8502a)">V</div>
+            <div>
+              <div class="mission-card__name">Vitor / ARVEX</div>
+              <div class="mission-card__role">Infraestrutura & Gestão</div>
+            </div>
+            <span class="mission-card__badge pill--yellow">Em curso</span>
+          </div>
+          <div class="mission-card__mission">
+            <div class="mission-card__mission-label">Missão</div>
+            <div class="mission-card__mission-text">Operacionalizar infraestrutura ARVEX e escalar frentes</div>
+            <div class="mission-card__mission-deadline">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Contínuo — Q2 2026
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress__top">
+              <span class="progress__label">Progresso geral</span>
+              <span class="progress__pct" style="color:var(--orange)">48%</span>
+            </div>
+            <div class="progress__bar">
+              <div class="progress__fill" style="width:48%;background:var(--orange)"></div>
+            </div>
+          </div>
+          <div class="tasks">
+            <div class="task">
+              <div class="task__status status--done">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="task__text done">Sistema SDR estruturado</span>
+              <span class="task__priority p--alta">Alta</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--doing"></div>
+              <span class="task__text">Dashboard ARVEX (este)</span>
+              <span class="task__priority p--media">Média</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--doing"></div>
+              <span class="task__text">Onboarding novos parceiros</span>
+              <span class="task__priority p--media">Média</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--blocked"></div>
+              <span class="task__text">Gestão Notion + Obsidian</span>
+              <span class="task__priority p--baixa">Baixa</span>
+            </div>
+            <div class="task">
+              <div class="task__status status--todo"></div>
+              <span class="task__text">SaaS transcrição Instagram</span>
+              <span class="task__priority p--baixa">Baixa</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- fim missions-grid -->
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desafio 100K Ótica Versão 3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap');
+
+  @page { size: A4; margin: 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #e8e8e4;
+    color: #1a1a1a;
+    line-height: 1.9;
+  }
+
+  .page {
+    width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 0;
+  }
+
+  /* CAPA */
+  .cover {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 70px 60px;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover-tag {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-bottom: 24px;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover h1 span { color: #d4af37; }
+
+  .cover-subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.7;
+  }
+
+  .cover-divider {
+    width: 60px; height: 3px;
+    background: #d4af37;
+    margin-bottom: 40px;
+  }
+
+  .cover-author {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-author strong { color: white; font-weight: 600; }
+
+  .cover-version {
+    position: absolute;
+    bottom: 40px; right: 60px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(212,175,55,0.6);
+    text-transform: uppercase;
+  }
+
+  /* CONTEÚDO */
+  .content { padding: 50px 55px; }
+
+  .intro-box {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    color: white;
+    padding: 32px 36px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-box p {
+    font-size: 18px;
+    line-height: 1.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro-box p strong { color: #d4af37; }
+
+  /* SEÇÕES */
+  .section {
+    margin-bottom: 40px;
+    border-left: 4px solid #d4af37;
+    padding-left: 24px;
+    page-break-inside: avoid;
+  }
+
+  .section-number {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-bottom: 8px;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #1a1a2e;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .section p {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 14px;
+  }
+
+  /* CITAÇÃO DIRETA */
+  .quote-block {
+    background: #fafaf7;
+    border-left: 4px solid #d4af37;
+    padding: 16px 22px;
+    margin: 16px 0;
+    border-radius: 0 10px 10px 0;
+    page-break-inside: avoid;
+  }
+
+  .quote-block p {
+    font-size: 16px;
+    color: #333;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.9;
+  }
+
+  /* INSIGHT BOX */
+  .insight {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #fdf9ee;
+    border: 1px solid #e8d88a;
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }
+
+  .insight-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #b8960c;
+    margin-bottom: 8px;
+  }
+
+  .insight p {
+    font-size: 16px;
+    color: #5a4a00;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* REFERÊNCIA */
+  .reference {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #f0f4ff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    page-break-inside: avoid;
+  }
+
+  .reference-icon { font-size: 20px; flex-shrink: 0; }
+
+  .reference-text { font-size: 14px; color: #2d3a6b; }
+
+  .reference-text strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  /* ESCADA */
+  .staircase { margin: 18px 0; }
+
+  .stair-step {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    background: #f9f9f7;
+    border-radius: 10px;
+    border-left: 4px solid;
+    page-break-inside: avoid;
+  }
+
+  .stair-step:nth-child(1) { border-color: #a8d5a2; }
+  .stair-step:nth-child(2) { border-color: #7ec8e3; }
+  .stair-step:nth-child(3) { border-color: #d4af37; }
+  .stair-step:nth-child(4) { border-color: #e07b5d; }
+
+  .stair-num {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .stair-step:nth-child(1) .stair-num { background: #a8d5a2; }
+  .stair-step:nth-child(2) .stair-num { background: #7ec8e3; }
+  .stair-step:nth-child(3) .stair-num { background: #d4af37; }
+  .stair-step:nth-child(4) .stair-num { background: #e07b5d; }
+
+  .stair-content strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+  }
+
+  .stair-content p {
+    font-size: 15px;
+    color: #666;
+    margin: 0;
+  }
+
+  /* CICLO */
+  .cycle-box {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    color: white;
+    border-radius: 16px;
+    padding: 36px;
+    margin: 28px 0;
+    text-align: center;
+  }
+
+  .cycle-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #d4af37;
+    margin-bottom: 24px;
+  }
+
+  .cycle-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cycle-item {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(212,175,55,0.3);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .cycle-arrow { color: #d4af37; font-size: 20px; }
+
+  /* FECHAMENTO */
+  .closing {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #1a1a2e;
+    color: white;
+    padding: 44px 55px;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+
+  .closing h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #d4af37;
+    margin-bottom: 14px;
+  }
+
+  .closing p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.75);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.9;
+  }
+
+  .closing-line {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 50px; height: 2px;
+    background: #d4af37;
+    margin: 20px auto;
+  }
+
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body { background: white; margin: 0; }
+    .page { width: 210mm; }
+    .cover { height: 297mm; page-break-after: always; }
+    .cta-section { page-break-inside: avoid; }
+    a { text-decoration: none; color: inherit; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-tag">Desafio Ótica 10X</div>
+    <h1>Como Bater<br><span>100 Mil</span><br>em Vendas<br>na Ótica</h1>
+    <div class="cover-divider"></div>
+    <p class="cover-subtitle">O método real por trás do resultado. Esteira de produtos, delegação, investimento no momento certo e o ciclo que não para de crescer.</p>
+    <div class="cover-author">Por <strong>Cindy Batista</strong> · Desafio Ótica 10X</div>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="content">
+
+    <div class="intro-box">
+      <p>Eu entendi que esse resultado <strong>não ia vir da noite para o dia</strong> e que eu precisaria criar planos e metas. A primeira parte do plano era conseguir entender o que eu precisava fazer para escalar as minhas vendas e não aprisionar o meu faturamento.</p>
+    </div>
+
+    <!-- ERRO 1 -->
+    <div class="section">
+      <div class="section-number">Erro 01</div>
+      <h2>Produto a Preço Único Aprisiona o Faturamento</h2>
+
+      <div class="quote-block">
+        <p>O primeiro erro que eu cometia quando eu não conseguia bater esses 100 mil era ter produtos a preço único. Quando eu colocava todas as armações no mesmo preço, eu limitava o crescimento do meu caixa.</p>
+      </div>
+
+      <p>A solução foi criar uma <strong>esteira de produtos</strong>. Tem clientes que querem um produto melhor. Quando eles entendem que tem alguma coisa a um preço maior, automaticamente passa para o cérebro que essa condição é porque é um produto melhor, diferente, um produto que tem uma certa glamour em comprar.</p>
+
+      <div class="insight">
+        <div class="insight-label">Princípio</div>
+        <p>Não é sobre ter o produto mais caro. É sobre criar uma escala de percepção de valor onde o cliente se posiciona sozinho.</p>
+      </div>
+
+      <div class="reference">
+        <div class="reference-icon">📖</div>
+        <div class="reference-text">
+          <strong>Ancoragem de Preços — Dan Ariely, Previsivelmente Irracional</strong>
+          O primeiro preço que o cliente vê serve de âncora para tudo que vem depois. Quem define a âncora, controla a percepção de valor.
+        </div>
+      </div>
+    </div>
+
+    <!-- ERRO 2 -->
+    <div class="section">
+      <div class="section-number">Erro 02</div>
+      <h2>Ficar Limitado a Poucos Fornecedores e Marcas</h2>
+
+      <div class="quote-block">
+        <p>Estudar as lentes e não ficar limitado a só um tipo de fornecedor, a só vender marca renomada, criar sim marcas exclusivas, ter sim um portfólio de conhecimento dos produtos de lentes para quando o cliente chegar, a gente conseguir ser bastante persuasivo em relação ao que entendeu que ele está precisando.</p>
+      </div>
+
+      <p>Isso inclui entender a saúde ocular do cliente e o que ele está disposto a investir. Tem cliente que ele quer pagar mais caro se ele conseguir visualizar a diferença de um produto mais caro para um mais barato. E a gente só vai conseguir fazer o cliente visualizar isso se nós tivermos todo o entendimento sobre o produto e as tecnologias dele.</p>
+
+      <div class="quote-block">
+        <p>Separar pelo menos quatro tipos de lentes, criar uma esteira de pelo menos quatro tipos e ter autoridade em estar explicando cada um. Isso é extremamente importante.</p>
+      </div>
+
+      <div class="reference">
+        <div class="reference-icon">📖</div>
+        <div class="reference-text">
+          <strong>Venda Consultiva — Neil Rackham, SPIN Selling</strong>
+          O vendedor de alto desempenho não empurra produto. Ele faz perguntas que revelam necessidades que o próprio cliente não sabia que tinha e então apresenta a solução ideal.
+        </div>
+      </div>
+    </div>
+
+    <!-- INVESTIMENTO -->
+    <div class="section">
+      <div class="section-number">Pilar 03</div>
+      <h2>Investimento: Existe um Degrau Correto</h2>
+
+      <div class="quote-block">
+        <p>Eu jamais iria conseguir fazer esse faturamento sem fazer investimento. E o investimento estava voltado no próprio investimento em relação à loja, investimento em estudos, investimento em patrocinado, investimento em marketing. Se eu não investisse nisso, jamais eu estaria conseguindo faturar 100 mil por mês.</p>
+      </div>
+
+      <div class="quote-block">
+        <p>Muita gente acha que a primeira coisa que tem que fazer é reformar toda a loja, quando na verdade não é o primeiro passo.</p>
+      </div>
+
+      <p>Existe uma sequência lógica de investimentos. Pular etapas desperdiça dinheiro sem gerar retorno. O degrau correto é:</p>
+
+      <div class="staircase">
+        <div class="stair-step">
+          <div class="stair-num">1</div>
+          <div class="stair-content">
+            <strong>Delegar para ter tempo</strong>
+            <p>O primeiro investimento é em delegar funções para que você consiga ter tempo para estudar.</p>
+          </div>
+        </div>
+        <div class="stair-step">
+          <div class="stair-num">2</div>
+          <div class="stair-content">
+            <strong>Estudar para tornar produtos desejáveis</strong>
+            <p>Não adianta você ter o melhor produto dentro da sua prateleira se ninguém sabe que você tem e se ninguém criou o desejo por ele.</p>
+          </div>
+        </div>
+        <div class="stair-step">
+          <div class="stair-num">3</div>
+          <div class="stair-content">
+            <strong>Curadoria de peças interessante</strong>
+            <p>Com o conhecimento adquirido, você já sabe como montar uma curadoria que atrai e converte.</p>
+          </div>
+        </div>
+        <div class="stair-step">
+          <div class="stair-num">4</div>
+          <div class="stair-content">
+            <strong>Investir na loja física</strong>
+            <p>Quando você faz o investimento dentro da tua loja e você já tem tempo, já delegou, já entende de tornar o produto desejado e já tem uma curadoria interessante. Aí é o boom.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <p>Você vai perceber que vai chegar em um momento que o teu ticket médio vai ficar ali travado, ele não vai aumentar. E aí, quando você perceber que você já está com um faturamento bom, porém o teu ticket médio está travado, aí sim é o momento de você começar a fazer caixa para fazer um investimento dentro da tua loja.</p>
+      </div>
+
+      <div class="quote-block">
+        <p>Dependendo do local que eles entram, eles estão dispostos a pagar mais ou menos. Aí você vai começar a perceber que seu ticket vai aumentando.</p>
+      </div>
+
+      <div class="reference">
+        <div class="reference-icon">📖</div>
+        <div class="reference-text">
+          <strong>Sequência de Crescimento — Michael Gerber, O Mito do Empreendedor</strong>
+          Negócios bem-sucedidos são construídos em cima de sistemas, não de esforço individual. A ordem dos investimentos define se o crescimento é sustentável ou frágil.
+        </div>
+      </div>
+    </div>
+
+    <!-- DELEGAÇÃO -->
+    <div class="section">
+      <div class="section-number">Pilar 04</div>
+      <h2>Delegação: De Executor a Estrategista</h2>
+
+      <div class="quote-block">
+        <p>Para você começar a ter um faturamento alto, você precisa se tornar o estrategista da empresa. E para se tornar o estrategista, você precisa ter tempo. E o tempo vem de delegação. Então delegar, criar um time enxuto e delegar.</p>
+      </div>
+
+      <div class="insight">
+        <div class="insight-label">Virada de chave</div>
+        <p>Enquanto você faz tudo, o negócio tem o tamanho da sua capacidade individual. Quando você delega, o negócio assume o tamanho do time.</p>
+      </div>
+
+      <div class="reference">
+        <div class="reference-icon">📖</div>
+        <div class="reference-text">
+          <strong>Alavancagem através de pessoas — Alex Hormozi, 100M Offers</strong>
+          O empreendedor que não delega é um empregado do próprio negócio. A escala real começa quando o dono trabalha no negócio, não dentro dele.
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO -->
+    <div class="section">
+      <div class="section-number">Resultado</div>
+      <h2>O Ciclo que Não Para de Crescer</h2>
+
+      <div class="quote-block">
+        <p>Aí você vai começar a perceber que seu ticket vai aumentando e vai virando uma bola de neve. É um ciclo infinito ali de novos clientes, de faturamento aumentando e de novos clientes através do patrocinado e indicações.</p>
+      </div>
+
+      <div class="cycle-box">
+        <h3>O Ciclo dos 100K</h3>
+        <div class="cycle-items">
+          <div class="cycle-item">Novos clientes</div>
+          <div class="cycle-arrow">→</div>
+          <div class="cycle-item">Ticket médio maior</div>
+          <div class="cycle-arrow">→</div>
+          <div class="cycle-item">Mais caixa</div>
+          <div class="cycle-arrow">→</div>
+          <div class="cycle-item">Novo investimento</div>
+          <div class="cycle-arrow">→</div>
+          <div class="cycle-item">Mais indicações</div>
+          <div class="cycle-arrow">→</div>
+          <div class="cycle-item">Novos clientes</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FECHAMENTO -->
+  <div class="closing">
+    <h2>O Resultado é uma Consequência</h2>
+    <div class="closing-line"></div>
+    <p>100 mil por mês não é sorte nem talento nato. É a consequência natural de montar o sistema certo, investir na ordem certa e se posicionar como estrategista, não como vendedor.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section" style="-webkit-print-color-adjust: exact; print-color-adjust: exact; background: linear-gradient(145deg, #1a1a2e 0%, #0f3460 100%); padding: 60px; text-align: center;">
+
+    <p style="font-size: 13px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #d4af37; margin-bottom: 20px;">Você está pronto para o próximo nível?</p>
+
+    <h2 style="-webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Playfair Display', serif; font-size: 42px; color: #ffffff; margin-bottom: 16px; line-height: 1.2;">Desafio <span style="color: #d4af37;">Ótica 10X</span></h2>
+
+    <div style="-webkit-print-color-adjust: exact; print-color-adjust: exact; width: 50px; height: 3px; background: #d4af37; margin: 0 auto 28px auto;"></div>
+
+    <p style="font-size: 19px; color: rgba(255,255,255,0.85); max-width: 460px; margin: 0 auto 16px auto; line-height: 1.8;">Tudo que você leu aqui é o mapa. O Desafio Ótica 10X é onde você aplica, com acompanhamento, comunidade e o método completo para chegar nos seus primeiros <strong style="-webkit-print-color-adjust: exact; print-color-adjust: exact; color: #d4af37;">100 mil por mês.</strong></p>
+
+    <p style="font-size: 16px; color: rgba(255,255,255,0.55); max-width: 420px; margin: 0 auto 36px auto; line-height: 1.8;">Esteira de produtos, curadoria, delegação, marketing e investimento no momento certo. Tudo junto, na prática, no seu negócio.</p>
+
+    <a href="https://chat.whatsapp.com/FRRgWAFkUjtJQz0uXdOdVu"
+       style="-webkit-print-color-adjust: exact; print-color-adjust: exact; display: inline-block; background: #25D366; color: #ffffff; font-weight: 700; font-size: 19px; padding: 22px 50px; border-radius: 50px; text-decoration: none; letter-spacing: 0.3px; box-shadow: 0 6px 30px rgba(37,211,102,0.35); margin-bottom: 16px;">
+      📲 Entrar no Grupo e Ter Acesso à Oferta Especial
+    </a>
+
+    <p style="font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 10px; letter-spacing: 1px;">ACESSO VIA WHATSAPP · VAGAS LIMITADAS</p>
+
+  </div>
+
+</div>
+
+<div style="text-align:center; padding: 16px; font-size: 13px; color: #999; background: #f5f5f0;">
+  Para salvar como PDF: Ctrl+P → Salvar como PDF → Margens: Nenhuma → Marcar: Gráficos de fundo
+</div>
+
+</body>
+</html>

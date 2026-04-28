@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil Grupo — Desafio Ótica 10X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #141414;
+      --gold:   #C8963C;
+      --gold-lt:#E8B86D;
+      --white:  #F5F0E8;
+    }
+
+    html, body {
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── CARD QUADRADO 1000×1000 ── */
+    .card {
+      position: relative;
+      width: 1000px;
+      height: 1000px;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+
+    .card__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      filter: brightness(0.88);
+    }
+
+    /* gradiente suave apenas na base para legibilidade do badge */
+    .card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent          0%,
+        transparent          40%,
+        rgba(20,20,20,0.30)  65%,
+        rgba(20,20,20,0.72)  85%,
+        rgba(20,20,20,0.88) 100%
+      );
+    }
+
+    /* conteúdo centralizado */
+    .card__body {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* badge principal */
+    .badge {
+      background: rgba(14,8,0,0.38);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border: 1.5px solid rgba(200,150,60,0.32);
+      border-radius: 32px;
+      padding: 36px 72px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge__eyebrow {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: rgba(232,184,109,0.75);
+    }
+
+    .badge__name {
+      font-family: 'Lora', serif;
+      font-size: 100px;
+      font-weight: 700;
+      line-height: 1.0;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .badge__name span { color: var(--gold-lt); }
+
+    .badge__divider {
+      width: 100%;
+      height: 1.5px;
+      background: rgba(200,150,60,0.22);
+      margin: 16px 0 12px;
+    }
+
+    .badge__sub {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(200,150,60,0.65);
+    }
+
+    /* nome da Cindy na base */
+    .card__author {
+      position: absolute;
+      bottom: 44px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 5;
+    }
+    .card__author span {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: rgba(245,240,232,0.60);
+    }
+    .card__author strong {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img class="card__img"
+         src="https://cindyb.com.br/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-20-at-19.52.46.jpeg"
+         alt="Cindy Batista" />
+    <div class="card__overlay"></div>
+
+    <div class="card__body">
+      <div class="badge">
+        <span class="badge__eyebrow">Desafio</span>
+        <div class="badge__name">Ótica <span>10X</span></div>
+        <div class="badge__divider"></div>
+        <span class="badge__sub">04, 05 e 06 de Maio · Ao Vivo</span>
+      </div>
+    </div>
+
+    <div class="card__author">
+      <span>com</span>
+      <strong>Cindy Batista</strong>
+    </div>
+  </div>
+
+</body>
+</html>
