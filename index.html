@@ -539,10 +539,10 @@
       </div>
       <div class="form-row">
         <div class="form-group"><label>SDR Responsável</label>
-          <select id="f-resp"><option value="">— Sem SDR —</option><option value="SDR 1">SDR 1</option><option value="SDR 2">SDR 2</option><option value="Vitor">Vitor</option></select>
+          <select id="f-resp"><option value="">— Sem SDR —</option><option value="Victor P">Victor P</option><option value="Gabriel">Gabriel</option><option value="Vitor">Vitor</option></select>
         </div>
         <div class="form-group"><label>Closer Responsável</label>
-          <select id="f-closer"><option value="">— Sem Closer —</option><option value="Closer 1">Closer 1</option><option value="Closer 2">Closer 2</option><option value="Vitor">Vitor</option></select>
+          <select id="f-closer"><option value="">— Sem Closer —</option><option value="Victor P">Victor P</option><option value="Gabriel">Gabriel</option><option value="Vitor">Vitor</option></select>
         </div>
       </div>
       <div class="form-row">
@@ -1080,8 +1080,22 @@ function openDetail(id) {
       <div><div class="di-label">WhatsApp</div><div class="di-value">${l.tel ? `<a href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">💬 ${esc(l.tel)}</a>` : '—'}</div></div>
       <div><div class="di-label">Expert</div><div class="di-value">${esc(l.expert)}</div></div>
       <div><div class="di-label">Origem</div><div class="di-value">${esc(l.origem)}</div></div>
-      <div><div class="di-label">SDR Responsável</div><div class="di-value">${esc(l.sdr||l.resp||'—')}</div></div>
-      <div><div class="di-label">Closer Responsável</div><div class="di-value">${esc(l.closer||'—')}</div></div>
+      <div><div class="di-label">SDR Responsável</div>
+        <select onchange="updateLeadField('${l.id}',{resp:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+          <option value="" ${!l.resp?'selected':''}>— Sem SDR —</option>
+          <option value="Victor P" ${l.resp==='Victor P'?'selected':''}>Victor P</option>
+          <option value="Gabriel" ${l.resp==='Gabriel'?'selected':''}>Gabriel</option>
+          <option value="Vitor" ${l.resp==='Vitor'?'selected':''}>Vitor</option>
+        </select>
+      </div>
+      <div><div class="di-label">Closer Responsável</div>
+        <select onchange="updateLeadField('${l.id}',{closer:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+          <option value="" ${!l.closer?'selected':''}>— Sem Closer —</option>
+          <option value="Victor P" ${l.closer==='Victor P'?'selected':''}>Victor P</option>
+          <option value="Gabriel" ${l.closer==='Gabriel'?'selected':''}>Gabriel</option>
+          <option value="Vitor" ${l.closer==='Vitor'?'selected':''}>Vitor</option>
+        </select>
+      </div>
       <div><div class="di-label">Tem Sócio</div><div class="di-value">${esc(l.socio||'—')}</div></div>
       ${currentRole === 'admin' ? `<div><div class="di-label">Ticket</div><div class="di-value" style="color:var(--gold2)">${l.ticket ? 'R$ '+parseFloat(l.ticket).toLocaleString('pt-BR') : '—'}</div></div>` : ''}
       <div><div class="di-label">Status</div><div class="di-value"><span class="badge ${BADGE[l.status]}">${BLABEL[l.status]}</span></div></div>
