@@ -538,17 +538,22 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>Responsável</label>
-          <select id="f-resp"><option value="SDR">SDR</option><option value="Closer">Closer</option><option value="Vitor">Vitor</option></select>
+        <div class="form-group"><label>SDR Responsável</label>
+          <select id="f-resp"><option value="">— Sem SDR —</option><option value="Victor P">Victor P</option><option value="Gabriel">Gabriel</option><option value="Vitor">Vitor</option></select>
         </div>
+        <div class="form-group"><label>Closer Responsável</label>
+          <select id="f-closer"><option value="">— Sem Closer —</option><option value="Victor P">Victor P</option><option value="Gabriel">Gabriel</option><option value="Vitor">Vitor</option></select>
+        </div>
+      </div>
+      <div class="form-row">
         <div class="form-group"><label>Ticket Estimado (R$)</label><input type="number" id="f-ticket" placeholder="0" min="0" /></div>
+        <div class="form-group"><label>Tem sócio?</label>
+          <select id="f-socio"><option value="Não informado">Não informado</option><option value="Sim">Sim</option><option value="Não">Não</option></select>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group"><label>Status inicial</label>
           <select id="f-status"><option value="novo">Novo</option><option value="contato">Contato</option><option value="qualificado">Qualificado</option><option value="call">Call</option><option value="followup">Follow Up</option></select>
-        </div>
-        <div class="form-group"><label>Tem sócio?</label>
-          <select id="f-socio"><option value="Não informado">Não informado</option><option value="Sim">Sim</option><option value="Não">Não</option></select>
         </div>
       </div>
       <div class="form-group"><label>Observações</label><textarea id="f-obs" placeholder="Contexto, interesse, como chegou..."></textarea></div>
@@ -581,6 +586,12 @@ const sb = supabase.createClient(SUPA_URL, SUPA_KEY)
 let currentUser = null
 let currentRole = null
 let cachedLeads = []
+
+// recupera sessão existente sem pedir login novamente
+;(async () => {
+  const { data: { session } } = await sb.auth.getSession()
+  if (!session) document.getElementById('login-screen').style.display = 'flex'
+})();
 
 // ── CONFIG ─────────────────────────────────────────────────────────────────
 const COLS = [
@@ -671,16 +682,20 @@ function getLeads() { return cachedLeads }
 async function insertLead(lead) {
   const { error } = await sb.from('leads').insert({
     nome: lead.nome, tel: lead.tel, expert: lead.expert, origem: lead.origem,
-    resp: lead.resp, ticket: lead.ticket ? parseFloat(lead.ticket) : null,
+    resp: lead.resp, closer: lead.closer || null,
+    ticket: lead.ticket ? parseFloat(lead.ticket) : null,
     status: lead.status, socio: lead.socio, obs: lead.obs, activities: []
   })
   if (error) alert('Erro ao salvar lead: ' + error.message)
 }
 
 async function updateLeadField(id, fields) {
+  // atualiza cache local imediatamente para evitar flash de card sumindo
+  const idx = cachedLeads.findIndex(l => l.id === id)
+  if (idx !== -1) cachedLeads[idx] = { ...cachedLeads[idx], ...fields }
   const { error } = await sb.from('leads').update(fields).eq('id', id)
-  if (error) alert('Erro ao atualizar: ' + error.message)
-  await loadLeads()
+  if (error) { alert('Erro ao atualizar: ' + error.message); await loadLeads() }
+  // loadLeads() será chamado pelo realtime subscription automaticamente
 }
 
 async function removeLeadDB(id) {
@@ -854,7 +869,8 @@ function renderPipeline() {
 }
 
 function getSLABadge(l) {
-  if (!['novo','contato'].includes(l.status)) return ''
+  // só mostra "sem contato" se status for 'novo' — em 'contato' já houve interação
+  if (l.status !== 'novo') return ''
   const horas = Math.floor((Date.now() - l.created) / 3600000)
   if (horas < 2)  return `<div class="sla-badge sla-ok">⏱ ${horas}h sem contato</div>`
   if (horas < 24) return `<div class="sla-badge sla-warn">⚠️ ${horas}h sem contato</div>`
@@ -1044,9 +1060,10 @@ async function saveLead() {
     expert: document.getElementById('f-expert').value,
     origem: document.getElementById('f-origem').value,
     resp:   document.getElementById('f-resp').value,
+    closer: document.getElementById('f-closer').value,
     ticket: document.getElementById('f-ticket').value,
     status: document.getElementById('f-status').value,
-    socio:  document.getElementById('f-socio').value,
+    socio:  document.getElementById('f-socio').value || 'Não informado',
     obs:    document.getElementById('f-obs').value.trim(),
   }
   await insertLead(lead)
@@ -1063,7 +1080,22 @@ function openDetail(id) {
       <div><div class="di-label">WhatsApp</div><div class="di-value">${l.tel ? `<a href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">💬 ${esc(l.tel)}</a>` : '—'}</div></div>
       <div><div class="di-label">Expert</div><div class="di-value">${esc(l.expert)}</div></div>
       <div><div class="di-label">Origem</div><div class="di-value">${esc(l.origem)}</div></div>
-      <div><div class="di-label">Responsável</div><div class="di-value">${esc(l.resp)}</div></div>
+      <div><div class="di-label">SDR Responsável</div>
+        <select onchange="updateLeadField('${l.id}',{resp:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+          <option value="" ${!l.resp?'selected':''}>— Sem SDR —</option>
+          <option value="Victor P" ${l.resp==='Victor P'?'selected':''}>Victor P</option>
+          <option value="Gabriel" ${l.resp==='Gabriel'?'selected':''}>Gabriel</option>
+          <option value="Vitor" ${l.resp==='Vitor'?'selected':''}>Vitor</option>
+        </select>
+      </div>
+      <div><div class="di-label">Closer Responsável</div>
+        <select onchange="updateLeadField('${l.id}',{closer:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+          <option value="" ${!l.closer?'selected':''}>— Sem Closer —</option>
+          <option value="Victor P" ${l.closer==='Victor P'?'selected':''}>Victor P</option>
+          <option value="Gabriel" ${l.closer==='Gabriel'?'selected':''}>Gabriel</option>
+          <option value="Vitor" ${l.closer==='Vitor'?'selected':''}>Vitor</option>
+        </select>
+      </div>
       <div><div class="di-label">Tem Sócio</div><div class="di-value">${esc(l.socio||'—')}</div></div>
       ${currentRole === 'admin' ? `<div><div class="di-label">Ticket</div><div class="di-value" style="color:var(--gold2)">${l.ticket ? 'R$ '+parseFloat(l.ticket).toLocaleString('pt-BR') : '—'}</div></div>` : ''}
       <div><div class="di-label">Status</div><div class="di-value"><span class="badge ${BADGE[l.status]}">${BLABEL[l.status]}</span></div></div>
@@ -1109,6 +1141,13 @@ async function changeStatus(id, status) {
   if (status === 'followup') {
     const prox = prompt('Próximo passo do Closer:\n(ex: Ligar segunda 14h, Enviar proposta)')
     if (prox) updates.proximo_passo = prox.trim()
+  }
+  if (status === 'fechado') {
+    const valorStr = prompt('Valor pago (R$):\n(ex: 1500)')
+    if (valorStr !== null && valorStr.trim() !== '') {
+      const valor = parseFloat(valorStr.replace(',','.'))
+      if (!isNaN(valor)) updates.ticket = valor
+    }
   }
 
   await updateLeadField(id, updates)

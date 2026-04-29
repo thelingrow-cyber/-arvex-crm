@@ -15,6 +15,7 @@ create table if not exists leads (
   expert         text,
   origem         text,
   resp           text,
+  closer         text,
   ticket         numeric,
   status         text default 'novo',
   socio          text,
