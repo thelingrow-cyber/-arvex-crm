@@ -1335,7 +1335,7 @@ function renderCSCard(c) {
 
   const proximaAcao = pendente ? `
     <div style="margin:6px 0;padding:6px 8px;border-radius:6px;background:${ehHoje?'rgba(10,132,255,.15)':atrasado?'rgba(249,115,22,.12)':'rgba(255,255,255,.04)'};border:1px solid ${ehHoje?'rgba(10,132,255,.3)':atrasado?'rgba(249,115,22,.3)':'var(--border)'}">
-      <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px">${ehHoje?'⏰ HOJE':atrasado?'⚠️ ATRASADO':'📅 '+pendente.data_prevista}</div>
+      <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px">${ehHoje?'⏰ HOJE':atrasado?'⚠️ ATRASADO':pendente.data_prevista?'📅 '+pendente.data_prevista:'📅 Preencha a data da triagem'}</div>
       <div style="font-size:11px;color:var(--white)">D+${pendente.dia_relativo} — ${esc(pendente.entregavel)}</div>
       <div style="display:flex;gap:4px;margin-top:6px" onclick="event.stopPropagation()">
         <button onclick="registrarCheck('${pendente.id}','respondido','${c.id}')" style="flex:1;font-size:10px;font-weight:700;padding:4px;border-radius:5px;border:none;background:rgba(34,197,94,.2);color:var(--green);cursor:pointer">✅ Respondeu</button>
@@ -1403,6 +1403,9 @@ function openCSDetail(id) {
           <option value="Sabrina" ${c.resp_cs==='Sabrina'?'selected':''}>Sabrina</option>
         </select>
       </div>
+      <div><div class="di-label">Data da Triagem</div>
+        <input type="date" value="${c.data_triagem||''}" onchange="updateCSField('${id}',{data_triagem:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+      </div>
       <div><div class="di-label">Último Contato</div>
         <input type="date" value="${c.ultimo_contato||''}" onchange="updateCSField('${id}',{ultimo_contato:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
       </div>
@@ -1414,18 +1417,18 @@ function openCSDetail(id) {
       </div>
     </div>
     <div class="section-sep">Gates para Reunião com Cindy</div>
-    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
-      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px">
-        <input type="checkbox" ${c.aula_assistida?'checked':''} onchange="updateCSField('${id}',{aula_assistida:this.checked})" />
-        Aula indicada assistida
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;font-size:13px">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white)">
+        <input type="checkbox" ${c.aula_assistida?'checked':''} onchange="updateCSField('${id}',{aula_assistida:this.checked})" style="width:16px;height:16px;cursor:pointer" />
+        ✅ Aula indicada assistida
       </label>
-      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px">
-        <input type="checkbox" ${c.campanha_rodou?'checked':''} onchange="updateCSField('${id}',{campanha_rodou:this.checked})" />
-        Campanha orgânica rodou
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white)">
+        <input type="checkbox" ${c.campanha_rodou?'checked':''} onchange="updateCSField('${id}',{campanha_rodou:this.checked})" style="width:16px;height:16px;cursor:pointer" />
+        ✅ Campanha orgânica rodou
       </label>
-      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px">
-        <input type="checkbox" ${c.resultado_coletado?'checked':''} onchange="updateCSField('${id}',{resultado_coletado:this.checked})" />
-        Resultado da campanha coletado
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white)">
+        <input type="checkbox" ${c.resultado_coletado?'checked':''} onchange="updateCSField('${id}',{resultado_coletado:this.checked})" style="width:16px;height:16px;cursor:pointer" />
+        ✅ Resultado da campanha coletado
       </label>
     </div>
     <div class="section-sep">Diagnóstico de Triagem</div>
