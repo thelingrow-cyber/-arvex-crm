@@ -688,7 +688,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
     currentUser = session.user
     // define role pelo email sem esperar banco
     const admins = ['viktorsimoess@gmail.com', 'arvexdigital@gmail.com']
-    const csOnly  = ['sabrina@arvexdigital.com.br'] // adicionar e-mail real da Sabrina aqui
+    const csOnly  = ['sabrinavieirasouza25@gmail.com']
     currentRole = admins.includes(currentUser.email) ? 'admin' : csOnly.includes(currentUser.email) ? 'cs' : 'sdr'
     // abre o app imediatamente
     document.getElementById('login-screen').classList.add('hidden')
