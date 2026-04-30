@@ -1345,8 +1345,16 @@ function renderCSCard(c) {
     if (checks.length > 4) checksHtml += `<div style="font-size:10px;color:var(--muted)">+${checks.length-4} checks</div>`
     checksHtml += `</div>`
   } else if (subs.length) {
+    const actsFase = (c.activities || []).filter(a => a.fase === c.cs_stage)
+    const feitosSet = new Set(actsFase.map(a => a.sub))
     checksHtml = `<div class="cs-checks-list">`
-    subs.forEach(s => { checksHtml += `<div style="font-size:11px;color:var(--muted);margin-bottom:2px">○ ${s}</div>` })
+    subs.forEach(s => {
+      const feito = feitosSet.has(s)
+      checksHtml += `<div onclick="toggleSubCS('${c.id}','${c.cs_stage}',${JSON.stringify(s)},${feito})" style="font-size:11px;cursor:pointer;display:flex;align-items:center;gap:5px;margin-bottom:4px;padding:3px 6px;border-radius:5px;background:${feito?'rgba(34,197,94,.12)':'transparent'};transition:background .15s">
+        <span style="font-size:13px;line-height:1">${feito?'✅':'○'}</span>
+        <span style="color:${feito?'var(--green)':'var(--muted)'};text-decoration:${feito?'line-through':'none'}">${s}</span>
+      </div>`
+    })
     checksHtml += `</div>`
   }
 
@@ -1440,6 +1448,18 @@ async function registrarCheck(checkId, resultado, clienteId) {
   if (error) { alert('Erro: ' + error.message); return }
   await loadCS()
   renderCS()
+}
+
+async function toggleSubCS(clienteId, fase, sub, jaFeito) {
+  const c = cachedCS.find(x => x.id === clienteId)
+  if (!c) return
+  let acts = c.activities || []
+  if (jaFeito) {
+    acts = acts.filter(a => !(a.fase === fase && a.sub === sub))
+  } else {
+    acts = [...acts, { fase, sub, data: hoje, por: currentUser?.email || 'cs' }]
+  }
+  await updateCSField(clienteId, { activities: acts })
 }
 
 function openCSDetail(id) {
