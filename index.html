@@ -187,6 +187,9 @@
     .cs-card-footer { display: flex; justify-content: space-between; align-items: center; }
     .btn-mover-cs { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(200,169,110,.2); color: var(--gold2); cursor: pointer; transition: background .15s; }
     .btn-mover-cs:hover { background: rgba(200,169,110,.35); }
+    .cs-checks-list { margin: 4px 0 6px; padding: 6px 8px; background: rgba(255,255,255,.03); border-radius: 6px; border: 1px solid var(--border); }
+    .cs-card[draggable] { cursor: grab; }
+    .cs-card[draggable]:active { cursor: grabbing; }
     .pipeline-col { width: 230px; flex-shrink: 0; }
     .col-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px 8px 0 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing:.06em; margin-bottom: 8px; }
     .col-count { background: rgba(255,255,255,.12); border-radius: 20px; padding: 1px 8px; font-size: 11px; }
@@ -1218,20 +1221,64 @@ async function deleteLead(id, e) {
 }
 
 // ── CUSTOMER SUCCESS ──────────────────────────────────────────────────────
-let cachedCS = []
+let cachedCS    = []
+let cachedChecks = {}   // { cliente_cs_id: [checks...] }
 
 const CS_COLS = [
-  { id:'onboarding', label:'Onboarding 🟢',  cls:'col-cs-onboarding' },
-  { id:'triagem',    label:'Triagem 🔵',      cls:'col-cs-triagem' },
-  { id:'campanha',   label:'Campanha 🟡',     cls:'col-cs-campanha' },
-  { id:'gate_cindy', label:'Gate Cindy ⭐',   cls:'col-cs-gate' },
-  { id:'ativo',      label:'Ativo ✅',        cls:'col-cs-ativo' },
-  { id:'risco_churn',label:'Risco Churn 🔴',  cls:'col-cs-churn' },
+  { id:'onboarding',  label:'Onboarding 🟢',  cls:'col-cs-onboarding' },
+  { id:'triagem',     label:'Triagem 🔵',      cls:'col-cs-triagem' },
+  { id:'campanha',    label:'Campanha 🟡',     cls:'col-cs-campanha' },
+  { id:'gate_cindy',  label:'Gate Cindy ⭐',   cls:'col-cs-gate' },
+  { id:'ativo',       label:'Ativo ✅',        cls:'col-cs-ativo' },
+  { id:'risco_churn', label:'Risco Churn 🔴',  cls:'col-cs-churn' },
 ]
 
+const CS_SUBS = {
+  onboarding: [
+    'Boas-vindas enviada (WhatsApp)',
+    'Acesso à plataforma liberado',
+    'Reunião de triagem agendada',
+  ],
+  triagem: [
+    'Reunião realizada',
+    'Diagnóstico (11 perguntas) preenchido',
+    'Materiais + datas da campanha enviados',
+    'Aula indicada enviada',
+  ],
+  gate_cindy: [
+    'Aula indicada assistida',
+    'Campanha orgânica rodou',
+    'Resultado coletado',
+    'Reunião com Cindy agendada',
+    'Meta oficial definida',
+  ],
+  ativo: [
+    'D+21 — Coleta de resultados do mês',
+    'D+28 — Análise + próxima etapa',
+    'Próximo ciclo planejado',
+  ],
+  risco_churn: [
+    'Tentativa de contato 1',
+    'Tentativa de contato 2 (ligação)',
+    'Resolução: reativado ou encerrado',
+  ],
+}
+
+const hoje = new Date().toISOString().slice(0,10)
+
 async function loadCS() {
-  const { data } = await sb.from('clientes_cs').select('*').order('created_at', { ascending: false })
-  cachedCS = data || []
+  const { data: clientes } = await sb.from('clientes_cs').select('*').order('created_at', { ascending: false })
+  cachedCS = clientes || []
+
+  if (cachedCS.length) {
+    const ids = cachedCS.map(c => c.id)
+    const { data: checks } = await sb.from('cs_checks').select('*').in('cliente_cs_id', ids).order('dia_relativo', { ascending: true })
+    cachedChecks = {}
+    ;(checks || []).forEach(ch => {
+      if (!cachedChecks[ch.cliente_cs_id]) cachedChecks[ch.cliente_cs_id] = []
+      cachedChecks[ch.cliente_cs_id].push(ch)
+    })
+  }
 }
 
 function renderCS() {
@@ -1240,43 +1287,102 @@ function renderCS() {
   board.innerHTML = CS_COLS.map(col => {
     const cards = cachedCS.filter(c => c.cs_stage === col.id)
     return `
-      <div class="cs-col">
+      <div class="cs-col" data-col="${col.id}">
         <div class="col-header ${col.cls}">${col.label}<span class="col-count">${cards.length}</span></div>
-        <div style="margin-top:8px">
+        <div class="col-drop-zone" style="margin-top:8px" data-col="${col.id}"
+          ondragover="onCSOver(event)" ondragleave="onDragLeave(event)" ondrop="onCSDrop(event,'${col.id}')">
           ${cards.length ? cards.map(renderCSCard).join('') : '<div class="empty-col">Vazio</div>'}
         </div>
       </div>`
   }).join('')
+
+  board.querySelectorAll('.cs-card[draggable]').forEach(card => {
+    card.addEventListener('dragstart', e => { dragId = card.dataset.id; setTimeout(() => card.classList.add('dragging'), 0) })
+    card.addEventListener('dragend', () => { card.classList.remove('dragging'); dragId = null })
+  })
 }
 
 function renderCSCard(c) {
-  const churnCls = c.churn_flag === 'vermelho' ? 'cs-churn-vermelho' : c.churn_flag === 'amarelo' ? 'cs-churn-amarelo' : 'cs-churn-ok'
-  const churnLabel = c.churn_flag === 'vermelho' ? '🔴 ' + (c.churn_dias_sem_resp||0) + 'd sem resposta' : c.churn_flag === 'amarelo' ? '🟡 ' + (c.churn_dias_sem_resp||0) + 'd sem resposta' : '🟢 Ativo'
-  const gate1 = c.aula_assistida ? 'done' : ''
-  const gate2 = c.campanha_rodou ? 'done' : ''
-  const gate3 = c.resultado_coletado ? 'done' : ''
+  const churnCls   = c.churn_flag === 'vermelho' ? 'cs-churn-vermelho' : c.churn_flag === 'amarelo' ? 'cs-churn-amarelo' : 'cs-churn-ok'
+  const churnLabel = c.churn_flag === 'vermelho' ? '🔴 ' + (c.churn_dias_sem_resp||0) + 'd sem resp' : c.churn_flag === 'amarelo' ? '🟡 ' + (c.churn_dias_sem_resp||0) + 'd sem resp' : '🟢 Ativo'
+  const checks     = cachedChecks[c.id] || []
+
+  // próximo check pendente
+  const pendente = checks.find(ch => ch.status === 'pendente')
+  const ehHoje   = pendente && pendente.data_prevista === hoje
+  const atrasado = pendente && pendente.data_prevista && pendente.data_prevista < hoje
+
+  // sub-etapas da fase atual (onboarding, triagem, gate_cindy, ativo, churn)
+  const subs = CS_SUBS[c.cs_stage] || []
+
+  let checksHtml = ''
+  if (c.cs_stage === 'campanha' && checks.length) {
+    // mostra os checks D+X
+    checksHtml = `<div class="cs-checks-list">`
+    checks.slice(0,4).forEach(ch => {
+      const icon  = ch.status === 'respondido' ? '✅' : ch.status === 'sem_resposta' ? '❌' : (ch.data_prevista === hoje ? '⏳' : '○')
+      const bold  = ch.data_prevista === hoje ? 'font-weight:700;color:var(--white)' : ''
+      const atras = ch.data_prevista && ch.data_prevista < hoje && ch.status === 'pendente' ? 'color:var(--orange)' : ''
+      checksHtml += `<div style="font-size:11px;${bold}${atras};margin-bottom:2px">${icon} D+${ch.dia_relativo} — ${esc(ch.entregavel)}</div>`
+    })
+    if (checks.length > 4) checksHtml += `<div style="font-size:10px;color:var(--muted)">+${checks.length-4} checks</div>`
+    checksHtml += `</div>`
+  } else if (subs.length) {
+    checksHtml = `<div class="cs-checks-list">`
+    subs.forEach(s => { checksHtml += `<div style="font-size:11px;color:var(--muted);margin-bottom:2px">○ ${s}</div>` })
+    checksHtml += `</div>`
+  }
+
+  const proximaAcao = pendente ? `
+    <div style="margin:6px 0;padding:6px 8px;border-radius:6px;background:${ehHoje?'rgba(10,132,255,.15)':atrasado?'rgba(249,115,22,.12)':'rgba(255,255,255,.04)'};border:1px solid ${ehHoje?'rgba(10,132,255,.3)':atrasado?'rgba(249,115,22,.3)':'var(--border)'}">
+      <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px">${ehHoje?'⏰ HOJE':atrasado?'⚠️ ATRASADO':'📅 '+pendente.data_prevista}</div>
+      <div style="font-size:11px;color:var(--white)">D+${pendente.dia_relativo} — ${esc(pendente.entregavel)}</div>
+      <div style="display:flex;gap:4px;margin-top:6px" onclick="event.stopPropagation()">
+        <button onclick="registrarCheck('${pendente.id}','respondido','${c.id}')" style="flex:1;font-size:10px;font-weight:700;padding:4px;border-radius:5px;border:none;background:rgba(34,197,94,.2);color:var(--green);cursor:pointer">✅ Respondeu</button>
+        <button onclick="registrarCheck('${pendente.id}','sem_resposta','${c.id}')" style="flex:1;font-size:10px;font-weight:700;padding:4px;border-radius:5px;border:none;background:rgba(239,68,68,.15);color:var(--red);cursor:pointer">❌ Sem resp.</button>
+      </div>
+    </div>` : ''
+
   return `
-    <div class="cs-card" onclick="openCSDetail('${c.id}')">
-      <div class="cs-card-name">${esc(c.nome)}</div>
+    <div class="cs-card" draggable="true" data-id="${c.id}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+        <div class="cs-card-name">${esc(c.nome)}</div>
+        <span class="${churnCls}" style="flex-shrink:0;margin-left:6px">${churnLabel}</span>
+      </div>
       <div class="cs-card-meta">
         ${c.tel ? `<span>📱 ${esc(c.tel)}</span>` : ''}
-        ${c.resp_cs ? `<span>👤 CS: ${esc(c.resp_cs)}</span>` : ''}
-        ${c.ultimo_contato ? `<span>📅 Último contato: ${c.ultimo_contato}</span>` : ''}
-        ${c.meta_oficial ? `<span>🎯 Meta: <strong style="color:var(--gold2)">${esc(c.meta_oficial)}</strong></span>` : ''}
+        ${c.ultimo_contato ? `<span>📅 Último: ${c.ultimo_contato}</span>` : ''}
+        ${c.meta_oficial ? `<span>🎯 <strong style="color:var(--gold2)">${esc(c.meta_oficial)}</strong></span>` : ''}
       </div>
-      <div class="cs-gates">
-        <span class="cs-gate-tag ${gate1}">Aula ${c.aula_assistida ? '✓' : '○'}</span>
-        <span class="cs-gate-tag ${gate2}">Campanha ${c.campanha_rodou ? '✓' : '○'}</span>
-        <span class="cs-gate-tag ${gate3}">Resultado ${c.resultado_coletado ? '✓' : '○'}</span>
-      </div>
-      <div class="cs-card-footer">
-        <span class="${churnCls}">${churnLabel}</span>
-        <div style="display:flex;gap:6px">
+      ${proximaAcao}
+      ${checksHtml}
+      <div class="cs-card-footer" style="margin-top:8px">
+        <div style="display:flex;gap:6px" onclick="event.stopPropagation()">
           ${c.tel ? `<a class="btn-card-action" href="https://wa.me/55${(c.tel||'').replace(/\D/g,'')}" target="_blank" style="text-decoration:none;color:var(--green)" title="WhatsApp">💬</a>` : ''}
-          <div class="btn-card-action">Ver</div>
+          <div class="btn-card-action" onclick="openCSDetail('${c.id}')">Ver</div>
         </div>
       </div>
     </div>`
+}
+
+function onCSOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over') }
+function onCSDrop(e, colId) {
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over')
+  if (!dragId) return
+  updateCSField(dragId, { cs_stage: colId })
+}
+
+async function registrarCheck(checkId, resultado, clienteId) {
+  const obs = resultado === 'respondido' ? prompt('Observação (opcional):\nEx: Grupo criado, enviou o link') : null
+  const { error } = await sb.rpc('registrar_tentativa', {
+    p_check_id:      checkId,
+    p_resultado:     resultado,
+    p_obs:           obs || null,
+    p_executado_por: currentUser?.email || null
+  })
+  if (error) { alert('Erro: ' + error.message); return }
+  await loadCS()
+  renderCS()
 }
 
 function openCSDetail(id) {
