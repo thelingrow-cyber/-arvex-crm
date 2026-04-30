@@ -688,16 +688,17 @@ sb.auth.onAuthStateChange(async (event, session) => {
     currentUser = session.user
     // define role pelo email sem esperar banco
     const admins = ['viktorsimoess@gmail.com', 'arvexdigital@gmail.com']
-    currentRole = admins.includes(currentUser.email) ? 'admin' : 'sdr'
+    const csOnly  = ['sabrina@arvexdigital.com.br'] // adicionar e-mail real da Sabrina aqui
+    currentRole = admins.includes(currentUser.email) ? 'admin' : csOnly.includes(currentUser.email) ? 'cs' : 'sdr'
     // abre o app imediatamente
     document.getElementById('login-screen').classList.add('hidden')
     document.getElementById('sidebar').classList.add('app-visible')
     document.getElementById('main-wrap').style.display = 'flex'
     document.getElementById('user-name').textContent = currentUser.email
-    document.getElementById('user-role').textContent = currentRole === 'admin' ? 'Administrador' : 'SDR'
+    document.getElementById('user-role').textContent = currentRole === 'admin' ? 'Administrador' : currentRole === 'cs' ? 'CS — Cindy' : 'SDR'
     applyRole()
     // carrega dados em background
-    loadLeads().then(() => { renderDashboard(); renderPipeline(); }).catch(() => {})
+    if (currentRole !== 'cs') loadLeads().then(() => { renderDashboard(); renderPipeline(); }).catch(() => {})
     loadCS().catch(() => {})
     subscribeRealtime()
     // salva/atualiza perfil no banco em background
@@ -712,10 +713,24 @@ sb.auth.onAuthStateChange(async (event, session) => {
 
 function applyRole() {
   const isAdmin = currentRole === 'admin'
-  // financeiro só admin
+  const isCS    = currentRole === 'cs'
+
+  // financeiro e experts só admin
   document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? '' : 'none')
-  // aba Por Expert só admin
   document.getElementById('nav-experts').style.display = isAdmin ? '' : 'none'
+
+  if (isCS) {
+    // CS só vê a seção Customer Success — esconde tudo do Comercial
+    document.querySelector('.sidebar-section').style.display = 'none' // "Comercial"
+    document.getElementById('nav-dashboard').style.display = 'none'
+    document.querySelectorAll('.sidebar-item').forEach(el => {
+      if (el.id !== 'nav-cs') el.style.display = 'none'
+    })
+    // vai direto para CS
+    goTo('cs', document.getElementById('nav-cs'))
+    // salva no banco com role cs
+    sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: 'cs' }, { onConflict: 'id' }).catch(() => {})
+  }
 }
 
 // ── REALTIME ──────────────────────────────────────────────────────────────
