@@ -1316,7 +1316,7 @@ function renderCSCard(c) {
   const subs = CS_SUBS[c.cs_stage] || []
 
   let checksHtml = ''
-  if (c.cs_stage === 'campanha' && checks.length) {
+  if (c.cs_stage === 'campanha' && checks.length > 0) {
     // mostra os checks D+X
     checksHtml = `<div class="cs-checks-list">`
     checks.slice(0,4).forEach(ch => {
@@ -1333,7 +1333,7 @@ function renderCSCard(c) {
     checksHtml += `</div>`
   }
 
-  const proximaAcao = pendente ? `
+  const proximaAcao = (pendente && c.cs_stage === 'campanha') ? `
     <div style="margin:6px 0;padding:6px 8px;border-radius:6px;background:${ehHoje?'rgba(10,132,255,.15)':atrasado?'rgba(249,115,22,.12)':'rgba(255,255,255,.04)'};border:1px solid ${ehHoje?'rgba(10,132,255,.3)':atrasado?'rgba(249,115,22,.3)':'var(--border)'}">
       <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px">${ehHoje?'⏰ HOJE':atrasado?'⚠️ ATRASADO':pendente.data_prevista?'📅 '+pendente.data_prevista:'📅 Preencha a data da triagem'}</div>
       <div style="font-size:11px;color:var(--white)">D+${pendente.dia_relativo} — ${esc(pendente.entregavel)}</div>
