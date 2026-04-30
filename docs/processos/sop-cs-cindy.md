@@ -218,6 +218,30 @@ Apenas com os 3 critérios atendidos a Sabrina agenda a reunião com a Cindy.
 
 ---
 
+## Registro de Transcrições de Triagem
+
+Toda reunião de triagem deve ser registrada como documento de referência em:
+
+```
+docs/crm/transcricoes/transcricao-triagem-{nome-aluno}.md
+```
+
+**Modelo padrão:** baseado na transcrição da Gleice — Ótica Turquesa (30/04/2026)
+
+**O que registrar em cada transcrição:**
+- Dados completos do diagnóstico (11 campos)
+- Cronograma da campanha definido na reunião
+- Próximos passos combinados com checkboxes
+- Gaps e observações de processo
+- Estágio no CRM + data_triagem
+
+**Transcrições registradas:**
+| Aluna | Ótica | Data | Arquivo |
+|-------|-------|------|---------|
+| Gleice B. | Turquesa — Campo Grande/MS | 30/04/2026 | [transcricao-triagem-gleice-turquesa.md](../crm/transcricoes/transcricao-triagem-gleice-turquesa.md) |
+
+---
+
 ## Gaps a Resolver (v2.0)
 
 - [ ] Automatizar disparo dos checks via ferramenta (reduzir carga manual da Sabrina)
