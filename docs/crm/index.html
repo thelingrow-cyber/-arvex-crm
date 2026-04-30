@@ -163,6 +163,30 @@
     /* ── PIPELINE ── */
     .pipeline-scroll { overflow-x: auto; padding-bottom: 16px; }
     .pipeline-board { display: flex; gap: 14px; min-width: max-content; }
+
+    /* ── CS KANBAN ── */
+    .cs-scroll { overflow-x: auto; padding-bottom: 16px; }
+    .cs-board { display: flex; gap: 14px; min-width: max-content; }
+    .cs-col { width: 240px; flex-shrink: 0; }
+    .col-cs-onboarding { background: rgba(10,132,255,.15); color: var(--blue); }
+    .col-cs-triagem    { background: rgba(139,92,246,.15); color: var(--purple); }
+    .col-cs-campanha   { background: rgba(249,115,22,.15); color: var(--orange); }
+    .col-cs-gate       { background: rgba(200,169,110,.15); color: var(--gold2); }
+    .col-cs-ativo      { background: rgba(34,197,94,.15);  color: var(--green); }
+    .col-cs-churn      { background: rgba(239,68,68,.15);  color: var(--red); }
+    .cs-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: border-color .15s; }
+    .cs-card:hover { border-color: rgba(255,255,255,.18); }
+    .cs-card-name { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .cs-card-meta { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+    .cs-churn-ok      { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(34,197,94,.15); color: var(--green); }
+    .cs-churn-amarelo { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(249,115,22,.15); color: var(--orange); }
+    .cs-churn-vermelho{ display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(239,68,68,.2);  color: var(--red); }
+    .cs-gates { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+    .cs-gate-tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,.06); color: var(--muted); }
+    .cs-gate-tag.done { background: rgba(34,197,94,.15); color: var(--green); }
+    .cs-card-footer { display: flex; justify-content: space-between; align-items: center; }
+    .btn-mover-cs { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(200,169,110,.2); color: var(--gold2); cursor: pointer; transition: background .15s; }
+    .btn-mover-cs:hover { background: rgba(200,169,110,.35); }
     .pipeline-col { width: 230px; flex-shrink: 0; }
     .col-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px 8px 0 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing:.06em; margin-bottom: 8px; }
     .col-count { background: rgba(255,255,255,.12); border-radius: 20px; padding: 1px 8px; font-size: 11px; }
@@ -329,6 +353,11 @@
   </div>
   <div class="sidebar-item" onclick="goTo('experts',this)" id="nav-experts">
     <span class="si-icon">🤝</span> Por Expert
+  </div>
+
+  <div class="sidebar-section" style="margin-top:8px">Customer Success</div>
+  <div class="sidebar-item" onclick="goTo('cs',this)" id="nav-cs">
+    <span class="si-icon">🤝</span> CS — Cindy
   </div>
 
   <div class="sidebar-section" style="margin-top:8px">Em breve</div>
@@ -505,6 +534,17 @@
       </div>
     </div>
 
+    <!-- CS — Customer Success -->
+    <div id="view-cs" class="view">
+      <div class="page-header">
+        <h1>Customer Success — Cindy Batista</h1>
+        <p>Acompanhe cada aluno desde o onboarding até o resultado</p>
+      </div>
+      <div class="cs-scroll">
+        <div class="cs-board" id="cs-board"></div>
+      </div>
+    </div>
+
     <!-- EXPERTS (admin only) -->
     <div id="view-experts" class="view">
       <div class="page-header">
@@ -605,7 +645,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy' }
 
 let activePeriod = 7
 
@@ -639,6 +679,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
     applyRole()
     // carrega dados em background
     loadLeads().then(() => { renderDashboard(); renderPipeline(); }).catch(() => {})
+    loadCS().catch(() => {})
     subscribeRealtime()
     // salva/atualiza perfil no banco em background
     sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: currentRole }, { onConflict: 'id' }).catch(() => {})
@@ -726,6 +767,7 @@ function goTo(id, el) {
   if (id === 'pipeline')  renderPipeline()
   if (id === 'leads')     renderAllLeads()
   if (id === 'experts')   renderExperts()
+  if (id === 'cs')        renderCS()
 }
 
 function setPeriod(days, btn) {
@@ -897,6 +939,7 @@ function renderCard(l) {
         <div class="lead-card-actions">
           ${l.tel ? `<a class="btn-card-action" href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="text-decoration:none;color:var(--green)" title="WhatsApp">💬</a>` : ''}
           <div class="btn-card-action" onclick="openDetail('${l.id}')">Ver</div>
+          ${l.status === 'fechado' ? `<div class="btn-card-action" style="background:rgba(200,169,110,.2);color:var(--gold2)" onclick="moverParaCS('${l.id}',event)" title="Mover para CS">→ CS</div>` : ''}
           <div class="btn-card-action btn-card-del" onclick="deleteLead('${l.id}',event)">✕</div>
         </div>
       </div>
@@ -1172,6 +1215,159 @@ async function deleteLead(id, e) {
   await removeLeadDB(id)
   closeDetail()
   renderDashboard(); renderPipeline(); renderAllLeads()
+}
+
+// ── CUSTOMER SUCCESS ──────────────────────────────────────────────────────
+let cachedCS = []
+
+const CS_COLS = [
+  { id:'onboarding', label:'Onboarding 🟢',  cls:'col-cs-onboarding' },
+  { id:'triagem',    label:'Triagem 🔵',      cls:'col-cs-triagem' },
+  { id:'campanha',   label:'Campanha 🟡',     cls:'col-cs-campanha' },
+  { id:'gate_cindy', label:'Gate Cindy ⭐',   cls:'col-cs-gate' },
+  { id:'ativo',      label:'Ativo ✅',        cls:'col-cs-ativo' },
+  { id:'risco_churn',label:'Risco Churn 🔴',  cls:'col-cs-churn' },
+]
+
+async function loadCS() {
+  const { data } = await sb.from('clientes_cs').select('*').order('created_at', { ascending: false })
+  cachedCS = data || []
+}
+
+function renderCS() {
+  const board = document.getElementById('cs-board')
+  if (!board) return
+  board.innerHTML = CS_COLS.map(col => {
+    const cards = cachedCS.filter(c => c.cs_stage === col.id)
+    return `
+      <div class="cs-col">
+        <div class="col-header ${col.cls}">${col.label}<span class="col-count">${cards.length}</span></div>
+        <div style="margin-top:8px">
+          ${cards.length ? cards.map(renderCSCard).join('') : '<div class="empty-col">Vazio</div>'}
+        </div>
+      </div>`
+  }).join('')
+}
+
+function renderCSCard(c) {
+  const churnCls = c.churn_flag === 'vermelho' ? 'cs-churn-vermelho' : c.churn_flag === 'amarelo' ? 'cs-churn-amarelo' : 'cs-churn-ok'
+  const churnLabel = c.churn_flag === 'vermelho' ? '🔴 ' + (c.churn_dias_sem_resp||0) + 'd sem resposta' : c.churn_flag === 'amarelo' ? '🟡 ' + (c.churn_dias_sem_resp||0) + 'd sem resposta' : '🟢 Ativo'
+  const gate1 = c.aula_assistida ? 'done' : ''
+  const gate2 = c.campanha_rodou ? 'done' : ''
+  const gate3 = c.resultado_coletado ? 'done' : ''
+  return `
+    <div class="cs-card" onclick="openCSDetail('${c.id}')">
+      <div class="cs-card-name">${esc(c.nome)}</div>
+      <div class="cs-card-meta">
+        ${c.tel ? `<span>📱 ${esc(c.tel)}</span>` : ''}
+        ${c.resp_cs ? `<span>👤 CS: ${esc(c.resp_cs)}</span>` : ''}
+        ${c.ultimo_contato ? `<span>📅 Último contato: ${c.ultimo_contato}</span>` : ''}
+        ${c.meta_oficial ? `<span>🎯 Meta: <strong style="color:var(--gold2)">${esc(c.meta_oficial)}</strong></span>` : ''}
+      </div>
+      <div class="cs-gates">
+        <span class="cs-gate-tag ${gate1}">Aula ${c.aula_assistida ? '✓' : '○'}</span>
+        <span class="cs-gate-tag ${gate2}">Campanha ${c.campanha_rodou ? '✓' : '○'}</span>
+        <span class="cs-gate-tag ${gate3}">Resultado ${c.resultado_coletado ? '✓' : '○'}</span>
+      </div>
+      <div class="cs-card-footer">
+        <span class="${churnCls}">${churnLabel}</span>
+        <div style="display:flex;gap:6px">
+          ${c.tel ? `<a class="btn-card-action" href="https://wa.me/55${(c.tel||'').replace(/\D/g,'')}" target="_blank" style="text-decoration:none;color:var(--green)" title="WhatsApp">💬</a>` : ''}
+          <div class="btn-card-action">Ver</div>
+        </div>
+      </div>
+    </div>`
+}
+
+function openCSDetail(id) {
+  const c = cachedCS.find(x => x.id === id)
+  if (!c) return
+  document.getElementById('dt-title').textContent = c.nome + ' — CS'
+  document.getElementById('dt-body').innerHTML = `
+    <div class="detail-grid">
+      <div><div class="di-label">Etapa CS</div>
+        <select onchange="updateCSField('${id}',{cs_stage:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+          ${CS_COLS.map(col => `<option value="${col.id}" ${c.cs_stage===col.id?'selected':''}>${col.label}</option>`).join('')}
+        </select>
+      </div>
+      <div><div class="di-label">WhatsApp</div><div class="di-value">${c.tel ? `<a href="https://wa.me/55${c.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">💬 ${esc(c.tel)}</a>` : '—'}</div></div>
+      <div><div class="di-label">CS Responsável</div>
+        <select onchange="updateCSField('${id}',{resp_cs:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+          <option value="" ${!c.resp_cs?'selected':''}>— Sem CS —</option>
+          <option value="Sabrina" ${c.resp_cs==='Sabrina'?'selected':''}>Sabrina</option>
+        </select>
+      </div>
+      <div><div class="di-label">Último Contato</div>
+        <input type="date" value="${c.ultimo_contato||''}" onchange="updateCSField('${id}',{ultimo_contato:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+      </div>
+      <div><div class="di-label">Meta Oficial (Cindy define)</div>
+        <input type="text" value="${esc(c.meta_oficial||'')}" placeholder="Definir na reunião com Cindy" onchange="updateCSField('${id}',{meta_oficial:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+      </div>
+      <div><div class="di-label">Faturamento da Campanha</div>
+        <input type="number" value="${c.faturamento_campanha||''}" placeholder="R$" onchange="updateCSField('${id}',{faturamento_campanha:parseFloat(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+      </div>
+    </div>
+    <div class="section-sep">Gates para Reunião com Cindy</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px">
+        <input type="checkbox" ${c.aula_assistida?'checked':''} onchange="updateCSField('${id}',{aula_assistida:this.checked})" />
+        Aula indicada assistida
+      </label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px">
+        <input type="checkbox" ${c.campanha_rodou?'checked':''} onchange="updateCSField('${id}',{campanha_rodou:this.checked})" />
+        Campanha orgânica rodou
+      </label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px">
+        <input type="checkbox" ${c.resultado_coletado?'checked':''} onchange="updateCSField('${id}',{resultado_coletado:this.checked})" />
+        Resultado da campanha coletado
+      </label>
+    </div>
+    <div class="section-sep">Diagnóstico de Triagem</div>
+    <div class="detail-grid">
+      <div><div class="di-label">Região</div><input type="text" value="${esc(c.diag_regiao||'')}" placeholder="—" onchange="updateCSField('${id}',{diag_regiao:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Nº de Lojas</div><input type="number" value="${c.diag_num_lojas||''}" placeholder="—" onchange="updateCSField('${id}',{diag_num_lojas:parseInt(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Instagram</div><input type="text" value="${esc(c.diag_instagram||'')}" placeholder="@usuario" onchange="updateCSField('${id}',{diag_instagram:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Seguidores</div><input type="number" value="${c.diag_seguidores||''}" placeholder="—" onchange="updateCSField('${id}',{diag_seguidores:parseInt(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Faturamento Atual</div><input type="number" value="${c.diag_faturamento_atual||''}" placeholder="R$" onchange="updateCSField('${id}',{diag_faturamento_atual:parseFloat(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Captação</div>
+        <select onchange="updateCSField('${id}',{diag_captacao:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px">
+          <option value="">—</option>
+          <option value="tráfego" ${c.diag_captacao==='tráfego'?'selected':''}>Tráfego Pago</option>
+          <option value="indicação" ${c.diag_captacao==='indicação'?'selected':''}>Indicação</option>
+          <option value="panfletagem" ${c.diag_captacao==='panfletagem'?'selected':''}>Panfletagem</option>
+          <option value="misto" ${c.diag_captacao==='misto'?'selected':''}>Misto</option>
+        </select>
+      </div>
+      <div><div class="di-label">Equipe (qtd)</div><input type="number" value="${c.diag_equipe_qtd||''}" placeholder="—" onchange="updateCSField('${id}',{diag_equipe_qtd:parseInt(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Ticket Médio</div><input type="number" value="${c.diag_ticket_medio||''}" placeholder="R$" onchange="updateCSField('${id}',{diag_ticket_medio:parseFloat(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;font-size:12px">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_tem_socio?'checked':''} onchange="updateCSField('${id}',{diag_tem_socio:this.checked})" /> Tem sócio</label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_faz_trafego?'checked':''} onchange="updateCSField('${id}',{diag_faz_trafego:this.checked})" /> Já faz tráfego pago</label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_faz_crediario?'checked':''} onchange="updateCSField('${id}',{diag_faz_crediario:this.checked})" /> Faz crediário</label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_tem_sistema?'checked':''} onchange="updateCSField('${id}',{diag_tem_sistema:this.checked})" /> Tem sistema integrado</label>
+    </div>
+    <div class="section-sep">Observações</div>
+    <textarea placeholder="Anotações livres..." onchange="updateCSField('${id}',{obs:this.value})" style="width:100%;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px;outline:none;resize:vertical;min-height:70px">${esc(c.obs||'')}</textarea>`
+  document.getElementById('modal-detail').classList.add('open')
+}
+
+async function updateCSField(id, fields) {
+  const idx = cachedCS.findIndex(c => c.id === id)
+  if (idx !== -1) cachedCS[idx] = { ...cachedCS[idx], ...fields }
+  const { error } = await sb.from('clientes_cs').update(fields).eq('id', id)
+  if (error) alert('Erro ao atualizar CS: ' + error.message)
+  renderCS()
+}
+
+async function moverParaCS(leadId, e) {
+  e.stopPropagation()
+  if (!confirm('Mover este lead para o módulo CS?')) return
+  const { data, error } = await sb.rpc('mover_lead_para_cs', { p_lead_id: leadId })
+  if (error) { alert('Erro: ' + error.message); return }
+  await loadLeads()
+  await loadCS()
+  renderDashboard(); renderPipeline(); renderAllLeads(); renderCS()
 }
 
 // ── UTILS ──────────────────────────────────────────────────────────────────
