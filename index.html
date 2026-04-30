@@ -1415,9 +1415,13 @@ function renderHoje() {
     if (checkHoje) itens.push({ c, ch: checkHoje })
   })
 
-  if (!itens.length) { banner.style.display = 'none'; return }
-
   banner.style.display = 'block'
+
+  if (!itens.length) {
+    lista.innerHTML = `<div style="font-size:12px;color:var(--muted);padding:4px 0">✅ Nenhum check pendente para hoje</div>`
+    return
+  }
+
   lista.innerHTML = itens.map(({ c, ch }) => `
     <div class="cs-hoje-item">
       <div class="cs-hoje-nome">${esc(c.nome)}</div>
