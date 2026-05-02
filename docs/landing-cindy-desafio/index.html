@@ -2,292 +2,414 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Desafio Ótica 10X — Cindy Batista</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark:   #141414;
-      --gold:   #C8963C;
-      --gold-lt:#E8B86D;
-      --white:  #F5F0E8;
-      --muted:  rgba(245,240,232,0.70);
+      --cream:    #FFFFFF;
+      --cream-2:  #FAFAFA;
+      --gold:     #B8860B;
+      --gold-lt:  #DDB870;
+      --gold-dk:  #7A5A14;
+      --dark:     #14172E;
+      --navy:     #1F2D52;
+      --green:    #25D366;
+      --green-dk: #1DA851;
+      --muted:    #5C5C68;
+      --red:      #D63333;
     }
 
-    html { background: var(--dark); }
-
-    body {
-      background: var(--dark);
-      color: var(--white);
+    html, body {
+      background: #F8F5FB;
+      color: var(--dark);
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background:
+        radial-gradient(ellipse 60% 40% at 15% 20%, rgba(180,160,220,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 85% 30%, rgba(150,180,220,0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 50% at 50% 70%, rgba(200,210,235,0.18) 0%, transparent 70%),
+        linear-gradient(180deg, #FDFCFE 0%, #FAF8FC 30%, #F4F2FA 65%, #EFEEF8 100%);
+    }
+
+    /* manchas de blur azul que continuam abaixo da foto */
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: -10%;
+      left: -10%;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(170,150,210,0.18) 0%, transparent 60%);
+      filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -10%;
+      right: -10%;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(140,170,210,0.20) 0%, transparent 60%);
+      filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
     }
 
     /* ── TOPBAR ── */
     .topbar {
-      background: rgba(13,13,13,0.60);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-bottom: 1px solid rgba(200,150,60,0.15);
-    }
-    .topbar__row1 {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 20px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.10em;
-      color: var(--white);
-    }
-    .topbar__row1 span { color: var(--gold-lt); font-size: 14px; }
-    .topbar__row1 .sep { color: rgba(245,240,232,0.30); }
-    .topbar__row1 .edition { color: var(--muted); font-size: 11px; letter-spacing: 0.14em; }
-    .topbar__row2 {
-      width: calc(100% - 32px);
-      margin-bottom: 9px;
-      border: 1px solid rgba(200,150,60,0.28);
-      border-radius: 6px;
-      padding: 8px 16px;
+      flex-shrink: 0;
+      padding: 12px 20px 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--white);
-    }
-    .topbar__row2 svg { width:13px; height:13px; opacity:.5; flex-shrink:0; }
-
-    /* ── HERO: altura = tela menos topbar ── */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: calc(100svh - 72px);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      overflow: hidden;
-    }
-
-    .hero__img {
-      position: absolute;
-      inset: -5%;
-      width: 110%;
-      height: 110%;
-      object-fit: cover;
-      object-position: center 0%;
-      display: block;
-      filter: brightness(0.82);
-      transform: scale(1.25);
-      transform-origin: center 20%;
-    }
-
-    /* gradiente: topo transparente → base totalmente escuro onde fica o texto */
-    .hero__overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(20,20,20,0.20)  0%,
-        rgba(20,20,20,0.04) 12%,
-        transparent          25%,
-        transparent          38%,
-        rgba(20,20,20,0.42)  48%,
-        rgba(20,20,20,0.58)  58%,
-        rgba(20,20,20,0.80)  67%,
-        rgba(20,20,20,0.95)  76%,
-        rgba(20,20,20,1.00)  82%,
-        rgba(20,20,20,1.00) 100%
-      );
-    }
-
-    /* todo o conteúdo sobre a foto */
-    .hero__body {
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dk);
       position: relative;
       z-index: 5;
-      padding: 0 20px 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
     }
-
-    /* badge */
-    .badge {
-      background: rgba(14,8,0,0.30);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(200,150,60,0.22);
-      border-radius: 12px;
-      padding: 8px 22px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1px;
-      min-width: 170px;
-      align-self: center;
-      margin-bottom: 18px;
-    }
-    .badge__eyebrow {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(232,184,109,0.70);
-    }
-    .badge__name {
-      font-family: 'Lora', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: rgba(245,240,232,0.75);
-      line-height: 1.1;
-    }
-    .badge__name span { color: rgba(232,184,109,0.75); }
-    .badge__sub {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      color: rgba(200,150,60,0.55);
-      margin-top: 1px;
-    }
-
-    /* urgency */
-    .urgency-tag {
+    .topbar__live {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(200,150,60,0.13);
-      border: 1px solid rgba(200,150,60,0.32);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      margin-bottom: 10px;
+      color: var(--red);
     }
-    .urgency-tag::before {
+    .topbar__live::before {
       content: '';
-      width: 5px; height: 5px;
-      background: var(--gold);
+      width: 6px; height: 6px;
+      background: var(--red);
       border-radius: 50%;
-      animation: pulse 1.8s ease-in-out infinite;
+      animation: pulse 1.4s ease-in-out infinite;
     }
+    .topbar__sep { color: var(--gold); opacity: 0.5; letter-spacing: 0; }
     @keyframes pulse {
-      0%,100% { opacity:1; transform:scale(1); }
-      50%      { opacity:.4; transform:scale(.7); }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.3; transform: scale(0.6); }
+    }
+    .topbar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.5;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 0 0 auto;
+      height: 50svh;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* camada de blend extra entre foto e bottom */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -10%;
+      right: -10%;
+      height: 120px;
+      background: linear-gradient(180deg,
+        rgba(253,252,254,0) 0%,
+        rgba(253,252,254,0.5) 50%,
+        rgba(250,248,252,1) 100%);
+      filter: blur(20px);
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    /* halo radial dourado */
+    .hero__halo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      width: min(86vw, 380px);
+      height: min(86vw, 380px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(221,184,112,0.0) 0%, transparent 75%);
+      z-index: 0;
+      pointer-events: none;
+      display: none;
+    }
+
+    /* anel duplo dourado — desabilitado pra foto wide */
+    .hero__ring { display: none; }
+
+    /* dots dourados discretos — desabilitados */
+    .dot { display: none; }
+
+    /* foto da Cindy */
+    .hero__photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transform: scale(1.6);
+      transform-origin: center top;
+      z-index: 4;
+      -webkit-mask-image: linear-gradient(180deg,
+        #000 0%,
+        #000 35%,
+        rgba(0,0,0,0.92) 50%,
+        rgba(0,0,0,0.78) 62%,
+        rgba(0,0,0,0.55) 74%,
+        rgba(0,0,0,0.32) 84%,
+        rgba(0,0,0,0.12) 92%,
+        transparent 100%);
+      mask-image: linear-gradient(180deg,
+        #000 0%,
+        #000 35%,
+        rgba(0,0,0,0.92) 50%,
+        rgba(0,0,0,0.78) 62%,
+        rgba(0,0,0,0.55) 74%,
+        rgba(0,0,0,0.32) 84%,
+        rgba(0,0,0,0.12) 92%,
+        transparent 100%);
+    }
+
+    /* ── BADGE LOGO 10X (premium navy/gold) ── */
+    .hero__badge {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 8;
+      background: linear-gradient(135deg, #14172E 0%, #1F2D52 100%);
+      border: 2px solid var(--gold);
+      padding: 12px 26px 13px;
+      border-radius: 50px;
+      box-shadow:
+        0 14px 32px rgba(20,23,46,0.45),
+        0 0 0 5px rgba(184,134,11,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .hero__badge__star {
+      color: var(--gold-lt);
+      font-size: 13px;
+    }
+    .hero__badge__text {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+    .hero__badge__num {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold-lt) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── BOTTOM CONTENT ── */
+    .bottom {
+      flex: 1 1 auto;
+      padding: 14px 22px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      position: relative;
+      z-index: 7;
+      background: transparent;
+      margin-top: 0;
     }
 
     .headline {
-      font-family: 'Lora', serif;
-      font-size: 24px;
-      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(22px, 6vw, 28px);
+      font-weight: 800;
       line-height: 1.22;
-      color: var(--white);
-      margin-bottom: 10px;
+      color: var(--navy);
+      text-align: center;
+      letter-spacing: -0.01em;
+      max-width: 480px;
     }
-    .headline em { font-style: italic; color: var(--gold-lt); }
+    .headline em {
+      font-style: normal;
+      font-weight: 800;
+      color: var(--gold);
+    }
 
     .sub {
-      font-size: 12.5px;
-      line-height: 1.55;
+      font-size: clamp(13px, 3.5vw, 14px);
+      line-height: 1.5;
       color: var(--muted);
-      margin-bottom: 18px;
+      text-align: center;
+      max-width: 380px;
     }
-    .sub strong { color: var(--white); font-weight: 600; }
+    .sub strong { color: var(--dark); font-weight: 700; }
 
+    /* CTA premium */
     .cta {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
-      padding: 16px 20px;
-      background: linear-gradient(135deg, #1DA851 0%, #25D366 55%, #1DA851 100%);
+      max-width: 420px;
+      padding: 17px 22px;
+      background: linear-gradient(135deg, var(--green-dk) 0%, var(--green) 50%, var(--green-dk) 100%);
       border-radius: 50px;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
       color: #ffffff;
       text-transform: uppercase;
-      box-shadow: 0 6px 28px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.35);
+      box-shadow:
+        0 14px 36px rgba(37,211,102,0.45),
+        0 4px 12px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.30);
       -webkit-tap-highlight-color: transparent;
+      position: relative;
+      overflow: hidden;
+      margin-top: 2px;
     }
-    .cta svg { width:19px; height:19px; flex-shrink:0; }
+    .cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.30) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: shine 3.5s ease-in-out infinite;
+    }
+    @keyframes shine {
+      0%, 100% { transform: translateX(-100%); }
+      50%      { transform: translateX(100%); }
+    }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; }
 
-    .footer {
-      background: var(--dark);
-      padding: 12px 22px 32px;
+    .cta-note {
+      font-size: 10.5px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
       text-align: center;
-      font-size: 10px;
-      color: rgba(245,240,232,0.22);
+      opacity: 0.8;
+    }
+
+    /* viewports pequenos */
+    @media (max-height: 720px) {
+      .topbar { padding: 9px 20px 7px; font-size: 10px; }
+      .headline { font-size: 20px; line-height: 1.2; }
+      .sub { font-size: 12.5px; line-height: 1.4; }
+      .cta { padding: 14px 22px; font-size: 14px; }
+      .hero { height: 46svh; }
+      .bottom { padding: 12px 22px 70px; gap: 7px; margin-top: 0; }
+      .hero__badge { bottom: 12px; }
+      .hero__badge { padding: 10px 22px 11px; bottom: 30%; }
+      .hero__badge__text { font-size: 12px; }
+      .hero__badge__num { font-size: 15px; }
     }
   </style>
 </head>
 <body>
 
   <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="topbar__row1">
-      <span>✦</span>
-      <span>Desafio Ótica 10X</span>
-      <span class="sep">|</span>
-      <span class="edition">1ª Edição</span>
-    </div>
-    <div class="topbar__row2">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="4" width="18" height="18" rx="2"/>
-        <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-      04, 05 e 06 de Maio &nbsp;|&nbsp; Ao Vivo
-    </div>
-  </div>
+  <header class="topbar">
+    <span class="topbar__live">Ao Vivo</span>
+    <span class="topbar__sep">◆</span>
+    <span>11, 12 e 13 de Maio</span>
+  </header>
 
-  <!-- HERO: foto de fundo, conteúdo por cima -->
+  <!-- HERO -->
   <section class="hero">
-    <img class="hero__img" src="https://cindyb.com.br/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-20-at-19.52.46.jpeg" alt="Cindy Batista" />
-    <div class="hero__overlay"></div>
 
-    <div class="hero__body">
-      <div class="badge">
-        <span class="badge__eyebrow">Desafio:</span>
-        <span class="badge__name">Ótica <span>10X</span></span>
-        <span class="badge__sub">— ao vivo —</span>
-      </div>
+    <!-- halo radial -->
+    <div class="hero__halo"></div>
 
-      <div class="urgency-tag">Vagas limitadas</div>
+    <!-- anel duplo dourado -->
+    <svg class="hero__ring" viewBox="0 0 340 340" fill="none">
+      <circle cx="170" cy="170" r="160" stroke="url(#ringGrad)" stroke-width="1" opacity="0.45"/>
+      <circle cx="170" cy="170" r="148" stroke="url(#ringGrad)" stroke-width="0.8" stroke-dasharray="1 5" opacity="0.5"/>
+      <defs>
+        <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#DDB870"/>
+          <stop offset="100%" stop-color="#B8860B"/>
+        </linearGradient>
+      </defs>
+    </svg>
 
-      <h1 class="headline">
-        Crie a estratégia do pico de faturamento <em>10X</em> de <em>Maio</em> — em 3 dias, comigo.
-      </h1>
-      <p class="sub">
-        Método validado por mais de <strong>200 mentorados.</strong> Entre no Grupo VIP para ter acesso à oferta especial do desafio.
-      </p>
-      <a class="cta" href="https://chat.whatsapp.com/FRRgWAFkUjtJQz0uXdOdVu?mode=gi_t" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.855L0 24l6.335-1.501A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.017-1.374l-.36-.214-3.732.884.935-3.641-.235-.374A9.787 9.787 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/>
-        </svg>
-        Entrar no Grupo VIP
-      </a>
+    <!-- dots dourados pulsantes -->
+    <div class="dot dot--1"></div>
+    <div class="dot dot--2"></div>
+    <div class="dot dot--3"></div>
+    <div class="dot dot--4"></div>
+    <div class="dot dot--5"></div>
+    <div class="dot dot--6"></div>
+
+    <!-- foto da Cindy -->
+    <img class="hero__photo" src="https://cindyb.com.br/wp-content/uploads/2025/12/bs-pdf.jpg" alt="Cindy Batista" />
+
+    <!-- BADGE LOGO sobreposto -->
+    <div class="hero__badge">
+      <span class="hero__badge__star">✦</span>
+      <span class="hero__badge__text">Desafio Ótica</span>
+      <span class="hero__badge__num">10X</span>
     </div>
+
   </section>
 
-  <div class="footer">
-    Ao clicar você será direcionado ao grupo VIP no WhatsApp<br/>
-    © 2026 Cindy Batista · cindyb.com.br
-  </div>
+  <!-- BOTTOM -->
+  <section class="bottom">
+
+    <h1 class="headline">
+      3 dias para criar a estratégia do <em>pico de faturamento</em> da sua ótica em Maio
+    </h1>
+
+    <p class="sub">
+      Entre no <strong>Grupo VIP</strong> e tenha acesso à oferta especial do desafio.
+    </p>
+
+    <a class="cta" href="https://chat.whatsapp.com/FRRgWAFkUjtJQz0uXdOdVu" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.855L0 24l6.335-1.501A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.017-1.374l-.36-.214-3.732.884.935-3.641-.235-.374A9.787 9.787 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/>
+      </svg>
+      Entrar no Grupo VIP
+    </a>
+
+    <span class="cta-note">Vagas limitadas · Acesso pelo WhatsApp</span>
+
+  </section>
 
 </body>
 </html>
