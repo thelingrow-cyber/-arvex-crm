@@ -1,0 +1,77 @@
+handoff:
+  from_agent: data-engineer
+  to_agent: dev
+  consumed: true
+  timestamp: "2026-05-09"
+  last_command: "*task implement-sql"
+
+  story_context:
+    story_id: "crm-quente-pre-fechado-cs"
+    story_path: "docs/stories/crm-quente-pre-fechado-cs.story.md"
+    story_status: "Ready"
+    current_task: "Implementar frontend: coluna 🔥 Quente + badge 'Em CS' + ocultar botão →CS"
+    branch: master
+
+  sql_delivered:
+    file: "docs/crm/setup-cs-v4.sql"
+    status: "Criado, sintaxe validada, pronto pra Vitor aplicar manualmente no Supabase SQL Editor"
+    changes:
+      - "Função mover_lead_para_cs reescrita: idempotente + sem update de leads.status"
+      - "comment on function adicionado pra rastreabilidade no banco"
+      - "Bloco opcional comentado: UNIQUE index em clientes_cs.lead_id (defense in depth)"
+      - "Bloco opcional comentado: migration de leads legados com status='cs'"
+
+  decisions:
+    - "Idempotência implementada via check de duplicata (select id where lead_id) antes do insert"
+    - "status='fechado' preservado intencionalmente — comentário explícito no código documentando o motivo"
+    - "Migration de leads legados deixada como ação manual opcional pós-deploy (documentada no SQL e na story)"
+    - "UNIQUE index ficou opcional/comentado pra Vitor decidir após verificar duplicatas existentes"
+
+  files_modified:
+    - "docs/crm/setup-cs-v4.sql (CRIADO)"
+    - "docs/stories/crm-quente-pre-fechado-cs.story.md (checkboxes @data-engineer marcados + Change Log + File List atualizada)"
+
+  blockers:
+    - "Vitor precisa aplicar setup-cs-v4.sql no Supabase SQL Editor antes de testar o frontend (senão o botão →CS continuará movendo status pra 'cs')"
+    - "OBS: o frontend pode ser implementado e commitado SEM o SQL aplicado — só não vai funcionar end-to-end até Vitor rodar o SQL"
+
+  next_action: |
+    @dev (Dex) executar implementação frontend em docs/crm/index.html:
+
+    P1 — Coluna 🔥 Quente:
+    1. Inserir entrada `{ id:'quente', label:'🔥 Quente', phase:'closer', cls:'col-closer' }` em COLS na posição 5 (entre followup e fechado) — linha ~661
+    2. Adicionar `quente:'badge-quente'` em BADGE (linha ~665)
+    3. Adicionar `quente:'Quente'` em BLABEL (linha ~666)
+    4. Adicionar `<option value="quente">Quente</option>` no filtro de status (linha ~530)
+    5. Criar classe CSS `.badge-quente` (laranja/dourado, distinta de badge-fechado e badge-agendado)
+
+    P2 — Badge "Em CS" + ocultar botão →CS:
+    6. Adicionar variável global `let csLeadIds = new Set()` (próximo a `let activePeriod`)
+    7. Em `loadCS()` (ou criar/estender), popular csLeadIds com todos os lead_id de clientes_cs:
+       `const { data } = await sb.from('clientes_cs').select('lead_id').not('lead_id','is',null)`
+       `csLeadIds = new Set(data.map(r => r.lead_id))`
+    8. Garantir que loadCS() seja awaited ANTES de renderPipeline() pra evitar race condition
+    9. No render do card de Fechado (linha ~974-977), antes de criar a `card-actions`:
+       - Se `csLeadIds.has(l.id)`: adicionar badge `<span class="badge-em-cs">🤝 Em CS</span>` no card-meta ou card-name
+       - Se `csLeadIds.has(l.id)`: NÃO renderizar o botão `→ CS`
+    10. Criar classe CSS `.badge-em-cs` (azul claro/dourado, sutil)
+    11. Em `subscribeRealtime()`, garantir que mudanças em clientes_cs disparem reload de csLeadIds + renderPipeline
+
+    Testes manuais antes de marcar tarefa como done:
+    - Criar lead novo → arrastar até Quente → conferir badge laranja
+    - Arrastar Quente → Fechado → confirmar comportamento esperado
+    - Clicar botão → CS num card de Fechado → confirmar que (a) cria row em clientes_cs, (b) card permanece em Fechado, (c) badge "🤝 Em CS" aparece, (d) botão →CS some
+    - Reload da página → confirmar que estado é persistente
+    - Como user CS (Sabrina): conferir que CS Kanban continua funcionando normal
+
+    Após implementação:
+    - Marcar checkboxes da seção @dev na story
+    - Atualizar Change Log da story
+    - Reportar conclusão pro @aiox-master invocar @qa
+
+  contexto_extra:
+    arquivos_referencia:
+      pipeline_render: "docs/crm/index.html — função renderPipeline (procurar 'l.status === \\'fechado\\'')"
+      load_cs: "docs/crm/index.html — função loadCS (já existe)"
+      cols_array: "docs/crm/index.html:656"
+    aviso_vitor: "O Vitor precisa rodar setup-cs-v4.sql no Supabase ANTES do deploy do frontend chegar em produção, OU vai ter um curto período onde o botão →CS ainda muda status pra 'cs'. Recomendado: aplicar SQL primeiro, depois push do frontend."

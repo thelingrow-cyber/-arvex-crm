@@ -1,0 +1,83 @@
+handoff:
+  from_agent: qa
+  to_agent: devops
+  consumed: false
+  timestamp: "2026-05-09"
+  last_command: "*qa-gate"
+
+  story_context:
+    story_id: "crm-quente-pre-fechado-cs"
+    story_path: "docs/stories/crm-quente-pre-fechado-cs.story.md"
+    story_status: "Ready for Review (QA Approved)"
+    current_task: "Commit + push pra main (auto-deploy Vercel)"
+    branch: master
+
+  qa_verdict:
+    decision: "PASS com CONCERNS"
+    quality_checks: "6/7 PASS, 1 N/A (sem suite de testes — debt pré-existente)"
+    blocking_issues: 0
+    medium_issues: 1
+    low_issues: 3
+
+  acceptance_criteria_status:
+    P1_coluna_quente: "Todos os AC atendidos (1 nice-to-have skipped, 1 CONCERN UI sobre cor)"
+    P2_card_duplo: "Todos os AC atendidos (validação E2E depende de SQL aplicado em prod)"
+    nao_regressao: "Todos os checks de não-regressão PASS"
+
+  decisions:
+    - "Aprovado pra push apesar da CONCERN MEDIUM (cor badge-quente vs perdido) — não é bloqueador, validação visual fica com Vitor após deploy"
+    - "CodeRabbit pulado pelo perfil single-file vanilla — review manual foi suficiente"
+    - "LOW issues podem virar tech debt items se Vitor quiser endereçar depois"
+
+  files_modified_in_review:
+    - "docs/stories/crm-quente-pre-fechado-cs.story.md (QA Results adicionado + Change Log)"
+
+  blockers: []
+
+  pre_push_checklist:
+    critico:
+      - "Vitor APLICAR setup-cs-v4.sql no Supabase SQL Editor antes do push do frontend"
+      - "Conferir que aplicação rodou sem erros no Supabase"
+    recomendado:
+      - "Após deploy: validar visualmente badge-quente em prod (issue MEDIUM-01)"
+      - "Após deploy: rodar query de migração de leads legados (opcional, comentada no SQL v4)"
+    opcional:
+      - "Backup do schema atual antes do SQL v4 (mas v4 só altera função, sem destrutivos)"
+
+  what_devops_must_do:
+    1_pre_validacao: |
+      Confirmar com Vitor que setup-cs-v4.sql foi aplicado no Supabase.
+      Se não foi aplicado: AVISAR e perguntar se prossegue mesmo assim
+      (o frontend funciona em produção, mas P2 só fica end-to-end quando o SQL roda).
+    2_commit: |
+      Commit único com todas as mudanças:
+      - docs/crm/setup-cs-v4.sql (novo)
+      - docs/crm/index.html (modificado)
+      - docs/stories/crm-quente-pre-fechado-cs.story.md (criada/atualizada)
+      - .aiox/handoffs/*-crm-quente-cs-20260509.yaml (4 arquivos novos)
+      Mensagem sugerida:
+        feat(crm): coluna Quente + card visível em Fechado/CS [story crm-quente-pre-fechado-cs]
+        - Pipeline: nova coluna 🔥 Quente entre Follow Up e Fechado (priorização de leads pré-fechados)
+        - CS: lead movido pro CS mantém visibilidade em Fechado (badge 🤝 Em CS + botão →CS oculto)
+        - SQL: setup-cs-v4.sql — mover_lead_para_cs idempotente, sem update de status
+        - QA: PASS com CONCERNS (1 MEDIUM UI, 3 LOW)
+    3_push: |
+      git push origin master
+      Vercel detecta commit em main, builda e deploya pra arvex-crm.vercel.app
+    4_pos_push: |
+      - Aguardar deploy Vercel (geralmente <2min)
+      - Confirmar deploy verde no dashboard Vercel
+      - Vitor faz smoke test em produção
+      - Marcar story Status: "Done" após confirmação operacional do Vitor
+
+  next_action: "@devops *push (após confirmação do SQL aplicado pelo Vitor)"
+
+  contexto_extra:
+    repositorio: "thelingrow-cyber/-arvex-crm"
+    deploy_url: "arvex-crm.vercel.app"
+    rollback_plan: |
+      Se o frontend novo causar problema em produção:
+      1. git revert do commit no GitHub → Vercel auto-reverte
+      2. Re-aplicar setup-cs.sql original (cole o conteúdo de docs/crm/setup-cs.sql:168-193 no SQL Editor — mesmo create or replace seguro)
+      Tempo total de rollback: ~5 minutos
+    aiox_master_continuation: "Após @devops PASS, story segue ciclo: Status Ready for Review → Done. @aiox-master orquestra fechamento via @po *close-story se houver epic vinculado."

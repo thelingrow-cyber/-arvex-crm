@@ -157,8 +157,10 @@
     .badge-qualif   { background: rgba(139,92,246,.15); color: #A78BFA; }
     .badge-call     { background: rgba(234,179,8,.15); color: #FBBF24; }
     .badge-agendado { background: rgba(249,115,22,.15); color: #FB923C; }
+    .badge-quente   { background: rgba(239,68,68,.18); color: #FCA5A5; box-shadow: 0 0 8px rgba(251,146,60,.25); }
     .badge-fechado  { background: rgba(34,197,94,.2); color: #4ADE80; }
     .badge-perdido  { background: rgba(239,68,68,.15); color: #F87171; }
+    .badge-em-cs    { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; background: rgba(10,132,255,.15); color: #60A5FA; margin-left: 6px; vertical-align: middle; }
 
     /* ── PIPELINE ── */
     .pipeline-scroll { overflow-x: auto; padding-bottom: 16px; }
@@ -527,8 +529,8 @@
           <option value="">Todos os status</option>
           <option value="novo">Novo</option><option value="contato">Contato</option>
           <option value="qualificado">Qualificado</option><option value="call">Call</option>
-          <option value="followup">Follow Up</option><option value="fechado">Fechado</option>
-          <option value="perdido">Perdido</option>
+          <option value="followup">Follow Up</option><option value="quente">🔥 Quente</option>
+          <option value="fechado">Fechado</option><option value="perdido">Perdido</option>
         </select>
         <select id="filter-expert-leads" onchange="renderAllLeads()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
           <option value="">Todos os experts</option>
@@ -659,14 +661,16 @@ const COLS = [
   { id:'qualificado', label:'Qualificado', phase:'sdr',    cls:'col-sdr' },
   { id:'call',        label:'Call',        phase:'closer', cls:'col-closer' },
   { id:'followup',    label:'Follow Up',   phase:'closer', cls:'col-closer' },
+  { id:'quente',      label:'🔥 Quente',   phase:'closer', cls:'col-closer' },
   { id:'fechado',     label:'Fechado ✅',  phase:'won',    cls:'col-won' },
   { id:'perdido',     label:'Perdido ❌',  phase:'lost',   cls:'col-lost' },
 ]
-const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', fechado:'badge-fechado', perdido:'badge-perdido' }
-const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', fechado:'Fechado', perdido:'Perdido' }
+const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
+const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'🔥 Quente', fechado:'Fechado', perdido:'Perdido' }
 const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy' }
 
 let activePeriod = 7
+let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
 
 // ── AUTH ──────────────────────────────────────────────────────────────────
 async function doLogin() {
@@ -697,9 +701,14 @@ sb.auth.onAuthStateChange(async (event, session) => {
     document.getElementById('user-name').textContent = currentUser.email
     document.getElementById('user-role').textContent = currentRole === 'admin' ? 'Administrador' : currentRole === 'cs' ? 'CS — Cindy' : 'SDR'
     applyRole()
-    // carrega dados em background
-    if (currentRole !== 'cs') loadLeads().then(() => { renderDashboard(); renderPipeline(); }).catch(() => {})
-    loadCS().catch(() => {})
+    // carrega dados em background — loadCS PRIMEIRO pra popular csLeadIds antes do renderPipeline
+    if (currentRole !== 'cs') {
+      Promise.all([loadLeads(), loadCS()])
+        .then(() => { renderDashboard(); renderPipeline(); })
+        .catch(() => {})
+    } else {
+      loadCS().catch(() => {})
+    }
     subscribeRealtime()
     // salva/atualiza perfil no banco em background
     sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: currentRole }, { onConflict: 'id' }).catch(() => {})
@@ -739,6 +748,14 @@ function subscribeRealtime() {
     .on('postgres_changes', { event:'*', schema:'public', table:'leads' }, async () => {
       await loadLeads()
       renderDashboard(); renderPipeline(); renderAllLeads()
+    }).subscribe()
+
+  // Listener em clientes_cs — quando lead é movido pra CS (ou removido), re-render do pipeline
+  // pra atualizar badge "🤝 Em CS" e visibilidade do botão →CS sem precisar de reload
+  sb.channel('clientes-cs-changes')
+    .on('postgres_changes', { event:'*', schema:'public', table:'clientes_cs' }, async () => {
+      await loadCS()
+      renderPipeline(); renderCS()
     }).subscribe()
 }
 
@@ -954,10 +971,11 @@ function getSLABadge(l) {
 }
 
 function renderCard(l) {
+  const inCS = csLeadIds.has(l.id)
   return `
     <div class="lead-card" draggable="true" data-id="${l.id}">
       ${getSLABadge(l)}
-      <div class="lead-card-name">${esc(l.nome)}</div>
+      <div class="lead-card-name">${esc(l.nome)}${inCS ? ' <span class="badge-em-cs" title="Já está em acompanhamento no CS">🤝 Em CS</span>' : ''}</div>
       <div class="lead-card-meta">
         <span>📱 <strong>${esc(l.tel||'—')}</strong></span>
         <span>👤 ${esc(l.expert)}</span>
@@ -973,7 +991,7 @@ function renderCard(l) {
         <div class="lead-card-actions">
           ${l.tel ? `<a class="btn-card-action" href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="text-decoration:none;color:var(--green)" title="WhatsApp">💬</a>` : ''}
           <div class="btn-card-action" onclick="openDetail('${l.id}')">Ver</div>
-          ${l.status === 'fechado' ? `<div class="btn-card-action" style="background:rgba(200,169,110,.2);color:var(--gold2)" onclick="moverParaCS('${l.id}',event)" title="Mover para CS">→ CS</div>` : ''}
+          ${l.status === 'fechado' && !inCS ? `<div class="btn-card-action" style="background:rgba(200,169,110,.2);color:var(--gold2)" onclick="moverParaCS('${l.id}',event)" title="Mover para CS">→ CS</div>` : ''}
           <div class="btn-card-action btn-card-del" onclick="deleteLead('${l.id}',event)">✕</div>
         </div>
       </div>
@@ -1300,6 +1318,9 @@ const hoje = new Date().toISOString().slice(0,10)
 async function loadCS() {
   const { data: clientes } = await sb.from('clientes_cs').select('*').order('created_at', { ascending: false })
   cachedCS = clientes || []
+
+  // Set de lead_ids que já estão em CS — usado em renderCard pra badge "Em CS" + ocultar botão →CS
+  csLeadIds = new Set(cachedCS.map(c => c.lead_id).filter(Boolean))
 
   if (cachedCS.length) {
     const ids = cachedCS.map(c => c.id)

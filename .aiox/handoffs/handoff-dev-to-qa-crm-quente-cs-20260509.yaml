@@ -1,0 +1,97 @@
+handoff:
+  from_agent: dev
+  to_agent: qa
+  consumed: true
+  timestamp: "2026-05-09"
+  last_command: "*develop"
+
+  story_context:
+    story_id: "crm-quente-pre-fechado-cs"
+    story_path: "docs/stories/crm-quente-pre-fechado-cs.story.md"
+    story_status: "Ready for Review"
+    current_task: "QA review (code + AC + non-regression)"
+    branch: master
+
+  implementation_summary:
+    backend_sql:
+      file: "docs/crm/setup-cs-v4.sql"
+      status: "Pronto, ainda não aplicado em produção (Vitor aplica manualmente)"
+    frontend:
+      file: "docs/crm/index.html"
+      edits_count: 9
+      total_lines_changed: "~30 inserções, 6 modificações"
+      changes:
+        - "Array COLS: nova entrada quente (posição 5)"
+        - "BADGE/BLABEL: entradas quente"
+        - "CSS: .badge-quente (vermelho-coral com glow) + .badge-em-cs (azul claro pill)"
+        - "Filter dropdown: option Quente"
+        - "Variável global csLeadIds (Set)"
+        - "loadCS popula csLeadIds a partir de clientes_cs.lead_id"
+        - "onAuthStateChange usa Promise.all([loadLeads, loadCS]) pra eliminar race condition"
+        - "subscribeRealtime: novo canal clientes-cs-changes que re-renderiza pipeline em mudanças"
+        - "renderCard: badge '🤝 Em CS' ao lado do nome + esconde botão →CS se inCS"
+
+  decisions:
+    - "Badge 'Em CS' visível em TODAS as colunas, não só Fechado — mais informativo (avisa se lead com CS estiver indevidamente em outra fase comercial)"
+    - "Filtro só esconde botão →CS se status='fechado' E inCS — não bloqueia botão em outras colunas (mas botão só aparece em fechado de qualquer forma)"
+    - "Cor da badge-quente: vermelho-coral com box-shadow glow — distinta de fechado (verde), perdido (vermelho puro), agendado (laranja). Usei color #FCA5A5 com glow #FB923C"
+    - "Listener realtime de clientes_cs também dispara renderCS() pra cobrir caso de delete (improvável mas safe)"
+
+  files_modified:
+    - "docs/crm/index.html (9 edits)"
+    - "docs/stories/crm-quente-pre-fechado-cs.story.md (checkboxes @dev marcados + Change Log + File List)"
+
+  blockers: []
+
+  what_qa_must_verify:
+    code_review:
+      - "Verificar que todas as edições em renderCard mantêm a estrutura HTML intacta (escape, classes, atributos draggable)"
+      - "Confirmar que csLeadIds é re-populado corretamente em todos os paths (loadCS, realtime, moverParaCS)"
+      - "Validar que não há outros lugares no JS que usam BADGE/BLABEL que possam quebrar com a nova entrada quente"
+      - "Conferir que CSS .badge-quente e .badge-em-cs não conflitam com outros estilos"
+    acceptance_criteria_p1:
+      - "Pipeline mostra coluna 🔥 Quente entre Follow Up e Fechado"
+      - "Coluna pertence à fase 'closer'"
+      - "Drag-drop funciona entre Quente e adjacentes"
+      - "Filtro <select> tem opção Quente"
+      - "Badge visual distinto de outros status"
+      - "Leads existentes não foram alterados"
+    acceptance_criteria_p2:
+      - "[PRECONDIÇÃO: setup-cs-v4.sql aplicado no Supabase]"
+      - "Lead movido pro CS mantém leads.status='fechado'"
+      - "Card aparece simultaneamente em Fechado e CS Kanban"
+      - "Banco mantém uma única row em leads (sem duplicação)"
+      - "Card em Fechado mostra '🤝 Em CS' quando inCS=true"
+      - "Botão →CS some quando inCS=true"
+      - "Métricas (m-fechados) incluem leads que foram pro CS"
+    non_regression:
+      - "Função mover_lead_para_cs continua criando row em clientes_cs"
+      - "Triggers cs_criar_checks, cs_recalcular_datas, cs_churn_flag funcionando"
+      - "Realtime atualizando ambos os Kanbans"
+      - "Roles admin/cs/sdr mantêm permissões"
+      - "Aba Leads (tabela) mostra badge Quente corretamente em leads com status=quente"
+      - "CS Kanban (Sabrina) inalterado"
+
+  next_action: |
+    @qa (Quinn) executar *qa-gate em docs/stories/crm-quente-pre-fechado-cs.story.md:
+
+    1. Code review: ler docs/crm/index.html e docs/crm/setup-cs-v4.sql, verificar qualidade
+    2. Validar AC P1 e P2 (após Vitor aplicar SQL e fazer push de teste, OU mock):
+       - Como o CRM é vanilla JS direto na Vercel, não há ambiente de staging
+       - QA pode revisar código E pedir pro Vitor fazer um deploy preview manual
+       - Alternativa: QA pode validar lógica do código + checklist e dar PASS condicional
+    3. Verdict: PASS / CONCERNS / FAIL / WAIVED
+    4. Se PASS → @devops faz commit + push pra main (auto-deploy Vercel)
+    5. Se CONCERNS/FAIL → reportar pra @aiox-master que invoca @dev pra fix loop
+
+  contexto_extra:
+    aviso_critico: |
+      O fluxo end-to-end do P2 só funciona depois que Vitor aplicar setup-cs-v4.sql no Supabase.
+      O @qa pode validar tudo que é frontend independente disso. O P2 ficará "aprovado pendente
+      validação operacional pelo Vitor" se o SQL não foi aplicado ainda.
+    proximo_no_fluxo: "@devops — commit + push (após @qa PASS)"
+    deploy_target: "main → Vercel auto-deploy → arvex-crm.vercel.app"
+    coderabbit_note: |
+      O dev workflow inclui CodeRabbit pre-commit (se configurado).
+      Como este é um single-file HTML/JS sem build, CodeRabbit pode dar issues de estilo
+      mas raramente bloqueia. @qa decide se vale rodar ou pular dado o contexto.

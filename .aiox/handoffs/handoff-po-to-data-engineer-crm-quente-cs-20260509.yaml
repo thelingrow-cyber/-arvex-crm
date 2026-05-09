@@ -1,0 +1,50 @@
+handoff:
+  from_agent: po
+  to_agent: data-engineer
+  consumed: true
+  timestamp: "2026-05-09"
+  last_command: "*validate-story-draft"
+
+  story_context:
+    story_id: "crm-quente-pre-fechado-cs"
+    story_path: "docs/stories/crm-quente-pre-fechado-cs.story.md"
+    story_status: "Ready"
+    current_task: "Implementar setup-cs-v4.sql — alterar mover_lead_para_cs"
+    branch: master
+
+  validation_result:
+    score: "9.5/10"
+    verdict: GO
+    fixes_applied:
+      - "Adicionada seção Business Value (problema operacional + ganho esperado)"
+      - "Adicionada seção Dependencies (pré-requisitos banco/deploy)"
+      - "Adicionada estimativa de complexidade (T-shirt M, ~3-5h total)"
+      - "Status: Draft → Ready"
+
+  decisions:
+    - "Story aprovada sem regressar pra @sm — fixes triviais aplicados durante validação"
+    - "Sequência de execução: @data-engineer (SQL) → @dev (frontend) — sequencial pra dev poder testar contra schema atualizado"
+    - "Migration de leads legados com status='cs' fica como ação manual pós-deploy (documentada na story)"
+
+  files_modified:
+    - "docs/stories/crm-quente-pre-fechado-cs.story.md (status Ready + 3 seções novas)"
+
+  blockers: []
+
+  next_action: |
+    @data-engineer (Dara) executar:
+    1. Criar arquivo docs/crm/setup-cs-v4.sql
+    2. Reescrever função mover_lead_para_cs:
+       - REMOVER linha `update leads set status = 'cs' where id = p_lead_id`
+       - ADICIONAR check de idempotência (se já existe row em clientes_cs.lead_id = p_lead_id, retornar id existente em vez de inserir duplicata)
+       - Manter security definer e comportamento de inserção em clientes_cs intacto
+    3. Cabeçalho do arquivo deve documentar: "v4 — mantém leads.status='fechado' pra preservar visibilidade comercial dupla"
+    4. Validar sintaxe (não rodar — Vitor aplica manualmente no Supabase SQL Editor depois)
+    5. Atualizar checkbox em "Tasks → @data-engineer" da story
+
+  contexto_extra:
+    snippet_referencia_dev_notes: "Ver seção 'SQL v4 — assinatura' nos Dev Notes da story (já tem template completo)"
+    proximo_no_fluxo: "@dev — frontend (depois do SQL pronto)"
+    arquivos_relacionados:
+      sql_atual: "docs/crm/setup-cs.sql:168 (função v1 a ser substituída)"
+      historico: "setup-cs-v2.sql (campos extras), setup-cs-v3.sql (trigger UPDATE)"

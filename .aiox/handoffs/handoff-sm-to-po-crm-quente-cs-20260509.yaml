@@ -1,0 +1,40 @@
+handoff:
+  from_agent: sm
+  to_agent: po
+  consumed: true
+  timestamp: "2026-05-09"
+  last_command: "*draft"
+
+  story_context:
+    story_id: "crm-quente-pre-fechado-cs"
+    story_path: "docs/stories/crm-quente-pre-fechado-cs.story.md"
+    story_status: "Draft"
+    current_task: "Validar story (10-point checklist)"
+    branch: master
+
+  decisions:
+    - "Story criada sem epic formal — CRM ARVEX é projeto de melhoria contínua"
+    - "Naming custom (crm-quente-pre-fechado-cs) em vez de numeração sequencial — facilita rastrear stories de CRM no diretório docs/stories/"
+    - "Owner compartilhado: @data-engineer (SQL) + @dev (frontend) — sequencial, não paralelo"
+    - "Tasks decompostas por agente com checkboxes individuais"
+    - "AC separados em P1 (Quente), P2 (Card duplo) e Não-regressão"
+
+  files_modified:
+    - "docs/stories/crm-quente-pre-fechado-cs.story.md (criado)"
+
+  blockers: []
+
+  next_action: "@po executar *validate-story-draft em docs/stories/crm-quente-pre-fechado-cs.story.md — verificar 10 pontos do checklist e atualizar Status para Ready se GO"
+
+  contexto_extra:
+    arquivos_que_serao_tocados:
+      - "docs/crm/index.html (frontend — @dev)"
+      - "docs/crm/setup-cs-v4.sql (NOVO — @data-engineer)"
+    fluxo_completo:
+      - "@sm draft (DONE)"
+      - "@po validate (próximo)"
+      - "@data-engineer SQL"
+      - "@dev frontend"
+      - "@qa review"
+      - "@devops push"
+    deploy: "Vercel auto-deploy no push para main (thelingrow-cyber/-arvex-crm)"
