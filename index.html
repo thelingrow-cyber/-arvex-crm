@@ -707,11 +707,12 @@ sb.auth.onAuthStateChange(async (event, session) => {
         .then(() => { renderDashboard(); renderPipeline(); })
         .catch(() => {})
     } else {
-      loadCS().catch(() => {})
+      // CS user: depois de loadCS, RENDERIZA o kanban (senão fica vazio)
+      loadCS().then(() => renderCS()).catch(() => {})
     }
     subscribeRealtime()
-    // salva/atualiza perfil no banco em background
-    sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: currentRole }, { onConflict: 'id' }).catch(() => {})
+    // salva/atualiza perfil no banco em background — .then(noop, noop) porque .upsert() retorna QueryBuilder, não Promise direto
+    sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: currentRole }, { onConflict: 'id' }).then(() => {}, () => {})
   } else {
     currentUser = null; currentRole = null
     document.getElementById('login-screen').classList.remove('hidden')
@@ -738,7 +739,7 @@ function applyRole() {
     // vai direto para CS
     goTo('cs', document.getElementById('nav-cs'))
     // salva no banco com role cs
-    sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: 'cs' }, { onConflict: 'id' }).catch(() => {})
+    sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: 'cs' }, { onConflict: 'id' }).then(() => {}, () => {})
   }
 }
 
