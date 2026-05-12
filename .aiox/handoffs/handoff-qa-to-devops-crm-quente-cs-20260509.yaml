@@ -1,7 +1,7 @@
 handoff:
   from_agent: qa
   to_agent: devops
-  consumed: false
+  consumed: true
   timestamp: "2026-05-09"
   last_command: "*qa-gate"
 

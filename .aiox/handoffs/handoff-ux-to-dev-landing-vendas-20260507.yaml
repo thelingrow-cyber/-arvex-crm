@@ -1,0 +1,166 @@
+handoff:
+  from_agent: ux-design-expert
+  to_agent: dev
+  consumed: false
+  timestamp: "2026-05-07"
+
+  story_context:
+    story_id: "landing-cindy-vendas"
+    story_path: "docs/landing-cindy-vendas/index.html"
+    story_status: "Ready for Dev"
+    current_task: "Implementar página de vendas completa Desafio Ótica 10X"
+    branch: master
+
+  output_file: "docs/landing-cindy-vendas/index.html"
+
+  assets:
+    foto_cindy: "docs/landing-cindy-desafio/cindy-money.jpg"
+    foto_backup_wp: "https://cindyb.com.br/wp-content/uploads/2025/12/bs-pdf.jpg"
+    checkout_url: "https://pay.kiwify.com.br/nHOyQ2K"
+    countdown_deadline: "2026-05-08T17:00:00-03:00"
+
+  design_system:
+    fonte: "Inter (Google Fonts) — 400/600/700/800/900"
+    paleta:
+      bg_primary: "#0A0A0F"
+      bg_section: "#0F0F1A"
+      accent_gold: "#C9963F"
+      accent_gold_light: "#DDB870"
+      text_primary: "#F5F5F0"
+      text_muted: "#8A8A9A"
+      cta_green: "#25D366"
+      cta_green_dk: "#1DA851"
+      error_red: "#C0392B"
+      navy: "#14172E"
+      navy2: "#1F2D52"
+    layout:
+      max_width: "1200px"
+      mobile_breakpoint: "768px"
+      section_padding: "100px 0"
+
+  secoes:
+    - id: topbar
+      conteudo: "✦ Desafio Ótica 10X · Edição Maio | 📅 11, 12 e 13 de Maio | 19h"
+      estilo: "navy fundo, gold texto, ponto vermelho pulsante"
+
+    - id: hero
+      headline: "3 dias pra destravar o faturamento da sua ótica ainda em Maio."
+      sub: "Imersão online ao vivo onde você sai com posicionamento, oferta e plano de execução prontos pra fazer Maio ser seu mês de recorde."
+      cta: "Garantir vaga no Lote 1 — R$67"
+      foto: "cindy-money.jpg — scale(1.85) translateY(8%), object-fit cover"
+      sem_metricas_flutuantes: true
+
+    - id: por_que_agora
+      headline: "O dono de ótica que não tem método está perdendo para quem tem."
+      colunas:
+        - "Posicionamento → para de brigar por preço, atrai cliente que compra"
+        - "Estratégia → oferta certa, no momento certo, pro cliente certo"
+        - "Execução → ação dentro da ótica + digital, sem achismo"
+
+    - id: erros_fatais
+      headline: "Você vai continuar no mesmo lugar se:"
+      cards:
+        - "⊗ Ficar esperando o mês melhorar sozinho"
+        - "⊗ Montar promoção sem estratégia de posicionamento"
+        - "⊗ Depender de agência pra fazer o básico"
+        - "⊗ Focar em campanha sem organizar a venda dentro da ótica"
+
+    - id: prova_social
+      headline: "Nossos resultados"
+      depoimentos:
+        - nome: "Michaella"
+          resultado: "Aumentamos mais de 30 mil no nosso faturamento só com os conteúdos do desafio"
+          tipo: "print whatsapp"
+        - nome: "Galeria de Óculos"
+          resultado: "Entrou faturando 16k no mês. Fechou outubro com 63 mil."
+          tipo: "screenshot reels"
+        - nome: "Prycia"
+          resultado: "Somente no dia da inauguração: 15 mil. Trabalhamos muito bem o digital."
+          tipo: "print whatsapp"
+      estilo: "cards flutuando com animação fadeInUp + float loop suave"
+
+    - id: conteudo_programatico
+      headline: "O que você vai aprender"
+      fundo: "dark (#0A0A0F)"
+      numeros_grandes: true
+      itens:
+        - num: "01"
+          titulo: "Posicionamento"
+          desc: "Como se apresentar pra atrair quem compra, não quem pede desconto"
+        - num: "02"
+          titulo: "Estratégia de venda"
+          desc: "Como montar suas campanhas e o que ofertar pra gerar venda de verdade"
+        - num: "03"
+          titulo: "Ações no dia a dia"
+          desc: "O que fazer dentro da ótica e no digital pra gerar movimento"
+        - num: "04"
+          titulo: "Execução guiada"
+          desc: "Ao vivo com a Cindy e equipe, ajustando junto em tempo real"
+        - num: "05"
+          titulo: "Plano de Maio"
+          desc: "Sair do desafio com tudo montado e pronto pra executar"
+
+    - id: o_que_inclui
+      itens:
+        - label: "3 dias de imersão ao vivo"
+          preco_riscado: "R$297"
+        - label: "Materiais estratégicos de apoio"
+          preco_riscado: "R$197"
+        - label: "Grupo VIP Oficial"
+          preco_riscado: "R$197"
+      total_riscado: "R$691"
+      preco_final: "R$67"
+
+    - id: cronograma
+      headline: "O desafio mais prático que uma ótica já teve."
+      datas: "11, 12 e 13 de Maio · 19h · Online · Ao Vivo"
+      aviso: "Não recomendado pra quem quer só teoria. Aqui a gente executa."
+
+    - id: preco_escassez
+      headline: "Quanto custa?"
+      countdown_deadline: "2026-05-08T17:00:00-03:00"
+      barra_progresso: true
+      barra_percent: 67
+      barra_texto: "vagas restantes neste lote"
+      ancora_valor: "R$691"
+      preco: "R$67"
+      pagamento: "Pix ou cartão"
+      cta: "Quero meu acesso agora"
+      checkout_url: "https://pay.kiwify.com.br/nHOyQ2K"
+
+  interatividade:
+    provas_flutuantes:
+      ativo: true
+      animacao: "fadeInUp + float suave (translateY -8px loop)"
+      posicoes: "hero (direita), meio da página, pricing"
+      conteudo:
+        - "Michaella · +R$30k no faturamento"
+        - "Galeria de Óculos · de 16k → 63k em outubro"
+        - "Prycia · 15k só no dia da inauguração"
+
+    countdown:
+      ativo: true
+      deadline: "2026-05-08T17:00:00-03:00"
+      formato: "DD : HH : MM : SS"
+      posicao: "seção pricing + compacto no topbar"
+
+    barra_progresso:
+      ativo: true
+      animacao: "IntersectionObserver — preenche da esquerda pra direita ao entrar na viewport"
+      cor: "gradient gold → vermelho conforme % sobe"
+      percent_inicial: 67
+
+  referencia_visual:
+    estilo: "Workshop Lançamento Pago (dark premium, números grandes, foto expert ao fundo)"
+    principios: "Apple HIG — hierarquia clara, micro-animações ease-out, glassmorphism nos cards"
+    fonte_anterior: "Poppins (NÃO usar) → Inter"
+    nao_adicionar: "Playfair Display, ornamentos, sparkles, anéis, credenciais flutuantes no hero"
+
+  decisions:
+    - "Headline do hero: foco em faturamento/resultado, não em campanha (feedback Morgan)"
+    - "Sem métricas flutuantes no hero — removidas por decisão do @pm"
+    - "Foto wide bs-pdf.jpg com scale(1.85) — padrão já validado na landing de captura"
+    - "Barra de progresso começa em 67% — aguardar confirmação do Vitor se muda"
+    - "Countdown hard: 08/05/2026 às 17h"
+
+  next_action: "Implementar index.html completo em docs/landing-cindy-vendas/"

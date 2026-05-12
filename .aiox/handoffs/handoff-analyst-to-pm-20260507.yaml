@@ -1,0 +1,79 @@
+handoff:
+  from_agent: analyst
+  to_agent: pm
+  timestamp: "2026-05-07"
+  consumed: true
+
+  context_summary: |
+    Vitor é CEO da ARVEX, agência de coprodução brasileira. Está avaliando criar
+    um Growth SaaS para o nicho óptico. Tem sócio (Gabriel) que pressiona por
+    garantias de entrega. Vitor tem receio técnico mas já construiu stack similar
+    (Carol SDR: N8N + Evolution API + Claude + Supabase). Sessão foi de análise
+    de mercado profunda + definição estratégica. Precisa agora de análise de
+    viabilidade real, matriz de ganhos/perdas e decisão clara.
+
+  decisions:
+    - "Posicionamento: produto genérico por arquitetura, entregável 100% ótico no lançamento"
+    - "Cindy Batista: embaixadora com comissão (10-20% recorrente), SEM equity — ela é instável e mal caráter"
+    - "Não competir com ERPs — atuar como camada de crescimento acima deles"
+    - "Entrar pelo gap que Cindy não cobre: tráfego pago, geração de leads, funil digital"
+    - "TAM Brasil: 10.000 óticas x R$500 = R$5M ARR (pequeno sozinho — precisa de arquitetura multi-vertical)"
+    - "Stack MVP: Next.js + Supabase + N8N + Z-API/Evolution + Claude API"
+
+  saas_context:
+    nome_provisorio: "Growth SaaS para Óticas (sem nome definido)"
+    posicionamento: "Camada de crescimento acima dos ERPs óticos existentes"
+    gaps_atacados:
+      - Geração de leads e funil de vendas invisível
+      - CRM conversacional via WhatsApp
+      - Automação de atendimento 24/7 com IA
+      - Retenção e pós-venda inteligente
+    concorrentes_indiretos:
+      - ssOtica
+      - PWI Vixen
+      - Linx Óticas
+      - Varejo BR
+      - TekÓtica
+    diferenciais:
+      - Nenhum ERP atual resolve geração de demanda digital
+      - WhatsApp como CRM estruturado é gap crítico
+      - IA no atendimento praticamente inexistente nos ERPs
+
+  viabilidade_tecnica:
+    prazo_proposto_socio: "30 dias"
+    stack_vitor_ja_domina:
+      - Supabase (auth, RLS, triggers, realtime)
+      - N8N (automações, workflows)
+      - Evolution API / Z-API (WhatsApp)
+      - Claude API (IA)
+      - Landing pages e frontend básico
+    o_que_falta_aprender:
+      - Multi-tenant (company_id em tudo)
+      - Onboarding self-service
+      - Cobrança recorrente
+      - Estabilidade em produção com múltiplos usuários
+    bloqueadores_reais:
+      - WhatsApp Business API oficial (Meta) demora 2-4 semanas só de aprovação
+      - Vitor está tocando 5 frentes simultâneas (Cindy, Lingrow, Marca Pessoal, ARVEX, SaaS)
+      - Sócio pressiona por garantias sem escopo definido
+
+  cenario_cindy:
+    situacao: "Lançamento ativo do Desafio Ótica 10X em andamento"
+    papel_no_saas: "Embaixadora comercial com comissão recorrente"
+    risco: "Ela pode não aceitar bem a ARVEX entrando no nicho ótico sem ela como sócia"
+    decisao: "Entrar pelo ângulo de geração de leads/tráfego — gap que ela não cobre e não tem credibilidade para cobrir"
+
+  next_action: |
+    Morgan precisa:
+    1. Analisar viabilidade real do MVP em 30 dias com escopo fechado
+    2. Montar matriz de ganhos e perdas (fazer vs contratar vs adiar)
+    3. Definir o que é possível entregar em 30 dias vs o que não é
+    4. Dar uma resposta clara e estruturada que Vitor possa usar na conversa com o sócio
+    5. Sugerir próximos passos concretos
+
+  blocos_de_tempo_vitor:
+    - "Cindy: lançamento ativo consome energia operacional agora"
+    - "Carol SDR: ainda não finalizada (Epic 3, stories 3.1-3.5)"
+    - "Lingrow: app pendente nas stores"
+    - "Marca pessoal: sistema de conteúdo pendente"
+    - "SaaS: análise feita, ainda sem linha de código"

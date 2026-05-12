@@ -1,7 +1,7 @@
 # Story CRM-001 — Coluna Quente + Card visível em Fechado e CS
 
 **Tipo:** Brownfield enhancement (CRM ARVEX — sem epic formal)
-**Status:** Ready for Review
+**Status:** Done
 **Owner:** @dev (frontend) + @data-engineer (SQL)
 **Criado:** 2026-05-09
 **Validado:** 2026-05-09 por @po (Pax) — score 9.5/10 GO
@@ -353,3 +353,4 @@ CONCERN MEDIUM-01 (cor) é **observação**, não bloqueador — pode ser ajusta
 | 2026-05-09 | @data-engineer (Dara) | `docs/crm/setup-cs-v4.sql` entregue: idempotência via check em `clientes_cs.lead_id` + remoção de `update leads set status='cs'` + `comment on function`. Bônus: blocos opcionais comentados (UNIQUE index e migration de legados). Sintaxe validada. Pronto pra @dev frontend. |
 | 2026-05-09 | @dev (Dex) | Frontend implementado em `docs/crm/index.html` (9 edits): COLS+BADGE+BLABEL com Quente, CSS `.badge-quente` (vermelho-coral com glow) + `.badge-em-cs`, var global `csLeadIds`, `loadCS` popula Set, `Promise.all` no auth pra evitar race, listener realtime em `clientes_cs`, `renderCard` mostra "🤝 Em CS" + esconde botão →CS quando aplicável. Decisão: badge "Em CS" visível em TODAS as colunas (não só Fechado) — mais informativo se um lead com CS estiver indevidamente em outra fase. Testes manuais pendentes pra @qa/Vitor (UI não testável por agente). Pronto pra @qa review. |
 | 2026-05-09 | @qa (Quinn) | QA Gate: **PASS com CONCERNS**. 7 quality checks: 6 PASS, 1 N/A (sem suite de testes — debt pré-existente). AC P1+P2 todos atendidos. Issues: 1 MEDIUM (cor da badge-quente próxima de badge-perdido, validar visual em prod), 3 LOW (perf opcional, tech debt pré-existente, SQL micro-overhead). Aprovado pra @devops push. Pré-requisito crítico: aplicar setup-cs-v4.sql no Supabase ANTES do deploy do frontend. |
+| 2026-05-09 | @devops (Gage) | SQL v4 aplicado pelo Vitor no Supabase com sucesso. Commit atômico `9eaa198` (8 arquivos, +843/-9). Push pra `master` → Vercel auto-deploy em `arvex-crm.vercel.app`. Status: **Done**. Pendente validação visual operacional pelo Vitor em produção (especialmente a CONCERN MEDIUM-01 sobre cor da badge-quente). |

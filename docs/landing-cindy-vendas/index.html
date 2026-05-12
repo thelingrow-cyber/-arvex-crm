@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desafio Ótica 10X — Edição Maio · Cindy Batista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png" />
+  <link rel="preload" as="image" href="https://cindyb.com.br/wp-content/uploads/2026/05/proof-galeria.jpg" />
+  <link rel="preload" as="image" href="https://cindyb.com.br/wp-content/uploads/2026/05/proof-prycia.jpg" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0A0A0F;
+      --bg-2:      #0C0C1E;
+      --bg-3:      #101028;
+      --gold:      #C9963F;
+      --gold-lt:   #DDB870;
+      --gold-dk:   #A07830;
+      --text:      #F5F5F0;
+      --muted:     #8A8A9A;
+      --navy:      #14172E;
+      --navy-2:    #1F2D52;
+      --green:     #25D366;
+      --green-dk:  #1DA851;
+      --red:       #C0392B;
+      --red-lt:    #E74C3C;
+      --border:    rgba(201,150,63,0.18);
+      --glass:     rgba(15,15,26,0.85);
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    /* ── SEPARADOR GOLD ── */
+    .sep {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-lt) 50%, var(--gold) 60%, transparent 100%);
+      opacity: 0.4;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-left { display: flex; align-items: center; gap: 10px; }
+    .topbar-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #ff4444; box-shadow: 0 0 8px #ff4444;
+      animation: pulse-dot 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity:1; box-shadow: 0 0 8px #ff4444; }
+      50%      { opacity:0.5; box-shadow: 0 0 18px #ff4444; }
+    }
+    .topbar-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--text); }
+    .topbar-title span { color: var(--gold-lt); }
+    .topbar-date { font-size:12px; font-weight:500; color:var(--muted); }
+    .topbar-countdown { display:flex; align-items:center; gap:4px; font-size:11px; font-weight:700; color:var(--gold-lt); }
+    .topbar-countdown .cd-unit {
+      background: rgba(201,150,63,0.15); border:1px solid var(--border);
+      border-radius:4px; padding:2px 6px; font-variant-numeric:tabular-nums;
+      min-width:28px; text-align:center;
+    }
+    .topbar-countdown .cd-sep { color:var(--gold); opacity:0.6; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 92svh; min-height: 92vh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-photo {
+      position: absolute; top:0; right:0;
+      width: 60%; height: 100%;
+      object-fit: cover; object-position: center 8%;
+      filter: brightness(0.52) contrast(1.15) saturate(1.25);
+      mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 15%, rgba(0,0,0,0.92) 38%, #000 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 15%, rgba(0,0,0,0.92) 38%, #000 100%);
+    }
+    .hero-overlay {
+      position: absolute; inset:0;
+      background:
+        radial-gradient(ellipse at 72% 30%, rgba(201,150,63,0.08) 0%, transparent 55%),
+        linear-gradient(90deg, rgba(10,10,15,0.98) 0%, rgba(10,10,15,0.88) 42%, rgba(10,10,15,0.2) 100%),
+        linear-gradient(180deg, rgba(10,10,15,0) 50%, rgba(10,10,15,0.98) 100%);
+    }
+    .hero-content {
+      position: relative; z-index:2;
+      max-width:1200px; margin:0 auto; padding:120px 48px 80px; width:100%;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-2));
+      border:1.5px solid var(--gold); border-radius:100px;
+      padding:6px 16px; font-size:11px; font-weight:700;
+      letter-spacing:1.2px; text-transform:uppercase; color:var(--gold-lt);
+      margin-bottom:28px;
+    }
+    .hero-headline {
+      font-size: clamp(38px, 5.8vw, 68px);
+      font-weight:900; line-height:1.06; letter-spacing:-1.5px;
+      color:var(--text); max-width:700px; margin-bottom:20px;
+    }
+    .hero-headline em {
+      font-style:normal;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero-sub {
+      font-size: clamp(16px,1.8vw,19px); font-weight:400; line-height:1.65;
+      color:rgba(245,245,240,0.75); max-width:520px; margin-bottom:40px;
+    }
+    .hero-cta {
+      display:inline-flex; align-items:center; gap:10px;
+      background: linear-gradient(135deg, var(--green), var(--green-dk));
+      color:#fff; font-size:17px; font-weight:800;
+      padding:18px 36px; border-radius:12px; text-decoration:none;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+      animation: pulse-glow 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%,100% { box-shadow: 0 8px 32px rgba(37,211,102,0.35); }
+      50%      { box-shadow: 0 8px 48px rgba(37,211,102,0.6); }
+    }
+    .hero-cta:hover { transform:translateY(-2px); }
+    .hero-cta-micro { display:block; font-size:12px; color:rgba(255,255,255,0.6); margin-top:10px; }
+    .hero-progress {
+      margin-top:24px; max-width:420px;
+      background:rgba(255,255,255,0.04); border:1px solid rgba(201,150,63,0.2);
+      border-radius:12px; padding:14px 18px;
+    }
+    .hero-progress-meta { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .hero-progress-dot {
+      width:7px; height:7px; border-radius:50%;
+      background:var(--red-lt); box-shadow:0 0 8px var(--red-lt);
+      animation:pulse-dot 1.8s ease-in-out infinite; flex-shrink:0;
+    }
+    .hero-progress-pct { font-size:12px; font-weight:700; color:var(--text); flex:1; }
+    .hero-progress-pct span { color:var(--red-lt); }
+    .hero-progress-slots { font-size:11px; font-weight:600; color:var(--muted); }
+    .hero-progress-bar { height:6px; background:rgba(255,255,255,0.07); border-radius:100px; overflow:hidden; }
+    .hero-progress-fill {
+      height:100%; width:0%;
+      background:linear-gradient(90deg, var(--gold) 0%, #E8843A 60%, var(--red-lt) 100%);
+      border-radius:100px;
+      transition: width 1.8s cubic-bezier(0.25,0.46,0.45,0.94);
+      position:relative;
+    }
+    .hero-progress-fill::after {
+      content:''; position:absolute; right:0; top:0;
+      width:4px; height:100%;
+      background:rgba(255,255,255,0.6); border-radius:100px; filter:blur(2px);
+    }
+
+    /* Provas flutuantes */
+    .float-proofs { display:none; }
+    @media (min-width:901px) {
+      .float-proofs {
+        display:block; position:absolute;
+        top:0; left:0; right:0; bottom:0;
+        pointer-events:none; z-index:10;
+      }
+      .float-proof {
+        position:absolute;
+        background:var(--glass); backdrop-filter:blur(20px);
+        border:1px solid var(--border); border-radius:14px;
+        overflow:hidden; width:200px;
+        box-shadow:0 12px 40px rgba(0,0,0,0.6);
+      }
+      .float-proof:nth-child(1) { top:24px; left:12px; animation:gentle-float 5s ease-in-out 0s infinite; }
+      .float-proof:nth-child(2) { top:45%; right:12px; animation:gentle-float 5s ease-in-out 1.6s infinite; }
+      .float-proof:nth-child(3) { bottom:24px; left:60px; animation:gentle-float 5s ease-in-out 3.2s infinite; }
+      @keyframes gentle-float {
+        0%  { transform:translateY(0); }
+        50% { transform:translateY(-8px); }
+        100%{ transform:translateY(0); }
+      }
+    }
+    .float-proof-img { width:100%; height:140px; object-fit:cover; object-position:top; display:block; }
+    .float-proof-footer { padding:10px 14px; display:flex; align-items:center; gap:8px; }
+    .float-proof-dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); flex-shrink:0; }
+    .float-proof-name { font-size:11px; font-weight:700; color:var(--gold-lt); }
+    .float-proof-result { font-size:11px; color:var(--muted); }
+
+    /* ── SEÇÃO BASE ── */
+    .section { padding: 80px 0; }
+    .section-dark    { background: var(--bg); }
+    .section-darker  { background: var(--bg-2); }
+    .section-darkest { background: var(--bg-3); }
+    .container { max-width:1200px; margin:0 auto; padding:0 48px; }
+    .section-label { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+    .section-headline { font-size:clamp(28px,3.8vw,52px); font-weight:900; line-height:1.12; letter-spacing:-0.8px; color:var(--text); margin-bottom:16px; }
+    .section-headline em { font-style:normal; color:var(--gold-lt); }
+    .section-sub { font-size:17px; color:var(--muted); line-height:1.65; }
+
+    /* ── NÚMEROS DE IMPACTO ── */
+    .stats-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      border:1px solid var(--border); border-radius:16px; overflow:hidden;
+      margin-top:0;
+    }
+    .stat-item {
+      padding:48px 40px;
+      position:relative;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,150,63,0.06) 0%, transparent 70%);
+      text-align:center;
+    }
+    .stat-item:not(:last-child) { border-right:1px solid var(--border); }
+    .stat-num {
+      font-size:clamp(56px,7vw,88px); font-weight:900;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; line-height:1; margin-bottom:12px;
+      font-variant-numeric:tabular-nums;
+    }
+    .stat-label { font-size:15px; font-weight:600; color:var(--muted); }
+
+    /* ── POR QUÊ AGORA ── */
+    .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+    .why-card {
+      background: var(--bg-2);
+      background-image: radial-gradient(ellipse at 50% 0%, rgba(201,150,63,0.05) 0%, transparent 60%);
+      padding:40px 32px; border-top:2px solid var(--border);
+      transition:border-color 0.3s ease, transform 0.3s ease;
+    }
+    .why-card:hover { border-color:var(--gold); transform:translateY(-4px); }
+    .why-card-num { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+    .why-card-title { font-size:22px; font-weight:800; color:var(--text); margin-bottom:12px; }
+    .why-card-desc { font-size:15px; line-height:1.65; color:var(--muted); }
+
+    /* ── AUTORIDADE ── */
+    .authority-grid { display:grid; grid-template-columns:auto 1fr; gap:56px; align-items:center; margin-top:60px; }
+    .authority-photo-wrap {
+      position:relative; width:220px; height:220px; flex-shrink:0;
+    }
+    .authority-photo-ring {
+      position:absolute; inset:-4px; border-radius:50%;
+      background: conic-gradient(var(--gold), var(--gold-lt), var(--gold-dk), var(--gold));
+      animation: ring-spin 8s linear infinite;
+    }
+    @keyframes ring-spin { to { transform:rotate(360deg); } }
+    .authority-photo-inner {
+      position:absolute; inset:4px; border-radius:50%; overflow:hidden;
+      background:var(--bg-2);
+    }
+    .authority-photo-inner img { width:100%; height:100%; object-fit:cover; object-position:center 5%; }
+    .authority-badge {
+      position:absolute; bottom:-8px; left:50%; transform:translateX(-50%);
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color:#000; font-size:10px; font-weight:800; letter-spacing:1px;
+      text-transform:uppercase; padding:5px 14px; border-radius:100px; white-space:nowrap;
+    }
+    .authority-content {}
+    .authority-headline { font-size:clamp(28px,3vw,40px); font-weight:900; color:var(--text); margin-bottom:16px; }
+    .authority-bio { font-size:16px; line-height:1.7; color:var(--muted); margin-bottom:28px; }
+    .authority-bullets { display:flex; flex-direction:column; gap:12px; }
+    .authority-bullet {
+      display:flex; align-items:center; gap:12px;
+      font-size:15px; font-weight:600; color:var(--text);
+    }
+    .authority-bullet-icon {
+      width:28px; height:28px; border-radius:50%;
+      background:rgba(201,150,63,0.15); border:1px solid var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--gold-lt); font-size:12px; flex-shrink:0;
+    }
+
+    /* ── ERROS FATAIS ── */
+    .errors-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:60px; }
+    .error-card {
+      background:var(--bg-2);
+      background-image: radial-gradient(ellipse at 0% 100%, rgba(192,57,43,0.08) 0%, transparent 60%);
+      border:1px solid rgba(192,57,43,0.2); border-radius:14px;
+      padding:28px 32px; display:flex; align-items:flex-start; gap:16px;
+      transition:border-color 0.3s ease, transform 0.3s ease;
+    }
+    .error-card:hover { border-color:rgba(192,57,43,0.5); transform:translateY(-2px); }
+    .error-icon {
+      width:30px; height:30px; border-radius:50%; border:2px solid var(--red);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; color:var(--red); font-size:14px; font-weight:700; margin-top:2px;
+    }
+    .error-text { font-size:16px; font-weight:500; color:var(--text); line-height:1.5; }
+
+    /* ── PROVA SOCIAL ── */
+    .proof-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:60px; }
+    .proof-card {
+      background:var(--glass); backdrop-filter:blur(20px);
+      border:1px solid var(--border); border-radius:18px; padding:36px;
+      position:relative; overflow:hidden;
+      box-shadow:0 24px 80px rgba(0,0,0,0.4);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .proof-card:hover { transform:translateY(-6px); box-shadow:0 32px 100px rgba(0,0,0,0.5); }
+    .proof-card::before {
+      content:'"'; position:absolute; top:-10px; left:24px;
+      font-size:120px; font-weight:900; color:var(--gold); opacity:0.07;
+      line-height:1; font-family:Georgia,serif;
+    }
+    .proof-result { font-size:clamp(24px,2.8vw,34px); font-weight:900; color:var(--gold-lt); line-height:1.2; margin-bottom:16px; }
+    .proof-divider { width:32px; height:2px; background:linear-gradient(90deg,var(--gold),transparent); margin-bottom:14px; }
+    .proof-quote { font-size:14px; line-height:1.75; color:var(--muted); margin-bottom:24px; font-style:italic; }
+    .proof-name { font-size:13px; font-weight:700; color:var(--text); text-transform:uppercase; letter-spacing:1px; }
+    .proof-desktop { display:grid; }
+    .proof-mobile  { display:none; }
+    @media (max-width:900px) {
+      .proof-desktop { display:none; }
+      .proof-mobile { display:flex; flex-direction:column; gap:20px; margin-top:40px; }
+      .proof-img-card { border-radius:14px; overflow:hidden; border:1px solid var(--border); background:var(--bg-2); }
+      .proof-img-card img { width:100%; display:block; max-height:340px; object-fit:cover; object-position:top; }
+      .proof-img-label { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; gap:8px; }
+      .proof-img-name { font-size:13px; font-weight:700; color:var(--gold-lt); text-transform:uppercase; letter-spacing:0.5px; }
+      .proof-img-result { font-size:12px; color:var(--muted); text-align:right; }
+    }
+
+    /* ── CTA INTERMEDIÁRIO ── */
+    .cta-mid {
+      background: linear-gradient(135deg, #0D0D1C, #141426);
+      border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      padding:80px 0; text-align:center; position:relative; overflow:hidden;
+    }
+    .cta-mid::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(201,150,63,0.08) 0%, transparent 65%);
+      pointer-events:none;
+    }
+    .cta-mid-content { position:relative; z-index:1; }
+    .cta-mid-headline { font-size:clamp(28px,3.5vw,48px); font-weight:900; color:var(--text); margin-bottom:12px; letter-spacing:-0.5px; }
+    .cta-mid-sub { font-size:17px; color:var(--muted); margin-bottom:36px; }
+    .btn-cta {
+      display:inline-flex; align-items:center; gap:10px;
+      background:linear-gradient(135deg, var(--green), var(--green-dk));
+      color:#fff; font-size:17px; font-weight:800;
+      padding:18px 40px; border-radius:12px; text-decoration:none;
+      animation:pulse-glow 2.5s ease-in-out infinite;
+    }
+    .btn-cta:hover { transform:translateY(-2px); }
+    .btn-cta-micro { font-size:12px; color:var(--muted); margin-top:12px; }
+
+    /* ── CONTEÚDO PROGRAMÁTICO ── */
+    .curriculum { position:relative; overflow:hidden; }
+    .curriculum-bg-text {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      font-size:clamp(120px,20vw,240px); font-weight:900;
+      color:rgba(201,150,63,0.025); white-space:nowrap;
+      pointer-events:none; user-select:none; letter-spacing:-8px;
+    }
+    .curriculum-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:60px; position:relative; }
+    .curriculum-item {
+      padding:48px 40px; border-bottom:1px solid var(--border);
+      display:flex; gap:28px; align-items:flex-start;
+      transition:background 0.3s ease;
+    }
+    .curriculum-item:hover { background:rgba(201,150,63,0.04); }
+    .curriculum-item:nth-child(odd) { border-right:1px solid var(--border); }
+    .curriculum-num {
+      font-size:clamp(64px,8vw,100px); font-weight:900; color:var(--gold);
+      line-height:1; opacity:0.6; flex-shrink:0; font-variant-numeric:tabular-nums;
+    }
+    .curriculum-title { font-size:20px; font-weight:800; color:var(--text); margin-bottom:10px; }
+    .curriculum-desc { font-size:15px; line-height:1.65; color:var(--muted); }
+
+    /* ── PRA QUEM É ── */
+    .forwhom-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:60px; }
+    .forwhom-card {
+      border-radius:18px; padding:40px 36px; backdrop-filter:blur(20px);
+      box-shadow:0 24px 80px rgba(0,0,0,0.4);
+    }
+    .forwhom-yes {
+      background:rgba(37,211,102,0.06);
+      border:1px solid rgba(37,211,102,0.25);
+    }
+    .forwhom-no {
+      background:rgba(192,57,43,0.06);
+      border:1px solid rgba(192,57,43,0.25);
+    }
+    .forwhom-title {
+      font-size:18px; font-weight:800; margin-bottom:24px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .forwhom-yes .forwhom-title { color:var(--green); }
+    .forwhom-no  .forwhom-title { color:var(--red-lt); }
+    .forwhom-list { display:flex; flex-direction:column; gap:14px; }
+    .forwhom-item {
+      display:flex; align-items:flex-start; gap:12px;
+      font-size:15px; font-weight:500; color:var(--text); line-height:1.5;
+    }
+    .forwhom-item-icon { font-size:14px; flex-shrink:0; margin-top:2px; }
+    .forwhom-yes .forwhom-item-icon { color:var(--green); }
+    .forwhom-no  .forwhom-item-icon { color:var(--red-lt); }
+
+    /* ── O QUE INCLUI ── */
+    .includes-list { margin-top:48px; display:flex; flex-direction:column; gap:16px; }
+    .include-item {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:22px 28px;
+      background:var(--glass); backdrop-filter:blur(16px);
+      border:1px solid var(--border); border-radius:12px;
+      transition:border-color 0.3s ease;
+    }
+    .include-item:hover { border-color:var(--gold); }
+    .include-label { display:flex; align-items:center; gap:14px; font-size:16px; font-weight:600; color:var(--text); }
+    .include-check {
+      width:24px; height:24px; border-radius:50%;
+      background:rgba(37,211,102,0.15); border:1.5px solid var(--green);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--green); font-size:12px; flex-shrink:0;
+    }
+    .include-price { font-size:15px; font-weight:600; color:var(--muted); text-decoration:line-through; }
+
+    /* ── CRONOGRAMA ── */
+    .schedule-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:60px; align-items:center; }
+    .schedule-date-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--bg-2); border:1px solid var(--border);
+      border-radius:8px; padding:10px 18px;
+      font-size:13px; font-weight:600; color:var(--muted); margin-bottom:24px;
+    }
+    .schedule-warning {
+      display:flex; align-items:center; gap:10px;
+      font-size:14px; color:var(--muted); margin-top:24px;
+      padding:14px 18px;
+      background:rgba(192,57,43,0.08); border:1px solid rgba(192,57,43,0.2);
+      border-radius:8px;
+    }
+    .schedule-card {
+      background:linear-gradient(135deg,#1a0a0a,#2a1010);
+      border:1px solid rgba(192,57,43,0.3); border-radius:18px; overflow:hidden;
+      box-shadow:0 24px 80px rgba(0,0,0,0.4);
+    }
+    .schedule-card-header {
+      background:linear-gradient(135deg,var(--red),#8B0000);
+      padding:20px 28px; font-size:14px; font-weight:700;
+      letter-spacing:1px; text-transform:uppercase; color:#fff;
+    }
+    .schedule-rows { padding:8px 0; }
+    .schedule-row {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 28px; border-bottom:1px solid rgba(255,255,255,0.05);
+      font-size:14px;
+    }
+    .schedule-row:last-child { border-bottom:none; }
+    .schedule-time { display:flex; align-items:center; gap:8px; color:var(--muted); font-weight:500; }
+    .schedule-act { font-weight:700; color:var(--text); }
+
+    /* ── FAIXA URGÊNCIA ── */
+    .urgency-bar {
+      background:linear-gradient(135deg,#3d0808,#6b0f0f);
+      border-top:1px solid rgba(192,57,43,0.4);
+      border-bottom:1px solid rgba(192,57,43,0.4);
+      padding:20px 48px;
+      display:flex; align-items:center; justify-content:center; gap:24px;
+      flex-wrap:wrap;
+    }
+    .urgency-bar-text {
+      font-size:16px; font-weight:800; color:#fff;
+      display:flex; align-items:center; gap:10px;
+    }
+    .urgency-bar-text span { color:#FFB3B3; }
+    .urgency-cd {
+      display:flex; align-items:center; gap:6px;
+      font-size:13px; font-weight:700; color:var(--gold-lt);
+    }
+    .urgency-cd-unit {
+      background:rgba(0,0,0,0.35); border:1px solid rgba(201,150,63,0.3);
+      border-radius:6px; padding:4px 10px; font-variant-numeric:tabular-nums;
+    }
+    .urgency-cd-sep { color:var(--gold); opacity:0.6; }
+
+    /* ── PRICING ── */
+    .pricing { position:relative; overflow:hidden; }
+    .pricing-hero-photo {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; object-position:center 20%;
+      filter:brightness(0.12) saturate(0.5);
+    }
+    .pricing-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(10,10,15,0.65) 0%, rgba(10,10,15,0.9) 100%);
+    }
+    .pricing-content { position:relative; z-index:2; }
+    .pricing-headline {
+      font-size:clamp(40px,6vw,80px); font-weight:900; letter-spacing:-2px;
+      color:var(--text); text-align:center; margin-bottom:60px;
+    }
+    .pricing-layout { display:grid; grid-template-columns:1fr auto 1fr; gap:32px; align-items:start; }
+    .pricing-anchor {
+      background:var(--glass); backdrop-filter:blur(20px);
+      border:1px solid var(--border); border-radius:18px; padding:32px;
+    }
+    .pricing-anchor-title { font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
+    .pricing-anchor-items { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+    .pricing-anchor-item {
+      display:flex; justify-content:space-between; font-size:14px; color:var(--muted);
+      padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+    .pricing-anchor-item span:last-child { text-decoration:line-through; }
+    .pricing-anchor-total { font-size:22px; font-weight:900; color:var(--muted); text-decoration:line-through; }
+    .pricing-card {
+      background:linear-gradient(160deg,#0d0a1a,#17123a);
+      border:2px solid var(--gold); border-radius:22px; padding:40px 36px;
+      text-align:center; box-shadow:0 24px 80px rgba(201,150,63,0.2);
+      min-width:320px;
+    }
+    .pricing-card-tag {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(201,150,63,0.15); border:1px solid rgba(201,150,63,0.4);
+      border-radius:100px; padding:5px 14px;
+      font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--gold-lt); margin-bottom:20px;
+    }
+    .pricing-card-title { font-size:16px; font-weight:800; color:var(--text); margin-bottom:8px; }
+    .pricing-card-subtitle { font-size:13px; color:var(--muted); margin-bottom:32px; }
+    .card-countdown { display:flex; justify-content:center; gap:8px; margin-bottom:28px; }
+    .cd-block { display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .cd-value {
+      background:var(--bg-3); border:1px solid var(--border); border-radius:8px;
+      padding:10px 14px; font-size:24px; font-weight:900; color:var(--gold-lt);
+      font-variant-numeric:tabular-nums; min-width:52px; text-align:center;
+    }
+    .cd-label { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+    .cd-colon { font-size:24px; font-weight:900; color:var(--gold); opacity:0.5; padding-top:10px; }
+    .progress-wrap { margin-bottom:28px; }
+    .progress-meta { display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:8px; }
+    .progress-meta-left { color:var(--gold-lt); }
+    .progress-meta-right { color:var(--muted); }
+    .progress-bar { height:8px; background:rgba(255,255,255,0.08); border-radius:100px; overflow:hidden; }
+    .progress-fill {
+      height:100%; width:0%;
+      background:linear-gradient(90deg, var(--gold), var(--red-lt));
+      border-radius:100px;
+      transition:width 1.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .pricing-price { font-size:56px; font-weight:900; color:var(--text); letter-spacing:-2px; margin-bottom:4px; }
+    .pricing-price-method { font-size:13px; color:var(--muted); margin-bottom:28px; }
+    .pricing-cta {
+      display:block; width:100%;
+      background:linear-gradient(135deg, var(--green), var(--green-dk));
+      color:#fff; font-size:16px; font-weight:800; padding:18px;
+      border-radius:12px; text-decoration:none; text-align:center;
+      animation:pulse-glow 2.5s ease-in-out infinite;
+    }
+    .pricing-cta:hover { transform:translateY(-2px); }
+    .pricing-cta-micro { font-size:11px; color:var(--muted); margin-top:10px; }
+    .pricing-players { display:flex; flex-direction:column; gap:12px; }
+    .player-card {
+      background:var(--glass); backdrop-filter:blur(16px);
+      border:1px solid var(--border); border-radius:14px;
+      padding:16px 20px; display:flex; align-items:center; gap:12px;
+    }
+    .player-emoji {
+      width:40px; height:40px; border-radius:50%;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dk));
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; flex-shrink:0;
+    }
+    .player-name { font-size:13px; font-weight:700; color:var(--text); }
+    .player-result { font-size:12px; color:var(--muted); line-height:1.4; }
+
+    /* ── FAQ ── */
+    .faq-list { margin-top:60px; display:flex; flex-direction:column; gap:0; }
+    .faq-item {
+      border-bottom:1px solid var(--border);
+    }
+    .faq-item:first-child { border-top:1px solid var(--border); }
+    .faq-q {
+      width:100%; background:none; border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:24px 0; gap:20px; text-align:left;
+    }
+    .faq-q-text { font-size:17px; font-weight:700; color:var(--text); line-height:1.4; }
+    .faq-icon {
+      width:28px; height:28px; border-radius:50%;
+      border:1.5px solid var(--border); display:flex; align-items:center;
+      justify-content:center; color:var(--gold-lt); font-size:18px; flex-shrink:0;
+      transition:transform 0.3s ease, border-color 0.3s ease;
+    }
+    .faq-item.open .faq-icon { transform:rotate(45deg); border-color:var(--gold); }
+    .faq-a {
+      font-size:15px; line-height:1.75; color:var(--muted);
+      max-height:0; overflow:hidden;
+      transition:max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height:300px; padding-bottom:24px; }
+
+    /* ── STICKY CTA MOBILE ── */
+    .sticky-cta {
+      display:none;
+      position:fixed; bottom:0; left:0; right:0; z-index:200;
+      background:rgba(10,10,15,0.92); backdrop-filter:blur(20px);
+      border-top:1px solid var(--gold);
+      padding:12px 20px; align-items:center; gap:12px;
+    }
+    .sticky-cta-price { font-size:13px; font-weight:700; color:var(--gold-lt); flex-shrink:0; }
+    .sticky-cta-price s { font-weight:400; color:var(--muted); margin-right:6px; }
+    .sticky-cta-btn {
+      flex:1; background:linear-gradient(135deg,var(--green),var(--green-dk));
+      color:#fff; font-size:15px; font-weight:800; padding:14px;
+      border-radius:10px; text-decoration:none; text-align:center;
+      animation:pulse-glow 2.5s ease-in-out infinite;
+    }
+    @media (max-width:900px) {
+      .sticky-cta { display:none; }
+      .sticky-cta.visible { display:flex; }
+      body { padding-bottom:72px; }
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background:var(--navy); border-top:1px solid var(--border);
+      padding:32px 48px; text-align:center;
+    }
+    .footer-logo { font-size:16px; font-weight:800; color:var(--gold-lt); letter-spacing:1px; margin-bottom:8px; }
+    .footer-text { font-size:12px; color:var(--muted); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      /* TOPBAR */
+      .topbar { padding:10px 16px; gap:8px; }
+      .topbar-date { display:none; }
+      .topbar-title { font-size:11px; }
+      .topbar-countdown { font-size:10px; gap:2px; }
+      .topbar-countdown .cd-unit { min-width:22px; padding:2px 4px; }
+
+      /* CONTAINER */
+      .container { padding:0 20px; }
+      .section { padding:60px 0; }
+
+      /* HERO */
+      .hero-content { padding:72px 20px 80px; }
+      .hero-headline { font-size:clamp(26px,7.5vw,40px); letter-spacing:-0.5px; }
+      .hero-sub { max-width:100%; font-size:15px; }
+      .hero-progress { max-width:100%; }
+      .hero-photo {
+        left:0; right:0; width:100%;
+        object-position:center 8%;
+        -webkit-mask:none; mask:none;
+        filter:brightness(0.62) contrast(1.1) saturate(1.2);
+      }
+      .hero-overlay {
+        background:
+          linear-gradient(180deg, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.88) 55%, rgba(10,10,15,0.99) 100%),
+          linear-gradient(90deg, rgba(10,10,15,0.92) 0%, rgba(10,10,15,0.6) 50%, rgba(10,10,15,0.1) 100%);
+      }
+
+      /* GRIDS — full-bleed no mobile */
+      .why-grid {
+        grid-template-columns:1fr; gap:1px;
+        margin-left:-20px; margin-right:-20px;
+      }
+      .why-card { padding:32px 24px; border-top:none; border-left:none; border-right:none; }
+      .why-card:first-child { border-top:1px solid var(--border); }
+
+      .errors-grid {
+        grid-template-columns:1fr; gap:1px;
+        margin-left:-20px; margin-right:-20px;
+      }
+      .error-card { border-radius:0; border-left:none; border-right:none; }
+      .error-card:first-child { border-radius:0; }
+
+      .curriculum-grid { grid-template-columns:1fr; }
+      .curriculum-item:nth-child(odd) { border-right:none; }
+      .curriculum-item { padding:32px 24px; }
+
+      .forwhom-grid { grid-template-columns:1fr; }
+      .forwhom-card { border-radius:14px; }
+
+      .schedule-grid { grid-template-columns:1fr; }
+
+      .authority-grid { grid-template-columns:1fr; text-align:center; }
+      .authority-photo-wrap { width:160px; height:160px; margin:0 auto; }
+      .authority-bullets { align-items:center; }
+
+      .pricing-layout { grid-template-columns:1fr; }
+      .pricing-anchor { display:none; }
+      .pricing-players { display:none; }
+      .float-proofs { display:none !important; }
+
+      /* URGÊNCIA */
+      .urgency-bar { padding:14px 20px; flex-direction:column; gap:10px; text-align:center; }
+      .urgency-bar-text { font-size:14px; justify-content:center; }
+
+      /* PRICING CARD */
+      .pricing-card { min-width:unset; width:100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── TOPBAR ── -->
+<nav class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-dot"></div>
+    <span class="topbar-title">✦ Desafio Ótica <span>10X</span> · Edição Maio</span>
+  </div>
+  <div class="topbar-date">📅 11, 12 e 13 de Maio · 19h</div>
+  <div class="topbar-countdown">
+    Lote 1 encerra em:
+    <span class="cd-unit" id="cd-top-d">00</span><span class="cd-sep">:</span>
+    <span class="cd-unit" id="cd-top-h">00</span><span class="cd-sep">:</span>
+    <span class="cd-unit" id="cd-top-m">00</span><span class="cd-sep">:</span>
+    <span class="cd-unit" id="cd-top-s">00</span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <img class="hero-photo" src="https://cindyb.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-09-at-13.16.49.jpeg" alt="Cindy Batista" />
+  <div class="hero-overlay"></div>
+  <div class="float-proofs">
+    <div class="float-proof">
+      <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png" alt="Michaella" />
+      <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Michaella</div><div class="float-proof-result">+R$30k no faturamento</div></div></div>
+    </div>
+    <div class="float-proof">
+      <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-galeria.jpg" alt="Galeria de Óculos" />
+      <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Galeria de Óculos</div><div class="float-proof-result">De 16k → 63k em outubro</div></div></div>
+    </div>
+    <div class="float-proof">
+      <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-prycia.jpg" alt="Prycia" />
+      <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Prycia</div><div class="float-proof-result">15k só na inauguração</div></div></div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Desafio Ótica 10X · Edição Maio</div>
+    <h1 class="hero-headline">Crie em 3 dias a estratégia que vai levar a sua loja ao <em>recorde de faturamento</em> em maio.</h1>
+    <p class="hero-sub">Imersão online ao vivo onde você sai com posicionamento, oferta e plano de execução prontos pra fazer Maio ser seu mês de recorde.</p>
+    <a href="#pricing" class="hero-cta">Garantir vaga no Lote 1</a>
+    <span class="hero-cta-micro">Pix ou cartão · Acesso imediato</span>
+    <div class="hero-progress">
+      <div class="hero-progress-meta">
+        <div class="hero-progress-dot"></div>
+        <span class="hero-progress-pct"><span>83%</span> das vagas preenchidas</span>
+        <span class="hero-progress-slots">12 restantes</span>
+      </div>
+      <div class="hero-progress-bar"><div class="hero-progress-fill" id="hero-progress-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── POR QUÊ AGORA ── -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">O cenário</p>
+      <h2 class="section-headline">O dono de ótica que não tem método<br>está perdendo para quem tem.</h2>
+      <p class="section-sub">Não é questão de trabalhar mais. É questão de trabalhar com estratégia.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><p class="why-card-num">01 — Posicionamento</p><h3 class="why-card-title">Para de brigar por preço</h3><p class="why-card-desc">Aprenda a se apresentar de um jeito que atrai o cliente que compra, não o que pede desconto em tudo.</p></div>
+      <div class="why-card reveal"><p class="why-card-num">02 — Estratégia</p><h3 class="why-card-title">Oferta certa, na hora certa</h3><p class="why-card-desc">Monte suas campanhas e saiba exatamente o que ofertar pra conduzir o cliente até a compra.</p></div>
+      <div class="why-card reveal"><p class="why-card-num">03 — Execução</p><h3 class="why-card-title">Ação dentro e fora da loja</h3><p class="why-card-desc">Sem achismo, sem depender de agência. O que fazer no digital e dentro da ótica pra gerar movimento.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── ERROS FATAIS ── -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Cuidado</p>
+      <h2 class="section-headline">Você vai continuar<br>no mesmo lugar <em>se:</em></h2>
+    </div>
+    <div class="errors-grid">
+      <div class="error-card reveal"><div class="error-icon">✕</div><span class="error-text">Ficar esperando o mês melhorar sozinho sem fazer nada diferente</span></div>
+      <div class="error-card reveal"><div class="error-icon">✕</div><span class="error-text">Montar promoção sem estratégia de posicionamento por trás</span></div>
+      <div class="error-card reveal"><div class="error-icon">✕</div><span class="error-text">Depender de agência pra fazer o que você mesmo pode controlar</span></div>
+      <div class="error-card reveal"><div class="error-icon">✕</div><span class="error-text">Focar em campanha sem organizar primeiro a venda dentro da ótica</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── PROVA SOCIAL ── -->
+<section id="proof-section" class="section section-darker" style="position:relative;overflow:hidden;">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <p class="section-label" style="text-align:center;">Resultados reais</p>
+      <h2 class="section-headline" style="text-align:center;">Nossos <em>resultados</em></h2>
+      <p class="section-sub" style="text-align:center;max-width:500px;margin:0 auto;">Donos de ótica que aplicaram o método e transformaram seus números.</p>
+    </div>
+    <div class="proof-grid proof-desktop">
+      <div class="proof-card reveal"><div class="proof-result">+R$30.000</div><div class="proof-divider"></div><p class="proof-quote">"Aumentamos mais de 30 mil no nosso faturamento só com os conteúdos do desafio"</p><p class="proof-name">Michaella</p></div>
+      <div class="proof-card reveal"><div class="proof-result">16k → 63k</div><div class="proof-divider"></div><p class="proof-quote">"O mês de outubro foi o melhor mês da nossa ótica. Saímos de 16k pra 63k em outubro."</p><p class="proof-name">Galeria de Óculos</p></div>
+      <div class="proof-card reveal"><div class="proof-result">R$15.000</div><div class="proof-divider"></div><p class="proof-quote">"Somente no dia da inauguração: 15 mil. Trabalhamos muito bem o digital."</p><p class="proof-name">Prycia</p></div>
+    </div>
+    <div class="proof-mobile">
+      <div class="proof-img-card reveal"><img src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png" alt="Michaella" /><div class="proof-img-label"><span class="proof-img-name">Michaella</span><span class="proof-img-result">+R$30k no faturamento</span></div></div>
+      <div class="proof-img-card reveal"><img src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-galeria.jpg" alt="Galeria de Óculos" /><div class="proof-img-label"><span class="proof-img-name">Galeria de Óculos</span><span class="proof-img-result">De 16k → 63k em outubro</span></div></div>
+      <div class="proof-img-card reveal"><img src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-prycia.jpg" alt="Prycia" /><div class="proof-img-label"><span class="proof-img-name">Prycia</span><span class="proof-img-result">15k só na inauguração</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── CONTEÚDO PROGRAMÁTICO ── -->
+<section class="section section-dark curriculum">
+  <div class="curriculum-bg-text">MÉTODO</div>
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Conteúdo programático</p>
+      <h2 class="section-headline">O que você vai<br><em>aprender</em></h2>
+    </div>
+    <div class="curriculum-grid">
+      <div class="curriculum-item reveal"><div class="curriculum-num">01</div><div><h3 class="curriculum-title">Posicionamento</h3><p class="curriculum-desc">Como se apresentar pra atrair quem compra, não quem pede desconto. Comunicação que filtra o cliente certo antes mesmo da venda.</p></div></div>
+      <div class="curriculum-item reveal"><div class="curriculum-num">02</div><div><h3 class="curriculum-title">Estratégia de venda</h3><p class="curriculum-desc">Como montar suas campanhas e o que ofertar pra gerar venda de verdade. Sem achismo, sem depender de "tendência".</p></div></div>
+      <div class="curriculum-item reveal"><div class="curriculum-num">03</div><div><h3 class="curriculum-title">Ações no dia a dia</h3><p class="curriculum-desc">O que fazer dentro da ótica e no digital pra gerar movimento. Rotina de execução que qualquer dono consegue aplicar.</p></div></div>
+      <div class="curriculum-item reveal"><div class="curriculum-num">04</div><div><h3 class="curriculum-title">Execução guiada</h3><p class="curriculum-desc">Ao vivo com a Cindy e equipe, ajustando junto em tempo real. Você não fica perdido — a gente executa junto.</p></div></div>
+      <div class="curriculum-item reveal" style="border-bottom:none;"><div class="curriculum-num">05</div><div><h3 class="curriculum-title">Plano de Maio</h3><p class="curriculum-desc">Sair do desafio com tudo montado e pronto pra executar. Maio começa antes de Maio terminar.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── PRA QUEM É / NÃO É ── -->
+<section class="section section-darker">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <p class="section-label" style="text-align:center;">Identifique-se</p>
+      <h2 class="section-headline" style="text-align:center;">Esse desafio é <em>pra você?</em></h2>
+    </div>
+    <div class="forwhom-grid">
+      <div class="forwhom-card forwhom-yes reveal">
+        <div class="forwhom-title">✓ É pra você se:</div>
+        <div class="forwhom-list">
+          <div class="forwhom-item"><span class="forwhom-item-icon">✓</span>Tem ótica e quer aumentar o faturamento em Maio</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✓</span>Quer parar de brigar por preço com a concorrência</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✓</span>Precisa de estratégia real, não só de dica de post</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✓</span>Quer sair com plano pronto e executável</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✓</span>Está disposto a aplicar o que aprender</div>
+        </div>
+      </div>
+      <div class="forwhom-card forwhom-no reveal">
+        <div class="forwhom-title">✕ Não é pra você se:</div>
+        <div class="forwhom-list">
+          <div class="forwhom-item"><span class="forwhom-item-icon">✕</span>Quer só teoria sem colocar nada em prática</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✕</span>Não tem ótica ou não atua no setor óptico</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✕</span>Espera resultado sem esforço e sem ação</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✕</span>Já tem método consolidado e fatura muito bem</div>
+          <div class="forwhom-item"><span class="forwhom-item-icon">✕</span>Não tem disponibilidade nos dias 11, 12 e 13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── O QUE INCLUI ── -->
+<section class="section section-dark">
+  <div class="container" style="max-width:720px;">
+    <div class="reveal">
+      <p class="section-label">O pacote completo</p>
+      <h2 class="section-headline">Tudo que você recebe</h2>
+    </div>
+    <div class="includes-list reveal">
+      <div class="include-item"><span class="include-label"><span class="include-check">✓</span>3 dias de imersão online ao vivo</span><span class="include-price">R$297</span></div>
+      <div class="include-item"><span class="include-label"><span class="include-check">✓</span>Materiais estratégicos de apoio (PDFs e roteiros)</span><span class="include-price">R$197</span></div>
+      <div class="include-item"><span class="include-label"><span class="include-check">✓</span>Grupo VIP Oficial do Desafio</span><span class="include-price">R$197</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── CRONOGRAMA ── -->
+<section class="section section-darker">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Cronograma</p>
+      <h2 class="section-headline">O desafio mais prático<br>que uma ótica já teve.</h2>
+    </div>
+    <div class="schedule-grid">
+      <div class="schedule-info reveal">
+        <div class="schedule-date-badge">📅 11, 12 e 13 de Maio · 19h · Online · Ao Vivo</div>
+        <p class="section-sub">3 encontros ao vivo onde a gente não só ensina — a gente executa junto. Você sai de cada dia com algo pronto, não com tarefa de casa.</p>
+        <div class="schedule-warning"><span style="color:var(--red-lt);">✕</span> Não recomendado pra quem quer só teoria. Aqui a gente executa.</div>
+      </div>
+      <div class="schedule-card reveal">
+        <div class="schedule-card-header">Todos os dias — Agenda</div>
+        <div class="schedule-rows">
+          <div class="schedule-row"><span class="schedule-time">⏰ 19:00</span><span class="schedule-act">Início</span></div>
+          <div class="schedule-row"><span class="schedule-time">⏰ 20:00</span><span class="schedule-act">Execução ao vivo</span></div>
+          <div class="schedule-row"><span class="schedule-time">⏰ 20:45</span><span class="schedule-act">Tira-dúvidas + ajustes</span></div>
+          <div class="schedule-row"><span class="schedule-time">⏰ 21:00</span><span class="schedule-act">Encerramento</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── FAIXA URGÊNCIA ── -->
+<div class="urgency-bar">
+  <div class="urgency-bar-text">⚡ Lote 1 encerra hoje — <span>apenas 12 vagas restantes</span></div>
+  <div class="urgency-cd">
+    <span class="urgency-cd-unit" id="urg-h">00</span>
+    <span class="urgency-cd-sep">:</span>
+    <span class="urgency-cd-unit" id="urg-m">00</span>
+    <span class="urgency-cd-sep">:</span>
+    <span class="urgency-cd-unit" id="urg-s">00</span>
+  </div>
+</div>
+
+<!-- ── PRICING ── -->
+<section class="section pricing" id="pricing">
+  <img class="pricing-hero-photo" src="https://cindyb.com.br/wp-content/uploads/2025/12/bs-pdf.jpg" alt="" />
+  <div class="pricing-overlay"></div>
+  <div class="pricing-content">
+    <div class="container">
+      <h2 class="pricing-headline reveal">Quanto custa?</h2>
+      <div class="pricing-layout">
+        <div class="pricing-anchor reveal">
+          <p class="pricing-anchor-title">Fora do Desafio:</p>
+          <div class="pricing-anchor-items">
+            <div class="pricing-anchor-item"><span>Imersão completa</span><span>R$297</span></div>
+            <div class="pricing-anchor-item"><span>Materiais estratégicos</span><span>R$197</span></div>
+            <div class="pricing-anchor-item" style="border:none;"><span>Grupo VIP</span><span>R$197</span></div>
+          </div>
+          <div class="pricing-anchor-total">R$691</div>
+        </div>
+        <div class="pricing-card reveal">
+          <div class="pricing-card-tag">🔥 Lote 1 — Vagas Limitadas</div>
+          <p class="pricing-card-title">Desafio Ótica 10X</p>
+          <p class="pricing-card-subtitle">Edição Maio · 11, 12 e 13 · 19h · Ao vivo</p>
+          <div class="card-countdown">
+            <div class="cd-block"><span class="cd-value" id="cd-d">00</span><span class="cd-label">dias</span></div>
+            <span class="cd-colon">:</span>
+            <div class="cd-block"><span class="cd-value" id="cd-h">00</span><span class="cd-label">horas</span></div>
+            <span class="cd-colon">:</span>
+            <div class="cd-block"><span class="cd-value" id="cd-m">00</span><span class="cd-label">min</span></div>
+            <span class="cd-colon">:</span>
+            <div class="cd-block"><span class="cd-value" id="cd-s">00</span><span class="cd-label">seg</span></div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-meta">
+              <span class="progress-meta-left" id="progress-label">83% das vagas preenchidas</span>
+              <span class="progress-meta-right">Lote 1</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+          <div class="pricing-price">R$67</div>
+          <p class="pricing-price-method">à vista · Pix ou cartão</p>
+          <a href="https://pay.kiwify.com.br/nHOyQ2K" class="pricing-cta" target="_blank">Quero meu acesso agora</a>
+          <p class="pricing-cta-micro">Acesso imediato após pagamento</p>
+        </div>
+        <div class="pricing-players reveal">
+          <p style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Quem já aplicou</p>
+          <div class="player-card"><div class="player-emoji">📈</div><div><p class="player-name">Galeria de Óculos</p><p class="player-result">De 16k → 63k em outubro</p></div></div>
+          <div class="player-card"><div class="player-emoji">🚀</div><div><p class="player-name">Michaella</p><p class="player-result">+R$30k no faturamento</p></div></div>
+          <div class="player-card"><div class="player-emoji">🏆</div><div><p class="player-name">Prycia</p><p class="player-result">R$15k no dia da inauguração</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── AUTORIDADE CINDY ── -->
+<section class="section section-darker">
+  <div class="container">
+    <div class="authority-grid reveal">
+      <div class="authority-photo-wrap">
+        <div class="authority-photo-ring"></div>
+        <div class="authority-photo-inner">
+          <img src="https://cindyb.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-09-at-13.16.49.jpeg" alt="Cindy Batista" />
+        </div>
+        <div class="authority-badge">Especialista Ótica 10X</div>
+      </div>
+      <div class="authority-content">
+        <p class="section-label">Quem vai te guiar</p>
+        <h2 class="authority-headline">Cindy Batista</h2>
+        <p class="authority-bio">Especialista em vendas e posicionamento para óticas. Já ajudou mais de 500 donos de ótica a saírem do modo sobrevivência e construírem negócios que faturam de verdade — com método, não com sorte.</p>
+        <div class="authority-bullets">
+          <div class="authority-bullet"><div class="authority-bullet-icon">✦</div>+8 anos de experiência no mercado óptico</div>
+          <div class="authority-bullet"><div class="authority-bullet-icon">✦</div>+500 óticas mentoradas em todo o Brasil</div>
+          <div class="authority-bullet"><div class="authority-bullet-icon">✦</div>Criadora do método Ótica 10X</div>
+          <div class="authority-bullet"><div class="authority-bullet-icon">✦</div>3ª edição do Desafio com resultados comprovados</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ── FAQ ── -->
+<section class="section section-darker">
+  <div class="container" style="max-width:760px;">
+    <div class="reveal">
+      <p class="section-label">Dúvidas frequentes</p>
+      <h2 class="section-headline">Perguntas <em>respondidas</em></h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Preciso ter experiência com marketing digital?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">Não. O desafio foi criado exatamente pra quem está começando ou tem dificuldade com o digital. A Cindy vai guiar você passo a passo durante os 3 dias.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">As aulas ficam gravadas?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">Sim, todos os encontros ao vivo ficam disponíveis por tempo limitado para os participantes do desafio. Mas recomendamos assistir ao vivo para aproveitar os ajustes em tempo real.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Funciona pra qualquer tamanho de ótica?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">Sim. Já passaram pelo desafio desde óticas em fase de inauguração até lojas com mais de 10 anos de mercado. O método é adaptável à sua realidade.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">E se eu não puder assistir ao vivo?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">As gravações ficam disponíveis. Mas recomendamos fortemente assistir ao vivo — é exatamente nos momentos ao vivo que você recebe os ajustes personalizados com a Cindy.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Como vou receber o acesso?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">Imediatamente após o pagamento, você recebe o link do grupo VIP e todas as instruções por email e WhatsApp. É tudo automático e instantâneo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <p class="footer-logo">✦ Desafio Ótica 10X</p>
+  <p class="footer-text">© 2026 Cindy Batista · Todos os direitos reservados</p>
+</footer>
+
+<!-- ── STICKY CTA MOBILE ── -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-cta-price"><s>R$691</s> R$67</div>
+  <a href="https://pay.kiwify.com.br/nHOyQ2K" class="sticky-cta-btn" target="_blank">Garantir vaga agora</a>
+</div>
+
+<script>
+  // COUNTDOWN
+  const deadline = new Date('2026-05-09T22:00:00-03:00').getTime();
+  const pad = n => String(n).padStart(2,'0');
+
+  function updateCountdown() {
+    const diff = Math.max(0, deadline - Date.now());
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    ['cd-d','cd-top-d'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=pad(d); });
+    ['cd-h','cd-top-h','urg-h'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=pad(h); });
+    ['cd-m','cd-top-m','urg-m'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=pad(m); });
+    ['cd-s','cd-top-s','urg-s'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=pad(s); });
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // BARRAS DE PROGRESSO
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const f = document.getElementById('hero-progress-fill');
+      if(f) f.style.width = '83%';
+    }, 400);
+  });
+
+  function initProgress() {
+    const f = document.getElementById('progress-fill');
+    const l = document.getElementById('progress-label');
+    if(!f) return;
+    setTimeout(() => {
+      f.style.width = '83%';
+      if(l) l.textContent = '83% das vagas preenchidas';
+    }, 400);
+  }
+
+  // SCROLL REVEAL
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+        if(e.target.closest('.pricing')) initProgress();
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  initProgress();
+
+  // STICKY CTA — aparece após scroll da seção de provas sociais
+  const stickyCta = document.getElementById('sticky-cta');
+  const proofSection = document.getElementById('proof-section');
+  if(stickyCta && proofSection) {
+    let proofSeen = false;
+    const proofObs = new IntersectionObserver(entries => {
+      if(entries[0].isIntersecting) {
+        proofSeen = true;
+      } else if(proofSeen) {
+        stickyCta.classList.add('visible');
+      }
+    }, { threshold: 0.01 });
+    proofObs.observe(proofSection);
+  }
+
+  // FAQ ACCORDION
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

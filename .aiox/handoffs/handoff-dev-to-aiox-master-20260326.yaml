@@ -2,7 +2,7 @@ handoff:
   from_agent: dev
   to_agent: aiox-master
   timestamp: "2026-03-26"
-  consumed: false
+  consumed: true
 
   context_summary: |
     Usuário é dono de uma empresa de coprodução de experts e está desenvolvendo

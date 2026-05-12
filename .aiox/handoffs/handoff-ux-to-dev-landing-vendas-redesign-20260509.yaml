@@ -1,0 +1,142 @@
+handoff:
+  from_agent: ux-design-expert
+  to_agent: dev
+  consumed: false
+  timestamp: "2026-05-09"
+
+  story_context:
+    story_id: "landing-cindy-vendas-redesign"
+    story_path: "docs/landing-cindy-vendas/index.html"
+    story_status: "Ready for Dev"
+    current_task: "Redesign completo — página de captura → página de vendas ultra-premium"
+    branch: master
+
+  output_file: "docs/landing-cindy-vendas/index.html"
+
+  assets:
+    foto_hero: "docs/landing-cindy-vendas/cindy-hero.jpg"
+    foto_pricing: "https://cindyb.com.br/wp-content/uploads/2025/12/bs-pdf.jpg"
+    proof_michaella: "https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png"
+    proof_galeria: "https://cindyb.com.br/wp-content/uploads/2026/05/proof-galeria.jpg"
+    proof_prycia: "https://cindyb.com.br/wp-content/uploads/2026/05/proof-prycia.jpg"
+    checkout_url: "https://pay.kiwify.com.br/nHOyQ2K"
+    countdown_deadline: "2026-05-11T19:00:00-03:00"
+
+  secoes_ordem:
+    - "1. TOPBAR (mantém)"
+    - "2. HERO (mantém copy, upgrades visuais)"
+    - "3. NÚMEROS DE IMPACTO ← NOVO"
+    - "4. POR QUÊ AGORA (mantém copy, upgrade visual)"
+    - "5. AUTORIDADE CINDY ← NOVO"
+    - "6. ERROS FATAIS (mantém copy, upgrade visual)"
+    - "7. PROVA SOCIAL (mantém, upgrade visual)"
+    - "8. CTA INTERMEDIÁRIO ← NOVO"
+    - "9. CONTEÚDO PROGRAMÁTICO (mantém)"
+    - "10. PRA QUEM É / NÃO É ← NOVO"
+    - "11. O QUE INCLUI (mantém)"
+    - "12. CRONOGRAMA (mantém)"
+    - "13. FAIXA URGÊNCIA ← NOVO"
+    - "14. PRICING (mantém)"
+    - "15. FAQ ← NOVO (última seção antes do footer)"
+    - "16. FOOTER"
+    - "17. STICKY CTA MOBILE ← NOVO"
+
+  secoes_novas:
+    numeros_impacto:
+      conteudo:
+        - stat: "+500"
+          label: "óticas já transformadas"
+        - stat: "3ª"
+          label: "edição do desafio"
+        - stat: "R$30k+"
+          label: "média de resultado dos alunos"
+      visual: "fundo bg-2, 3 colunas, números 72px gold, separadores verticais border"
+
+    autoridade_cindy:
+      headline: "Quem é Cindy Batista?"
+      bio: "Especialista em vendas e posicionamento para óticas. Já ajudou mais de 500 donos de ótica a saírem do modo sobrevivência e construírem negócios que faturam de verdade."
+      bullets:
+        - "✦ +5 anos no mercado óptico"
+        - "✦ +500 óticas mentoradas"
+        - "✦ Criadora do método Ótica 10X"
+        - "✦ 3ª edição do Desafio com resultados comprovados"
+      visual: "layout 2 colunas, fundo navy, borda gold, foto cindy-hero.jpg pequena com ring gold"
+
+    cta_intermediario:
+      headline: "Pronto pra fazer Maio diferente?"
+      sub: "Garante sua vaga agora — o Lote 1 tem vagas limitadas."
+      cta: "Garantir minha vaga — R$67"
+      visual: "seção isolada, fundo gradiente dark-navy, botão verde com pulse-glow animado"
+
+    pra_quem:
+      headline: "Esse desafio é pra você?"
+      coluna_sim:
+        titulo: "✓ É pra você se:"
+        items:
+          - "Tem ótica e quer aumentar o faturamento em Maio"
+          - "Quer parar de brigar por preço com a concorrência"
+          - "Precisa de estratégia, não só de dica de post"
+          - "Quer sair do desafio com plano pronto pra executar"
+      coluna_nao:
+        titulo: "✕ Não é pra você se:"
+        items:
+          - "Quer só teoria sem aplicar nada"
+          - "Não tem ótica ou não atua no setor óptico"
+          - "Espera resultado sem colocar em prática"
+          - "Já tem método consolidado e fatura muito bem"
+      visual: "dois cards lado a lado, verde e vermelho, glassmorphism"
+
+    faixa_urgencia:
+      texto: "⚡ Lote 1 encerra hoje — apenas 33 vagas restantes"
+      visual: "banner full-width, fundo vermelho escuro, texto branco bold, countdown inline compacto, animação pulse"
+
+    faq:
+      posicao: "ÚLTIMA seção antes do footer"
+      perguntas:
+        - p: "Preciso ter experiência com marketing digital?"
+          r: "Não. O desafio foi criado exatamente pra quem está começando ou tem dificuldade com o digital. A Cindy vai guiar você passo a passo."
+        - p: "As aulas ficam gravadas?"
+          r: "Sim, todos os encontros ao vivo ficam disponíveis por tempo limitado para os participantes do desafio."
+        - p: "Funciona pra qualquer tamanho de ótica?"
+          r: "Sim. Já passaram pelo desafio desde óticas em fase de inauguração até lojas com mais de 10 anos de mercado."
+        - p: "E se eu não puder assistir ao vivo?"
+          r: "As gravações ficam disponíveis. Mas recomendamos assistir ao vivo para aproveitar os ajustes em tempo real com a Cindy."
+        - p: "Como vou receber o acesso?"
+          r: "Imediatamente após o pagamento, você recebe o link do grupo VIP e todas as instruções por email e WhatsApp."
+      visual: "accordion smooth, ícone + → ×, fundo bg-2, hover border gold"
+
+    sticky_cta_mobile:
+      texto: "Garantir vaga — R$67"
+      visual: "barra fixa bottom mobile, backdrop-filter blur, borda gold no topo, aparece após scroll hero, z-index 200"
+
+  diretrizes_visuais_premium:
+    tipografia:
+      - "Headlines mais agressivas — clamp() mais generoso"
+      - "Peso 900 em todo destaque"
+      - "Números grandes com font-variant-numeric: tabular-nums"
+    backgrounds:
+      - "Não usar flat solid — radial-gradient nos cantos para profundidade"
+      - "Micro-textura sutil nos backgrounds principais"
+    cards:
+      - "Glassmorphism real: backdrop-filter blur(20px)"
+      - "Bordas rgba(gold, 0.2)"
+      - "Sombra 0 24px 80px rgba(0,0,0,0.5)"
+    separadores:
+      - "Linha decorativa gold entre seções: transparent → gold → transparent"
+    ctas:
+      - "Botão verde com keyframe pulse-glow animado"
+      - "Não estático — precisa chamar atenção"
+    animacoes:
+      - "Scroll reveal em todos os elementos"
+      - "Float suave nas provas"
+      - "Pulse no dot de urgência"
+      - "Accordion smooth no FAQ"
+
+  decisions:
+    - "FAQ vai APÓS pricing, como última seção antes do footer"
+    - "Design ultra-premium — nada flat, glassmorphism, profundidade visual"
+    - "Deadline countdown atualizado: 2026-05-11T19:00:00-03:00 (início do desafio)"
+    - "Foto hero: cindy-hero.jpg (local) com mix-blend-mode para fundir fundo branco"
+    - "Sticky CTA só no mobile (max-width: 900px)"
+
+  next_action: "Implementar index.html completo com todas as seções novas e upgrades visuais"
