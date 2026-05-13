@@ -620,9 +620,12 @@
 
     <!-- FINANCEIRO -->
     <div id="view-financeiro" class="view">
-      <div class="page-header">
-        <h1>💰 Financeiro — Cobranças</h1>
-        <p>Controle de vendas, parcelas e recebimentos</p>
+      <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+          <h1>💰 Financeiro — Cobranças</h1>
+          <p>Controle de vendas, parcelas e recebimentos</p>
+        </div>
+        <button class="btn-primary" onclick="novoClienteFinanceiro()">+ Novo Cliente</button>
       </div>
 
       <!-- Métricas -->
@@ -829,6 +832,7 @@
         <div class="form-group"><label>Valor Total (R$)</label><input type="number" id="fedit-valor" min="0" step="0.01" /></div>
       </div>
       <div class="form-row">
+        <div class="form-group"><label>Expert</label><input type="text" id="fedit-expert" /></div>
         <div class="form-group"><label>Responsável</label><input type="text" id="fedit-resp" /></div>
       </div>
       <div style="margin-top:8px">
@@ -1946,6 +1950,7 @@ function renderFinSection(containerId, parcelas) {
     const stLabel = {pendente:'Pendente',atrasado:'Atrasado',pago:'Pago'}[p.status]||p.status
     const waBtnHtml  = tel ? `<button class="btn-whatsapp" onclick="window.open('https://wa.me/55${tel}','_blank')">📞</button>` : ''
     const pagoBtnHtml = p.status!=='pago' ? `<button class="btn-pago" onclick="openModalPago('${p.id}')">✓ Pago</button>` : ''
+    const editBtnHtml = `<button class="btn-whatsapp" style="background:rgba(99,102,241,.15);color:#818cf8" onclick="openEditVenda('${venda.id}')">✏️</button>`
     return `<tr>
       <td><span class="fin-cliente-link" onclick="openDrillDown('${venda.id}')">${esc(venda.cliente||'—')}</span></td>
       <td style="color:var(--muted)">${p.numero}ª/${p.total_parcelas}</td>
@@ -1955,9 +1960,21 @@ function renderFinSection(containerId, parcelas) {
       <td style="color:var(--muted)">${esc(venda.expert||'—')}</td>
       <td style="color:var(--muted)">${esc(venda.responsavel_cobranca||'—')}</td>
       <td><span class="fin-badge-metodo ${stCls}">${stLabel}</span></td>
-      <td style="display:flex;gap:6px;flex-wrap:nowrap">${pagoBtnHtml}${waBtnHtml}</td>
+      <td style="display:flex;gap:6px;flex-wrap:nowrap">${pagoBtnHtml}${editBtnHtml}${waBtnHtml}</td>
     </tr>`
   }).join('')
+}
+
+function novoClienteFinanceiro() {
+  pendingFechadoLeadId = null
+  document.getElementById('fneg-cliente').value  = ''
+  document.getElementById('fneg-valor').value    = ''
+  document.getElementById('fneg-resp').value     = ''
+  document.getElementById('fneg-condicao').value = 'avista'
+  document.getElementById('fneg-metodo').value   = 'pix'
+  document.getElementById('fneg-obs').value      = ''
+  renderParcelasInputs()
+  document.getElementById('modal-negociacao').classList.add('open')
 }
 
 function setFinDias(n) {
@@ -2076,13 +2093,20 @@ function openEditVenda(vendaId) {
   document.getElementById('fedit-id').value      = vendaId
   document.getElementById('fedit-cliente').value = venda.cliente||''
   document.getElementById('fedit-valor').value   = venda.valor_total||''
+  document.getElementById('fedit-expert').value  = venda.expert||''
   document.getElementById('fedit-resp').value    = venda.responsavel_cobranca||''
   document.getElementById('fedit-obs').value     = venda.observacao||''
   document.getElementById('fedit-parcelas-list').innerHTML = parcs.map(p=>`
     <div class="fin-parcela-row" data-parc-id="${p.id}">
-      <label>${p.numero}ª/${p.total_parcelas}</label>
-      <input type="number" class="fedit-parc-val" value="${p.valor}" placeholder="Valor" />
-      <input type="date"   class="fedit-parc-data" value="${p.vencimento||''}" />
+      <label style="min-width:32px;color:var(--muted);font-size:12px">${p.numero}ª/${p.total_parcelas}</label>
+      <input type="number" class="fedit-parc-val" value="${p.valor}" placeholder="Valor" style="width:90px"/>
+      <input type="date"   class="fedit-parc-data" value="${p.vencimento||''}"/>
+      <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 6px;font-size:12px">
+        <option value="" ${!p.metodo?'selected':''}>—</option>
+        <option value="pix"    ${p.metodo==='pix'?'selected':''}>PIX</option>
+        <option value="boleto" ${p.metodo==='boleto'?'selected':''}>Boleto</option>
+        <option value="cartao" ${p.metodo==='cartao'?'selected':''}>Cartão</option>
+      </select>
     </div>`).join('')
   document.getElementById('modal-drill').classList.remove('open')
   document.getElementById('modal-edit').classList.add('open')
@@ -2093,14 +2117,17 @@ async function salvarEditVenda() {
   const { error: eV } = await sb.from('vendas').update({
     cliente:              document.getElementById('fedit-cliente').value.trim(),
     valor_total:          parseFloat(document.getElementById('fedit-valor').value)||0,
+    expert:               document.getElementById('fedit-expert').value.trim(),
     responsavel_cobranca: document.getElementById('fedit-resp').value.trim(),
     observacao:           document.getElementById('fedit-obs').value.trim()
   }).eq('id', vendaId)
   if (eV) { alert('Erro: '+eV.message); return }
   for (const row of document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row')) {
+    const metodo = row.querySelector('.fedit-parc-metodo').value
     await sb.from('parcelas').update({
-      valor: parseFloat(row.querySelector('.fedit-parc-val').value)||0,
-      vencimento: row.querySelector('.fedit-parc-data').value
+      valor:     parseFloat(row.querySelector('.fedit-parc-val').value)||0,
+      vencimento: row.querySelector('.fedit-parc-data').value,
+      metodo:    metodo||null
     }).eq('id', row.dataset.parcId)
   }
   document.getElementById('modal-edit').classList.remove('open')
