@@ -1853,6 +1853,23 @@ async function moverParaCS(leadId, e) {
 // ── FINANCEIRO ─────────────────────────────────────────────────────────────
 async function loadFinanceiro() {
   if (!isFinanceiroUser()) return
+  if (new URLSearchParams(location.search).get('demo') === '1') {
+    cachedVendas = [
+      {id:'v1',cliente:'Instituto Optico Visual',valor_total:4800,expert:'Cindy Batista',condicao_negociada:'parcelado',responsavel_cobranca:'Gabriel'},
+      {id:'v2',cliente:'Clinica Visao Clara',valor_total:3600,expert:'Cindy Batista',condicao_negociada:'entrada_saldo',responsavel_cobranca:'Pacheco'},
+      {id:'v3',cliente:'Optica Luz do Sol',valor_total:2400,expert:'Dr. Alex',condicao_negociada:'avista',responsavel_cobranca:'Gabriel'}
+    ]
+    const h = new Date(), d = n => { const x=new Date(h); x.setDate(x.getDate()+n); return x.toISOString().slice(0,10) }
+    cachedParcelas = [
+      {id:'p1',venda_id:'v1',numero:1,total_parcelas:3,valor:1600,vencimento:d(-20),status:'pago',pago_em:d(-19),metodo:'pix'},
+      {id:'p2',venda_id:'v1',numero:2,total_parcelas:3,valor:1600,vencimento:d(0),status:'pendente',pago_em:null,metodo:null},
+      {id:'p3',venda_id:'v1',numero:3,total_parcelas:3,valor:1600,vencimento:d(5),status:'pendente',pago_em:null,metodo:null},
+      {id:'p4',venda_id:'v2',numero:1,total_parcelas:2,valor:1800,vencimento:d(-8),status:'atrasado',pago_em:null,metodo:null},
+      {id:'p5',venda_id:'v2',numero:2,total_parcelas:2,valor:1800,vencimento:d(3),status:'pendente',pago_em:null,metodo:null},
+      {id:'p6',venda_id:'v3',numero:1,total_parcelas:1,valor:2400,vencimento:d(-35),status:'pago',pago_em:d(-34),metodo:'cartao'}
+    ]
+    return
+  }
   await sb.rpc('atualizar_status_parcelas').catch(() => {})
   const [v, p] = await Promise.all([
     sb.from('vendas').select('*').order('created_at', { ascending: false }),
