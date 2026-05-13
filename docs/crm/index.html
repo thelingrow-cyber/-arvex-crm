@@ -327,6 +327,44 @@
       .form-row { grid-template-columns: 1fr; gap: 10px; }
       .modal-box { padding: 18px 14px; }
     }
+    /* ── FINANCEIRO ── */
+    .fin-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 24px; }
+    @media(max-width:900px){ .fin-metrics { grid-template-columns: repeat(2,1fr); } }
+    .fin-metric-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+    .fin-metric-label { font-size: 11px; font-weight: 700; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); margin-bottom: 6px; }
+    .fin-metric-value { font-size: 22px; font-weight: 800; color: var(--white); }
+    .fin-metric-value.green { color: var(--green); }
+    .fin-metric-value.red   { color: var(--red); }
+    .fin-metric-value.gold  { color: var(--gold2); }
+    .fin-chart-wrap { background: var(--navy2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .fin-chart-title { font-size: 12px; font-weight: 700; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); margin-bottom: 16px; }
+    .fin-chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; }
+    .fin-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
+    .fin-bar { width: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(to top, var(--blue2), var(--blue)); min-height: 2px; transition: height .3s; }
+    .fin-bar-label { font-size: 10px; color: var(--muted); white-space: nowrap; }
+    .fin-section { margin-bottom: 28px; }
+    .fin-section-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .fin-section-count { background: rgba(255,255,255,.1); border-radius: 12px; padding: 1px 8px; font-size: 11px; color: var(--muted); }
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { font-size: 10px; font-weight: 700; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+    .fin-table td { padding: 10px 10px; border-bottom: 1px solid rgba(255,255,255,.04); font-size: 13px; vertical-align: middle; }
+    .fin-table tr:hover td { background: rgba(255,255,255,.02); }
+    .fin-cliente-link { color: var(--white); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.2); }
+    .fin-cliente-link:hover { color: var(--blue); }
+    .fin-badge-metodo { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; background: rgba(255,255,255,.08); color: var(--muted); }
+    .fin-badge-pendente { background: rgba(234,179,8,.15); color: #FBBF24; }
+    .fin-badge-atrasado { background: rgba(239,68,68,.15); color: var(--red); }
+    .fin-badge-pago     { background: rgba(34,197,94,.15); color: var(--green); }
+    .btn-pago { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(34,197,94,.2); color: var(--green); cursor: pointer; white-space:nowrap; }
+    .btn-pago:hover { background: rgba(34,197,94,.35); }
+    .btn-whatsapp { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(34,197,94,.12); color: #4ADE80; cursor: pointer; white-space:nowrap; }
+    .btn-whatsapp:hover { background: rgba(34,197,94,.22); }
+    .fin-parcela-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+    .fin-parcela-row label { font-size: 11px; color: var(--muted); white-space: nowrap; width: 70px; flex-shrink:0; }
+    .fin-parcela-row input { flex: 1; background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-size: 12px; padding: 7px 10px; outline: none; font-family:Inter,sans-serif; }
+    .fin-drill-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .fin-drill-row:last-child { border-bottom: none; }
+    .fin-drill-label { color: var(--muted); font-size: 11px; margin-top: 2px; }
   </style>
 </head>
 <body>
@@ -376,12 +414,14 @@
     <span class="si-icon">🤝</span> CS — Cindy
   </div>
 
+  <div class="sidebar-section" style="margin-top:8px">Financeiro</div>
+  <div class="sidebar-item" id="nav-financeiro" onclick="goTo('financeiro',this)">
+    <span class="si-icon">💰</span> Cobranças
+  </div>
+
   <div class="sidebar-section" style="margin-top:8px">Em breve</div>
   <div class="sidebar-item" style="opacity:.4;pointer-events:none">
     <span class="si-icon">📅</span> Agenda
-  </div>
-  <div class="sidebar-item" style="opacity:.4;pointer-events:none">
-    <span class="si-icon">💰</span> Financeiro
   </div>
 
   <div class="sidebar-bottom">
@@ -575,6 +615,89 @@
       <div id="experts-content"></div>
     </div>
 
+    <!-- FINANCEIRO -->
+    <div id="view-financeiro" class="view">
+      <div class="page-header">
+        <h1>💰 Financeiro — Cobranças</h1>
+        <p>Controle de vendas, parcelas e recebimentos</p>
+      </div>
+
+      <!-- Métricas -->
+      <div class="fin-metrics">
+        <div class="fin-metric-card">
+          <div class="fin-metric-label">Recebido este mês</div>
+          <div class="fin-metric-value green" id="fin-recebido">R$ —</div>
+        </div>
+        <div class="fin-metric-card">
+          <div class="fin-metric-label">A Receber</div>
+          <div class="fin-metric-value gold" id="fin-areceber">R$ —</div>
+        </div>
+        <div class="fin-metric-card">
+          <div class="fin-metric-label">Atrasado</div>
+          <div class="fin-metric-value red" id="fin-atrasado">R$ —</div>
+        </div>
+        <div class="fin-metric-card">
+          <div class="fin-metric-label">Vencem Hoje</div>
+          <div class="fin-metric-value" id="fin-hoje-val">R$ —</div>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="fin-chart-wrap">
+        <div class="fin-chart-title">📈 Receita recebida — últimos 6 meses</div>
+        <div class="fin-chart-bars" id="fin-chart-bars"></div>
+      </div>
+
+      <!-- Seção: Vencem Hoje -->
+      <div class="fin-section" id="fin-bloco-hoje">
+        <div class="fin-section-title">
+          ⏰ Vencem Hoje <span class="fin-section-count" id="fin-count-hoje">0</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="fin-table">
+            <thead><tr>
+              <th>Cliente</th><th>Parcela</th><th>Valor</th><th>Vencimento</th>
+              <th>Método</th><th>Expert</th><th>Responsável</th><th>Status</th><th>Ações</th>
+            </tr></thead>
+            <tbody id="fin-sec-hoje"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Seção: Próximos 7 dias -->
+      <div class="fin-section" id="fin-bloco-7dias">
+        <div class="fin-section-title">
+          📅 Próximos 7 dias <span class="fin-section-count" id="fin-count-7dias">0</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="fin-table">
+            <thead><tr>
+              <th>Cliente</th><th>Parcela</th><th>Valor</th><th>Vencimento</th>
+              <th>Método</th><th>Expert</th><th>Responsável</th><th>Status</th><th>Ações</th>
+            </tr></thead>
+            <tbody id="fin-sec-7dias"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Seção: Atrasados -->
+      <div class="fin-section" id="fin-bloco-atras">
+        <div class="fin-section-title">
+          🔴 Atrasados <span class="fin-section-count" id="fin-count-atras">0</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="fin-table">
+            <thead><tr>
+              <th>Cliente</th><th>Parcela</th><th>Valor</th><th>Vencimento</th>
+              <th>Método</th><th>Expert</th><th>Responsável</th><th>Status</th><th>Ações</th>
+            </tr></thead>
+            <tbody id="fin-sec-atrasado"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /view-financeiro -->
+
   </div>
 </div>
 
@@ -626,6 +749,126 @@
   </div>
 </div>
 
+<!-- MODAL NEGOCIAÇÃO (fechar lead) -->
+<div class="modal-overlay" id="modal-negociacao">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <div class="modal-title">💰 Registrar Negociação</div>
+      <button class="modal-close" onclick="fecharModalNegociacao()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label>Cliente *</label><input type="text" id="fneg-cliente" placeholder="Nome do cliente" /></div>
+        <div class="form-group"><label>Valor Total (R$) *</label><input type="number" id="fneg-valor" placeholder="0.00" min="0" step="0.01" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Condição</label>
+          <select id="fneg-condicao" onchange="renderParcelasInputs()">
+            <option value="avista">À Vista</option>
+            <option value="parcelado">Parcelado</option>
+            <option value="entrada_saldo">Entrada + Saldo</option>
+          </select>
+        </div>
+        <div class="form-group" id="fneg-nparc-wrap" style="display:none"><label>Nº de Parcelas</label>
+          <input type="number" id="fneg-nparc" value="2" min="2" max="12" oninput="renderParcelasInputs()" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Método</label>
+          <select id="fneg-metodo">
+            <option value="pix">PIX</option>
+            <option value="boleto">Boleto</option>
+            <option value="cartao">Cartão</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Responsável pela cobrança</label>
+          <input type="text" id="fneg-resp" placeholder="Nome do closer" />
+        </div>
+      </div>
+      <div style="margin-top:4px">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Parcelas e Vencimentos</div>
+        <div id="fneg-parcelas-list"></div>
+      </div>
+      <div class="form-group" style="margin-top:10px"><label>Observação</label>
+        <textarea id="fneg-obs" placeholder="Contexto da negociação..." style="width:100%;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px;outline:none;resize:vertical;min-height:60px"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="fecharModalNegociacao()">Pular por agora</button>
+      <button class="btn-save" onclick="salvarNegociacao()">Salvar Negociação</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DRILL-DOWN (timeline parcelas) -->
+<div class="modal-overlay" id="modal-drill">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-header">
+      <div class="modal-title">Detalhes da Venda</div>
+      <button class="modal-close" onclick="document.getElementById('modal-drill').classList.remove('open')">×</button>
+    </div>
+    <div class="modal-body" id="drill-body"></div>
+    <div class="modal-footer"><button class="btn-cancel" onclick="document.getElementById('modal-drill').classList.remove('open')">Fechar</button></div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR VENDA -->
+<div class="modal-overlay" id="modal-edit">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <div class="modal-title">✏️ Editar Venda</div>
+      <button class="modal-close" onclick="document.getElementById('modal-edit').classList.remove('open')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="fedit-id" />
+      <div class="form-row">
+        <div class="form-group"><label>Cliente</label><input type="text" id="fedit-cliente" /></div>
+        <div class="form-group"><label>Valor Total (R$)</label><input type="number" id="fedit-valor" min="0" step="0.01" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Responsável</label><input type="text" id="fedit-resp" /></div>
+      </div>
+      <div style="margin-top:8px">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Parcelas</div>
+        <div id="fedit-parcelas-list"></div>
+      </div>
+      <div class="form-group" style="margin-top:10px"><label>Observação</label>
+        <textarea id="fedit-obs" style="width:100%;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px;outline:none;resize:vertical;min-height:60px"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="document.getElementById('modal-edit').classList.remove('open')">Cancelar</button>
+      <button class="btn-save" onclick="salvarEditVenda()">Salvar Edição</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONFIRMAR PAGO -->
+<div class="modal-overlay" id="modal-pago">
+  <div class="modal" style="max-width:380px">
+    <div class="modal-header">
+      <div class="modal-title">✓ Confirmar Recebimento</div>
+      <button class="modal-close" onclick="document.getElementById('modal-pago').classList.remove('open')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label>Data do Recebimento</label><input type="date" id="fpago-data" /></div>
+        <div class="form-group"><label>Método</label>
+          <select id="fpago-metodo">
+            <option value="pix">PIX</option>
+            <option value="boleto">Boleto</option>
+            <option value="cartao">Cartão</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="document.getElementById('modal-pago').classList.remove('open')">Cancelar</button>
+      <button class="btn-save" onclick="confirmarPago()">Confirmar</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL DETALHE -->
 <div class="modal-overlay" id="modal-detail">
   <div class="modal">
@@ -667,10 +910,14 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'🔥 Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
+let cachedVendas   = []
+let cachedParcelas = []
+const FINANCEIRO_USERS = ['viktorsimoess@gmail.com','arvexdigital@gmail.com','vhpacheco02@gmail.com']
+function isFinanceiroUser() { return currentUser && FINANCEIRO_USERS.includes(currentUser.email) }
 
 // ── AUTH ──────────────────────────────────────────────────────────────────
 async function doLogin() {
@@ -728,6 +975,10 @@ function applyRole() {
   // financeiro e experts só admin
   document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? '' : 'none')
   document.getElementById('nav-experts').style.display = isAdmin ? '' : 'none'
+
+  // Financeiro: Vitor, Gabriel e Pacheco — independente de role
+  const navFin = document.getElementById('nav-financeiro')
+  if (navFin) navFin.style.display = isFinanceiroUser() ? '' : 'none'
 
   if (isCS) {
     // CS só vê a seção Customer Success — esconde tudo do Comercial
@@ -815,11 +1066,12 @@ function goTo(id, el) {
   el.classList.add('active')
   document.getElementById('topbar-title').textContent = TOPBAR[id]
   closeMobileSidebar()
-  if (id === 'dashboard') renderDashboard()
-  if (id === 'pipeline')  renderPipeline()
-  if (id === 'leads')     renderAllLeads()
-  if (id === 'experts')   renderExperts()
-  if (id === 'cs')        renderCS()
+  if (id === 'dashboard')  renderDashboard()
+  if (id === 'pipeline')   renderPipeline()
+  if (id === 'leads')      renderAllLeads()
+  if (id === 'experts')    renderExperts()
+  if (id === 'cs')         renderCS()
+  if (id === 'financeiro') { loadFinanceiro().then(() => renderFinanceiro()) }
 }
 
 function setPeriod(days, btn) {
@@ -1248,6 +1500,7 @@ async function changeStatus(id, status) {
 
   await updateLeadField(id, updates)
   renderDashboard(); renderPipeline(); renderAllLeads()
+  if (status === 'fechado' && isFinanceiroUser()) onLeadFechado(id)
 }
 
 async function addActivity(id) {
@@ -1595,6 +1848,248 @@ async function moverParaCS(leadId, e) {
   await loadLeads()
   await loadCS()
   renderDashboard(); renderPipeline(); renderAllLeads(); renderCS()
+}
+
+// ── FINANCEIRO ─────────────────────────────────────────────────────────────
+async function loadFinanceiro() {
+  if (!isFinanceiroUser()) return
+  await sb.rpc('atualizar_status_parcelas').catch(() => {})
+  const [v, p] = await Promise.all([
+    sb.from('vendas').select('*').order('created_at', { ascending: false }),
+    sb.from('parcelas').select('*').order('vencimento', { ascending: true })
+  ])
+  cachedVendas   = v.data || []
+  cachedParcelas = p.data || []
+}
+
+function renderFinanceiro() {
+  if (!isFinanceiroUser()) return
+  const hoje    = new Date().toISOString().slice(0,10)
+  const em7     = new Date(Date.now() + 7*86400000).toISOString().slice(0,10)
+  const mesAtual = hoje.slice(0,7)
+  const fmt = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
+
+  document.getElementById('fin-recebido').textContent = fmt(cachedParcelas.filter(p => p.status==='pago' && (p.pago_em||'').slice(0,7)===mesAtual).reduce((s,p)=>s+parseFloat(p.valor||0),0))
+  document.getElementById('fin-areceber').textContent = fmt(cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>=hoje).reduce((s,p)=>s+parseFloat(p.valor||0),0))
+  document.getElementById('fin-atrasado').textContent = fmt(cachedParcelas.filter(p => p.status==='atrasado').reduce((s,p)=>s+parseFloat(p.valor||0),0))
+  document.getElementById('fin-hoje-val').textContent = fmt(cachedParcelas.filter(p => p.status==='pendente' && p.vencimento===hoje).reduce((s,p)=>s+parseFloat(p.valor||0),0))
+
+  renderFinChart()
+
+  const secHoje  = cachedParcelas.filter(p => p.status==='pendente' && p.vencimento===hoje)
+  const sec7     = cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>hoje && p.vencimento<=em7)
+  const secAtras = cachedParcelas.filter(p => p.status==='atrasado')
+
+  renderFinSection('fin-sec-hoje',     secHoje)
+  renderFinSection('fin-sec-7dias',    sec7)
+  renderFinSection('fin-sec-atrasado', secAtras)
+
+  document.getElementById('fin-count-hoje').textContent  = secHoje.length
+  document.getElementById('fin-count-7dias').textContent = sec7.length
+  document.getElementById('fin-count-atras').textContent = secAtras.length
+
+  document.getElementById('fin-bloco-hoje').style.display  = secHoje.length  ? '' : 'none'
+  document.getElementById('fin-bloco-7dias').style.display = sec7.length     ? '' : 'none'
+  document.getElementById('fin-bloco-atras').style.display = secAtras.length ? '' : 'none'
+}
+
+function renderFinChart() {
+  const meses = []
+  for (let i=5; i>=0; i--) {
+    const d = new Date(); d.setDate(1); d.setMonth(d.getMonth()-i)
+    meses.push(d.toISOString().slice(0,7))
+  }
+  const vals   = meses.map(m => cachedParcelas.filter(p=>p.status==='pago'&&(p.pago_em||'').slice(0,7)===m).reduce((s,p)=>s+parseFloat(p.valor||0),0))
+  const maxVal = Math.max(...vals, 1)
+  document.getElementById('fin-chart-bars').innerHTML = meses.map((m,i) => {
+    const pct   = Math.max((vals[i]/maxVal)*100, 2)
+    const label = new Date(m+'-15').toLocaleDateString('pt-BR',{month:'short'}).replace('.','')
+    return `<div class="fin-bar-wrap"><div class="fin-bar" style="height:${pct}%" title="R$ ${vals[i].toLocaleString('pt-BR',{minimumFractionDigits:2})}"></div><span class="fin-bar-label">${label}</span></div>`
+  }).join('')
+}
+
+function renderFinSection(containerId, parcelas) {
+  const vendaMap = Object.fromEntries(cachedVendas.map(v=>[v.id,v]))
+  const leadMap  = Object.fromEntries(cachedLeads.map(l=>[l.id,l]))
+  document.getElementById(containerId).innerHTML = parcelas.map(p => {
+    const venda = vendaMap[p.venda_id] || {}
+    const lead  = leadMap[venda.lead_id] || {}
+    const tel   = (lead.tel||'').replace(/\D/g,'')
+    const fmtData = p.vencimento ? new Date(p.vencimento+'T12:00:00').toLocaleDateString('pt-BR') : '—'
+    const fmtVal  = parseFloat(p.valor||0).toLocaleString('pt-BR',{minimumFractionDigits:2})
+    const metodoLabel = {pix:'PIX',boleto:'Boleto',cartao:'Cartão'}[p.metodo]||'—'
+    const stCls   = {pendente:'fin-badge-pendente',atrasado:'fin-badge-atrasado',pago:'fin-badge-pago'}[p.status]||''
+    const stLabel = {pendente:'Pendente',atrasado:'Atrasado',pago:'Pago'}[p.status]||p.status
+    const waBtnHtml  = tel ? `<button class="btn-whatsapp" onclick="window.open('https://wa.me/55${tel}','_blank')">📞</button>` : ''
+    const pagoBtnHtml = p.status!=='pago' ? `<button class="btn-pago" onclick="openModalPago('${p.id}')">✓ Pago</button>` : ''
+    return `<tr>
+      <td><span class="fin-cliente-link" onclick="openDrillDown('${venda.id}')">${esc(venda.cliente||'—')}</span></td>
+      <td style="color:var(--muted)">${p.numero}ª/${p.total_parcelas}</td>
+      <td style="font-weight:700">R$&nbsp;${fmtVal}</td>
+      <td style="color:var(--muted)">${fmtData}</td>
+      <td><span class="fin-badge-metodo">${metodoLabel}</span></td>
+      <td style="color:var(--muted)">${esc(venda.expert||'—')}</td>
+      <td style="color:var(--muted)">${esc(venda.responsavel_cobranca||'—')}</td>
+      <td><span class="fin-badge-metodo ${stCls}">${stLabel}</span></td>
+      <td style="display:flex;gap:6px;flex-wrap:nowrap">${pagoBtnHtml}${waBtnHtml}</td>
+    </tr>`
+  }).join('')
+}
+
+// ── MODAL NEGOCIAÇÃO ───────────────────────────────────────────────────────
+let pendingFechadoLeadId = null
+
+async function onLeadFechado(leadId) {
+  await loadFinanceiro()
+  if (cachedVendas.some(v => v.lead_id === leadId)) return  // já tem venda
+  pendingFechadoLeadId = leadId
+  const lead = cachedLeads.find(l => l.id === leadId)
+  document.getElementById('fneg-cliente').value  = lead?.nome || ''
+  document.getElementById('fneg-valor').value    = lead?.ticket || ''
+  document.getElementById('fneg-resp').value     = lead?.closer || ''
+  document.getElementById('fneg-condicao').value = 'avista'
+  document.getElementById('fneg-obs').value      = ''
+  renderParcelasInputs()
+  document.getElementById('modal-negociacao').classList.add('open')
+}
+
+function fecharModalNegociacao() {
+  document.getElementById('modal-negociacao').classList.remove('open')
+  pendingFechadoLeadId = null
+}
+
+function renderParcelasInputs() {
+  const condicao = document.getElementById('fneg-condicao').value
+  const nStr     = document.getElementById('fneg-nparc')?.value || '2'
+  const n        = condicao==='avista' ? 1 : condicao==='entrada_saldo' ? 2 : Math.max(2,parseInt(nStr)||2)
+  document.getElementById('fneg-nparc-wrap').style.display = condicao==='parcelado' ? '' : 'none'
+  let html = ''
+  for (let i=1; i<=n; i++) {
+    const label = condicao==='entrada_saldo' ? (i===1?'Entrada':'Saldo') : (n===1?'Vencimento':`${i}ª parcela`)
+    const d = new Date(); d.setMonth(d.getMonth()+(i-1))
+    const dataSug = d.toISOString().slice(0,10)
+    html += `<div class="fin-parcela-row"><label>${label}</label><input type="number" class="fneg-parc-val" placeholder="Valor R$" min="0" step="0.01" /><input type="date" class="fneg-parc-data" value="${dataSug}" /></div>`
+  }
+  document.getElementById('fneg-parcelas-list').innerHTML = html
+}
+
+async function salvarNegociacao() {
+  const cliente  = document.getElementById('fneg-cliente').value.trim()
+  const valor    = parseFloat(document.getElementById('fneg-valor').value)||0
+  const condicao = document.getElementById('fneg-condicao').value
+  const metodo   = document.getElementById('fneg-metodo').value
+  const resp     = document.getElementById('fneg-resp').value.trim()
+  const obs      = document.getElementById('fneg-obs').value.trim()
+  if (!cliente||!valor) { alert('Preencha o cliente e o valor total.'); return }
+  const lead    = cachedLeads.find(l=>l.id===pendingFechadoLeadId)
+  const parcsEl = document.querySelectorAll('#fneg-parcelas-list .fin-parcela-row')
+  const { data: venda, error: eV } = await sb.from('vendas').insert({
+    lead_id: pendingFechadoLeadId, cliente, valor_total: valor,
+    expert: lead?.expert||'', condicao_negociada: condicao,
+    responsavel_cobranca: resp, observacao: obs
+  }).select().single()
+  if (eV) { alert('Erro ao criar venda: '+eV.message); return }
+  const parcsData = Array.from(parcsEl).map((row,i)=>({
+    venda_id: venda.id, numero: i+1, total_parcelas: parcsEl.length,
+    valor: parseFloat(row.querySelector('.fneg-parc-val').value)||(valor/parcsEl.length),
+    vencimento: row.querySelector('.fneg-parc-data').value,
+    metodo, status: 'pendente'
+  }))
+  const { error: eP } = await sb.from('parcelas').insert(parcsData)
+  if (eP) { alert('Erro ao criar parcelas: '+eP.message); return }
+  fecharModalNegociacao()
+  await loadFinanceiro()
+  if (document.getElementById('view-financeiro').classList.contains('active')) renderFinanceiro()
+}
+
+// ── DRILL-DOWN ─────────────────────────────────────────────────────────────
+function openDrillDown(vendaId) {
+  const venda = cachedVendas.find(v=>v.id===vendaId); if (!venda) return
+  const parcs = cachedParcelas.filter(p=>p.venda_id===vendaId).sort((a,b)=>a.numero-b.numero)
+  const fmtV  = v => 'R$ '+parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2})
+  const stCls = {pendente:'fin-badge-pendente',atrasado:'fin-badge-atrasado',pago:'fin-badge-pago'}
+  const stLbl = {pendente:'Pendente',atrasado:'Atrasado',pago:'Pago'}
+  const condLbl = {avista:'À Vista',parcelado:'Parcelado',entrada_saldo:'Entrada + Saldo'}
+  const parcsHtml = parcs.map(p=>{
+    const fmtD = d => d ? new Date(d+'T12:00:00').toLocaleDateString('pt-BR') : '—'
+    return `<div class="fin-drill-row">
+      <div><div style="font-weight:700">${p.numero}ª/${p.total_parcelas} — ${fmtV(p.valor)}</div>
+      <div class="fin-drill-label">Vence: ${fmtD(p.vencimento)}${p.pago_em?' · Pago: '+fmtD(p.pago_em):''}</div></div>
+      <span class="fin-badge-metodo ${stCls[p.status]||''}">${stLbl[p.status]||p.status}</span>
+    </div>`
+  }).join('')
+  document.getElementById('drill-body').innerHTML = `
+    <div style="margin-bottom:16px">
+      <div style="font-size:18px;font-weight:800;margin-bottom:4px">${esc(venda.cliente)}</div>
+      <div style="color:var(--muted);font-size:12px">${esc(venda.expert||'')} · ${condLbl[venda.condicao_negociada]||''} · Resp: ${esc(venda.responsavel_cobranca||'—')}</div>
+      <div style="color:var(--gold2);font-size:16px;font-weight:700;margin-top:6px">${fmtV(venda.valor_total)}</div>
+      ${venda.observacao?`<div style="color:var(--muted);font-size:12px;margin-top:6px">${esc(venda.observacao)}</div>`:''}
+    </div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Parcelas</div>
+    ${parcsHtml}
+    <div style="margin-top:16px"><button class="btn-save" onclick="openEditVenda('${vendaId}')">✏️ Editar</button></div>`
+  document.getElementById('modal-drill').classList.add('open')
+}
+
+// ── EDITAR VENDA ───────────────────────────────────────────────────────────
+function openEditVenda(vendaId) {
+  const venda = cachedVendas.find(v=>v.id===vendaId); if (!venda) return
+  const parcs = cachedParcelas.filter(p=>p.venda_id===vendaId).sort((a,b)=>a.numero-b.numero)
+  document.getElementById('fedit-id').value      = vendaId
+  document.getElementById('fedit-cliente').value = venda.cliente||''
+  document.getElementById('fedit-valor').value   = venda.valor_total||''
+  document.getElementById('fedit-resp').value    = venda.responsavel_cobranca||''
+  document.getElementById('fedit-obs').value     = venda.observacao||''
+  document.getElementById('fedit-parcelas-list').innerHTML = parcs.map(p=>`
+    <div class="fin-parcela-row" data-parc-id="${p.id}">
+      <label>${p.numero}ª/${p.total_parcelas}</label>
+      <input type="number" class="fedit-parc-val" value="${p.valor}" placeholder="Valor" />
+      <input type="date"   class="fedit-parc-data" value="${p.vencimento||''}" />
+    </div>`).join('')
+  document.getElementById('modal-drill').classList.remove('open')
+  document.getElementById('modal-edit').classList.add('open')
+}
+
+async function salvarEditVenda() {
+  const vendaId = document.getElementById('fedit-id').value
+  const { error: eV } = await sb.from('vendas').update({
+    cliente:              document.getElementById('fedit-cliente').value.trim(),
+    valor_total:          parseFloat(document.getElementById('fedit-valor').value)||0,
+    responsavel_cobranca: document.getElementById('fedit-resp').value.trim(),
+    observacao:           document.getElementById('fedit-obs').value.trim()
+  }).eq('id', vendaId)
+  if (eV) { alert('Erro: '+eV.message); return }
+  for (const row of document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row')) {
+    await sb.from('parcelas').update({
+      valor: parseFloat(row.querySelector('.fedit-parc-val').value)||0,
+      vencimento: row.querySelector('.fedit-parc-data').value
+    }).eq('id', row.dataset.parcId)
+  }
+  document.getElementById('modal-edit').classList.remove('open')
+  await loadFinanceiro()
+  renderFinanceiro()
+}
+
+// ── CONFIRMAR PAGO ─────────────────────────────────────────────────────────
+let pendingPagoParcelaId = null
+
+function openModalPago(parcelaId) {
+  pendingPagoParcelaId = parcelaId
+  document.getElementById('fpago-data').value   = new Date().toISOString().slice(0,10)
+  document.getElementById('fpago-metodo').value = 'pix'
+  document.getElementById('modal-pago').classList.add('open')
+}
+
+async function confirmarPago() {
+  const data   = document.getElementById('fpago-data').value
+  const metodo = document.getElementById('fpago-metodo').value
+  if (!data) { alert('Informe a data de recebimento.'); return }
+  const { error } = await sb.from('parcelas').update({ status:'pago', pago_em:data, metodo }).eq('id', pendingPagoParcelaId)
+  if (error) { alert('Erro: '+error.message); return }
+  document.getElementById('modal-pago').classList.remove('open')
+  pendingPagoParcelaId = null
+  await loadFinanceiro()
+  renderFinanceiro()
 }
 
 // ── UTILS ──────────────────────────────────────────────────────────────────
