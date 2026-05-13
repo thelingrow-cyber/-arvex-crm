@@ -342,6 +342,18 @@
     .fin-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
     .fin-bar { width: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(to top, var(--blue2), var(--blue)); min-height: 2px; transition: height .3s; }
     .fin-bar-label { font-size: 10px; color: var(--muted); white-space: nowrap; }
+    .fin-tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+    .fin-tab-btn { background: none; border: none; color: var(--muted); font-size: 13px; font-weight: 600; padding: 8px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s; font-family: Inter,sans-serif; }
+    .fin-tab-btn:hover { color: var(--white); }
+    .fin-tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .fin-tab-pane { display: none; }
+    .fin-tab-pane.active { display: block; }
+    .fin-clientes-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .fin-clientes-table th { text-align: left; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+    .fin-clientes-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .fin-clientes-table tr:last-child td { border-bottom: none; }
+    .fin-clientes-table tr:hover td { background: rgba(255,255,255,.03); }
+    .fin-status-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
     .fin-section { margin-bottom: 28px; }
     .fin-section-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     .fin-section-count { background: rgba(255,255,255,.1); border-radius: 12px; padding: 1px 8px; font-size: 11px; color: var(--muted); }
@@ -640,11 +652,20 @@
     <div id="view-financeiro" class="view">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div>
-          <h1>💰 Financeiro — Cobranças</h1>
+          <h1>💰 Financeiro</h1>
           <p>Controle de vendas, parcelas e recebimentos</p>
         </div>
         <button class="btn-primary" onclick="novoClienteFinanceiro()">+ Novo Cliente</button>
       </div>
+
+      <!-- Sub-abas -->
+      <div class="fin-tabs">
+        <button class="fin-tab-btn active" id="fin-tab-cobrancas" onclick="switchFinTab('cobrancas')">💳 Cobranças</button>
+        <button class="fin-tab-btn" id="fin-tab-clientes" onclick="switchFinTab('clientes')">👥 Clientes</button>
+      </div>
+
+      <!-- Painel: Cobranças -->
+      <div class="fin-tab-pane active" id="fin-pane-cobrancas">
 
       <!-- Métricas -->
       <div class="fin-metrics">
@@ -724,6 +745,28 @@
           </table>
         </div>
       </div>
+
+      </div><!-- /fin-pane-cobrancas -->
+
+      <!-- Painel: Clientes -->
+      <div class="fin-tab-pane" id="fin-pane-clientes">
+        <div class="fin-search-wrap" style="margin-bottom:16px">
+          <input type="text" id="fin-clientes-search" placeholder="🔍 Buscar cliente..." oninput="renderClientesFinanceiro()" />
+        </div>
+        <div class="table-card">
+          <table class="fin-clientes-table">
+            <thead><tr>
+              <th>Cliente</th>
+              <th>Valor Total</th>
+              <th>Parcelas</th>
+              <th class="fin-col-hide">Expert</th>
+              <th class="fin-col-hide">Responsável</th>
+              <th>Status</th>
+            </tr></thead>
+            <tbody id="fin-clientes-body"></tbody>
+          </table>
+        </div>
+      </div><!-- /fin-pane-clientes -->
 
     </div><!-- /view-financeiro -->
 
@@ -948,6 +991,53 @@ let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge 
 let cachedVendas   = []
 let cachedParcelas = []
 let finDiasFilter  = 7
+let finTabAtiva    = 'cobrancas'
+
+function switchFinTab(tab) {
+  finTabAtiva = tab
+  document.querySelectorAll('.fin-tab-btn').forEach(b => b.classList.remove('active'))
+  document.querySelectorAll('.fin-tab-pane').forEach(p => p.classList.remove('active'))
+  document.getElementById('fin-tab-' + tab).classList.add('active')
+  document.getElementById('fin-pane-' + tab).classList.add('active')
+  if (tab === 'clientes') renderClientesFinanceiro()
+}
+
+function renderClientesFinanceiro() {
+  const busca = (document.getElementById('fin-clientes-search')?.value || '').toLowerCase().trim()
+  const fmtV  = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR', {minimumFractionDigits:2})
+
+  let vendas = [...cachedVendas]
+  if (busca) vendas = vendas.filter(v => (v.cliente||'').toLowerCase().includes(busca))
+
+  if (!vendas.length) {
+    document.getElementById('fin-clientes-body').innerHTML =
+      `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px;font-style:italic">Nenhum cliente encontrado</td></tr>`
+    return
+  }
+
+  document.getElementById('fin-clientes-body').innerHTML = vendas.map(v => {
+    const parcs  = cachedParcelas.filter(p => p.venda_id === v.id)
+    const total  = parcs.length
+    const pagas  = parcs.filter(p => p.status === 'pago').length
+    const atras  = parcs.filter(p => p.status === 'atrasado').length
+    const pend   = parcs.filter(p => p.status === 'pendente').length
+
+    let statusHtml
+    if (total === 0)          statusHtml = `<span class="fin-status-pill" style="background:rgba(122,144,168,.15);color:var(--muted)">Sem parcelas</span>`
+    else if (pagas === total) statusHtml = `<span class="fin-status-pill fin-badge-pago">✅ Quitado</span>`
+    else if (atras > 0)       statusHtml = `<span class="fin-status-pill fin-badge-atrasado">🔴 ${atras} atrasada${atras>1?'s':''}</span>`
+    else                      statusHtml = `<span class="fin-status-pill fin-badge-pendente">⏳ ${pagas}/${total} pagas</span>`
+
+    return `<tr style="cursor:pointer" onclick="openDrillDown('${v.id}')">
+      <td style="font-weight:700">${esc(v.cliente||'—')}</td>
+      <td style="color:var(--gold2);font-weight:700">${fmtV(v.valor_total)}</td>
+      <td style="color:var(--muted)">${pagas}/${total}</td>
+      <td class="fin-col-hide" style="color:var(--muted)">${esc(v.expert||'—')}</td>
+      <td class="fin-col-hide" style="color:var(--muted)">${esc(v.responsavel_cobranca||'—')}</td>
+      <td>${statusHtml}</td>
+    </tr>`
+  }).join('')
+}
 const FINANCEIRO_USERS = ['viktorsimoess@gmail.com','arvexdigital@gmail.com','vhpacheco02@gmail.com']
 function isFinanceiroUser() { return currentUser && FINANCEIRO_USERS.includes(currentUser.email) }
 
