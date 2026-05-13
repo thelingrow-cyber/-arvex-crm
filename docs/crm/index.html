@@ -379,9 +379,13 @@
     .fin-parcela-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
     .fin-parcela-row label { font-size: 11px; color: var(--muted); white-space: nowrap; width: 70px; flex-shrink:0; }
     .fin-parcela-row input { flex: 1; background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-size: 12px; padding: 7px 10px; outline: none; font-family:Inter,sans-serif; }
-    .fin-drill-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .fin-drill-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 10px 10px; border-bottom: 1px solid var(--border); font-size: 13px; border-left: 3px solid transparent; margin-left: -10px; }
     .fin-drill-row:last-child { border-bottom: none; }
+    .fin-drill-row.dr-pago     { border-left-color: var(--green); }
+    .fin-drill-row.dr-atrasado { border-left-color: var(--red); }
+    .fin-drill-row.dr-pendente { border-left-color: rgba(251,191,36,.5); }
     .fin-drill-label { color: var(--muted); font-size: 11px; margin-top: 2px; }
+    .fpago-summary { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
   </style>
 </head>
 <body>
@@ -877,6 +881,7 @@
       <button class="modal-close" onclick="document.getElementById('modal-pago').classList.remove('open')">×</button>
     </div>
     <div class="modal-body">
+      <div class="fpago-summary" id="fpago-summary"></div>
       <div class="form-row">
         <div class="form-group"><label>Data do Recebimento</label><input type="date" id="fpago-data" /></div>
         <div class="form-group"><label>Método</label>
@@ -2104,11 +2109,20 @@ function openDrillDown(vendaId) {
   const stCls = {pendente:'fin-badge-pendente',atrasado:'fin-badge-atrasado',pago:'fin-badge-pago'}
   const stLbl = {pendente:'Pendente',atrasado:'Atrasado',pago:'Pago'}
   const condLbl = {avista:'À Vista',parcelado:'Parcelado',entrada_saldo:'Entrada + Saldo'}
+  const drIcon = {pago:'✅',atrasado:'🔴',pendente:'⏳'}
   const parcsHtml = parcs.map(p=>{
     const fmtD = d => d ? new Date(d+'T12:00:00').toLocaleDateString('pt-BR') : '—'
-    return `<div class="fin-drill-row">
-      <div><div style="font-weight:700">${p.numero}ª/${p.total_parcelas} — ${fmtV(p.valor)}</div>
-      <div class="fin-drill-label">Vence: ${fmtD(p.vencimento)}${p.pago_em?' · Pago: '+fmtD(p.pago_em):''}</div></div>
+    const metodoLbl = {pix:'PIX',boleto:'Boleto',cartao:'Cartão'}[p.metodo]||''
+    const pagoInfo = p.pago_em
+      ? `<span style="color:var(--green)">Recebido em ${fmtD(p.pago_em)}${metodoLbl?' via '+metodoLbl:''}</span>`
+      : p.status==='atrasado'
+        ? `<span style="color:var(--red)">Venceu em ${fmtD(p.vencimento)}</span>`
+        : `<span style="color:var(--muted)">Vence em ${fmtD(p.vencimento)}</span>`
+    return `<div class="fin-drill-row dr-${p.status}">
+      <div>
+        <div style="font-weight:700">${drIcon[p.status]||''} ${p.numero}ª de ${p.total_parcelas} &nbsp;<span style="color:var(--gold2)">${fmtV(p.valor)}</span></div>
+        <div class="fin-drill-label" style="margin-top:3px">${pagoInfo}</div>
+      </div>
       <span class="fin-badge-metodo ${stCls[p.status]||''}">${stLbl[p.status]||p.status}</span>
     </div>`
   }).join('')
@@ -2180,8 +2194,16 @@ let pendingPagoParcelaId = null
 
 function openModalPago(parcelaId) {
   pendingPagoParcelaId = parcelaId
+  const parc  = cachedParcelas.find(p=>p.id===parcelaId)
+  const venda = parc ? cachedVendas.find(v=>v.id===parc.venda_id) : null
+  const sumEl = document.getElementById('fpago-summary')
+  if (sumEl && parc && venda) {
+    const fmtV = v => 'R$ '+parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2})
+    sumEl.innerHTML = `<div style="font-weight:700;font-size:14px;margin-bottom:3px">${esc(venda.cliente)}</div>
+      <div style="color:var(--muted);font-size:12px">${parc.numero}ª de ${parc.total_parcelas} &nbsp;·&nbsp; <span style="color:var(--gold2);font-weight:700">${fmtV(parc.valor)}</span></div>`
+  }
   document.getElementById('fpago-data').value   = new Date().toISOString().slice(0,10)
-  document.getElementById('fpago-metodo').value = 'pix'
+  document.getElementById('fpago-metodo').value = parc?.metodo || 'pix'
   document.getElementById('modal-pago').classList.add('open')
 }
 
