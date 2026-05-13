@@ -362,6 +362,20 @@
     .fin-dias-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all .15s; }
     .fin-dias-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .fin-metodo-sel { background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 2px 5px; font-size: 11px; cursor: pointer; }
+    .fin-empty-row td { text-align:center; color:var(--muted); font-size:13px; padding:18px 0; font-style:italic; }
+    .fin-search-wrap { margin-bottom:16px; }
+    .fin-search-wrap input { width:100%; max-width:320px; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--text); font-family:Inter,sans-serif; font-size:13px; padding:8px 12px; outline:none; }
+    .fin-search-wrap input:focus { border-color:var(--accent); }
+    .fin-total-row { font-size:12px; color:var(--muted); text-align:right; padding:6px 8px 0; }
+    #fin-toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:8px; pointer-events:none; }
+    .fin-toast { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 18px; font-size:13px; font-weight:500; color:var(--text); box-shadow:0 4px 20px rgba(0,0,0,.4); opacity:0; transform:translateY(10px); transition:all .25s; pointer-events:none; }
+    .fin-toast.show { opacity:1; transform:translateY(0); }
+    .fin-toast.success { border-color:var(--green); color:var(--green); }
+    .fin-toast.error   { border-color:#f87171; color:#f87171; }
+    @media (max-width:768px) {
+      .fin-col-hide { display:none; }
+      .fin-metrics { grid-template-columns:1fr 1fr; }
+    }
     .fin-parcela-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
     .fin-parcela-row label { font-size: 11px; color: var(--muted); white-space: nowrap; width: 70px; flex-shrink:0; }
     .fin-parcela-row input { flex: 1; background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-size: 12px; padding: 7px 10px; outline: none; font-family:Inter,sans-serif; }
@@ -654,6 +668,11 @@
         <div class="fin-chart-bars" id="fin-chart-bars"></div>
       </div>
 
+      <!-- Busca -->
+      <div class="fin-search-wrap">
+        <input type="text" id="fin-search" placeholder="🔍 Buscar por cliente..." oninput="renderFinanceiro()" />
+      </div>
+
       <!-- Seção: Vencem Hoje -->
       <div class="fin-section" id="fin-bloco-hoje">
         <div class="fin-section-title">
@@ -663,7 +682,7 @@
           <table class="fin-table">
             <thead><tr>
               <th>Cliente</th><th>Parcela</th><th>Valor</th><th>Vencimento</th>
-              <th>Método</th><th>Expert</th><th>Responsável</th><th>Status</th><th>Ações</th>
+              <th class="fin-col-hide">Método</th><th class="fin-col-hide">Expert</th><th class="fin-col-hide">Responsável</th><th>Status</th><th>Ações</th>
             </tr></thead>
             <tbody id="fin-sec-hoje"></tbody>
           </table>
@@ -679,7 +698,7 @@
           <table class="fin-table">
             <thead><tr>
               <th>Cliente</th><th>Parcela</th><th>Valor</th><th>Vencimento</th>
-              <th>Método</th><th>Expert</th><th>Responsável</th><th>Status</th><th>Ações</th>
+              <th class="fin-col-hide">Método</th><th class="fin-col-hide">Expert</th><th class="fin-col-hide">Responsável</th><th>Status</th><th>Ações</th>
             </tr></thead>
             <tbody id="fin-sec-7dias"></tbody>
           </table>
@@ -695,7 +714,7 @@
           <table class="fin-table">
             <thead><tr>
               <th>Cliente</th><th>Parcela</th><th>Valor</th><th>Vencimento</th>
-              <th>Método</th><th>Expert</th><th>Responsável</th><th>Status</th><th>Ações</th>
+              <th class="fin-col-hide">Método</th><th class="fin-col-hide">Expert</th><th class="fin-col-hide">Responsável</th><th>Status</th><th>Ações</th>
             </tr></thead>
             <tbody id="fin-sec-atrasado"></tbody>
           </table>
@@ -1901,21 +1920,26 @@ function renderFinanceiro() {
 
   renderFinChart()
 
-  const secHoje  = cachedParcelas.filter(p => p.status==='pendente' && p.vencimento===hoje)
-  const sec7     = cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>hoje && p.vencimento<=emN)
-  const secAtras = cachedParcelas.filter(p => p.status==='atrasado')
+  const vendaMap = Object.fromEntries(cachedVendas.map(v=>[v.id,v]))
+  const busca = (document.getElementById('fin-search')?.value||'').toLowerCase().trim()
+  const filtrar = parcelas => busca
+    ? parcelas.filter(p => (vendaMap[p.venda_id]?.cliente||'').toLowerCase().includes(busca))
+    : parcelas
 
-  renderFinSection('fin-sec-hoje',     secHoje)
-  renderFinSection('fin-sec-7dias',    sec7)
-  renderFinSection('fin-sec-atrasado', secAtras)
+  const secHoje  = filtrar(cachedParcelas.filter(p => p.status==='pendente' && p.vencimento===hoje))
+  const sec7     = filtrar(cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>hoje && p.vencimento<=emN))
+  const secAtras = filtrar(cachedParcelas.filter(p => p.status==='atrasado'))
+
+  const fmt = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
+  const totalSec = parcelas => parcelas.reduce((s,p)=>s+parseFloat(p.valor||0),0)
+
+  renderFinSection('fin-sec-hoje',     secHoje,  'fin-total-hoje')
+  renderFinSection('fin-sec-7dias',    sec7,     'fin-total-7dias')
+  renderFinSection('fin-sec-atrasado', secAtras, 'fin-total-atras')
 
   document.getElementById('fin-count-hoje').textContent  = secHoje.length
   document.getElementById('fin-count-7dias').textContent = sec7.length
   document.getElementById('fin-count-atras').textContent = secAtras.length
-
-  document.getElementById('fin-bloco-hoje').style.display  = secHoje.length  ? '' : 'none'
-  document.getElementById('fin-bloco-7dias').style.display = sec7.length     ? '' : 'none'
-  document.getElementById('fin-bloco-atras').style.display = secAtras.length ? '' : 'none'
 }
 
 function renderFinChart() {
@@ -1933,9 +1957,15 @@ function renderFinChart() {
   }).join('')
 }
 
-function renderFinSection(containerId, parcelas) {
+function renderFinSection(containerId, parcelas, totalId) {
   const vendaMap = Object.fromEntries(cachedVendas.map(v=>[v.id,v]))
   const leadMap  = Object.fromEntries(cachedLeads.map(l=>[l.id,l]))
+  const fmt = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
+  if (!parcelas.length) {
+    document.getElementById(containerId).innerHTML = `<tr class="fin-empty-row"><td colspan="9">Nenhuma cobrança nesta categoria ✓</td></tr>`
+    if (totalId) { const el = document.getElementById(totalId); if (el) el.textContent = '' }
+    return
+  }
   document.getElementById(containerId).innerHTML = parcelas.map(p => {
     const venda = vendaMap[p.venda_id] || {}
     const lead  = leadMap[venda.lead_id] || {}
@@ -1956,13 +1986,24 @@ function renderFinSection(containerId, parcelas) {
       <td style="color:var(--muted)">${p.numero}ª/${p.total_parcelas}</td>
       <td style="font-weight:700">R$&nbsp;${fmtVal}</td>
       <td style="color:var(--muted)">${fmtData}</td>
-      <td>${metodoCell}</td>
-      <td style="color:var(--muted)">${esc(venda.expert||'—')}</td>
-      <td style="color:var(--muted)">${esc(venda.responsavel_cobranca||'—')}</td>
+      <td class="fin-col-hide">${metodoCell}</td>
+      <td class="fin-col-hide" style="color:var(--muted)">${esc(venda.expert||'—')}</td>
+      <td class="fin-col-hide" style="color:var(--muted)">${esc(venda.responsavel_cobranca||'—')}</td>
       <td><span class="fin-badge-metodo ${stCls}">${stLabel}</span></td>
       <td style="display:flex;gap:6px;flex-wrap:nowrap">${pagoBtnHtml}${editBtnHtml}${waBtnHtml}</td>
     </tr>`
   }).join('')
+  if (totalId) {
+    let el = document.getElementById(totalId)
+    if (!el) {
+      el = document.createElement('div')
+      el.id = totalId
+      el.className = 'fin-total-row'
+      document.getElementById(containerId).closest('.fin-section').appendChild(el)
+    }
+    const total = parcelas.reduce((s,p)=>s+parseFloat(p.valor||0),0)
+    el.textContent = 'Total: ' + fmt(total)
+  }
 }
 
 function novoClienteFinanceiro() {
@@ -2055,6 +2096,7 @@ async function salvarNegociacao() {
   fecharModalNegociacao()
   await loadFinanceiro()
   if (document.getElementById('view-financeiro').classList.contains('active')) renderFinanceiro()
+  showToast('✅ Venda registrada com sucesso!')
 }
 
 // ── DRILL-DOWN ─────────────────────────────────────────────────────────────
@@ -2133,6 +2175,7 @@ async function salvarEditVenda() {
   document.getElementById('modal-edit').classList.remove('open')
   await loadFinanceiro()
   renderFinanceiro()
+  showToast('✅ Edições salvas!')
 }
 
 // ── CONFIRMAR PAGO ─────────────────────────────────────────────────────────
@@ -2155,6 +2198,23 @@ async function confirmarPago() {
   pendingPagoParcelaId = null
   await loadFinanceiro()
   renderFinanceiro()
+  showToast('✅ Parcela marcada como paga!')
+}
+
+// ── TOAST ──────────────────────────────────────────────────────────────────
+function showToast(msg, type='success') {
+  let container = document.getElementById('fin-toast-container')
+  if (!container) {
+    container = document.createElement('div')
+    container.id = 'fin-toast-container'
+    document.body.appendChild(container)
+  }
+  const t = document.createElement('div')
+  t.className = `fin-toast ${type}`
+  t.textContent = msg
+  container.appendChild(t)
+  requestAnimationFrame(() => { requestAnimationFrame(() => t.classList.add('show')) })
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300) }, 3000)
 }
 
 // ── UTILS ──────────────────────────────────────────────────────────────────
