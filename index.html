@@ -359,6 +359,9 @@
     .btn-pago:hover { background: rgba(34,197,94,.35); }
     .btn-whatsapp { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(34,197,94,.12); color: #4ADE80; cursor: pointer; white-space:nowrap; }
     .btn-whatsapp:hover { background: rgba(34,197,94,.22); }
+    .fin-dias-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all .15s; }
+    .fin-dias-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .fin-metodo-sel { background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 2px 5px; font-size: 11px; cursor: pointer; }
     .fin-parcela-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
     .fin-parcela-row label { font-size: 11px; color: var(--muted); white-space: nowrap; width: 70px; flex-shrink:0; }
     .fin-parcela-row input { flex: 1; background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-size: 12px; padding: 7px 10px; outline: none; font-family:Inter,sans-serif; }
@@ -667,7 +670,7 @@
       <!-- Seção: Próximos 7 dias -->
       <div class="fin-section" id="fin-bloco-7dias">
         <div class="fin-section-title">
-          📅 Próximos 7 dias <span class="fin-section-count" id="fin-count-7dias">0</span>
+          📅 Próximos <button class="fin-dias-btn active" id="fin-btn-7" onclick="setFinDias(7)">7 dias</button> <button class="fin-dias-btn" id="fin-btn-30" onclick="setFinDias(30)">30 dias</button> <span class="fin-section-count" id="fin-count-7dias">0</span>
         </div>
         <div style="overflow-x:auto">
           <table class="fin-table">
@@ -916,6 +919,7 @@ let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
 let cachedVendas   = []
 let cachedParcelas = []
+let finDiasFilter  = 7
 const FINANCEIRO_USERS = ['viktorsimoess@gmail.com','arvexdigital@gmail.com','vhpacheco02@gmail.com']
 function isFinanceiroUser() { return currentUser && FINANCEIRO_USERS.includes(currentUser.email) }
 
@@ -1882,7 +1886,7 @@ async function loadFinanceiro() {
 function renderFinanceiro() {
   if (!isFinanceiroUser()) return
   const hoje    = new Date().toISOString().slice(0,10)
-  const em7     = new Date(Date.now() + 7*86400000).toISOString().slice(0,10)
+  const emN     = new Date(Date.now() + finDiasFilter*86400000).toISOString().slice(0,10)
   const mesAtual = hoje.slice(0,7)
   const fmt = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
 
@@ -1894,7 +1898,7 @@ function renderFinanceiro() {
   renderFinChart()
 
   const secHoje  = cachedParcelas.filter(p => p.status==='pendente' && p.vencimento===hoje)
-  const sec7     = cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>hoje && p.vencimento<=em7)
+  const sec7     = cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>hoje && p.vencimento<=emN)
   const secAtras = cachedParcelas.filter(p => p.status==='atrasado')
 
   renderFinSection('fin-sec-hoje',     secHoje)
@@ -1935,6 +1939,9 @@ function renderFinSection(containerId, parcelas) {
     const fmtData = p.vencimento ? new Date(p.vencimento+'T12:00:00').toLocaleDateString('pt-BR') : '—'
     const fmtVal  = parseFloat(p.valor||0).toLocaleString('pt-BR',{minimumFractionDigits:2})
     const metodoLabel = {pix:'PIX',boleto:'Boleto',cartao:'Cartão'}[p.metodo]||'—'
+    const metodoCell  = p.status==='pago'
+      ? `<span class="fin-badge-metodo">${metodoLabel}</span>`
+      : `<select class="fin-metodo-sel" onchange="setMetodoParcela('${p.id}',this.value)"><option value="" ${!p.metodo?'selected':''}>—</option><option value="pix" ${p.metodo==='pix'?'selected':''}>PIX</option><option value="boleto" ${p.metodo==='boleto'?'selected':''}>Boleto</option><option value="cartao" ${p.metodo==='cartao'?'selected':''}>Cartão</option></select>`
     const stCls   = {pendente:'fin-badge-pendente',atrasado:'fin-badge-atrasado',pago:'fin-badge-pago'}[p.status]||''
     const stLabel = {pendente:'Pendente',atrasado:'Atrasado',pago:'Pago'}[p.status]||p.status
     const waBtnHtml  = tel ? `<button class="btn-whatsapp" onclick="window.open('https://wa.me/55${tel}','_blank')">📞</button>` : ''
@@ -1944,13 +1951,27 @@ function renderFinSection(containerId, parcelas) {
       <td style="color:var(--muted)">${p.numero}ª/${p.total_parcelas}</td>
       <td style="font-weight:700">R$&nbsp;${fmtVal}</td>
       <td style="color:var(--muted)">${fmtData}</td>
-      <td><span class="fin-badge-metodo">${metodoLabel}</span></td>
+      <td>${metodoCell}</td>
       <td style="color:var(--muted)">${esc(venda.expert||'—')}</td>
       <td style="color:var(--muted)">${esc(venda.responsavel_cobranca||'—')}</td>
       <td><span class="fin-badge-metodo ${stCls}">${stLabel}</span></td>
       <td style="display:flex;gap:6px;flex-wrap:nowrap">${pagoBtnHtml}${waBtnHtml}</td>
     </tr>`
   }).join('')
+}
+
+function setFinDias(n) {
+  finDiasFilter = n
+  document.getElementById('fin-btn-7').classList.toggle('active', n===7)
+  document.getElementById('fin-btn-30').classList.toggle('active', n===30)
+  renderFinanceiro()
+}
+
+async function setMetodoParcela(parcelaId, metodo) {
+  const { error } = await sb.from('parcelas').update({ metodo: metodo||null }).eq('id', parcelaId)
+  if (error) { console.error('Erro ao salvar método:', error.message); return }
+  const idx = cachedParcelas.findIndex(p => p.id===parcelaId)
+  if (idx !== -1) cachedParcelas[idx].metodo = metodo||null
 }
 
 // ── MODAL NEGOCIAÇÃO ───────────────────────────────────────────────────────
