@@ -449,7 +449,10 @@
 
   <div class="sidebar-section" style="margin-top:8px">Financeiro</div>
   <div class="sidebar-item" id="nav-financeiro" onclick="goTo('financeiro',this)">
-    <span class="si-icon">💰</span> Cobranças
+    <span class="si-icon">💳</span> Cobranças
+  </div>
+  <div class="sidebar-item" id="nav-clientes-fin" onclick="goTo('clientes-fin',this)">
+    <span class="si-icon">👥</span> Clientes
   </div>
 
   <div class="sidebar-section" style="margin-top:8px">Em breve</div>
@@ -652,20 +655,11 @@
     <div id="view-financeiro" class="view">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div>
-          <h1>💰 Financeiro</h1>
-          <p>Controle de vendas, parcelas e recebimentos</p>
+          <h1>💳 Cobranças</h1>
+          <p>Parcelas pendentes, próximos vencimentos e atrasados</p>
         </div>
         <button class="btn-primary" onclick="novoClienteFinanceiro()">+ Novo Cliente</button>
       </div>
-
-      <!-- Sub-abas -->
-      <div class="fin-tabs">
-        <button class="fin-tab-btn active" id="fin-tab-cobrancas" onclick="switchFinTab('cobrancas')">💳 Cobranças</button>
-        <button class="fin-tab-btn" id="fin-tab-clientes" onclick="switchFinTab('clientes')">👥 Clientes</button>
-      </div>
-
-      <!-- Painel: Cobranças -->
-      <div class="fin-tab-pane active" id="fin-pane-cobrancas">
 
       <!-- Métricas -->
       <div class="fin-metrics">
@@ -746,29 +740,34 @@
         </div>
       </div>
 
-      </div><!-- /fin-pane-cobrancas -->
-
-      <!-- Painel: Clientes -->
-      <div class="fin-tab-pane" id="fin-pane-clientes">
-        <div class="fin-search-wrap" style="margin-bottom:16px">
-          <input type="text" id="fin-clientes-search" placeholder="🔍 Buscar cliente..." oninput="renderClientesFinanceiro()" />
-        </div>
-        <div class="table-card">
-          <table class="fin-clientes-table">
-            <thead><tr>
-              <th>Cliente</th>
-              <th>Valor Total</th>
-              <th>Parcelas</th>
-              <th class="fin-col-hide">Expert</th>
-              <th class="fin-col-hide">Responsável</th>
-              <th>Status</th>
-            </tr></thead>
-            <tbody id="fin-clientes-body"></tbody>
-          </table>
-        </div>
-      </div><!-- /fin-pane-clientes -->
-
     </div><!-- /view-financeiro -->
+
+    <!-- VIEW: Clientes Financeiro -->
+    <div id="view-clientes-fin" class="view">
+      <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+          <h1>👥 Clientes</h1>
+          <p>Histórico completo de vendas e recebimentos por cliente</p>
+        </div>
+        <button class="btn-primary" onclick="novoClienteFinanceiro()">+ Novo Cliente</button>
+      </div>
+      <div class="fin-search-wrap" style="margin-bottom:16px">
+        <input type="text" id="fin-clientes-search" placeholder="🔍 Buscar cliente..." oninput="renderClientesFinanceiro()" />
+      </div>
+      <div class="table-card">
+        <table class="fin-clientes-table">
+          <thead><tr>
+            <th>Cliente</th>
+            <th>Valor Total</th>
+            <th>Parcelas</th>
+            <th class="fin-col-hide">Expert</th>
+            <th class="fin-col-hide">Responsável</th>
+            <th>Status</th>
+          </tr></thead>
+          <tbody id="fin-clientes-body"></tbody>
+        </table>
+      </div>
+    </div><!-- /view-clientes-fin -->
 
   </div>
 </div>
@@ -984,7 +983,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'🔥 Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
@@ -1101,6 +1100,8 @@ function applyRole() {
   // Financeiro: Vitor, Gabriel e Pacheco — independente de role
   const navFin = document.getElementById('nav-financeiro')
   if (navFin) navFin.style.display = isFinanceiroUser() ? '' : 'none'
+  const navClientesFin = document.getElementById('nav-clientes-fin')
+  if (navClientesFin) navClientesFin.style.display = isFinanceiroUser() ? '' : 'none'
 
   if (isCS) {
     // CS só vê a seção Customer Success — esconde tudo do Comercial
@@ -1193,7 +1194,8 @@ function goTo(id, el) {
   if (id === 'leads')      renderAllLeads()
   if (id === 'experts')    renderExperts()
   if (id === 'cs')         renderCS()
-  if (id === 'financeiro') { loadFinanceiro().then(() => renderFinanceiro()) }
+  if (id === 'financeiro')    { loadFinanceiro().then(() => renderFinanceiro()) }
+  if (id === 'clientes-fin') { loadFinanceiro().then(() => renderClientesFinanceiro()) }
 }
 
 function setPeriod(days, btn) {
