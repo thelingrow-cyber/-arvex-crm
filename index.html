@@ -1930,9 +1930,6 @@ function renderFinanceiro() {
   const sec7     = filtrar(cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>hoje && p.vencimento<=emN))
   const secAtras = filtrar(cachedParcelas.filter(p => p.status==='atrasado'))
 
-  const fmt = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
-  const totalSec = parcelas => parcelas.reduce((s,p)=>s+parseFloat(p.valor||0),0)
-
   renderFinSection('fin-sec-hoje',     secHoje,  'fin-total-hoje')
   renderFinSection('fin-sec-7dias',    sec7,     'fin-total-7dias')
   renderFinSection('fin-sec-atrasado', secAtras, 'fin-total-atras')
