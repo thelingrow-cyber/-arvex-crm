@@ -188,10 +188,10 @@ A aba `📊 Relatório` **não é tocada** nesta versão — módulo Financeiro 
 
 ### @devops — Push
 
-- [ ] SQL aplicado pelo Vitor no Supabase **antes** do deploy do frontend
+- [x] SQL aplicado pelo Vitor no Supabase **antes** do deploy do frontend
 - [x] Commit: `feat(crm): módulo financeiro V1 — cobranças + parcelas [story crm-modulo-financeiro-v1]`
-- [ ] Push para `master` → sincronizar `main` → Vercel auto-deploy
-- [ ] Confirmar deploy verde em `arvex-crm.vercel.app`
+- [x] Push para `master` → sincronizar `main` → Vercel auto-deploy
+- [x] Confirmar deploy verde em `arvex-crm.vercel.app`
 
 ---
 
