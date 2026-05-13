@@ -852,6 +852,11 @@
             <option value="cartao">Cartão</option>
           </select>
         </div>
+        <div class="form-group"><label>Expert</label>
+          <input type="text" id="fneg-expert" placeholder="Nome do expert" />
+        </div>
+      </div>
+      <div class="form-row">
         <div class="form-group"><label>Responsável pela cobrança</label>
           <input type="text" id="fneg-resp" placeholder="Nome do closer" />
         </div>
@@ -901,7 +906,10 @@
         <div class="form-group"><label>Responsável</label><input type="text" id="fedit-resp" /></div>
       </div>
       <div style="margin-top:8px">
-        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Parcelas</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Parcelas</div>
+          <button type="button" onclick="adicionarParcela()" style="background:rgba(10,132,255,.15);color:var(--blue);border:none;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">+ Parcela</button>
+        </div>
         <div id="fedit-parcelas-list"></div>
       </div>
       <div class="form-group" style="margin-top:10px"><label>Observação</label>
@@ -2104,6 +2112,7 @@ function novoClienteFinanceiro() {
   pendingFechadoLeadId = null
   document.getElementById('fneg-cliente').value  = ''
   document.getElementById('fneg-valor').value    = ''
+  document.getElementById('fneg-expert').value   = ''
   document.getElementById('fneg-resp').value     = ''
   document.getElementById('fneg-condicao').value = 'avista'
   document.getElementById('fneg-metodo').value   = 'pix'
@@ -2136,6 +2145,7 @@ async function onLeadFechado(leadId) {
   const lead = cachedLeads.find(l => l.id === leadId)
   document.getElementById('fneg-cliente').value  = lead?.nome || ''
   document.getElementById('fneg-valor').value    = lead?.ticket || ''
+  document.getElementById('fneg-expert').value   = lead?.expert || ''
   document.getElementById('fneg-resp').value     = lead?.closer || ''
   document.getElementById('fneg-condicao').value = 'avista'
   document.getElementById('fneg-obs').value      = ''
@@ -2171,11 +2181,11 @@ async function salvarNegociacao() {
   const resp     = document.getElementById('fneg-resp').value.trim()
   const obs      = document.getElementById('fneg-obs').value.trim()
   if (!cliente||!valor) { alert('Preencha o cliente e o valor total.'); return }
-  const lead    = cachedLeads.find(l=>l.id===pendingFechadoLeadId)
+  const expert  = document.getElementById('fneg-expert').value.trim()
   const parcsEl = document.querySelectorAll('#fneg-parcelas-list .fin-parcela-row')
   const { data: venda, error: eV } = await sb.from('vendas').insert({
     lead_id: pendingFechadoLeadId, cliente, valor_total: valor,
-    expert: lead?.expert||'', condicao_negociada: condicao,
+    expert, condicao_negociada: condicao,
     responsavel_cobranca: resp, observacao: obs
   }).select().single()
   if (eV) { alert('Erro ao criar venda: '+eV.message); return }
@@ -2257,6 +2267,27 @@ function openEditVenda(vendaId) {
   document.getElementById('modal-edit').classList.add('open')
 }
 
+function adicionarParcela() {
+  const lista = document.getElementById('fedit-parcelas-list')
+  const rows  = lista.querySelectorAll('.fin-parcela-row')
+  const total = rows.length + 1
+  const hoje  = new Date().toISOString().slice(0,10)
+  const div   = document.createElement('div')
+  div.className = 'fin-parcela-row'
+  div.dataset.parcId = '' // sem ID = nova parcela → vai fazer INSERT
+  div.innerHTML = `
+    <label style="min-width:32px;color:var(--muted);font-size:12px">${total}ª</label>
+    <input type="number" class="fedit-parc-val" placeholder="Valor" style="width:90px"/>
+    <input type="date"   class="fedit-parc-data" value="${hoje}"/>
+    <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 6px;font-size:12px">
+      <option value="">—</option>
+      <option value="pix">PIX</option>
+      <option value="boleto">Boleto</option>
+      <option value="cartao">Cartão</option>
+    </select>`
+  lista.appendChild(div)
+}
+
 async function salvarEditVenda() {
   const vendaId = document.getElementById('fedit-id').value
   const { error: eV } = await sb.from('vendas').update({
@@ -2267,13 +2298,18 @@ async function salvarEditVenda() {
     observacao:           document.getElementById('fedit-obs').value.trim()
   }).eq('id', vendaId)
   if (eV) { alert('Erro: '+eV.message); return }
-  for (const row of document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row')) {
+  const rows = document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row')
+  const totalParcs = rows.length
+  for (let i = 0; i < rows.length; i++) {
+    const row    = rows[i]
     const metodo = row.querySelector('.fedit-parc-metodo').value
-    await sb.from('parcelas').update({
-      valor:     parseFloat(row.querySelector('.fedit-parc-val').value)||0,
-      vencimento: row.querySelector('.fedit-parc-data').value,
-      metodo:    metodo||null
-    }).eq('id', row.dataset.parcId)
+    const valor  = parseFloat(row.querySelector('.fedit-parc-val').value)||0
+    const venc   = row.querySelector('.fedit-parc-data').value
+    if (row.dataset.parcId) {
+      await sb.from('parcelas').update({ valor, vencimento: venc, metodo: metodo||null }).eq('id', row.dataset.parcId)
+    } else {
+      await sb.from('parcelas').insert({ venda_id: vendaId, numero: i+1, total_parcelas: totalParcs, valor, vencimento: venc, metodo: metodo||null, status: 'pendente' })
+    }
   }
   document.getElementById('modal-edit').classList.remove('open')
   await loadFinanceiro()
