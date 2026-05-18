@@ -1126,15 +1126,17 @@ function applyRole() {
 }
 
 // ── REALTIME ──────────────────────────────────────────────────────────────
+let _realtimeSubscribed = false
 function subscribeRealtime() {
+  if (_realtimeSubscribed) return
+  _realtimeSubscribed = true
+
   sb.channel('leads-changes')
     .on('postgres_changes', { event:'*', schema:'public', table:'leads' }, async () => {
       await loadLeads()
       renderDashboard(); renderPipeline(); renderAllLeads()
     }).subscribe()
 
-  // Listener em clientes_cs — quando lead é movido pra CS (ou removido), re-render do pipeline
-  // pra atualizar badge "🤝 Em CS" e visibilidade do botão →CS sem precisar de reload
   sb.channel('clientes-cs-changes')
     .on('postgres_changes', { event:'*', schema:'public', table:'clientes_cs' }, async () => {
       await loadCS()
