@@ -2002,7 +2002,7 @@ async function loadFinanceiro() {
     ]
     return
   }
-  await sb.rpc('atualizar_status_parcelas').catch(() => {})
+  try { await sb.rpc('atualizar_status_parcelas') } catch(e) {}
   const [v, p] = await Promise.all([
     sb.from('vendas').select('*').order('created_at', { ascending: false }),
     sb.from('parcelas').select('*').order('vencimento', { ascending: true })
