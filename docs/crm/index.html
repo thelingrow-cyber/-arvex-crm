@@ -221,6 +221,10 @@
     .lead-card-meta span { font-size: 11px; color: var(--muted); }
     .lead-card-meta span strong { color: var(--white); font-weight: 600; }
     .lead-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+    .card-fin-summary { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+    .card-fin-valor { font-weight: 700; font-size: 13px; color: var(--gold2); flex: 1; }
+    .card-fin-status { font-size: 11px; }
+    .card-fin-edit { background: rgba(200,169,110,.15); border: none; color: var(--gold2); cursor: pointer; border-radius: 5px; padding: 3px 7px; font-size: 12px; }
     .lead-card-actions { display: flex; gap: 5px; }
     .btn-card-action { background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--muted); padding: 4px 8px; border-radius: 5px; font-size: 10px; font-weight: 600; cursor: pointer; transition: all .15s; }
     .btn-card-action:hover { background: rgba(255,255,255,.1); color: var(--white); }
@@ -1079,7 +1083,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
     applyRole()
     // carrega dados em background — loadCS PRIMEIRO pra popular csLeadIds antes do renderPipeline
     if (currentRole !== 'cs') {
-      Promise.all([loadLeads(), loadCS()])
+      Promise.all([loadLeads(), loadCS(), loadVendasParcelas()])
         .then(() => { renderDashboard(); renderPipeline(); })
         .catch(() => {})
     } else {
@@ -1359,6 +1363,27 @@ function getSLABadge(l) {
 
 function renderCard(l) {
   const inCS = csLeadIds.has(l.id)
+  let finHtml = ''
+  if (l.status === 'fechado') {
+    const venda = cachedVendas.find(v => v.lead_id === l.id)
+    if (venda) {
+      const parcs = cachedParcelas.filter(p => p.venda_id === venda.id)
+      const total = parcs.length
+      const pagas = parcs.filter(p => p.status === 'pago').length
+      const atras = parcs.filter(p => p.status === 'atrasado').length
+      const fmtV  = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})
+      let statusBadge = ''
+      if (total === 0)          statusBadge = ''
+      else if (pagas === total) statusBadge = `<span style="color:var(--green)">✅ Quitado</span>`
+      else if (atras > 0)       statusBadge = `<span style="color:#F87171">🔴 ${atras} atrasada${atras>1?'s':''}</span>`
+      else                      statusBadge = `<span style="color:var(--gold2)">⏳ ${pagas}/${total} pagas</span>`
+      finHtml = `<div class="card-fin-summary">
+        <span class="card-fin-valor">${fmtV(venda.valor_total)}</span>
+        <span class="card-fin-status">${statusBadge}</span>
+        <button class="card-fin-edit" onclick="openEditVenda('${venda.id}');event.stopPropagation()" title="Editar venda">✏️</button>
+      </div>`
+    }
+  }
   return `
     <div class="lead-card" draggable="true" data-id="${l.id}">
       ${getSLABadge(l)}
@@ -1373,6 +1398,7 @@ function renderCard(l) {
         ${l.proximo_passo ? `<span>🎯 <strong style="color:var(--gold2)">${esc(l.proximo_passo)}</strong></span>` : ''}
         ${l.motivo_perda ? `<span>❌ <strong style="color:#F87171">${esc(l.motivo_perda)}</strong></span>` : ''}
       </div>
+      ${finHtml}
       <div class="lead-card-footer">
         <div class="card-ticket">${currentRole === 'admin' && l.ticket ? 'R$ '+parseFloat(l.ticket).toLocaleString('pt-BR') : ''}</div>
         <div class="lead-card-actions">
@@ -2005,12 +2031,17 @@ async function loadFinanceiro() {
     return
   }
   try { await sb.rpc('atualizar_status_parcelas') } catch(e) {}
+  await loadVendasParcelas()
+}
+
+async function loadVendasParcelas() {
+  if (!currentUser) return
   const [v, p] = await Promise.all([
     sb.from('vendas').select('*').order('created_at', { ascending: false }),
     sb.from('parcelas').select('*').order('vencimento', { ascending: true })
   ])
-  cachedVendas   = v.data || []
-  cachedParcelas = p.data || []
+  if (!v.error) cachedVendas   = v.data || []
+  if (!p.error) cachedParcelas = p.data || []
 }
 
 function renderFinanceiro() {
