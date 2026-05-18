@@ -2308,7 +2308,13 @@ async function salvarEditVenda() {
     const valor  = parseFloat(row.querySelector('.fedit-parc-val').value)||0
     const venc   = row.querySelector('.fedit-parc-data').value
     if (row.dataset.parcId) {
-      await sb.from('parcelas').update({ valor, vencimento: venc, metodo: metodo||null }).eq('id', row.dataset.parcId)
+      const parcAtual = cachedParcelas.find(p => p.id === row.dataset.parcId)
+      let novoStatus = parcAtual?.status || 'pendente'
+      if (novoStatus !== 'pago') {
+        const hoje = new Date().toISOString().slice(0,10)
+        novoStatus = venc < hoje ? 'atrasado' : 'pendente'
+      }
+      await sb.from('parcelas').update({ valor, vencimento: venc, metodo: metodo||null, status: novoStatus }).eq('id', row.dataset.parcId)
     } else {
       await sb.from('parcelas').insert({ venda_id: vendaId, numero: i+1, total_parcelas: totalParcs, valor, vencimento: venc, metodo: metodo||null, status: 'pendente' })
     }
