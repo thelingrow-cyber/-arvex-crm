@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campanhas — SaaS Óptico</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; display: flex; min-height: 100vh; }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 56px; background: #fff; border-right: 1px solid #e5e7eb;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 16px 0; gap: 8px; position: fixed; height: 100vh; z-index: 10;
+  }
+  .sidebar-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #9ca3af; font-size: 16px;
+  }
+  .sidebar-icon:hover { background: #f3f4f6; color: #374151; }
+  .sidebar-icon.active { background: #f0fdf4; color: #16a34a; }
+
+  /* MAIN */
+  .main { margin-left: 56px; flex: 1; padding: 28px 32px; }
+
+  /* HEADER */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .header-left h1 { font-size: 22px; font-weight: 700; color: #111827; }
+  .header-left p { font-size: 13px; color: #6b7280; margin-top: 2px; }
+  .btn-criar {
+    background: #16a34a; color: #fff; border: none; border-radius: 8px;
+    padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: flex; gap: 12px; margin-bottom: 24px; margin-top: 16px;
+  }
+  .stat-pill {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+    padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .stat-pill-val { font-size: 20px; font-weight: 700; color: #111827; }
+  .stat-pill-label { font-size: 12px; color: #6b7280; }
+
+  /* SECTION */
+  .section-label {
+    font-size: 12px; font-weight: 700; color: #6b7280;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+
+  /* CAMPAIGN CARD */
+  .camp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+
+  .camp-card {
+    background: #fff; border-radius: 12px; border: 1px solid #e5e7eb;
+    padding: 18px 20px; position: relative; transition: box-shadow 0.2s;
+  }
+  .camp-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
+  .camp-card.locked {
+    background: #fafafa; border-color: #e5e7eb; opacity: 0.85;
+  }
+
+  .camp-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .camp-icon { font-size: 24px; }
+
+  /* TOGGLE */
+  .toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; inset: 0; background: #d1d5db;
+    border-radius: 22px; cursor: pointer; transition: 0.3s;
+  }
+  .toggle-slider:before {
+    content: ''; position: absolute; width: 16px; height: 16px;
+    background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: 0.3s;
+  }
+  .toggle input:checked + .toggle-slider { background: #16a34a; }
+  .toggle input:checked + .toggle-slider:before { transform: translateX(18px); }
+
+  .camp-name { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+  .camp-desc { font-size: 12px; color: #6b7280; line-height: 1.5; margin-bottom: 14px; }
+
+  .camp-footer { display: flex; align-items: center; justify-content: space-between; }
+  .camp-trigger {
+    font-size: 11px; background: #f0fdf4; color: #16a34a;
+    padding: 3px 10px; border-radius: 20px; font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .camp-stats { font-size: 11px; color: #9ca3af; }
+
+  /* ACTIVE STATE */
+  .camp-card.active { border-color: #bbf7d0; background: #f0fdf4; }
+  .camp-card.active .camp-name { color: #15803d; }
+
+  /* LOCK BADGE */
+  .lock-badge {
+    position: absolute; top: 14px; right: 14px;
+    background: #f3f4f6; border: 1px solid #e5e7eb;
+    border-radius: 20px; padding: 3px 10px;
+    font-size: 11px; color: #9ca3af; font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .camp-card.locked .camp-name { color: #9ca3af; }
+  .camp-card.locked .camp-desc { color: #d1d5db; }
+
+  .pro-badge {
+    background: #fef3c7; border: 1px solid #fde68a;
+    color: #d97706; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 20px;
+  }
+
+  /* PREVIEW BUBBLE */
+  .preview-box {
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px;
+    padding: 10px 14px; margin-top: 12px;
+    font-size: 12px; color: #15803d; line-height: 1.6;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .preview-box span { font-size: 16px; flex-shrink: 0; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: #e5e7eb; margin: 8px 0 20px; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-icon">⊞</div>
+  <div class="sidebar-icon">💬</div>
+  <div class="sidebar-icon">🤖</div>
+  <div class="sidebar-icon">▦</div>
+  <div class="sidebar-icon">🔗</div>
+  <div class="sidebar-icon active">📢</div>
+  <div class="sidebar-icon">👥</div>
+  <div style="flex:1"></div>
+  <div class="sidebar-icon">❓</div>
+  <div class="sidebar-icon">⚙️</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Campanhas</h1>
+      <p>Ative campanhas prontas ou crie a sua para engajar clientes automaticamente</p>
+    </div>
+    <button class="btn-criar">+ Criar Campanha</button>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-pill">
+      <div>
+        <div class="stat-pill-val" style="color:#16a34a">3</div>
+        <div class="stat-pill-label">Campanhas ativas</div>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div>
+        <div class="stat-pill-val">142</div>
+        <div class="stat-pill-label">Mensagens enviadas no mês</div>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div>
+        <div class="stat-pill-val" style="color:#16a34a">31%</div>
+        <div class="stat-pill-label">Taxa de resposta</div>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div>
+        <div class="stat-pill-val">R$ 8.940</div>
+        <div class="stat-pill-label">Receita gerada por campanhas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISPONÍVEIS -->
+  <div class="section-label">✅ Disponíveis — prontas para ativar</div>
+
+  <div class="camp-grid">
+
+    <!-- Prescrição Vencendo — ATIVA -->
+    <div class="camp-card active">
+      <div class="camp-top">
+        <div class="camp-icon">👓</div>
+        <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="camp-name">Prescrição Vencendo</div>
+      <div class="camp-desc">Avisa clientes com receita médica vencendo nos próximos 30 dias para agendar nova consulta.</div>
+      <div class="preview-box">
+        <span>💬</span>
+        "Oi [Nome]! Sua receita dos óculos vence em breve. Quer agendar sua consulta esta semana?"
+      </div>
+      <div class="camp-footer" style="margin-top:12px">
+        <div class="camp-trigger">⚡ 30 dias antes</div>
+        <div class="camp-stats">28 clientes elegíveis</div>
+      </div>
+    </div>
+
+    <!-- Cliente Sumido — ATIVA -->
+    <div class="camp-card active">
+      <div class="camp-top">
+        <div class="camp-icon">😴</div>
+        <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="camp-name">Cliente Sumido</div>
+      <div class="camp-desc">Reativa clientes que não compram há 6 meses com mensagem personalizada e oferta de retorno.</div>
+      <div class="preview-box">
+        <span>💬</span>
+        "Oi [Nome]! Sentimos sua falta. Temos novidades em lentes e armações esperando por você. 😊"
+      </div>
+      <div class="camp-footer" style="margin-top:12px">
+        <div class="camp-trigger">⚡ 6 meses sem compra</div>
+        <div class="camp-stats">47 clientes elegíveis</div>
+      </div>
+    </div>
+
+    <!-- OS Entregue — ATIVA -->
+    <div class="camp-card active">
+      <div class="camp-top">
+        <div class="camp-icon">⭐</div>
+        <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="camp-name">Satisfação Pós-entrega</div>
+      <div class="camp-desc">Pergunta automaticamente como está sendo a experiência 7 dias após entrega dos óculos.</div>
+      <div class="preview-box">
+        <span>💬</span>
+        "Oi [Nome]! Como estão seus novos óculos? Precisou de algum ajuste? Estamos à disposição! 👓"
+      </div>
+      <div class="camp-footer" style="margin-top:12px">
+        <div class="camp-trigger">⚡ 7 dias após entrega</div>
+        <div class="camp-stats">6 clientes elegíveis</div>
+      </div>
+    </div>
+
+    <!-- Aniversário — INATIVA -->
+    <div class="camp-card">
+      <div class="camp-top">
+        <div class="camp-icon">🎂</div>
+        <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="camp-name">Aniversário do Cliente</div>
+      <div class="camp-desc">Mensagem automática no dia do aniversário com parabéns e desconto especial para nova compra.</div>
+      <div class="preview-box" style="background:#f9fafb;border-color:#e5e7eb;">
+        <span>💬</span>
+        <span style="color:#6b7280">"Feliz aniversário, [Nome]! Temos um presente especial esperando por você na ótica. 🎁"</span>
+      </div>
+      <div class="camp-footer" style="margin-top:12px">
+        <div class="camp-trigger">⚡ Dia do aniversário</div>
+        <div class="camp-stats">—</div>
+      </div>
+    </div>
+
+    <!-- Volta às Aulas — INATIVA -->
+    <div class="camp-card">
+      <div class="camp-top">
+        <div class="camp-icon">🎒</div>
+        <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="camp-name">Volta às Aulas</div>
+      <div class="camp-desc">Campanha de janeiro e fevereiro focada em óculos infantis e lentes para leitura escolar.</div>
+      <div class="preview-box" style="background:#f9fafb;border-color:#e5e7eb;">
+        <span>💬</span>
+        <span style="color:#6b7280">"[Nome], o ano letivo começa em breve! Óculos novos para as crianças garantem melhor desempenho na escola. 📚"</span>
+      </div>
+      <div class="camp-footer" style="margin-top:12px">
+        <div class="camp-trigger">⚡ Janeiro — Fevereiro</div>
+        <div class="camp-stats">—</div>
+      </div>
+    </div>
+
+    <!-- Dia das Mães — INATIVA -->
+    <div class="camp-card">
+      <div class="camp-top">
+        <div class="camp-icon">💐</div>
+        <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="camp-name">Datas Comemorativas</div>
+      <div class="camp-desc">Dia das Mães, Dia dos Pais e Dia dos Namorados. Campanhas sazonais prontas para cada data.</div>
+      <div class="preview-box" style="background:#f9fafb;border-color:#e5e7eb;">
+        <span>💬</span>
+        <span style="color:#6b7280">"Presente especial para o Dia das Mães? Que tal um óculos Varilux? Venha ver nossas opções. 💝"</span>
+      </div>
+      <div class="camp-footer" style="margin-top:12px">
+        <div class="camp-trigger">⚡ Sazonal</div>
+        <div class="camp-stats">—</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EM BREVE -->
+  <div class="section-label">🔒 Em breve — campanhas exclusivas</div>
+
+  <div class="camp-grid">
+
+    <!-- Copa do Mundo -->
+    <div class="camp-card locked">
+      <div class="lock-badge">🔒 Em breve</div>
+      <div class="camp-top" style="margin-bottom:12px">
+        <div class="camp-icon">⚽</div>
+      </div>
+      <div class="camp-name">Copa do Mundo</div>
+      <div class="camp-desc">Campanha temática para o maior evento do futebol. Ofertas especiais, óculos de sol e ações de engajamento durante os jogos.</div>
+      <div class="camp-footer" style="margin-top:14px">
+        <div class="pro-badge">PRO</div>
+        <div class="camp-stats">Disponível em breve</div>
+      </div>
+    </div>
+
+    <!-- Eleições -->
+    <div class="camp-card locked">
+      <div class="lock-badge">🔒 Em breve</div>
+      <div class="camp-top" style="margin-bottom:12px">
+        <div class="camp-icon">🗳️</div>
+      </div>
+      <div class="camp-name">Período Eleitoral</div>
+      <div class="camp-desc">Campanha para o período de eleições — alta visibilidade da população, momento estratégico para ações de reativação.</div>
+      <div class="camp-footer" style="margin-top:14px">
+        <div class="pro-badge">PRO</div>
+        <div class="camp-stats">Disponível em breve</div>
+      </div>
+    </div>
+
+    <!-- Black Friday -->
+    <div class="camp-card locked">
+      <div class="lock-badge">🔒 Em breve</div>
+      <div class="camp-top" style="margin-bottom:12px">
+        <div class="camp-icon">🖤</div>
+      </div>
+      <div class="camp-name">Black Friday</div>
+      <div class="camp-desc">Maior campanha do ano. Sequência automática de mensagens com contagem regressiva, ofertas e recuperação de carrinho.</div>
+      <div class="camp-footer" style="margin-top:14px">
+        <div class="pro-badge">PRO</div>
+        <div class="camp-stats">Novembro 2026</div>
+      </div>
+    </div>
+
+    <!-- Natal -->
+    <div class="camp-card locked">
+      <div class="lock-badge">🔒 Em breve</div>
+      <div class="camp-top" style="margin-bottom:12px">
+        <div class="camp-icon">🎄</div>
+      </div>
+      <div class="camp-name">Natal e Fim de Ano</div>
+      <div class="camp-desc">Campanha de dezembro com foco em presente de óculos, óculos de sol para verão e renovação de prescrição no início do ano.</div>
+      <div class="camp-footer" style="margin-top:14px">
+        <div class="pro-badge">PRO</div>
+        <div class="camp-stats">Dezembro 2026</div>
+      </div>
+    </div>
+
+    <!-- Carnaval -->
+    <div class="camp-card locked">
+      <div class="lock-badge">🔒 Em breve</div>
+      <div class="camp-top" style="margin-bottom:12px">
+        <div class="camp-icon">🎭</div>
+      </div>
+      <div class="camp-name">Carnaval</div>
+      <div class="camp-desc">Alta temporada de óculos de sol. Campanha focada em solar graduado, proteção UV e estilo para o verão.</div>
+      <div class="camp-footer" style="margin-top:14px">
+        <div class="pro-badge">PRO</div>
+        <div class="camp-stats">Fevereiro 2027</div>
+      </div>
+    </div>
+
+    <!-- Dia do Óptico -->
+    <div class="camp-card locked">
+      <div class="lock-badge">🔒 Em breve</div>
+      <div class="camp-top" style="margin-bottom:12px">
+        <div class="camp-icon">👁️</div>
+      </div>
+      <div class="camp-name">Dia do Óptico</div>
+      <div class="camp-desc">Campanha especial para o Dia do Óptico com ações de valorização da profissão e engajamento da base de clientes.</div>
+      <div class="camp-footer" style="margin-top:14px">
+        <div class="pro-badge">PRO</div>
+        <div class="camp-stats">Disponível em breve</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="height:32px"></div>
+
+</div>
+</body>
+</html>

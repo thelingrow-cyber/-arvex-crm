@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipeline Óptico</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f4f0;
+    color: #1a1a1a;
+  }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 52px;
+    background: #fff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 0;
+    gap: 6px;
+    position: fixed;
+    height: 100vh;
+    z-index: 10;
+  }
+  .s-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 17px;
+  }
+  .s-icon.active {
+    background: #e8f5e9;
+    color: #22c55e;
+  }
+
+  /* MAIN */
+  .main { margin-left: 52px; flex: 1; display: flex; flex-direction: column; }
+
+  /* HEADER */
+  .page-header {
+    padding: 20px 24px 12px;
+  }
+  .page-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 2px;
+  }
+  .page-header p {
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  /* PIPELINE */
+  .pipeline-area {
+    padding: 0 16px 20px;
+    overflow-x: auto;
+    flex: 1;
+  }
+  .pipeline {
+    display: flex;
+    gap: 12px;
+    min-width: max-content;
+    padding-bottom: 8px;
+  }
+
+  /* COLUMN */
+  .col {
+    width: 230px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .col-header {
+    padding: 13px 14px 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .col-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+  }
+  .col-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: #22c55e;
+    background: #f0fdf4;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  .col-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-height: 100px;
+  }
+
+  /* CARD */
+  .card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 11px 12px;
+    cursor: pointer;
+    position: relative;
+  }
+  .card:hover {
+    border-color: #22c55e;
+    box-shadow: 0 1px 6px rgba(34,197,94,0.12);
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    flex: 1;
+    padding-right: 8px;
+  }
+  .card-icons {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .card-ico {
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    background: #f9fafb;
+    color: #6b7280;
+  }
+  .card-ico.wpp { color: #22c55e; }
+  .card-ico.del { color: #f87171; }
+
+  .card-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #22c55e;
+    margin-bottom: 3px;
+  }
+  .card-produto {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 5px;
+  }
+  .card-obs {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+  .card-tarefa {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #d97706;
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 99px;
+    padding: 2px 8px;
+    margin-top: 2px;
+  }
+
+  .add-card {
+    margin: 6px 10px 10px;
+    padding: 8px;
+    border: 1.5px dashed #d1d5db;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px;
+    color: #9ca3af;
+    cursor: pointer;
+  }
+  .add-card:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+    background: #f0fdf4;
+  }
+
+  /* MODAL */
+  .overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 14px;
+    width: 460px;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+  }
+  .modal-hd {
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; background: #fff;
+  }
+  .modal-hd h2 { font-size: 16px; font-weight: 700; color: #111827; }
+  .modal-hd button {
+    background: none; border: none; font-size: 18px; color: #9ca3af; cursor: pointer;
+  }
+  .modal-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+
+  .f-label {
+    font-size: 12px; font-weight: 600; color: #374151;
+    margin-bottom: 5px; display: block;
+  }
+  .f-new {
+    font-size: 10px; font-weight: 700;
+    background: #dcfce7; color: #16a34a;
+    padding: 1px 6px; border-radius: 99px;
+    margin-left: 6px;
+  }
+  .f-input, .f-select, .f-textarea {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #111827;
+    font-family: inherit;
+    background: #fff;
+  }
+  .f-input:focus, .f-select:focus, .f-textarea:focus {
+    outline: none; border-color: #22c55e;
+  }
+  .f-new-field { border-color: #bbf7d0; background: #f0fdf4; }
+  .f-textarea { min-height: 70px; resize: vertical; }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .f-group { display: flex; flex-direction: column; }
+
+  .sec-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: #9ca3af; margin-bottom: 2px;
+  }
+  .divider { height: 1px; background: #f3f4f6; }
+
+  .tarefa-row {
+    display: flex; align-items: center; gap: 10px;
+    background: #f9fafb; border: 1px solid #f3f4f6;
+    border-radius: 8px; padding: 8px 11px;
+  }
+  .tarefa-cb { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid #d1d5db; cursor: pointer; flex-shrink: 0; }
+  .tarefa-lbl { font-size: 13px; color: #374151; flex: 1; }
+  .tarefa-dt { font-size: 11px; color: #6b7280; }
+
+  .add-tarefa-btn {
+    display: flex; align-items: center; gap: 6px;
+    border: 1.5px dashed #d1d5db; border-radius: 8px;
+    padding: 8px 11px; font-size: 13px; color: #9ca3af;
+    cursor: pointer; background: none; width: 100%; font-family: inherit;
+  }
+
+  .modal-ft {
+    padding: 14px 20px; border-top: 1px solid #f3f4f6;
+    display: flex; gap: 8px; justify-content: flex-end;
+    position: sticky; bottom: 0; background: #fff;
+  }
+  .btn { padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; }
+  .btn-ghost { background: #f3f4f6; color: #374151; }
+  .btn-save { background: #22c55e; color: #fff; }
+  .btn-save:hover { background: #16a34a; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="s-icon">⊞</div>
+    <div class="s-icon">💬</div>
+    <div class="s-icon">👤</div>
+    <div class="s-icon active">▽</div>
+    <div class="s-icon">🔗</div>
+    <div class="s-icon">📱</div>
+    <div class="s-icon">👥</div>
+    <div class="s-icon">≡</div>
+    <div style="flex:1"></div>
+    <div class="s-icon">⚙</div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="page-header">
+      <h1>pipeline óptico</h1>
+      <p>Gerencie as etapas e cards do seu quadro CRM</p>
+    </div>
+
+    <div class="pipeline-area">
+      <div class="pipeline">
+
+        <!-- 1 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">novo lead</span>
+            <span class="col-count">2</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Maria Fernanda</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+            </div>
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">João Carlos</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 2 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">contato feito</span>
+            <span class="col-count">1</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Ana Paula</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-tarefa">⏰ 1 tarefa</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 3 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">atendimento agendado</span>
+            <span class="col-count">1</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Roberto Lima</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-tarefa">⏰ atendimento 22/05</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 4 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">atendimento realizado</span>
+            <span class="col-count">1</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Claudia Souza</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Progressiva</div>
+              <div class="card-value">R$ 897,00</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 5 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">follow-up</span>
+            <span class="col-count">2</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Patrícia Nunes</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Progressiva</div>
+              <div class="card-value">R$ 1.197,00</div>
+              <div class="card-tarefa">⏰ follow-up 23/05</div>
+            </div>
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Diego Martins</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Solar Graduada</div>
+              <div class="card-value">R$ 697,00</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 6 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">venda fechada</span>
+            <span class="col-count">2</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Lucas Pereira</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Progressiva</div>
+              <div class="card-value">R$ 1.497,00</div>
+              <div class="card-tarefa">⏰ 1 tarefa</div>
+            </div>
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Fernanda Melo</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Monofocal</div>
+              <div class="card-value">R$ 697,00</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 7 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">OS aberta</span>
+            <span class="col-count">1</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Marcelo Santos</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Solar Graduada</div>
+              <div class="card-value">R$ 1.497,00</div>
+              <div class="card-obs">OS 1042 · Lab Óptika</div>
+              <div class="card-tarefa">⏰ 1 tarefa</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 8 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">em produção</span>
+            <span class="col-count">1</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Patricia Alves</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Lente de Contato</div>
+              <div class="card-value">R$ 997,00</div>
+              <div class="card-tarefa">⏰ entrega 24/05</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 9 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">pronto p/ retirada</span>
+            <span class="col-count">1</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Thiago Ramos</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Progressiva</div>
+              <div class="card-value">R$ 1.197,00</div>
+              <div class="card-tarefa">⏰ avisar cliente</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+        <!-- 10 -->
+        <div class="col">
+          <div class="col-header">
+            <span class="col-name">entregue</span>
+            <span class="col-count">3</span>
+          </div>
+          <div class="col-body">
+            <div class="card" onclick="openModal()">
+              <div class="card-top">
+                <span class="card-name">Camila Torres</span>
+                <div class="card-icons">
+                  <button class="card-ico del">🗑</button>
+                  <button class="card-ico wpp">💬</button>
+                </div>
+              </div>
+              <div class="card-produto">Monofocal</div>
+              <div class="card-value">R$ 697,00</div>
+            </div>
+          </div>
+          <div class="add-card">+ Adicionar Card</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-hd">
+      <h2>Detalhes do Card</h2>
+      <button onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="f-group">
+        <label class="f-label">Nome do Contato</label>
+        <input class="f-input" type="text" value="Lucas Pereira" />
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Telefone</label>
+        <input class="f-input" type="text" value="55484932912" />
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Valor</label>
+        <input class="f-input" type="text" value="R$ 1.497,00" />
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Tipo de Produto <span class="f-new">NOVO</span></label>
+        <select class="f-select f-new-field" id="tipo-select" onchange="toggleOutra()">
+          <option value="">Selecionar...</option>
+          <option>Progressiva</option>
+          <option>Monofocal</option>
+          <option>Bifocal</option>
+          <option>Solar Graduada</option>
+          <option>Solar sem grau</option>
+          <option>Lente de Contato</option>
+          <option>Armação</option>
+          <option value="outra">Outra</option>
+        </select>
+      </div>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label">Marca / Modelo <span class="f-new">NOVO</span></label>
+          <input class="f-input f-new-field" type="text" placeholder="Ex: Varilux Confort, Hoya Sync, Zeiss..." />
+        </div>
+        <div id="outra-box" class="f-group" style="display:none;">
+          <label class="f-label">Qual produto?</label>
+          <input class="f-input f-new-field" type="text" placeholder="Descreva o produto..." />
+        </div>
+      </div>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label">Canal de Origem <span class="f-new">NOVO</span></label>
+          <select class="f-select f-new-field">
+            <option>WhatsApp</option>
+            <option>Instagram</option>
+            <option>Indicação</option>
+            <option>Tráfego pago</option>
+            <option>Ligação</option>
+            <option>Google</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Última Consulta <span class="f-new">NOVO</span></label>
+          <input class="f-input f-new-field" type="date" value="2025-05-15" />
+        </div>
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Observações</label>
+        <textarea class="f-textarea">OS 1042 | Lab: Óptika | Entrega: 25/05</textarea>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="sec-title">Tarefas</div>
+
+      <div class="tarefa-row">
+        <div class="tarefa-cb"></div>
+        <span class="tarefa-lbl">Atendimento agendado</span>
+        <input type="date" style="border:none;background:transparent;font-size:11px;color:#6b7280;cursor:pointer;" />
+      </div>
+
+      <div class="tarefa-row" style="margin-top:6px;">
+        <div class="tarefa-cb"></div>
+        <span class="tarefa-lbl">Follow up</span>
+        <input type="date" style="border:none;background:transparent;font-size:11px;color:#6b7280;cursor:pointer;" />
+      </div>
+
+      <button class="add-tarefa-btn" style="margin-top:6px;">+ Adicionar Tarefa</button>
+
+      <div class="f-group">
+        <label class="f-label">Data de Criação</label>
+        <input class="f-input" type="text" value="19/05/2026" disabled style="background:#f9fafb;color:#9ca3af;" />
+      </div>
+
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-save">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal() { document.getElementById('overlay').classList.add('open'); }
+  function closeModal() { document.getElementById('overlay').classList.remove('open'); }
+  function toggleOutra() {
+    const sel = document.getElementById('tipo-select');
+    const box = document.getElementById('outra-box');
+    box.style.display = sel.value === 'outra' ? 'block' : 'none';
+  }
+</script>
+</body>
+</html>
