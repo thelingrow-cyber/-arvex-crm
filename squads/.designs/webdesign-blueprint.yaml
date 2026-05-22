@@ -1,0 +1,260 @@
+squad:
+  name: webdesign
+  title: WEBDESIGN Squad
+  description: Squad especializado em criação de sites e landing pages profissionais que convertem
+  version: "1.0.0"
+  icon: "🎨"
+  domain: web-design
+  namespace: WebDesign
+  scope: project
+  confidence: 94%
+  created_at: "2026-05-21"
+
+  agents_count: 10
+  tasks_count: 35
+
+agents:
+
+  - id: creative-director
+    title: Creative Director
+    role: Orquestrador do squad — conduz briefing, define direção criativa e aprova entregáveis
+    is_lead: true
+    tasks:
+      - id: briefing-inicial
+        description: Coletar objetivos, público-alvo, CTA, referências visuais e restrições do projeto
+        input: Demanda do usuário (produto, marca, objetivo)
+        output: Documento de briefing estruturado
+      - id: direcao-criativa
+        description: Definir conceito visual e narrativo do projeto com base no briefing
+        input: Briefing aprovado
+        output: Direção criativa (moodboard, conceito, referências)
+      - id: aprovacao-final
+        description: Revisar e aprovar todos os entregáveis do squad antes da entrega
+        input: Entregáveis dos agentes
+        output: Página aprovada ou lista de ajustes
+
+  - id: brand-strategist
+    title: Brand Strategist
+    role: Define identidade de marca antes do design — posicionamento, tom, paleta
+    tasks:
+      - id: identidade-marca
+        description: Posicionamento, personalidade da marca e tom de voz
+        input: Briefing + perfil do expert/empresa
+        output: Identidade de marca documentada
+      - id: paleta-visual
+        description: Cores primárias/secundárias, tipografia, elementos visuais
+        input: Identidade de marca
+        output: Paleta visual completa
+      - id: brand-guidelines
+        description: Documento consolidado de diretrizes da marca
+        input: Identidade + paleta
+        output: Brand guidelines (PDF/MD)
+
+  - id: ux-researcher
+    title: UX Researcher
+    role: Pesquisa de usuário, personas e mapeamento de jornada — informa design com dados reais
+    tasks:
+      - id: pesquisa-usuarios
+        description: Entrevistas, surveys e análise de comportamento do público-alvo
+        input: Briefing + segmento de mercado
+        output: Insights de comportamento documentados
+      - id: personas
+        description: Criação de personas detalhadas do público-alvo
+        input: Pesquisa de usuários
+        output: 2-3 personas com dores, desejos e objeções
+      - id: mapa-jornada
+        description: Mapeamento da jornada do cliente até a conversão
+        input: Personas
+        output: Mapa de jornada com touchpoints e pontos de fricção
+      - id: heuristicas
+        description: Análise heurística de usabilidade da página
+        input: Wireframe ou página existente
+        output: Lista de problemas de usabilidade e recomendações
+
+  - id: web-designer
+    title: Web Designer
+    role: Layout, UX/UI, wireframes e identidade visual aplicada
+    tasks:
+      - id: wireframe
+        description: Estrutura e hierarquia visual da página (low-fidelity)
+        input: Briefing + brand guidelines + mapa de jornada
+        output: Wireframe anotado de todas as seções
+      - id: mockup-visual
+        description: Design completo com identidade visual aplicada (high-fidelity)
+        input: Wireframe aprovado + paleta visual
+        output: Mockup de todas as seções desktop e mobile
+      - id: componentes-ui
+        description: Biblioteca de componentes reutilizáveis (botões, cards, formulários)
+        input: Mockup
+        output: Componentes organizados e documentados
+      - id: responsive-design
+        description: Adaptação do design para mobile e tablet
+        input: Mockup desktop
+        output: Mockups mobile e tablet aprovados
+
+  - id: copywriter
+    title: Copywriter
+    role: Copy persuasivo orientado a conversão — headlines, CTAs e textos de página
+    tasks:
+      - id: briefing-copy
+        description: Mapear personas, oferta, diferencial, objeções e gatilhos de compra
+        input: Briefing + personas
+        output: Briefing de copy completo
+      - id: headline-cta
+        description: Headlines, subtítulos e calls-to-action de todas as seções
+        input: Briefing de copy + direção criativa
+        output: Headlines e CTAs aprovados
+      - id: copy-secoes
+        description: Textos completos de todas as seções da página
+        input: Headlines + briefing de copy
+        output: Copy de todas as seções revisado
+      - id: copy-funil
+        description: Mensagens adaptadas por etapa do funil (topo, meio, fundo)
+        input: Copy completo + mapa de jornada
+        output: Variações de copy por etapa de funil
+
+  - id: storytelling-expert
+    title: Storytelling Expert
+    role: Narrativa, jornada do herói e conexão emocional da página
+    tasks:
+      - id: arco-narrativo
+        description: Estrutura da história da página — problema, solução, transformação
+        input: Briefing + personas
+        output: Arco narrativo mapeado
+      - id: jornada-heroi
+        description: Aplicar framework da jornada do herói ao produto/expert
+        input: Arco narrativo + identidade de marca
+        output: Roteiro narrativo da página
+      - id: conexao-emocional
+        description: Ganchos emocionais, prova social e elementos de identificação
+        input: Personas + roteiro narrativo
+        output: Lista de gatilhos emocionais e recomendações de prova social
+
+  - id: seo-specialist
+    title: SEO Specialist
+    role: Otimização para buscadores — keywords, estrutura semântica e performance
+    tasks:
+      - id: pesquisa-keywords
+        description: Palavras-chave primárias e secundárias do nicho
+        input: Briefing + domínio/nicho
+        output: Mapa de keywords com volume e intenção
+      - id: estrutura-semantica
+        description: H1/H2/H3, alt texts, schema markup
+        input: Copy + wireframe
+        output: Estrutura semântica documentada
+      - id: meta-tags
+        description: Title tag, meta description, Open Graph tags
+        input: Copy + keywords
+        output: Meta tags otimizadas para todas as páginas
+      - id: performance
+        description: Core Web Vitals, velocidade de carregamento, lazy loading
+        input: Página implementada
+        output: Relatório de performance + recomendações
+
+  - id: frontend-developer
+    title: Frontend Developer
+    role: Implementação técnica da página — HTML, CSS, JS e integrações
+    tasks:
+      - id: setup-projeto
+        description: Estrutura de arquivos, configuração inicial do projeto
+        input: Stack definida (Next.js/React ou HTML puro)
+        output: Projeto configurado e rodando localmente
+      - id: implementacao-html
+        description: Código HTML semântico baseado no mockup
+        input: Mockup + estrutura semântica SEO
+        output: HTML completo e validado
+      - id: estilizacao-css
+        description: CSS/Tailwind baseado no design aprovado
+        input: HTML + mockup + paleta visual
+        output: Página estilizada e responsiva
+      - id: integracao-forms
+        description: Formulários, webhooks e integrações externas (Hotmart, ActiveCampaign, etc)
+        input: Requisitos de integração do briefing
+        output: Formulários funcionando e integrados
+
+  - id: motion-designer
+    title: Motion Designer
+    role: Animações, micro-interações e assets dinâmicos
+    tasks:
+      - id: animacoes-scroll
+        description: Animações de entrada ativadas por scroll
+        input: Mockup aprovado + componentes UI
+        output: Animações implementadas e testadas
+      - id: micro-interacoes
+        description: Hover states, transições de botão, feedback visual
+        input: Componentes UI
+        output: Micro-interações aplicadas
+      - id: assets-dinamicos
+        description: Vídeos de background, animações Lottie, SVG animado
+        input: Direção criativa + mockup
+        output: Assets dinâmicos prontos para uso
+
+  - id: cro-analyst
+    title: CRO Analyst
+    role: Conversão, auditoria de funil e recomendações de A/B testing
+    tasks:
+      - id: auditoria-conversao
+        description: Revisão de todos os elementos de conversão da página
+        input: Página implementada
+        output: Relatório de auditoria com score e melhorias
+      - id: fluxo-atencao
+        description: Análise de hierarquia visual e fluxo do olhar
+        input: Mockup ou página
+        output: Mapa de atenção e recomendações de hierarquia
+      - id: sugestoes-ab
+        description: Variações recomendadas para teste A/B
+        input: Auditoria de conversão
+        output: Hipóteses de teste priorizadas
+
+workflow:
+  sequence:
+    - step: 1
+      agents: [creative-director]
+      tasks: [briefing-inicial]
+    - step: 2
+      agents: [brand-strategist, ux-researcher]
+      tasks: [identidade-marca, pesquisa-usuarios]
+      parallel: true
+    - step: 3
+      agents: [brand-strategist, ux-researcher]
+      tasks: [paleta-visual, personas]
+      parallel: true
+    - step: 4
+      agents: [brand-strategist, ux-researcher, creative-director]
+      tasks: [brand-guidelines, mapa-jornada, direcao-criativa]
+      parallel: true
+    - step: 5
+      agents: [web-designer, copywriter, storytelling-expert]
+      tasks: [wireframe, briefing-copy, arco-narrativo]
+      parallel: true
+    - step: 6
+      agents: [web-designer, copywriter, storytelling-expert, seo-specialist]
+      tasks: [mockup-visual, headline-cta, jornada-heroi, pesquisa-keywords]
+      parallel: true
+    - step: 7
+      agents: [frontend-developer, motion-designer, seo-specialist]
+      tasks: [setup-projeto, animacoes-scroll, estrutura-semantica]
+      parallel: true
+    - step: 8
+      agents: [frontend-developer, motion-designer, seo-specialist]
+      tasks: [implementacao-html, micro-interacoes, meta-tags]
+      parallel: true
+    - step: 9
+      agents: [frontend-developer]
+      tasks: [estilizacao-css, integracao-forms]
+    - step: 10
+      agents: [cro-analyst, ux-researcher]
+      tasks: [auditoria-conversao, heuristicas]
+      parallel: true
+    - step: 11
+      agents: [cro-analyst, seo-specialist]
+      tasks: [fluxo-atencao, performance]
+      parallel: true
+    - step: 12
+      agents: [cro-analyst, creative-director]
+      tasks: [sugestoes-ab, aprovacao-final]
+      parallel: true
+
+distribution:
+  level: local
+  path: ./squads/webdesign/

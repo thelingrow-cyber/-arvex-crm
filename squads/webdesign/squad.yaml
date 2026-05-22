@@ -1,0 +1,30 @@
+name: webdesign
+title: WEBDESIGN Squad
+description: Squad especializado em criação de sites e landing pages profissionais que convertem
+version: "1.0.0"
+icon: "🎨"
+namespace: WebDesign
+scope: project
+created_at: "2026-05-21"
+author: thelingrow-cyber
+
+agents:
+  - creative-director
+  - brand-strategist
+  - ux-researcher
+  - web-designer
+  - copywriter
+  - storytelling-expert
+  - seo-specialist
+  - frontend-developer
+  - motion-designer
+  - cro-analyst
+
+stats:
+  agents_count: 10
+  tasks_count: 35
+  workflow_steps: 12
+
+distribution:
+  level: local
+  path: ./squads/webdesign/
