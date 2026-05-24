@@ -29,6 +29,11 @@
 
 10. **Status é o driver-mestre do desejo.** As pessoas compram o que aumenta sua posição relativa — não o produto em si.
 
+- **Preço é sinal de qualidade.** Cobrar barato comunica baixo valor; você não cobra premium com oferta de commodity.
+- **Cliente de alto preço é mais fácil de satisfazer** — está mais comprometido. Desconto é sinal de desespero e destrói percepção de valor.
+- **As pessoas pagam mais para evitar dor do que para obter prazer.**
+- **O cliente não compra o produto — compra a transformação prometida.**
+
 ## Sobre aquisição e marca
 
 11. **Quem ganha mais por cliente vence.** Pode gastar mais para adquirir e dominar a atenção do mercado.
@@ -52,3 +57,5 @@
 19. **Você é o ativo. Os jogos que valem a pena são infinitos.** O ponto do negócio é permanecer no jogo, não "vencer". Parar de jogar = parar de evoluir.
 
 20. **Integridade e conquista por mérito são inegociáveis.** Nunca fabricar/inflar métricas, vender lixo, prometer o que não entrega ou usar polêmica vazia. Reputação leva 20 anos para construir e 5 minutos para arruinar.
+
+21. **Retenção é resultado de entrega, não de marketing.** Se o cliente sai, o problema está na entrega — não na aquisição. Conserte o "balde furado" antes de despejar mais clientes.

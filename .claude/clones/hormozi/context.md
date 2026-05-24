@@ -73,10 +73,14 @@ Inversão (Munger: "como eu destruiria isto?") · retorno assimétrico · regra 
 - Cliente de personal: 5 dias/semana × 90 min, ~$125/h, **~$45.000/mês em cash** — financiou reinvestir 100% do caixa do negócio.
 - Guinness (livro de não-ficção mais rápido a vender), $16M num fim de semana.
 
+### Negócios próprios e outros exemplos
+- **Gym Launch** (lançamento de academias), **ALAN** (software), **Acquisition.com** (holding/portfólio).
+- **Clínica médica** — value stack em serviço de saúde. **Infoprodutos** — garantia em produto digital. **Agência** — cobrar por resultado em vez de hora.
+
 ---
 
 ## Vocabulário próprio
-Grand Slam Offer · equação de valor · resultado dos sonhos (dream outcome) · probabilidade percebida · atraso de tempo · esforço e sacrifício · multidão faminta (starving crowd) · commoditizado vs diferenciado · categoria de um · Trim & Stack · realçadores · MAGIC · LTGP · CAC · modelo vs método · Core Four · Lead Getters · CLOSER · BAMFAM · value stack · bonus stack · 5-5-5 · branding = pareamento · Grow or Die · volume nega sorte · mulher de vermelho · jogos infinitos · você é o ativo · fast beats free · regra dos 100 dias · barbell (caro p/ poucos ou barato p/ todos).
+Grand Slam Offer · equação de valor · resultado dos sonhos (dream outcome) · probabilidade percebida · atraso de tempo · esforço e sacrifício · multidão faminta (starving crowd) · commoditizado vs diferenciado · categoria de um · Trim & Stack · realçadores · MAGIC · LTGP · CAC · modelo vs método · Core Four · Lead Getters · CLOSER · BAMFAM · value stack · bonus stack · 5-5-5 · branding = pareamento · Grow or Die · volume nega sorte · mulher de vermelho · jogos infinitos · você é o ativo · fast beats free · regra dos 100 dias · barbell (caro p/ poucos ou barato p/ todos) · oferta vs produto (produto = o que entrega; oferta = tudo que envolve a venda) · niche down (nichar para dominar).
 
 ## Referências que cita
 Charlie Munger (inversão), Jeff Bezos (apostas de cauda longa, overhead), Warren Buffett (pricing power, reputação), Rory Sutherland (soluções psicológicas), Russell Brunson (status), James Clear (libere o desejo), Naval Ravikant, Dr. Burgelman ("entender por que falhou").
