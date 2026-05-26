@@ -2255,8 +2255,18 @@ async function salvarNegociacao() {
   if (!cliente||!valor) { alert('Preencha o cliente e o valor total.'); return }
   const expert  = document.getElementById('fneg-expert').value.trim()
   const parcsEl = document.querySelectorAll('#fneg-parcelas-list .fin-parcela-row')
+  // Se a venda nao veio do Pipeline (+ Novo Cliente direto), cria o lead em 'fechado' pra aparecer no funil tambem
+  let leadIdVenda = pendingFechadoLeadId
+  if (!leadIdVenda) {
+    const { data: novoLead, error: eL } = await sb.from('leads').insert({
+      nome: cliente, expert, status: 'fechado',
+      closer: resp || null, ticket: valor, obs: obs || null, activities: []
+    }).select().single()
+    if (eL) { alert('Erro ao criar lead: '+eL.message); return }
+    leadIdVenda = novoLead.id
+  }
   const { data: venda, error: eV } = await sb.from('vendas').insert({
-    lead_id: pendingFechadoLeadId, cliente, valor_total: valor,
+    lead_id: leadIdVenda, cliente, valor_total: valor,
     expert, condicao_negociada: condicao,
     responsavel_cobranca: resp, observacao: obs
   }).select().single()
