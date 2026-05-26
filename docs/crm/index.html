@@ -922,9 +922,12 @@
         <textarea id="fedit-obs" style="width:100%;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px;outline:none;resize:vertical;min-height:60px"></textarea>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="btn-cancel" onclick="document.getElementById('modal-edit').classList.remove('open')">Cancelar</button>
-      <button class="btn-save" onclick="salvarEditVenda()">Salvar Edição</button>
+    <div class="modal-footer" style="justify-content:space-between">
+      <button class="btn-cancel" onclick="excluirVenda()" style="background:rgba(239,68,68,.15);color:#F87171">🗑️ Excluir venda</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn-cancel" onclick="document.getElementById('modal-edit').classList.remove('open')">Cancelar</button>
+        <button class="btn-save" onclick="salvarEditVenda()">Salvar Edição</button>
+      </div>
     </div>
   </div>
 </div>
@@ -2320,7 +2323,16 @@ function openEditVenda(vendaId) {
   document.getElementById('fedit-expert').value  = venda.expert||''
   document.getElementById('fedit-resp').value    = venda.responsavel_cobranca||''
   document.getElementById('fedit-obs').value     = venda.observacao||''
-  document.getElementById('fedit-parcelas-list').innerHTML = parcs.map(p=>`
+  document.getElementById('fedit-parcelas-list').innerHTML = parcs.map(p=>{
+    const isPago = p.status === 'pago'
+    const pagoBlock = isPago ? `
+      <div class="fin-parcela-row" data-parc-id="${p.id}" data-pago-row="1" style="padding-left:32px;margin-top:-2px;margin-bottom:8px">
+        <label style="min-width:0;color:var(--green);font-size:11px;font-weight:700">✅ Pago em</label>
+        <input type="date" class="fedit-parc-pagoem" value="${p.pago_em||''}" style="width:auto"/>
+        <span class="fin-data-fmt">${fmtDataBR(p.pago_em)}</span>
+        <button type="button" onclick="desmarcarPago('${p.id}')" style="background:rgba(249,115,22,.15);color:var(--orange);border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">↩️ Desmarcar</button>
+      </div>` : ''
+    return `
     <div class="fin-parcela-row" data-parc-id="${p.id}">
       <label style="min-width:32px;color:var(--muted);font-size:12px">${p.numero}ª/${p.total_parcelas}</label>
       <input type="number" class="fedit-parc-val" value="${p.valor}" placeholder="Valor" style="width:90px"/>
@@ -2332,7 +2344,7 @@ function openEditVenda(vendaId) {
         <option value="boleto" ${p.metodo==='boleto'?'selected':''}>Boleto</option>
         <option value="cartao" ${p.metodo==='cartao'?'selected':''}>Cartão</option>
       </select>
-    </div>`).join('')
+    </div>${pagoBlock}`}).join('')
   document.getElementById('modal-drill').classList.remove('open')
   document.getElementById('modal-edit').classList.add('open')
 }
@@ -2379,11 +2391,18 @@ async function salvarEditVenda() {
     if (row.dataset.parcId) {
       const parcAtual = cachedParcelas.find(p => p.id === row.dataset.parcId)
       let novoStatus = parcAtual?.status || 'pendente'
-      if (novoStatus !== 'pago') {
+      const updateData = { valor, vencimento: venc, metodo: metodo||null }
+      if (novoStatus === 'pago') {
+        // se for parcela paga, persiste o pago_em editado (campo extra no modal)
+        const pagoRow = document.querySelector(`#fedit-parcelas-list .fin-parcela-row[data-pago-row="1"][data-parc-id="${row.dataset.parcId}"]`)
+        const novoPagoEm = pagoRow?.querySelector('.fedit-parc-pagoem')?.value
+        if (novoPagoEm) updateData.pago_em = novoPagoEm
+      } else {
         const hoje = new Date().toISOString().slice(0,10)
         novoStatus = venc < hoje ? 'atrasado' : 'pendente'
       }
-      await sb.from('parcelas').update({ valor, vencimento: venc, metodo: metodo||null, status: novoStatus }).eq('id', row.dataset.parcId)
+      updateData.status = novoStatus
+      await sb.from('parcelas').update(updateData).eq('id', row.dataset.parcId)
     } else {
       await sb.from('parcelas').insert({ venda_id: vendaId, numero: i+1, total_parcelas: totalParcs, valor, vencimento: venc, metodo: metodo||null, status: 'pendente' })
     }
@@ -2392,6 +2411,36 @@ async function salvarEditVenda() {
   await loadFinanceiro()
   renderFinanceiro()
   showToast('✅ Edições salvas!')
+}
+
+async function desmarcarPago(parcelaId) {
+  if (!confirm('Desmarcar esta parcela como paga? A data de recebimento sera apagada.')) return
+  const parc = cachedParcelas.find(p => p.id === parcelaId)
+  const hoje = new Date().toISOString().slice(0,10)
+  const novoStatus = (parc?.vencimento && parc.vencimento < hoje) ? 'atrasado' : 'pendente'
+  const { error } = await sb.from('parcelas').update({ status: novoStatus, pago_em: null }).eq('id', parcelaId)
+  if (error) { alert('Erro: '+error.message); return }
+  await loadFinanceiro()
+  // reabre o modal com dados atualizados pra refletir o desmarcacao
+  const vendaId = document.getElementById('fedit-id').value
+  openEditVenda(vendaId)
+  renderFinanceiro()
+  showToast('↩️ Parcela desmarcada como paga')
+}
+
+async function excluirVenda() {
+  const vendaId = document.getElementById('fedit-id').value
+  const venda   = cachedVendas.find(v => v.id === vendaId); if (!venda) return
+  const parcs   = cachedParcelas.filter(p => p.venda_id === vendaId)
+  const msg = `EXCLUIR a venda de "${venda.cliente}" (R$ ${parseFloat(venda.valor_total||0).toLocaleString('pt-BR',{minimumFractionDigits:2})})?\n\nIsso vai apagar a venda + ${parcs.length} parcela(s). Acao NAO pode ser desfeita.`
+  if (!confirm(msg)) return
+  if (!confirm('Tem certeza mesmo? Ultima confirmacao.')) return
+  const { error } = await sb.from('vendas').delete().eq('id', vendaId)
+  if (error) { alert('Erro ao excluir: '+error.message); return }
+  document.getElementById('modal-edit').classList.remove('open')
+  await loadFinanceiro()
+  renderFinanceiro()
+  showToast('🗑️ Venda excluida')
 }
 
 // ── CONFIRMAR PAGO ─────────────────────────────────────────────────────────
