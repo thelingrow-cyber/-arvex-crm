@@ -1049,7 +1049,7 @@ function renderClientesFinanceiro() {
     </tr>`
   }).join('')
 }
-const FINANCEIRO_USERS = ['viktorsimoess@gmail.com','arvexdigital@gmail.com','vhpacheco02@gmail.com']
+const FINANCEIRO_USERS = ['viktorsimoess@gmail.com','arvexdigital@gmail.com','vhpacheco02@gmail.com','compromissiondigital@gmail.com']
 function isFinanceiroUser() { return currentUser && FINANCEIRO_USERS.includes(currentUser.email) }
 
 // ── AUTH ──────────────────────────────────────────────────────────────────
@@ -1419,6 +1419,36 @@ function onDrop(e, colId) {
   changeStatus(dragId, colId)
 }
 
+// ── AUTO-SCROLL durante drag (mouse + touch) ─────────────────────────────
+let autoScrollDir = { x:0, y:0 }, autoScrollRAF = null
+function tickAutoScroll() {
+  const scroller = document.querySelector('.pipeline-scroll')
+  if (!scroller || (!autoScrollDir.x && !autoScrollDir.y)) { autoScrollRAF = null; return }
+  if (autoScrollDir.x) scroller.scrollLeft += autoScrollDir.x
+  if (autoScrollDir.y) window.scrollBy(0, autoScrollDir.y)
+  autoScrollRAF = requestAnimationFrame(tickAutoScroll)
+}
+function updateAutoScroll(x, y) {
+  const scroller = document.querySelector('.pipeline-scroll')
+  if (!scroller) return
+  const r = scroller.getBoundingClientRect()
+  const edge = 80, speed = 18, vEdge = 100
+  autoScrollDir.x = (x < r.left + edge && x > r.left - 200) ? -speed
+                  : (x > r.right - edge && x < r.right + 200) ? speed : 0
+  autoScrollDir.y = (y < vEdge) ? -speed
+                  : (y > window.innerHeight - vEdge) ? speed : 0
+  if ((autoScrollDir.x || autoScrollDir.y) && !autoScrollRAF) {
+    autoScrollRAF = requestAnimationFrame(tickAutoScroll)
+  }
+}
+function stopAutoScroll() {
+  autoScrollDir = { x:0, y:0 }
+  if (autoScrollRAF) { cancelAnimationFrame(autoScrollRAF); autoScrollRAF = null }
+}
+document.addEventListener('dragover', e => { if (dragId) updateAutoScroll(e.clientX, e.clientY) })
+document.addEventListener('dragend',  stopAutoScroll)
+document.addEventListener('drop',     stopAutoScroll)
+
 // ── TOUCH DRAG ────────────────────────────────────────────────────────────
 let touchDragId = null, touchClone = null, touchHoldTimer = null
 
@@ -1442,15 +1472,18 @@ function initTouchDrag() {
       clearTimeout(touchHoldTimer)
       if (!touchDragId) return
       e.preventDefault()
-      moveTouchClone(e.touches[0])
+      const t = e.touches[0]
+      moveTouchClone(t)
+      updateAutoScroll(t.clientX, t.clientY)
       // destaca coluna sob o dedo
       document.querySelectorAll('.pipeline-col').forEach(col => col.classList.remove('drag-over'))
-      const el = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY)
+      const el = document.elementFromPoint(t.clientX, t.clientY)
       el?.closest('.pipeline-col')?.classList.add('drag-over')
     }, { passive: false })
 
     card.addEventListener('touchend', e => {
       clearTimeout(touchHoldTimer)
+      stopAutoScroll()
       if (!touchDragId) return
       const touch = e.changedTouches[0]
       const el = document.elementFromPoint(touch.clientX, touch.clientY)
@@ -1465,6 +1498,7 @@ function initTouchDrag() {
 
     card.addEventListener('touchcancel', () => {
       clearTimeout(touchHoldTimer)
+      stopAutoScroll()
       touchClone?.remove(); touchClone = null
       document.querySelectorAll('.lead-card').forEach(c => c.style.opacity = '')
       document.querySelectorAll('.pipeline-col').forEach(c => c.classList.remove('drag-over'))
