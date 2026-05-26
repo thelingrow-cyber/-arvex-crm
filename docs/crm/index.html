@@ -395,6 +395,7 @@
     .fin-parcela-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
     .fin-parcela-row label { font-size: 11px; color: var(--muted); white-space: nowrap; width: 70px; flex-shrink:0; }
     .fin-parcela-row input { flex: 1; background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-size: 12px; padding: 7px 10px; outline: none; font-family:Inter,sans-serif; }
+    .fin-data-fmt { font-size: 11px; color: var(--muted); min-width: 72px; text-align: center; flex-shrink:0; font-variant-numeric: tabular-nums; }
     .fin-drill-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 10px 10px; border-bottom: 1px solid var(--border); font-size: 13px; border-left: 3px solid transparent; margin-left: -10px; }
     .fin-drill-row:last-child { border-bottom: none; }
     .fin-drill-row.dr-pago     { border-left-color: var(--green); }
@@ -2235,7 +2236,7 @@ function renderParcelasInputs() {
     const label = condicao==='entrada_saldo' ? (i===1?'Entrada':'Saldo') : (n===1?'Vencimento':`${i}ª parcela`)
     const d = new Date(); d.setMonth(d.getMonth()+(i-1))
     const dataSug = d.toISOString().slice(0,10)
-    html += `<div class="fin-parcela-row"><label>${label}</label><input type="number" class="fneg-parc-val" placeholder="Valor R$" min="0" step="0.01" /><input type="date" class="fneg-parc-data" value="${dataSug}" /></div>`
+    html += `<div class="fin-parcela-row"><label>${label}</label><input type="number" class="fneg-parc-val" placeholder="Valor R$" min="0" step="0.01" /><input type="date" class="fneg-parc-data" value="${dataSug}" /><span class="fin-data-fmt">${fmtDataBR(dataSug)}</span></div>`
   }
   document.getElementById('fneg-parcelas-list').innerHTML = html
 }
@@ -2323,6 +2324,7 @@ function openEditVenda(vendaId) {
       <label style="min-width:32px;color:var(--muted);font-size:12px">${p.numero}ª/${p.total_parcelas}</label>
       <input type="number" class="fedit-parc-val" value="${p.valor}" placeholder="Valor" style="width:90px"/>
       <input type="date"   class="fedit-parc-data" value="${p.vencimento||''}"/>
+      <span class="fin-data-fmt">${fmtDataBR(p.vencimento)}</span>
       <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 6px;font-size:12px">
         <option value="" ${!p.metodo?'selected':''}>—</option>
         <option value="pix"    ${p.metodo==='pix'?'selected':''}>PIX</option>
@@ -2346,6 +2348,7 @@ function adicionarParcela() {
     <label style="min-width:32px;color:var(--muted);font-size:12px">${total}ª</label>
     <input type="number" class="fedit-parc-val" placeholder="Valor" style="width:90px"/>
     <input type="date"   class="fedit-parc-data" value="${hoje}"/>
+    <span class="fin-data-fmt">${fmtDataBR(hoje)}</span>
     <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 6px;font-size:12px">
       <option value="">—</option>
       <option value="pix">PIX</option>
@@ -2439,6 +2442,19 @@ function showToast(msg, type='success') {
 
 // ── UTILS ──────────────────────────────────────────────────────────────────
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
+// Formata yyyy-mm-dd em dd/mm/aaaa pra exibir ao lado do <input type=date> (resolve visual no Safari)
+function fmtDataBR(s) {
+  if (!s || typeof s !== 'string') return '—'
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : '—'
+}
+// Event delegation: atualiza o span .fin-data-fmt ao lado de qualquer input de data nas parcelas
+document.addEventListener('input', e => {
+  if (e.target.matches('.fedit-parc-data, .fneg-parc-data')) {
+    const span = e.target.nextElementSibling
+    if (span?.classList.contains('fin-data-fmt')) span.textContent = fmtDataBR(e.target.value)
+  }
+})
 function fmtDate(ts) {
   if (!ts) return '—'
   return new Date(ts).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
