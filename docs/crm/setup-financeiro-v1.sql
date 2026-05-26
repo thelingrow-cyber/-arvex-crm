@@ -11,9 +11,10 @@
 create or replace function is_financeiro_user()
 returns boolean language sql security definer stable as $$
   select auth.email() in (
-    'viktorsimoess@gmail.com',  -- Vitor (admin)
-    'arvexdigital@gmail.com',   -- Gabriel (closer)
-    'vhpacheco02@gmail.com'     -- Pacheco (closer)
+    'viktorsimoess@gmail.com',       -- Vitor (admin)
+    'arvexdigital@gmail.com',        -- Gabriel (closer)
+    'vhpacheco02@gmail.com',         -- Pacheco (closer)
+    'compromissiondigital@gmail.com' -- acesso adicional
   )
 $$;
 
