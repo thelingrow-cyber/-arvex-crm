@@ -395,7 +395,8 @@
     .fin-parcela-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
     .fin-parcela-row label { font-size: 11px; color: var(--muted); white-space: nowrap; width: 70px; flex-shrink:0; }
     .fin-parcela-row input { flex: 1; background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-size: 12px; padding: 7px 10px; outline: none; font-family:Inter,sans-serif; }
-    .fin-data-fmt { font-size: 11px; color: var(--muted); min-width: 72px; text-align: center; flex-shrink:0; font-variant-numeric: tabular-nums; }
+    .fin-data-fmt { display: none; font-size: 11px; color: var(--muted); min-width: 72px; text-align: center; flex-shrink:0; font-variant-numeric: tabular-nums; }
+    body.is-safari .fin-data-fmt { display: inline-block; }
     .fin-drill-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 10px 10px; border-bottom: 1px solid var(--border); font-size: 13px; border-left: 3px solid transparent; margin-left: -10px; }
     .fin-drill-row:last-child { border-bottom: none; }
     .fin-drill-row.dr-pago     { border-left-color: var(--green); }
@@ -2442,6 +2443,10 @@ function showToast(msg, type='success') {
 
 // ── UTILS ──────────────────────────────────────────────────────────────────
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
+// Safari/macOS nao renderiza valor do <input type=date> — adiciona classe pra ativar fallback
+if (/^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent)) {
+  document.body.classList.add('is-safari')
+}
 // Formata yyyy-mm-dd em dd/mm/aaaa pra exibir ao lado do <input type=date> (resolve visual no Safari)
 function fmtDataBR(s) {
   if (!s || typeof s !== 'string') return '—'
