@@ -268,6 +268,9 @@
     .modal-overlay.open .modal { animation: modalIn .22s var(--ease); }
     /* feedback de toque nos botões */
     .btn-primary:active, .period-btn:active, .btn-card-action:active, .btn-check-resp:active, .btn-mover-cs:active { transform: translateY(1px); }
+    /* espaço-fantasma: linha fina onde o card vai cair */
+    .drop-indicator { height: 3px; margin: 1px 4px; border-radius: 999px; background: var(--blue); box-shadow: 0 0 8px rgba(91,108,255,.6); pointer-events: none; animation: dropIn .12s var(--ease); }
+    @keyframes dropIn { from { opacity: 0; transform: scaleX(.7) } to { opacity: 1; transform: none } }
 
     /* ── MODALS ── */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
@@ -1392,12 +1395,58 @@ function renderRecentTable(leads) {
 // ── PIPELINE ──────────────────────────────────────────────────────────────
 let dragId = null
 
+// ── REORDENAÇÃO (ranking fracionário — ver setup-cs-v6.sql) ─────────────────
+// Comparador de ordenação por posicao (menor = topo), tiebreak por data de criação.
+const byPos = campo => (a, b) => {
+  const pa = a.posicao ?? Infinity, pb = b.posicao ?? Infinity
+  if (pa !== pb) return pa - pb
+  return campo === 'created'
+    ? (a.created || 0) - (b.created || 0)
+    : String(a.created_at || '').localeCompare(String(b.created_at || ''))
+}
+// Acha o card ANTES do qual inserir, comparando o cursor (y) ao meio de cada card.
+function getDragAfterElement(container, y, selector) {
+  const els = [...container.querySelectorAll(selector + ':not(.dragging)')]
+  let closest = { offset: -Infinity, element: null }
+  for (const child of els) {
+    const box = child.getBoundingClientRect()
+    const offset = y - box.top - box.height / 2
+    if (offset < 0 && offset > closest.offset) closest = { offset, element: child }
+  }
+  return closest.element // null = soltar no fim da coluna
+}
+// Nova posicao por bisseção, dado o array JÁ ordenado da coluna (sem o card arrastado).
+function calcPosicao(ordenados, afterId) {
+  let idx = afterId ? ordenados.findIndex(x => x.id === afterId) : ordenados.length
+  if (idx === -1) idx = ordenados.length // afterId fora do cache (raro): trata como fim
+  const A = idx > 0 ? ordenados[idx - 1] : null
+  const B = (idx >= 0 && idx < ordenados.length) ? ordenados[idx] : null
+  const pa = A && A.posicao != null ? A.posicao : null
+  const pb = B && B.posicao != null ? B.posicao : null
+  if (pa != null && pb != null) return (pa + pb) / 2
+  if (pb != null) return pb - 1000
+  if (pa != null) return pa + 1000
+  return 1000
+}
+
+// Indicador visual (linha fina) de onde o card vai cair — singleton reutilizado.
+let dropIndicator = null
+function showDropIndicator(container, y, selector) {
+  if (!dropIndicator) { dropIndicator = document.createElement('div'); dropIndicator.className = 'drop-indicator' }
+  const afterEl = getDragAfterElement(container, y, selector)
+  if (afterEl) container.insertBefore(dropIndicator, afterEl)
+  else container.appendChild(dropIndicator)
+}
+function clearDropIndicator() {
+  if (dropIndicator && dropIndicator.parentNode) dropIndicator.parentNode.removeChild(dropIndicator)
+}
+
 function renderPipeline() {
   const leads = getLeads()
   const board = document.getElementById('pipeline-board')
   let lastPhase = ''
   board.innerHTML = COLS.map(col => {
-    const colLeads = leads.filter(l => l.status === col.id)
+    const colLeads = leads.filter(l => l.status === col.id).sort(byPos('created'))
     const phaseNames = {sdr:'— Fase SDR —', closer:'— Fase Closer —', won:'— Resultado —', lost:''}
     const phaseLabel = col.phase !== lastPhase && phaseNames[col.phase] ? `<div class="col-phase-label">${phaseNames[col.phase]}</div>` : ''
     lastPhase = col.phase
@@ -1480,12 +1529,18 @@ function renderCard(l) {
     </div>`
 }
 
-function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over') }
-function onDragLeave(e) { e.currentTarget.classList.remove('drag-over') }
+function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); showDropIndicator(e.currentTarget, e.clientY, '.lead-card') }
+function onDragLeave(e) {
+  if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget)) return // ainda dentro da zona — não pisca
+  e.currentTarget.classList.remove('drag-over'); clearDropIndicator()
+}
 function onDrop(e, colId) {
-  e.preventDefault(); e.currentTarget.classList.remove('drag-over')
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over'); clearDropIndicator()
   if (!dragId) return
-  changeStatus(dragId, colId)
+  const ordenados = getLeads().filter(l => l.status === colId && l.id !== dragId).sort(byPos('created'))
+  const afterEl   = getDragAfterElement(e.currentTarget, e.clientY, '.lead-card')
+  const novaPos   = calcPosicao(ordenados, afterEl ? afterEl.dataset.id : null)
+  changeStatus(dragId, colId, { posicao: novaPos })
 }
 
 // ── AUTO-SCROLL durante drag (mouse + touch) ─────────────────────────────
@@ -1515,7 +1570,7 @@ function stopAutoScroll() {
   if (autoScrollRAF) { cancelAnimationFrame(autoScrollRAF); autoScrollRAF = null }
 }
 document.addEventListener('dragover', e => { if (dragId) updateAutoScroll(e.clientX, e.clientY) })
-document.addEventListener('dragend',  stopAutoScroll)
+document.addEventListener('dragend',  () => { stopAutoScroll(); clearDropIndicator() })
 document.addEventListener('drop',     stopAutoScroll)
 
 // ── TOUCH DRAG ────────────────────────────────────────────────────────────
@@ -1733,27 +1788,29 @@ function closeDetail() { document.getElementById('modal-detail').classList.remov
 
 function moveTo(id, status) { closeDetail(); changeStatus(id, status) }
 
-async function changeStatus(id, status) {
+async function changeStatus(id, status, extra = {}) {
   const leads = getLeads()
   const lead  = leads.find(l => l.id === id)
   if (!lead) return
-  const updates = { status }
+  const updates = { status, ...extra }
+  // Prompts só quando a coluna realmente muda — reordenar dentro da mesma coluna não re-pergunta.
+  const mudouColuna = lead.status !== status
 
-  if (status === 'perdido') {
+  if (mudouColuna && status === 'perdido') {
     const motivo = prompt('Motivo da perda:\n(ex: Sem budget, Não era o perfil, Não atendeu, Concorrente)')
     if (motivo === null) { renderPipeline(); return }
     updates.motivo_perda = motivo.trim() || 'Não informado'
   }
-  if (status === 'call') {
+  if (mudouColuna && status === 'call') {
     const agora = new Date().toISOString().slice(0,16)
     const dataCall = prompt('Data/hora da call:', agora)
     if (dataCall) updates.data_call = dataCall
   }
-  if (status === 'followup') {
+  if (mudouColuna && status === 'followup') {
     const prox = prompt('Próximo passo do Closer:\n(ex: Ligar segunda 14h, Enviar proposta)')
     if (prox) updates.proximo_passo = prox.trim()
   }
-  if (status === 'fechado') {
+  if (mudouColuna && status === 'fechado') {
     const valorStr = prompt('Valor pago (R$):\n(ex: 1500)')
     if (valorStr !== null && valorStr.trim() !== '') {
       const valor = parseFloat(valorStr.replace(',','.'))
@@ -1871,7 +1928,7 @@ function renderCS() {
   const board = document.getElementById('cs-board')
   if (!board) return
   board.innerHTML = CS_COLS.map(col => {
-    const cards = cachedCS.filter(c => c.cs_stage === col.id)
+    const cards = cachedCS.filter(c => c.cs_stage === col.id).sort(byPos('created_at'))
     return `
       <div class="cs-col" data-col="${col.id}">
         <div class="col-header ${col.cls}"><span class="col-header-label"><span class="col-dot"></span>${col.label}</span><span class="col-count">${cards.length}</span></div>
@@ -2008,11 +2065,14 @@ function renderHoje() {
     </div>`).join('')
 }
 
-function onCSOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over') }
+function onCSOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); showDropIndicator(e.currentTarget, e.clientY, '.cs-card') }
 function onCSDrop(e, colId) {
-  e.preventDefault(); e.currentTarget.classList.remove('drag-over')
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over'); clearDropIndicator()
   if (!dragId) return
-  updateCSField(dragId, { cs_stage: colId })
+  const ordenados = cachedCS.filter(c => c.cs_stage === colId && c.id !== dragId).sort(byPos('created_at'))
+  const afterEl   = getDragAfterElement(e.currentTarget, e.clientY, '.cs-card')
+  const novaPos   = calcPosicao(ordenados, afterEl ? afterEl.dataset.id : null)
+  updateCSField(dragId, { cs_stage: colId, posicao: novaPos })
 }
 
 async function registrarCheck(checkId, resultado, clienteId, obs = null) {
