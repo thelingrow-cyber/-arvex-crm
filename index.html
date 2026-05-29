@@ -525,7 +525,7 @@
       <div class="topbar-title" id="topbar-title">Relatório de Movimento</div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <button class="btn-primary" onclick="openNewLead()">+ Novo Lead</button>
+      <button class="btn-primary" id="btn-novo-lead" onclick="openNewLead()">+ Novo Lead</button>
     </div>
   </div>
 
@@ -1286,6 +1286,8 @@ function goTo(id, el) {
   document.getElementById('view-' + id).classList.add('active')
   el.classList.add('active')
   document.getElementById('topbar-title').textContent = TOPBAR[id]
+  // "+ Novo Lead" só faz sentido nas telas comerciais (não em CS/Financeiro/Clientes)
+  document.getElementById('btn-novo-lead').style.display = ['dashboard','pipeline','leads'].includes(id) ? '' : 'none'
   closeMobileSidebar()
   if (id === 'dashboard')  renderDashboard()
   if (id === 'pipeline')   renderPipeline()
