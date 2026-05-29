@@ -130,6 +130,8 @@
     .metric-label { font-size: 11px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing:.04em; }
     .metric-value { font-size: 28px; font-weight: 700; line-height: 1; color: var(--white); font-variant-numeric: tabular-nums; }
     .metric-card--gold .metric-value { color: var(--gold2); }
+    .metric-card--green .metric-value { color: var(--green); }
+    .metric-card--red .metric-value { color: var(--red); }
     .metric-sub { font-size: 11px; color: var(--text-3); margin-top: 6px; }
     .section-label { font-size: 11px; font-weight: 700; letter-spacing:.08em; text-transform: uppercase; color: var(--text-3); margin: 4px 0 10px; }
     .search-box { position: relative; display: inline-block; }
@@ -379,7 +381,7 @@
     .fin-metric-value.green { color: var(--green); }
     .fin-metric-value.red   { color: var(--red); }
     .fin-metric-value.gold  { color: var(--gold2); }
-    .fin-chart-wrap { background: var(--navy2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .fin-chart-wrap { background: var(--navy2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 24px; }
     .fin-chart-title { font-size: 12px; font-weight: 700; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); margin-bottom: 16px; }
     .fin-chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; }
     .fin-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
@@ -397,8 +399,9 @@
     .fin-clientes-table tr:last-child td { border-bottom: none; }
     .fin-clientes-table tr:hover td { background: rgba(255,255,255,.03); }
     .fin-status-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
-    .fin-section { margin-bottom: 28px; }
+    .fin-section { margin-bottom: 16px; background: var(--navy2); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
     .fin-section-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .fin-section-title svg { color: var(--text-3); }
     .fin-section-count { background: rgba(255,255,255,.1); border-radius: 12px; padding: 1px 8px; font-size: 11px; color: var(--muted); }
     .fin-table { width: 100%; border-collapse: collapse; }
     .fin-table th { font-size: 10px; font-weight: 700; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
@@ -407,15 +410,15 @@
     .fin-cliente-link { color: var(--white); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.2); }
     .fin-cliente-link:hover { color: var(--blue); }
     .fin-badge-metodo { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; background: rgba(255,255,255,.08); color: var(--muted); }
-    .fin-badge-pendente { background: rgba(234,179,8,.15); color: #FBBF24; }
-    .fin-badge-atrasado { background: rgba(239,68,68,.15); color: var(--red); }
-    .fin-badge-pago     { background: rgba(34,197,94,.15); color: var(--green); }
+    .fin-badge-pendente { background: rgba(210,153,34,.15); color: var(--orange); }
+    .fin-badge-atrasado { background: rgba(248,81,73,.15); color: var(--red); }
+    .fin-badge-pago     { background: rgba(63,185,80,.15); color: var(--green); }
     .btn-pago { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(34,197,94,.2); color: var(--green); cursor: pointer; white-space:nowrap; }
     .btn-pago:hover { background: rgba(34,197,94,.35); }
     .btn-whatsapp { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(34,197,94,.12); color: #4ADE80; cursor: pointer; white-space:nowrap; }
     .btn-whatsapp:hover { background: rgba(34,197,94,.22); }
     .fin-dias-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all .15s; }
-    .fin-dias-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .fin-dias-btn.active { background: var(--accent-dim); border-color: var(--blue); color: var(--blue); }
     .fin-metodo-sel { background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 2px 5px; font-size: 11px; cursor: pointer; }
     .fin-empty-row td { text-align:center; color:var(--muted); font-size:13px; padding:18px 0; font-style:italic; }
     .fin-search-wrap { margin-bottom:16px; }
@@ -423,7 +426,7 @@
     .fin-search-wrap input:focus { border-color:var(--accent); }
     .fin-total-row { font-size:12px; color:var(--muted); text-align:right; padding:6px 8px 0; }
     #fin-toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:8px; pointer-events:none; }
-    .fin-toast { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 18px; font-size:13px; font-weight:500; color:var(--text); box-shadow:0 4px 20px rgba(0,0,0,.4); opacity:0; transform:translateY(10px); transition:all .25s; pointer-events:none; }
+    .fin-toast { background:var(--navy3); border:1px solid var(--border); border-radius:10px; padding:12px 18px; font-size:13px; font-weight:500; color:var(--white); box-shadow:var(--shadow-2); opacity:0; transform:translateY(10px); transition:all .25s; pointer-events:none; }
     .fin-toast.show { opacity:1; transform:translateY(0); }
     .fin-toast.success { border-color:var(--green); color:var(--green); }
     .fin-toast.error   { border-color:#f87171; color:#f87171; }
@@ -704,7 +707,7 @@
     <div id="view-financeiro" class="view">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div>
-          <h1>💳 Cobranças</h1>
+          <h1 style="display:flex;align-items:center;gap:10px"><span data-icon="card" data-icon-size="20"></span>Cobranças</h1>
           <p>Parcelas pendentes, próximos vencimentos e atrasados</p>
         </div>
         <button class="btn-primary" onclick="novoClienteFinanceiro()">+ Novo Cliente</button>
@@ -712,39 +715,39 @@
 
       <!-- Métricas -->
       <div class="fin-metrics">
-        <div class="fin-metric-card">
-          <div class="fin-metric-label">Recebido este mês</div>
-          <div class="fin-metric-value green" id="fin-recebido">R$ —</div>
+        <div class="metric-card metric-card--green">
+          <div class="metric-card-head"><div class="metric-label">Recebido este mês</div><span class="metric-icon" data-icon="check"></span></div>
+          <div class="metric-value" id="fin-recebido">R$ —</div>
         </div>
-        <div class="fin-metric-card">
-          <div class="fin-metric-label">A Receber</div>
-          <div class="fin-metric-value gold" id="fin-areceber">R$ —</div>
+        <div class="metric-card metric-card--gold">
+          <div class="metric-card-head"><div class="metric-label">A Receber</div><span class="metric-icon" data-icon="clock"></span></div>
+          <div class="metric-value" id="fin-areceber">R$ —</div>
         </div>
-        <div class="fin-metric-card">
-          <div class="fin-metric-label">Atrasado</div>
-          <div class="fin-metric-value red" id="fin-atrasado">R$ —</div>
+        <div class="metric-card metric-card--red">
+          <div class="metric-card-head"><div class="metric-label">Atrasado</div><span class="metric-icon" data-icon="alert"></span></div>
+          <div class="metric-value" id="fin-atrasado">R$ —</div>
         </div>
-        <div class="fin-metric-card">
-          <div class="fin-metric-label">Vencem Hoje</div>
-          <div class="fin-metric-value" id="fin-hoje-val">R$ —</div>
+        <div class="metric-card">
+          <div class="metric-card-head"><div class="metric-label">Vencem Hoje</div><span class="metric-icon" data-icon="calendar"></span></div>
+          <div class="metric-value" id="fin-hoje-val">R$ —</div>
         </div>
       </div>
 
       <!-- Chart -->
       <div class="fin-chart-wrap">
-        <div class="fin-chart-title">📈 Receita recebida — últimos 6 meses</div>
+        <div class="fin-chart-title" style="display:flex;align-items:center;gap:7px"><span data-icon="trending" data-icon-size="14"></span>Receita recebida — últimos 6 meses</div>
         <div class="fin-chart-bars" id="fin-chart-bars"></div>
       </div>
 
       <!-- Busca -->
       <div class="fin-search-wrap">
-        <input type="text" id="fin-search" placeholder="🔍 Buscar por cliente..." oninput="renderFinanceiro()" />
+        <span class="search-box" style="display:block"><span data-icon="search"></span><input type="text" id="fin-search" placeholder="Buscar por cliente..." oninput="renderFinanceiro()" /></span>
       </div>
 
       <!-- Seção: Vencem Hoje -->
       <div class="fin-section" id="fin-bloco-hoje">
         <div class="fin-section-title">
-          ⏰ Vencem Hoje <span class="fin-section-count" id="fin-count-hoje">0</span>
+          <span data-icon="clock" data-icon-size="15"></span> Vencem Hoje <span class="fin-section-count" id="fin-count-hoje">0</span>
         </div>
         <div style="overflow-x:auto">
           <table class="fin-table">
@@ -760,7 +763,7 @@
       <!-- Seção: Próximos 7 dias -->
       <div class="fin-section" id="fin-bloco-7dias">
         <div class="fin-section-title">
-          📅 Próximos <button class="fin-dias-btn active" id="fin-btn-7" onclick="setFinDias(7)">7 dias</button> <button class="fin-dias-btn" id="fin-btn-30" onclick="setFinDias(30)">30 dias</button> <span class="fin-section-count" id="fin-count-7dias">0</span>
+          <span data-icon="calendar" data-icon-size="15"></span> Próximos <button class="fin-dias-btn active" id="fin-btn-7" onclick="setFinDias(7)">7 dias</button> <button class="fin-dias-btn" id="fin-btn-30" onclick="setFinDias(30)">30 dias</button> <span class="fin-section-count" id="fin-count-7dias">0</span>
         </div>
         <div style="overflow-x:auto">
           <table class="fin-table">
@@ -776,7 +779,7 @@
       <!-- Seção: Atrasados -->
       <div class="fin-section" id="fin-bloco-atras">
         <div class="fin-section-title">
-          🔴 Atrasados <span class="fin-section-count" id="fin-count-atras">0</span>
+          <span data-icon="alert" data-icon-size="15"></span> Atrasados <span class="fin-section-count" id="fin-count-atras">0</span>
         </div>
         <div style="overflow-x:auto">
           <table class="fin-table">
@@ -2326,10 +2329,11 @@ function renderFinanceiro() {
   const mesAtual = hoje.slice(0,7)
   const fmt = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
 
-  document.getElementById('fin-recebido').textContent = fmt(cachedParcelas.filter(p => p.status==='pago' && (p.pago_em||'').slice(0,7)===mesAtual).reduce((s,p)=>s+parseFloat(p.valor||0),0))
-  document.getElementById('fin-areceber').textContent = fmt(cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>=hoje).reduce((s,p)=>s+parseFloat(p.valor||0),0))
-  document.getElementById('fin-atrasado').textContent = fmt(cachedParcelas.filter(p => p.status==='atrasado').reduce((s,p)=>s+parseFloat(p.valor||0),0))
-  document.getElementById('fin-hoje-val').textContent = fmt(cachedParcelas.filter(p => p.status==='pendente' && p.vencimento===hoje).reduce((s,p)=>s+parseFloat(p.valor||0),0))
+  const $f = id => document.getElementById(id)
+  animateValue($f('fin-recebido'), cachedParcelas.filter(p => p.status==='pago' && (p.pago_em||'').slice(0,7)===mesAtual).reduce((s,p)=>s+parseFloat(p.valor||0),0), { format: fmt })
+  animateValue($f('fin-areceber'), cachedParcelas.filter(p => p.status==='pendente' && p.vencimento>=hoje).reduce((s,p)=>s+parseFloat(p.valor||0),0), { format: fmt })
+  animateValue($f('fin-atrasado'), cachedParcelas.filter(p => p.status==='atrasado').reduce((s,p)=>s+parseFloat(p.valor||0),0), { format: fmt })
+  animateValue($f('fin-hoje-val'), cachedParcelas.filter(p => p.status==='pendente' && p.vencimento===hoje).reduce((s,p)=>s+parseFloat(p.valor||0),0), { format: fmt })
 
   renderFinChart()
 
