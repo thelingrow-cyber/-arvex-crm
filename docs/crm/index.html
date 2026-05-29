@@ -174,6 +174,7 @@
     .col-cs-triagem    { background: rgba(139,92,246,.15); color: var(--purple); }
     .col-cs-campanha   { background: rgba(249,115,22,.15); color: var(--orange); }
     .col-cs-gate       { background: rgba(200,169,110,.15); color: var(--gold2); }
+    .col-cs-trafego    { background: rgba(6,182,212,.15);  color: #22D3EE; }
     .col-cs-ativo      { background: rgba(34,197,94,.15);  color: var(--green); }
     .col-cs-churn      { background: rgba(239,68,68,.15);  color: var(--red); }
     .cs-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: border-color .15s; }
@@ -1731,6 +1732,7 @@ const CS_COLS = [
   { id:'triagem',     label:'Triagem 🔵',      cls:'col-cs-triagem' },
   { id:'campanha',    label:'Campanha 🟡',     cls:'col-cs-campanha' },
   { id:'gate_cindy',  label:'Gate Cindy ⭐',   cls:'col-cs-gate' },
+  { id:'trafego',     label:'Tráfego 🚀',      cls:'col-cs-trafego' },
   { id:'ativo',       label:'Ativo ✅',        cls:'col-cs-ativo' },
   { id:'risco_churn', label:'Risco Churn 🔴',  cls:'col-cs-churn' },
 ]
@@ -1754,6 +1756,14 @@ const CS_SUBS = {
     'Reunião com Cindy agendada',
     'Meta oficial definida',
   ],
+  trafego: [
+    'Conta de anúncios (Meta) configurada',
+    'Pixel / evento de conversão instalado',
+    'Verba de tráfego definida',
+    'Criativos aprovados',
+    'Campanha paga no ar',
+    'Primeiros resultados (CPL / leads)',
+  ],
   ativo: [
     'D+21 — Coleta de resultados do mês',
     'D+28 — Análise + próxima etapa',
@@ -1765,6 +1775,14 @@ const CS_SUBS = {
     'Resolução: reativado ou encerrado',
   ],
 }
+
+const CS_PRODUTOS = [
+  { id:'estrategista_optico', label:'Formação Estrategista Óptico', short:'🎓 Estrategista' },
+  { id:'express',             label:'Formação Express',             short:'⚡ Express' },
+  { id:'curadoria',           label:'Curadoria',                    short:'🔎 Curadoria' },
+]
+const produtoLabel = id => (CS_PRODUTOS.find(p => p.id === id) || {}).label || ''
+const produtoShort = id => (CS_PRODUTOS.find(p => p.id === id) || {}).short || ''
 
 const hoje = new Date().toISOString().slice(0,10)
 
@@ -1830,6 +1848,7 @@ function renderCSCard(c) {
       const bold  = ch.data_prevista === hoje ? 'font-weight:700;color:var(--white)' : ''
       const atras = ch.data_prevista && ch.data_prevista < hoje && ch.status === 'pendente' ? 'color:var(--orange)' : ''
       checksHtml += `<div style="font-size:11px;${bold}${atras};margin-bottom:2px">${icon} D+${ch.dia_relativo} — ${esc(ch.entregavel)}</div>`
+      if (ch.resposta_obs) checksHtml += `<div style="font-size:10px;color:var(--muted);margin:-1px 0 4px 16px;font-style:italic">💬 ${esc(ch.resposta_obs)}</div>`
     })
     if (checks.length > 4) checksHtml += `<div style="font-size:10px;color:var(--muted)">+${checks.length-4} checks</div>`
     checksHtml += `</div>`
@@ -1837,11 +1856,11 @@ function renderCSCard(c) {
     const actsFase = (c.activities || []).filter(a => a.fase === c.cs_stage)
     const feitosSet = new Set(actsFase.map(a => a.sub))
     checksHtml = `<div class="cs-checks-list">`
-    subs.forEach(s => {
+    subs.forEach((s, i) => {
       const feito = feitosSet.has(s)
-      checksHtml += `<div onclick="toggleSubCS('${c.id}','${c.cs_stage}',${JSON.stringify(s)},${feito})" style="font-size:11px;cursor:pointer;display:flex;align-items:center;gap:5px;margin-bottom:4px;padding:3px 6px;border-radius:5px;background:${feito?'rgba(34,197,94,.12)':'transparent'};transition:background .15s">
+      checksHtml += `<div onclick="toggleSubCS('${c.id}','${c.cs_stage}',${i},${feito})" style="font-size:11px;cursor:pointer;display:flex;align-items:center;gap:5px;margin-bottom:4px;padding:3px 6px;border-radius:5px;background:${feito?'rgba(34,197,94,.12)':'transparent'};transition:background .15s">
         <span style="font-size:13px;line-height:1">${feito?'✅':'○'}</span>
-        <span style="color:${feito?'var(--green)':'var(--muted)'};text-decoration:${feito?'line-through':'none'}">${s}</span>
+        <span style="color:${feito?'var(--green)':'var(--muted)'};text-decoration:${feito?'line-through':'none'}">${esc(s)}</span>
       </div>`
     })
     checksHtml += `</div>`
@@ -1851,8 +1870,8 @@ function renderCSCard(c) {
     <div style="margin:6px 0;padding:6px 8px;border-radius:6px;background:${ehHoje?'rgba(10,132,255,.15)':atrasado?'rgba(249,115,22,.12)':'rgba(255,255,255,.04)'};border:1px solid ${ehHoje?'rgba(10,132,255,.3)':atrasado?'rgba(249,115,22,.3)':'var(--border)'}">
       <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px">${ehHoje?'⏰ HOJE':atrasado?'⚠️ ATRASADO':pendente.data_prevista?'📅 '+pendente.data_prevista:'📅 Preencha a data da triagem'}</div>
       <div style="font-size:11px;color:var(--white)">D+${pendente.dia_relativo} — ${esc(pendente.entregavel)}</div>
-      <div style="display:flex;gap:6px;margin-top:8px" onclick="event.stopPropagation()">
-        <button class="btn-check-resp btn-check-sim" onclick="registrarCheck('${pendente.id}','respondido','${c.id}')">✅ Respondeu</button>
+      <div class="cs-resp-actions" style="display:flex;gap:6px;margin-top:8px" onclick="event.stopPropagation()">
+        <button class="btn-check-resp btn-check-sim" onclick="abrirRespostaCheck('${pendente.id}','${c.id}',this)">✅ Respondeu</button>
         <button class="btn-check-resp btn-check-nao" onclick="registrarCheck('${pendente.id}','sem_resposta','${c.id}')">❌ Sem resposta</button>
       </div>
     </div>` : ''
@@ -1877,6 +1896,8 @@ function renderCSCard(c) {
         <span class="${churnCls}" style="flex-shrink:0;margin-left:6px">${churnLabel}</span>
       </div>
       <div class="cs-card-meta">
+        ${c.produto ? `<span style="color:#22D3EE;font-weight:600">${esc(produtoShort(c.produto))}</span>` : ''}
+        ${(Array.isArray(c.entregaveis_bonus) && c.entregaveis_bonus.length) ? `<span>🎁 ${c.entregaveis_bonus.length} bônus</span>` : ''}
         ${c.tel ? `<span>📱 ${esc(c.tel)}</span>` : ''}
         ${c.ultimo_contato ? `<span>📅 Último: ${c.ultimo_contato}</span>` : ''}
         ${c.meta_oficial ? `<span>🎯 <strong style="color:var(--gold2)">${esc(c.meta_oficial)}</strong></span>` : ''}
@@ -1930,8 +1951,7 @@ function onCSDrop(e, colId) {
   updateCSField(dragId, { cs_stage: colId })
 }
 
-async function registrarCheck(checkId, resultado, clienteId) {
-  const obs = resultado === 'respondido' ? prompt('Observação (opcional):\nEx: Grupo criado, enviou o link') : null
+async function registrarCheck(checkId, resultado, clienteId, obs = null) {
   const { error } = await sb.rpc('registrar_tentativa', {
     p_check_id:      checkId,
     p_resultado:     resultado,
@@ -1943,9 +1963,29 @@ async function registrarCheck(checkId, resultado, clienteId) {
   renderCS()
 }
 
-async function toggleSubCS(clienteId, fase, sub, jaFeito) {
+// Item 5 — input inline pra anotar o que o cliente respondeu (substitui o prompt nativo)
+function abrirRespostaCheck(checkId, clienteId, btn) {
+  const box = btn.closest('.cs-resp-actions')
+  if (!box) return registrarCheck(checkId, 'respondido', clienteId)
+  box.innerHTML = `
+    <input id="resp-in-${checkId}" type="text" placeholder="O que o cliente respondeu? (opcional)" autocomplete="off"
+      onkeydown="if(event.key==='Enter')confirmarResposta('${checkId}','${clienteId}')"
+      style="flex:1;min-height:38px;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:6px 9px;outline:none" />
+    <button class="btn-check-resp btn-check-sim" style="flex:0 0 auto;padding:8px 12px" onclick="confirmarResposta('${checkId}','${clienteId}')">Salvar</button>`
+  const inp = document.getElementById('resp-in-' + checkId)
+  if (inp) inp.focus()
+}
+function confirmarResposta(checkId, clienteId) {
+  const inp = document.getElementById('resp-in-' + checkId)
+  const txt = (inp?.value || '').trim() || null
+  registrarCheck(checkId, 'respondido', clienteId, txt)
+}
+
+async function toggleSubCS(clienteId, fase, idx, jaFeito) {
   const c = cachedCS.find(x => x.id === clienteId)
   if (!c) return
+  const sub = (CS_SUBS[fase] || [])[idx]
+  if (!sub) return
   let acts = c.activities || []
   if (jaFeito) {
     acts = acts.filter(a => !(a.fase === fase && a.sub === sub))
@@ -1964,6 +2004,12 @@ function openCSDetail(id) {
       <div><div class="di-label">Etapa CS</div>
         <select onchange="updateCSField('${id}',{cs_stage:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
           ${CS_COLS.map(col => `<option value="${col.id}" ${c.cs_stage===col.id?'selected':''}>${col.label}</option>`).join('')}
+        </select>
+      </div>
+      <div><div class="di-label">Produto contratado</div>
+        <select onchange="updateCSField('${id}',{produto:this.value||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+          <option value="" ${!c.produto?'selected':''}>— Selecionar produto —</option>
+          ${CS_PRODUTOS.map(p => `<option value="${p.id}" ${c.produto===p.id?'selected':''}>${p.label}</option>`).join('')}
         </select>
       </div>
       <div><div class="di-label">WhatsApp</div><div class="di-value">${c.tel ? `<a href="https://wa.me/55${c.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">💬 ${esc(c.tel)}</a>` : '—'}</div></div>
@@ -2026,6 +2072,20 @@ function openCSDetail(id) {
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_faz_crediario?'checked':''} onchange="updateCSField('${id}',{diag_faz_crediario:this.checked})" /> Faz crediário</label>
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_tem_sistema?'checked':''} onchange="updateCSField('${id}',{diag_tem_sistema:this.checked})" /> Tem sistema integrado</label>
     </div>
+    <div class="section-sep">🎁 Entregáveis Bônus</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">
+      ${(Array.isArray(c.entregaveis_bonus)?c.entregaveis_bonus:[]).map((b,i)=>`
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--white);background:var(--navy3);border:1px solid var(--border);border-radius:8px;padding:7px 10px">
+          <span style="flex:1">🎁 ${esc(b)}</span>
+          <span onclick="removeBonusCS('${id}',${i})" style="cursor:pointer;color:var(--red);font-weight:700;line-height:1" title="Remover">✕</span>
+        </div>`).join('') || '<div style="font-size:12px;color:var(--muted)">Nenhum bônus adicionado.</div>'}
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <input id="cs-bonus-input" type="text" placeholder="Adicionar bônus (ex: Mentoria extra)" autocomplete="off"
+        onkeydown="if(event.key==='Enter')addBonusCS('${id}')"
+        style="flex:1;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:8px 10px;outline:none" />
+      <button onclick="addBonusCS('${id}')" style="flex:0 0 auto;background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3);border-radius:8px;font-size:13px;font-weight:700;padding:8px 14px;cursor:pointer">+ Add</button>
+    </div>
     <div class="section-sep">Observações</div>
     <textarea placeholder="Anotações livres..." onchange="updateCSField('${id}',{obs:this.value})" style="width:100%;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px;outline:none;resize:vertical;min-height:70px">${esc(c.obs||'')}</textarea>`
   document.getElementById('modal-detail').classList.add('open')
@@ -2037,6 +2097,25 @@ async function updateCSField(id, fields) {
   const { error } = await sb.from('clientes_cs').update(fields).eq('id', id)
   if (error) alert('Erro ao atualizar CS: ' + error.message)
   renderCS()
+}
+
+// Item 3 — entregáveis bônus (lista em clientes_cs.entregaveis_bonus)
+async function addBonusCS(id) {
+  const inp = document.getElementById('cs-bonus-input')
+  const txt = (inp?.value || '').trim()
+  if (!txt) return
+  const c = cachedCS.find(x => x.id === id)
+  if (!c) return
+  const lista = [...(Array.isArray(c.entregaveis_bonus) ? c.entregaveis_bonus : []), txt]
+  await updateCSField(id, { entregaveis_bonus: lista })
+  openCSDetail(id)
+}
+async function removeBonusCS(id, idx) {
+  const c = cachedCS.find(x => x.id === id)
+  if (!c) return
+  const lista = (Array.isArray(c.entregaveis_bonus) ? c.entregaveis_bonus : []).filter((_, i) => i !== idx)
+  await updateCSField(id, { entregaveis_bonus: lista })
+  openCSDetail(id)
 }
 
 async function moverParaCS(leadId, e) {
