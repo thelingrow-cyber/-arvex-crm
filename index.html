@@ -25,6 +25,11 @@
       --border-2: rgba(255,255,255,0.13);
       --card:   rgba(255,255,255,0.04);
       --sidebar-w: 220px;
+      /* Motion & elevação (fluidez SaaS) */
+      --shadow-1: 0 1px 2px rgba(0,0,0,.30);
+      --shadow-2: 0 10px 30px rgba(0,0,0,.45);
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --dur: .18s;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--navy); color: var(--white); font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; }
@@ -247,6 +252,23 @@
     .sla-urgent { background:rgba(239,68,68,.2); color:#F87171; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
 
+    /* ── MOTION — fluidez SaaS ───────────────────────────────────────────── */
+    @keyframes overlayIn { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes modalIn   { from { opacity: 0; transform: translateY(10px) scale(.985) } to { opacity: 1; transform: none } }
+    /* hover dos cards: leve elevação + sombra */
+    .cs-card, .lead-card { transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); will-change: transform; }
+    .cs-card:hover, .lead-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: var(--border-2); }
+    /* card sendo arrastado: "flutua" com leve inclinação */
+    .cs-card.dragging, .lead-card.dragging { opacity: .55; transform: rotate(1.5deg) scale(1.02); box-shadow: var(--shadow-2); cursor: grabbing; }
+    /* zona de drop destacada ao arrastar por cima */
+    .col-drop-zone.drag-over { border-color: var(--blue); background: var(--accent-dim); }
+    /* modal: abre com fade + leve zoom em vez de "piscar" */
+    .modal { box-shadow: var(--shadow-2); }
+    .modal-overlay.open { animation: overlayIn .16s ease; }
+    .modal-overlay.open .modal { animation: modalIn .22s var(--ease); }
+    /* feedback de toque nos botões */
+    .btn-primary:active, .period-btn:active, .btn-card-action:active, .btn-check-resp:active, .btn-mover-cs:active { transform: translateY(1px); }
+
     /* ── MODALS ── */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.open { display: flex; }
@@ -260,7 +282,8 @@
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     label { font-size: 12px; font-weight: 600; color: var(--muted); }
-    input, select, textarea { background: var(--navy3); border: 1px solid var(--border); border-radius: 8px; color: var(--white); font-family: 'Inter',sans-serif; font-size: 13px; padding: 10px 12px; outline: none; transition: border-color .2s; width: 100%; }
+    input, select, textarea { background: var(--navy3); border: 1px solid var(--border); border-radius: 8px; color: var(--white); font-family: 'Inter',sans-serif; font-size: 13px; padding: 10px 12px; outline: none; transition: border-color var(--dur), box-shadow var(--dur); width: 100%; }
+    input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--accent-dim); }
     input:focus, select:focus, textarea:focus { border-color: var(--blue); }
     textarea { resize: vertical; min-height: 72px; }
     select option { background: var(--navy2); }
