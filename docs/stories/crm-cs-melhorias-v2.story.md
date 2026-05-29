@@ -1,7 +1,7 @@
 # Story CRM-CS-002 — Melhorias operacionais do módulo CS (v2)
 
 **Tipo:** Brownfield enhancement (CRM ARVEX — sem epic formal)
-**Status:** InReview
+**Status:** Done
 **Owner:** @dev (frontend) + @data-engineer (SQL mínimo)
 **Criado:** 2026-05-29 por @sm (River)
 **Validado:** 2026-05-29 por @po (Pax) — score 9/10 GO
@@ -174,3 +174,4 @@ A CS (Sabrina) usa o Kanban CS pra conduzir cada cliente da Cindy. Hoje o acompa
 | 2026-05-29 | @data-engineer (Dara) | `setup-cs-v5.sql` entregue: 2 colunas aditivas (`produto` text, `entregaveis_bonus` jsonb `[]`) + `comment on column`. Idempotente, sem destrutivos. Documentado que `cs_stage` e `resposta_obs` já cobrem os outros itens. |
 | 2026-05-29 | @dev (Dex) | Frontend em `docs/crm/index.html` (9 edits): CSS `.col-cs-trafego`; fase `trafego` em CS_COLS + CS_SUBS; `CS_PRODUTOS`; fix escaping do `onclick` (índice) + `toggleSubCS` por índice; badge produto + indicador 🎁 no card; select produto + bloco bônus (`addBonusCS`/`removeBonusCS`) no detalhe; `registrarCheck` aceita `obs`; input inline (`abrirRespostaCheck`/`confirmarResposta`); exibe `resposta_obs` no card. Status → InReview. |
 | 2026-05-29 | @qa (Quinn) | QA Gate: **PASS com CONCERNS**. AC1-AC5 atendidos no código. 2 LOW (banner Hoje sem texto inline — by design; sub-etapas de tráfego a validar). Pré-requisito: aplicar SQL v5 antes do deploy. Aguardando OK do Vitor pra @devops push. |
+| 2026-05-29 | @devops (Gage) | `setup-cs-v5.sql` aplicado pelo Vitor no Supabase. Commit atômico `3e62389` (3 arquivos, +321/-8). Push `master` → Vercel auto-deploy em `arvex-crm.vercel.app`. Status → **Done**. Pendente validação visual operacional pelo Vitor em produção. |
