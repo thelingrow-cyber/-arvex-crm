@@ -117,14 +117,14 @@
     .period-btn { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all .15s; }
     .period-btn:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
     .period-btn.active { background: var(--accent-dim); color: var(--blue); border-color: var(--blue); }
-    .filter-select { background: var(--navy2); border: 1px solid var(--border); color: var(--white); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; font-family: 'Inter',sans-serif; cursor: pointer; outline: none; }
+    .filter-select { background: var(--navy2); border: 1px solid var(--border); color: var(--white); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; font-family: 'Inter',sans-serif; cursor: pointer; outline: none; width: auto; min-width: 170px; }
 
     /* ── METRICS ── */
-    .metrics-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 12px; margin-bottom: 24px; }
+    .metrics-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 10px; margin-bottom: 22px; }
     .card { background: var(--navy2); border: 1px solid var(--border); border-radius: 8px; }
-    .metric-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+    .metric-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 8px; padding: 13px 16px; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
     .metric-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-1); border-color: var(--border-2); }
-    .metric-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .metric-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
     .metric-icon { color: var(--text-3); display: inline-flex; }
     .metric-fin { border-color: rgba(200,169,110,.2); }
     .metric-label { font-size: 11px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing:.04em; }
@@ -1374,10 +1374,12 @@ function renderChartDaily(leads) {
   const vals = Object.values(buckets)
   const maxV = Math.max(...vals, 1)
   if (vals.every(v => v === 0)) { el.innerHTML = '<div class="chart-empty">Nenhum lead no período</div>'; return }
-  el.innerHTML = Object.entries(buckets).map(([label, v]) => `
+  const entries = Object.entries(buckets)
+  const every = entries.length > 15 ? 3 : entries.length > 8 ? 2 : 1 // dilui rótulos quando há muitos dias
+  el.innerHTML = entries.map(([label, v], i) => `
     <div class="chart-bar-wrap">
-      <div class="chart-bar" style="height:${Math.max((v/maxV)*120, v>0?8:2)}px" title="${v} leads"></div>
-      <div class="chart-bar-label">${label.slice(0,5)}</div>
+      <div class="chart-bar" style="height:${Math.max((v/maxV)*120, v>0?8:2)}px" title="${label}: ${v} leads"></div>
+      <div class="chart-bar-label">${i % every === 0 ? label.slice(0,5) : ''}</div>
     </div>`).join('')
 }
 
