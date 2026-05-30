@@ -305,6 +305,19 @@
     .di-label { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
     .di-value { font-size: 13px; font-weight: 600; }
     .section-sep { font-size: 11px; font-weight: 700; letter-spacing:.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; padding-top: 4px; border-top: 1px solid var(--border); }
+    /* ── AGENTE SDR ── */
+    .agente-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; }
+    .agente-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; cursor: pointer; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+    .agente-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: var(--border-2); }
+    .agente-card-new { border: 1.5px dashed var(--border-2); background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted); min-height: 132px; }
+    .agente-card-new:hover { color: var(--blue); border-color: var(--blue); }
+    .agente-nome { font-size: 15px; font-weight: 700; color: var(--white); }
+    .sw { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; vertical-align: middle; }
+    .sw input { display: none; }
+    .sw > span { position: absolute; inset: 0; background: var(--navy3); border: 1px solid var(--border); border-radius: 999px; cursor: pointer; transition: background var(--dur); }
+    .sw > span::before { content:''; position: absolute; width: 16px; height: 16px; left: 2px; top: 2px; border-radius: 50%; background: var(--muted); transition: transform var(--dur) var(--ease), background var(--dur); }
+    .sw input:checked + span { background: var(--accent-dim); border-color: var(--blue); }
+    .sw input:checked + span::before { transform: translateX(16px); background: var(--blue); }
     .move-chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .move-chip { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); transition: all .15s; }
     .move-chip:hover { color: var(--white); border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.08); }
@@ -488,6 +501,9 @@
   </div>
   <div class="sidebar-item" onclick="goTo('experts',this)" id="nav-experts">
     <span class="si-icon" data-icon="experts"></span> Por Expert
+  </div>
+  <div class="sidebar-item admin-only" onclick="goTo('agente-sdr',this)" id="nav-agente-sdr">
+    <span class="si-icon" data-icon="bot"></span> Agente SDR
   </div>
 
   <div class="sidebar-section" style="margin-top:8px">Customer Success</div>
@@ -821,6 +837,15 @@
       </div>
     </div><!-- /view-clientes-fin -->
 
+    <!-- AGENTE SDR -->
+    <div id="view-agente-sdr" class="view">
+      <div class="page-header">
+        <h1>Agente SDR</h1>
+        <p>Configure e treine seu SDR virtual</p>
+      </div>
+      <div class="agente-grid" id="agente-board"></div>
+    </div>
+
   </div>
 </div>
 
@@ -1042,6 +1067,7 @@ const LUCIDE = {
   trending:'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
   wallet:'<path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 9h18"/><path d="M16 13h.01"/>',
   search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  bot:'<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>',
 }
 function icon(name, opts = {}) {
   const p = LUCIDE[name]; if (!p) return ''
@@ -1079,7 +1105,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
@@ -1296,6 +1322,7 @@ function goTo(id, el) {
   if (id === 'cs')         renderCS()
   if (id === 'financeiro')    { loadFinanceiro().then(() => renderFinanceiro()) }
   if (id === 'clientes-fin') { loadFinanceiro().then(() => renderClientesFinanceiro()) }
+  if (id === 'agente-sdr')   { loadAgentes().then(() => renderAgentes()) }
 }
 
 function setPeriod(days, btn) {
@@ -2288,6 +2315,120 @@ async function moverParaCS(leadId, e) {
   await loadLeads()
   await loadCS()
   renderDashboard(); renderPipeline(); renderAllLeads(); renderCS()
+}
+
+// ── AGENTE SDR ─────────────────────────────────────────────────────────────
+let cachedAgentes = []
+let agenteEditId  = null
+const EXPERT_LABEL = { cindy:'Cindy Batista', dr_alex:'Dr. Alex', geral:'Geral' }
+
+async function loadAgentes() {
+  const { data } = await sb.from('agente_sdr').select('*').order('created_at', { ascending: true })
+  cachedAgentes = data || []
+}
+
+function renderAgentes() {
+  const board = document.getElementById('agente-board'); if (!board) return
+  const cards = cachedAgentes.map(a => `
+    <div class="agente-card" onclick="openAgente('${a.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:12px">
+        <div class="agente-nome">${esc(a.nome||'Sem nome')}</div>
+        <label class="sw" onclick="event.stopPropagation()"><input type="checkbox" ${a.ativo?'checked':''} onchange="toggleAgenteAtivo('${a.id}',event)"><span></span></label>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-3)">
+        <span style="font-weight:600;color:${a.ativo?'var(--green)':'var(--text-3)'}">● ${a.ativo?'Ativo':'Pausado'}</span>
+        <span>${a.expert ? esc(EXPERT_LABEL[a.expert]||a.expert) : '—'}</span>
+        <span style="display:inline-flex;align-items:center;gap:5px">${icon('bot',{size:13})} ${esc((a.modelo||'').replace('claude-',''))||'—'}</span>
+      </div>
+    </div>`).join('')
+  const novo = `<div class="agente-card agente-card-new" onclick="openAgente(null)">${icon('bot',{size:26})}<div style="font-weight:600">+ Novo agente</div><div style="font-size:11px">Configure um SDR de IA</div></div>`
+  board.innerHTML = cards + novo
+}
+
+function openAgente(id) {
+  const a = id ? (cachedAgentes.find(x => x.id === id) || {}) : {}
+  agenteEditId = id || null
+  const ta = 'style="min-height:90px;resize:vertical;margin-top:4px"'
+  document.getElementById('dt-title').textContent = id ? (a.nome || 'Agente SDR') : 'Novo Agente SDR'
+  document.getElementById('dt-body').innerHTML = `
+    <div class="section-sep" style="border-top:none;padding-top:0">Identidade</div>
+    <div class="detail-grid">
+      <div><div class="di-label">Nome</div><input id="ag-nome" type="text" value="${esc(a.nome||'')}" placeholder="Ex: Carol" /></div>
+      <div><div class="di-label">Expert / Nicho</div>
+        <select id="ag-expert">
+          <option value="cindy" ${a.expert==='cindy'?'selected':''}>Cindy Batista (óptico)</option>
+          <option value="dr_alex" ${a.expert==='dr_alex'?'selected':''}>Dr. Alex (HOF)</option>
+          <option value="geral" ${a.expert==='geral'||!a.expert?'selected':''}>Geral</option>
+        </select>
+      </div>
+      <div><div class="di-label">WhatsApp (número)</div><input id="ag-whats" type="text" value="${esc(a.whatsapp_numero||'')}" placeholder="Número Evolution" /></div>
+      <div><div class="di-label">Status</div><label class="sw" style="margin-top:6px"><input type="checkbox" id="ag-ativo" ${a.ativo?'checked':''}><span></span></label> <span style="font-size:12px;color:var(--text-3);margin-left:8px">Ligado / Pausado</span></div>
+    </div>
+    <div class="section-sep">Comportamento</div>
+    <div class="di-label">Personalidade / Instruções</div>
+    <textarea id="ag-instrucoes" ${ta} placeholder="Tom, missão, como conversa...">${esc(a.instrucoes||'')}</textarea>
+    <div class="di-label" style="margin-top:10px">Mensagem de abertura</div>
+    <textarea id="ag-abertura" style="min-height:60px;resize:vertical;margin-top:4px" placeholder="Saudação proativa ao lead novo">${esc(a.mensagem_abertura||'')}</textarea>
+    <div class="section-sep">Conhecimento (treino)</div>
+    <textarea id="ag-conhecimento" ${ta} placeholder="Cole SOPs, produtos, preços, FAQ, objeções — o que o agente precisa saber">${esc(a.conhecimento||'')}</textarea>
+    <div class="section-sep">Qualificação</div>
+    <textarea id="ag-qualificacao" style="min-height:70px;resize:vertical;margin-top:4px" placeholder="O que qualifica/desqualifica o lead">${esc(a.qualificacao||'')}</textarea>
+    <div class="section-sep">Configurações</div>
+    <div class="di-label">Modelo</div>
+    <select id="ag-modelo">
+      <option value="claude-sonnet-4-6" ${(a.modelo||'claude-sonnet-4-6')==='claude-sonnet-4-6'?'selected':''}>Claude Sonnet 4.6 (rápido)</option>
+      <option value="claude-opus-4-8" ${a.modelo==='claude-opus-4-8'?'selected':''}>Claude Opus 4.8 (mais inteligente)</option>
+    </select>
+    <div class="section-sep">Ferramentas</div>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white);font-size:13px;margin-bottom:6px"><label class="sw"><input type="checkbox" id="ag-escalar" ${a.escalar_ativo!==false?'checked':''}><span></span></label> Escalar pra humano</label>
+    <textarea id="ag-escalar-inst" style="min-height:50px;resize:vertical" placeholder="Quando passar a conversa pro humano">${esc(a.escalar_instrucoes||'')}</textarea>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white);font-size:13px;margin:10px 0 6px"><label class="sw"><input type="checkbox" id="ag-notificar" ${a.notificar_ativo?'checked':''}><span></span></label> Notificar humano</label>
+    <input id="ag-notificar-contato" type="text" value="${esc(a.notificar_contato||'')}" placeholder="Quem/quando notificar (ex: Gabriel)" />
+    <div style="display:flex;gap:10px;margin-top:20px">
+      <button class="btn-primary" onclick="saveAgente()">Salvar</button>
+      ${id ? `<button class="btn-card-action btn-card-del" onclick="deleteAgente('${id}')" style="padding:8px 14px">Excluir</button>` : ''}
+    </div>`
+  document.getElementById('modal-detail').classList.add('open')
+}
+
+async function saveAgente() {
+  const g = id => document.getElementById(id)
+  const obj = {
+    nome: g('ag-nome').value.trim(),
+    expert: g('ag-expert').value,
+    whatsapp_numero: g('ag-whats').value.trim() || null,
+    ativo: g('ag-ativo').checked,
+    instrucoes: g('ag-instrucoes').value,
+    mensagem_abertura: g('ag-abertura').value,
+    conhecimento: g('ag-conhecimento').value,
+    qualificacao: g('ag-qualificacao').value,
+    modelo: g('ag-modelo').value,
+    escalar_ativo: g('ag-escalar').checked,
+    escalar_instrucoes: g('ag-escalar-inst').value,
+    notificar_ativo: g('ag-notificar').checked,
+    notificar_contato: g('ag-notificar-contato').value.trim() || null
+  }
+  if (!obj.nome) { alert('Dê um nome ao agente'); return }
+  const { error } = agenteEditId
+    ? await sb.from('agente_sdr').update(obj).eq('id', agenteEditId)
+    : await sb.from('agente_sdr').insert(obj)
+  if (error) { alert('Erro ao salvar: ' + error.message); return }
+  closeDetail(); await loadAgentes(); renderAgentes()
+}
+
+async function deleteAgente(id) {
+  if (!confirm('Excluir este agente?')) return
+  const { error } = await sb.from('agente_sdr').delete().eq('id', id)
+  if (error) { alert('Erro ao excluir: ' + error.message); return }
+  closeDetail(); await loadAgentes(); renderAgentes()
+}
+
+async function toggleAgenteAtivo(id, e) {
+  e.stopPropagation()
+  const a = cachedAgentes.find(x => x.id === id); if (!a) return
+  const novo = !a.ativo; a.ativo = novo; renderAgentes()
+  const { error } = await sb.from('agente_sdr').update({ ativo: novo }).eq('id', id)
+  if (error) { alert('Erro: ' + error.message); a.ativo = !novo; renderAgentes() }
 }
 
 // ── FINANCEIRO ─────────────────────────────────────────────────────────────
