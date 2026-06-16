@@ -3,6 +3,13 @@
 **Autor:** executado por Atlas aplicando framework Hormozi ($100M Offers)
 **Inputs:** 00-brief (escopo 4 pilares) · 01/01b/01c (mercado) · 02-icp (beachhead = Empresário → Prof. liberal)
 
+> **⚙️ DECISÕES DE VITOR (2026-06-14):**
+> - **Preço de ENTRADA: R$12k / 45 dias** (preço de validação dos primeiros cases — sobe depois com prova).
+> - **Nome:** AIOS **descartado** — a definir na Fase 4.
+> - **Prioridade: MÁXIMA, junto com o SaaS óptico.**
+> - **Sócios:** Gabriel entra junto (sócio). Sócio com rede de empresários (consultoria) também.
+> - ⚠️ *Implicação a checar (Fase 5): R$12k por 45 dias entregando os 4 pilares é apertado em margem/capacidade → ou o escopo de entrada é enxuto (núcleo: comercial+IA+posicionamento), ou R$12k é só o degrau inicial. Definir escopo do "produto de R$12k".*
+
 ---
 
 ## 1. Resumo da oferta (1 frase)

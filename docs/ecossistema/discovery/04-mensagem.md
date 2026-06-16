@@ -4,6 +4,25 @@
 
 ---
 
+## 0. Arquitetura de marca — modelo "constelação G4" (decisão Vitor, 2026-06-14)
+A oferta NÃO sai como marca solo do Vitor. Modelo escolhido = **constelação de marcas pessoais + marca-mãe institucional** (igual G4 com Tallis Gomes + Bruno Nardon + Alfredo Soares).
+
+```
+  Vitor (perfil)        Gabriel (perfil)       Sócio-rede (perfil)
+  visão / IA / arquiteto   comercial / vendas    empresários / network
+        \                     |                     /
+         \                    |                    /
+              ARVEX (institucional) — une, entrega, escala, vende o método
+                              |
+                  Oferta de implementação (Camada 1 — caixa)
+```
+
+- **3 perfis pessoais** = distribuição/autoridade (Camada 2). Cada um puxa audiência.
+- **ARVEX institucional** = a marca-mãe que consolida, dá lastro e entrega. É o ativo de longo prazo (vende mesmo se um rosto sair).
+- 🎯 **Sacada:** os 3 sócios cobrem os 3 ICPs naturalmente — Vitor→visão/IA (expert/empresário moderno), Gabriel→comercial, sócio-rede→empresário tradicional. **Resolve a tensão de ICP múltiplo** sem confundir a marca.
+- **2 níveis de nome:** (a) marca-mãe (ARVEX ou evolução) · (b) nome do MÉTODO/produto de implementação.
+- ⚠️ **Ajuste:** o doc de Posicionamento (Arquiteto-Visionário) descreve o **perfil do Vitor** — um dos 3 rostos, não a marca-mãe. A ARVEX precisa de identidade/método próprios, não só "soma dos sócios" (lição G4).
+
 ## 1. A categoria que Vitor ocupa
 **Não competir DENTRO de uma categoria lotada — criar a sua.** Vitor não é "mais uma assessoria" (V4) nem "mais um mentor" (G4) nem "agência de IA" (fria). Ele é:
 
