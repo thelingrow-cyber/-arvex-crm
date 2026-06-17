@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCH Veículos — Clássicos com procedência | Carros antigos à venda</title>
+  <meta name="description" content="Curadoria de carros clássicos raros, com procedência verificada e estado impecável. Mustang, Opala, Jaguar, Porsche e mais. Fale com a PCH.">
+  <meta property="og:title" content="PCH Veículos — Clássicos que contam histórias">
+  <meta property="og:description" content="Curadoria de carros clássicos com procedência. Encontre o seu.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="fotos/mustang-fastback-1968.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="fotos/jaguar-etype-1964.jpg">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="brand"><img src="assets/logo.png" alt="PCH Veículos" class="logo"></a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Início</a>
+        <a href="estoque.html">Estoque</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="#contato" data-contato class="nav-cta" target="_blank" rel="noopener">Falar conosco</a>
+      </nav>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Curadoria de carros clássicos</p>
+      <h1 class="h1 reveal">Clássicos que <span class="neon">contam histórias</span></h1>
+      <p class="lead reveal">Carros raros, com procedência verificada e estado impecável. Cada um com uma história — a próxima pode ser a sua.</p>
+      <div class="hero-ctas reveal">
+        <a href="estoque.html" class="btn btn-primary">Ver coleção</a>
+        <a href="#contato" data-contato class="btn btn-ghost" target="_blank" rel="noopener">Falar com a PCH</a>
+      </div>
+    </div>
+    <div class="scroll-hint">role para descobrir</div>
+  </section>
+
+  <!-- DESTAQUES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow reveal">A coleção</p>
+          <h2 class="h2 reveal">Destaques</h2>
+        </div>
+        <a href="estoque.html" class="link reveal">Ver estoque completo →</a>
+      </div>
+      <div class="grid" id="grid-destaques"></div>
+    </div>
+  </section>
+
+  <!-- QUEM SOMOS -->
+  <section class="section bg-2">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow reveal">Quem somos</p>
+        <h2 class="h2 reveal">Mais que uma revenda. Uma paixão.</h2>
+        <p class="lead reveal" style="margin-top:16px">Garimpamos, avaliamos e selecionamos clássicos com procedência — para que você receba não só um carro, mas uma história bem cuidada para continuar. Aqui, cada veículo é tratado como a peça rara que é.</p>
+        <div class="stat-row reveal">
+          <div class="stat"><b>100%</b><span>procedência verificada</span></div>
+          <div class="stat"><b>BR</b><span>atendemos todo o Brasil</span></div>
+          <div class="stat"><b>∞</b><span>paixão por clássicos</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="gallery-main"><img src="fotos/porsche-356-1951.jpg" alt="Clássico em destaque" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-band" id="contato">
+    <div class="container center">
+      <h2 class="h2 reveal">Achou o seu clássico?</h2>
+      <p class="lead reveal" style="margin:12px auto 28px">Ele não vai esperar para sempre. Fale com a gente e tire suas dúvidas.</p>
+      <a href="#" data-contato class="btn btn-primary reveal" target="_blank" rel="noopener">Falar com a PCH no WhatsApp</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-in">
+      <div>
+        <a href="index.html" class="brand"><img src="assets/logo.png" alt="PCH Veículos" class="logo"></a>
+        <p class="muted">Clássicos com procedência. Atendemos todo o Brasil.</p>
+      </div>
+      <div>
+        <p><a href="#" data-instagram target="_blank" rel="noopener">@pchveiculos</a></p>
+        <p style="margin-top:8px"><a href="#" data-contato target="_blank" rel="noopener">Falar conosco →</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" data-contato class="fab" target="_blank" rel="noopener">Falar conosco</a>
+
+  <script src="carros.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -27,3 +27,7 @@ Thumbs.db
 .aiox-core/local/
 .claude/settings.local.json
 .aiox/install-log.txt
+
+# PCH Veículos — backup do WordPress (contém credenciais do banco) e artefatos
+backup-wp-pchveiculos/
+docs/pch-veiculos-site.zip

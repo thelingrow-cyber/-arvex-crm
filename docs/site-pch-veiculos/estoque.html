@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estoque — PCH Veículos | Carros clássicos à venda</title>
+  <meta name="description" content="Veja a coleção de clássicos da PCH. Filtre por marca, estado e faixa de preço.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="brand"><img src="assets/logo.png" alt="PCH Veículos" class="logo"></a>
+      <nav class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="estoque.html" class="active">Estoque</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="#" data-contato class="nav-cta" target="_blank" rel="noopener">Falar conosco</a>
+      </nav>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow reveal">A coleção</p>
+      <h1 class="h2 reveal">Encontre o seu clássico</h1>
+      <p class="lead reveal" style="margin:8px 0 28px">Filtre por marca, estado e faixa de preço. Achou o seu? A gente conta o resto pessoalmente.</p>
+
+      <div class="filters reveal">
+        <div class="field"><label for="f-busca">Buscar</label><input id="f-busca" type="search" placeholder="marca ou modelo..."></div>
+        <div class="field"><label for="f-marca">Marca</label><select id="f-marca"></select></div>
+        <div class="field"><label for="f-uf">Estado</label><select id="f-uf"></select></div>
+        <div class="field"><label for="f-preco">Preço</label>
+          <select id="f-preco">
+            <option value="">Qualquer</option>
+            <option value="0-150000">Até R$ 150 mil</option>
+            <option value="150000-400000">R$ 150–400 mil</option>
+            <option value="400000-1000000">R$ 400 mil–1 mi</option>
+            <option value="1000000-0">Acima de R$ 1 mi</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-order">Ordenar</label>
+          <select id="f-order">
+            <option value="">Mais recentes</option>
+            <option value="preco-asc">Menor preço</option>
+            <option value="preco-desc">Maior preço</option>
+            <option value="ano">Ano</option>
+            <option value="km">Menor km</option>
+          </select>
+        </div>
+        <div class="count" id="f-count"></div>
+      </div>
+
+      <div class="grid" id="grid-estoque"></div>
+    </div>
+  </main>
+
+  <section class="section cta-band">
+    <div class="container center">
+      <h2 class="h2 reveal">Não achou o que procura?</h2>
+      <p class="lead reveal" style="margin:12px auto 28px">Novidades chegam toda semana. Diga o que você busca e a gente avisa.</p>
+      <a href="#" data-contato class="btn btn-primary reveal" target="_blank" rel="noopener">Falar com a PCH</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-in">
+      <div>
+        <a href="index.html" class="brand"><img src="assets/logo.png" alt="PCH Veículos" class="logo"></a>
+        <p class="muted">Clássicos com procedência. Atendemos todo o Brasil.</p>
+      </div>
+      <div>
+        <p><a href="#" data-instagram target="_blank" rel="noopener">@pchveiculos</a></p>
+        <p style="margin-top:8px"><a href="#" data-contato target="_blank" rel="noopener">Falar conosco →</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" data-contato class="fab" target="_blank" rel="noopener">Falar conosco</a>
+
+  <script src="carros.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
