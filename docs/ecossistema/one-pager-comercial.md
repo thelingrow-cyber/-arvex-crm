@@ -17,14 +17,14 @@ Você construiu um negócio de verdade. Mas ele roda na sua cabeça, na sua pres
 **Você não está atrasado. Você só nunca teve quem instalasse o futuro pra você.**
 
 ## O que a gente faz
-Entramos no seu negócio e, em **45 dias**, construímos a máquina que vende com IA rodando dentro:
+Primeiro a gente **mapeia o seu negócio de ponta a ponta.** Aí construímos, em **45 dias, o SEU sistema de operação** — um CRM/painel feito pra realidade da sua empresa — e colocamos os **funcionários de IA pra trabalhar dentro dele:**
 
-1. **Posicionamento & oferta** — o que você vende, pra quem, e por que escolhem você.
-2. **Comercial implementado** — funil, processo e follow-up, com **funcionários de IA** qualificando e vendendo 24/7.
-3. **Sua presença** — sua autoridade estruturada pra vender dentro do próprio negócio.
-4. **Máquina de conteúdo** — seu Instagram operando com IA.
+1. **Mapeamento + seu sistema de operação** — um sistema (CRM) adaptado ao seu processo, onde tudo fica organizado e visível. *O seu negócio, com cara de empresa moderna.*
+2. **Funcionários de IA dentro do sistema** — uma SDR de IA que qualifica e vende 24/7, follow-up automático, pipeline que se atualiza sozinho.
+3. **Posicionamento & oferta** — o que você vende, pra quem, e por que escolhem você.
+4. **Sua presença & conteúdo** — sua autoridade estruturada e o Instagram operando com IA.
 
-**Você não vira tech. Vira o dono que chegou primeiro.**
+**O sistema é o escritório. Os funcionários de IA trabalham dentro dele. Você não vira tech — vira o dono que chegou primeiro.**
 
 ## A diferença
 Hoje, pra ter isso, você contrataria um pra posicionamento, um pro comercial, um pra IA e um pro conteúdo — e ainda faria tudo na unha. **Nós somos os quatro numa estrutura só — e ficamos no resultado com você.** Não te ensinamos e sumimos. Implementamos e acompanhamos.
