@@ -21,8 +21,10 @@ Primeiro a gente **mapeia o seu negócio de ponta a ponta.** Aí construímos, e
 
 1. **Mapeamento + seu sistema de operação** — um sistema (CRM) adaptado ao seu processo, onde tudo fica organizado e visível. *O seu negócio, com cara de empresa moderna.*
 2. **Funcionários de IA dentro do sistema** — uma SDR de IA que qualifica e vende 24/7, follow-up automático, pipeline que se atualiza sozinho.
-3. **Posicionamento & oferta** — o que você vende, pra quem, e por que escolhem você.
+3. **Sua oferta e seu comercial estruturados** — desenhamos o que você vende e por que escolhem você, montamos o processo de venda e os scripts, e **treinamos o seu time** pra rodar a máquina.
 4. **Sua presença & conteúdo** — sua autoridade estruturada e o Instagram operando com IA.
+
+*Adaptado ao seu perfil: infoprodutor (foco em estruturar a oferta) · empresário (foco em comercial + treino de time) · profissional liberal (foco em posicionamento + IA atendendo).*
 
 **O sistema é o escritório. Os funcionários de IA trabalham dentro dele. Você não vira tech — vira o dono que chegou primeiro.**
 
