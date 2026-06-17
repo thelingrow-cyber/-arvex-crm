@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARVEX — Alinhamento de Sócios</title>
+<style>
+  :root{
+    --bg:#0b0b0d; --bg2:#111114; --ink:#ECEAE4; --muted:#8a8780;
+    --line:rgba(255,255,255,.09); --accent:#C6A15B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+    scroll-snap-type:y mandatory; overflow-x:hidden;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .slide{
+    min-height:100vh; scroll-snap-align:start; position:relative;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(28px,7vw,120px); border-bottom:1px solid var(--line);
+  }
+  .slide:nth-child(even){background:var(--bg2)}
+  .kicker{
+    font-size:13px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin-bottom:28px;
+  }
+  h1{font-size:clamp(40px,9vw,104px); font-weight:700; letter-spacing:-.03em; line-height:1.02}
+  h2{font-size:clamp(28px,5vw,60px); font-weight:700; letter-spacing:-.02em; line-height:1.08; max-width:18ch}
+  .lead{font-size:clamp(18px,2.4vw,26px); color:var(--muted); max-width:34ch; margin-top:24px; line-height:1.45}
+  .big-quote{font-size:clamp(30px,5.5vw,68px); font-weight:700; letter-spacing:-.025em; line-height:1.12; max-width:20ch}
+  .accent{color:var(--accent)}
+  .meta{position:absolute; bottom:34px; left:clamp(28px,7vw,120px); font-size:14px; color:var(--muted); letter-spacing:.04em}
+  .num{position:absolute; top:34px; right:clamp(28px,7vw,120px); font-size:13px; color:var(--muted); letter-spacing:.1em}
+  ul{list-style:none; margin-top:34px; display:grid; gap:18px; max-width:62ch}
+  li{font-size:clamp(17px,2vw,22px); padding-left:30px; position:relative; color:var(--ink)}
+  li::before{content:""; position:absolute; left:0; top:.7em; width:12px; height:1px; background:var(--accent)}
+  li b{font-weight:600}
+  li span{color:var(--muted); font-weight:400}
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:30px; margin-top:44px; max-width:880px}
+  .stat .n{font-size:clamp(34px,5vw,56px); font-weight:700; letter-spacing:-.02em; color:var(--accent)}
+  .stat .l{font-size:15px; color:var(--muted); margin-top:8px; line-height:1.4}
+  .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; margin-top:44px; background:var(--line); border:1px solid var(--line); max-width:980px}
+  .col{background:var(--bg); padding:30px}
+  .slide:nth-child(even) .col{background:var(--bg2)}
+  .col h3{font-size:20px; font-weight:700; margin-bottom:14px}
+  .col p{font-size:15.5px; color:var(--muted); line-height:1.5}
+  .col .tag{font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:10px}
+  .flow{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:40px; font-size:clamp(16px,2vw,22px)}
+  .flow .node{border:1px solid var(--line); padding:14px 20px; border-radius:2px}
+  .flow .node.hi{border-color:var(--accent); color:var(--accent)}
+  .flow .arr{color:var(--muted)}
+  .progress{position:fixed; top:0; left:0; height:2px; background:var(--accent); width:0; z-index:50; transition:width .2s}
+  .hint{position:fixed; bottom:18px; right:22px; font-size:12px; color:var(--muted); z-index:50; opacity:.7}
+  @media print{
+    @page{size:landscape; margin:0}
+    html,body{background:var(--bg)!important}
+    .slide{min-height:auto; height:100vh; page-break-after:always; break-after:page; border:none; justify-content:center}
+    .progress,.hint{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+
+<!-- 1 · CAPA -->
+<section class="slide">
+  <div class="num">01</div>
+  <div class="kicker">Alinhamento de sócios · 2026</div>
+  <h1>ARVEX</h1>
+  <p class="lead">Instalamos o futuro dentro dos negócios — antes que o mercado entenda que precisa.</p>
+  <div class="meta">Vitor &nbsp;·&nbsp; Gabriel &nbsp;·&nbsp; Pablo</div>
+</section>
+
+<!-- 2 · POR QUE AGORA -->
+<section class="slide">
+  <div class="num">02</div>
+  <div class="kicker">Por que agora</div>
+  <h2>O mercado sabe que precisa de IA — e de um comercial que venda sozinho. E não sabe construir nenhum dos dois.</h2>
+  <div class="stats">
+    <div class="stat"><div class="n">53%</div><div class="l">sabem que precisam de IA e não sabem implementar</div></div>
+    <div class="stat"><div class="n">38%</div><div class="l">operam no "artesanal" — comercial improvisado, preso no dono</div></div>
+    <div class="stat"><div class="n">∞</div><div class="l">cursos que prometem e não viram operação</div></div>
+  </div>
+  <p class="lead">Falta IA. Falta estrutura comercial. Falta quem <span style="color:var(--accent)">instale as duas</span>.</p>
+</section>
+
+<!-- 3 · BIG IDEA -->
+<section class="slide">
+  <div class="num">03</div>
+  <div class="kicker">O que dizemos ao mercado</div>
+  <p class="big-quote">"Você não está atrasado. Você só não tem quem traduza o futuro pra você."</p>
+  <p class="lead">O dono não precisa virar tech. Precisa de quem absorva o caos da IA e instale, no negócio dele, só o que o coloca à frente.</p>
+</section>
+
+<!-- 4 · A OFERTA -->
+<section class="slide">
+  <div class="num">04</div>
+  <div class="kicker">A oferta</div>
+  <h2>Não ensinamos. Implementamos — e ficamos no resultado.</h2>
+  <p class="lead" style="margin-top:18px">Em 45 dias, instalamos a operação que vende com IA:</p>
+  <ul>
+    <li><b>Sistema de operação personalizado</b> <span>— um CRM adaptado ao negócio dele</span></li>
+    <li><b>Funcionários de IA dentro do sistema</b> <span>— SDR que qualifica e vende 24/7</span></li>
+    <li><b>Oferta e comercial estruturados + time treinado</b> <span>— a máquina e a gente</span></li>
+    <li><b>Presença e conteúdo</b> <span>— autoridade e Instagram operando com IA</span></li>
+  </ul>
+</section>
+
+<!-- 5 · DIFERENCIAL -->
+<section class="slide">
+  <div class="num">05</div>
+  <div class="kicker">Por que nós</div>
+  <h2>Ninguém entrega isso junto.</h2>
+  <ul>
+    <li><b>Agências de marketing</b> <span>— te trazem clique. Só isso.</span></li>
+    <li><b>Mentores / educação</b> <span>— te ensinam e somem.</span></li>
+    <li><b>Agências de IA</b> <span>— te entregam um robô frio, sem estratégia.</span></li>
+    <li style="color:var(--accent)"><b>Nós</b> <span style="color:var(--ink)">— o negócio inteiro, com IA, e ficamos no resultado.</span></li>
+  </ul>
+  <p class="lead">Somos os cinco fornecedores numa estrutura só.</p>
+</section>
+
+<!-- 6 · O QUE JÁ TEMOS -->
+<section class="slide">
+  <div class="num">06</div>
+  <div class="kicker">O que já temos na mão</div>
+  <h2>Não partimos do zero.</h2>
+  <ul>
+    <li><b>Motor de CRM próprio</b> <span>— já construído e rodando, feito por nós</span></li>
+    <li><b>IA + plataforma de WhatsApp</b> <span>— atendimento e vendas na API oficial da Meta</span></li>
+    <li><b>Prova viva</b> <span>— a operação da Cindy já roda nisso hoje</span></li>
+  </ul>
+</section>
+
+<!-- 7 · A MARCA -->
+<section class="slide">
+  <div class="num">07</div>
+  <div class="kicker">Como construímos a marca</div>
+  <h2>Três rostos. Uma casa.</h2>
+  <p class="lead" style="margin-top:18px">Cada um com seu perfil e sua audiência. A ARVEX é a marca que une, entrega e vira patrimônio — igual o G4 com Tallis, Bruno e Alfredo na frente.</p>
+  <div class="flow">
+    <span class="node">Vitor</span><span class="node">Gabriel</span><span class="node">Pablo</span>
+    <span class="arr">→</span><span class="node hi">ARVEX</span>
+  </div>
+</section>
+
+<!-- 8 · DIVISÃO -->
+<section class="slide">
+  <div class="num">08</div>
+  <div class="kicker">Nossa divisão</div>
+  <h2>Quem faz o quê.</h2>
+  <div class="cols">
+    <div class="col"><span class="tag">Vitor</span><h3>Direção & IA</h3><p>Dirige o time de IA, a tecnologia e a visão do que vem antes do mercado.</p></div>
+    <div class="col"><span class="tag">Gabriel</span><h3>Comercial</h3><p>Estrutura a venda, treina o time, fecha.</p></div>
+    <div class="col"><span class="tag">Pablo</span><h3>Comercial</h3><p>Rede de empresários e fechamento — a porta aberta que vira venda.</p></div>
+  </div>
+</section>
+
+<!-- 9 · O NÚMERO -->
+<section class="slide">
+  <div class="num">09</div>
+  <div class="kicker">O modelo</div>
+  <h2>R$12 mil. 45 dias. Pra começar.</h2>
+  <ul>
+    <li><b>Ticket de entrada R$12k</b> <span>— sobe conforme acumulamos cases</span></li>
+    <li><b>Setup + performance</b> <span>— ficamos atrelados ao resultado</span></li>
+    <li><b>Cada cliente constrói o nosso SaaS</b> <span>— o serviço de hoje é o produto de amanhã</span></li>
+  </ul>
+</section>
+
+<!-- 10 · O PLANO -->
+<section class="slide">
+  <div class="num">10</div>
+  <div class="kicker">Próximos passos</div>
+  <h2>O caminho.</h2>
+  <ul>
+    <li><b>1 · Alinhar nós três</b> <span>— hoje</span></li>
+    <li><b>2 · Montar o sistema da ARVEX</b> <span>— nosso cliente zero + o template replicável</span></li>
+    <li><b>3 · Primeiro cliente</b> <span>— via rede, sem queimar tráfego</span></li>
+    <li><b>4 · Escalar e produtizar</b> <span>— da implementação ao SaaS</span></li>
+  </ul>
+</section>
+
+<!-- 11 · FECHAMENTO -->
+<section class="slide">
+  <div class="num">11</div>
+  <div class="kicker">O convite</div>
+  <h1>Vamos construir<br>isso juntos.</h1>
+  <div class="meta">ARVEX</div>
+</section>
+
+<div class="hint">↓ role · F11 tela cheia · Ctrl+P vira PDF</div>
+<script>
+  const bar=document.getElementById('bar');
+  addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+  addEventListener('keydown',e=>{
+    const s=[...document.querySelectorAll('.slide')];
+    const cur=s.findIndex(el=>el.getBoundingClientRect().top>=-5);
+    if(e.key==='ArrowDown'||e.key===' '){e.preventDefault();(s[cur+1]||s[cur])?.scrollIntoView()}
+    if(e.key==='ArrowUp'){e.preventDefault();(s[Math.max(0,cur-1)])?.scrollIntoView()}
+  });
+</script>
+</body>
+</html>
