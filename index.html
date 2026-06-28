@@ -506,7 +506,7 @@
     <span class="si-icon" data-icon="bot"></span> Agente SDR
   </div>
   <div class="sidebar-item" onclick="goTo('coach',this)" id="nav-coach">
-    <span class="si-icon" data-icon="grad"></span> Coach
+    <span class="si-icon" data-icon="grad"></span> Reuniões
   </div>
 
   <div class="sidebar-section" style="margin-top:8px">Customer Success</div>
@@ -883,7 +883,7 @@
         .coach-extra{margin-top:10px}.coach-extra p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.55}
       </style>
       <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
-        <div><h1>Coach</h1><p>Análise das suas reuniões</p></div>
+        <div><h1>Reuniões</h1><p>Análise das suas reuniões</p></div>
         <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
       </div>
       <div id="coach-demo-banner" class="coach-banner" style="display:none">Modo demonstração — dados fictícios</div>
@@ -1194,7 +1194,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', coach:'Coach — Reuniões' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', coach:'Reuniões' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
