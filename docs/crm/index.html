@@ -878,6 +878,9 @@
         .coach-insight h4{font-size:12px;display:flex;align-items:center;gap:6px;margin-bottom:6px;color:var(--white)}
         .coach-insight ul{margin:0;padding:0;list-style:none}.coach-insight li{font-size:12px;color:var(--muted);padding:3px 0}
         .coach-nota-big{font-size:34px;font-weight:700}
+        .coach-diretor{display:flex;gap:10px;background:var(--accent-dim);border:1px solid var(--blue);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-bottom:14px}
+        .coach-missao{display:flex;gap:10px;background:rgba(200,169,110,.10);border:1px solid var(--gold);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-top:12px}
+        .coach-extra{margin-top:10px}.coach-extra p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.55}
       </style>
       <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
         <div><h1>Coach</h1><p>Análise das suas reuniões</p></div>
@@ -1421,10 +1424,10 @@ function coachDemoData() {
   return [
     { id:'d1', cliente_nome:'Marília', produto:'Consultoria', data_reuniao:'2026-06-24', closer_nome:'João', resultado:'ganhou', ticket:12000, status:'done', nota_geral:7.4,
       scores:{rapport:8.5,diagnostico:7,escuta:6.5,valor:7,controle:8,fechamento:5,transicao:7,objecoes:6},
-      insights:{acertos:['Deixou o lead falar sem interromper','Validou as emoções e a dor','Conexão genuína no início'],erros:['Apresentou a solução cedo demais','Concedeu desconto rápido','Não aprofundou a 2ª unidade citada'],faltou:['Quanto isso custa pra vocês hoje?','Como isso impacta o lucro?'],sugestoes:['Espere mais 5 min antes da oferta','Treine 5s de silêncio após o preço']} },
+      insights:{resumo_diretor:'Reunião acima da média: você gerou confiança rápido e conduziu bem o diagnóstico. O maior limitador foi apresentar a solução antes de aprofundar o impacto financeiro da dor — se tivesse explorado isso, o valor percebido subiria antes da negociação.',dor_dominante:'Previsibilidade/lucratividade — fatura bem mas sente que não sobra. A dor real não era volume.',objecao:{tipo:'genuina',explicacao:'Manteve a mesma narrativa (preço/timing) do início ao fim — sinal de objeção real, não cortina.'},erro_estrategico:'Negociou antes de fortalecer o valor; faltou o reframe de urgência.',missao:'Explorar o impacto financeiro da dor ANTES de apresentar a oferta.',acertos:['Deixou o lead falar sem interromper','Validou as emoções e a dor','Conexão genuína no início'],erros:['Apresentou a solução cedo demais','Concedeu desconto rápido','Não aprofundou a 2ª unidade citada'],faltou:['Quanto isso custa pra vocês hoje?','Como isso impacta o lucro?'],sugestoes:['Espere mais 5 min antes da oferta','Treine 5s de silêncio após o preço']} },
     { id:'d2', cliente_nome:'Carlos', produto:'Mentoria', data_reuniao:'2026-06-23', closer_nome:'João', resultado:'perdeu', ticket:null, status:'done', nota_geral:4.8,
       scores:{rapport:5,diagnostico:4,escuta:5,valor:4,controle:5,fechamento:4,transicao:5,objecoes:6},
-      insights:{acertos:['Boa simpatia','Explicou bem o método','Foi pontual'],erros:['Não diagnosticou a dor real','Falou demais','Cedeu na objeção de preço'],faltou:['Qual o maior gargalo hoje?','O que trava o crescimento?'],sugestoes:['Pergunte antes de apresentar','Explore o impacto financeiro da dor']} },
+      insights:{resumo_diretor:'Você foi simpático mas não fez o lead SENTIR o problema — apresentou o método sem dor construída. Sem dor, não há urgência, e sem urgência o preço vira caro.',dor_dominante:'Falta de clientes qualificados — mas isso nunca foi investigado na call.',objecao:{tipo:'genuina',explicacao:'Objeção de preço real, porque não houve valor construído antes.'},erro_estrategico:'Falou demais e apresentou cedo; o lead nunca chegou a querer a solução.',missao:'Fazer 3 perguntas de dor (e ficar nelas) antes de qualquer apresentação.',acertos:['Boa simpatia','Explicou bem o método','Foi pontual'],erros:['Não diagnosticou a dor real','Falou demais','Cedeu na objeção de preço'],faltou:['Qual o maior gargalo hoje?','O que trava o crescimento?'],sugestoes:['Pergunte antes de apresentar','Explore o impacto financeiro da dor']} },
     { id:'d3', cliente_nome:'Patrícia', produto:'Consultoria', data_reuniao:'2026-06-25', closer_nome:'Ana', resultado:'aberto', ticket:null, status:'processing', nota_geral:null, scores:null, insights:null },
   ]
 }
@@ -1519,7 +1522,7 @@ function coachDemoSimulate(rec) {
   renderCoachCards()
   setTimeout(() => {
     const m = coachMeetings.find(x => x.id === id)
-    if (m) { m.status = 'done'; m.scores = {rapport:8,diagnostico:7.5,escuta:7,valor:6.5,controle:7,fechamento:6,transicao:7,objecoes:6.5}; m.nota_geral = 6.9; m.insights = {acertos:['Boa abertura','Escutou bem','Conectou'],erros:['Ofertou cedo','Pouco valor','Cedeu desconto'],faltou:['Impacto financeiro?'],sugestoes:['Silêncio após o preço']} }
+    if (m) { m.status = 'done'; m.scores = {rapport:8,diagnostico:7.5,escuta:7,valor:6.5,controle:7,fechamento:6,transicao:7,objecoes:6.5}; m.nota_geral = 6.9; m.insights = {resumo_diretor:'Boa condução e conexão. O ponto a destravar é construir mais valor antes de falar preço — você chegou na oferta com o problema ainda "ameno" na cabeça do lead.',dor_dominante:'(exemplo) a dor real aparece quando você aprofunda o custo de continuar como está.',objecao:{tipo:'genuina',explicacao:'(exemplo) objeção consistente ao longo da call.'},erro_estrategico:'Ofertou antes de tornar o problema inevitável.',missao:'Aprofundar a dor (impacto + urgência) antes de apresentar.',acertos:['Boa abertura','Escutou bem','Conectou'],erros:['Ofertou cedo','Pouco valor construído','Cedeu desconto'],faltou:['Qual o impacto financeiro disso?'],sugestoes:['5s de silêncio após o preço']} }
     renderCoachCards()
   }, 1800)
 }
@@ -1534,14 +1537,22 @@ function openMeeting(id) {
   const blocks = [['check','Acertos',ins.acertos],['x','Erros',ins.erros],['help','O que faltou',ins.faltou],['bulb','Sugestões',ins.sugestoes]].map(([ic,t,arr]) => `<div class="coach-insight"><h4>${icon(ic)} ${t}</h4><ul>${((arr||[]).map(x => `<li>• ${esc(x)}</li>`).join(''))||'<li style="color:var(--text-3)">—</li>'}</ul></div>`).join('')
   const isOwner = COACH_DEMO || (currentUser && m.closer_id === currentUser.id) || currentRole === 'admin'
   const editSel = isOwner ? `<select onchange="editResultado('${m.id}',this.value)" style="width:auto"><option value="ganhou"${m.resultado==='ganhou'?' selected':''}>Ganhou</option><option value="perdeu"${m.resultado==='perdeu'?' selected':''}>Perdeu</option><option value="aberto"${m.resultado==='aberto'?' selected':''}>Em aberto</option></select>` : ''
+  // executive-first: a mensagem do diretor vem primeiro
+  const diretor = ins.resumo_diretor ? `<div class="coach-diretor">${icon('grad',{size:18})}<div><div class="coach-meter-label" style="margin-bottom:4px">Feedback do diretor</div>${esc(ins.resumo_diretor)}</div></div>` : ''
+  const extras = [['Dor dominante',ins.dor_dominante],['Erro estratégico',ins.erro_estrategico]].filter(x=>x[1]).map(x=>`<div class="coach-extra"><span class="coach-meter-label">${x[0]}</span><p>${esc(x[1])}</p></div>`).join('')
+  const obj = (ins.objecao && ins.objecao.explicacao) ? `<div class="coach-extra"><span class="coach-meter-label">Objeção · ${esc(ins.objecao.tipo||'')}</span><p>${esc(ins.objecao.explicacao)}</p></div>` : ''
+  const missao = ins.missao ? `<div class="coach-missao">${icon('target',{size:18})}<div><div class="coach-meter-label" style="margin-bottom:4px">Missão da próxima call</div>${esc(ins.missao)}</div></div>` : ''
   document.getElementById('cd-body').innerHTML = `
+    ${diretor}
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
       <div><div class="coach-card-meta" style="font-size:12px">${esc(m.produto||'')} · ${esc(m.data_reuniao||'')} · Closer: ${esc(m.closer_nome||'—')}</div>
         <div class="coach-result" style="margin-top:6px">${resultadoDot(m.resultado)}${m.ticket?` · R$ ${Number(m.ticket).toLocaleString('pt-BR')}`:''}</div></div>
       <div style="text-align:right"><div class="coach-nota-big tnum" style="color:${notaColor(m.nota_geral)}">${m.nota_geral!=null?Number(m.nota_geral).toFixed(1):'—'}</div><div class="coach-meter-label">nota geral</div></div>
     </div>
     <div style="margin-top:10px">${meters}</div>
+    ${extras}${obj}
     ${blocks}
+    ${missao}
     <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button></div>`
   document.getElementById('modal-coach-detail').classList.add('open')
 }

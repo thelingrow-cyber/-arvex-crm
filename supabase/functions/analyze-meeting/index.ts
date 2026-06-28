@@ -38,34 +38,41 @@ function json(body: unknown, status = 200) {
   });
 }
 
-// ── Rubrica fixa (garante notas consistentes) ──────────────────────────────
-const RUBRICA = `
-Avalie CADA dimensão de 0 a 10 com estas âncoras:
-- rapport: conexão genuína com o lead (0-3 nenhuma · 4-6 superficial · 7-8 boa · 9-10 forte)
-- diagnostico: profundidade na investigação da dor real (0-3 não investigou · 7-8 boa · 9-10 cirúrgica)
-- escuta: deixou o lead falar, não interrompeu, validou (0-3 atropelou · 9-10 escuta ativa exemplar)
-- valor: construção de valor antes de preço (0-3 jogou preço · 9-10 valor irresistível)
-- controle: conduziu a reunião com direção (0-3 lead conduziu · 9-10 controle natural)
-- fechamento: clareza e firmeza no fechamento/próximo passo (0-3 não fechou · 9-10 fechou com naturalidade)
-- transicao: passagem de diagnóstico para oferta no momento certo (0-3 cedo/abrupto · 9-10 perfeita)
-- objecoes: tratamento de objeções com segurança (0-3 cedeu fácil · 9-10 reverteu com valor)
+// ── PERSONA + MÉTODO (calibrado no gold-standard caso-01) ───────────────────
+// A IA age como um DIRETOR COMERCIAL sênior que acabou de assistir a call.
+// Regra de ouro: PRIMEIRO o julgamento central, DEPOIS as métricas. Nunca o contrário.
+const SYSTEM = `
+Você é um DIRETOR COMERCIAL sênior e mentor de closers em vendas consultivas (nicho: óticas, operação Cindy Batista). Você acabou de assistir a gravação desta reunião e vai dar feedback ao closer como se estivesse sentado ao lado dele.
+
+MÉTODO OBRIGATÓRIO (nesta ordem mental):
+1. JULGAMENTO-RAIZ: antes de tudo, responda pra si mesmo: "Qual é o ÚNICO feedback mais importante que eu daria a esse closer?". Toda a análise nasce daí (campo resumo_diretor).
+2. DOR DOMINANTE: identifique a dor REAL/emocional por trás das dores de superfície. Frequentemente o lead reclama de tráfego/conteúdo/preço, mas a dor verdadeira é outra (ex.: execução, medo, falta de clareza). (campo dor_dominante)
+3. EVIDÊNCIA: cite FRASES REAIS do lead pra sustentar cada ponto. Nada genérico.
+4. PERGUNTAS QUE FALTARAM: aponte 1-3 perguntas exatas que o closer deveria ter feito, no momento certo.
+5. OBJEÇÃO: a objeção foi GENUÍNA ou falsa? Avalie pela CONSISTÊNCIA ao longo da call (mesma narrativa repetida = genuína; objeções diferentes mudando = falsa/cortina). (campo objecao)
+6. ERRO ESTRATÉGICO vs técnico: qual foi o erro de condução (ex.: apresentou a solução antes de tornar o problema inevitável; virou "explicador" da estrutura quando o lead já queria a transformação)? Qual reframe faltou? (campo erro_estrategico)
+7. MISSÃO ÚNICA: UMA só coisa pra treinar na próxima call (campo missao). Não dê 10 dicas.
+
+TOM: honesto, específico, sem bajular. Fale com o closer ("você"). Use as palavras do lead. Profundidade > quantidade.
+
+EXEMPLO DE NÍVEL ESPERADO (gold-standard, resumido):
+resumo_diretor: "Essa venda não foi perdida no fechamento — foi perdida antes. Você conduz bem e gera conexão, mas apresenta a solução ANTES de tornar o problema inevitável. Quando ela disse 'tenho ideias que precisam sair do papel' e 'a operação me puxa', ali estava a venda (dor de execução) — e você passou para a apresentação em vez de ficar mais tempo nesse lugar emocional."
+dor_dominante: "Execução — ela tem clareza estratégica mas é atropelada pela operação (cita TDAH, ideias 'emboladas'). Não era tráfego nem conteúdo."
+objecao: { tipo: "genuina", explicacao: "Manteve a mesma narrativa do início ao fim: 'eu preciso' + 'abrindo outra loja' + 'vai pesar' + 'não é o momento'. Consistência = objeção real, não cortina." }
+erro_estrategico: "Aceitou o enquadramento 'estou investindo numa nova loja' sem reframar para 'justamente por isso é a hora de ter estrutura'. Tentou tarde demais."
+missao: "Na próxima call, fique 100% no impacto da dor emocional (custo de continuar assim) ANTES de mostrar qualquer parte do programa."
 `.trim();
 
-// ── Playbook curto hardcoded (Sales Brain/pgvector é Fase 2) ───────────────
-const PLAYBOOK = `
-Contexto: vendas consultivas de mentoria/consultoria para donos de ótica (operação Cindy Batista).
-Boas práticas esperadas: criar rapport real, diagnosticar a dor antes de ofertar, construir valor
-antes de falar preço, não apresentar a solução cedo demais, explorar impacto financeiro da dor,
-usar silêncio após o preço, não conceder desconto cedo.
+// Rubrica de notas (0-10) — só DEPOIS do julgamento qualitativo
+const RUBRICA = `
+Dê nota 0-10 por dimensão (âncoras): rapport (conexão genuína) · diagnostico (profundidade na dor real) · escuta (deixou falar/validou) · valor (valor antes de preço) · controle (conduziu) · fechamento (firmeza/próximo passo) · transicao (ofertou na hora certa, não cedo) · objecoes (tratou com segurança).
 `.trim();
 
 function buildPrompt(transcript: string): string {
-  return `${PLAYBOOK}
+  return `${RUBRICA}
 
-${RUBRICA}
-
-Analise a transcrição da reunião de vendas abaixo e responda usando a ferramenta "registrar_analise".
-Seja específico e construtivo. Para acertos/erros liste exatamente 3 itens cada.
+Analise a transcrição abaixo SEGUINDO O MÉTODO e responda via ferramenta "registrar_analise".
+Liste 3 acertos e 3 erros (concretos, com evidência). resumo_diretor = o feedback central (3-5 frases).
 
 TRANSCRIÇÃO:
 """
@@ -76,10 +83,22 @@ ${transcript}
 // Tool schema p/ forçar JSON estrito do Claude
 const TOOL = {
   name: "registrar_analise",
-  description: "Registra a análise estruturada da reunião de vendas.",
+  description: "Registra a análise da reunião no padrão diretor comercial.",
   input_schema: {
     type: "object",
     properties: {
+      resumo_diretor: { type: "string", description: "O feedback central (julgamento-raiz), 3-5 frases. É o que o closer vê primeiro." },
+      dor_dominante: { type: "string", description: "A dor REAL/emocional por trás das de superfície." },
+      objecao: {
+        type: "object",
+        properties: {
+          tipo: { type: "string", enum: ["genuina", "falsa", "sem_objecao"] },
+          explicacao: { type: "string" },
+        },
+        required: ["tipo", "explicacao"],
+      },
+      erro_estrategico: { type: "string", description: "Erro de condução + reframe que faltou." },
+      missao: { type: "string", description: "UMA missão pra próxima call." },
       scores: {
         type: "object",
         properties: Object.fromEntries(
@@ -98,7 +117,7 @@ const TOOL = {
         required: ["acertos", "erros", "faltou", "sugestoes"],
       },
     },
-    required: ["scores", "insights"],
+    required: ["resumo_diretor", "dor_dominante", "objecao", "erro_estrategico", "missao", "scores", "insights"],
   },
 };
 
@@ -156,8 +175,9 @@ Deno.serve(async (req: Request) => {
       },
       body: JSON.stringify({
         model: CLAUDE_MODEL,
-        max_tokens: 2000,
+        max_tokens: 3000,
         temperature: 0,
+        system: SYSTEM,
         tools: [TOOL],
         tool_choice: { type: "tool", name: "registrar_analise" },
         messages: [{ role: "user", content: buildPrompt(transcript) }],
@@ -175,7 +195,13 @@ Deno.serve(async (req: Request) => {
     const nota_geral = clamp10(
       DIMENSOES.reduce((s, d) => s + scores[d], 0) / DIMENSOES.length,
     );
+    const str = (v: unknown) => typeof v === "string" ? v : "";
     const insights = {
+      resumo_diretor: str(raw?.resumo_diretor),
+      dor_dominante: str(raw?.dor_dominante),
+      objecao: raw?.objecao && typeof raw.objecao === "object" ? raw.objecao : null,
+      erro_estrategico: str(raw?.erro_estrategico),
+      missao: str(raw?.missao),
       acertos: Array.isArray(raw?.insights?.acertos) ? raw.insights.acertos.slice(0, 5) : [],
       erros: Array.isArray(raw?.insights?.erros) ? raw.insights.erros.slice(0, 5) : [],
       faltou: Array.isArray(raw?.insights?.faltou) ? raw.insights.faltou.slice(0, 8) : [],
