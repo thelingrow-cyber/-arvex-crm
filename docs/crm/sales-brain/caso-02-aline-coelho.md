@@ -7,13 +7,13 @@ closer: Vitor
 resultado: nao-fechou   # ficou de analisar até fim da semana; objeção genuína (orçamento + perfil deliberado)
 data_registro: 2026-06-28
 fonte: transcrição real (Tactiq)
-status: RASCUNHO — análise gerada pelo método diretor, AGUARDA VALIDAÇÃO do Vitor antes de virar gold-standard
+status: VALIDADO por Vitor (28/06) — gold-standard
 uso: [calibração-do-prompt, seed-sales-brain-fase2]
 ---
 
 # Caso 02 — Aline Coelho (Curitiba)
 
-> ⚠️ A análise abaixo foi **gerada pela IA no método diretor** (não é gold-standard humano ainda). Vitor deve validar/corrigir. Serve pra testar a calibração e, depois de aprovada, virar referência do Sales Brain.
+> ✅ Análise **validada pelo Vitor (28/06)** — gold-standard do Sales Brain. Gerada pelo método diretor e aprovada pelo especialista.
 
 ## Perfil do lead
 Ótica desde 2013, bairro elitizado de Curitiba, público A/B. Faturamento ~25-35k/mês. **90% indicação/passante, só 10% Instagram.** Capta também via serviço de fotos (foto p/ documento → vira venda de óculos). Praticamente sozinha (ela + 1 vendedora; marido trabalha fora). Já tentou tráfego/agência ("dinheiro jogado fora") e campanha de grupo no WhatsApp (clientes pediram pra sair, não foi aceita). Movimento estratégico em curso: **marca própria de lentes** (pra não depender de médico/receita e ter margem).
