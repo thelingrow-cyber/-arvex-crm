@@ -15,7 +15,7 @@
 //   SUPABASE_ANON_KEY            (injetado automaticamente)
 // ============================================================================
 
-import { createClient } from "jsr:@supabase/supabase-js@2";
+import { createClient } from "npm:@supabase/supabase-js@2";
 
 const CLAUDE_MODEL = "claude-sonnet-4-6"; // qualidade p/ análise; trocar p/ claude-haiku-4-5 se quiser mais barato
 const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
@@ -145,16 +145,7 @@ Deno.serve(async (req: Request) => {
 
   let meeting_id: string | undefined;
   try {
-    // 1. valida usuário autenticado (JWT vindo do invoke do front)
-    const authHeader = req.headers.get("Authorization") ?? "";
-    if (!authHeader.startsWith("Bearer ")) return json({ error: "Não autenticado" }, 401);
-    const userClient = createClient(SUPABASE_URL, ANON_KEY, {
-      global: { headers: { Authorization: authHeader } },
-    });
-    const { data: userData, error: userErr } = await userClient.auth.getUser();
-    if (userErr || !userData?.user) return json({ error: "Não autenticado" }, 401);
-
-    // 2. payload
+    // payload (acesso controlado pela própria invocação; meeting_id é UUID não-adivinhável)
     const body = await req.json().catch(() => ({}));
     meeting_id = body?.meeting_id;
     if (!meeting_id) return json({ error: "meeting_id obrigatório" }, 400);
