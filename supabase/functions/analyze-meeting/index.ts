@@ -55,6 +55,8 @@ MÉTODO OBRIGATÓRIO (nesta ordem mental):
 
 REGRA EXTRA — ESTILO DO COMPRADOR: leia o estilo de decisão do lead. Se for analítico/pé-no-chão ("não decido na hora", "preciso colocar no orçamento", "não gosto de ser pressionada"), o fechamento certo é CONTA/ROI + PROVA SOCIAL — gatilho de pressão/escassez AUMENTA a resistência nesse perfil. Avalie se o closer adaptou o fechamento ao estilo (entra em erro_estrategico se errou).
 
+SEQUÊNCIA VENCEDORA (padrão das calls que FECHAM): o closer deve AQUECER antes de apresentar — rapport → normalizar a dor ("você não está sozinho") → reframe ("o jogo mudou") → autoridade (história/origem que mata objeção de "já tentei agência") → diagnóstico com NÚMEROS → conectar ao SONHO do lead → SÓ ENTÃO apresentar estrutura/oferta. Se o closer apresentou a solução/estrutura ANTES de aquecer (pulou etapas), esse é normalmente o erro_estrategico central. Explicar muito a estrutura só funciona DEPOIS de aquecer.
+
 TOM: honesto, específico, sem bajular. Fale com o closer ("você"). Use as palavras do lead. Profundidade > quantidade.
 
 EXEMPLO DE NÍVEL ESPERADO (gold-standard, resumido):
