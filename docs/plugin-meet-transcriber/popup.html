@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { width: 240px; font-family: system-ui, sans-serif; margin: 0; padding: 14px; background: #0E1420; color: #E7ECF5; }
+    h1 { font-size: 13px; margin: 0 0 10px; font-weight: 700; }
+    #status { font-size: 12px; color: #8A98AD; margin-bottom: 10px; }
+    #status b { color: #E7ECF5; }
+    button { width: 100%; border: none; border-radius: 8px; padding: 10px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 8px; font-family: inherit; }
+    .primary { background: #5B6CFF; color: #fff; }
+    .ghost { background: rgba(255,255,255,.06); color: #E7ECF5; }
+    .danger { background: rgba(248,81,73,.12); color: #F85149; }
+    #hint { font-size: 11px; color: #5C6878; margin-top: 6px; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <h1>ARVEX Meet Transcriber</h1>
+  <div id="status">Carregando…</div>
+  <button id="toggle" class="primary">▶ Iniciar transcrição</button>
+  <button id="copy" class="ghost">⧉ Copiar transcrição</button>
+  <button id="download" class="ghost">⤓ Baixar .txt</button>
+  <button id="clear" class="danger">Limpar</button>
+  <div id="hint">Abra um Google Meet e ligue a legenda (CC). A transcrição acumula sozinha.</div>
+  <script src="popup.js"></script>
+</body>
+</html>

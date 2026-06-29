@@ -1,0 +1,20 @@
+/* ARVEX Meet Transcriber — widget flutuante na página do Meet */
+#arvex-tx-box {
+  position: fixed; bottom: 90px; right: 16px; z-index: 2147483647;
+  background: #0E1420; color: #E7ECF5; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px; padding: 8px 10px; box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  font-family: system-ui, sans-serif; font-size: 12px;
+}
+#arvex-tx-row { display: flex; align-items: center; gap: 8px; }
+#arvex-tx-box button {
+  border: none; border-radius: 6px; cursor: pointer; font-family: inherit;
+  font-size: 12px; font-weight: 600; padding: 6px 10px; background: rgba(255,255,255,.08); color: #E7ECF5;
+}
+#arvex-tx-toggle { background: #5B6CFF; color: #fff; }
+#arvex-tx-toggle.rec { background: #F85149; }
+#arvex-tx-badge { color: #8A98AD; min-width: 56px; text-align: center; }
+.arvex-tx-flash {
+  position: fixed; bottom: 140px; right: 16px; z-index: 2147483647;
+  background: #3FB950; color: #04210d; font-family: system-ui, sans-serif; font-size: 12px;
+  font-weight: 700; padding: 8px 12px; border-radius: 8px;
+}
