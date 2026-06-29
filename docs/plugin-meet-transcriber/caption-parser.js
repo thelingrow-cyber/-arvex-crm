@@ -43,9 +43,12 @@
   function parseRows(region) {
     if (!region) return [];
     const rows = [];
-    // candidatos a "linha de legenda": filhos diretos relevantes da região
-    const blocks = region.querySelectorAll(":scope > div, :scope > div > div");
-    const list = blocks.length ? blocks : region.children;
+    // candidatos a "linha de legenda": cada turno do Meet tem um avatar (img).
+    // Pegamos o elemento que CONTÉM o avatar como direto filho → evita contar
+    // divs aninhados (nome/texto) como linhas separadas (bug de duplicação).
+    let list = region.querySelectorAll("div:has(> img[alt]), div:has(> img)");
+    if (!list.length) list = region.querySelectorAll(":scope > div"); // fallback: só filhos diretos
+    if (!list.length) list = region.children;
 
     for (const b of list) {
       const full = (b.innerText || "").trim();

@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"></head><body>
+<!-- Simulador do DOM de legendas do Meet (rolante). Teste do parser + dedupe. NÃO faz parte da extensão. -->
+<div id="region" role="region" aria-label="Legendas"></div>
+<pre id="out">running…</pre>
+<script src="caption-parser.js"></script>
+<script>
+(function(){
+  const region = document.getElementById('region');
+  const P = window.ArvexCaptionParser;
+
+  // --- lógica de dedupe/commit (espelha content.js, versão testável) ---
+  let transcript = [], active = new Map();
+  function lastFor(s){ for(let i=transcript.length-1;i>=0;i--) if(transcript[i].speaker===s) return transcript[i]; return null; }
+  function commit(s,t){ const p=lastFor(s); if(p&&p.text===t) return; if(p&&t.startsWith(p.text)){ p.text=t; return; } transcript.push({speaker:s,text:t}); }
+  function tick(){
+    const rows = P.parseRows(region); const seen=new Set();
+    for(const r of rows){ const k=r.speaker||'_'; seen.add(k); const a=active.get(k);
+      if(a && a.text===r.text){ a.stable++; if(a.stable>=2){ commit(k==='_'?'':k, r.text); active.delete(k);} }
+      else active.set(k,{text:r.text, stable:0}); }
+    for(const [k,a] of active){ if(!seen.has(k)){ commit(k==='_'?'':k, a.text); active.delete(k);} }
+  }
+
+  // --- frames: legenda rolante, 2 falantes, com sobreposição (Meet mostra 2-3 turnos) ---
+  function row(sp, tx){ return '<div><img alt="'+sp+'"><div>'+sp+'</div><div>'+tx+'</div></div>'; }
+  const J='João Silva', M='Maria Souza';
+  const Jf='Oi, tudo bem? Como vai a ótica?';
+  const Mf='Tô precisando vender mais e não sei como';
+  const frames = [
+    row(J,'Oi'),
+    row(J,'Oi, tudo bem?'),
+    row(J,Jf),
+    row(J,Jf),                          // João estável -> commit
+    row(J,Jf)+row(M,'Tô'),              // os dois visíveis (transição); Maria começa
+    row(J,Jf)+row(M,'Tô precisando vender mais'),
+    row(J,Jf)+row(M,Mf),
+    row(M,Mf),                          // João sai de tela; Maria estável
+    row(M,Mf),
+  ];
+  for(const f of frames){ region.innerHTML = f; tick(); }
+  for(const [k,a] of active) commit(k==='_'?'':k, a.text);
+
+  const out = transcript.map(t => (t.speaker? t.speaker+': ':'') + t.text).join('\n');
+  document.getElementById('out').textContent = '=== TRANSCRICAO ('+transcript.length+' linhas) ===\n' + out;
+})();
+</script></body></html>
