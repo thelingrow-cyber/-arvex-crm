@@ -12,10 +12,14 @@
     .ghost { background: rgba(255,255,255,.06); color: #E7ECF5; }
     .danger { background: rgba(248,81,73,.12); color: #F85149; }
     #hint { font-size: 11px; color: #5C6878; margin-top: 6px; line-height: 1.4; }
+    label { font-size: 11px; color: #8A98AD; display: block; margin-bottom: 4px; }
+    input { width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: #E7ECF5; font-family: inherit; font-size: 12px; padding: 8px 10px; outline: none; margin-bottom: 10px; }
   </style>
 </head>
 <body>
   <h1>ARVEX Meet Transcriber</h1>
+  <label for="email">Seu e-mail (CRM)</label>
+  <input id="email" type="email" placeholder="voce@email.com" />
   <div id="status">Carregando…</div>
   <button id="toggle" class="primary">▶ Iniciar transcrição</button>
   <button id="copy" class="ghost">⧉ Copiar transcrição</button>

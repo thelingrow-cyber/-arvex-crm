@@ -51,5 +51,15 @@
   });
   $("clear").addEventListener("click", () => withTab((tabId) => send(tabId, "clear", () => setTimeout(refresh, 200))));
 
+  // ---- e-mail do closer (CRM) — salvo em chrome.storage.local ----
+  try {
+    chrome.storage.local.get(["arvex_closer_email"], (r) => {
+      if (r && r.arvex_closer_email) $("email").value = r.arvex_closer_email;
+    });
+    $("email").addEventListener("input", () => {
+      chrome.storage.local.set({ arvex_closer_email: $("email").value.trim() });
+    });
+  } catch (e) {}
+
   refresh();
 })();

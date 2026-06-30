@@ -16,7 +16,7 @@ Extensão Chrome que **captura a transcrição do Google Meet** (lê as legendas
    - (Ou abra o popup da extensão e clique **"Iniciar transcrição"**.)
 4. Conforme as pessoas falam, a transcrição acumula (o contador sobe).
 5. Ao terminar: **Copiar** (⧉) ou **Baixar .txt** (⤓) — no widget ou no popup.
-6. Cole a transcrição na aba **"Reuniões"** do CRM → análise do Sales Coach.
+6. **Enviar pro CRM (automático):** no popup, preencha **"Seu e-mail (CRM)"** uma vez (fica salvo). No widget, digite o **Cliente** e clique **"⬆ CRM"** → a reunião é criada na aba **Reuniões** e a **análise do diretor dispara sozinha**. (Ou cole manual na aba Reuniões, se preferir.)
 
 ## Notas
 - A transcrição é salva localmente (`chrome.storage.local`) por reunião — sobrevive a F5.

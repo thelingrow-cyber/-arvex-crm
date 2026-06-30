@@ -11,6 +11,8 @@
 
   const meetingId = (location.pathname.replace(/\//g, "") || "meet") + "";
   const STORE_KEY = "arvex_transcript_" + meetingId;
+  const INGEST_URL = "https://sgeoikzyahhdrncesbpn.supabase.co/functions/v1/ingest-meeting";
+  const PUB_KEY = "sb_publishable_awL7tcTl7HMzkvHqYihHKA_JZwO_CKI";
 
   let capturing = false;
   let transcript = [];        // [{speaker, text, at}]
@@ -114,6 +116,10 @@
           '<span id="arvex-tx-badge">0 linhas</span>' +
           '<button id="arvex-tx-copy" title="Copiar">⧉</button>' +
           '<button id="arvex-tx-dl" title="Baixar .txt">⤓</button>' +
+        '</div>' +
+        '<div id="arvex-tx-row2" style="display:flex;gap:6px;margin-top:6px">' +
+          '<input id="arvex-tx-cliente" placeholder="Cliente" style="flex:1;min-width:90px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:#E7ECF5;font-family:inherit;font-size:12px;padding:5px 8px;outline:none" />' +
+          '<button id="arvex-tx-crm" title="Enviar pro CRM (cria reunião + análise)">⬆ CRM</button>' +
         '</div>';
       document.body.appendChild(box);
       box.querySelector("#arvex-tx-toggle").addEventListener("click", () => capturing ? stop() : start());
@@ -121,6 +127,7 @@
         navigator.clipboard.writeText(asText()).then(() => flash("Copiado!"));
       });
       box.querySelector("#arvex-tx-dl").addEventListener("click", download);
+      box.querySelector("#arvex-tx-crm").addEventListener("click", sendToCRM);
       elBadge = box.querySelector("#arvex-tx-badge");
     }
     const tgl = box.querySelector("#arvex-tx-toggle");
@@ -139,6 +146,25 @@
     const a = document.createElement("a");
     a.href = url; a.download = "transcricao-meet-" + meetingId + ".txt";
     a.click(); URL.revokeObjectURL(url);
+  }
+
+  // ---- enviar pro CRM (cria reunião + dispara análise) ----
+  function sendToCRM() {
+    if (!transcript.length) { flash("Nada pra enviar ainda"); return; }
+    chrome.storage.local.get(["arvex_closer_email"], (r) => {
+      const email = (r && r.arvex_closer_email) || "";
+      const clienteEl = document.getElementById("arvex-tx-cliente");
+      const cliente = clienteEl ? clienteEl.value.trim() : "";
+      flash("Enviando…");
+      fetch(INGEST_URL, {
+        method: "POST",
+        headers: { "apikey": PUB_KEY, "Content-Type": "application/json" },
+        body: JSON.stringify({ transcript: asText(), closer_email: email, cliente: cliente }),
+      })
+        .then((res) => res.json())
+        .then((d) => flash(d && d.ok ? "Enviado! Análise rodando no CRM" : ("Erro: " + ((d && d.error) || "falha"))))
+        .catch(() => flash("Erro de rede ao enviar"));
+    });
   }
 
   // ---- mensagens do popup ----
