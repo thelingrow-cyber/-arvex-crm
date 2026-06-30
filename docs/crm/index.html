@@ -506,7 +506,7 @@
     <span class="si-icon" data-icon="bot"></span> Agente SDR
   </div>
   <div class="sidebar-item" onclick="goTo('coach',this)" id="nav-coach">
-    <span class="si-icon" data-icon="grad"></span> Coach
+    <span class="si-icon" data-icon="grad"></span> Reuniões
   </div>
 
   <div class="sidebar-section" style="margin-top:8px">Customer Success</div>
@@ -881,9 +881,20 @@
         .coach-diretor{display:flex;gap:10px;background:var(--accent-dim);border:1px solid var(--blue);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-bottom:14px}
         .coach-missao{display:flex;gap:10px;background:rgba(200,169,110,.10);border:1px solid var(--gold);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-top:12px}
         .coach-extra{margin-top:10px}.coach-extra p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.55}
+        .coach-chat{margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
+        .coach-chat-msgs{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;margin:10px 0}
+        .cc-msg{max-width:85%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;white-space:pre-wrap}
+        .cc-user{align-self:flex-end;background:var(--blue);color:#fff}
+        .cc-ia{align-self:flex-start;background:var(--navy3);color:var(--white);border:1px solid var(--border)}
+        .cc-typing{align-self:flex-start;color:var(--text-3);font-size:12px;font-style:italic;padding:4px 0}
+        .coach-chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+        .coach-chat-chips button{background:var(--navy3);border:1px solid var(--border);color:var(--muted);border-radius:100px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:inherit}
+        .coach-chat-input{display:flex;gap:8px}
+        .coach-chat-input input{flex:1;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);padding:10px 12px;font-family:inherit;font-size:13px;outline:none}
+        .coach-chat-input button{background:var(--blue);border:none;color:#fff;border-radius:8px;padding:10px 16px;cursor:pointer;font-weight:700}
       </style>
       <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
-        <div><h1>Coach</h1><p>Análise das suas reuniões</p></div>
+        <div><h1>Reuniões</h1><p>Análise das suas reuniões</p></div>
         <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
       </div>
       <div id="coach-demo-banner" class="coach-banner" style="display:none">Modo demonstração — dados fictícios</div>
@@ -1194,7 +1205,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', coach:'Coach — Reuniões' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', coach:'Reuniões' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
@@ -1424,7 +1435,7 @@ function coachDemoData() {
   return [
     { id:'d1', cliente_nome:'Marília', produto:'Consultoria', data_reuniao:'2026-06-24', closer_nome:'João', resultado:'ganhou', ticket:12000, status:'done', nota_geral:7.4,
       scores:{rapport:8.5,diagnostico:7,escuta:6.5,valor:7,controle:8,fechamento:5,transicao:7,objecoes:6},
-      insights:{resumo_diretor:'Reunião acima da média: você gerou confiança rápido e conduziu bem o diagnóstico. O maior limitador foi apresentar a solução antes de aprofundar o impacto financeiro da dor — se tivesse explorado isso, o valor percebido subiria antes da negociação.',dor_dominante:'Previsibilidade/lucratividade — fatura bem mas sente que não sobra. A dor real não era volume.',objecao:{tipo:'genuina',explicacao:'Manteve a mesma narrativa (preço/timing) do início ao fim — sinal de objeção real, não cortina.'},erro_estrategico:'Negociou antes de fortalecer o valor; faltou o reframe de urgência.',missao:'Explorar o impacto financeiro da dor ANTES de apresentar a oferta.',acertos:['Deixou o lead falar sem interromper','Validou as emoções e a dor','Conexão genuína no início'],erros:['Apresentou a solução cedo demais','Concedeu desconto rápido','Não aprofundou a 2ª unidade citada'],faltou:['Quanto isso custa pra vocês hoje?','Como isso impacta o lucro?'],sugestoes:['Espere mais 5 min antes da oferta','Treine 5s de silêncio após o preço']} },
+      insights:{resumo_diretor:'Reunião acima da média: você gerou confiança rápido e conduziu bem o diagnóstico. O maior limitador foi apresentar a solução antes de aprofundar o impacto financeiro da dor — se tivesse explorado isso, o valor percebido subiria antes da negociação.',dor_dominante:'Previsibilidade/lucratividade — fatura bem mas sente que não sobra. A dor real não era volume.',objecao:{tipo:'genuina',explicacao:'Manteve a mesma narrativa (preço/timing) do início ao fim — sinal de objeção real, não cortina.'},erro_estrategico:'Negociou antes de fortalecer o valor; faltou o reframe de urgência.',missao:'Explorar o impacto financeiro da dor ANTES de apresentar a oferta.',acertos:['Deixou o lead falar sem interromper','Validou as emoções e a dor','Conexão genuína no início'],erros:['Apresentou a solução cedo demais','Concedeu desconto rápido','Não aprofundou a 2ª unidade citada'],faltou:['Quanto isso custa pra vocês hoje?','Como isso impacta o lucro?'],sugestoes:['Espere mais 5 min antes da oferta','Treine 5s de silêncio após o preço']}, chat:[{role:'user',content:'Onde perdi a venda?'},{role:'assistant',content:'Você apresentou a solução antes de aprofundar a dor financeira. Ela disse "fatura bem mas não sobra" — ali era pra quantificar o custo de continuar assim, não partir pra oferta.'}] },
     { id:'d2', cliente_nome:'Carlos', produto:'Mentoria', data_reuniao:'2026-06-23', closer_nome:'João', resultado:'perdeu', ticket:null, status:'done', nota_geral:4.8,
       scores:{rapport:5,diagnostico:4,escuta:5,valor:4,controle:5,fechamento:4,transicao:5,objecoes:6},
       insights:{resumo_diretor:'Você foi simpático mas não fez o lead SENTIR o problema — apresentou o método sem dor construída. Sem dor, não há urgência, e sem urgência o preço vira caro.',dor_dominante:'Falta de clientes qualificados — mas isso nunca foi investigado na call.',objecao:{tipo:'genuina',explicacao:'Objeção de preço real, porque não houve valor construído antes.'},erro_estrategico:'Falou demais e apresentou cedo; o lead nunca chegou a querer a solução.',missao:'Fazer 3 perguntas de dor (e ficar nelas) antes de qualquer apresentação.',acertos:['Boa simpatia','Explicou bem o método','Foi pontual'],erros:['Não diagnosticou a dor real','Falou demais','Cedeu na objeção de preço'],faltou:['Qual o maior gargalo hoje?','O que trava o crescimento?'],sugestoes:['Pergunte antes de apresentar','Explore o impacto financeiro da dor']} },
@@ -1553,10 +1564,55 @@ function openMeeting(id) {
     ${extras}${obj}
     ${blocks}
     ${missao}
-    <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button></div>`
+    <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button></div>
+    <div class="coach-chat">
+      <div class="coach-meter-label">Converse sobre esta call</div>
+      <div class="coach-chat-msgs" id="cc-msgs"></div>
+      <div class="coach-chat-chips" id="cc-chips"></div>
+      <div class="coach-chat-input"><input id="cc-input" placeholder="Pergunte ao diretor sobre esta reunião…" onkeydown="if(event.key==='Enter')ccSend()"><button id="cc-send" onclick="ccSend()">➤</button></div>
+    </div>`
   document.getElementById('modal-coach-detail').classList.add('open')
+  ccInit(m)
 }
 function closeMeeting() { document.getElementById('modal-coach-detail').classList.remove('open') }
+
+// ── Chat da reunião (camada 4) ──
+let ccMeeting = null
+const CC_CHIPS = ['Onde perdi a venda?','Negociei cedo?','Qual pergunta faltou?','Como você faria diferente?']
+function ccInit(m) {
+  ccMeeting = m
+  if (!Array.isArray(m.chat)) m.chat = []
+  const chips = document.getElementById('cc-chips')
+  if (chips) chips.innerHTML = CC_CHIPS.map(c => `<button onclick="ccSend('${c.replace(/'/g,"\\'")}')">${esc(c)}</button>`).join('')
+  ccRender()
+}
+function ccRender(typing) {
+  const box = document.getElementById('cc-msgs'); if (!box || !ccMeeting) return
+  box.innerHTML = (ccMeeting.chat||[]).map(x => `<div class="cc-msg ${x.role==='assistant'?'cc-ia':'cc-user'}">${esc(x.content)}</div>`).join('')
+    + (typing ? `<div class="cc-typing">diretor digitando…</div>` : '')
+  box.scrollTop = box.scrollHeight
+}
+async function ccSend(preset) {
+  if (!ccMeeting) return
+  const input = document.getElementById('cc-input')
+  const q = (preset || (input && input.value) || '').trim()
+  if (!q) return
+  if (input && !preset) input.value = ''
+  ccMeeting.chat.push({ role:'user', content:q, at:new Date().toISOString() })
+  ccRender(true)
+  if (COACH_DEMO) {
+    setTimeout(() => { ccMeeting.chat.push({ role:'assistant', content:'(resposta simulada — no modo demo o chat não chama a IA)', at:new Date().toISOString() }); ccRender() }, 800)
+    return
+  }
+  try {
+    const { data, error } = await sb.functions.invoke('coach-chat', { body: { meeting_id: ccMeeting.id, pergunta: q } })
+    const resp = (data && data.resposta) ? data.resposta : ('(erro: ' + ((error && error.message) || (data && data.error) || 'sem resposta') + ')')
+    ccMeeting.chat.push({ role:'assistant', content:resp, at:new Date().toISOString() })
+  } catch (e) {
+    ccMeeting.chat.push({ role:'assistant', content:'(falha ao falar com o diretor: ' + (e.message||e) + ')', at:new Date().toISOString() })
+  }
+  ccRender()
+}
 function editResultado(id, val) {
   const m = coachMeetings.find(x => x.id === id); if (m) m.resultado = val
   if (!COACH_DEMO) sb.from('meetings').update({ resultado: val }).eq('id', id)

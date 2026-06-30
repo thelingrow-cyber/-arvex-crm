@@ -61,6 +61,24 @@ Deixa de ser avaliação de reunião → vira **mentor que acompanha por meses/a
 
 ---
 
+## v2 da EXPERIÊNCIA — "mentor, não relatório" (Vitor, 28/06)
+A experiência deve parecer que o closer saiu da call e foi conversar com um **diretor comercial experiente**. Análise em CAMADAS, não relatório estático.
+
+**🔑 PADRÃO-RAIZ (o mais importante):** antes de qualquer análise, a IA responde *"Se eu fosse o diretor comercial e tivesse acabado de assistir essa reunião, qual o feedback MAIS importante pra esse closer?"*. **Toda a análise nasce dessa resposta** → coerência e priorização (uma voz, não um painel de métricas). É a 1ª etapa do prompt.
+
+**Camadas (ordem que o closer vê):**
+1. **Tela executiva** — primeiro uma MENSAGEM (não notas): o feedback do "diretor" + 🟢 probabilidade de fechamento % + 📈 comparado às últimas 20 (+X%).
+2. **4 cartões** — 🟢 maior acerto · 🔴 maior erro · 💡 oportunidade perdida · 🎯 próximo treino (1 só).
+3. **Replay inteligente** — timeline clicável (00:00 abertura · 08:32 1ª dor · 17:44 oportunidade · 28:15 interrompeu · 36:52 buying signal · 44:11 apresentação · 48:39 objeção). ⚠️ exige timestamps na transcrição (legenda do Meet tem; texto colado não).
+4. **Chat com a IA sobre a call** 🔥 — closer pergunta ("onde perdi a venda?", "negociei cedo?", "compara com a Marília", "qual pergunta faltou?") e a IA responde olhando a call inteira. É o que vira AGENTE de verdade; feature mais viciante.
+5. **Evolução** — barras de progresso (não notas), +% por dimensão; "sua maior evolução foi diagnóstico".
+6. **Perfil cognitivo** — estilo do closer aprendido das últimas ~60 calls (constrói confiança rápido / evita confrontar objeção / negocia cedo / vende melhor p/ experientes). Fase 3.
+7. **Comparação consigo** (não ranking) — Março 7,2 → Hoje 9,1; a IA narra o salto e prevê o próximo.
+8. **Biblioteca inteligente** — "essa call lembra Marília, Carlos, Eduardo — clique p/ comparar".
+9. **Plano da próxima call** — UMA missão só (ex.: "descubra impacto financeiro+emocional+urgência ANTES de apresentar").
+
+**Notas técnicas:** probabilidade % é estimada pela IA — só fica confiável quando CALIBRADA contra resultados reais (mais um motivo do rótulo obrigatório). Chat = endpoint que recebe pergunta + transcrição + análise como contexto (simples). Replay depende de timestamps → reforça captura via legendas do Meet (Fase 2). North star do produto: o closer sai pensando "agora sei exatamente o que fazer na próxima call".
+
 ## Mapa de fases (não inchar o MVP)
 | Fase | Entrega | Status |
 |------|---------|--------|
