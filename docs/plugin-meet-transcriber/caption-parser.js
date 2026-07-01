@@ -2,86 +2,113 @@
  * ARVEX Meet Transcriber — caption-parser.js
  * Localiza a região de legendas do Google Meet e extrai {falante, texto}.
  *
- * ⚠️ MANUTENÇÃO: o DOM do Meet NÃO é API pública. Os seletores semânticos
- * (role=region + aria-label) são os mais estáveis. As classes ofuscadas
- * (.nMcdL, .bh44bd, .ygicle...) mudam sem aviso — por isso há FALLBACK
- * heurístico. Se um dia parar de capturar, ajuste findRegion()/parseRows()
- * aqui (e só aqui). Ver BUILD-REPORT.md.
+ * ⚠️ MANUTENÇÃO: o DOM do Meet NÃO é API pública. Estrutura real (jun/2026):
+ *   .a4cQT            → um TURNO de legenda (um bloco falante+fala)
+ *     .NmXUuc         → nome/avatar do falante
+ *     [jsname=dsyhDe] → o TEXTO da fala (o que a pessoa disse)
+ * A estratégia principal itera os nós de TEXTO (jsname="dsyhDe") e deriva o
+ * falante do turno .a4cQT. Se o Google mudar isso, ajuste findRegion()/parseRows()
+ * aqui (e só aqui). Há fallback genérico por avatar+texto. Ver BUILD-REPORT.md.
  * ========================================================================== */
 (function () {
   "use strict";
 
   // aria-label das legendas varia por idioma: "Captions" (EN), "Legendas" (PT-BR), etc.
   const CAPTION_LABEL_RE = /caption|legenda|subtitle|sottotitoli|untertitel|sous-titres/i;
+  const SELF_NAMES = /^(você|voce|you|tu)$/i; // Meet legenda o próprio usuário como "Você"
 
-  // 1) Acha a região de legendas — semântico primeiro, fallback depois.
+  function clean(s) {
+    return (s || "").replace(/\s+/g, " ").trim();
+  }
+
+  // ---- 1) Acha o container das legendas ----
+  // ⚠️ CUIDADO: o Meet reusa a classe .a4cQT no SELETOR DE IDIOMA e no botão de
+  // config. O sinal confiável de FALA é o nó de texto jsname="dsyhDe". Então
+  // priorizamos ele, não a classe .a4cQT (ambígua).
   function findRegion() {
-    // a) semântico: role=region com aria-label de legendas
-    const regions = document.querySelectorAll('[role="region"][aria-label]');
-    for (const r of regions) {
-      if (CAPTION_LABEL_RE.test(r.getAttribute("aria-label") || "")) return r;
+    // a) semântico: role=region com aria-label de legendas (exclui <button>)
+    for (const r of document.querySelectorAll('[role="region"][aria-label]')) {
+      if (r.tagName !== "BUTTON" && CAPTION_LABEL_RE.test(r.getAttribute("aria-label") || "")) return r;
     }
-    // b) fallback: qualquer região cujo aria-label bata
-    const labelled = document.querySelectorAll('[aria-label]');
-    for (const el of labelled) {
-      if (CAPTION_LABEL_RE.test(el.getAttribute("aria-label") || "") &&
-          el.querySelectorAll("*").length > 1) return el;
+    // b) container dos textos de legenda (dsyhDe só existe na fala real)
+    const t = document.querySelector('[jsname="dsyhDe"]');
+    if (t) {
+      const turn = t.closest(".a4cQT");
+      return (turn && turn.parentElement) || t.parentElement;
     }
-    // c) fallback heurístico: container com avatares googleusercontent (linhas de legenda)
-    const avatar = document.querySelector('img[src*="googleusercontent.com"]');
-    if (avatar) {
-      let p = avatar;
-      for (let i = 0; i < 6 && p; i++) { p = p.parentElement; }
-      if (p) return p;
+    // c) último recurso: um .a4cQT que CONTENHA texto de legenda (ignora o de idioma)
+    for (const a of document.querySelectorAll(".a4cQT")) {
+      if (a.querySelector('[jsname="dsyhDe"]')) return a.parentElement || a;
     }
     return null;
   }
 
-  // 2) Extrai as linhas visíveis: [{ speaker, text }]
-  //    Cada "turno" no Meet costuma ter: [avatar/nome] + [texto]. Estrutura varia,
-  //    então tentamos várias estratégias e caímos no texto cru se preciso.
+  // ---- 2) Extrai os turnos visíveis: [{ speaker, text }] ----
   function parseRows(region) {
-    if (!region) return [];
+    const root = region || document;
     const rows = [];
-    // candidatos a "linha de legenda": cada turno do Meet tem um avatar (img).
-    // Pegamos o elemento que CONTÉM o avatar como direto filho → evita contar
-    // divs aninhados (nome/texto) como linhas separadas (bug de duplicação).
-    let list = region.querySelectorAll("div:has(> img[alt]), div:has(> img)");
-    if (!list.length) list = region.querySelectorAll(":scope > div"); // fallback: só filhos diretos
-    if (!list.length) list = region.children;
 
+    // ESTRATÉGIA PRINCIPAL: cada fala tem um nó de texto jsname="dsyhDe".
+    let textNodes = root.querySelectorAll('[jsname="dsyhDe"]');
+    if (!textNodes.length) textNodes = document.querySelectorAll('[jsname="dsyhDe"]');
+    if (textNodes.length) {
+      for (const tn of textNodes) {
+        const text = clean(tn.innerText || tn.textContent);
+        if (!text) continue;
+        // el = identidade estável do bloco (pra não duplicar entre ticks)
+        rows.push({ speaker: speakerFor(tn, text), text, el: tn });
+      }
+      if (rows.length) return rows;
+    }
+
+    // FALLBACK genérico (estrutura antiga): turnos com avatar + texto no mesmo bloco.
+    let list = root.querySelectorAll(".a4cQT, .nMcdL");
+    if (!list.length) list = root.querySelectorAll("div:has(> img)");
+    if (!list.length && root.children) list = root.children;
     for (const b of list) {
-      const full = (b.innerText || "").trim();
+      const full = clean(b.innerText);
       if (!full) continue;
-
       let speaker = "";
+      const img = b.querySelector("img[alt]");
+      if (img && img.getAttribute("alt") && img.getAttribute("alt").length < 60) {
+        speaker = clean(img.getAttribute("alt"));
+      }
       let text = full;
-
-      // estratégia A: nome perto de um avatar (img)
-      const img = b.querySelector('img[src*="googleusercontent.com"], img[alt]');
-      if (img) {
-        const alt = (img.getAttribute("alt") || "").trim();
-        if (alt && alt.length < 60) speaker = alt;
+      if (speaker && full.startsWith(speaker)) {
+        text = clean(full.slice(speaker.length).replace(/^[\s:.\-–—]+/, ""));
       }
-      // estratégia B: primeiro elemento "curto" (nome) + resto (texto)
-      if (!speaker) {
-        const spans = b.querySelectorAll("span, div");
-        for (const s of spans) {
-          const t = (s.innerText || "").trim();
-          if (t && t.length <= 40 && full.startsWith(t) && t !== full) {
-            speaker = t; break;
-          }
-        }
-      }
-      // se achou falante no começo do texto, separa
-      if (speaker && text.startsWith(speaker)) {
-        text = text.slice(speaker.length).replace(/^[\s:.\-–—]+/, "").trim();
-      }
-      if (!text) continue;
-      rows.push({ speaker: speaker || "", text });
+      if (text) rows.push({ speaker, text, el: b });
     }
     return rows;
   }
 
-  window.ArvexCaptionParser = { findRegion, parseRows };
+  // ---- descobre o falante associado a um nó de texto ----
+  function speakerFor(textNode, text) {
+    const turn = textNode.closest(".a4cQT") ||
+      (textNode.parentElement && textNode.parentElement.parentElement) ||
+      textNode.parentElement;
+    if (!turn) return "";
+    // a) bloco de nome .NmXUuc
+    const nameEl = turn.querySelector(".NmXUuc");
+    if (nameEl) {
+      const n = clean(nameEl.innerText);
+      if (n && n.length < 60 && n !== text) return n;
+    }
+    // b) avatar com alt
+    const img = turn.querySelector("img[alt]");
+    if (img) {
+      const alt = clean(img.getAttribute("alt"));
+      if (alt && alt.length < 60) return alt;
+    }
+    // c) diferença: texto do turno menos a fala
+    const full = clean(turn.innerText);
+    const idx = full.lastIndexOf(text);
+    if (idx > 0) {
+      const n = clean(full.slice(0, idx)).replace(/[:.\-–—\s]+$/, "");
+      if (n && n.length < 60) return n;
+    }
+    return "";
+  }
+
+  window.ArvexCaptionParser = { findRegion, parseRows, SELF_NAMES };
 })();
