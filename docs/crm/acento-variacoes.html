@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ARVEX CRM — Comparador de Acento</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#080C14; --s1:#0E1420; --s2:#151C2B;
+    --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.13);
+    --t1:#E7ECF5; --t2:#8A98AD; --t3:#5C6878;
+    --gold:#C8A96E; --gold2:#E2C98A; --green:#3FB950; --red:#F85149;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--t1);font-family:Inter,sans-serif;padding:32px;min-height:100vh}
+  h1{font-size:20px;font-weight:800;margin-bottom:4px}
+  .sub{font-size:13px;color:var(--t2);margin-bottom:28px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1180px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .col{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:18px}
+  .col h2{font-size:14px;font-weight:700;margin-bottom:2px}
+  .col .desc{font-size:11px;color:var(--t3);margin-bottom:16px;min-height:42px;line-height:1.4}
+
+  /* ── peças reais do CRM, parametrizadas por --accent / --brand ── */
+  .demo{display:flex;flex-direction:column;gap:14px}
+  .nav{display:flex;flex-direction:column;gap:2px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:8px}
+  .nav-item{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:8px;font-size:13px;font-weight:500;color:var(--t2)}
+  .nav-item svg{width:16px;height:16px}
+  .nav-item.active{background:var(--brand-dim);color:var(--brand);font-weight:600}
+
+  .btn{background:var(--accent);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;align-self:flex-start}
+
+  .colhdr{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .colhdr .lbl{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--gold2)}
+  .cnt{font-size:11px;color:var(--t3);background:var(--s2);padding:1px 7px;border-radius:10px}
+
+  .card{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:12px}
+  .card:hover{border-color:var(--accent)}
+  .card-name{font-size:13px;font-weight:700;margin-bottom:6px}
+  .card-meta{display:flex;flex-wrap:wrap;gap:5px 12px;font-size:11px;color:var(--t3)}
+  .badge{display:inline-block;padding:2px 9px;border-radius:11px;font-size:10px;font-weight:700;background:var(--brand-dim);color:var(--brand)}
+  .prod{color:var(--accent);font-weight:600}
+  .link{color:var(--accent);font-size:12px;font-weight:600}
+  .ring{margin-top:4px;font-size:11px;color:var(--t2)}
+  .ring input{background:var(--s2);border:1px solid var(--border);border-radius:6px;color:var(--t1);padding:7px 9px;font-size:12px;width:100%;outline:none}
+  .ring input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+
+  /* ── as 3 variações ── */
+  .v-indigo{ --accent:#5B6CFF; --accent-dim:rgba(91,108,255,.16); --brand:#5B6CFF; --brand-dim:rgba(91,108,255,.14); }
+  .v-indigo .dot{background:#5B6CFF}
+  .v-gold{ --accent:#C8A96E; --accent-dim:rgba(200,169,110,.16); --brand:var(--gold2); --brand-dim:rgba(200,169,110,.14); }
+  .v-hibrido{ --accent:#5B6CFF; --accent-dim:rgba(91,108,255,.16); --brand:var(--gold2); --brand-dim:rgba(200,169,110,.16); }
+</style>
+</head>
+<body>
+  <h1>ARVEX CRM — Qual acento?</h1>
+  <div class="sub">Mesmas peças do CRM real (sidebar, botão, coluna do kanban, card, foco de input) nas 3 direções. Olha qual te agrada.</div>
+  <div class="grid" id="grid"></div>
+
+<script>
+const I = {
+  dashboard:'<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>',
+  cs:'<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a9 9 0 0 1 18 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
+  wallet:'<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>'
+}
+const ic = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]}</svg>`
+const demo = () => `
+  <div class="demo">
+    <div class="nav">
+      <div class="nav-item active">${ic('dashboard')} Relatório</div>
+      <div class="nav-item">${ic('cs')} CS — Cindy</div>
+      <div class="nav-item">${ic('wallet')} Cobranças</div>
+    </div>
+    <button class="btn">+ Novo Cliente</button>
+    <div class="colhdr"><span class="lbl"><span class="dot"></span>Gate Cindy</span><span class="cnt">3</span></div>
+    <div class="card">
+      <div class="card-name">Ótica Visão Clara</div>
+      <div class="card-meta">
+        <span class="prod">Estrategista</span>
+        <span>2 bônus</span>
+        <span>Meta: <b style="color:var(--gold2)">R$ 80k</b></span>
+      </div>
+      <div style="margin-top:8px"><span class="badge">Em CS</span></div>
+    </div>
+    <div class="ring"><input placeholder="Foco do input (clique aqui)" /></div>
+    <a class="link">Ver detalhes →</a>
+  </div>`
+const variacoes = [
+  ['v-indigo','1 · Índigo (Linear)','Cor fria e neutra, padrão SaaS. Seguro e sério, mas genérico — não tem identidade ARVEX.'],
+  ['v-gold','2 · Dourado (marca ARVEX)','Acento = dourado. Premium e autoral, "cara de ARVEX". Risco: ação dourada lê menos como "clicável".'],
+  ['v-hibrido','3 · Híbrido (recomendado)','Ação/foco em índigo (clareza) + dourado na marca (sidebar ativa, badge, meta). O melhor dos dois.']
+]
+document.getElementById('grid').innerHTML = variacoes.map(([cls,t,d]) =>
+  `<div class="col ${cls}"><h2>${t}</h2><div class="desc">${d}</div>${demo()}</div>`).join('')
+</script>
+</body>
+</html>

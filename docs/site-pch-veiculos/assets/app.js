@@ -142,9 +142,9 @@ function initEstoque(){
     if (lista.length){
       grid.innerHTML = lista.map(cardHTML).join('');
     }else{
-      grid.innerHTML = `<div class="empty"><b>Nenhum clássico encontrado</b>Limpe os filtros ou fale com a gente — novidades chegam toda semana.</div>`;
+      grid.innerHTML = `<div class="empty"><b>Nenhum exclusivo encontrado</b>Limpe os filtros ou fale com a gente — novidades chegam toda semana.</div>`;
     }
-    count.textContent = `${lista.length} ${lista.length===1?'clássico':'clássicos'}`;
+    count.textContent = `${lista.length} ${lista.length===1?'exclusivo':'exclusivos'}`;
     // refletir na URL
     const np = new URLSearchParams();
     if (m) np.set('marca',m); if (u) np.set('uf',u); if (q) np.set('q',q);
@@ -194,13 +194,13 @@ function initDetalhe(){
         <div class="detail-price tnum">${fmtPreco(c.preco)}</div>
         <div class="specs">${specs.map(s=>`<div class="spec"><div class="k">${s[0]}</div><div class="v">${esc(s[1])}</div></div>`).join('')}</div>
         <a class="btn btn-primary" href="${contatoCarro(c)}" target="_blank" rel="noopener">Tenho interesse neste ${esc(c.modelo)}</a>
-        <a class="btn btn-ghost" href="estoque.html">Ver mais clássicos</a>
+        <a class="btn btn-ghost" href="estoque.html">Ver mais exclusivos</a>
         <p class="trust">Atendimento humano e direto. Tire suas dúvidas, peça mais fotos e agende para ver pessoalmente.</p>
       </div>
     </div>
     ${c.historia?`<div class="history reveal"><h2 class="h2">A história deste ${esc(c.modelo)}</h2><p>${esc(c.historia)}</p></div>`:''}
     <div class="section">
-      <div class="section-head"><h2 class="h2">Outros clássicos</h2><a class="link" href="estoque.html">Ver todos →</a></div>
+      <div class="section-head"><h2 class="h2">Outros exclusivos</h2><a class="link" href="estoque.html">Ver todos →</a></div>
       <div class="grid" id="relacionados"></div>
     </div>
   </div>`;

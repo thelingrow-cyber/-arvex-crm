@@ -1,7 +1,7 @@
 handoff:
   from_agent: ux-design-expert
   to_agent: dev
-  consumed: false
+  consumed: true
   timestamp: "2026-05-09"
 
   story_context:
