@@ -49,10 +49,38 @@ qualquer coisa que aumente a ansiedade do leitor em vez de dar controle.
 - **Processo** — documento implementações reais (cases) = prova.
 - **Provocação** — ativo os inimigos, gero tribo e DMs.
 
-## Exemplos reais que funcionaram
-> ⚠️ SUBSTITUIR: cole aqui 3 legendas/textos SEUS que deram certo (mais salvos, mais DMs).
-> São eles que ensinam o Claude a puxar pro seu jeito de verdade — mais que qualquer regra acima.
+## Exemplos na minha voz
+> Rascunhos escritos na minha voz, um por pilar (Provocação, Visão, Processo). Servem de modelo
+> pro Claude puxar pro meu jeito. Quando eu tiver posts REAIS que bombaram (mais salvos, mais DMs),
+> troco por eles. Texto real que converteu ensina mais que qualquer rascunho.
 
-1. (cole aqui)
-2. (cole aqui)
-3. (cole aqui)
+### Exemplo 1 — Provocação (aprender vs operar IA)
+A maioria está aprendendo IA. Pouquíssimos estão operando com ela.
+
+Todo dia aparece um tutorial novo, um prompt mágico, uma thread pra salvar. E o negócio continua rodando na sua cabeça e numa planilha.
+
+Aprender IA virou hobby. Operar é outra coisa: é a IA vendendo, atendendo e girando a operação enquanto você dorme.
+
+O gargalo nunca foi esforço. É estrutura.
+
+Comenta OPERAR aqui embaixo que eu te mostro por onde começa.
+
+### Exemplo 2 — Visão (arbitragem EUA)
+O que as empresas nos EUA já fazem com IA hoje, o Brasil vai descobrir daqui a uns 18 meses. Quem instala agora chega primeiro.
+
+Enquanto o mercado aqui ainda discute se "IA é hype", lá fora tem operação comercial inteira rodando com agente de IA no atendimento, no follow-up e na qualificação de lead.
+
+Não é sobre entender de IA. É sobre chegar primeiro com ela instalada.
+
+Você não está atrasado. Você só não tem quem traduza o futuro pra você.
+
+Salva esse pra quando o seu concorrente "descobrir" isso. Você já vai estar na frente.
+
+### Exemplo 3 — Processo (case / bastidor)
+Semana passada eu instalei um agente de IA que faz o primeiro atendimento de uma operação inteira. Antes o dono respondia lead na madrugada. Agora a máquina responde, qualifica e agenda sozinha.
+
+Não teve mágica. Teve estrutura: mapeei o comercial, achei o gargalo (era o tempo de resposta) e coloquei IA exatamente ali.
+
+Isso é operar com IA em vez de aprender IA. O dono não virou tech. Virou o que chegou primeiro.
+
+Quer ver como isso fica no seu negócio? Me chama na DM.
