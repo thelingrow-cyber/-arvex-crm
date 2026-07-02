@@ -23,15 +23,19 @@ visual travado numa ferramenta pra nunca variar.
    - `02-voz.md` → cole 3 textos/legendas seus que deram certo.
    - `03-referencias.md` → anexe 5 carrosséis de referência.
 
-## Uso (todo dia)
+## Uso (todo dia) — fluxo padrão
 
-1. No Projeto: **`Carrossel sobre [tema]`** (ou cole um artigo / transcrição de vídeo).
-2. Copie o **bloco JSON** da resposta.
-3. Abra `index.html` → cole o JSON → **Renderizar** → **Baixar todos (PNG)**.
+1. No Projeto: **`Carrossel sobre [tema]`** (ou cole um artigo / transcrição de vídeo / lista).
+2. Ele mostra o **roteiro** pra você aprovar → você aprova.
+3. Ele monta o **artefato HTML** (com botões "Baixar PNG" / "Baixar todos") → você baixa e posta.
 4. Post foi bem? Anexa ele no `03-referencias.md` do Projeto. O sistema aprende.
 
-## Por que a ferramenta (e não deixar o Claude desenhar)
-O guia deixa o Claude gerar o visual a cada vez — o que reintroduz "cara de Claude" no
-visual e varia a resolução. Aqui o visual está travado em código: todo carrossel sai
-idêntico, no seu charcoal + gold + Inter, exportado em 1080×1350 real. O Claude cuida
-do que ele faz melhor (pensar e escrever); a ferramenta cuida do pixel.
+## Modo consistência (opcional) — `index.html`
+No fluxo padrão o Claude desenha o artefato a cada vez (jeito do guia): simples, funciona
+no plano grátis, mas o visual pode variar um pouco de post pra post ("cara de Claude" no design).
+
+Quando a consistência do feed importar mais que a velocidade, use o `index.html`: peça ao
+Projeto o **bloco JSON** (formato no fim do `PROMPT-INSTRUCOES.md`), cole na ferramenta,
+**Renderizar** → **Baixar todos (PNG)**. O visual fica travado em código — todo carrossel sai
+idêntico, no seu charcoal + gold + Inter, em 1080×1350 real. O Claude pensa e escreve;
+a ferramenta cuida do pixel.
