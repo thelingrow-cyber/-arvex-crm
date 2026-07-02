@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gerador de Carrossel — Marca Pessoal (Arquiteto-Visionário)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    /* Sistema visual — marca pessoal (atelier do futuro / calma autoridade) */
+    --slide-bg: #0E0F12;
+    --slide-bg-soft: #16171C;
+    --ink: #F4F0E6;        /* off-white quente */
+    --muted: #9C978C;      /* texto secundário */
+    --gold: #C9A24B;       /* acento — premium, à frente */
+    --gold-soft: rgba(201,162,75,0.14);
+    --line: rgba(244,240,230,0.10);
+
+    /* UI (fora dos slides) */
+    --ui-bg: #0a0b0d;
+    --ui-panel: #141519;
+    --ui-border: #24262c;
+    --ui-text: #e8e6e1;
+    --ui-muted: #8b8a86;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ---------- Layout ---------- */
+  .app { display: flex; width: 100%; }
+  .editor {
+    width: 460px;
+    min-width: 460px;
+    border-right: 1px solid var(--ui-border);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .stage {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    height: 100vh;
+    background:
+      radial-gradient(1200px 600px at 70% -10%, #14151a 0%, transparent 60%),
+      var(--ui-bg);
+  }
+
+  /* ---------- Editor UI ---------- */
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 14px var(--gold); }
+  .brand h1 { font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+  .brand p { font-size: 11.5px; color: var(--ui-muted); margin-top: 2px; }
+
+  label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ui-muted); }
+
+  textarea {
+    width: 100%;
+    min-height: 340px;
+    flex: 1;
+    resize: vertical;
+    background: var(--ui-panel);
+    border: 1px solid var(--ui-border);
+    border-radius: 12px;
+    color: var(--ui-text);
+    font-family: 'SF Mono', ui-monospace, 'Cascadia Code', monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    padding: 14px;
+    outline: none;
+  }
+  textarea:focus { border-color: var(--gold); }
+
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  button {
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    border: 1px solid var(--ui-border);
+    background: var(--ui-panel);
+    color: var(--ui-text);
+    transition: .15s;
+  }
+  button:hover { border-color: var(--gold); color: var(--gold); }
+  button.primary { background: var(--gold); border-color: var(--gold); color: #16130a; }
+  button.primary:hover { background: #d9b463; color: #16130a; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+
+  .hint { font-size: 11.5px; line-height: 1.5; color: var(--ui-muted); }
+  .hint code { color: var(--gold); font-family: ui-monospace, monospace; }
+  .err { color: #ff8f8f; font-size: 12px; min-height: 16px; }
+  .caption-box {
+    background: var(--ui-panel); border: 1px solid var(--ui-border);
+    border-radius: 12px; padding: 12px 14px; font-size: 12px; line-height: 1.6; color: var(--ui-muted);
+    white-space: pre-wrap; display: none;
+  }
+  .caption-box.show { display: block; }
+  .caption-box b { color: var(--ui-text); display: block; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+
+  /* ---------- Slides preview ---------- */
+  .slides { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+  .slide-box {
+    /* reserva o espaço já escalado */
+    width: calc(1080px * var(--scale));
+    height: calc(1350px * var(--scale));
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    position: relative;
+  }
+  .slide-scaler {
+    transform: scale(var(--scale));
+    transform-origin: top left;
+    width: 1080px;
+    height: 1350px;
+  }
+  .slide-index {
+    position: absolute; top: 10px; left: 12px; z-index: 5;
+    font-size: 11px; font-weight: 700; color: var(--ui-muted);
+    background: rgba(0,0,0,.55); padding: 3px 8px; border-radius: 6px;
+  }
+
+  /* ===== O SLIDE (1080x1350, 4:5) ===== */
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    background: var(--slide-bg);
+    color: var(--ink);
+    padding: 96px 90px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide::before {
+    /* profundidade sutil — sem firula */
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(900px 520px at 78% -8%, rgba(201,162,75,0.10), transparent 62%);
+    pointer-events: none;
+  }
+  .slide .kicker {
+    font-size: 30px; font-weight: 800; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .slide .headline {
+    font-weight: 900; letter-spacing: -0.035em; line-height: 1.02;
+    color: var(--ink);
+  }
+  .slide .body {
+    font-weight: 500; color: var(--muted); line-height: 1.32;
+  }
+  .slide .rule { height: 4px; width: 96px; background: var(--gold); border-radius: 2px; }
+
+  .slide .top { display: flex; align-items: center; justify-content: space-between; }
+  .slide .handle { font-size: 28px; font-weight: 700; color: var(--muted); letter-spacing: -0.01em; }
+  .slide .pagenum { font-size: 26px; font-weight: 700; color: var(--gold); }
+  .slide .spacer { flex: 1; }
+  .slide .footer { display: flex; align-items: center; justify-content: space-between; }
+  .slide .swipe { display: flex; align-items: center; gap: 12px; color: var(--gold); font-size: 28px; font-weight: 800; letter-spacing: .02em; }
+
+  /* Tipo CAPA */
+  .slide.capa .headline { font-size: 104px; }
+  .slide.capa .sub { font-size: 40px; font-weight: 600; color: var(--muted); line-height: 1.25; margin-top: 34px; max-width: 860px; }
+
+  /* Tipo CONTEÚDO */
+  .slide.conteudo .headline { font-size: 74px; margin-top: 28px; max-width: 900px; }
+  .slide.conteudo .body { font-size: 40px; margin-top: 36px; max-width: 900px; }
+
+  /* Tipo CTA */
+  .slide.cta { background: linear-gradient(160deg, #16171C 0%, #0E0F12 70%); }
+  .slide.cta .headline { font-size: 84px; max-width: 900px; }
+  .slide.cta .body { font-size: 38px; margin-top: 30px; max-width: 860px; }
+  .slide.cta .button {
+    align-self: flex-start; margin-top: 56px;
+    background: var(--gold); color: #16130a;
+    font-size: 40px; font-weight: 800; letter-spacing: -0.01em;
+    padding: 30px 52px; border-radius: 18px;
+  }
+
+  @media (max-width: 900px) {
+    .app { flex-direction: column; }
+    .editor { width: 100%; min-width: 0; height: auto; border-right: none; border-bottom: 1px solid var(--ui-border); }
+    .stage { height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ================= EDITOR ================= -->
+  <aside class="editor">
+    <div class="brand">
+      <span class="dot"></span>
+      <div>
+        <h1>Gerador de Carrossel</h1>
+        <p>Marca pessoal — Arquiteto-Visionário</p>
+      </div>
+    </div>
+
+    <div>
+      <label>Roteiro (JSON gerado no Projeto do Claude)</label>
+      <textarea id="input" spellcheck="false"></textarea>
+    </div>
+    <div class="err" id="err"></div>
+
+    <div class="row">
+      <button class="primary" id="render">Renderizar</button>
+      <button id="downloadAll">Baixar todos (PNG)</button>
+      <button id="example">Carregar exemplo</button>
+    </div>
+
+    <p class="hint">
+      1. Gere o carrossel no seu <b>Projeto do Claude</b> → copie o bloco <code>JSON</code>.<br>
+      2. Cole aqui e clique <b>Renderizar</b>.<br>
+      3. <b>Baixar todos</b> exporta cada slide em 1080×1350 (4:5).<br>
+      Tipos de slide: <code>capa</code>, <code>conteudo</code>, <code>cta</code>.
+    </p>
+
+    <div class="caption-box" id="captionBox"></div>
+  </aside>
+
+  <!-- ================= STAGE ================= -->
+  <main class="stage">
+    <div class="slides" id="slides"></div>
+  </main>
+</div>
+
+<script>
+  const PREVIEW_SCALE = 0.30;
+  document.documentElement.style.setProperty('--scale', PREVIEW_SCALE);
+
+  // ---------- Exemplo (voz da marca — pilar Visão / provocação) ----------
+  const EXAMPLE = {
+    handle: "@vitorsimoes",
+    slides: [
+      {
+        tipo: "capa",
+        headline: "A maioria está aprendendo IA.",
+        sub: "Pouquíssimos estão operando com ela. E a diferença é tudo."
+      },
+      {
+        tipo: "conteudo",
+        kicker: "01",
+        headline: "Aprender IA virou hobby.",
+        body: "Todo mundo assiste tutorial, testa prompt, salva thread. E o negócio continua exatamente igual."
+      },
+      {
+        tipo: "conteudo",
+        kicker: "02",
+        headline: "Operar é outra coisa.",
+        body: "É a IA vendendo, atendendo e girando a operação enquanto você dorme. Não é conteúdo. É estrutura."
+      },
+      {
+        tipo: "conteudo",
+        kicker: "03",
+        headline: "O gargalo não é esforço.",
+        body: "É estrutura. Seu negócio fatura, mas roda na sua cabeça e numa planilha."
+      },
+      {
+        tipo: "conteudo",
+        kicker: "04",
+        headline: "Você não está atrasado.",
+        body: "Você só não tem quem traduza o futuro pra você — e instale, no seu negócio, só o que te coloca à frente."
+      },
+      {
+        tipo: "cta",
+        headline: "Quer parar de aprender e começar a operar?",
+        body: "Me manda a palavra OPERAR na DM que eu te mostro por onde começa.",
+        cta: "→ DM: OPERAR"
+      }
+    ],
+    legenda: "A maioria está aprendendo IA. Poucos estão operando com ela.\n\nO futuro não é pra quem entende de IA. É pra quem chega primeiro com ela instalada. Salva esse e me chama na DM.",
+    hashtags: ["#inteligenciaartificial", "#empreendedorismo", "#negocios", "#ia"]
+  };
+
+  // ---------- Render ----------
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  function slideHTML(s, i, total, handle) {
+    const page = `${i + 1}/${total}`;
+    if (s.tipo === "capa") {
+      return `
+        <div class="slide capa">
+          <div class="top">
+            <span class="handle">${esc(handle)}</span>
+            <span class="rule"></span>
+          </div>
+          <div class="spacer"></div>
+          <div class="headline">${esc(s.headline)}</div>
+          ${s.sub ? `<div class="sub">${esc(s.sub)}</div>` : ``}
+          <div class="spacer"></div>
+          <div class="footer">
+            <span class="swipe">arraste &nbsp;→</span>
+            <span class="pagenum">${page}</span>
+          </div>
+        </div>`;
+    }
+    if (s.tipo === "cta") {
+      return `
+        <div class="slide cta">
+          <div class="top">
+            <span class="handle">${esc(handle)}</span>
+            <span class="pagenum">${page}</span>
+          </div>
+          <div class="spacer"></div>
+          <div class="rule"></div>
+          <div class="headline" style="margin-top:34px">${esc(s.headline)}</div>
+          ${s.body ? `<div class="body">${esc(s.body)}</div>` : ``}
+          ${s.cta ? `<div class="button">${esc(s.cta)}</div>` : ``}
+          <div class="spacer"></div>
+        </div>`;
+    }
+    // conteudo (default)
+    return `
+      <div class="slide conteudo">
+        <div class="top">
+          <span class="kicker">${esc(s.kicker || String(i).padStart(2,'0'))}</span>
+          <span class="pagenum">${page}</span>
+        </div>
+        <div class="rule" style="margin-top:40px"></div>
+        <div class="headline">${esc(s.headline)}</div>
+        ${s.body ? `<div class="body">${esc(s.body)}</div>` : ``}
+        <div class="spacer"></div>
+        <div class="footer">
+          <span class="handle">${esc(handle)}</span>
+        </div>
+      </div>`;
+  }
+
+  function render() {
+    $('err').textContent = "";
+    let data;
+    try {
+      data = JSON.parse($('input').value);
+    } catch (e) {
+      $('err').textContent = "JSON inválido: " + e.message;
+      return null;
+    }
+    if (!data.slides || !Array.isArray(data.slides) || !data.slides.length) {
+      $('err').textContent = "O JSON precisa de um array \"slides\" com pelo menos 1 item.";
+      return null;
+    }
+    const handle = data.handle || "@seuperfil";
+    const total = data.slides.length;
+    const container = $('slides');
+    container.innerHTML = data.slides.map((s, i) => `
+      <div class="slide-box">
+        <div class="slide-index">${i + 1}</div>
+        <div class="slide-scaler" id="slide-${i}">${slideHTML(s, i, total, handle)}</div>
+      </div>
+    `).join('');
+
+    // legenda + hashtags
+    const cap = $('captionBox');
+    if (data.legenda || (data.hashtags && data.hashtags.length)) {
+      cap.classList.add('show');
+      cap.innerHTML = `<b>Legenda do post</b>${esc(data.legenda || '')}` +
+        (data.hashtags && data.hashtags.length ? `\n\n${esc(data.hashtags.join(' '))}` : '');
+    } else {
+      cap.classList.remove('show');
+    }
+    return data;
+  }
+
+  // ---------- Export PNG ----------
+  // Captura offscreen em tamanho real (1080x1350) — independente da escala do preview,
+  // evitando que o transform: scale do wrapper contamine a resolução exportada.
+  async function captureSlide(s, i, total, handle) {
+    const holder = document.createElement('div');
+    holder.style.cssText = 'position:fixed;left:-10000px;top:0;width:1080px;height:1350px;';
+    holder.innerHTML = slideHTML(s, i, total, handle);
+    document.body.appendChild(holder);
+    const node = holder.querySelector('.slide');
+    let canvas = null;
+    try {
+      canvas = await html2canvas(node, {
+        width: 1080, height: 1350,
+        scale: 1, backgroundColor: null, useCORS: true, logging: false
+      });
+    } finally {
+      holder.remove();
+    }
+    return canvas;
+  }
+
+  function downloadCanvas(canvas, name) {
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  async function downloadAll() {
+    const data = render();
+    if (!data) return;
+    await document.fonts.ready;
+    const btn = $('downloadAll');
+    btn.disabled = true;
+    const original = btn.textContent;
+    const handle = data.handle || "@seuperfil";
+    const total = data.slides.length;
+    for (let i = 0; i < total; i++) {
+      btn.textContent = `Exportando ${i + 1}/${total}...`;
+      const canvas = await captureSlide(data.slides[i], i, total, handle);
+      if (canvas) downloadCanvas(canvas, `slide-${String(i + 1).padStart(2, '0')}.png`);
+      await new Promise(r => setTimeout(r, 350));
+    }
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+
+  // ---------- Wiring ----------
+  $('render').addEventListener('click', render);
+  $('downloadAll').addEventListener('click', downloadAll);
+  $('example').addEventListener('click', () => {
+    $('input').value = JSON.stringify(EXAMPLE, null, 2);
+    render();
+  });
+
+  // Boot com exemplo carregado
+  $('input').value = JSON.stringify(EXAMPLE, null, 2);
+  document.fonts.ready.then(render);
+</script>
+</body>
+</html>
