@@ -1,105 +1,32 @@
-# Agent Authority — Detailed Rules
+# Agent Authority — Delegation Matrix
 
-## Delegation Matrix
+## Operações EXCLUSIVAS
 
-### @devops (Gage) — EXCLUSIVE Authority
+| Agente | Exclusivo |
+|--------|-----------|
+| @devops (Gage) | `git push` (qualquer forma) · `gh pr create/merge` · MCP add/remove/config · pipelines CI/CD · releases |
+| @pm (Morgan) | `*create-epic` · `*execute-epic` · EPIC-{ID}-EXECUTION.yaml · requirements gathering · spec writing |
+| @po (Pax) | `*validate-story-draft` (checklist 10 pontos) · contexto de stories em epics · priorização de backlog |
+| @sm (River) | `*draft`/`*create-story` a partir de epic/PRD · seleção de template de story |
+| @aiox-master | Governança do framework; executa qualquer task; pode sobrepor boundaries quando necessário |
 
-| Operation | Exclusive? | Other Agents |
-|-----------|-----------|--------------|
-| `git push` / `git push --force` | YES | BLOCKED |
-| `gh pr create` / `gh pr merge` | YES | BLOCKED |
-| MCP add/remove/configure | YES | BLOCKED |
-| CI/CD pipeline management | YES | BLOCKED |
-| Release management | YES | BLOCKED |
+## @dev (Dex)
 
-### @pm (Morgan) — Epic Orchestration
+- PODE: `git add/commit/status/branch/checkout/merge` (local), `stash/diff/log`; atualizar File List e checkboxes da story.
+- BLOQUEADO: `git push` e `gh pr *` (→ @devops); gestão de MCP; alterar AC/escopo/título da story.
 
-| Operation | Exclusive? | Delegated From |
-|-----------|-----------|---------------|
-| `*execute-epic` | YES | — |
-| `*create-epic` | YES | — |
-| EPIC-{ID}-EXECUTION.yaml management | YES | — |
-| Requirements gathering | YES | — |
-| Spec writing (spec pipeline) | YES | — |
+## @architect (Aria) × @data-engineer (Dara)
 
-### @po (Pax) — Story Validation
+- Aria: arquitetura de sistema, seleção de tecnologia, data architecture de alto nível, padrões de integração, complexity assessment.
+- Dara (delegado de Aria): DDL detalhado, query optimization, RLS, estratégia de índices, migrations. NÃO faz: arquitetura de sistema, código de aplicação, frontend, git.
 
-| Operation | Exclusive? | Details |
-|-----------|-----------|---------|
-| `*validate-story-draft` | YES | 10-point checklist |
-| Story context tracking in epics | YES | — |
-| Epic context management | YES | — |
-| Backlog prioritization | YES | — |
+## Fluxos de delegação
 
-### @sm (River) — Story Creation
+- Push: qualquer agente → `@devops *push`
+- Schema: @architect decide tecnologia → @data-engineer implementa DDL
+- Story: `@sm *draft → @po *validate → @dev *develop → @qa *qa-gate → @devops *push`
+- Epic: `@pm *create-epic → *execute-epic → @sm *draft` (por story)
 
-| Operation | Exclusive? | Details |
-|-----------|-----------|---------|
-| `*draft` / `*create-story` | YES | From epic/PRD |
-| Story template selection | YES | — |
+## Escalation
 
-### @dev (Dex) — Implementation
-
-| Allowed | Blocked |
-|---------|---------|
-| `git add`, `git commit`, `git status` | `git push` (delegate to @devops) |
-| `git branch`, `git checkout`, `git merge` (local) | `gh pr create/merge` (delegate to @devops) |
-| `git stash`, `git diff`, `git log` | MCP management |
-| Story file updates (File List, checkboxes) | Story file updates (AC, scope, title) |
-
-### @architect (Aria) — Design Authority
-
-| Owns | Delegates To |
-|------|-------------|
-| System architecture decisions | — |
-| Technology selection | — |
-| High-level data architecture | @data-engineer (detailed DDL) |
-| Integration patterns | @data-engineer (query optimization) |
-| Complexity assessment | — |
-
-### @data-engineer (Dara) — Database
-
-| Owns (delegated from @architect) | Does NOT Own |
-|----------------------------------|-------------|
-| Schema design (detailed DDL) | System architecture |
-| Query optimization | Application code |
-| RLS policies implementation | Git operations |
-| Index strategy execution | Frontend/UI |
-| Migration planning & execution | — |
-
-### @aiox-master — Framework Governance
-
-| Capability | Details |
-|-----------|---------|
-| Execute ANY task directly | No restrictions |
-| Framework governance | Constitutional enforcement |
-| Override agent boundaries | When necessary for framework health |
-
-## Cross-Agent Delegation Patterns
-
-### Git Push Flow
-```
-ANY agent → @devops *push
-```
-
-### Schema Design Flow
-```
-@architect (decides technology) → @data-engineer (implements DDL)
-```
-
-### Story Flow
-```
-@sm *draft → @po *validate → @dev *develop → @qa *qa-gate → @devops *push
-```
-
-### Epic Flow
-```
-@pm *create-epic → @pm *execute-epic → @sm *draft (per story)
-```
-
-## Escalation Rules
-
-1. Agent cannot complete task → Escalate to @aiox-master
-2. Quality gate fails → Return to @dev with specific feedback
-3. Constitutional violation detected → BLOCK, require fix before proceed
-4. Agent boundary conflict → @aiox-master mediates
+1. Agente não completa task → @aiox-master. 2. Quality gate falha → volta a @dev com feedback específico. 3. Violação constitucional → BLOCK até corrigir. 4. Conflito de boundary → @aiox-master media.
