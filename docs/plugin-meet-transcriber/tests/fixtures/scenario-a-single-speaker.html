@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário A: 1 falante, legenda ROLANTE (texto cresce em 3 frames), turno .a4cQT bem formado. -->
+<div id="region" role="region" aria-label="Legendas">
+  <div class="a4cQT" id="t1">
+    <div class="NmXUuc">Ana Souza</div>
+    <div jsname="dsyhDe"></div>
+  </div>
+</div>
+<pre id="result"></pre>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../harness.js"></script>
+<script>
+window.__runFixture([
+  function (r) { r.querySelector("#t1 [jsname=dsyhDe]").textContent = "Oi"; },
+  function (r) { r.querySelector("#t1 [jsname=dsyhDe]").textContent = "Oi, tudo bem?"; },
+  function (r) { r.querySelector("#t1 [jsname=dsyhDe]").textContent = "Oi, tudo bem? Como vai a ótica?"; }
+], function (transcript) {
+  var expected = [{ speaker: "Ana Souza", text: "Oi, tudo bem? Como vai a ótica?" }];
+  var pass = JSON.stringify(transcript) === JSON.stringify(expected);
+  return { name: "A_single_speaker_growth", pass: pass, expected: expected, actual: transcript };
+});
+</script>
+</body></html>

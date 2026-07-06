@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário G — regressão do ADR-4/HIGH-2 (DEEP-ANALYSIS-FABLE.md), parte client-side:
+     retry com backoff (0s/2s/6s) e guard contra duplo-clique (sendInFlight). O dedup DE
+     VERDADE (upsert por client_key no banco) depende da Edge Function ingest-meeting —
+     fora do alcance deste ambiente (repo arvex-crm não acessível aqui); isto testa só o
+     que o CLIENTE garante: não disparar 2ª requisição enquanto a 1ª está em voo, e
+     recuperar de falha de rede sozinho via retry. Usa --virtual-time-budget do Chrome
+     headless pra "avançar" os setTimeout de backoff sem esperar 8s de verdade. -->
+<div id="region" role="region" aria-label="Legendas"></div>
+<pre id="result"></pre>
+<script>window.__ARVEX_TEST__ = true;</script>
+<script>
+  window.chrome = (function () {
+    var db = {};
+    return {
+      storage: {
+        local: {
+          get: function (keys, cb) { cb({}); },
+          set: function (obj, cb) { if (cb) cb(); },
+          remove: function (keys, cb) { if (cb) cb(); }
+        },
+        onChanged: { addListener: function () {} }
+      },
+      runtime: { onMessage: { addListener: function () {} } }
+    };
+  })();
+
+  // mock de fetch: falha 2x, sucede na 3ª (prova o retry+backoff)
+  window.__fetchCalls = 0;
+  window.fetch = function () {
+    window.__fetchCalls++;
+    if (window.__fetchCalls < 3) return Promise.reject(new Error("network down (mock)"));
+    return Promise.resolve({ json: function () { return Promise.resolve({ ok: true, meeting_id: "m1" }); } });
+  };
+</script>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../../content.js"></script>
+<script>
+(function () {
+  var errors = [];
+  function check(label, cond) { if (!cond) errors.push(label); }
+  var dbg = window.__arvexDebug;
+
+  dbg.store.upsert({ speaker: "Ana", text: "Fala de teste", el: null }, { now: function () { return Date.now(); } });
+
+  dbg.sendToCRM(); // 1ª chamada
+  dbg.sendToCRM(); // 2ª chamada IMEDIATA — deve ser ignorada (sendInFlight)
+
+  setTimeout(function () {
+    var btn = document.getElementById("arvex-crm");
+    check("retry aconteceu 3x (2 falhas + 1 sucesso), não mais que isso", window.__fetchCalls === 3);
+    check("duplo-clique não duplicou a 1ª rodada de tentativas", window.__fetchCalls <= 3);
+    check("após sucesso, botão mostra estado enviado", /Enviada/.test(btn.textContent));
+    check("botão reabilitado após concluir", !btn.disabled);
+
+    var pass = errors.length === 0;
+    document.getElementById("result").textContent = JSON.stringify({ name: "G_retry_backoff_and_no_double_send", pass: pass, expected: "3 fetch calls, badge enviada, botão habilitado", actual: { fetchCalls: window.__fetchCalls, btnText: btn.textContent, errors: errors } });
+    document.title = pass ? "PASS" : "FAIL";
+  }, 9000); // depois do backoff 0+2000+6000=8000ms (virtual time do Chrome headless acelera isso)
+})();
+</script>
+</body></html>

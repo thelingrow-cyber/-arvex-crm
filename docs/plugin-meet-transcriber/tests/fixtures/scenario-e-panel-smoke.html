@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário E — smoke test de integração do content.js (S5): mocka chrome.storage/runtime
+     mínimo, carrega o content.js REAL e confirma que o painel redesenhado (ADR-7) monta
+     sem exceção, com a estrutura esperada (abas, status oculto, config oculta) e que a
+     troca de aba Transcrição/Notas funciona. NÃO testa captura ao vivo (precisa de Meet
+     real e é o gate humano da S6) — só a integridade estrutural do painel. -->
+<div id="region" role="region" aria-label="Legendas"></div>
+<pre id="result"></pre>
+<script>
+  window.chrome = (function () {
+    var db = {};
+    return {
+      storage: {
+        local: {
+          get: function (keys, cb) {
+            var out = {};
+            if (keys === null) { for (var k in db) out[k] = db[k]; }
+            else { for (var i = 0; i < keys.length; i++) if (keys[i] in db) out[keys[i]] = db[keys[i]]; }
+            cb(out);
+          },
+          set: function (obj, cb) { for (var k in obj) db[k] = obj[k]; if (cb) cb(); },
+          remove: function (keys, cb) { for (var i = 0; i < keys.length; i++) delete db[keys[i]]; if (cb) cb(); }
+        },
+        onChanged: { addListener: function () {} }
+      },
+      runtime: { onMessage: { addListener: function () {} } }
+    };
+  })();
+</script>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../../content.js"></script>
+<script>
+(function () {
+  var errors = [];
+  function check(label, cond) { if (!cond) errors.push(label); }
+
+  var panel = document.getElementById("arvex-panel");
+  check("painel existe", !!panel);
+  check("tabs existem", !!document.getElementById("arvex-tabs"));
+  check("status começa oculto", document.getElementById("arvex-status").classList.contains("arvex-hidden"));
+  check("config começa oculta", document.getElementById("arvex-config").classList.contains("arvex-hidden"));
+  check("notas começam ocultas", document.getElementById("arvex-notes-text").classList.contains("arvex-hidden"));
+  check("botão CRM começa com texto padrão", document.getElementById("arvex-crm").textContent.indexOf("Enviar ao CRM") !== -1);
+  check("empty state com 3 passos", document.querySelectorAll("#arvex-list .arvex-empty-step").length === 3);
+
+  // troca de aba
+  document.getElementById("tab-notes").click();
+  check("aba notas: lista fica oculta", document.getElementById("arvex-list").classList.contains("arvex-hidden"));
+  check("aba notas: textarea aparece", !document.getElementById("arvex-notes-text").classList.contains("arvex-hidden"));
+  document.getElementById("tab-transcript").click();
+  check("volta pra transcrição: lista visível", !document.getElementById("arvex-list").classList.contains("arvex-hidden"));
+
+  // config (⚙)
+  document.getElementById("arvex-gear").click();
+  check("config abre", !document.getElementById("arvex-config").classList.contains("arvex-hidden"));
+  document.getElementById("cfg-close").click();
+  check("config fecha", document.getElementById("arvex-config").classList.contains("arvex-hidden"));
+
+  var pass = errors.length === 0;
+  document.getElementById("result").textContent = JSON.stringify({ name: "E_panel_smoke_s5", pass: pass, expected: "sem erros estruturais", actual: errors });
+  document.title = pass ? "PASS" : "FAIL";
+})();
+</script>
+</body></html>

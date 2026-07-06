@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário C: turno .a4cQT bem formado mas SEM .NmXUuc/avatar (nome é um <div> qualquer) —
+     testa o fallback (c) por diferença de texto (turn.innerText menos a fala) continua
+     funcionando para o caso legítimo (1 único turno, sem ambiguidade). -->
+<div id="region" role="region" aria-label="Legendas">
+  <div class="a4cQT" id="t1"><div>Pedro Lima</div><div jsname="dsyhDe"></div></div>
+</div>
+<pre id="result"></pre>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../harness.js"></script>
+<script>
+window.__runFixture([
+  function (r) { r.querySelector("#t1 [jsname=dsyhDe]").textContent = "Bom dia"; },
+  function (r) { r.querySelector("#t1 [jsname=dsyhDe]").textContent = "Bom dia a todos"; }
+], function (transcript) {
+  var expected = [{ speaker: "Pedro Lima", text: "Bom dia a todos" }];
+  var pass = JSON.stringify(transcript) === JSON.stringify(expected);
+  return { name: "C_no_name_class_diff_fallback", pass: pass, expected: expected, actual: transcript };
+});
+</script>
+</body></html>

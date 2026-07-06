@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário D — regressão do HIGH-1 (DEEP-ANALYSIS-FABLE.md): simula o Google renomeando
+     a classe .a4cQT (ela deixa de existir) e 2 turnos curtos SEM nome/avatar aparecendo
+     na sequência, ambos caindo sob o MESMO ancestral genérico ao subir a árvore.
+     Sem o guard de "ancestral com >1 nó de fala não é seguro pra diff", o heurístico (c)
+     tentava derivar o nome por posição e CORROMPIA o falante (virava um pedaço do próprio
+     texto, ex.: "Oi"). Com o guard: retorna "" (sem nome) em vez de nome errado —
+     é o trade-off correto quando a estrutura é genuinamente ambígua (ADR-1: não existe
+     seletor imune ao Google; a resposta é degradar com segurança, não adivinhar). -->
+<div id="region" role="region" aria-label="Legendas">
+  <div id="shared"></div>
+</div>
+<pre id="result"></pre>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../harness.js"></script>
+<script>
+window.__runFixture([
+  function (r) {
+    var d1 = document.createElement("div");
+    d1.setAttribute("jsname", "dsyhDe");
+    d1.id = "d1";
+    d1.textContent = "Oi";
+    r.querySelector("#shared").appendChild(d1);
+  },
+  function (r) {
+    var d2 = document.createElement("div");
+    d2.setAttribute("jsname", "dsyhDe");
+    d2.id = "d2";
+    d2.textContent = "Oi Ana";
+    r.querySelector("#shared").appendChild(d2);
+  }
+], function (transcript) {
+  // Não exigimos o nome certo (não há sinal estrutural pra isso) — exigimos
+  // que NENHUM turno saia com um nome corrompido (ex.: "Oi", que era o bug real).
+  var noCorruption = transcript.every(function (t) {
+    return t.speaker === "" || (t.speaker !== "Oi" && t.speaker !== "Oi Ana" && t.speaker.indexOf(t.text) === -1);
+  });
+  var textsOk = transcript.length === 2 && transcript[0].text === "Oi" && transcript[1].text === "Oi Ana";
+  var pass = noCorruption && textsOk;
+  return { name: "D_ambiguous_shared_ancestor_no_corruption", pass: pass, expected: "speaker vazio ou não-corrompido nos 2 turnos", actual: transcript };
+});
+</script>
+</body></html>

@@ -20,6 +20,9 @@
   function clean(s) {
     return (s || "").replace(/\s+/g, " ").trim();
   }
+  function escapeRe(s) {
+    return (s || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
 
   // ---- 1) Acha o container das legendas ----
   // ⚠️ CUIDADO: o Meet reusa a classe .a4cQT no SELETOR DE IDIOMA e no botão de
@@ -53,10 +56,17 @@
     if (!textNodes.length) textNodes = document.querySelectorAll('[jsname="dsyhDe"]');
     if (textNodes.length) {
       for (const tn of textNodes) {
-        const text = clean(tn.innerText || tn.textContent);
+        let text = clean(tn.innerText || tn.textContent);
         if (!text) continue;
+        const speaker = speakerFor(tn, text);
+        // se o nome vazou pro começo da fala (Meet às vezes concatena), remove
+        if (speaker) {
+          const re = new RegExp("^" + escapeRe(speaker) + "\\s*[:.\\-–—]*\\s*", "i");
+          const stripped = clean(text.replace(re, ""));
+          if (stripped) text = stripped;
+        }
         // el = identidade estável do bloco (pra não duplicar entre ticks)
-        rows.push({ speaker: speakerFor(tn, text), text, el: tn });
+        rows.push({ speaker, text, el: tn });
       }
       if (rows.length) return rows;
     }
@@ -83,10 +93,26 @@
   }
 
   // ---- descobre o falante associado a um nó de texto ----
+  // ⚠️ ROBUSTO: o Meet renomeia .a4cQT/.NmXUuc com frequência. Além de tentar
+  // essas classes, sobe a árvore até um ancestral cujo texto seja um pouco MAIOR
+  // que a fala (i.e., inclui o nome) e deriva o nome por diferença — funciona
+  // mesmo que as classes mudem.
   function speakerFor(textNode, text) {
-    const turn = textNode.closest(".a4cQT") ||
-      (textNode.parentElement && textNode.parentElement.parentElement) ||
-      textNode.parentElement;
+    // 1) tenta o container clássico; se ele não inclui o nome, sobe a árvore
+    let turn = textNode.closest(".a4cQT");
+    if (!turn || clean(turn.innerText).length <= text.length + 1) {
+      let node = textNode.parentElement;
+      for (let i = 0; i < 5 && node; i++, node = node.parentElement) {
+        // ⚠️ ancestral que contém MAIS DE 1 nó de fala abrange >1 turno — subir até
+        // ele e derivar nome por posição/diferença pode CORROMPER o falante (achado
+        // HIGH-1 do DEEP-ANALYSIS-FABLE.md: 2 turnos curtos simultâneos). Não sobe.
+        if (node.querySelectorAll('[jsname="dsyhDe"]').length > 1) break;
+        const len = clean(node.innerText).length;
+        // um pouco maior que a fala = provavelmente "nome + fala" (não 2 turnos)
+        if (len > text.length + 1 && len < text.length + 80) { turn = node; break; }
+      }
+      turn = turn || textNode.parentElement;
+    }
     if (!turn) return "";
     // a) bloco de nome .NmXUuc
     const nameEl = turn.querySelector(".NmXUuc");
@@ -100,7 +126,10 @@
       const alt = clean(img.getAttribute("alt"));
       if (alt && alt.length < 60) return alt;
     }
-    // c) diferença: texto do turno menos a fala
+    // c) diferença: texto do turno menos a fala (independe de classe) — só é seguro
+    // quando o "turno" resolvido tem exatamente 1 nó de fala; com >1, a posição do
+    // texto dentro do bloco não identifica o dono de forma confiável (prefere "" a errar).
+    if (turn.querySelectorAll('[jsname="dsyhDe"]').length > 1) return "";
     const full = clean(turn.innerText);
     const idx = full.lastIndexOf(text);
     if (idx > 0) {

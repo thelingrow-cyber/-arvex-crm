@@ -51,19 +51,7 @@
   });
   $("clear").addEventListener("click", () => withTab((tabId) => send(tabId, "clear", () => setTimeout(refresh, 200))));
 
-  // ---- e-mail do closer (CRM) + seu nome — salvos em chrome.storage.local ----
-  try {
-    chrome.storage.local.get(["arvex_closer_email", "arvex_self_name"], (r) => {
-      if (r && r.arvex_closer_email) $("email").value = r.arvex_closer_email;
-      if (r && r.arvex_self_name) $("selfname").value = r.arvex_self_name;
-    });
-    $("email").addEventListener("input", () => {
-      chrome.storage.local.set({ arvex_closer_email: $("email").value.trim() });
-    });
-    $("selfname").addEventListener("input", () => {
-      chrome.storage.local.set({ arvex_self_name: $("selfname").value.trim() });
-    });
-  } catch (e) {}
+  // Nome/e-mail/chave de envio migraram pro ⚙ do painel dentro do Meet (ADR-7 — 1 lugar só).
 
   refresh();
 })();

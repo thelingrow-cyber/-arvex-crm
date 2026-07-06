@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário F — regressão do MEDIUM-3 (DEEP-ANALYSIS-FABLE.md): renderTranscript() não pode
+     mais reconstruir a lista inteira a cada tick (isso destruía qualquer seleção de texto
+     do usuário). Aqui usamos o hook de teste (window.__ARVEX_TEST__) pra chamar o
+     store/renderTranscript REAIS do content.js diretamente (sem depender do DOM do Meet)
+     e provar que um nó .arvex-tx cuja fala NÃO mudou mantém a MESMA referência de objeto
+     entre re-renders — só assim uma seleção de texto sobrevive. -->
+<div id="region" role="region" aria-label="Legendas"></div>
+<pre id="result"></pre>
+<script>window.__ARVEX_TEST__ = true;</script>
+<script>
+  window.chrome = (function () {
+    var db = {};
+    return {
+      storage: {
+        local: {
+          get: function (keys, cb) { cb({}); },
+          set: function (obj, cb) { if (cb) cb(); },
+          remove: function (keys, cb) { if (cb) cb(); }
+        },
+        onChanged: { addListener: function () {} }
+      },
+      runtime: { onMessage: { addListener: function () {} } }
+    };
+  })();
+</script>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../../content.js"></script>
+<script>
+(function () {
+  var errors = [];
+  function check(label, cond) { if (!cond) errors.push(label); }
+  var dbg = window.__arvexDebug;
+  check("hook de teste existe", !!(dbg && dbg.store));
+
+  var s = dbg.store;
+  var t = 1000000;
+  s.upsert({ speaker: "Ana", text: "Oi", el: null }, { now: function () { return t; } });
+  dbg.renderTranscript();
+  var list = document.getElementById("arvex-list");
+  var txNodes1 = list.querySelectorAll(".arvex-tx");
+  check("1 turno renderizado", txNodes1.length === 1);
+  var firstNodeRef = txNodes1[0];
+
+  // 2º turno (fala nova) — não deve tocar o nó do 1º turno
+  t += 700;
+  s.upsert({ speaker: "Bob", text: "Oi Ana", el: null }, { now: function () { return t; } });
+  dbg.renderTranscript();
+  var txNodes2 = list.querySelectorAll(".arvex-tx");
+  check("2 turnos renderizados", txNodes2.length === 2);
+  check("nó do 1º turno é a MESMA referência (seleção sobreviveria)", txNodes2[0] === firstNodeRef);
+
+  // merge no turno 1 (NÃO é o último) via mesmo id de elemento — simula legenda que
+  // "rolou" enquanto uma fala mais nova já apareceu (cenário real do Meet)
+  var fakeEl = { _attrs: {}, getAttribute: function (k) { return this._attrs[k]; }, setAttribute: function (k, v) { this._attrs[k] = v; } };
+  s.upsert({ speaker: "Ana", text: "Primeira", el: fakeEl }, { now: function () { return t; } }); // cria turno 3 com id estável
+  t += 700;
+  s.upsert({ speaker: "Ana", text: "Primeira frase completa", el: fakeEl }, { now: function () { return t; } }); // merge no turno 3 (mesmo id)
+  dbg.renderTranscript();
+  var txNodes3 = list.querySelectorAll(".arvex-tx");
+  check("3 turnos após merge (não duplicou)", txNodes3.length === 3);
+  check("texto do turno 3 atualizado pelo merge", txNodes3[2].textContent === "Primeira frase completa");
+  check("nós 1 e 2 continuam intactos (mesma referência) após o merge no 3", txNodes3[0] === firstNodeRef && txNodes3[1] === txNodes2[1]);
+
+  var pass = errors.length === 0;
+  document.getElementById("result").textContent = JSON.stringify({ name: "F_incremental_render_no_full_rebuild", pass: pass, expected: "nós estáveis entre renders", actual: errors });
+  document.title = pass ? "PASS" : "FAIL";
+})();
+</script>
+</body></html>

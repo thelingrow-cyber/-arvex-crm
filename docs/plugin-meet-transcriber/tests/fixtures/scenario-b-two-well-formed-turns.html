@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário B: 2 falantes com .a4cQT + .NmXUuc bem formados, SIMULTANEAMENTE visíveis
+     (controle positivo: mesmo com 2 turnos na tela ao mesmo tempo, cada um tem seu
+     próprio container correto — não deve disparar a heurística de subida de árvore). -->
+<div id="region" role="region" aria-label="Captions">
+  <div class="a4cQT" id="t1"><div class="NmXUuc">João Silva</div><div jsname="dsyhDe"></div></div>
+  <div class="a4cQT" id="t2" style="display:none"><div class="NmXUuc">Maria Souza</div><div jsname="dsyhDe"></div></div>
+</div>
+<pre id="result"></pre>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../harness.js"></script>
+<script>
+window.__runFixture([
+  function (r) { r.querySelector("#t1 [jsname=dsyhDe]").textContent = "Oi"; },
+  function (r) { r.querySelector("#t1 [jsname=dsyhDe]").textContent = "Oi, tudo bem?"; },
+  function (r) { r.querySelector("#t2").style.display = "block"; r.querySelector("#t2 [jsname=dsyhDe]").textContent = "Tô bem"; },
+  function (r) { r.querySelector("#t2 [jsname=dsyhDe]").textContent = "Tô bem, e você?"; }
+], function (transcript) {
+  var expected = [
+    { speaker: "João Silva", text: "Oi, tudo bem?" },
+    { speaker: "Maria Souza", text: "Tô bem, e você?" }
+  ];
+  var pass = JSON.stringify(transcript) === JSON.stringify(expected);
+  return { name: "B_two_wellformed_simultaneous", pass: pass, expected: expected, actual: transcript };
+});
+</script>
+</body></html>
