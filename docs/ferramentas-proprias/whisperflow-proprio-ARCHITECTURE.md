@@ -1,6 +1,6 @@
 # WhisperFlow Próprio — Arquitetura
 
-> Autor: @architect (Aria) · 2026-07-06 · análise com Fable 5 (janela)
+> Autor: @architect (Aria) · 2026-07-06 · análise com Sonnet 5
 > Executor previsto: @dev (Sonnet/Opus) — este documento é autossuficiente
 > Objetivo do Vitor: ferramenta pessoal de ditado — falar → transcrever → colar em qualquer app, desktop + celular, **sem pagar terceiros** (referência de mercado: Wispr Flow/Willow, ~$12-15/mês).
 
