@@ -17,6 +17,9 @@
   const CAPTION_LABEL_RE = /caption|legenda|subtitle|sottotitoli|untertitel|sous-titres/i;
   const SELF_NAMES = /^(você|voce|you|tu)$/i; // Meet legenda o próprio usuário como "Você"
 
+  // qual caminho de extração o último parseRows() usou — pro flight recorder (ADR-8)
+  let lastPath = "none";
+
   function clean(s) {
     return (s || "").replace(/\s+/g, " ").trim();
   }
@@ -68,7 +71,7 @@
         // el = identidade estável do bloco (pra não duplicar entre ticks)
         rows.push({ speaker, text, el: tn });
       }
-      if (rows.length) return rows;
+      if (rows.length) { lastPath = "main"; return rows; }
     }
 
     // FALLBACK genérico (estrutura antiga): turnos com avatar + texto no mesmo bloco.
@@ -89,6 +92,7 @@
       }
       if (text) rows.push({ speaker, text, el: b });
     }
+    lastPath = rows.length ? "fallback" : "none";
     return rows;
   }
 
@@ -139,5 +143,5 @@
     return "";
   }
 
-  window.ArvexCaptionParser = { findRegion, parseRows, SELF_NAMES };
+  window.ArvexCaptionParser = { findRegion, parseRows, SELF_NAMES, getLastPath: () => lastPath };
 })();

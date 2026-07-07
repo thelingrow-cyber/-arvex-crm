@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário H — regressão do Guard 1 / ADR-9 (DEEP-ANALYSIS-FABLE.md §6.4), achado real na
+     1ª call ao vivo: o Meet pode reciclar o MESMO nó de DOM (mesmo data-arvex-id) pra um
+     falante DIFERENTE. Antes do guard, isso fazia merge do texto do 2º falante DENTRO do
+     turno do 1º (ex.: "Lingrow" aparecendo colado no meio da fala do Vitor). Com o guard:
+     speaker mudou → vira turno novo, nunca merge. -->
+<pre id="result"></pre>
+<script src="../../transcript-core.js"></script>
+<script>
+(function () {
+  var errors = [];
+  function check(label, cond) { if (!cond) errors.push(label); }
+  var Core = window.ArvexTranscriptCore;
+  var store = Core.createStore();
+
+  // fake "elemento DOM" — só precisa satisfazer getAttribute/setAttribute (mesma
+  // identidade de nó pros 3 upserts, simulando o Meet reaproveitando o bloco)
+  var fakeEl = {
+    _attrs: {},
+    getAttribute: function (k) { return this._attrs[k]; },
+    setAttribute: function (k, v) { this._attrs[k] = v; }
+  };
+  var t = 1000000;
+
+  store.upsert({ speaker: "Ana", text: "Oi", el: fakeEl }, { now: function () { return t; } });
+  t += 700;
+  store.upsert({ speaker: "Ana", text: "Oi, tudo bem?", el: fakeEl }, { now: function () { return t; } }); // merge normal (mesmo falante)
+  t += 700;
+  // Meet recicla o MESMO nó (mesmo fakeEl → mesmo id) pra um falante DIFERENTE
+  store.upsert({ speaker: "Bob", text: "Beleza", el: fakeEl }, { now: function () { return t; } });
+
+  var transcript = store.transcript.map(function (r) { return { speaker: r.speaker, text: r.text }; });
+  var pass = transcript.length === 2
+    && transcript[0].speaker === "Ana" && transcript[0].text === "Oi, tudo bem?"
+    && transcript[1].speaker === "Bob" && transcript[1].text === "Beleza";
+
+  check("2 turnos separados (não colou Bob dentro da fala da Ana)", pass);
+
+  document.getElementById("result").textContent = JSON.stringify({ name: "H_guard1_speaker_recycle_no_merge", pass: pass, expected: "2 turnos: Ana/'Oi, tudo bem?' + Bob/'Beleza'", actual: transcript });
+  document.title = pass ? "PASS" : "FAIL";
+})();
+</script>
+</body></html>

@@ -247,3 +247,55 @@ A diferença de percepção não é feature — é **feedback de estado contínu
 
 `S0 → S1 → S2 → S3 → S4 → S5 → S6` (serial; S0 e S1 destravam o resto; S6 é o gate final humano).
 Total: ~4-5 sessões de @dev (Sonnet/Opus) + ~10 min do Vitor (S0) + 1 call real (S6). Nenhuma story exige Fable — todas as decisões estão tomadas neste dossiê.
+
+---
+
+## 6. ADENDO pós-call real (2026-07-07) — diagnóstico da 1ª call 2p e ADRs 8-10
+
+> Contexto: S0-S3/S5 executados e verificados; 1ª call REAL 2p (Vitor Simões + Lingrow) comparada lado a lado com Tactiq. Sintomas no painel ARVEX: (1) nomes "Você"/"Lingrow" aparecendo INLINE no fluxo de texto; (2) fragmentos de frases entrelaçados/duplicados; (3) transcrição "corrida", sem os grupos por falante que os fixtures renderizam corretamente. Sem fixture real capturada ainda (🐞 não foi usado na call) — este adendo rankeia hipóteses e decide a instrumentação ANTES de qualquer fix.
+
+### 6.1 Evidência estrutural (independe de o usuário ter repetido frases)
+
+- Nome inline no texto é **impossível** no caminho principal do parser (nome vive em `.NmXUuc`, irmão do `dsyhDe`). Logo: ou o DOM real mudou (nome aninhado no `dsyhDe`), ou rows vieram do **fallback** (caption-parser.js l.75-92), onde `text = b.innerText` inclui o nome e `speaker=""` se `img[alt]` falhar.
+- Speaker `""` na maioria das rows explica o visual "corrido": `renderTranscript()` agrupa por `sp === prevSp`, e `"" === ""` colapsa tudo num grupo único sem cabeçalho. **O visual é sintoma da atribuição, não problema de CSS** — não polir estilo antes de consertar atribuição.
+
+### 6.2 Hipóteses rankeadas (compatíveis entre si; recorder do 6.3 distingue)
+
+| # | Hipótese | Mecanismo | Explica |
+|---|---|---|---|
+| H1 (alta) | **Fallback transiente em tick mid-mutation** | Observer dispara `tick()` no MEIO da cirurgia de DOM do Meet → instante com zero `dsyhDe` → fallback captura `.a4cQT` com `el` diferente → `data-arvex-id` novo → turno duplicado com nome embutido e speaker vazio | Nomes inline + duplicação + speaker="" com UM mecanismo |
+| H2 (alta) | **Atribuição falha no DOM real 2p** | Região com múltiplos `dsyhDe` faz o guard `>1 → break` da subida de árvore abortar cedo; `.NmXUuc` pode ter mudado | Grupos colapsados |
+| H3 (média) | **Nó recriado/reciclado pelo Meet** | Recriado → id some → turno novo com texto sobreposto ao anterior (dedupe é só por-turno). Reciclado p/ outro falante → **bug real**: `upsert` no id-hit merge SEM comparar `row.speaker` vs `turn.speaker` (transcript-core.js l.66-73) | Duplicação entre turnos; falas de A absorvidas pelo turno de B |
+| H4 (média) | **`mergeRolling` ambíguo sob input repetitivo** | Overlap por palavras é indecidível quando o conteúdo é a mesma frase repetida; fallback `length >=` chaveia entre revisões interim do ASR | Parte do entrelaçamento (amplificação da repetição genuína do teste) |
+
+Nota de honestidade: o harness atual muta `textContent` atomicamente e ticka DEPOIS de cada frame — ele **codifica** a premissa "Meet atualiza nós existentes" (harness.js l.4) em vez de testá-la. Fixtures A-G validam estrutura, não ciclo de vida de nó nem timing de observer. Não é retrabalho: é o limite conhecido deles.
+
+### 6.3 ADR-8 — Observabilidade: flight recorder no copyDebug (PRÉ-REQUISITO de qualquer fix)
+
+- **Decisão:** ring buffer (últimos ~120 ticks) registrando por tick: `{t relativo, caminho do parser usado (a/b/c/fallback), rowCount}` e por row: `{id, speaker, primeiros 40 chars}` + eventos de merge do core (`grew/shrunk/rolled/replaced`). `copyDebug()` passa a copiar `{html, recorder}` juntos. ~30 linhas, sem UI nova.
+- **Racional:** snapshot estático de HTML não mostra ciclo de vida de nó nem sequência de revisões — que é onde H1-H4 se distinguem. Bug da classe "só reproduz com timing real" se resolve tornando a produção **auto-descritiva**, não adivinhando timing em fixture sintética.
+- **Ponte com testes:** o formato gravado deve ser **reproduzível como fixture** (sequência de ticks → frames do harness). Toda quebra futura vira: gravar → replay → fix → regressão.
+
+### 6.4 ADR-9 — Identidade de turno não pode repousar SÓ em identidade de nó DOM
+
+- **Guard 1 (bug objetivo, fix imediato):** no `upsert`, id-hit com `row.speaker` e `turn.speaker` ambos não-vazios e DIFERENTES → tratar como turno NOVO (remapear o id), nunca merge. Nó reciclado deixa de misturar falantes.
+- **Guard 2 (anti-H1):** se o caminho principal (`dsyhDe`) produziu rows há <2s, resultado transiente vazio NÃO cai no fallback — pula o tick. (Fallback continua existindo pra quebra real de DOM, coberto pelo canário de 30s.)
+- **Política de continuação (anti-H3, aplicar SÓ se o recorder confirmar recriação de nós):** id novo cujo texto se sobrepõe ao fim do ÚLTIMO turno do MESMO falante há <5s → continuação (merge no turno anterior), senão turno novo. Gate por **falante+tempo, nunca só por texto** — dedupe por texto puro comeria repetição genuína (exatamente o caso real do Vitor).
+
+### 6.5 ADR-10 — Protocolo da próxima call de teste (Vitor, ~10 min)
+
+1. Frases CURTAS e DISTINTAS por pessoa (não repetir — repetição mascara o diagnóstico), alternando falante a cada 1-2 frases.
+2. Apertar 🐞 **no meio** da call (com legenda visível) e de novo no fim; colar os dois dumps no chat.
+3. Se o entrelaçamento aparecer, anotar o minuto aproximado (o recorder cobre ~90s pra trás).
+
+### 6.6 S7 — story de execução (ordem interna obrigatória)
+
+**Fazer:** (1) ADR-8 recorder + copyDebug composto → (2) ADR-9 Guards 1 e 2 (fix cego seguro: corrigem bugs objetivos sem depender de diagnóstico) → (3) call-protocolo ADR-10 → (4) com dumps em mãos: confirmar/refutar H1-H4, fixture real `tests/fixtures/real-*.html` re-tocável a partir do recorder, ajustar parser/core conforme o que o dado mostrar → (5) só DEPOIS disso, refinamento visual se ainda precisar.
+**Pronto quando:**
+- [ ] `copyDebug` cola `{html, recorder}`; recorder mostra caminho do parser por tick.
+- [ ] Teste unitário novo: nó reciclado p/ outro falante → 2 turnos separados (Guard 1).
+- [ ] Teste novo: tick com zero `dsyhDe` entre dois ticks válidos → NENHUM turno fallback criado (Guard 2).
+- [ ] Call ADR-10 executada; hipóteses marcadas confirmada/refutada NESTE adendo; fixture real versionada.
+- [ ] Regressão inteira verde (`node tests/run.js`).
+
+**O que NÃO fazer no S7:** dedupe global por similaridade de texto (mata repetição genuína) · reescrever mergeRolling antes do recorder apontar que ele é o culpado · polimento de CSS antes da atribuição funcionar.

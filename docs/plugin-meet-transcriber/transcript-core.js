@@ -65,16 +65,29 @@
       }
       if (id && nodeToIdx.has(id)) {
         const turn = transcript[nodeToIdx.get(id)];
-        if (turn) {
+        // Guard 1 (ADR-9, DEEP-ANALYSIS-FABLE.md §6.4): o Meet pode reciclar o MESMO nó
+        // de DOM pra um falante diferente. Se o turno já tem um speaker e o novo row tem
+        // OUTRO speaker (ambos não-vazios), NÃO faz merge — trata como turno novo e
+        // remapeia o id daqui pra frente. Sem isso, a fala de um falante era absorvida
+        // dentro do turno do outro (bug real encontrado na 1ª call ao vivo).
+        const speakerChanged = !!(turn && turn.speaker && row.speaker && turn.speaker !== row.speaker);
+        if (turn && !speakerChanged) {
           const merged = bestText(turn.text, text);
-          if (merged !== turn.text) { turn.text = merged; turn.at = now(); if (o.onChange) o.onChange(turn, false); }
+          if (merged !== turn.text) {
+            let kind = "replaced";
+            if (text.startsWith(turn.text)) kind = "grew";
+            else if (turn.text.startsWith(text)) kind = "rolled";
+            else if (merged !== text) kind = "merged-overlap";
+            turn.text = merged; turn.at = now();
+            if (o.onChange) o.onChange(turn, false, kind);
+          }
           return turn;
         }
       }
       const row2 = { speaker: row.speaker || "", text, at: now() };
       transcript.push(row2);
       if (id) nodeToIdx.set(id, transcript.length - 1);
-      if (o.onChange) o.onChange(row2, true);
+      if (o.onChange) o.onChange(row2, true, "new");
       return row2;
     }
 

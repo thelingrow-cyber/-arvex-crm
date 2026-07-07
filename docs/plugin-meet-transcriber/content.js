@@ -44,6 +44,21 @@
   let emptyRowsSince = 0;
   let statusState = "idle"; // idle | ok | cc-trying | cc-off | parser-stale
 
+  // Guard 2 (ADR-9, DEEP-ANALYSIS-FABLE.md §6.4): se o caminho principal (dsyhDe) achou
+  // nós há <2s e agora sumiu momentaneamente (o Meet reconstrói o DOM da legenda), pula
+  // o tick em vez de cair no fallback (menos confiável, pode criar turno espúrio).
+  let lastMainPathNodesSeenAt = 0;
+  const TRANSIENT_GRACE_MS = 2000;
+
+  // Flight recorder (ADR-8): ring buffer dos últimos ticks — pra diagnosticar de fato
+  // (não adivinhar) o que aconteceu numa call real. Sai junto no copyDebug().
+  const RECORDER_MAX = 120;
+  let recorder = [];
+  function recordTick(path, rowCount, rowsInfo, mergeEvents) {
+    recorder.push({ t: Date.now(), path, rowCount, rows: rowsInfo || [], merges: mergeEvents || [] });
+    if (recorder.length > RECORDER_MAX) recorder.shift();
+  }
+
   // ---- storage: transcrição + metadado de quando foi salva (pra limpeza por idade) ----
   function save() {
     try { chrome.storage.local.set({ [STORE_KEY]: { transcript: store.transcript, updatedAt: Date.now() } }); } catch (e) {}
@@ -107,9 +122,27 @@
   // ---- tick: lê o parser, upserta no core, renderiza, roda o canário ----
   function tick() {
     if (!capturing) return;
+
+    // Guard 2: checagem barata de candidatos do caminho principal ANTES de chamar
+    // o parser de verdade — se sumiram agora mas existiam há <2s, pula este tick.
+    let mainPathNodeCount = 0;
+    try { mainPathNodeCount = document.querySelectorAll('[jsname="dsyhDe"]').length; } catch (e) {}
+    const now = Date.now();
+    if (mainPathNodeCount > 0) {
+      lastMainPathNodesSeenAt = now;
+    } else if (lastMainPathNodesSeenAt && now - lastMainPathNodesSeenAt < TRANSIENT_GRACE_MS) {
+      recordTick("skipped-transient", 0, []);
+      return;
+    }
+
     let region = null, rows = [];
     try { region = P.findRegion(); rows = P.parseRows(region); } catch (e) {}
-    for (const row of rows) store.upsert(row);
+    const mergeEvents = [];
+    for (const row of rows) {
+      store.upsert(row, { onChange: (turn, isNew, kind) => mergeEvents.push({ speaker: turn.speaker || "", kind: kind || (isNew ? "new" : "?") }) });
+    }
+    recordTick(P.getLastPath ? P.getLastPath() : "unknown", rows.length,
+      rows.map((r) => ({ speaker: r.speaker || "", text: (r.text || "").slice(0, 40) })), mergeEvents);
     save();
     renderTranscript();
     updateBadge();
@@ -429,16 +462,21 @@
     a.click(); URL.revokeObjectURL(url);
   }
 
+  // ADR-8: copia HTML da legenda + flight recorder juntos (diagnóstico real, não
+  // adivinhado) — usar no MEIO e no FIM da call de teste (protocolo ADR-10).
   function copyDebug() {
     const t = document.querySelector('[jsname="dsyhDe"]');
     let region = t
       ? (t.closest(".a4cQT") || t.parentElement)
       : [...document.querySelectorAll('[role="region"][aria-label]')]
           .find((el) => /caption|legenda|subtitle/i.test(el.getAttribute("aria-label") || ""));
-    if (!region) { flash("Fale primeiro (legenda não visível)"); return; }
-    navigator.clipboard.writeText(region.outerHTML.slice(0, 8000))
-      .then(() => flash("HTML copiado! Cole no chat"))
-      .catch(() => flash("Erro ao copiar HTML"));
+    const payload = JSON.stringify({
+      html: region ? region.outerHTML.slice(0, 8000) : "(legenda não visível no momento)",
+      recorder: recorder,
+    }, null, 2);
+    navigator.clipboard.writeText(payload)
+      .then(() => flash("Diagnóstico copiado! Cole no chat"))
+      .catch(() => flash("Erro ao copiar diagnóstico"));
   }
 
   // ---- enviar pro CRM: idempotency key (client_key) + retry c/ backoff + estado persistente ----
@@ -521,6 +559,6 @@
 
   // Hook de teste (regressão em tests/) — nunca ativo em produção real do Meet.
   if (typeof window !== "undefined" && window.__ARVEX_TEST__) {
-    window.__arvexDebug = { store, renderTranscript, updateBadge, sendToCRM };
+    window.__arvexDebug = { store, renderTranscript, updateBadge, sendToCRM, tick, getRecorder: () => recorder, setCapturing: (v) => { capturing = v; } };
   }
 })();

@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>pending</title></head><body>
+<!-- Cenário I — regressão do Guard 2 / ADR-9 (DEEP-ANALYSIS-FABLE.md §6.4): quando o
+     caminho principal (dsyhDe) tinha nó há <2s e some por um instante (o Meet reconstrói
+     o DOM da legenda no meio da call — hipótese H1 do adendo), o tick() deve PULAR em vez
+     de cair no fallback (menos confiável, pode criar turno espúrio com nome embutido). -->
+<div id="region" role="region" aria-label="Legendas">
+  <div class="a4cQT" id="t1"><div class="NmXUuc">Ana</div><div jsname="dsyhDe">Oi</div></div>
+</div>
+<pre id="result"></pre>
+<script>window.__ARVEX_TEST__ = true;</script>
+<script>
+  window.chrome = (function () {
+    return {
+      storage: { local: { get: function (k, cb) { cb({}); }, set: function (o, cb) { if (cb) cb(); }, remove: function (k, cb) { if (cb) cb(); } }, onChanged: { addListener: function () {} } },
+      runtime: { onMessage: { addListener: function () {} } }
+    };
+  })();
+</script>
+<script src="../../caption-parser.js"></script>
+<script src="../../transcript-core.js"></script>
+<script src="../../content.js"></script>
+<script>
+(function () {
+  var errors = [];
+  function check(label, cond) { if (!cond) errors.push(label); }
+  var dbg = window.__arvexDebug;
+  dbg.setCapturing(true);
+
+  dbg.tick(); // 1º tick: nó dsyhDe presente → deve capturar normalmente
+  var rec1 = dbg.getRecorder();
+  check("1º tick usou caminho principal", rec1[rec1.length - 1].path === "main");
+  check("1º tick capturou 1 turno", dbg.store.transcript.length === 1);
+
+  // Meet "reconstrói" a legenda: o nó dsyhDe some por um instante
+  document.querySelector('[jsname="dsyhDe"]').remove();
+
+  dbg.tick(); // 2º tick: sumiu, mas fazia <2s que existia → deve PULAR, não cair no fallback
+  var rec2 = dbg.getRecorder();
+  check("2º tick foi pulado (skipped-transient)", rec2[rec2.length - 1].path === "skipped-transient");
+  check("nenhum turno espúrio criado no tick pulado", dbg.store.transcript.length === 1);
+
+  var pass = errors.length === 0;
+  document.getElementById("result").textContent = JSON.stringify({ name: "I_guard2_transient_skip_no_fallback", pass: pass, expected: "2º tick pulado, transcript continua com 1 turno", actual: { errors: errors, transcript: dbg.store.transcript } });
+  document.title = pass ? "PASS" : "FAIL";
+})();
+</script>
+</body></html>
