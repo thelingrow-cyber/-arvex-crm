@@ -50,15 +50,24 @@ Extensão Chrome MV3 funcional que transcreve o Meet via CC e envia pro Sales Co
 - [x] NÃO adotado: cota, CTA upgrade, aba de IA — respeitado
 
 ### S6 — Gate final: call real 2+ pessoas + push — @devops
-- [ ] Call real 2p: auto-CC → captura → falantes 100% corretos → troca rápida de falante → nota → envio ✓ → reunião analisada com timestamps no CRM
-- [ ] Se falante errar: fixture via Diagnóstico → ajuste parser → regressão S1 verde → repetir
+- [x] **1ª call real rodada** (2026-07-07, Vitor + "Lingrow", 2 janelas): auto-detect de 2 falantes funcionou, mas achou 2 bugs reais (ver S7) — não conta como gate aprovado ainda
+- [ ] Call real com o **protocolo ADR-10** (frases curtas/distintas, não repetir, 🐞 no meio e no fim): falantes 100% corretos → troca rápida de falante → nota → envio ✓ → reunião analisada com timestamps no CRM
 - [ ] `manifest.json` → `0.2.0` · **push por @devops** (S0 garantiu repo limpo de secrets)
+
+### S7 — Correções pós-1ª-call (ADR-8/9/10, adendo §6 do dossiê) — parcial ✅
+- [x] ADR-8: flight recorder (ring buffer 120 ticks: caminho do parser, rows, merges) — `copyDebug()` agora copia `{html, recorder}` juntos
+- [x] ADR-9 Guard 1: nó de DOM reciclado pra falante diferente → turno novo, nunca merge (bug real da 1ª call: nome colado no meio do texto). Testado sabotando o guard (fixture H falha reproduzindo o bug, restaurado passa)
+- [x] ADR-9 Guard 2: caminho principal sumiu por <2s (Meet reconstruindo DOM) → pula o tick, não cai no fallback. Testado do mesmo jeito (fixture I)
+- [x] Regressão inteira verde: 9 fixtures, `node tests/run.js` (~9s) — commit `94f9f31`
+- [ ] **Protocolo ADR-10 rodado numa call real** com o Vitor (frases curtas/distintas, 🐞 no meio e no fim) — só com esse dado dá pra confirmar/refutar H3 (nó recriado) e H4 (mergeRolling sob repetição) e decidir se precisam de fix adicional
+- [ ] Fixture real (`tests/fixtures/real-*.html`) gerada a partir do dump do 🐞 — ainda pendente, precisa da call do item acima
+- [ ] Refinamento visual do agrupamento (só depois de confirmar que a atribuição de falante está 100% correta com dado real — Fable foi explícito: não polir CSS antes disso)
 
 ## File List
 
 - [x] `docs/plugin-meet-transcriber/content.js` — reescrito: core extraído, S3/S4/S5/S2-client/S0-client
 - [x] `docs/plugin-meet-transcriber/caption-parser.js` — fix HIGH-1 (guard multi-turno em `speakerFor`)
-- [x] `docs/plugin-meet-transcriber/transcript-core.js` — NOVO (S1)
+- [x] `docs/plugin-meet-transcriber/transcript-core.js` — NOVO (S1); Guard 1 (S7)
 - [x] `docs/plugin-meet-transcriber/styles.css` — CSS do painel redesenhado (S5)
 - [x] `docs/plugin-meet-transcriber/popup.html` / `popup.js` — simplificados (config migrou pro ⚙)
 - [x] `docs/plugin-meet-transcriber/manifest.json` — `transcript-core.js` adicionado ao content_scripts (versão 0.1.0 mantida; bump pra 0.2.0 fica pra S6)
