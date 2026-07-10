@@ -243,8 +243,22 @@ def main() -> int:
 
     logger.info("carregando modelo faster-whisper (%s, int8)...", config["model"])
     t0 = time.time()
-    transcriber = Transcriber(model_size=config["model"], language=config["language"])
-    logger.info("modelo carregado em %.2fs (1x no boot — AD-1)", time.time() - t0)
+    beeps_enabled = config.get("beeps", True)
+    try:
+        transcriber = Transcriber(model_size=config["model"], language=config["language"])
+    except Exception:
+        # AD-10: the ONE fatal case by design -- if the model can't load at
+        # boot there's nothing useful the daemon can do (every hotkey press
+        # would just fail to transcribe forever). Log it, make it impossible
+        # to miss (triple beep x3, not just once), then exit cleanly
+        # (release the instance lock) instead of leaving a zombie process.
+        logger.exception("falha fatal ao carregar o modelo no boot -- encerrando")
+        for _ in range(3):
+            feedback.beep_error(beeps_enabled)
+            time.sleep(0.2)
+        lock.close()
+        return 1
+    logger.info("modelo carregado em %.2fs (1x no boot -- AD-1)", time.time() - t0)
 
     tracker = HeldKeysTracker()
     tracker.start()
