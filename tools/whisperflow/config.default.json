@@ -1,0 +1,9 @@
+{
+  "hotkey": "ctrl+windows",
+  "model": "small",
+  "language": "pt",
+  "max_seconds": 120,
+  "paste_mode": "clipboard",
+  "beeps": true,
+  "debug_save_wav": false
+}

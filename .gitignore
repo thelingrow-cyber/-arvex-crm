@@ -31,3 +31,9 @@ Thumbs.db
 # PCH Veículos — backup do WordPress (contém credenciais do banco) e artefatos
 backup-wp-pchveiculos/
 docs/pch-veiculos-site.zip
+
+# WhisperFlow (tools/whisperflow)
+tools/whisperflow/.venv/
+tools/whisperflow/__pycache__/
+tools/whisperflow/**/__pycache__/
+tools/whisperflow/debug/
