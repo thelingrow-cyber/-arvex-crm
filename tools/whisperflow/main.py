@@ -4,7 +4,8 @@ S0: instance lock (AD-6) + config load + logging.
 S1: push-to-talk hotkey (AD-7) wired to recorder.py + feedback.py.
 S2: transcriber.py (faster-whisper, loaded once at boot) plugged in —
     release -> transcribe -> log text + latency.
-S3+ will add paster.py into the same pipeline.
+S3: paster.py plugged in — transcribed text is pasted at the cursor
+    (AD-5); empty transcription (silence) pastes nothing (AD-7).
 
 Hotkey detection note (S1 implementation detail, not an architecture
 change — AD-4 still says use the `keyboard` lib): `keyboard.is_pressed()`
@@ -32,6 +33,7 @@ import keyboard
 
 import config as cfg
 import feedback
+import paster
 import recorder as recorder_mod
 from transcriber import Transcriber
 
@@ -109,8 +111,9 @@ def _save_debug_wav(audio, config: dict, logger) -> None:
     )
 
 
-def _transcribe_and_log(audio, transcriber: Transcriber, config: dict, logger) -> str:
-    """S2: soltar tecla -> transcrever -> log do texto + latencia medida."""
+def _transcribe_and_paste(audio, transcriber: Transcriber, config: dict, logger) -> str:
+    """S2+S3: soltar tecla -> transcrever -> log do texto + latencia medida
+    -> colar no cursor (AD-5). Texto vazio/silencio (AD-7) nao cola nada."""
     if len(audio) == 0:
         logger.info("buffer vazio, nada para transcrever")
         return ""
@@ -122,12 +125,24 @@ def _transcribe_and_log(audio, transcriber: Transcriber, config: dict, logger) -
             logger.info("transcricao (%.2fs): %s", elapsed, text)
         else:
             logger.info("transcricao (%.2fs): <vazio/silencio>", elapsed)
-        return text
     except Exception:
         # AD-10: a transcription failure must not take the daemon down.
         logger.exception("erro ao transcrever")
         feedback.beep_error(config.get("beeps", True))
         return ""
+
+    if not text:
+        return ""  # AD-7: silence/no speech -> neutral no-op, nothing pasted
+
+    try:
+        paster.paste(text, mode=config.get("paste_mode", "clipboard"))
+        logger.info("texto colado no cursor (mode=%s)", config.get("paste_mode", "clipboard"))
+    except Exception:
+        # AD-10: a paste failure must not take the daemon down either.
+        logger.exception("erro ao colar no cursor")
+        feedback.beep_error(config.get("beeps", True))
+
+    return text
 
 
 def run_hotkey_loop(
@@ -177,7 +192,7 @@ def run_hotkey_loop(
                         max_seconds, len(audio),
                     )
                     _save_debug_wav(audio, config, logger)
-                    _transcribe_and_log(audio, transcriber, config, logger)
+                    _transcribe_and_paste(audio, transcriber, config, logger)
 
             elif not down and held:
                 held = False
@@ -195,7 +210,7 @@ def run_hotkey_loop(
                         hold_duration, len(audio),
                     )
                     _save_debug_wav(audio, config, logger)
-                    _transcribe_and_log(audio, transcriber, config, logger)
+                    _transcribe_and_paste(audio, transcriber, config, logger)
 
             time.sleep(0.02)
         except Exception:
