@@ -2,7 +2,9 @@
 
 S0: instance lock (AD-6) + config load + logging.
 S1: push-to-talk hotkey (AD-7) wired to recorder.py + feedback.py.
-S2+ will add transcriber.py and paster.py into the same pipeline.
+S2: transcriber.py (faster-whisper, loaded once at boot) plugged in —
+    release -> transcribe -> log text + latency.
+S3+ will add paster.py into the same pipeline.
 
 Hotkey detection note (S1 implementation detail, not an architecture
 change — AD-4 still says use the `keyboard` lib): `keyboard.is_pressed()`
@@ -31,6 +33,7 @@ import keyboard
 import config as cfg
 import feedback
 import recorder as recorder_mod
+from transcriber import Transcriber
 
 INSTANCE_LOCK_PORT = 52700
 TAP_THRESHOLD_SECONDS = 0.3
@@ -106,11 +109,34 @@ def _save_debug_wav(audio, config: dict, logger) -> None:
     )
 
 
-def run_hotkey_loop(config: dict, logger, tracker: HeldKeysTracker) -> None:
+def _transcribe_and_log(audio, transcriber: Transcriber, config: dict, logger) -> str:
+    """S2: soltar tecla -> transcrever -> log do texto + latencia medida."""
+    if len(audio) == 0:
+        logger.info("buffer vazio, nada para transcrever")
+        return ""
+    try:
+        t0 = time.time()
+        text = transcriber.transcribe(audio)
+        elapsed = time.time() - t0
+        if text:
+            logger.info("transcricao (%.2fs): %s", elapsed, text)
+        else:
+            logger.info("transcricao (%.2fs): <vazio/silencio>", elapsed)
+        return text
+    except Exception:
+        # AD-10: a transcription failure must not take the daemon down.
+        logger.exception("erro ao transcrever")
+        feedback.beep_error(config.get("beeps", True))
+        return ""
+
+
+def run_hotkey_loop(
+    config: dict, logger, tracker: HeldKeysTracker, transcriber: Transcriber
+) -> None:
     """Push-to-talk main loop (AD-7):
-    - hold >= 300ms: beep start -> record -> (release) beep stop -> record delivered
+    - hold >= 300ms: beep start -> record -> (release) beep stop -> transcribe -> log
     - tap  < 300ms: discarded silently, no beep
-    - held >= max_seconds: auto-stops itself, beep double (stuck-key protection)
+    - held >= max_seconds: auto-stops itself, beep double (stuck-key protection) -> transcribe -> log
     - mic unavailable at press time: beep triple, daemon keeps listening
     """
     required = parse_hotkey(config["hotkey"])
@@ -151,6 +177,7 @@ def run_hotkey_loop(config: dict, logger, tracker: HeldKeysTracker) -> None:
                         max_seconds, len(audio),
                     )
                     _save_debug_wav(audio, config, logger)
+                    _transcribe_and_log(audio, transcriber, config, logger)
 
             elif not down and held:
                 held = False
@@ -168,6 +195,7 @@ def run_hotkey_loop(config: dict, logger, tracker: HeldKeysTracker) -> None:
                         hold_duration, len(audio),
                     )
                     _save_debug_wav(audio, config, logger)
+                    _transcribe_and_log(audio, transcriber, config, logger)
 
             time.sleep(0.02)
         except Exception:
@@ -198,11 +226,16 @@ def main() -> int:
         config["beeps"],
     )
 
+    logger.info("carregando modelo faster-whisper (%s, int8)...", config["model"])
+    t0 = time.time()
+    transcriber = Transcriber(model_size=config["model"], language=config["language"])
+    logger.info("modelo carregado em %.2fs (1x no boot — AD-1)", time.time() - t0)
+
     tracker = HeldKeysTracker()
     tracker.start()
 
     try:
-        run_hotkey_loop(config, logger, tracker)
+        run_hotkey_loop(config, logger, tracker, transcriber)
     except KeyboardInterrupt:
         logger.info("daemon encerrado (Ctrl+C)")
     finally:

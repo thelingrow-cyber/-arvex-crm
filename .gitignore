@@ -32,8 +32,7 @@ Thumbs.db
 backup-wp-pchveiculos/
 docs/pch-veiculos-site.zip
 
-# WhisperFlow (tools/whisperflow)
+# WhisperFlow (tools/whisperflow) — runtime data lives in %LOCALAPPDATA%\WhisperFlow, not the repo
 tools/whisperflow/.venv/
 tools/whisperflow/__pycache__/
 tools/whisperflow/**/__pycache__/
-tools/whisperflow/debug/

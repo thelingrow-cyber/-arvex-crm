@@ -20,7 +20,7 @@ APP_NAME = "WhisperFlow"
 
 DEFAULT_CONFIG = {
     "hotkey": "ctrl+windows",
-    "model": "small",
+    "model": "base",
     "language": "pt",
     "max_seconds": 120,
     "paste_mode": "clipboard",
