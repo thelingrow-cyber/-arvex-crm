@@ -1280,11 +1280,16 @@ async function doLogout() {
 sb.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
     currentUser = session.user
-    // define role pelo email sem esperar banco
-    const admins = ['viktorsimoess@gmail.com', 'arvexdigital@gmail.com']
-    const csOnly  = ['sabrinavieirasouza25@gmail.com']
-    currentRole = admins.includes(currentUser.email) ? 'admin' : csOnly.includes(currentUser.email) ? 'cs' : 'sdr'
-    // abre o app imediatamente
+    // role vem do banco (profiles.role) — fonte única de verdade, RLS protege contra auto-promoção
+    const { data: profile } = await sb.from('profiles').select('role').eq('id', currentUser.id).single()
+    if (profile?.role) {
+      currentRole = profile.role
+    } else {
+      // primeiro login: cria perfil com role mais restrito; promoção é manual (admin) depois
+      currentRole = 'sdr'
+      sb.from('profiles').insert({ id: currentUser.id, name: currentUser.email, role: currentRole }).then(() => {}, () => {})
+    }
+    // abre o app
     document.getElementById('login-screen').classList.add('hidden')
     document.getElementById('sidebar').classList.add('app-visible')
     document.getElementById('main-wrap').style.display = 'flex'
@@ -1301,8 +1306,6 @@ sb.auth.onAuthStateChange(async (event, session) => {
       loadCS().then(() => renderCS()).catch(() => {})
     }
     subscribeRealtime()
-    // salva/atualiza perfil no banco em background — .then(noop, noop) porque .upsert() retorna QueryBuilder, não Promise direto
-    sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: currentRole }, { onConflict: 'id' }).then(() => {}, () => {})
   } else {
     currentUser = null; currentRole = null
     document.getElementById('login-screen').classList.remove('hidden')
