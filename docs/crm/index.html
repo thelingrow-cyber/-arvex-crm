@@ -3045,7 +3045,7 @@ function openEditVenda(vendaId) {
 
 function adicionarParcela() {
   const lista = document.getElementById('fedit-parcelas-list')
-  const rows  = lista.querySelectorAll('.fin-parcela-row')
+  const rows  = lista.querySelectorAll('.fin-parcela-row:not([data-pago-row])')
   const total = rows.length + 1
   const hoje  = new Date().toISOString().slice(0,10)
   const div   = document.createElement('div')
@@ -3075,7 +3075,7 @@ async function salvarEditVenda() {
     observacao:           document.getElementById('fedit-obs').value.trim()
   }).eq('id', vendaId)
   if (eV) { alert('Erro: '+eV.message); return }
-  const rows = document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row')
+  const rows = document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row:not([data-pago-row])')
   const totalParcs = rows.length
   for (let i = 0; i < rows.length; i++) {
     const row    = rows[i]
