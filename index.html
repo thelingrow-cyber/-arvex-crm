@@ -2358,7 +2358,7 @@ function renderCSCard(c) {
 
   const proximaAcao = (pendente && c.cs_stage === 'campanha') ? `
     <div style="margin:6px 0;padding:6px 8px;border-radius:6px;background:${ehHoje?'rgba(91,108,255,.15)':atrasado?'rgba(249,115,22,.12)':'rgba(255,255,255,.04)'};border:1px solid ${ehHoje?'rgba(91,108,255,.3)':atrasado?'rgba(249,115,22,.3)':'var(--border)'}">
-      <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px;display:flex;align-items:center;gap:5px">${ehHoje?icon('clock',{size:12})+'HOJE':atrasado?icon('alert',{size:12})+'ATRASADO':icon('calendar',{size:12})+(pendente.data_prevista||'Preencha a data da triagem')}</div>
+      <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px;display:flex;align-items:center;gap:5px">${ehHoje?icon('clock',{size:12})+'HOJE':atrasado?icon('alert',{size:12})+'ATRASADO':icon('calendar',{size:12})+esc(pendente.data_prevista||'Preencha a data da triagem')}</div>
       <div style="font-size:11px;color:var(--white)">D+${pendente.dia_relativo} — ${esc(pendente.entregavel)}</div>
       <div class="cs-resp-actions" style="display:flex;gap:6px;margin-top:8px" onclick="event.stopPropagation()">
         <button class="btn-check-resp btn-check-sim" style="display:inline-flex;align-items:center;justify-content:center;gap:5px" onclick="abrirRespostaCheck('${pendente.id}','${c.id}',this)">${icon('check',{size:14})} Respondeu</button>
@@ -2389,7 +2389,7 @@ function renderCSCard(c) {
         ${c.produto ? `<span style="color:var(--blue);font-weight:600">${esc(produtoShort(c.produto))}</span>` : ''}
         ${(Array.isArray(c.entregaveis_bonus) && c.entregaveis_bonus.length) ? `<span style="display:inline-flex;align-items:center;gap:4px">${icon('gift',{size:13})} ${c.entregaveis_bonus.length} bônus</span>` : ''}
         ${c.tel ? `<span>${esc(c.tel)}</span>` : ''}
-        ${c.ultimo_contato ? `<span>Último: ${c.ultimo_contato}</span>` : ''}
+        ${c.ultimo_contato ? `<span>Último: ${esc(c.ultimo_contato)}</span>` : ''}
         ${c.meta_oficial ? `<span style="display:inline-flex;align-items:center;gap:4px">${icon('target',{size:13})} <strong style="color:var(--gold2)">${esc(c.meta_oficial)}</strong></span>` : ''}
       </div>
       ${proximaAcao}
