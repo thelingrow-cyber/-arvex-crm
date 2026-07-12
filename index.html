@@ -505,6 +505,9 @@
   <div class="sidebar-item admin-only" onclick="goTo('agente-sdr',this)" id="nav-agente-sdr">
     <span class="si-icon" data-icon="bot"></span> Agente SDR
   </div>
+  <div class="sidebar-item" onclick="goTo('coach',this)" id="nav-coach">
+    <span class="si-icon" data-icon="grad"></span> Reuniões
+  </div>
 
   <div class="sidebar-section" style="margin-top:8px">Customer Success</div>
   <div class="sidebar-item" onclick="goTo('cs',this)" id="nav-cs">
@@ -846,6 +849,64 @@
       <div class="agente-grid" id="agente-board"></div>
     </div>
 
+    <!-- COACH — Sales Coach -->
+    <div id="view-coach" class="view">
+      <style>
+        .coach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+        .coach-card{background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:14px;transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+        .coach-card[onclick]{cursor:pointer}.coach-card[onclick]:hover{border-color:var(--border-2);transform:translateY(-1px)}
+        .coach-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+        .coach-card-title{font-size:13px;font-weight:600;color:var(--white)}
+        .coach-result,.coach-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+        .coach-card-meta{font-size:11px;color:var(--text-3);margin-top:4px}
+        .coach-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+        .coach-nota{font-size:22px;font-weight:700}
+        .coach-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+        .coach-pulse{animation:coachPulse 1.4s ease-in-out infinite}@keyframes coachPulse{0%,100%{opacity:1}50%{opacity:.35}}
+        .coach-empty{grid-column:1/-1;text-align:center;color:var(--text-3);padding:60px 20px}
+        .coach-empty h3{color:var(--white);margin:12px 0 6px;font-size:15px}
+        .coach-banner{background:var(--accent-dim);border:1px solid var(--border);color:var(--gold2);font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:12px}
+        .coach-seg{display:flex;gap:8px}
+        .coach-seg button{flex:1;background:var(--navy3);border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:10px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+        .coach-seg button.active{border-color:var(--blue);color:var(--white);background:var(--accent-dim)}
+        .coach-meter{display:grid;grid-template-columns:130px 1fr 34px;align-items:center;gap:10px;margin:7px 0}
+        .coach-meter-label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3)}
+        .coach-meter-bar{height:8px;background:var(--navy3);border-radius:4px;overflow:hidden}
+        .coach-meter-fill{height:100%;background:var(--blue);border-radius:4px}
+        .coach-meter-val{font-size:12px;color:var(--white);text-align:right}
+        .coach-insight{background:var(--navy3);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:10px}
+        .coach-insight h4{font-size:12px;display:flex;align-items:center;gap:6px;margin-bottom:6px;color:var(--white)}
+        .coach-insight ul{margin:0;padding:0;list-style:none}.coach-insight li{font-size:12px;color:var(--muted);padding:3px 0}
+        .coach-nota-big{font-size:34px;font-weight:700}
+        .coach-diretor{display:flex;gap:10px;background:var(--accent-dim);border:1px solid var(--blue);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-bottom:14px}
+        .coach-missao{display:flex;gap:10px;background:rgba(200,169,110,.10);border:1px solid var(--gold);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-top:12px}
+        .coach-extra{margin-top:10px}.coach-extra p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.55}
+        .coach-chat{margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
+        .coach-chat-msgs{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;margin:10px 0}
+        .cc-msg{max-width:85%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;white-space:pre-wrap}
+        .cc-user{align-self:flex-end;background:var(--blue);color:#fff}
+        .cc-ia{align-self:flex-start;background:var(--navy3);color:var(--white);border:1px solid var(--border)}
+        .cc-typing{align-self:flex-start;color:var(--text-3);font-size:12px;font-style:italic;padding:4px 0}
+        .coach-chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+        .coach-chat-chips button{background:var(--navy3);border:1px solid var(--border);color:var(--muted);border-radius:100px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:inherit}
+        .coach-chat-input{display:flex;gap:8px}
+        .coach-chat-input input{flex:1;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);padding:10px 12px;font-family:inherit;font-size:13px;outline:none}
+        .coach-chat-input button{background:var(--blue);border:none;color:#fff;border-radius:8px;padding:10px 16px;cursor:pointer;font-weight:700}
+      </style>
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+        <div><h1>Reuniões</h1><p>Análise das suas reuniões</p></div>
+        <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
+      </div>
+      <div id="coach-demo-banner" class="coach-banner" style="display:none">Modo demonstração — dados fictícios</div>
+      <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+        <span class="search-box" style="flex:1;min-width:220px"><span data-icon="search"></span><input type="text" id="coach-search" placeholder="Buscar por cliente..." oninput="renderCoach()" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 14px;outline:none" /></span>
+        <select id="coach-filter-resultado" onchange="renderCoach()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
+          <option value="">Todos os resultados</option><option value="ganhou">Ganhou</option><option value="perdeu">Perdeu</option><option value="aberto">Em aberto</option>
+        </select>
+      </div>
+      <div class="coach-grid" id="coach-list"></div>
+    </div>
+
   </div>
 </div>
 
@@ -894,6 +955,42 @@
       <button class="btn-cancel" onclick="closeNewLead()">Cancelar</button>
       <button class="btn-save" onclick="saveLead()">Salvar Lead</button>
     </div>
+  </div>
+</div>
+
+<!-- MODAL COACH — NOVA REUNIÃO (S4) -->
+<div class="modal-overlay" id="modal-coach-new">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Nova Reunião</div><button class="modal-close" onclick="closeNewMeeting()">×</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Transcrição *</label><textarea id="cm-transcript" placeholder="Cole aqui a transcrição da reunião (Meet, Tactiq, etc.)" style="min-height:130px"></textarea></div>
+      <div class="form-row">
+        <div class="form-group"><label>Cliente</label><input type="text" id="cm-cliente" placeholder="Nome do cliente" /></div>
+        <div class="form-group"><label>Produto apresentado</label><input type="text" id="cm-produto" placeholder="Ex: Consultoria" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Data da reunião</label><input type="date" id="cm-data" /></div>
+        <div class="form-group"><label>Lead vinculado (opcional)</label><select id="cm-lead"><option value="">—</option></select></div>
+      </div>
+      <div class="form-group"><label>Resultado *</label>
+        <div class="coach-seg" id="cm-resultado">
+          <button type="button" data-val="ganhou" onclick="cmSetResultado('ganhou')">Ganhou</button>
+          <button type="button" data-val="perdeu" onclick="cmSetResultado('perdeu')">Perdeu</button>
+          <button type="button" data-val="aberto" onclick="cmSetResultado('aberto')">Em aberto</button>
+        </div>
+      </div>
+      <div class="form-group" id="cm-ticket-wrap" style="display:none"><label>Ticket vendido (R$)</label><input type="number" id="cm-ticket" min="0" placeholder="0" /></div>
+      <div id="cm-error" style="display:none;color:var(--red);font-size:12px"></div>
+    </div>
+    <div class="modal-footer"><button class="btn-cancel" onclick="closeNewMeeting()">Cancelar</button><button class="btn-save" onclick="saveMeeting()">Analisar reunião</button></div>
+  </div>
+</div>
+
+<!-- MODAL COACH — DETALHE DA CALL (S5) -->
+<div class="modal-overlay" id="modal-coach-detail">
+  <div class="modal" style="max-width:640px">
+    <div class="modal-header"><div class="modal-title" id="cd-title">Reunião</div><button class="modal-close" onclick="closeMeeting()">×</button></div>
+    <div class="modal-body" id="cd-body"></div>
   </div>
 </div>
 
@@ -1068,6 +1165,9 @@ const LUCIDE = {
   wallet:'<path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 9h18"/><path d="M16 13h.01"/>',
   search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
   bot:'<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>',
+  grad:'<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
+  help:'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
+  bulb:'<path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.2 18 9 18 7.5a6 6 0 0 0-12 0c0 1.5.4 2.7 1.5 4C8.3 12.3 8.8 13 9 14"/><path d="M9 18h6"/><path d="M10 22h4"/>',
 }
 function icon(name, opts = {}) {
   const p = LUCIDE[name]; if (!p) return ''
@@ -1105,7 +1205,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', coach:'Reuniões' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
@@ -1180,11 +1280,16 @@ async function doLogout() {
 sb.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
     currentUser = session.user
-    // define role pelo email sem esperar banco
-    const admins = ['viktorsimoess@gmail.com', 'arvexdigital@gmail.com']
-    const csOnly  = ['sabrinavieirasouza25@gmail.com']
-    currentRole = admins.includes(currentUser.email) ? 'admin' : csOnly.includes(currentUser.email) ? 'cs' : 'sdr'
-    // abre o app imediatamente
+    // role vem do banco (profiles.role) — fonte única de verdade, RLS protege contra auto-promoção
+    const { data: profile } = await sb.from('profiles').select('role').eq('id', currentUser.id).single()
+    if (profile?.role) {
+      currentRole = profile.role
+    } else {
+      // primeiro login: cria perfil com role mais restrito; promoção é manual (admin) depois
+      currentRole = 'sdr'
+      sb.from('profiles').insert({ id: currentUser.id, name: currentUser.email, role: currentRole }).then(() => {}, () => {})
+    }
+    // abre o app
     document.getElementById('login-screen').classList.add('hidden')
     document.getElementById('sidebar').classList.add('app-visible')
     document.getElementById('main-wrap').style.display = 'flex'
@@ -1201,8 +1306,6 @@ sb.auth.onAuthStateChange(async (event, session) => {
       loadCS().then(() => renderCS()).catch(() => {})
     }
     subscribeRealtime()
-    // salva/atualiza perfil no banco em background — .then(noop, noop) porque .upsert() retorna QueryBuilder, não Promise direto
-    sb.from('profiles').upsert({ id: currentUser.id, name: currentUser.email, role: currentRole }, { onConflict: 'id' }).then(() => {}, () => {})
   } else {
     currentUser = null; currentRole = null
     document.getElementById('login-screen').classList.remove('hidden')
@@ -1323,6 +1426,207 @@ function goTo(id, el) {
   if (id === 'financeiro')    { loadFinanceiro().then(() => renderFinanceiro()) }
   if (id === 'clientes-fin') { loadFinanceiro().then(() => renderClientesFinanceiro()) }
   if (id === 'agente-sdr')   { loadAgentes().then(() => renderAgentes()) }
+  if (id === 'coach')        renderCoach()
+}
+
+// ── COACH (Sales Coach) ─────────────────────────────────────────────────────
+const COACH_DEMO = new URLSearchParams(location.search).get('demo') === '1'
+const COACH_DIMS = [['rapport','Rapport'],['diagnostico','Diagnóstico'],['escuta','Escuta'],['valor','Construção de valor'],['controle','Controle'],['fechamento','Fechamento'],['transicao','Transição'],['objecoes','Objeções']]
+let coachMeetings = []
+
+function coachDemoData() {
+  return [
+    { id:'d1', cliente_nome:'Marília', produto:'Consultoria', data_reuniao:'2026-06-24', closer_nome:'João', resultado:'ganhou', ticket:12000, status:'done', nota_geral:7.4,
+      scores:{rapport:8.5,diagnostico:7,escuta:6.5,valor:7,controle:8,fechamento:5,transicao:7,objecoes:6},
+      insights:{resumo_diretor:'Reunião acima da média: você gerou confiança rápido e conduziu bem o diagnóstico. O maior limitador foi apresentar a solução antes de aprofundar o impacto financeiro da dor — se tivesse explorado isso, o valor percebido subiria antes da negociação.',dor_dominante:'Previsibilidade/lucratividade — fatura bem mas sente que não sobra. A dor real não era volume.',objecao:{tipo:'genuina',explicacao:'Manteve a mesma narrativa (preço/timing) do início ao fim — sinal de objeção real, não cortina.'},erro_estrategico:'Negociou antes de fortalecer o valor; faltou o reframe de urgência.',missao:'Explorar o impacto financeiro da dor ANTES de apresentar a oferta.',acertos:['Deixou o lead falar sem interromper','Validou as emoções e a dor','Conexão genuína no início'],erros:['Apresentou a solução cedo demais','Concedeu desconto rápido','Não aprofundou a 2ª unidade citada'],faltou:['Quanto isso custa pra vocês hoje?','Como isso impacta o lucro?'],sugestoes:['Espere mais 5 min antes da oferta','Treine 5s de silêncio após o preço']}, chat:[{role:'user',content:'Onde perdi a venda?'},{role:'assistant',content:'Você apresentou a solução antes de aprofundar a dor financeira. Ela disse "fatura bem mas não sobra" — ali era pra quantificar o custo de continuar assim, não partir pra oferta.'}] },
+    { id:'d2', cliente_nome:'Carlos', produto:'Mentoria', data_reuniao:'2026-06-23', closer_nome:'João', resultado:'perdeu', ticket:null, status:'done', nota_geral:4.8,
+      scores:{rapport:5,diagnostico:4,escuta:5,valor:4,controle:5,fechamento:4,transicao:5,objecoes:6},
+      insights:{resumo_diretor:'Você foi simpático mas não fez o lead SENTIR o problema — apresentou o método sem dor construída. Sem dor, não há urgência, e sem urgência o preço vira caro.',dor_dominante:'Falta de clientes qualificados — mas isso nunca foi investigado na call.',objecao:{tipo:'genuina',explicacao:'Objeção de preço real, porque não houve valor construído antes.'},erro_estrategico:'Falou demais e apresentou cedo; o lead nunca chegou a querer a solução.',missao:'Fazer 3 perguntas de dor (e ficar nelas) antes de qualquer apresentação.',acertos:['Boa simpatia','Explicou bem o método','Foi pontual'],erros:['Não diagnosticou a dor real','Falou demais','Cedeu na objeção de preço'],faltou:['Qual o maior gargalo hoje?','O que trava o crescimento?'],sugestoes:['Pergunte antes de apresentar','Explore o impacto financeiro da dor']} },
+    { id:'d3', cliente_nome:'Patrícia', produto:'Consultoria', data_reuniao:'2026-06-25', closer_nome:'Ana', resultado:'aberto', ticket:null, status:'processing', nota_geral:null, scores:null, insights:null },
+  ]
+}
+function resultadoDot(r) { const m={ganhou:['var(--green)','Ganhou'],perdeu:['var(--red)','Perdeu'],aberto:['var(--text-3)','Em aberto']}; const x=m[r]||m.aberto; return `<span class="coach-dot" style="background:${x[0]}"></span>${x[1]}` }
+function statusDot(s) { const m={pending:['var(--blue)','Pendente'],processing:['var(--orange)','Analisando…'],done:['var(--green)','Analisado'],error:['var(--red)','Erro']}; const x=m[s]||m.pending; return `<span class="coach-dot${s==='processing'?' coach-pulse':''}" style="background:${x[0]}"></span>${x[1]}` }
+function notaColor(n) { if (n==null) return 'var(--text-3)'; return n>=7?'var(--green)':n>=5?'var(--gold)':'var(--red)' }
+
+async function loadCoach() {
+  if (COACH_DEMO) { if (!coachMeetings.length) coachMeetings = coachDemoData(); return }
+  if (!currentUser) { coachMeetings = []; return }
+  const { data, error } = await sb.from('meetings').select('*').order('created_at', { ascending: false })
+  coachMeetings = error ? [] : (data || [])
+}
+let _coachSub = false
+function coachSubscribe() {
+  if (_coachSub || COACH_DEMO || !currentUser) return
+  _coachSub = true
+  sb.channel('coach-meetings').on('postgres_changes', { event: '*', schema: 'public', table: 'meetings' }, () => {
+    if (document.getElementById('view-coach')?.classList.contains('active')) renderCoach()
+  }).subscribe()
+}
+function renderCoach() {
+  const banner = document.getElementById('coach-demo-banner'); if (banner) banner.style.display = COACH_DEMO ? '' : 'none'
+  if (COACH_DEMO && coachMeetings.length) { renderCoachCards() } else { loadCoach().then(renderCoachCards) }
+  coachSubscribe()
+}
+function renderCoachCards() {
+  const grid = document.getElementById('coach-list'); if (!grid) return
+  const q  = (document.getElementById('coach-search')?.value || '').toLowerCase()
+  const fr = document.getElementById('coach-filter-resultado')?.value || ''
+  const list = coachMeetings.filter(m => (!q || (m.cliente_nome||'').toLowerCase().includes(q)) && (!fr || m.resultado === fr))
+  if (!list.length) { grid.innerHTML = `<div class="coach-empty">${icon('grad',{size:32})}<h3>Nenhuma reunião ainda</h3><p>Suba a transcrição da sua primeira call e receba a análise.</p></div>`; return }
+  grid.innerHTML = list.map(m => `
+    <div class="coach-card" ${m.status==='done'?`onclick="openMeeting('${m.id}')"`:''}>
+      <div class="coach-card-top">
+        <div class="coach-card-title">${esc(m.cliente_nome||'—')}${m.produto?` · ${esc(m.produto)}`:''}</div>
+        <div class="coach-result">${resultadoDot(m.resultado)}</div>
+      </div>
+      <div class="coach-card-meta">${esc(m.data_reuniao||'')} · Closer: ${esc(m.closer_nome||'—')}</div>
+      <div class="coach-card-bottom">
+        <span class="coach-status">${statusDot(m.status)}</span>
+        <span class="coach-nota tnum" style="color:${notaColor(m.nota_geral)}">${m.nota_geral!=null?Number(m.nota_geral).toFixed(1):'—'}</span>
+      </div>
+    </div>`).join('')
+}
+
+// ── S4 — Nova Reunião ──
+let cmResultado = ''
+function cmSetResultado(v) {
+  cmResultado = v
+  document.querySelectorAll('#cm-resultado button').forEach(b => b.classList.toggle('active', b.dataset.val === v))
+  document.getElementById('cm-ticket-wrap').style.display = v === 'ganhou' ? '' : 'none'
+}
+function openNewMeeting() {
+  cmResultado = ''
+  ;['cm-transcript','cm-cliente','cm-produto','cm-ticket'].forEach(id => { const e = document.getElementById(id); if (e) e.value = '' })
+  document.getElementById('cm-error').style.display = 'none'
+  document.getElementById('cm-ticket-wrap').style.display = 'none'
+  document.querySelectorAll('#cm-resultado button').forEach(b => b.classList.remove('active'))
+  document.getElementById('cm-data').value = new Date().toISOString().slice(0,10)
+  const sel = document.getElementById('cm-lead')
+  if (sel) sel.innerHTML = '<option value="">—</option>' + (cachedLeads||[]).map(l => `<option value="${l.id}">${esc(l.nome||'')}</option>`).join('')
+  document.getElementById('modal-coach-new').classList.add('open')
+}
+function closeNewMeeting() { document.getElementById('modal-coach-new').classList.remove('open') }
+async function saveMeeting() {
+  const transcript = document.getElementById('cm-transcript').value.trim()
+  const err = document.getElementById('cm-error')
+  if (!transcript) { err.textContent = 'Cole a transcrição para analisar.'; err.style.display = ''; return }
+  if (!cmResultado) { err.textContent = 'Selecione o resultado da reunião.'; err.style.display = ''; return }
+  const rec = {
+    cliente_nome: document.getElementById('cm-cliente').value.trim() || null,
+    produto: document.getElementById('cm-produto').value.trim() || null,
+    data_reuniao: document.getElementById('cm-data').value || null,
+    lead_id: document.getElementById('cm-lead').value || null,
+    resultado: cmResultado,
+    ticket: cmResultado === 'ganhou' ? (parseFloat(document.getElementById('cm-ticket').value) || null) : null,
+    transcript, status: 'pending',
+  }
+  if (COACH_DEMO) { closeNewMeeting(); coachDemoSimulate(rec); return }
+  rec.closer_id = currentUser?.id
+  rec.closer_nome = currentUser?.email
+  const { data, error } = await sb.from('meetings').insert(rec).select().single()
+  if (error) { err.textContent = 'Erro ao salvar: ' + error.message; err.style.display = ''; return }
+  closeNewMeeting()
+  sb.functions.invoke('analyze-meeting', { body: { meeting_id: data.id } })
+  renderCoach()
+}
+function coachDemoSimulate(rec) {
+  const id = 'd' + Date.now()
+  coachMeetings.unshift({ ...rec, id, closer_nome: 'Você', status: 'processing', nota_geral: null, scores: null, insights: null })
+  renderCoachCards()
+  setTimeout(() => {
+    const m = coachMeetings.find(x => x.id === id)
+    if (m) { m.status = 'done'; m.scores = {rapport:8,diagnostico:7.5,escuta:7,valor:6.5,controle:7,fechamento:6,transicao:7,objecoes:6.5}; m.nota_geral = 6.9; m.insights = {resumo_diretor:'Boa condução e conexão. O ponto a destravar é construir mais valor antes de falar preço — você chegou na oferta com o problema ainda "ameno" na cabeça do lead.',dor_dominante:'(exemplo) a dor real aparece quando você aprofunda o custo de continuar como está.',objecao:{tipo:'genuina',explicacao:'(exemplo) objeção consistente ao longo da call.'},erro_estrategico:'Ofertou antes de tornar o problema inevitável.',missao:'Aprofundar a dor (impacto + urgência) antes de apresentar.',acertos:['Boa abertura','Escutou bem','Conectou'],erros:['Ofertou cedo','Pouco valor construído','Cedeu desconto'],faltou:['Qual o impacto financeiro disso?'],sugestoes:['5s de silêncio após o preço']} }
+    renderCoachCards()
+  }, 1800)
+}
+
+// ── S5 — Detalhe da call ──
+function openMeeting(id) {
+  const m = coachMeetings.find(x => x.id === id); if (!m) return
+  document.getElementById('cd-title').textContent = m.cliente_nome || 'Reunião'
+  const sc = m.scores || {}
+  const meters = COACH_DIMS.map(([k,label]) => { const v = sc[k]; const pct = v!=null?v*10:0; return `<div class="coach-meter"><span class="coach-meter-label">${label}</span><span class="coach-meter-bar"><span class="coach-meter-fill" style="width:${pct}%"></span></span><span class="coach-meter-val tnum">${v!=null?Number(v).toFixed(1):'—'}</span></div>` }).join('')
+  const ins = m.insights || {}
+  const blocks = [['check','Acertos',ins.acertos],['x','Erros',ins.erros],['help','O que faltou',ins.faltou],['bulb','Sugestões',ins.sugestoes]].map(([ic,t,arr]) => `<div class="coach-insight"><h4>${icon(ic)} ${t}</h4><ul>${((arr||[]).map(x => `<li>• ${esc(x)}</li>`).join(''))||'<li style="color:var(--text-3)">—</li>'}</ul></div>`).join('')
+  const isOwner = COACH_DEMO || (currentUser && m.closer_id === currentUser.id) || currentRole === 'admin'
+  const editSel = isOwner ? `<select onchange="editResultado('${m.id}',this.value)" style="width:auto"><option value="ganhou"${m.resultado==='ganhou'?' selected':''}>Ganhou</option><option value="perdeu"${m.resultado==='perdeu'?' selected':''}>Perdeu</option><option value="aberto"${m.resultado==='aberto'?' selected':''}>Em aberto</option></select>` : ''
+  // executive-first: a mensagem do diretor vem primeiro
+  const diretor = ins.resumo_diretor ? `<div class="coach-diretor">${icon('grad',{size:18})}<div><div class="coach-meter-label" style="margin-bottom:4px">Feedback do diretor</div>${esc(ins.resumo_diretor)}</div></div>` : ''
+  const extras = [['Dor dominante',ins.dor_dominante],['Erro estratégico',ins.erro_estrategico]].filter(x=>x[1]).map(x=>`<div class="coach-extra"><span class="coach-meter-label">${x[0]}</span><p>${esc(x[1])}</p></div>`).join('')
+  const obj = (ins.objecao && ins.objecao.explicacao) ? `<div class="coach-extra"><span class="coach-meter-label">Objeção · ${esc(ins.objecao.tipo||'')}</span><p>${esc(ins.objecao.explicacao)}</p></div>` : ''
+  const missao = ins.missao ? `<div class="coach-missao">${icon('target',{size:18})}<div><div class="coach-meter-label" style="margin-bottom:4px">Missão da próxima call</div>${esc(ins.missao)}</div></div>` : ''
+  document.getElementById('cd-body').innerHTML = `
+    ${diretor}
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div><div class="coach-card-meta" style="font-size:12px">${esc(m.produto||'')} · ${esc(m.data_reuniao||'')} · Closer: ${esc(m.closer_nome||'—')}</div>
+        <div class="coach-result" style="margin-top:6px">${resultadoDot(m.resultado)}${m.ticket?` · R$ ${Number(m.ticket).toLocaleString('pt-BR')}`:''}</div></div>
+      <div style="text-align:right"><div class="coach-nota-big tnum" style="color:${notaColor(m.nota_geral)}">${m.nota_geral!=null?Number(m.nota_geral).toFixed(1):'—'}</div><div class="coach-meter-label">nota geral</div></div>
+    </div>
+    <div style="margin-top:10px">${meters}</div>
+    ${extras}${obj}
+    ${blocks}
+    ${missao}
+    <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button></div>
+    <div class="coach-chat">
+      <div class="coach-meter-label">Converse sobre esta call</div>
+      <div class="coach-chat-msgs" id="cc-msgs"></div>
+      <div class="coach-chat-chips" id="cc-chips"></div>
+      <div class="coach-chat-input"><input id="cc-input" placeholder="Pergunte ao diretor sobre esta reunião…" onkeydown="if(event.key==='Enter')ccSend()"><button id="cc-send" onclick="ccSend()">➤</button></div>
+    </div>`
+  document.getElementById('modal-coach-detail').classList.add('open')
+  ccInit(m)
+}
+function closeMeeting() { document.getElementById('modal-coach-detail').classList.remove('open') }
+
+// ── Chat da reunião (camada 4) ──
+let ccMeeting = null
+const CC_CHIPS = ['Onde perdi a venda?','Negociei cedo?','Qual pergunta faltou?','Como você faria diferente?']
+function ccInit(m) {
+  ccMeeting = m
+  if (!Array.isArray(m.chat)) m.chat = []
+  const chips = document.getElementById('cc-chips')
+  if (chips) chips.innerHTML = CC_CHIPS.map(c => `<button onclick="ccSend('${c.replace(/'/g,"\\'")}')">${esc(c)}</button>`).join('')
+  ccRender()
+}
+function ccRender(typing) {
+  const box = document.getElementById('cc-msgs'); if (!box || !ccMeeting) return
+  box.innerHTML = (ccMeeting.chat||[]).map(x => `<div class="cc-msg ${x.role==='assistant'?'cc-ia':'cc-user'}">${esc(x.content)}</div>`).join('')
+    + (typing ? `<div class="cc-typing">diretor digitando…</div>` : '')
+  box.scrollTop = box.scrollHeight
+}
+async function ccSend(preset) {
+  if (!ccMeeting) return
+  const input = document.getElementById('cc-input')
+  const q = (preset || (input && input.value) || '').trim()
+  if (!q) return
+  if (input && !preset) input.value = ''
+  ccMeeting.chat.push({ role:'user', content:q, at:new Date().toISOString() })
+  ccRender(true)
+  if (COACH_DEMO) {
+    setTimeout(() => { ccMeeting.chat.push({ role:'assistant', content:'(resposta simulada — no modo demo o chat não chama a IA)', at:new Date().toISOString() }); ccRender() }, 800)
+    return
+  }
+  try {
+    const { data, error } = await sb.functions.invoke('coach-chat', { body: { meeting_id: ccMeeting.id, pergunta: q } })
+    const resp = (data && data.resposta) ? data.resposta : ('(erro: ' + ((error && error.message) || (data && data.error) || 'sem resposta') + ')')
+    ccMeeting.chat.push({ role:'assistant', content:resp, at:new Date().toISOString() })
+  } catch (e) {
+    ccMeeting.chat.push({ role:'assistant', content:'(falha ao falar com o diretor: ' + (e.message||e) + ')', at:new Date().toISOString() })
+  }
+  ccRender()
+}
+function editResultado(id, val) {
+  const m = coachMeetings.find(x => x.id === id); if (m) m.resultado = val
+  if (!COACH_DEMO) sb.from('meetings').update({ resultado: val }).eq('id', id)
+  renderCoachCards()
+}
+function reanalisar(id) {
+  if (COACH_DEMO) { closeMeeting(); return }
+  sb.from('meetings').update({ status: 'processing' }).eq('id', id).then(() => {
+    sb.functions.invoke('analyze-meeting', { body: { meeting_id: id } })
+    closeMeeting(); renderCoach()
+  })
 }
 
 function setPeriod(days, btn) {
@@ -2054,7 +2358,7 @@ function renderCSCard(c) {
 
   const proximaAcao = (pendente && c.cs_stage === 'campanha') ? `
     <div style="margin:6px 0;padding:6px 8px;border-radius:6px;background:${ehHoje?'rgba(91,108,255,.15)':atrasado?'rgba(249,115,22,.12)':'rgba(255,255,255,.04)'};border:1px solid ${ehHoje?'rgba(91,108,255,.3)':atrasado?'rgba(249,115,22,.3)':'var(--border)'}">
-      <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px;display:flex;align-items:center;gap:5px">${ehHoje?icon('clock',{size:12})+'HOJE':atrasado?icon('alert',{size:12})+'ATRASADO':icon('calendar',{size:12})+(pendente.data_prevista||'Preencha a data da triagem')}</div>
+      <div style="font-size:10px;font-weight:700;color:${ehHoje?'var(--blue)':atrasado?'var(--orange)':'var(--muted)'};margin-bottom:2px;display:flex;align-items:center;gap:5px">${ehHoje?icon('clock',{size:12})+'HOJE':atrasado?icon('alert',{size:12})+'ATRASADO':icon('calendar',{size:12})+esc(pendente.data_prevista||'Preencha a data da triagem')}</div>
       <div style="font-size:11px;color:var(--white)">D+${pendente.dia_relativo} — ${esc(pendente.entregavel)}</div>
       <div class="cs-resp-actions" style="display:flex;gap:6px;margin-top:8px" onclick="event.stopPropagation()">
         <button class="btn-check-resp btn-check-sim" style="display:inline-flex;align-items:center;justify-content:center;gap:5px" onclick="abrirRespostaCheck('${pendente.id}','${c.id}',this)">${icon('check',{size:14})} Respondeu</button>
@@ -2085,7 +2389,7 @@ function renderCSCard(c) {
         ${c.produto ? `<span style="color:var(--blue);font-weight:600">${esc(produtoShort(c.produto))}</span>` : ''}
         ${(Array.isArray(c.entregaveis_bonus) && c.entregaveis_bonus.length) ? `<span style="display:inline-flex;align-items:center;gap:4px">${icon('gift',{size:13})} ${c.entregaveis_bonus.length} bônus</span>` : ''}
         ${c.tel ? `<span>${esc(c.tel)}</span>` : ''}
-        ${c.ultimo_contato ? `<span>Último: ${c.ultimo_contato}</span>` : ''}
+        ${c.ultimo_contato ? `<span>Último: ${esc(c.ultimo_contato)}</span>` : ''}
         ${c.meta_oficial ? `<span style="display:inline-flex;align-items:center;gap:4px">${icon('target',{size:13})} <strong style="color:var(--gold2)">${esc(c.meta_oficial)}</strong></span>` : ''}
       </div>
       ${proximaAcao}
@@ -2744,7 +3048,7 @@ function openEditVenda(vendaId) {
 
 function adicionarParcela() {
   const lista = document.getElementById('fedit-parcelas-list')
-  const rows  = lista.querySelectorAll('.fin-parcela-row')
+  const rows  = lista.querySelectorAll('.fin-parcela-row:not([data-pago-row])')
   const total = rows.length + 1
   const hoje  = new Date().toISOString().slice(0,10)
   const div   = document.createElement('div')
@@ -2774,7 +3078,7 @@ async function salvarEditVenda() {
     observacao:           document.getElementById('fedit-obs').value.trim()
   }).eq('id', vendaId)
   if (eV) { alert('Erro: '+eV.message); return }
-  const rows = document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row')
+  const rows = document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row:not([data-pago-row])')
   const totalParcs = rows.length
   for (let i = 0; i < rows.length; i++) {
     const row    = rows[i]
