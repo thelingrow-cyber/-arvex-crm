@@ -321,6 +321,14 @@
     .move-chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .move-chip { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); transition: all .15s; }
     .move-chip:hover { color: var(--white); border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.08); }
+    .move-chip.sel { background: var(--accent-dim); border-color: var(--blue); color: var(--blue); font-weight: 700; }
+    .move-chip:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+    /* chips maiores no toque (alvo mínimo 40px) */
+    @media (max-width: 768px) { .move-chip { padding: 10px 14px; font-size: 12px; min-height: 40px; } }
+    /* toast com ação (ex.: Desfazer exclusão) */
+    .fin-toast { pointer-events: auto; display: flex; align-items: center; gap: 14px; }
+    .toast-action { background: transparent; border: none; color: var(--blue); font-family: Inter,sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; padding: 4px 6px; border-radius: 6px; white-space: nowrap; }
+    .toast-action:hover { background: var(--accent-dim); }
     .activity-log { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto; margin-bottom: 10px; }
     .activity-item { background: var(--navy3); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; }
     .act-text { font-size: 12px; }
@@ -1122,6 +1130,36 @@
   </div>
 </div>
 
+<!-- MODAL TRANSIÇÃO (substitui os prompt() nativos de changeStatus) -->
+<div class="modal-overlay" id="modal-transition">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-header">
+      <div class="modal-title" id="mt-title">Mover lead</div>
+      <button class="modal-close" onclick="cancelTransition()">×</button>
+    </div>
+    <div class="modal-body" id="mt-body"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="cancelTransition()">Cancelar</button>
+      <button class="btn-save" id="mt-save" onclick="submitTransition()">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONFIRMAÇÃO (substitui os confirm() nativos) -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-header">
+      <div class="modal-title" id="mc-title">Confirmar</div>
+      <button class="modal-close" onclick="fecharConfirm()">×</button>
+    </div>
+    <div class="modal-body"><div id="mc-msg" style="font-size:13px;line-height:1.55;color:var(--white);white-space:pre-line"></div></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="fecharConfirm()">Cancelar</button>
+      <button class="btn-save" id="mc-ok" onclick="confirmarOk()">Confirmar</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL DETALHE -->
 <div class="modal-overlay" id="modal-detail">
   <div class="modal">
@@ -1386,7 +1424,7 @@ async function insertLead(lead) {
     ticket: lead.ticket ? parseFloat(lead.ticket) : null,
     status: lead.status, socio: lead.socio, obs: lead.obs, activities: []
   })
-  if (error) alert('Erro ao salvar lead: ' + error.message)
+  if (error) showToast('Erro ao salvar lead: ' + error.message, 'error')
 }
 
 async function updateLeadField(id, fields) {
@@ -1394,7 +1432,7 @@ async function updateLeadField(id, fields) {
   const idx = cachedLeads.findIndex(l => l.id === id)
   if (idx !== -1) cachedLeads[idx] = { ...cachedLeads[idx], ...fields }
   const { error } = await sb.from('leads').update(fields).eq('id', id)
-  if (error) { alert('Erro ao atualizar: ' + error.message); await loadLeads() }
+  if (error) { showToast('Erro ao atualizar: ' + error.message, 'error'); await loadLeads() }
   // loadLeads() será chamado pelo realtime subscription automaticamente
 }
 
@@ -1898,7 +1936,7 @@ function renderCard(l) {
           ${l.tel ? `<a class="btn-card-action" href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="text-decoration:none;color:var(--green)" title="WhatsApp">💬</a>` : ''}
           <div class="btn-card-action" onclick="openDetail('${l.id}')">Ver</div>
           ${l.status === 'fechado' && !inCS ? `<div class="btn-card-action" style="background:rgba(200,169,110,.2);color:var(--gold2)" onclick="moverParaCS('${l.id}',event)" title="Mover para CS">→ CS</div>` : ''}
-          <div class="btn-card-action btn-card-del" onclick="deleteLead('${l.id}',event)">✕</div>
+          ${currentRole === 'admin' ? `<div class="btn-card-action btn-card-del" onclick="deleteLead('${l.id}',event)" title="Excluir lead">✕</div>` : ''}
         </div>
       </div>
     </div>`
@@ -2038,7 +2076,7 @@ function renderAllLeads() {
       ${currentRole === 'admin' ? `<td style="color:var(--gold2);font-weight:700">${l.ticket ? 'R$ '+parseFloat(l.ticket).toLocaleString('pt-BR') : '—'}</td>` : ''}
       <td><span class="badge ${BADGE[l.status]}">${BLABEL[l.status]}</span></td>
       <td style="color:var(--muted)">${fmtDate(l.created)}</td>
-      <td><span style="cursor:pointer;color:var(--red)" onclick="deleteLead('${l.id}',event)">✕</span></td>
+      <td>${currentRole === 'admin' ? `<span style="cursor:pointer;color:var(--red)" onclick="deleteLead('${l.id}',event)" title="Excluir lead">✕</span>` : ''}</td>
     </tr>`).join('')
 }
 
@@ -2089,13 +2127,13 @@ function openNewLead() {
     ['f-nome','f-tel','f-obs','f-ticket'].forEach(id => { const el=document.getElementById(id); if(el) el.value='' })
     ;['f-expert','f-origem','f-resp','f-status','f-socio'].forEach(id => { const el=document.getElementById(id); if(el) el.selectedIndex=0 })
     document.getElementById('modal-new').classList.add('open')
-  } catch(e) { alert('Erro ao abrir modal: ' + e.message) }
+  } catch(e) { showToast('Erro ao abrir modal: ' + e.message, 'error') }
 }
 function closeNewLead() { document.getElementById('modal-new').classList.remove('open') }
 
 async function saveLead() {
   const nome = document.getElementById('f-nome').value.trim()
-  if (!nome) { alert('Preencha o nome do lead.'); return }
+  if (!nome) { showToast('Preencha o nome do lead.', 'error'); return }
   const lead = {
     nome, tel: document.getElementById('f-tel').value.trim(),
     expert: document.getElementById('f-expert').value,
@@ -2109,6 +2147,7 @@ async function saveLead() {
   }
   await insertLead(lead)
   closeNewLead()
+  showToast('Lead cadastrado')
 }
 
 // ── DETAIL ────────────────────────────────────────────────────────────────
@@ -2163,39 +2202,132 @@ function closeDetail() { document.getElementById('modal-detail').classList.remov
 
 function moveTo(id, status) { closeDetail(); changeStatus(id, status) }
 
-async function changeStatus(id, status, extra = {}) {
-  const leads = getLeads()
-  const lead  = leads.find(l => l.id === id)
-  if (!lead) return
-  const updates = { status, ...extra }
-  // Prompts só quando a coluna realmente muda — reordenar dentro da mesma coluna não re-pergunta.
-  const mudouColuna = lead.status !== status
+// ── TRANSIÇÕES DE STATUS (modal em vez de prompt nativo) ───────────────────
+// Motivos fechados: renderExperts() agrupa por string exata — texto livre fragmenta os buckets.
+const MOTIVOS_PERDA = ['Sem budget','Não era o perfil','Não atendeu','Concorrente','Sumiu/Ghost','Outro']
+// Colunas que exigem informação extra ao receber o card
+const TRANSICOES = {
+  perdido:  { titulo: 'Por que perdemos?',   ok: 'Marcar como perdido' },
+  call:     { titulo: 'Agendar call',        ok: 'Registrar call' },
+  followup: { titulo: 'Próximo passo',       ok: 'Salvar follow up' },
+  fechado:  { titulo: 'Fechamento',          ok: 'Registrar venda' },
+}
+let pendingTransition = null   // { id, status, extra }
+let motivoSelecionado = null
 
-  if (mudouColuna && status === 'perdido') {
-    const motivo = prompt('Motivo da perda:\n(ex: Sem budget, Não era o perfil, Não atendeu, Concorrente)')
-    if (motivo === null) { renderPipeline(); return }
-    updates.motivo_perda = motivo.trim() || 'Não informado'
+async function changeStatus(id, status, extra = {}) {
+  const lead = getLeads().find(l => l.id === id)
+  if (!lead) return
+  // Reordenar dentro da mesma coluna não pergunta nada — só muda a posição.
+  const mudouColuna = lead.status !== status
+  if (mudouColuna && TRANSICOES[status]) {
+    pendingTransition = { id, status, extra }
+    abrirTransition(status, lead)
+    return  // o lead só se move no submit do modal
   }
-  if (mudouColuna && status === 'call') {
-    const agora = new Date().toISOString().slice(0,16)
-    const dataCall = prompt('Data/hora da call:', agora)
-    if (dataCall) updates.data_call = dataCall
+  await aplicarStatus(id, status, extra)
+}
+
+async function aplicarStatus(id, status, extra = {}) {
+  await updateLeadField(id, { status, ...extra })
+  renderDashboard(); renderPipeline(); renderAllLeads()
+  showToast(`Lead movido para ${BLABEL[status] || status}`)
+  if (status === 'fechado' && isFinanceiroUser()) onLeadFechado(id)
+}
+
+function abrirTransition(status, lead) {
+  const cfg = TRANSICOES[status]
+  motivoSelecionado = null
+  document.getElementById('mt-title').textContent = cfg.titulo
+  document.getElementById('mt-save').textContent  = cfg.ok
+  const body = document.getElementById('mt-body')
+
+  if (status === 'perdido') {
+    body.innerHTML = `
+      <div class="form-group">
+        <label>Motivo da perda *</label>
+        <div class="move-chips" id="mt-motivos">
+          ${MOTIVOS_PERDA.map(m => `<button type="button" class="move-chip" data-motivo="${esc(m)}" onclick="selecionarMotivo(this)">${esc(m)}</button>`).join('')}
+        </div>
+      </div>
+      <div class="form-group" id="mt-outro-wrap" style="display:none">
+        <label>Qual?</label>
+        <input type="text" id="mt-outro" placeholder="Descreva o motivo" onkeydown="if(event.key==='Enter')submitTransition()" />
+      </div>`
+  } else if (status === 'call') {
+    const agora = new Date(Date.now() - new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)
+    body.innerHTML = `
+      <div class="form-group">
+        <label>Data e hora da call</label>
+        <input type="datetime-local" id="mt-data-call" value="${agora}" />
+      </div>`
+  } else if (status === 'followup') {
+    body.innerHTML = `
+      <div class="form-group">
+        <label>Próximo passo do closer</label>
+        <input type="text" id="mt-proximo" placeholder="Ex: Ligar segunda 14h, Enviar proposta" onkeydown="if(event.key==='Enter')submitTransition()" />
+      </div>`
+  } else if (status === 'fechado') {
+    body.innerHTML = `
+      <div class="form-group">
+        <label>Valor pago (R$)</label>
+        <input type="number" id="mt-valor" min="0" step="0.01" placeholder="Ex: 1500" value="${lead.ticket || ''}" onkeydown="if(event.key==='Enter')submitTransition()" />
+        <div style="font-size:11px;color:var(--text-3);margin-top:4px">Deixe em branco para registrar depois.</div>
+      </div>`
   }
-  if (mudouColuna && status === 'followup') {
-    const prox = prompt('Próximo passo do Closer:\n(ex: Ligar segunda 14h, Enviar proposta)')
-    if (prox) updates.proximo_passo = prox.trim()
-  }
-  if (mudouColuna && status === 'fechado') {
-    const valorStr = prompt('Valor pago (R$):\n(ex: 1500)')
-    if (valorStr !== null && valorStr.trim() !== '') {
-      const valor = parseFloat(valorStr.replace(',','.'))
-      if (!isNaN(valor)) updates.ticket = valor
+  document.getElementById('modal-transition').classList.add('open')
+  const foco = body.querySelector('input')
+  if (foco) setTimeout(() => foco.focus(), 60)
+}
+
+function selecionarMotivo(btn) {
+  motivoSelecionado = btn.dataset.motivo
+  document.querySelectorAll('#mt-motivos .move-chip').forEach(c => c.classList.toggle('sel', c === btn))
+  const wrap = document.getElementById('mt-outro-wrap')
+  const ehOutro = motivoSelecionado === 'Outro'
+  wrap.style.display = ehOutro ? '' : 'none'
+  if (ehOutro) document.getElementById('mt-outro').focus()
+}
+
+async function submitTransition() {
+  if (!pendingTransition) return
+  const { id, status, extra } = pendingTransition
+  const updates = { ...extra }
+
+  if (status === 'perdido') {
+    if (!motivoSelecionado) { showToast('Escolha o motivo da perda.', 'error'); return }
+    if (motivoSelecionado === 'Outro') {
+      const txt = (document.getElementById('mt-outro').value || '').trim()
+      if (!txt) { showToast('Descreva o motivo.', 'error'); return }
+      updates.motivo_perda = txt
+    } else {
+      updates.motivo_perda = motivoSelecionado
     }
   }
+  if (status === 'call') {
+    const d = document.getElementById('mt-data-call').value
+    if (d) updates.data_call = d
+  }
+  if (status === 'followup') {
+    const p = (document.getElementById('mt-proximo').value || '').trim()
+    if (p) updates.proximo_passo = p
+  }
+  if (status === 'fechado') {
+    const v = parseFloat(document.getElementById('mt-valor').value)
+    if (!isNaN(v)) updates.ticket = v
+  }
 
-  await updateLeadField(id, updates)
-  renderDashboard(); renderPipeline(); renderAllLeads()
-  if (status === 'fechado' && isFinanceiroUser()) onLeadFechado(id)
+  pendingTransition = null
+  document.getElementById('modal-transition').classList.remove('open')
+  await aplicarStatus(id, status, updates)
+}
+
+// Cancelar = card volta para a coluna de origem (nada foi persistido)
+function cancelTransition() {
+  pendingTransition = null
+  motivoSelecionado = null
+  document.getElementById('modal-transition').classList.remove('open')
+  renderPipeline()
 }
 
 async function addActivity(id) {
@@ -2210,12 +2342,66 @@ async function addActivity(id) {
   openDetail(id)
 }
 
+// ── CONFIRMAÇÃO PADRÃO (substitui confirm() nativo) ────────────────────────
+let _confirmOk = null
+function confirmarAcao(msg, onOk, opts = {}) {
+  _confirmOk = onOk
+  document.getElementById('mc-title').textContent = opts.titulo || 'Confirmar'
+  document.getElementById('mc-msg').textContent   = msg
+  const ok = document.getElementById('mc-ok')
+  ok.textContent = opts.okLabel || 'Confirmar'
+  // ação destrutiva: botão vermelho
+  ok.style.background = opts.perigo ? 'var(--red)' : ''
+  document.getElementById('modal-confirm').classList.add('open')
+}
+function fecharConfirm() {
+  _confirmOk = null
+  document.getElementById('modal-confirm').classList.remove('open')
+}
+function confirmarOk() {
+  const fn = _confirmOk
+  fecharConfirm()
+  if (fn) fn()
+}
+
+// ── EXCLUIR LEAD (guardas do @po + undo) ───────────────────────────────────
+// RLS: leads_delete = is_admin(). Para não-admin o delete afeta 0 linhas e NÃO
+// retorna erro — por isso o botão some da UI e o resultado é verificado com .select().
+// FK: vendas.lead_id e clientes_cs.lead_id são ON DELETE SET NULL — excluir um lead
+// vinculado órfãnaria a venda, e o undo (novo insert) não reataria o vínculo.
 async function deleteLead(id, e) {
-  e.stopPropagation()
-  if (!confirm('Excluir este lead?')) return
-  await removeLeadDB(id)
+  if (e) e.stopPropagation()
+  const lead = getLeads().find(l => l.id === id)
+  if (!lead) return
+
+  if (currentRole !== 'admin') { showToast('Só o admin pode excluir leads.', 'error'); return }
+  if (cachedVendas.some(v => v.lead_id === id)) { showToast('Lead tem venda vinculada. Exclua a venda antes.', 'error'); return }
+  if (csLeadIds.has(id))                        { showToast('Lead está em acompanhamento no CS. Remova do CS antes.', 'error'); return }
+
+  const snapshot = { ...lead }
+  delete snapshot.created   // campo derivado do front (created_at é a coluna real)
+
+  const { data, error } = await sb.from('leads').delete().eq('id', id).select()
+  if (error)            { showToast('Erro ao excluir: ' + error.message, 'error'); return }
+  if (!data || !data.length) { showToast('Sem permissão para excluir este lead.', 'error'); return } // RLS barrou em silêncio
+
+  await loadLeads()
   closeDetail()
   renderDashboard(); renderPipeline(); renderAllLeads()
+  showToast(`Lead "${lead.nome}" excluído`, 'success', {
+    actionLabel: 'Desfazer',
+    onAction: () => desfazerExclusaoLead(snapshot),
+    duration: 6000,
+  })
+}
+
+// Re-insere preservando o id original (mantém consistência de qualquer referência)
+async function desfazerExclusaoLead(snapshot) {
+  const { error } = await sb.from('leads').insert(snapshot)
+  if (error) { showToast('Não foi possível desfazer: ' + error.message, 'error'); return }
+  await loadLeads()
+  renderDashboard(); renderPipeline(); renderAllLeads()
+  showToast(`Lead "${snapshot.nome}" restaurado`)
 }
 
 // ── CUSTOMER SUCCESS ──────────────────────────────────────────────────────
@@ -2457,7 +2643,7 @@ async function registrarCheck(checkId, resultado, clienteId, obs = null) {
     p_obs:           obs || null,
     p_executado_por: currentUser?.email || null
   })
-  if (error) { alert('Erro: ' + error.message); return }
+  if (error) { showToast('Erro: ' + error.message, 'error'); return }
   await loadCS()
   renderCS()
 }
@@ -2594,7 +2780,7 @@ async function updateCSField(id, fields) {
   const idx = cachedCS.findIndex(c => c.id === id)
   if (idx !== -1) cachedCS[idx] = { ...cachedCS[idx], ...fields }
   const { error } = await sb.from('clientes_cs').update(fields).eq('id', id)
-  if (error) alert('Erro ao atualizar CS: ' + error.message)
+  if (error) showToast('Erro ao atualizar CS: ' + error.message, 'error')
   renderCS()
 }
 
@@ -2619,12 +2805,15 @@ async function removeBonusCS(id, idx) {
 
 async function moverParaCS(leadId, e) {
   e.stopPropagation()
-  if (!confirm('Mover este lead para o módulo CS?')) return
-  const { data, error } = await sb.rpc('mover_lead_para_cs', { p_lead_id: leadId })
-  if (error) { alert('Erro: ' + error.message); return }
-  await loadLeads()
-  await loadCS()
-  renderDashboard(); renderPipeline(); renderAllLeads(); renderCS()
+  const lead = getLeads().find(l => l.id === leadId)
+  confirmarAcao(`Mover "${lead?.nome || 'este lead'}" para o módulo CS?`, async () => {
+    const { error } = await sb.rpc('mover_lead_para_cs', { p_lead_id: leadId })
+    if (error) { showToast('Erro: ' + error.message, 'error'); return }
+    await loadLeads()
+    await loadCS()
+    renderDashboard(); renderPipeline(); renderAllLeads(); renderCS()
+    showToast('Lead movido para o CS')
+  }, { titulo: 'Mover para CS', okLabel: 'Mover' })
 }
 
 // ── AGENTE SDR ─────────────────────────────────────────────────────────────
@@ -2718,19 +2907,23 @@ async function saveAgente() {
     notificar_ativo: g('ag-notificar').checked,
     notificar_contato: g('ag-notificar-contato').value.trim() || null
   }
-  if (!obj.nome) { alert('Dê um nome ao agente'); return }
+  if (!obj.nome) { showToast('Dê um nome ao agente.', 'error'); return }
   const { error } = agenteEditId
     ? await sb.from('agente_sdr').update(obj).eq('id', agenteEditId)
     : await sb.from('agente_sdr').insert(obj)
-  if (error) { alert('Erro ao salvar: ' + error.message); return }
+  if (error) { showToast('Erro ao salvar: ' + error.message, 'error'); return }
   closeDetail(); await loadAgentes(); renderAgentes()
+  showToast('Agente salvo')
 }
 
-async function deleteAgente(id) {
-  if (!confirm('Excluir este agente?')) return
-  const { error } = await sb.from('agente_sdr').delete().eq('id', id)
-  if (error) { alert('Erro ao excluir: ' + error.message); return }
-  closeDetail(); await loadAgentes(); renderAgentes()
+function deleteAgente(id) {
+  const a = cachedAgentes.find(x => x.id === id)
+  confirmarAcao(`Excluir o agente "${a?.nome || ''}"? Esta ação não pode ser desfeita.`, async () => {
+    const { error } = await sb.from('agente_sdr').delete().eq('id', id)
+    if (error) { showToast('Erro ao excluir: ' + error.message, 'error'); return }
+    closeDetail(); await loadAgentes(); renderAgentes()
+    showToast('Agente excluído')
+  }, { titulo: 'Excluir agente', okLabel: 'Excluir', perigo: true })
 }
 
 async function toggleAgenteAtivo(id, e) {
@@ -2738,7 +2931,7 @@ async function toggleAgenteAtivo(id, e) {
   const a = cachedAgentes.find(x => x.id === id); if (!a) return
   const novo = !a.ativo; a.ativo = novo; renderAgentes()
   const { error } = await sb.from('agente_sdr').update({ ativo: novo }).eq('id', id)
-  if (error) { alert('Erro: ' + error.message); a.ativo = !novo; renderAgentes() }
+  if (error) { showToast('Erro: ' + error.message, 'error'); a.ativo = !novo; renderAgentes() }
 }
 
 // ── FINANCEIRO ─────────────────────────────────────────────────────────────
@@ -2945,7 +3138,7 @@ async function salvarNegociacao() {
   const metodo   = document.getElementById('fneg-metodo').value
   const resp     = document.getElementById('fneg-resp').value.trim()
   const obs      = document.getElementById('fneg-obs').value.trim()
-  if (!cliente||!valor) { alert('Preencha o cliente e o valor total.'); return }
+  if (!cliente||!valor) { showToast('Preencha o cliente e o valor total.', 'error'); return }
   const expert  = document.getElementById('fneg-expert').value.trim()
   const parcsEl = document.querySelectorAll('#fneg-parcelas-list .fin-parcela-row')
   // Se a venda nao veio do Pipeline (+ Novo Cliente direto), cria o lead em 'fechado' pra aparecer no funil tambem
@@ -2955,7 +3148,7 @@ async function salvarNegociacao() {
       nome: cliente, expert, status: 'fechado',
       closer: resp || null, ticket: valor, obs: obs || null, activities: []
     }).select().single()
-    if (eL) { alert('Erro ao criar lead: '+eL.message); return }
+    if (eL) { showToast('Erro ao criar lead: ' + eL.message, 'error'); return }
     leadIdVenda = novoLead.id
   }
   const { data: venda, error: eV } = await sb.from('vendas').insert({
@@ -2963,7 +3156,7 @@ async function salvarNegociacao() {
     expert, condicao_negociada: condicao,
     responsavel_cobranca: resp, observacao: obs
   }).select().single()
-  if (eV) { alert('Erro ao criar venda: '+eV.message); return }
+  if (eV) { showToast('Erro ao criar venda: ' + eV.message, 'error'); return }
   const parcsData = Array.from(parcsEl).map((row,i)=>({
     venda_id: venda.id, numero: i+1, total_parcelas: parcsEl.length,
     valor: parseFloat(row.querySelector('.fneg-parc-val').value)||(valor/parcsEl.length),
@@ -2971,7 +3164,7 @@ async function salvarNegociacao() {
     metodo, status: 'pendente'
   }))
   const { error: eP } = await sb.from('parcelas').insert(parcsData)
-  if (eP) { alert('Erro ao criar parcelas: '+eP.message); return }
+  if (eP) { showToast('Erro ao criar parcelas: ' + eP.message, 'error'); return }
   fecharModalNegociacao()
   await loadFinanceiro()
   if (document.getElementById('view-financeiro').classList.contains('active')) renderFinanceiro()
@@ -3083,7 +3276,7 @@ async function salvarEditVenda() {
     responsavel_cobranca: document.getElementById('fedit-resp').value.trim(),
     observacao:           document.getElementById('fedit-obs').value.trim()
   }).eq('id', vendaId)
-  if (eV) { alert('Erro: '+eV.message); return }
+  if (eV) { showToast('Erro: ' + eV.message, 'error'); return }
   const rows = document.querySelectorAll('#fedit-parcelas-list .fin-parcela-row:not([data-pago-row])')
   const totalParcs = rows.length
   for (let i = 0; i < rows.length; i++) {
@@ -3116,34 +3309,37 @@ async function salvarEditVenda() {
   showToast('✅ Edições salvas!')
 }
 
-async function desmarcarPago(parcelaId) {
-  if (!confirm('Desmarcar esta parcela como paga? A data de recebimento sera apagada.')) return
-  const parc = cachedParcelas.find(p => p.id === parcelaId)
-  const hoje = new Date().toISOString().slice(0,10)
-  const novoStatus = (parc?.vencimento && parc.vencimento < hoje) ? 'atrasado' : 'pendente'
-  const { error } = await sb.from('parcelas').update({ status: novoStatus, pago_em: null }).eq('id', parcelaId)
-  if (error) { alert('Erro: '+error.message); return }
-  await loadFinanceiro()
-  // reabre o modal com dados atualizados pra refletir o desmarcacao
-  const vendaId = document.getElementById('fedit-id').value
-  openEditVenda(vendaId)
-  renderFinanceiro()
-  showToast('↩️ Parcela desmarcada como paga')
+function desmarcarPago(parcelaId) {
+  confirmarAcao('Desmarcar esta parcela como paga? A data de recebimento será apagada.', async () => {
+    const parc = cachedParcelas.find(p => p.id === parcelaId)
+    const hoje = new Date().toISOString().slice(0,10)
+    const novoStatus = (parc?.vencimento && parc.vencimento < hoje) ? 'atrasado' : 'pendente'
+    const { error } = await sb.from('parcelas').update({ status: novoStatus, pago_em: null }).eq('id', parcelaId)
+    if (error) { showToast('Erro: ' + error.message, 'error'); return }
+    await loadFinanceiro()
+    // reabre o modal com dados atualizados pra refletir a desmarcação
+    const vendaId = document.getElementById('fedit-id').value
+    openEditVenda(vendaId)
+    renderFinanceiro()
+    showToast('Parcela desmarcada como paga')
+  }, { titulo: 'Desmarcar pagamento', okLabel: 'Desmarcar' })
 }
 
-async function excluirVenda() {
+// Venda tem parcelas (cascata) — destrutivo demais para undo silencioso: mantém confirmação explícita, agora no design system.
+function excluirVenda() {
   const vendaId = document.getElementById('fedit-id').value
   const venda   = cachedVendas.find(v => v.id === vendaId); if (!venda) return
   const parcs   = cachedParcelas.filter(p => p.venda_id === vendaId)
-  const msg = `EXCLUIR a venda de "${venda.cliente}" (R$ ${parseFloat(venda.valor_total||0).toLocaleString('pt-BR',{minimumFractionDigits:2})})?\n\nIsso vai apagar a venda + ${parcs.length} parcela(s). Acao NAO pode ser desfeita.`
-  if (!confirm(msg)) return
-  if (!confirm('Tem certeza mesmo? Ultima confirmacao.')) return
-  const { error } = await sb.from('vendas').delete().eq('id', vendaId)
-  if (error) { alert('Erro ao excluir: '+error.message); return }
-  document.getElementById('modal-edit').classList.remove('open')
-  await loadFinanceiro()
-  renderFinanceiro()
-  showToast('🗑️ Venda excluida')
+  const valor   = parseFloat(venda.valor_total||0).toLocaleString('pt-BR',{minimumFractionDigits:2})
+  const msg = `Excluir a venda de "${venda.cliente}" (R$ ${valor})?\n\nIsso apaga a venda e ${parcs.length} parcela(s). Não pode ser desfeito.`
+  confirmarAcao(msg, async () => {
+    const { error } = await sb.from('vendas').delete().eq('id', vendaId)
+    if (error) { showToast('Erro ao excluir: ' + error.message, 'error'); return }
+    document.getElementById('modal-edit').classList.remove('open')
+    await loadFinanceiro()
+    renderFinanceiro()
+    showToast('Venda excluída')
+  }, { titulo: 'Excluir venda', okLabel: 'Excluir venda', perigo: true })
 }
 
 // ── CONFIRMAR PAGO ─────────────────────────────────────────────────────────
@@ -3167,9 +3363,9 @@ function openModalPago(parcelaId) {
 async function confirmarPago() {
   const data   = document.getElementById('fpago-data').value
   const metodo = document.getElementById('fpago-metodo').value
-  if (!data) { alert('Informe a data de recebimento.'); return }
+  if (!data) { showToast('Informe a data de recebimento.', 'error'); return }
   const { error } = await sb.from('parcelas').update({ status:'pago', pago_em:data, metodo }).eq('id', pendingPagoParcelaId)
-  if (error) { alert('Erro: '+error.message); return }
+  if (error) { showToast('Erro: ' + error.message, 'error'); return }
   document.getElementById('modal-pago').classList.remove('open')
   pendingPagoParcelaId = null
   await loadFinanceiro()
@@ -3178,7 +3374,8 @@ async function confirmarPago() {
 }
 
 // ── TOAST ──────────────────────────────────────────────────────────────────
-function showToast(msg, type='success') {
+// opts: { actionLabel, onAction, duration } — ação opcional (ex.: "Desfazer")
+function showToast(msg, type='success', opts = {}) {
   let container = document.getElementById('fin-toast-container')
   if (!container) {
     container = document.createElement('div')
@@ -3187,10 +3384,30 @@ function showToast(msg, type='success') {
   }
   const t = document.createElement('div')
   t.className = `fin-toast ${type}`
-  t.textContent = msg
+  const span = document.createElement('span')
+  span.textContent = msg               // textContent: sem risco de XSS com nome de lead
+  span.style.flex = '1'
+  t.appendChild(span)
+
+  let fechado = false
+  const fechar = () => {
+    if (fechado) return
+    fechado = true
+    t.classList.remove('show')
+    setTimeout(() => t.remove(), 300)
+  }
+
+  if (opts.actionLabel && opts.onAction) {
+    const btn = document.createElement('button')
+    btn.className = 'toast-action'
+    btn.textContent = opts.actionLabel
+    btn.onclick = () => { fechar(); opts.onAction() }
+    t.appendChild(btn)
+  }
+
   container.appendChild(t)
   requestAnimationFrame(() => { requestAnimationFrame(() => t.classList.add('show')) })
-  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300) }, 3000)
+  setTimeout(fechar, opts.duration || 3000)
 }
 
 // ── UTILS ──────────────────────────────────────────────────────────────────
@@ -3225,6 +3442,8 @@ const MODAL_CLOSERS = {
   'modal-coach-new':     closeNewMeeting,
   'modal-coach-detail':  closeMeeting,
   'modal-negociacao':    fecharModalNegociacao,
+  'modal-transition':    cancelTransition,   // cancelar = card volta pra coluna de origem
+  'modal-confirm':       fecharConfirm,
 }
 function closeModalEl(el) {
   if (!el) return
