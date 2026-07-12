@@ -1,0 +1,12 @@
+{
+  "hotkey": "ctrl+windows",
+  "model": "base",
+  "language": "pt",
+  "max_seconds": 120,
+  "paste_mode": "clipboard",
+  "beeps": true,
+  "debug_save_wav": false,
+  "overlay": true,
+  "polish_enabled": false,
+  "custom_vocabulary": ["Wispr Flow", "WhisperFlow", "ARVEX"]
+}
