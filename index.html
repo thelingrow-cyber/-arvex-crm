@@ -432,11 +432,11 @@
     .btn-whatsapp:hover { background: rgba(34,197,94,.22); }
     .fin-dias-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all .15s; }
     .fin-dias-btn.active { background: var(--accent-dim); border-color: var(--blue); color: var(--blue); }
-    .fin-metodo-sel { background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 2px 5px; font-size: 11px; cursor: pointer; }
+    .fin-metodo-sel { background: var(--card); border: 1px solid var(--border); color: var(--white); border-radius: 4px; padding: 2px 5px; font-size: 11px; cursor: pointer; }
     .fin-empty-row td { text-align:center; color:var(--muted); font-size:13px; padding:18px 0; font-style:italic; }
     .fin-search-wrap { margin-bottom:16px; }
-    .fin-search-wrap input { width:100%; max-width:320px; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--text); font-family:Inter,sans-serif; font-size:13px; padding:8px 12px; outline:none; }
-    .fin-search-wrap input:focus { border-color:var(--accent); }
+    .fin-search-wrap input { width:100%; max-width:320px; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--white); font-family:Inter,sans-serif; font-size:13px; padding:8px 12px; outline:none; }
+    .fin-search-wrap input:focus { border-color:var(--blue); box-shadow: 0 0 0 3px var(--accent-dim); }
     .fin-total-row { font-size:12px; color:var(--muted); text-align:right; padding:6px 8px 0; }
     #fin-toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:8px; pointer-events:none; }
     .fin-toast { background:var(--navy3); border:1px solid var(--border); border-radius:10px; padding:12px 18px; font-size:13px; font-weight:500; color:var(--white); box-shadow:var(--shadow-2); opacity:0; transform:translateY(10px); transition:all .25s; pointer-events:none; }
@@ -476,7 +476,7 @@
       <label>Senha</label>
       <input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
     </div>
-    <button class="btn-login" onclick="doLogin()">Entrar</button>
+    <button class="btn-login" id="btn-login" onclick="doLogin()">Entrar</button>
     <div class="login-error" id="login-error"></div>
   </div>
 </div>
@@ -520,11 +520,6 @@
   </div>
   <div class="sidebar-item" id="nav-clientes-fin" onclick="goTo('clientes-fin',this)">
     <span class="si-icon" data-icon="users"></span> Clientes
-  </div>
-
-  <div class="sidebar-section" style="margin-top:8px">Em breve</div>
-  <div class="sidebar-item" style="opacity:.4;pointer-events:none">
-    <span class="si-icon" data-icon="calendar"></span> Agenda
   </div>
 
   <div class="sidebar-bottom">
@@ -638,7 +633,7 @@
       <div class="table-card">
         <div class="table-card-header">
           <h3>Leads Recentes</h3>
-          <span class="search-box"><span data-icon="search" data-icon-size="14"></span><input type="text" id="search-recent" placeholder="Buscar..." oninput="renderDashboard()"
+          <span class="search-box"><span data-icon="search" data-icon-size="14"></span><input type="text" id="search-recent" placeholder="Buscar..." oninput="dSearchDashboard()"
             style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:6px 12px;outline:none;width:200px" /></span>
         </div>
         <table>
@@ -670,7 +665,7 @@
         <p>Lista completa de leads cadastrados</p>
       </div>
       <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
-        <span class="search-box" style="flex:1;min-width:220px"><span data-icon="search"></span><input type="text" id="search-leads" placeholder="Buscar por nome, telefone ou expert..." oninput="renderAllLeads()"
+        <span class="search-box" style="flex:1;min-width:220px"><span data-icon="search"></span><input type="text" id="search-leads" placeholder="Buscar por nome, telefone ou expert..." oninput="dSearchLeads()"
           style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 14px;outline:none" /></span>
         <select id="filter-status-leads" onchange="renderAllLeads()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
           <option value="">Todos os status</option>
@@ -760,7 +755,7 @@
 
       <!-- Busca -->
       <div class="fin-search-wrap">
-        <span class="search-box" style="display:block"><span data-icon="search"></span><input type="text" id="fin-search" placeholder="Buscar por cliente..." oninput="renderFinanceiro()" /></span>
+        <span class="search-box" style="display:block"><span data-icon="search"></span><input type="text" id="fin-search" placeholder="Buscar por cliente..." oninput="dSearchFin()" /></span>
       </div>
 
       <!-- Seção: Vencem Hoje -->
@@ -823,7 +818,7 @@
         <button class="btn-primary" onclick="novoClienteFinanceiro()">+ Novo Cliente</button>
       </div>
       <div class="fin-search-wrap" style="margin-bottom:16px">
-        <input type="text" id="fin-clientes-search" placeholder="🔍 Buscar cliente..." oninput="renderClientesFinanceiro()" />
+        <span class="search-box" style="display:block"><span data-icon="search"></span><input type="text" id="fin-clientes-search" placeholder="Buscar cliente..." oninput="dSearchClientesFin()" /></span>
       </div>
       <div class="table-card">
         <table class="fin-clientes-table">
@@ -899,7 +894,7 @@
       </div>
       <div id="coach-demo-banner" class="coach-banner" style="display:none">Modo demonstração — dados fictícios</div>
       <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
-        <span class="search-box" style="flex:1;min-width:220px"><span data-icon="search"></span><input type="text" id="coach-search" placeholder="Buscar por cliente..." oninput="renderCoach()" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 14px;outline:none" /></span>
+        <span class="search-box" style="flex:1;min-width:220px"><span data-icon="search"></span><input type="text" id="coach-search" placeholder="Buscar por cliente..." oninput="dSearchCoach()" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 14px;outline:none" /></span>
         <select id="coach-filter-resultado" onchange="renderCoach()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
           <option value="">Todos os resultados</option><option value="ganhou">Ganhou</option><option value="perdeu">Perdeu</option><option value="aberto">Em aberto</option>
         </select>
@@ -1267,10 +1262,17 @@ async function doLogin() {
   const email = document.getElementById('login-email').value.trim()
   const pass  = document.getElementById('login-pass').value
   const errEl = document.getElementById('login-error')
+  const btn   = document.getElementById('btn-login')
   errEl.textContent = ''
   if (!email || !pass) { errEl.textContent = 'Preencha email e senha.'; return }
+  if (btn.disabled) return // guarda contra duplo submit (Enter + clique)
+  btn.disabled = true; btn.textContent = 'Entrando…'; btn.style.opacity = '.7'
   const { error } = await sb.auth.signInWithPassword({ email, password: pass })
-  if (error) { errEl.textContent = 'Email ou senha incorretos.'; return }
+  if (error) {
+    errEl.textContent = 'Email ou senha incorretos.'
+    btn.disabled = false; btn.textContent = 'Entrar'; btn.style.opacity = ''
+  }
+  // sucesso: onAuthStateChange esconde a tela de login — não precisa restaurar o botão
 }
 
 async function doLogout() {
@@ -1289,8 +1291,10 @@ sb.auth.onAuthStateChange(async (event, session) => {
       currentRole = 'sdr'
       sb.from('profiles').insert({ id: currentUser.id, name: currentUser.email, role: currentRole }).then(() => {}, () => {})
     }
-    // abre o app
-    document.getElementById('login-screen').classList.add('hidden')
+    // abre o app — limpa o display inline do bootstrap, senão ele vence o .hidden e a tela de login fica por cima
+    const loginScreen = document.getElementById('login-screen')
+    loginScreen.style.display = ''
+    loginScreen.classList.add('hidden')
     document.getElementById('sidebar').classList.add('app-visible')
     document.getElementById('main-wrap').style.display = 'flex'
     document.getElementById('user-name').textContent = currentUser.email
@@ -1311,6 +1315,8 @@ sb.auth.onAuthStateChange(async (event, session) => {
     document.getElementById('login-screen').classList.remove('hidden')
     document.getElementById('sidebar').classList.remove('app-visible')
     document.getElementById('main-wrap').style.display = 'none'
+    const btnL = document.getElementById('btn-login')
+    if (btnL) { btnL.disabled = false; btnL.textContent = 'Entrar'; btnL.style.opacity = '' }
   }
 })
 
@@ -3035,7 +3041,7 @@ function openEditVenda(vendaId) {
       <input type="number" class="fedit-parc-val" value="${p.valor}" placeholder="Valor" style="width:90px"/>
       <input type="date"   class="fedit-parc-data" value="${p.vencimento||''}"/>
       <span class="fin-data-fmt">${fmtDataBR(p.vencimento)}</span>
-      <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 6px;font-size:12px">
+      <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--white);border-radius:6px;padding:4px 6px;font-size:12px">
         <option value="" ${!p.metodo?'selected':''}>—</option>
         <option value="pix"    ${p.metodo==='pix'?'selected':''}>PIX</option>
         <option value="boleto" ${p.metodo==='boleto'?'selected':''}>Boleto</option>
@@ -3059,7 +3065,7 @@ function adicionarParcela() {
     <input type="number" class="fedit-parc-val" placeholder="Valor" style="width:90px"/>
     <input type="date"   class="fedit-parc-data" value="${hoje}"/>
     <span class="fin-data-fmt">${fmtDataBR(hoje)}</span>
-    <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 6px;font-size:12px">
+    <select class="fedit-parc-metodo" style="background:var(--navy3);border:1px solid var(--border);color:var(--white);border-radius:6px;padding:4px 6px;font-size:12px">
       <option value="">—</option>
       <option value="pix">PIX</option>
       <option value="boleto">Boleto</option>
@@ -3210,6 +3216,52 @@ function fmtDate(ts) {
   if (!ts) return '—'
   return new Date(ts).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
 }
+
+// ── MODAIS: Esc e clique no overlay fecham ─────────────────────────────────
+// Modais com estado próprio precisam da função de fechar (limpa pendências); os demais só perdem .open
+const MODAL_CLOSERS = {
+  'modal-new':           closeNewLead,
+  'modal-detail':        closeDetail,
+  'modal-coach-new':     closeNewMeeting,
+  'modal-coach-detail':  closeMeeting,
+  'modal-negociacao':    fecharModalNegociacao,
+}
+function closeModalEl(el) {
+  if (!el) return
+  const fn = MODAL_CLOSERS[el.id]
+  if (fn) fn(); else el.classList.remove('open')
+}
+function closeTopModal() {
+  const abertos = document.querySelectorAll('.modal-overlay.open')
+  if (!abertos.length) return false
+  closeModalEl(abertos[abertos.length - 1]) // o último no DOM é o de cima
+  return true
+}
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return
+  if (closeTopModal()) return
+  closeMobileSidebar() // sem modal aberto: Esc fecha o menu mobile
+})
+// Só fecha se o mousedown E o clique terminarem no overlay — não fecha ao selecionar texto de dentro do modal
+let _overlayDown = null
+document.addEventListener('mousedown', e => {
+  _overlayDown = e.target.classList?.contains('modal-overlay') ? e.target : null
+})
+document.addEventListener('click', e => {
+  if (_overlayDown && e.target === _overlayDown) closeModalEl(_overlayDown)
+  _overlayDown = null
+})
+
+// ── BUSCA: debounce (evita re-render da tabela inteira a cada tecla) ────────
+function debounce(fn, ms = 150) {
+  let t
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms) }
+}
+const dSearchDashboard   = debounce(() => renderDashboard())
+const dSearchLeads       = debounce(() => renderAllLeads())
+const dSearchCoach       = debounce(() => renderCoachCards())   // filtra o cache, não recarrega do banco
+const dSearchFin         = debounce(() => renderFinanceiro())
+const dSearchClientesFin = debounce(() => renderClientesFinanceiro())
 </script>
 </body>
 </html>
