@@ -1,0 +1,55 @@
+storyId: CRM-UX-001
+story: docs/stories/crm-lote1-fluxo-sem-prompts.story.md
+reviewer: "@qa (Quinn)"
+date: 2026-07-12
+verdict: PASS (após 1 iteração do QA Loop)
+summary: >
+  AC1-AC5 implementados e verificados. Um defeito HIGH introduzido pelo próprio Lote 1
+  bloqueia o gate: o toast de sucesso é exibido mesmo quando a persistência falha.
+
+checks:
+  code_review:      PASS   # reuso correto (showToast, MODAL_CLOSERS, .move-chip); sem duplicação
+  unit_tests:       N/A    # projeto single-file sem suíte; validação por verificação em browser
+  acceptance:       PASS   # AC1-AC5 conferidos no browser
+  regressions:      PASS   # ISSUE-1 corrigido e re-verificado
+  performance:      PASS   # render por evento; sem loops novos
+  security:         PASS   # innerHTML dos modais só interpola constantes (esc) e ticket numérico; showToast usa textContent
+  documentation:    PASS   # story com File List e Completion Notes
+
+issues:
+  - id: ISSUE-1
+    status: RESOLVIDO (re-verificado no browser)
+    fix: >
+      updateLeadField() passou a retornar boolean; aplicarStatus() aborta antes do toast
+      de sucesso e de onLeadFechado() quando ok === false. Re-teste: com erro simulado
+      aparece SÓ o toast vermelho e o modal de venda não abre; no caminho feliz o toast
+      "Lead movido para Follow Up" segue normal.
+    severity: high
+    category: correctness
+    description: >
+      aplicarStatus() exibe "Lead movido para X" mesmo quando updateLeadField() falhou.
+      updateLeadField() trata o erro internamente e não retorna status, então o sucesso é
+      assumido. Evidência (browser, update simulado com erro): dois toasts simultâneos —
+      "Erro ao atualizar: permission denied" seguido de "Lead movido para Fechado".
+      Agrava: no status 'fechado', onLeadFechado() abre o modal de negociação para uma
+      venda que não existe no banco. Um SDR barrado por RLS acredita ter salvo.
+    recommendation: >
+      updateLeadField() deve retornar boolean (ok). aplicarStatus() só toasta sucesso,
+      renderiza e chama onLeadFechado() se ok === true; se falhou, recarrega e mostra só o erro.
+    files: ["docs/crm/index.html: updateLeadField (l.1430), aplicarStatus (l.2233)"]
+
+  - id: ISSUE-2
+    severity: low
+    category: dead-code
+    description: "moveTo(id, status) (l.2203) não é chamado por ninguém — resquício do fluxo antigo."
+    recommendation: "Remover no Lote 3 (limpeza), não bloqueia."
+
+  - id: ISSUE-3
+    severity: low
+    category: tech-debt
+    description: "updateCSField() tem o mesmo padrão (mostra erro e segue como se tivesse salvo). Pré-existente, fora do escopo do Lote 1."
+    recommendation: "Backlog: aplicar o mesmo contrato de retorno no Lote 2."
+
+coderabbit:
+  executed: false
+  reason: "CLI em WSL, review de 7-30min; verificação manual em browser cobriu os focos (XSS, regressão de fluxo)."

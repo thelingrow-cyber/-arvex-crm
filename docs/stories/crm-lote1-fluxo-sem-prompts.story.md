@@ -1,7 +1,7 @@
 # Story CRM-UX-001 — Lote 1: fluxo sem prompts nativos (F1, F2, F8, F9)
 
 **Tipo:** Brownfield enhancement (CRM ARVEX — sem epic formal)
-**Status:** Ready for Review
+**Status:** Done
 **Owner:** @dev (Dex) — frontend puro, sem SQL
 **Criado:** 2026-07-12 por @sm (River)
 **Validado:** 2026-07-12 por @po (Pax) — score 8/10 **GO** (AC3 reescrito: RLS admin-only + FK ON DELETE SET NULL invalidavam o undo original)
@@ -143,3 +143,17 @@ As transições mais usadas do CRM rodam em caixinha nativa do browser (`prompt`
 |------|-------|---------|
 | 2026-07-12 | @sm (River) | Story criada a partir do UX-IMPROVEMENT-PLAN §4 Lote 1 |
 | 2026-07-12 | @po (Pax) | Validação 8/10 GO. AC3 reescrito (3 guardas novas: permissão, vínculo, delete verificado). T4 ajustada. Achado extra p/ backlog: o ✕ hoje falha em silêncio para não-admin — corrigido dentro do AC3. |
+
+---
+
+## QA Results
+
+**Gate:** `docs/qa/gates/crm-ux-001-lote1.yml` · **Verdict: PASS** (após 1 iteração do QA Loop) · @qa (Quinn), 2026-07-12
+
+**ISSUE-1 (HIGH) — encontrado e corrigido:** `aplicarStatus()` exibia "Lead movido para X" mesmo quando o UPDATE falhava, porque `updateLeadField()` tratava o erro internamente e não retornava status. Evidência (browser, erro simulado): dois toasts — "Erro ao atualizar: permission denied" seguido de "Lead movido para Fechado". Agravante: em `fechado`, abria o modal de negociação para uma venda inexistente. **Fix:** `updateLeadField()` retorna boolean; `aplicarStatus()` aborta antes do toast de sucesso e de `onLeadFechado()` quando falha. **Re-verificado:** com erro → só o toast vermelho, modal de venda não abre; com sucesso → toast verde normal.
+
+**Débitos registrados (não bloqueiam):**
+- ISSUE-2 (low): `moveTo()` virou código morto — remover no Lote 3.
+- ISSUE-3 (low): `updateCSField()` tem o mesmo padrão de sucesso presumido (pré-existente) — aplicar o mesmo contrato de retorno no Lote 2.
+
+**Segurança:** innerHTML dos modais novos só interpola constantes (via `esc()`) e `ticket` numérico; `showToast` usa `textContent`. Sem nova superfície XSS.

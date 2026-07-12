@@ -1427,13 +1427,19 @@ async function insertLead(lead) {
   if (error) showToast('Erro ao salvar lead: ' + error.message, 'error')
 }
 
+// Retorna true só se o banco confirmou a gravação — quem chama NÃO pode presumir sucesso.
 async function updateLeadField(id, fields) {
   // atualiza cache local imediatamente para evitar flash de card sumindo
   const idx = cachedLeads.findIndex(l => l.id === id)
   if (idx !== -1) cachedLeads[idx] = { ...cachedLeads[idx], ...fields }
   const { error } = await sb.from('leads').update(fields).eq('id', id)
-  if (error) { showToast('Erro ao atualizar: ' + error.message, 'error'); await loadLeads() }
+  if (error) {
+    showToast('Erro ao atualizar: ' + error.message, 'error')
+    await loadLeads()   // desfaz o cache otimista
+    return false
+  }
   // loadLeads() será chamado pelo realtime subscription automaticamente
+  return true
 }
 
 async function removeLeadDB(id) {
@@ -2229,8 +2235,11 @@ async function changeStatus(id, status, extra = {}) {
 }
 
 async function aplicarStatus(id, status, extra = {}) {
-  await updateLeadField(id, { status, ...extra })
+  const ok = await updateLeadField(id, { status, ...extra })
   renderDashboard(); renderPipeline(); renderAllLeads()
+  // Sem confirmação do banco não há sucesso: nada de toast verde nem de modal de venda
+  // para um lead que continua na coluna antiga (o erro já foi mostrado por updateLeadField).
+  if (!ok) return
   showToast(`Lead movido para ${BLABEL[status] || status}`)
   if (status === 'fechado' && isFinanceiroUser()) onLeadFechado(id)
 }
