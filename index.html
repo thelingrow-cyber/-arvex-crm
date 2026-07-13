@@ -1274,17 +1274,24 @@ function initSelectsEquipe() {
   set('f-expert', expertsAtivos().map(e => `<option value="${esc(e.id)}">${esc(e.label)}</option>`).join(''))
   set('f-resp',   opts(SDRS,    '', '— Sem SDR —'))
   set('f-closer', opts(CLOSERS, '', '— Sem Closer —'))
-  set('filter-resp', opts([...new Set([...SDRS, ...CLOSERS])], '', 'Todos os vendedores'))
+  // filter-resp é repopulado em refreshFiltrosEquipe() (precisa dos leads carregados)
 }
-// Filtros de expert dependem dos dados carregados — repopulados a cada render
+// Filtros dependem dos dados carregados — repopulados a cada render.
+// Incluem quem saiu da operação mas tem histórico (Dr. Alex, Victor P): o passado é filtrável.
 function refreshFiltrosExpert() {
-  const lista = expertsComDados()
+  const experts = expertsComDados()
   ;['filter-expert', 'filter-expert-leads'].forEach(id => {
     const el = document.getElementById(id); if (!el) return
     const sel = el.value
-    el.innerHTML = opts(lista, sel, 'Todos os experts')
+    el.innerHTML = opts(experts, sel, 'Todos os experts')
     el.value = sel   // preserva a seleção do usuário
   })
+  const fr = document.getElementById('filter-resp')
+  if (fr) {
+    const sel = fr.value
+    fr.innerHTML = opts(equipeComDados(), sel, 'Todos os vendedores')
+    fr.value = sel
+  }
 }
 // A chamada de initSelectsEquipe() fica no FIM do script: EXPERTS/SDRS/opts são const e,
 // invocada aqui, cairia na TDZ (ReferenceError) e derrubaria o boot inteiro.
@@ -1297,8 +1304,25 @@ const EXPERTS = [
   { id: 'Dr. Alex',      label: 'Dr. Alex (HOF)',        cor: 'var(--blue)',  ativo: false }, // fora da operação desde 2026-07-06
   { id: 'Outro',         label: 'Outro',                 cor: 'var(--muted)', ativo: true  },
 ]
-const SDRS    = ['Victor P', 'Gabriel', 'Vitor']
-const CLOSERS = ['Victor P', 'Gabriel', 'Vitor']
+// Time comercial. Mesma regra dos experts: arquivado ≠ apagado — quem sai deixa de aparecer
+// nos selects de CADASTRO, mas continua nos filtros e relatórios enquanto tiver leads.
+const EQUIPE = [
+  { nome: 'Thalita',  sdr: true, closer: true, ativo: true  },   // entrou 2026-07-13
+  { nome: 'Gabriel',  sdr: true, closer: true, ativo: true  },
+  { nome: 'Vitor',    sdr: true, closer: true, ativo: true  },
+  { nome: 'Victor P', sdr: true, closer: true, ativo: false },   // saiu da operação em 2026-07-13
+]
+const SDRS    = EQUIPE.filter(p => p.ativo && p.sdr).map(p => p.nome)
+const CLOSERS = EQUIPE.filter(p => p.ativo && p.closer).map(p => p.nome)
+
+// Quem deve aparecer nos FILTROS: os ativos + quem tem lead no histórico (ex.: Victor P)
+function equipeComDados() {
+  const nosDados = new Set(getLeads().flatMap(l => [l.resp, l.closer]).filter(Boolean))
+  return [...new Set([...SDRS, ...CLOSERS, ...nosDados])]
+}
+// Garante que o valor ATUAL do lead esteja na lista do select. Sem isto, um lead do Victor P
+// abriria o select mostrando OUTRA pessoa — e o próximo save trocaria o responsável sem querer.
+const comAtual = (lista, atual) => (atual && !lista.includes(atual)) ? [...lista, atual] : lista
 
 const expertsAtivos = () => EXPERTS.filter(e => e.ativo)
 // Experts que devem aparecer em filtros/relatórios: os ativos + os que têm dados históricos
@@ -2891,12 +2915,12 @@ function openDetail(id) {
       <div><div class="di-label">Origem</div><div class="di-value">${esc(l.origem)}</div></div>
       <div><div class="di-label">SDR Responsável</div>
         <select onchange="updateLeadField('${l.id}',{resp:this.value});renderPipeline();renderAllLeads()" class="di-field di-select">
-          ${opts(SDRS, l.resp || '', '— Sem SDR —')}
+          ${opts(comAtual(SDRS, l.resp), l.resp || '', '— Sem SDR —')}
         </select>
       </div>
       <div><div class="di-label">Closer Responsável</div>
         <select onchange="updateLeadField('${l.id}',{closer:this.value});renderPipeline();renderAllLeads()" class="di-field di-select">
-          ${opts(CLOSERS, l.closer || '', '— Sem Closer —')}
+          ${opts(comAtual(CLOSERS, l.closer), l.closer || '', '— Sem Closer —')}
         </select>
       </div>
       <div><div class="di-label">Tem Sócio</div><div class="di-value">${esc(l.socio||'—')}</div></div>
