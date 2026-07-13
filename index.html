@@ -468,6 +468,53 @@
     .fin-drill-row.dr-pendente { border-left-color: rgba(251,191,36,.5); }
     .fin-drill-label { color: var(--muted); font-size: 11px; margin-top: 2px; }
     .fpago-summary { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
+
+    /* ── COACH / REUNIÕES (absorvido do 2º <style> que vivia no body — Lote 4) ── */
+    .coach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+    .coach-card{background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:14px;transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+    .coach-card[onclick]{cursor:pointer}.coach-card[onclick]:hover{border-color:var(--border-2);transform:translateY(-1px)}
+    .coach-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .coach-card-title{font-size:13px;font-weight:600;color:var(--white)}
+    .coach-result,.coach-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+    .coach-card-meta{font-size:11px;color:var(--text-3);margin-top:4px}
+    .coach-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+    .coach-nota{font-size:22px;font-weight:700}
+    .coach-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+    .coach-pulse{animation:coachPulse 1.4s ease-in-out infinite}@keyframes coachPulse{0%,100%{opacity:1}50%{opacity:.35}}
+    .coach-empty{grid-column:1/-1;text-align:center;color:var(--text-3);padding:60px 20px}
+    .coach-empty h3{color:var(--white);margin:12px 0 6px;font-size:15px}
+    .coach-banner{background:var(--accent-dim);border:1px solid var(--border);color:var(--gold2);font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:12px}
+    .coach-seg{display:flex;gap:8px}
+    .coach-seg button{flex:1;background:var(--navy3);border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:10px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+    .coach-seg button.active{border-color:var(--blue);color:var(--white);background:var(--accent-dim)}
+    .coach-meter{display:grid;grid-template-columns:130px 1fr 34px;align-items:center;gap:10px;margin:7px 0}
+    .coach-meter-label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3)}
+    .coach-meter-bar{height:8px;background:var(--navy3);border-radius:4px;overflow:hidden}
+    .coach-meter-fill{height:100%;background:var(--blue);border-radius:4px}
+    .coach-meter-val{font-size:12px;color:var(--white);text-align:right}
+    .coach-insight{background:var(--navy3);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:10px}
+    .coach-insight h4{font-size:12px;display:flex;align-items:center;gap:6px;margin-bottom:6px;color:var(--white)}
+    .coach-insight ul{margin:0;padding:0;list-style:none}.coach-insight li{font-size:12px;color:var(--muted);padding:3px 0}
+    .coach-nota-big{font-size:34px;font-weight:700}
+    .coach-diretor{display:flex;gap:10px;background:var(--accent-dim);border:1px solid var(--blue);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-bottom:14px}
+    .coach-missao{display:flex;gap:10px;background:rgba(200,169,110,.10);border:1px solid var(--gold);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-top:12px}
+    .coach-extra{margin-top:10px}.coach-extra p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.55}
+    .coach-chat{margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
+    .coach-chat-msgs{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;margin:10px 0}
+    .cc-msg{max-width:85%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;white-space:pre-wrap}
+    .cc-user{align-self:flex-end;background:var(--blue);color:#fff}
+    .cc-ia{align-self:flex-start;background:var(--navy3);color:var(--white);border:1px solid var(--border)}
+    .cc-typing{align-self:flex-start;color:var(--text-3);font-size:12px;font-style:italic;padding:4px 0}
+    .coach-chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+    .coach-chat-chips button{background:var(--navy3);border:1px solid var(--border);color:var(--muted);border-radius:100px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:inherit}
+    .coach-chat-input{display:flex;gap:8px}
+    .coach-chat-input input{flex:1;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);padding:10px 12px;font-family:inherit;font-size:13px;outline:none}
+    .coach-chat-input button{background:var(--blue);border:none;color:#fff;border-radius:8px;padding:10px 16px;cursor:pointer;font-weight:700}
+
+    /* ── Campos do modal de detalhe (Lote 4: mesmo bloco repetido 9+8 vezes) ── */
+    .di-field  { background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-family: Inter, sans-serif; outline: none; width: 100%; margin-top: 4px; }
+    .di-select { font-size: 13px; padding: 6px 10px; }   /* usar junto de .di-field */
+    .di-input  { font-size: 12px; padding: 5px 9px; }    /* idem */
   </style>
 </head>
 <body>
@@ -842,48 +889,6 @@
 
     <!-- COACH — Sales Coach -->
     <div id="view-coach" class="view">
-      <style>
-        .coach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-        .coach-card{background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:14px;transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
-        .coach-card[onclick]{cursor:pointer}.coach-card[onclick]:hover{border-color:var(--border-2);transform:translateY(-1px)}
-        .coach-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-        .coach-card-title{font-size:13px;font-weight:600;color:var(--white)}
-        .coach-result,.coach-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
-        .coach-card-meta{font-size:11px;color:var(--text-3);margin-top:4px}
-        .coach-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
-        .coach-nota{font-size:22px;font-weight:700}
-        .coach-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
-        .coach-pulse{animation:coachPulse 1.4s ease-in-out infinite}@keyframes coachPulse{0%,100%{opacity:1}50%{opacity:.35}}
-        .coach-empty{grid-column:1/-1;text-align:center;color:var(--text-3);padding:60px 20px}
-        .coach-empty h3{color:var(--white);margin:12px 0 6px;font-size:15px}
-        .coach-banner{background:var(--accent-dim);border:1px solid var(--border);color:var(--gold2);font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:12px}
-        .coach-seg{display:flex;gap:8px}
-        .coach-seg button{flex:1;background:var(--navy3);border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:10px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
-        .coach-seg button.active{border-color:var(--blue);color:var(--white);background:var(--accent-dim)}
-        .coach-meter{display:grid;grid-template-columns:130px 1fr 34px;align-items:center;gap:10px;margin:7px 0}
-        .coach-meter-label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3)}
-        .coach-meter-bar{height:8px;background:var(--navy3);border-radius:4px;overflow:hidden}
-        .coach-meter-fill{height:100%;background:var(--blue);border-radius:4px}
-        .coach-meter-val{font-size:12px;color:var(--white);text-align:right}
-        .coach-insight{background:var(--navy3);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:10px}
-        .coach-insight h4{font-size:12px;display:flex;align-items:center;gap:6px;margin-bottom:6px;color:var(--white)}
-        .coach-insight ul{margin:0;padding:0;list-style:none}.coach-insight li{font-size:12px;color:var(--muted);padding:3px 0}
-        .coach-nota-big{font-size:34px;font-weight:700}
-        .coach-diretor{display:flex;gap:10px;background:var(--accent-dim);border:1px solid var(--blue);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-bottom:14px}
-        .coach-missao{display:flex;gap:10px;background:rgba(200,169,110,.10);border:1px solid var(--gold);border-radius:8px;padding:14px;font-size:13px;line-height:1.55;color:var(--white);margin-top:12px}
-        .coach-extra{margin-top:10px}.coach-extra p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.55}
-        .coach-chat{margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
-        .coach-chat-msgs{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;margin:10px 0}
-        .cc-msg{max-width:85%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;white-space:pre-wrap}
-        .cc-user{align-self:flex-end;background:var(--blue);color:#fff}
-        .cc-ia{align-self:flex-start;background:var(--navy3);color:var(--white);border:1px solid var(--border)}
-        .cc-typing{align-self:flex-start;color:var(--text-3);font-size:12px;font-style:italic;padding:4px 0}
-        .coach-chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
-        .coach-chat-chips button{background:var(--navy3);border:1px solid var(--border);color:var(--muted);border-radius:100px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:inherit}
-        .coach-chat-input{display:flex;gap:8px}
-        .coach-chat-input input{flex:1;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);padding:10px 12px;font-family:inherit;font-size:13px;outline:none}
-        .coach-chat-input button{background:var(--blue);border:none;color:#fff;border-radius:8px;padding:10px 16px;cursor:pointer;font-weight:700}
-      </style>
       <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
         <div><h1>Reuniões</h1><p>Análise das suas reuniões</p></div>
         <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
@@ -1161,7 +1166,34 @@
 </div>
 
 <script>
-// ── SUPABASE ───────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+//  ARVEX CRM — mapa do arquivo (Lote 4)
+//
+//  Para editar um módulo, faça grep da bandeira e leia SÓ aquele trecho —
+//  não é preciso ler o arquivo inteiro (235KB).
+//
+//    ===== DOMINIO: BOOT & SUPABASE .......... cliente, ícones Lucide, EQUIPE/EXPERTS, COLS
+//    ===== DOMINIO: AUTH & ROLES ............. login, profiles.role, profiles.financeiro, applyRole
+//    ===== DOMINIO: NAVEGACAO ................ goTo, rota por hash, deep-link #lead/{id}
+//    ===== DOMINIO: REUNIOES (Sales Coach) ... meetings, análise IA, chat da call
+//    ===== DOMINIO: DASHBOARD ................ métricas de MOVIMENTO (status_history), funil, gráfico
+//    ===== DOMINIO: PIPELINE ................. kanban comercial, drag/touch, valor por coluna
+//    ===== DOMINIO: LEADS (tabela) ........... lista completa
+//    ===== DOMINIO: RELATORIO POR EXPERT ..... métricas por expert, motivos de perda
+//    ===== DOMINIO: DETALHE DO LEAD .......... modal, chips de status, atividades
+//    ===== DOMINIO: CS (kanban Cindy) ........ clientes_cs, checks, gates, bônus
+//    ===== DOMINIO: AGENTE SDR ............... configuração do SDR de IA
+//    ===== DOMINIO: FINANCEIRO ............... vendas, parcelas, cobranças
+//    ===== DOMINIO: UTILS & MODAIS ........... esc(), toast, abrirModal/closeTopModal, atalhos
+//
+//  Convenções (não quebrar):
+//   · Single-file, vanilla JS, sem build. Publicar = copiar para index.html na raiz (main).
+//   · const/let no topo do script NÃO vão para window — mas handlers inline (onclick=) os
+//     enxergam pelo escopo léxico. Chamar função antes da const que ela usa = TDZ e o boot
+//     inteiro morre (o parser não pega; só o browser).
+//   · Sucesso só é declarado após o banco confirmar (updateLeadField/updateCSField retornam bool).
+// ═══════════════════════════════════════════════════════════════════════════
+// ===== DOMINIO: BOOT & SUPABASE =====
 const SUPA_URL = 'https://sgeoikzyahhdrncesbpn.supabase.co'
 const SUPA_KEY = 'sb_publishable_awL7tcTl7HMzkvHqYihHKA_JZwO_CKI'
 const sb = supabase.createClient(SUPA_URL, SUPA_KEY)
@@ -1345,7 +1377,7 @@ function renderClientesFinanceiro() {
 let currentFinanceiro = false
 function isFinanceiroUser() { return !!currentUser && currentFinanceiro }
 
-// ── AUTH ──────────────────────────────────────────────────────────────────
+// ===== DOMINIO: AUTH & ROLES =====
 async function doLogin() {
   const email = document.getElementById('login-email').value.trim()
   const pass  = document.getElementById('login-pass').value
@@ -1499,7 +1531,7 @@ async function removeLeadDB(id) {
   await loadLeads()
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────────────
+// ===== DOMINIO: NAVEGACAO =====
 function toggleMobileSidebar() {
   const sidebar = document.getElementById('sidebar')
   const overlay = document.getElementById('sidebar-overlay')
@@ -1584,7 +1616,7 @@ function aplicarHash() {
 }
 window.addEventListener('hashchange', aplicarHash)
 
-// ── COACH (Sales Coach) ─────────────────────────────────────────────────────
+// ===== DOMINIO: REUNIOES (Sales Coach) =====
 const COACH_DEMO = new URLSearchParams(location.search).get('demo') === '1'
 const COACH_DIMS = [['rapport','Rapport'],['diagnostico','Diagnóstico'],['escuta','Escuta'],['valor','Construção de valor'],['controle','Controle'],['fechamento','Fechamento'],['transicao','Transição'],['objecoes','Objeções']]
 let coachMeetings = []
@@ -1811,7 +1843,7 @@ function filterLeads(leads) {
   return filterLeadsSemPeriodo(leads).filter(l => cutoff === 0 || l.created >= cutoff)
 }
 
-// ── DASHBOARD ──────────────────────────────────────────────────────────────
+// ===== DOMINIO: DASHBOARD =====
 // Count-up suave; compara via dataset.val (não re-anima quando o valor não mudou)
 function animateValue(el, to, opts = {}) {
   if (!el) return
@@ -2015,7 +2047,7 @@ function renderRecentTable(leads) {
     </tr>`).join('')
 }
 
-// ── PIPELINE ──────────────────────────────────────────────────────────────
+// ===== DOMINIO: PIPELINE =====
 let dragId = null
 
 // ── REORDENAÇÃO (ranking fracionário — ver setup-cs-v6.sql) ─────────────────
@@ -2272,7 +2304,7 @@ function moveTouchClone(touch) {
   touchClone.style.top  = (touch.clientY - 40) + 'px'
 }
 
-// ── ALL LEADS ──────────────────────────────────────────────────────────────
+// ===== DOMINIO: LEADS (tabela) =====
 function renderAllLeads() {
   const all    = getLeads()
   const query  = (document.getElementById('search-leads')?.value || '').toLowerCase()
@@ -2302,7 +2334,7 @@ function renderAllLeads() {
     </tr>`).join('')
 }
 
-// ── EXPERTS ───────────────────────────────────────────────────────────────
+// ===== DOMINIO: RELATORIO POR EXPERT =====
 function renderExperts() {
   const allLeads = getLeads()
   const experts  = expertsComDados()   // ativos + quem tem histórico (Dr. Alex some quando não houver mais dados dele)
@@ -2372,7 +2404,7 @@ async function saveLead() {
   showToast('Lead cadastrado')
 }
 
-// ── DETAIL ────────────────────────────────────────────────────────────────
+// ===== DOMINIO: DETALHE DO LEAD =====
 function openDetail(id) {
   const l = getLeads().find(x => x.id === id)
   if (!l) return
@@ -2383,12 +2415,12 @@ function openDetail(id) {
       <div><div class="di-label">Expert</div><div class="di-value">${esc(l.expert)}</div></div>
       <div><div class="di-label">Origem</div><div class="di-value">${esc(l.origem)}</div></div>
       <div><div class="di-label">SDR Responsável</div>
-        <select onchange="updateLeadField('${l.id}',{resp:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+        <select onchange="updateLeadField('${l.id}',{resp:this.value});renderPipeline();renderAllLeads()" class="di-field di-select">
           ${opts(SDRS, l.resp || '', '— Sem SDR —')}
         </select>
       </div>
       <div><div class="di-label">Closer Responsável</div>
-        <select onchange="updateLeadField('${l.id}',{closer:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+        <select onchange="updateLeadField('${l.id}',{closer:this.value});renderPipeline();renderAllLeads()" class="di-field di-select">
           ${opts(CLOSERS, l.closer || '', '— Sem Closer —')}
         </select>
       </div>
@@ -2660,7 +2692,7 @@ async function desfazerExclusaoLead(snapshot) {
   showToast(`Lead "${snapshot.nome}" restaurado`)
 }
 
-// ── CUSTOMER SUCCESS ──────────────────────────────────────────────────────
+// ===== DOMINIO: CS (kanban Cindy) =====
 let cachedCS    = []
 let cachedChecks = {}   // { cliente_cs_id: [checks...] }
 
@@ -2943,34 +2975,34 @@ function openCSDetail(id) {
   document.getElementById('dt-body').innerHTML = `
     <div class="detail-grid">
       <div><div class="di-label">Etapa CS</div>
-        <select onchange="updateCSField('${id}',{cs_stage:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+        <select onchange="updateCSField('${id}',{cs_stage:this.value})" class="di-field di-select">
           ${CS_COLS.map(col => `<option value="${col.id}" ${c.cs_stage===col.id?'selected':''}>${col.label}</option>`).join('')}
         </select>
       </div>
       <div><div class="di-label">Produto contratado</div>
-        <select onchange="updateCSField('${id}',{produto:this.value||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+        <select onchange="updateCSField('${id}',{produto:this.value||null})" class="di-field di-select">
           <option value="" ${!c.produto?'selected':''}>— Selecionar produto —</option>
           ${CS_PRODUTOS.map(p => `<option value="${p.id}" ${c.produto===p.id?'selected':''}>${p.label}</option>`).join('')}
         </select>
       </div>
       <div><div class="di-label">WhatsApp</div><div class="di-value">${c.tel ? `<a href="https://wa.me/55${c.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">${icon('whatsapp',{size:14})} ${esc(c.tel)}</a>` : '—'}</div></div>
       <div><div class="di-label">CS Responsável</div>
-        <select onchange="updateCSField('${id}',{resp_cs:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
+        <select onchange="updateCSField('${id}',{resp_cs:this.value})" class="di-field di-select">
           <option value="" ${!c.resp_cs?'selected':''}>— Sem CS —</option>
           <option value="Sabrina" ${c.resp_cs==='Sabrina'?'selected':''}>Sabrina</option>
         </select>
       </div>
       <div><div class="di-label">Data da Triagem</div>
-        <input type="date" value="${c.data_triagem||''}" onchange="updateCSField('${id}',{data_triagem:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+        <input type="date" value="${c.data_triagem||''}" onchange="updateCSField('${id}',{data_triagem:this.value})" class="di-field di-select" />
       </div>
       <div><div class="di-label">Último Contato</div>
-        <input type="date" value="${c.ultimo_contato||''}" onchange="updateCSField('${id}',{ultimo_contato:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+        <input type="date" value="${c.ultimo_contato||''}" onchange="updateCSField('${id}',{ultimo_contato:this.value})" class="di-field di-select" />
       </div>
       <div><div class="di-label">Meta Oficial (Cindy define)</div>
-        <input type="text" value="${esc(c.meta_oficial||'')}" placeholder="Definir na reunião com Cindy" onchange="updateCSField('${id}',{meta_oficial:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+        <input type="text" value="${esc(c.meta_oficial||'')}" placeholder="Definir na reunião com Cindy" onchange="updateCSField('${id}',{meta_oficial:this.value})" class="di-field di-select" />
       </div>
       <div><div class="di-label">Faturamento da Campanha</div>
-        <input type="number" value="${c.faturamento_campanha||''}" placeholder="R$" onchange="updateCSField('${id}',{faturamento_campanha:parseFloat(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px" />
+        <input type="number" value="${c.faturamento_campanha||''}" placeholder="R$" onchange="updateCSField('${id}',{faturamento_campanha:parseFloat(this.value)||null})" class="di-field di-select" />
       </div>
     </div>
     <div class="section-sep">Gates para Reunião com Cindy</div>
@@ -2990,13 +3022,13 @@ function openCSDetail(id) {
     </div>
     <div class="section-sep">Diagnóstico de Triagem</div>
     <div class="detail-grid">
-      <div><div class="di-label">Região</div><input type="text" value="${esc(c.diag_regiao||'')}" placeholder="—" onchange="updateCSField('${id}',{diag_regiao:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
-      <div><div class="di-label">Nº de Lojas</div><input type="number" value="${c.diag_num_lojas||''}" placeholder="—" onchange="updateCSField('${id}',{diag_num_lojas:parseInt(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
-      <div><div class="di-label">Instagram</div><input type="text" value="${esc(c.diag_instagram||'')}" placeholder="@usuario" onchange="updateCSField('${id}',{diag_instagram:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
-      <div><div class="di-label">Seguidores</div><input type="number" value="${c.diag_seguidores||''}" placeholder="—" onchange="updateCSField('${id}',{diag_seguidores:parseInt(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
-      <div><div class="di-label">Faturamento Atual</div><input type="number" value="${c.diag_faturamento_atual||''}" placeholder="R$" onchange="updateCSField('${id}',{diag_faturamento_atual:parseFloat(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Região</div><input type="text" value="${esc(c.diag_regiao||'')}" placeholder="—" onchange="updateCSField('${id}',{diag_regiao:this.value})" class="di-field di-input" /></div>
+      <div><div class="di-label">Nº de Lojas</div><input type="number" value="${c.diag_num_lojas||''}" placeholder="—" onchange="updateCSField('${id}',{diag_num_lojas:parseInt(this.value)||null})" class="di-field di-input" /></div>
+      <div><div class="di-label">Instagram</div><input type="text" value="${esc(c.diag_instagram||'')}" placeholder="@usuario" onchange="updateCSField('${id}',{diag_instagram:this.value})" class="di-field di-input" /></div>
+      <div><div class="di-label">Seguidores</div><input type="number" value="${c.diag_seguidores||''}" placeholder="—" onchange="updateCSField('${id}',{diag_seguidores:parseInt(this.value)||null})" class="di-field di-input" /></div>
+      <div><div class="di-label">Faturamento Atual</div><input type="number" value="${c.diag_faturamento_atual||''}" placeholder="R$" onchange="updateCSField('${id}',{diag_faturamento_atual:parseFloat(this.value)||null})" class="di-field di-input" /></div>
       <div><div class="di-label">Captação</div>
-        <select onchange="updateCSField('${id}',{diag_captacao:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px">
+        <select onchange="updateCSField('${id}',{diag_captacao:this.value})" class="di-field di-input">
           <option value="">—</option>
           <option value="tráfego" ${c.diag_captacao==='tráfego'?'selected':''}>Tráfego Pago</option>
           <option value="indicação" ${c.diag_captacao==='indicação'?'selected':''}>Indicação</option>
@@ -3004,8 +3036,8 @@ function openCSDetail(id) {
           <option value="misto" ${c.diag_captacao==='misto'?'selected':''}>Misto</option>
         </select>
       </div>
-      <div><div class="di-label">Equipe (qtd)</div><input type="number" value="${c.diag_equipe_qtd||''}" placeholder="—" onchange="updateCSField('${id}',{diag_equipe_qtd:parseInt(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
-      <div><div class="di-label">Ticket Médio</div><input type="number" value="${c.diag_ticket_medio||''}" placeholder="R$" onchange="updateCSField('${id}',{diag_ticket_medio:parseFloat(this.value)||null})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:12px;padding:5px 9px;outline:none;width:100%;margin-top:4px" /></div>
+      <div><div class="di-label">Equipe (qtd)</div><input type="number" value="${c.diag_equipe_qtd||''}" placeholder="—" onchange="updateCSField('${id}',{diag_equipe_qtd:parseInt(this.value)||null})" class="di-field di-input" /></div>
+      <div><div class="di-label">Ticket Médio</div><input type="number" value="${c.diag_ticket_medio||''}" placeholder="R$" onchange="updateCSField('${id}',{diag_ticket_medio:parseFloat(this.value)||null})" class="di-field di-input" /></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;font-size:12px">
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_tem_socio?'checked':''} onchange="updateCSField('${id}',{diag_tem_socio:this.checked})" /> Tem sócio</label>
@@ -3082,7 +3114,7 @@ async function moverParaCS(leadId, e) {
   }, { titulo: 'Mover para CS', okLabel: 'Mover' })
 }
 
-// ── AGENTE SDR ─────────────────────────────────────────────────────────────
+// ===== DOMINIO: AGENTE SDR =====
 let cachedAgentes = []
 let agenteEditId  = null
 const EXPERT_LABEL = { cindy:'Cindy Batista', dr_alex:'Dr. Alex', geral:'Geral' }
@@ -3200,7 +3232,7 @@ async function toggleAgenteAtivo(id, e) {
   if (error) { showToast('Erro: ' + error.message, 'error'); a.ativo = !novo; renderAgentes() }
 }
 
-// ── FINANCEIRO ─────────────────────────────────────────────────────────────
+// ===== DOMINIO: FINANCEIRO =====
 async function loadFinanceiro() {
   if (!isFinanceiroUser()) return
   if (new URLSearchParams(location.search).get('demo') === '1') {
@@ -3676,7 +3708,7 @@ function showToast(msg, type='success', opts = {}) {
   setTimeout(fechar, opts.duration || 3000)
 }
 
-// ── UTILS ──────────────────────────────────────────────────────────────────
+// ===== DOMINIO: UTILS & MODAIS =====
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
 // Safari/macOS nao renderiza valor do <input type=date> — adiciona classe pra ativar fallback
 if (/^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent)) {
