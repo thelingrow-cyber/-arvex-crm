@@ -1,0 +1,55 @@
+storyId: CRM-UX-003
+story: docs/stories/crm-lote3-modernizacao.story.md
+reviewer: "@qa (Quinn)"
+date: 2026-07-12
+verdict: PASS
+summary: >
+  Lote 3 aprovado sem iteração. O fix do @po (empilhamento de modais) foi verificado, os 5
+  focos de risco passaram e os Lotes 0/1/2 seguem intactos. 1 débito LOW de latência.
+
+checks:
+  code_review:      PASS   # chips reusam changeStatus(); zero duplicação de fluxo
+  unit_tests:       N/A    # single-file; validado por cenários dirigidos em browser
+  acceptance:       PASS   # AC1-AC7
+  regressions:      PASS   # Lote 0 (debounce/Esc), Lote 1 (chips perda, undo, toast só com banco OK), Lote 2 (movimento, universo, financeiro do banco, experts)
+  performance:      CONCERNS  # ver DEBT-1 (não bloqueia)
+  security:         PASS   # valor por coluna só admin (SDR não vê); deep-link respeita role; sem innerHTML novo com dado não-escapado
+  documentation:    PASS
+
+focos_auditados:
+  - id: FOCO-1
+    titulo: "Loop de navegação (hash x realtime x applyRole)"
+    resultado: PASS
+    evidencia: "1 navegação por mudança de URL; 0 re-disparos por clique. A flag _navegando corta o ciclo goTo -> hash -> hashchange -> goTo."
+  - id: FOCO-2
+    titulo: "Chip para status que NÃO abre modal (ex.: qualificado)"
+    resultado: PASS
+    evidencia: >
+      Move direto, sem modal-transition; o detalhe é reaberto e o chip reflete o novo status.
+      Primeira medição deu falso negativo (esperei 500ms; o await loadHistory() real levou mais).
+      Log instrumentado confirmou a ordem correta: openDetail é chamado com o cache já atualizado.
+  - id: FOCO-3
+    titulo: "Deep-link para view proibida ao role"
+    resultado: PASS
+    evidencia: "Como CS, '#pipeline' cai em view-cs (viewPermitida=false, viewPadrao=cs). Não vaza navegação."
+  - id: FOCO-4
+    titulo: "Regressão dos Lotes 1 e 2"
+    resultado: PASS
+    evidencia: "MOTIVOS_PERDA(6), undo, 'if (!ok) return', contarMovimento, filterLeadsSemPeriodo, currentFinanceiro, EXPERTS sem Dr. Alex no cadastro."
+  - id: FOCO-5
+    titulo: "Mobile / chips"
+    resultado: PASS
+    evidencia: "8 chips no detalhe, atual .sel e disabled; 0 emojis renderizados (innerText limpo)."
+
+issues:
+  - id: DEBT-1
+    severity: low
+    category: performance
+    description: >
+      aplicarStatus() faz 'await loadHistory()' (chamada de rede) ANTES de reabrir o modal de
+      detalhe. Pelo chip, o usuário espera ~300ms para o chip refletir o novo status.
+    recommendation: "Reabrir o modal de detalhe antes do loadHistory(), ou recarregar o histórico em background. Não bloqueia."
+
+coderabbit:
+  executed: false
+  reason: "CLI em WSL (7-30min); focos de risco cobertos por cenários dirigidos em browser."

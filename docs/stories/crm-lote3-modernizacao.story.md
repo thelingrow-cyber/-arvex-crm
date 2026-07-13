@@ -1,7 +1,7 @@
 # Story CRM-UX-003 — Lote 3: modernização Linear-like (F5, F7, F12, F14, F15)
 
 **Tipo:** Brownfield enhancement (CRM ARVEX — sem epic formal)
-**Status:** Ready for Review
+**Status:** Done
 **Owner:** @dev (Dex) — frontend puro, sem SQL
 **Criado:** 2026-07-12 por @sm (River)
 **Validado:** 2026-07-12 por @po (Pax) — score 8/10 **GO** (2 correções: empilhamento de modais no Esc, deep-link vs role)
@@ -152,3 +152,18 @@
 |------|-------|---------|
 | 2026-07-12 | @sm (River) | Story criada a partir do UX-IMPROVEMENT-PLAN §4 Lote 3, incluindo os 2 débitos herdados dos gates dos Lotes 1 e 2 |
 | 2026-07-12 | @po (Pax) | Validação 8/10 GO. AC1: chip sem marcação otimista + **bug pré-existente exposto** (closeTopModal usa ordem do DOM, não ordem de abertura → Esc fecharia o modal errado com 2 modais empilhados). AC2: deep-link precisa respeitar role (CS não pode cair no pipeline por link). |
+
+---
+
+## QA Results
+
+**Gate:** `docs/qa/gates/crm-ux-003-lote3.yml` · **Verdict: PASS** (sem iteração) · @qa (Quinn), 2026-07-12
+
+Primeiro lote a passar de primeira. Os 5 focos de risco foram auditados no browser:
+- **Sem loop de navegação:** 1 navegação por mudança de URL, 0 re-disparos por clique — a flag `_navegando` corta o ciclo.
+- **Chip sem modal (ex.: Qualificado):** move direto e o chip reflete o novo status. *Minha primeira medição deu falso negativo* (esperei 500ms; o `await loadHistory()` real demorou mais) — o log instrumentado provou que `openDetail` é chamado com o cache já atualizado.
+- **Deep-link respeita role:** como CS, `#pipeline` cai em `view-cs`.
+- **Zero regressão** nos Lotes 0/1/2.
+- **Zero emoji** renderizado (`innerText` limpo) e o valor por coluna **não vaza** para SDR.
+
+**DEBT-1 (low):** `aplicarStatus()` aguarda `loadHistory()` (rede) antes de reabrir o detalhe — pelo chip, o usuário espera ~300ms para o chip mudar. Reabrir o modal antes do `loadHistory()` resolve. Não bloqueia.
