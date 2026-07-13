@@ -3019,7 +3019,9 @@ async function aplicarStatus(id, status, extra = {}) {
     openDetail(id)
   }
   detalheAbertoId = null
-  if (status === 'fechado' && isFinanceiroUser()) onLeadFechado(id)
+  // Registrar a venda que EU fechei != ver o caixa da empresa (setup-venda-por-closer-v1.sql).
+  // A RLS garante o resto: o closer insere e vê só a venda dele; editar/dar baixa é do financeiro.
+  if (status === 'fechado') onLeadFechado(id)
 }
 
 function abrirTransition(status, lead) {
@@ -3894,7 +3896,7 @@ async function setMetodoParcela(parcelaId, metodo) {
 let pendingFechadoLeadId = null
 
 async function onLeadFechado(leadId) {
-  await loadFinanceiro()
+  await loadVendasParcelas()   // NÃO loadFinanceiro(): ele retorna cedo p/ quem não é financeiro
   if (cachedVendas.some(v => v.lead_id === leadId)) return  // já tem venda
   pendingFechadoLeadId = leadId
   const lead = cachedLeads.find(l => l.id === leadId)
@@ -3963,8 +3965,9 @@ async function salvarNegociacao() {
   const { error: eP } = await sb.from('parcelas').insert(parcsData)
   if (eP) { showToast('Erro ao criar parcelas: ' + eP.message, 'error'); return }
   fecharModalNegociacao()
-  await loadFinanceiro()
-  if (document.getElementById('view-financeiro').classList.contains('active')) renderFinanceiro()
+  await loadVendasParcelas()   // o closer vê a própria venda (RLS); o financeiro vê todas
+  renderPipeline()             // o card fechado passa a mostrar o resumo da venda
+  if (isFinanceiroUser() && document.getElementById('view-financeiro').classList.contains('active')) renderFinanceiro()
   showToast('Venda registrada com sucesso!')
 }
 
