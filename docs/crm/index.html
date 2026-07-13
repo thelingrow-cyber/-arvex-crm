@@ -1479,7 +1479,11 @@ function subscribeRealtime() {
   sb.channel('leads-changes')
     .on('postgres_changes', { event:'*', schema:'public', table:'leads' }, async () => {
       await Promise.all([loadLeads(), loadHistory()])   // o trigger gravou a transição — o histórico mudou junto
-      renderDashboard(); renderPipeline(); renderAllLeads()
+      renderDashboard(); renderAllLeads()
+      // Nunca re-renderizar o board com um card na mão do usuário: o innerHTML destruiria
+      // o nó que ele está arrastando. Adia para o release (ver renderPipeline).
+      if (_pipelineDrag?.arrastando()) { _renderPipelinePendente = true; return }
+      renderPipeline()
     }).subscribe()
 
   sb.channel('clientes-cs-changes')
@@ -2096,6 +2100,345 @@ function clearDropIndicator() {
   if (dropIndicator && dropIndicator.parentNode) dropIndicator.parentNode.removeChild(dropIndicator)
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// ===== MOTOR DE ARRASTO — "A Física do Card" (docs/crm/DRAG-ARCHITECTURE.md)
+//
+// Substitui, NO PIPELINE, o HTML5 DnD + o touch-drag paralelo. Um só gesto para
+// mouse e dedo (Pointer Events). O CS ainda usa o caminho antigo — por isso os
+// listeners globais de drag, dragId e o drop-indicator continuam vivos: NÃO remover
+// até o P2 (o CS depende deles).
+//
+// O princípio: o card NUNCA deixa de existir. É sempre o mesmo nó do DOM, do
+// pointerdown ao repouso. Nada de clone, nada de ghost do SO, nada de innerHTML
+// no meio do gesto.
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Integrador de spring criticamente amortecido. k=rigidez, c=amortecimento.
+// Semeado com a velocidade real do ponteiro no release => o card "herda a mão".
+const SPRING_K = 170, SPRING_C = 26
+function springStep(s, v, dt) {
+  const a = -SPRING_K * s - SPRING_C * v
+  v += a * dt
+  s += v * dt
+  return [s, v]
+}
+
+// Estimador de velocidade: média das últimas amostras (px/s), robusto a jitter.
+function criarVelocimetro() {
+  const amostras = []   // { x, y, t }
+  return {
+    push(x, y) {
+      const t = performance.now()
+      amostras.push({ x, y, t })
+      while (amostras.length > 5) amostras.shift()
+    },
+    get() {   // px/s
+      if (amostras.length < 2) return { vx: 0, vy: 0 }
+      const a = amostras[0], b = amostras[amostras.length - 1]
+      const dt = (b.t - a.t) / 1000
+      if (dt <= 0) return { vx: 0, vy: 0 }
+      return { vx: (b.x - a.x) / dt, vy: (b.y - a.y) / dt }
+    },
+    reset() { amostras.length = 0 },
+  }
+}
+
+function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onCommit, onClick, onEnd }) {
+  const LIMIAR_PX   = 5     // desktop: abaixo disso é clique, não arrasto
+  const HOLD_MS     = 180   // mobile: janela de intenção (com feedback progressivo)
+  const TOL_SCROLL  = 8     // se o dedo sobe/desce mais que isso antes de engajar => é scroll
+
+  let g = null              // estado do gesto (null = ocioso)
+  const vel = criarVelocimetro()
+
+  const boardEl = () => document.querySelector(board)
+
+  // ── Geometria congelada: mede UMA vez; durante o gesto é só aritmética ──
+  function medirMundo(cardArrastado) {
+    const cols = [...boardEl().querySelectorAll(colSelector)].map(el => ({
+      el, id: el.dataset.col, rect: el.getBoundingClientRect(),
+      cards: [...el.querySelectorAll(cardSelector)]
+        .filter(c => c !== cardArrastado)
+        .map(c => ({ el: c, id: c.dataset.id, rect: c.getBoundingClientRect() })),
+    }))
+    return cols
+  }
+
+  // Coluna sob o ponteiro (aritmética pura sobre o cache)
+  function colunaEm(x, y, mundo) {
+    return mundo.find(c => x >= c.rect.left && x <= c.rect.right && y >= c.rect.top - 40 && y <= c.rect.bottom + 40)
+        || mundo.find(c => x >= c.rect.left && x <= c.rect.right)   // fora na vertical: ainda vale a coluna
+        || null
+  }
+
+  // Índice de inserção dentro da coluna (compara y ao MEIO de cada card)
+  function indiceEm(y, col) {
+    let i = 0
+    for (const c of col.cards) {
+      if (y < c.rect.top + c.rect.height / 2) break
+      i++
+    }
+    return i
+  }
+
+  // ── N3: o mundo abre espaço. Sem mutar DOM: só transform nos vizinhos. ──
+  function abrirVao(mundo, colAlvo, idx, alturaCard) {
+    for (const col of mundo) {
+      col.cards.forEach((c, i) => {
+        const desloca = (col === colAlvo && i >= idx) ? (alturaCard + 8) : 0
+        const atual = c.el._dy || 0
+        if (atual !== desloca) {
+          c.el._dy = desloca
+          c.el.style.transform = desloca ? `translateY(${desloca}px)` : ''
+        }
+      })
+    }
+  }
+  function fecharVaos(mundo) {
+    for (const col of mundo) col.cards.forEach(c => { c.el._dy = 0; c.el.style.transform = '' })
+  }
+
+  // ── Auto-scroll próprio (o antigo mira .pipeline-scroll e serve o caminho velho) ──
+  let scrollRAF = null, scrollDir = { x: 0, y: 0 }
+  function tickScroll() {
+    if (!g || (!scrollDir.x && !scrollDir.y)) { scrollRAF = null; return }
+    const sc = boardEl().closest('.pipeline-scroll, .cs-scroll')
+    if (sc && scrollDir.x) sc.scrollLeft += scrollDir.x
+    if (scrollDir.y) window.scrollBy(0, scrollDir.y)
+    if (sc) g.mundo = medirMundo(g.card)   // o mundo se moveu: remedir (única exceção)
+    scrollRAF = requestAnimationFrame(tickScroll)
+  }
+  function avaliarScroll(x, y) {
+    const sc = boardEl().closest('.pipeline-scroll, .cs-scroll')
+    if (!sc) return
+    const r = sc.getBoundingClientRect(), borda = 70, vel = 14
+    scrollDir.x = x < r.left + borda ? -vel : x > r.right - borda ? vel : 0
+    scrollDir.y = y < 90 ? -vel : y > window.innerHeight - 90 ? vel : 0
+    if ((scrollDir.x || scrollDir.y) && !scrollRAF) scrollRAF = requestAnimationFrame(tickScroll)
+  }
+
+  // ── AGARRAR ──
+  function onPointerDown(e) {
+    if (e.button != null && e.button !== 0) return          // só botão principal
+    const card = e.target.closest(cardSelector)
+    if (!card || !boardEl()?.contains(card)) return
+    // botões e links dentro do card mandam mais que o arrasto
+    if (e.target.closest('button, a, .btn-card-action, .card-fin-edit, input, select, textarea')) return
+
+    // Re-agarrar um card que ainda está assentando: cancela o spring e assume dali.
+    if (card._settling) { card._settling.cancelado = true; card._settling = null }
+
+    const r = card.getBoundingClientRect()
+    g = {
+      card, id: card.dataset.id, pointerId: e.pointerId,
+      x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY,
+      offX: e.clientX - r.left, offY: e.clientY - r.top,
+      w: r.width, h: r.height, rect0: r,
+      colOrigem: card.closest(colSelector)?.dataset.col,
+      toque: e.pointerType === 'touch',
+      engajado: false, holdTimer: null, mundo: null,
+      placeholder: null, colAlvo: null, idx: 0, raf: null,
+    }
+    vel.reset(); vel.push(e.clientX, e.clientY)
+
+    // N2 — resposta IMEDIATA ao dedo (<50ms): o card infla enquanto "carrega o agarre".
+    if (g.toque) {
+      card.style.transition = `transform ${HOLD_MS}ms var(--ease)`
+      card.style.transform = 'scale(1.03)'
+      g.holdTimer = setTimeout(() => { if (g && !g.engajado) engajar() }, HOLD_MS)
+    }
+    card.setPointerCapture?.(e.pointerId)
+  }
+
+  // ── LEVANTAR: o card REAL vira camada fixa. Nada de clone. ──
+  function engajar() {
+    if (!g || g.engajado) return
+    g.engajado = true
+    clearTimeout(g.holdTimer)
+
+    const card = g.card
+    g.mundo = medirMundo(card)
+
+    // placeholder ocupa o buraco deixado (mesma altura) — o layout não colapsa
+    const ph = document.createElement('div')
+    ph.style.cssText = `height:${g.h}px;margin-bottom:8px;border-radius:10px;`
+    card.parentNode.insertBefore(ph, card)
+    g.placeholder = ph
+
+    card.style.transition = 'none'
+    card.style.position = 'fixed'
+    card.style.left = g.rect0.left + 'px'
+    card.style.top  = g.rect0.top + 'px'
+    card.style.width = g.w + 'px'
+    card.style.zIndex = '9999'
+    card.style.pointerEvents = 'none'
+    card.classList.add('dragging')     // tilt + sombra que já existem no CSS
+    navigator.vibrate?.(10)
+
+    g.colAlvo = g.mundo.find(c => c.id === g.colOrigem) || g.mundo[0]
+    g.idx = indiceEm(g.y, g.colAlvo)
+    abrirVao(g.mundo, g.colAlvo, g.idx, g.h)
+    loop()
+  }
+
+  // ── SEGUIR: pointermove só GRAVA. Um rAF desenha. 60fps garantidos. ──
+  function onPointerMove(e) {
+    if (!g || e.pointerId !== g.pointerId) return
+    g.x = e.clientX; g.y = e.clientY
+    vel.push(e.clientX, e.clientY)
+
+    if (!g.engajado) {
+      const dx = Math.abs(e.clientX - g.x0), dy = Math.abs(e.clientY - g.y0)
+      if (g.toque) {
+        // scroll vs drag: subiu/desceu antes de engajar => é scroll, devolve ao browser
+        if (dy > TOL_SCROLL && dy > dx) { cancelarGesto(); return }
+        if (dx > LIMIAR_PX * 2) engajar()   // horizontal = intenção de arrastar
+      } else if (dx > LIMIAR_PX || dy > LIMIAR_PX) {
+        engajar()
+      }
+      return
+    }
+    e.preventDefault()   // engajado: o board não rola sozinho
+  }
+
+  function loop() {
+    if (!g || !g.engajado) return
+    const card = g.card
+    card.style.transform = `translate3d(${g.x - g.x0}px, ${g.y - g.y0}px, 0)`
+
+    const col = colunaEm(g.x, g.y, g.mundo)
+    if (col) {
+      const idx = indiceEm(g.y, col)
+      if (col !== g.colAlvo || idx !== g.idx) {
+        g.colAlvo = col; g.idx = idx
+        abrirVao(g.mundo, col, idx, g.h)
+      }
+    }
+    avaliarScroll(g.x, g.y)
+    g.raf = requestAnimationFrame(loop)
+  }
+
+  // ── SOLTAR: FLIP + spring semeado com a velocidade da mão (N4) ──
+  async function onPointerUp(e) {
+    if (!g || e.pointerId !== g.pointerId) return
+    const gesto = g
+
+    if (!gesto.engajado) {                    // não arrastou => é CLIQUE
+      clearTimeout(gesto.holdTimer)
+      gesto.card.style.transition = ''
+      gesto.card.style.transform = ''
+      g = null
+      onClick?.(gesto.id)
+      return
+    }
+
+    cancelAnimationFrame(gesto.raf)
+    scrollDir = { x: 0, y: 0 }
+    const { vx, vy } = vel.get()
+    const colAlvo = gesto.colAlvo, idx = gesto.idx
+    g = null                                   // libera o motor: o resto é assentamento
+
+    // onde o card VAI parar (o slot): topo do vão aberto
+    const alvoRect = calcularSlot(colAlvo, idx, gesto)
+    const atual = gesto.card.getBoundingClientRect()
+    const dx = atual.left - alvoRect.left, dy = atual.top - alvoRect.top
+
+    const mudouColuna = colAlvo.id !== gesto.colOrigem
+    const ordenados = getItems(colAlvo.id).filter(it => it.id !== gesto.id)
+    const depoisDe = colAlvo.cards[idx]?.id || null
+    const novaPos = calcPosicao(ordenados, depoisDe)
+
+    // assenta AGORA (sem esperar rede) — otimismo visual
+    await assentar(gesto, alvoRect, dx, dy, vx, vy)
+
+    const ok = await onCommit(gesto.id, colAlvo.id, novaPos, mudouColuna)
+    if (ok === false) {
+      // honestidade física: o banco recusou => o card VOLTA de spring pra origem
+      await voltarPraOrigem(gesto)
+    }
+    limpar(gesto)
+  }
+
+  function calcularSlot(col, idx, gesto) {
+    const cards = col.cards
+    if (!cards.length) {
+      const r = col.rect
+      return { left: r.left + 4, top: r.top + 4 }
+    }
+    if (idx >= cards.length) {
+      const ult = cards[cards.length - 1].rect
+      return { left: ult.left, top: ult.top + ult.height + 8 }
+    }
+    const c = cards[idx].rect
+    return { left: c.left, top: c.top }   // o vão está aberto exatamente aqui
+  }
+
+  // Spring: o card desliza pro slot herdando a velocidade da mão. Interrompível.
+  function assentar(gesto, alvo, dx0, dy0, vx, vy) {
+    return new Promise(resolve => {
+      const card = gesto.card
+      const st = { cancelado: false }
+      card._settling = st
+      card.style.transition = 'none'
+      let sx = dx0, sy = dy0, vX = -vx, vY = -vy   // velocidade aponta contra o deslocamento restante
+      let t0 = performance.now()
+      card.classList.remove('dragging')
+
+      function frame(t) {
+        if (st.cancelado) { resolve(); return }
+        const dt = Math.min((t - t0) / 1000, 0.032); t0 = t
+        ;[sx, vX] = springStep(sx, vX, dt)
+        ;[sy, vY] = springStep(sy, vY, dt)
+        card.style.left = alvo.left + 'px'
+        card.style.top  = alvo.top + 'px'
+        card.style.transform = `translate3d(${sx}px, ${sy}px, 0)`
+        if (Math.hypot(sx, sy) < 0.5 && Math.hypot(vX, vY) < 12) {
+          card.style.transform = ''
+          card._settling = null
+          resolve(); return
+        }
+        requestAnimationFrame(frame)
+      }
+      requestAnimationFrame(frame)
+    })
+  }
+
+  function voltarPraOrigem(gesto) {
+    const r0 = gesto.rect0
+    const atual = gesto.card.getBoundingClientRect()
+    return assentar(gesto, { left: r0.left, top: r0.top }, atual.left - r0.left, atual.top - r0.top, 0, 0)
+  }
+
+  // Fim do gesto: o card volta a ser um card comum e o board reconcilia UMA vez.
+  function limpar(gesto) {
+    const card = gesto.card
+    card.style.cssText = ''
+    card.classList.remove('dragging')
+    card._settling = null
+    gesto.placeholder?.remove()
+    if (gesto.mundo) fecharVaos(gesto.mundo)
+    card.releasePointerCapture?.(gesto.pointerId)
+    onEnd?.()     // aplica render represado pelo realtime durante o gesto
+  }
+
+  function cancelarGesto() {
+    if (!g) return
+    clearTimeout(g.holdTimer)
+    g.card.style.transition = ''
+    g.card.style.transform = ''
+    g.card.releasePointerCapture?.(g.pointerId)
+    g = null
+  }
+
+  // Delegação: sobrevive ao re-render do board (innerHTML) sem re-anexar nada
+  document.addEventListener('pointerdown', onPointerDown)
+  document.addEventListener('pointermove', onPointerMove, { passive: false })
+  document.addEventListener('pointerup', onPointerUp)
+  document.addEventListener('pointercancel', () => { if (g && !g.engajado) cancelarGesto() })
+
+  return { arrastando: () => !!(g && g.engajado) }
+}
+
 // Valor da coluna (F15) — só admin: ticket é admin-only no card e na tabela, não pode vazar aqui.
 // Formato compacto: R$ 34k / R$ 1,2k / R$ 800. Coluna sem valor não mostra "R$ 0".
 function valorDaColuna(leadsDaCol) {
@@ -2121,20 +2464,70 @@ function renderPipeline() {
       <div class="pipeline-col">
         ${phaseLabel}
         <div class="col-header ${col.cls}"><span class="col-header-label"><span class="col-dot"></span>${col.label}</span><span style="display:inline-flex;align-items:center;gap:6px">${valorDaColuna(colLeads)}<span class="col-count">${colLeads.length}</span></span></div>
-        <div class="col-drop-zone" data-col="${col.id}"
-          ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'${col.id}')">
+        <div class="col-drop-zone" data-col="${col.id}">
           ${colLeads.length ? colLeads.map(renderCard).join('') : '<div class="empty-col">Vazio</div>'}
         </div>
       </div>`
   }).join('')
 
-  board.querySelectorAll('.lead-card').forEach(card => {
-    card.addEventListener('dragstart', e => { dragId = card.dataset.id; setTimeout(() => card.classList.add('dragging'), 0) })
-    card.addEventListener('dragend', () => { card.classList.remove('dragging'); dragId = null })
-  })
-  // adiciona data-col nas colunas para touch drag
   board.querySelectorAll('.pipeline-col').forEach((col, i) => { col.dataset.col = COLS[i].id })
-  initTouchDrag()
+  initPipelineDrag()   // motor de arrasto (idempotente: só instancia uma vez)
+}
+
+// Instancia o motor UMA vez. A delegação em document sobrevive ao innerHTML do board.
+let _pipelineDrag = null
+let _renderPipelinePendente = false
+
+// Chamado pelo motor ao terminar o gesto: aplica o render que ficou represado.
+function aplicarRenderPendente() {
+  if (!_renderPipelinePendente) return
+  _renderPipelinePendente = false
+  renderPipeline()
+}
+
+function initPipelineDrag() {
+  if (_pipelineDrag) return
+  _pipelineDrag = makeBoardDraggable({
+    board: '#pipeline-board',
+    cardSelector: '.lead-card',
+    colSelector: '.col-drop-zone',
+    getItems: colId => getLeads().filter(l => l.status === colId).sort(byPos('created')),
+    onClick: id => openDetail(id),        // NOVO (@po): o corpo do card abre o detalhe
+    onCommit: async (id, colId, posicao, mudouColuna) => {
+      // Otimismo visual: o cache já reflete o movimento, então os contadores e o R$ das
+      // colunas atualizam junto com o pouso — o board inteiro "sabe" o que aconteceu.
+      const lead = getLeads().find(l => l.id === id)
+      if (lead) { lead.status = colId; lead.posicao = posicao }
+      atualizarCabecalhosPipeline()
+
+      if (mudouColuna) {
+        // Coluna que exige dado (perdido/call/followup/fechado): o card JÁ assentou e o
+        // modal do Lote 1 abre por cima. Cancelar => cancelTransition chama renderPipeline
+        // e o card volta ao lugar (o cache é a verdade).
+        changeStatus(id, colId, { posicao })
+        return true
+      }
+      const ok = await updateLeadField(id, { posicao })   // reordenar na mesma coluna
+      return ok
+    },
+    onEnd: () => aplicarRenderPendente(),   // aplica o realtime que ficou represado
+  })
+}
+
+// Contadores e soma R$ das colunas, sem reconstruir o board (o card está na mão do usuário).
+function atualizarCabecalhosPipeline() {
+  const leads = getLeads()
+  document.querySelectorAll('#pipeline-board .pipeline-col').forEach(col => {
+    const id = col.dataset.col
+    const doCol = leads.filter(l => l.status === id)
+    const cnt = col.querySelector('.col-count')
+    if (cnt) cnt.textContent = doCol.length
+    const val = col.querySelector('.col-valor')
+    const novo = valorDaColuna(doCol)   // string HTML ou ''
+    if (val && !novo) val.remove()
+    else if (val && novo) val.outerHTML = novo
+    else if (!val && novo) col.querySelector('.col-header > span:last-child')?.insertAdjacentHTML('afterbegin', novo)
+  })
 }
 
 function getSLABadge(l) {
@@ -2170,7 +2563,7 @@ function renderCard(l) {
     }
   }
   return `
-    <div class="lead-card" draggable="true" data-id="${l.id}">
+    <div class="lead-card" data-id="${l.id}">
       ${getSLABadge(l)}
       <div class="lead-card-name">${esc(l.nome)}${inCS ? ' <span class="badge-em-cs" title="Já está em acompanhamento no CS">Em CS</span>' : ''}</div>
       <div class="lead-card-meta">
@@ -2243,7 +2636,10 @@ document.addEventListener('drop',     stopAutoScroll)
 // ── TOUCH DRAG ────────────────────────────────────────────────────────────
 let touchDragId = null, touchClone = null, touchHoldTimer = null
 
-function initTouchDrag() {
+// APOSENTADO no P1 (só o pipeline o chamava; o CS nunca teve touch-drag).
+// O motor de Pointer Events cobre mouse E dedo. Mantido como no-op até o P2 remover o corpo.
+function initTouchDrag() { /* substituído por makeBoardDraggable */ }
+function initTouchDragLEGADO() {
   document.querySelectorAll('.lead-card').forEach(card => {
     card.addEventListener('touchstart', e => {
       const id = card.dataset.id
