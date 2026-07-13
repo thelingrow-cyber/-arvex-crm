@@ -226,6 +226,7 @@
     .col-header-label { display: inline-flex; align-items: center; gap: 7px; }
     .col-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dot, var(--muted)); flex-shrink: 0; }
     .col-count { background: rgba(255,255,255,.12); border-radius: 20px; padding: 1px 8px; font-size: 11px; }
+    .col-valor { font-size: 11px; font-weight: 700; color: var(--gold2); font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
     .col-sdr    { --dot: var(--blue); }
     .col-closer { --dot: var(--gold2); }
     .col-won    { --dot: var(--green); }
@@ -620,7 +621,7 @@
 
       <div class="charts-row">
         <div class="chart-card">
-          <h3>Evolução Diária — Leads</h3>
+          <h3>Leads captados por dia</h3>
           <div class="chart-area" id="chart-daily"></div>
         </div>
         <div class="chart-card">
@@ -695,7 +696,7 @@
       </div>
       <!-- Banner Hoje -->
       <div id="cs-hoje-banner" style="display:none;margin-bottom:16px;background:rgba(91,108,255,.08);border:1px solid rgba(91,108,255,.25);border-radius:12px;padding:14px 16px">
-        <div style="font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">⏰ Checks de Hoje</div>
+        <div style="font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px"><span data-icon="clock" data-icon-size="13"></span> Checks de Hoje</div>
         <div id="cs-hoje-lista" style="display:flex;flex-direction:column;gap:8px"></div>
       </div>
       <div class="cs-scroll">
@@ -807,7 +808,7 @@
     <div id="view-clientes-fin" class="view">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div>
-          <h1>👥 Clientes</h1>
+          <h1><span data-icon="users" data-icon-size="20"></span> Clientes</h1>
           <p>Histórico completo de vendas e recebimentos por cliente</p>
         </div>
         <button class="btn-primary" onclick="novoClienteFinanceiro()">+ Novo Cliente</button>
@@ -988,7 +989,7 @@
 <div class="modal-overlay" id="modal-negociacao">
   <div class="modal" style="max-width:520px">
     <div class="modal-header">
-      <div class="modal-title">💰 Registrar Negociação</div>
+      <div class="modal-title">Registrar Negociação</div>
       <button class="modal-close" onclick="fecharModalNegociacao()">×</button>
     </div>
     <div class="modal-body">
@@ -1056,7 +1057,7 @@
 <div class="modal-overlay" id="modal-edit">
   <div class="modal" style="max-width:520px">
     <div class="modal-header">
-      <div class="modal-title">✏️ Editar Venda</div>
+      <div class="modal-title">Editar Venda</div>
       <button class="modal-close" onclick="document.getElementById('modal-edit').classList.remove('open')">×</button>
     </div>
     <div class="modal-body">
@@ -1081,7 +1082,7 @@
       </div>
     </div>
     <div class="modal-footer" style="justify-content:space-between">
-      <button class="btn-cancel" onclick="excluirVenda()" style="background:rgba(239,68,68,.15);color:#F87171">🗑️ Excluir venda</button>
+      <button class="btn-cancel" onclick="excluirVenda()" style="background:rgba(239,68,68,.15);color:#F87171";display:inline-flex;align-items:center;gap:6px"><span data-icon="trash" data-icon-size="14"></span> Excluir venda</button>
       <div style="display:flex;gap:8px">
         <button class="btn-cancel" onclick="document.getElementById('modal-edit').classList.remove('open')">Cancelar</button>
         <button class="btn-save" onclick="salvarEditVenda()">Salvar Edição</button>
@@ -1094,7 +1095,7 @@
 <div class="modal-overlay" id="modal-pago">
   <div class="modal" style="max-width:380px">
     <div class="modal-header">
-      <div class="modal-title">✓ Confirmar Recebimento</div>
+      <div class="modal-title">Confirmar Recebimento</div>
       <button class="modal-close" onclick="document.getElementById('modal-pago').classList.remove('open')">×</button>
     </div>
     <div class="modal-body">
@@ -1188,6 +1189,18 @@ const LUCIDE = {
   grad:'<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
   help:'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
   bulb:'<path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.2 18 9 18 7.5a6 6 0 0 0-12 0c0 1.5.4 2.7 1.5 4C8.3 12.3 8.8 13 9 14"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+  // Lote 3 — substituem os emojis que sobravam na UI
+  trash:'<path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>',
+  pencil:'<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/>',
+  send:'<path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/>',
+  undo:'<path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/>',
+  phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92"/>',
+  link:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+  user:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  handshake:'<path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/>',
+  video:'<path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/>',
+  hourglass:'<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>',
+  gift2:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8"/><path d="M16.5 8a2.5 2.5 0 0 0 0-5C14 3 12 8 12 8"/>',
 }
 function icon(name, opts = {}) {
   const p = LUCIDE[name]; if (!p) return ''
@@ -1312,9 +1325,9 @@ function renderClientesFinanceiro() {
 
     let statusHtml
     if (total === 0)          statusHtml = `<span class="fin-status-pill" style="background:rgba(122,144,168,.15);color:var(--muted)">Sem parcelas</span>`
-    else if (pagas === total) statusHtml = `<span class="fin-status-pill fin-badge-pago">✅ Quitado</span>`
-    else if (atras > 0)       statusHtml = `<span class="fin-status-pill fin-badge-atrasado">🔴 ${atras} atrasada${atras>1?'s':''}</span>`
-    else                      statusHtml = `<span class="fin-status-pill fin-badge-pendente">⏳ ${pagas}/${total} pagas</span>`
+    else if (pagas === total) statusHtml = `<span class="fin-status-pill fin-badge-pago">${icon('check',{size:12})} Quitado</span>`
+    else if (atras > 0)       statusHtml = `<span class="fin-status-pill fin-badge-atrasado">${icon('alert',{size:12})} ${atras} atrasada${atras>1?'s':''}</span>`
+    else                      statusHtml = `<span class="fin-status-pill fin-badge-pendente">${icon('hourglass',{size:12})} ${pagas}/${total} pagas</span>`
 
     return `<tr style="cursor:pointer" onclick="openDrillDown('${v.id}')">
       <td style="font-weight:700">${esc(v.cliente||'—')}</td>
@@ -1380,7 +1393,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
     // carrega dados em background — loadCS PRIMEIRO pra popular csLeadIds antes do renderPipeline
     if (currentRole !== 'cs') {
       Promise.all([loadLeads(), loadCS(), loadVendasParcelas(), loadHistory()])
-        .then(() => { renderDashboard(); renderPipeline(); })
+        .then(() => { renderDashboard(); renderPipeline(); aplicarHash() })   // hash só depois dos dados
         .catch(() => {})
     } else {
       // CS user: depois de loadCS, RENDERIZA o kanban (senão fica vazio)
@@ -1498,15 +1511,49 @@ function closeMobileSidebar() {
   document.getElementById('sidebar-overlay').classList.remove('active')
 }
 
+// ── ROTA POR HASH (deep-link) ──────────────────────────────────────────────
+// #pipeline · #leads · #lead/{id} (abre o detalhe). Sem framework: goTo escreve o hash e
+// o hashchange navega. A flag _navegando evita o loop goTo -> hash -> hashchange -> goTo.
+const VIEWS = ['dashboard','pipeline','leads','experts','agente-sdr','coach','cs','financeiro','clientes-fin']
+let _navegando = false
+
+// A view existe para este usuário? applyRole() esconde itens por role (@po: link não pode
+// jogar a CS no pipeline). Não é segurança — a RLS protege os dados —, é coerência.
+function viewPermitida(id) {
+  if (!VIEWS.includes(id)) return false
+  const nav = navDaView(id)
+  return !nav || nav.style.display !== 'none'
+}
+function navDaView(id) {
+  const porId = { dashboard:'nav-dashboard', experts:'nav-experts', 'agente-sdr':'nav-agente-sdr',
+                  coach:'nav-coach', cs:'nav-cs', financeiro:'nav-financeiro', 'clientes-fin':'nav-clientes-fin' }[id]
+  if (porId) return document.getElementById(porId)
+  return [...document.querySelectorAll('.sidebar-item')].find(s => (s.getAttribute('onclick')||'').includes(`goTo('${id}'`)) || null
+}
+function viewPadrao() { return currentRole === 'cs' ? 'cs' : 'dashboard' }
+
 function goTo(id, el) {
+  if (!viewPermitida(id)) id = viewPadrao()
+  const alvo = document.getElementById('view-' + id)
+  if (!alvo) return
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'))
   document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'))
-  document.getElementById('view-' + id).classList.add('active')
-  el.classList.add('active')
+  alvo.classList.add('active')
+  const nav = el || navDaView(id)
+  if (nav) nav.classList.add('active')
   document.getElementById('topbar-title').textContent = TOPBAR[id]
   // "+ Novo Lead" só faz sentido nas telas comerciais (não em CS/Financeiro/Clientes)
   document.getElementById('btn-novo-lead').style.display = ['dashboard','pipeline','leads'].includes(id) ? '' : 'none'
   closeMobileSidebar()
+
+  // escreve o hash sem re-disparar navegação
+  const hashAlvo = '#' + id
+  if (location.hash !== hashAlvo && !location.hash.startsWith('#lead/')) {
+    _navegando = true
+    location.hash = hashAlvo
+    setTimeout(() => { _navegando = false }, 0)
+  }
+
   if (id === 'dashboard')  renderDashboard()
   if (id === 'pipeline')   renderPipeline()
   if (id === 'leads')      renderAllLeads()
@@ -1517,6 +1564,25 @@ function goTo(id, el) {
   if (id === 'agente-sdr')   { loadAgentes().then(() => renderAgentes()) }
   if (id === 'coach')        renderCoach()
 }
+
+// Lê o hash atual e navega. Chamado no boot (depois dos dados) e no botão voltar.
+function aplicarHash() {
+  if (_navegando) return
+  const h = (location.hash || '').replace(/^#/, '')
+  if (!h) return
+
+  const m = h.match(/^lead\/(.+)$/)
+  if (m) {
+    if (!viewPermitida('leads')) { goTo(viewPadrao()); return }
+    goTo('leads')
+    const lead = getLeads().find(l => l.id === m[1])
+    if (lead) openDetail(lead.id)
+    else showToast('Lead não encontrado.', 'error')   // hash inválido não pode quebrar a tela
+    return
+  }
+  goTo(VIEWS.includes(h) ? h : viewPadrao())
+}
+window.addEventListener('hashchange', aplicarHash)
 
 // ── COACH (Sales Coach) ─────────────────────────────────────────────────────
 const COACH_DEMO = new URLSearchParams(location.search).get('demo') === '1'
@@ -1593,7 +1659,7 @@ function openNewMeeting() {
   document.getElementById('cm-data').value = new Date().toISOString().slice(0,10)
   const sel = document.getElementById('cm-lead')
   if (sel) sel.innerHTML = '<option value="">—</option>' + (cachedLeads||[]).map(l => `<option value="${l.id}">${esc(l.nome||'')}</option>`).join('')
-  document.getElementById('modal-coach-new').classList.add('open')
+  abrirModal('modal-coach-new')
 }
 function closeNewMeeting() { document.getElementById('modal-coach-new').classList.remove('open') }
 async function saveMeeting() {
@@ -1661,9 +1727,9 @@ function openMeeting(id) {
       <div class="coach-meter-label">Converse sobre esta call</div>
       <div class="coach-chat-msgs" id="cc-msgs"></div>
       <div class="coach-chat-chips" id="cc-chips"></div>
-      <div class="coach-chat-input"><input id="cc-input" placeholder="Pergunte ao diretor sobre esta reunião…" onkeydown="if(event.key==='Enter')ccSend()"><button id="cc-send" onclick="ccSend()">➤</button></div>
+      <div class="coach-chat-input"><input id="cc-input" placeholder="Pergunte ao diretor sobre esta reunião…" onkeydown="if(event.key==='Enter')ccSend()"><button id="cc-send" onclick="ccSend()" title="Enviar" aria-label="Enviar"><span data-icon="send" data-icon-size="15"></span></button></div>
     </div>`
-  document.getElementById('modal-coach-detail').classList.add('open')
+  abrirModal('modal-coach-detail')
   ccInit(m)
 }
 function closeMeeting() { document.getElementById('modal-coach-detail').classList.remove('open') }
@@ -1998,6 +2064,18 @@ function clearDropIndicator() {
   if (dropIndicator && dropIndicator.parentNode) dropIndicator.parentNode.removeChild(dropIndicator)
 }
 
+// Valor da coluna (F15) — só admin: ticket é admin-only no card e na tabela, não pode vazar aqui.
+// Formato compacto: R$ 34k / R$ 1,2k / R$ 800. Coluna sem valor não mostra "R$ 0".
+function valorDaColuna(leadsDaCol) {
+  if (currentRole !== 'admin') return ''
+  const total = leadsDaCol.reduce((s, l) => s + (parseFloat(l.ticket) || 0), 0)
+  if (!total) return ''
+  const fmt = total >= 1000
+    ? 'R$ ' + (total / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + 'k'
+    : 'R$ ' + total.toLocaleString('pt-BR', { maximumFractionDigits: 0 })
+  return `<span class="col-valor" title="Soma dos tickets desta coluna">${fmt}</span>`
+}
+
 function renderPipeline() {
   const leads = getLeads()
   const board = document.getElementById('pipeline-board')
@@ -2010,7 +2088,7 @@ function renderPipeline() {
     return `
       <div class="pipeline-col">
         ${phaseLabel}
-        <div class="col-header ${col.cls}"><span class="col-header-label"><span class="col-dot"></span>${col.label}</span><span class="col-count">${colLeads.length}</span></div>
+        <div class="col-header ${col.cls}"><span class="col-header-label"><span class="col-dot"></span>${col.label}</span><span style="display:inline-flex;align-items:center;gap:6px">${valorDaColuna(colLeads)}<span class="col-count">${colLeads.length}</span></span></div>
         <div class="col-drop-zone" data-col="${col.id}"
           ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'${col.id}')">
           ${colLeads.length ? colLeads.map(renderCard).join('') : '<div class="empty-col">Vazio</div>'}
@@ -2031,9 +2109,9 @@ function getSLABadge(l) {
   // só mostra "sem contato" se status for 'novo' — em 'contato' já houve interação
   if (l.status !== 'novo') return ''
   const horas = Math.floor((Date.now() - l.created) / 3600000)
-  if (horas < 2)  return `<div class="sla-badge sla-ok">⏱ ${horas}h sem contato</div>`
-  if (horas < 24) return `<div class="sla-badge sla-warn">⚠️ ${horas}h sem contato</div>`
-  return `<div class="sla-badge sla-urgent">🚨 ${horas}h sem contato</div>`
+  if (horas < 2)  return `<div class="sla-badge sla-ok">${icon('clock',{size:11})} ${horas}h sem contato</div>`
+  if (horas < 24) return `<div class="sla-badge sla-warn">${icon('alert',{size:11})} ${horas}h sem contato</div>`
+  return `<div class="sla-badge sla-urgent">${icon('alert',{size:11})} ${horas}h sem contato</div>`
 }
 
 function renderCard(l) {
@@ -2049,13 +2127,13 @@ function renderCard(l) {
       const fmtV  = v => 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})
       let statusBadge = ''
       if (total === 0)          statusBadge = ''
-      else if (pagas === total) statusBadge = `<span style="color:var(--green)">✅ Quitado</span>`
-      else if (atras > 0)       statusBadge = `<span style="color:#F87171">🔴 ${atras} atrasada${atras>1?'s':''}</span>`
-      else                      statusBadge = `<span style="color:var(--gold2)">⏳ ${pagas}/${total} pagas</span>`
+      else if (pagas === total) statusBadge = `<span style="color:var(--green)">${icon('check',{size:12})} Quitado</span>`
+      else if (atras > 0)       statusBadge = `<span style="color:#F87171">${icon('alert',{size:12})} ${atras} atrasada${atras>1?'s':''}</span>`
+      else                      statusBadge = `<span style="color:var(--gold2)">${icon('hourglass',{size:12})} ${pagas}/${total} pagas</span>`
       finHtml = `<div class="card-fin-summary">
         <span class="card-fin-valor">${fmtV(venda.valor_total)}</span>
         <span class="card-fin-status">${statusBadge}</span>
-        <button class="card-fin-edit" onclick="openEditVenda('${venda.id}');event.stopPropagation()" title="Editar venda">✏️</button>
+        <button class="card-fin-edit" onclick="openEditVenda('${venda.id}');event.stopPropagation()" title="Editar venda" aria-label="Editar venda">${icon('pencil',{size:13})}</button>
       </div>`
     }
   }
@@ -2064,23 +2142,23 @@ function renderCard(l) {
       ${getSLABadge(l)}
       <div class="lead-card-name">${esc(l.nome)}${inCS ? ' <span class="badge-em-cs" title="Já está em acompanhamento no CS">Em CS</span>' : ''}</div>
       <div class="lead-card-meta">
-        <span>📱 <strong>${esc(l.tel||'—')}</strong></span>
-        <span>👤 ${esc(l.expert)}</span>
-        <span>🔗 ${esc(l.origem)}</span>
-        <span>🧑 ${esc(l.resp)}</span>
-        ${l.socio && l.socio !== 'Não informado' ? `<span>🤝 Sócio: <strong>${esc(l.socio)}</strong></span>` : ''}
-        ${l.data_call ? `<span>📹 Call: <strong>${esc(l.data_call.replace('T',' '))}</strong></span>` : ''}
-        ${l.proximo_passo ? `<span>🎯 <strong style="color:var(--gold2)">${esc(l.proximo_passo)}</strong></span>` : ''}
-        ${l.motivo_perda ? `<span>❌ <strong style="color:#F87171">${esc(l.motivo_perda)}</strong></span>` : ''}
+        <span>${icon('phone',{size:13})} <strong>${esc(l.tel||'—')}</strong></span>
+        <span>${icon('user',{size:13})} ${esc(l.expert)}</span>
+        <span>${icon('link',{size:13})} ${esc(l.origem)}</span>
+        <span>${icon('users',{size:13})} ${esc(l.resp)}</span>
+        ${l.socio && l.socio !== 'Não informado' ? `<span>${icon('handshake',{size:13})} Sócio: <strong>${esc(l.socio)}</strong></span>` : ''}
+        ${l.data_call ? `<span>${icon('video',{size:13})} Call: <strong>${esc(l.data_call.replace('T',' '))}</strong></span>` : ''}
+        ${l.proximo_passo ? `<span>${icon('target',{size:13})} <strong style="color:var(--gold2)">${esc(l.proximo_passo)}</strong></span>` : ''}
+        ${l.motivo_perda ? `<span>${icon('x',{size:13})} <strong style="color:#F87171">${esc(l.motivo_perda)}</strong></span>` : ''}
       </div>
       ${finHtml}
       <div class="lead-card-footer">
         <div class="card-ticket">${currentRole === 'admin' && l.ticket ? 'R$ '+parseFloat(l.ticket).toLocaleString('pt-BR') : ''}</div>
         <div class="lead-card-actions">
-          ${l.tel ? `<a class="btn-card-action" href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="text-decoration:none;color:var(--green)" title="WhatsApp">💬</a>` : ''}
+          ${l.tel ? `<a class="btn-card-action" href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="text-decoration:none;color:var(--green)" title="WhatsApp" aria-label="WhatsApp">${icon('whatsapp',{size:14})}</a>` : ''}
           <div class="btn-card-action" onclick="openDetail('${l.id}')">Ver</div>
           ${l.status === 'fechado' && !inCS ? `<div class="btn-card-action" style="background:rgba(200,169,110,.2);color:var(--gold2)" onclick="moverParaCS('${l.id}',event)" title="Mover para CS">→ CS</div>` : ''}
-          ${currentRole === 'admin' ? `<div class="btn-card-action btn-card-del" onclick="deleteLead('${l.id}',event)" title="Excluir lead">✕</div>` : ''}
+          ${currentRole === 'admin' ? `<div class="btn-card-action btn-card-del" onclick="deleteLead('${l.id}',event)" title="Excluir lead" aria-label="Excluir lead">${icon('trash',{size:12})}</div>` : ''}
         </div>
       </div>
     </div>`
@@ -2220,7 +2298,7 @@ function renderAllLeads() {
       ${currentRole === 'admin' ? `<td style="color:var(--gold2);font-weight:700">${l.ticket ? 'R$ '+parseFloat(l.ticket).toLocaleString('pt-BR') : '—'}</td>` : ''}
       <td><span class="badge ${BADGE[l.status]}">${BLABEL[l.status]}</span></td>
       <td style="color:var(--muted)">${fmtDate(l.created)}</td>
-      <td>${currentRole === 'admin' ? `<span style="cursor:pointer;color:var(--red)" onclick="deleteLead('${l.id}',event)" title="Excluir lead">✕</span>` : ''}</td>
+      <td>${currentRole === 'admin' ? `<span style="cursor:pointer;color:var(--red)" onclick="deleteLead('${l.id}',event)" title="Excluir lead" aria-label="Excluir lead">${icon('trash',{size:14})}</span>` : ''}</td>
     </tr>`).join('')
 }
 
@@ -2270,7 +2348,7 @@ function openNewLead() {
   try {
     ['f-nome','f-tel','f-obs','f-ticket'].forEach(id => { const el=document.getElementById(id); if(el) el.value='' })
     ;['f-expert','f-origem','f-resp','f-status','f-socio'].forEach(id => { const el=document.getElementById(id); if(el) el.selectedIndex=0 })
-    document.getElementById('modal-new').classList.add('open')
+    abrirModal('modal-new')
   } catch(e) { showToast('Erro ao abrir modal: ' + e.message, 'error') }
 }
 function closeNewLead() { document.getElementById('modal-new').classList.remove('open') }
@@ -2301,7 +2379,7 @@ function openDetail(id) {
   document.getElementById('dt-title').textContent = l.nome
   document.getElementById('dt-body').innerHTML = `
     <div class="detail-grid">
-      <div><div class="di-label">WhatsApp</div><div class="di-value">${l.tel ? `<a href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">💬 ${esc(l.tel)}</a>` : '—'}</div></div>
+      <div><div class="di-label">WhatsApp</div><div class="di-value">${l.tel ? `<a href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">${icon('whatsapp',{size:14})} ${esc(l.tel)}</a>` : '—'}</div></div>
       <div><div class="di-label">Expert</div><div class="di-value">${esc(l.expert)}</div></div>
       <div><div class="di-label">Origem</div><div class="di-value">${esc(l.origem)}</div></div>
       <div><div class="di-label">SDR Responsável</div>
@@ -2316,11 +2394,17 @@ function openDetail(id) {
       </div>
       <div><div class="di-label">Tem Sócio</div><div class="di-value">${esc(l.socio||'—')}</div></div>
       ${currentRole === 'admin' ? `<div><div class="di-label">Ticket</div><div class="di-value" style="color:var(--gold2)">${l.ticket ? 'R$ '+parseFloat(l.ticket).toLocaleString('pt-BR') : '—'}</div></div>` : ''}
-      <div><div class="di-label">Status</div><div class="di-value"><span class="badge ${BADGE[l.status]}">${BLABEL[l.status]}</span></div></div>
       <div><div class="di-label">Entrada</div><div class="di-value">${fmtDate(l.created)}</div></div>
-      ${l.data_call ? `<div><div class="di-label">📹 Data da Call</div><div class="di-value">${esc(l.data_call.replace('T',' '))}</div></div>` : ''}
-      ${l.proximo_passo ? `<div><div class="di-label">🎯 Próximo Passo</div><div class="di-value" style="color:var(--gold2)">${esc(l.proximo_passo)}</div></div>` : ''}
-      ${l.motivo_perda ? `<div><div class="di-label">❌ Motivo da Perda</div><div class="di-value" style="color:#F87171">${esc(l.motivo_perda)}</div></div>` : ''}
+      ${l.data_call ? `<div><div class="di-label">Data da Call</div><div class="di-value">${esc(l.data_call.replace('T',' '))}</div></div>` : ''}
+      ${l.proximo_passo ? `<div><div class="di-label">Próximo Passo</div><div class="di-value" style="color:var(--gold2)">${esc(l.proximo_passo)}</div></div>` : ''}
+      ${l.motivo_perda ? `<div><div class="di-label">Motivo da Perda</div><div class="di-value" style="color:#F87171">${esc(l.motivo_perda)}</div></div>` : ''}
+    </div>
+    <div class="section-sep">Status — toque para mover</div>
+    <div class="move-chips" style="margin-bottom:14px">
+      ${COLS.map(c => c.id === l.status
+        ? `<button type="button" class="move-chip sel" disabled aria-current="true">${BLABEL[c.id]}</button>`
+        : `<button type="button" class="move-chip" onclick="moveTo('${l.id}','${c.id}')" title="Mover para ${BLABEL[c.id]}">${BLABEL[c.id]}</button>`
+      ).join('')}
     </div>
     ${l.obs ? `<p style="font-size:13px;color:var(--muted);margin-bottom:14px">${esc(l.obs)}</p>` : ''}
     <div class="section-sep">Histórico de Atividades</div>
@@ -2333,12 +2417,36 @@ function openDetail(id) {
       <input type="text" id="act-input" placeholder="Ex: Ligação feita, reunião confirmada..." />
       <button class="btn-add-act" onclick="addActivity('${id}')">+ Log</button>
     </div>`
-  document.getElementById('modal-detail').classList.add('open')
+  abrirModal('modal-detail')
+  // deep-link: a URL passa a apontar para este lead (dá pra colar no WhatsApp do time)
+  if (!location.hash.startsWith('#lead/' + id)) {
+    _navegando = true
+    location.hash = '#lead/' + id
+    setTimeout(() => { _navegando = false }, 0)
+  }
 }
 
-function closeDetail() { document.getElementById('modal-detail').classList.remove('open') }
+function closeDetail() {
+  document.getElementById('modal-detail').classList.remove('open')
+  detalheAbertoId = null
+  // limpa o #lead/{id} — volta para a view em que o usuário está
+  if (location.hash.startsWith('#lead/')) {
+    _navegando = true
+    const viewAtiva = (document.querySelector('.view.active')?.id || 'view-dashboard').replace('view-', '')
+    location.hash = '#' + viewAtiva
+    setTimeout(() => { _navegando = false }, 0)
+  }
+}
 
-function moveTo(id, status) { closeDetail(); changeStatus(id, status) }
+// Chips do modal de detalhe (F5). Era código morto desde o Lote 1 (QA ISSUE-2); agora é o
+// gatilho dos chips. NÃO marca o chip otimisticamente: a fonte de verdade é lead.status —
+// o modal é reaberto depois que o banco confirma (ver aplicarStatus). Cancelar não muda nada.
+// O detalhe FICA aberto por baixo: o modal-transition empilha (por isso o fix do abrirModal).
+let detalheAbertoId = null
+function moveTo(id, status) {
+  detalheAbertoId = id
+  changeStatus(id, status)
+}
 
 // ── TRANSIÇÕES DE STATUS (modal em vez de prompt nativo) ───────────────────
 // Motivos fechados: renderExperts() agrupa por string exata — texto livre fragmenta os buckets.
@@ -2375,6 +2483,11 @@ async function aplicarStatus(id, status, extra = {}) {
   await loadHistory()          // a transição acabou de ser gravada pelo trigger
   renderDashboard()
   showToast(`Lead movido para ${BLABEL[status] || status}`)
+  // Veio dos chips do detalhe? Reabre o modal para o chip refletir o status confirmado.
+  if (detalheAbertoId === id && document.getElementById('modal-detail').classList.contains('open')) {
+    openDetail(id)
+  }
+  detalheAbertoId = null
   if (status === 'fechado' && isFinanceiroUser()) onLeadFechado(id)
 }
 
@@ -2418,7 +2531,7 @@ function abrirTransition(status, lead) {
         <div style="font-size:11px;color:var(--text-3);margin-top:4px">Deixe em branco para registrar depois.</div>
       </div>`
   }
-  document.getElementById('modal-transition').classList.add('open')
+  abrirModal('modal-transition')
   const foco = body.querySelector('input')
   if (foco) setTimeout(() => foco.focus(), 60)
 }
@@ -2495,7 +2608,7 @@ function confirmarAcao(msg, onOk, opts = {}) {
   ok.textContent = opts.okLabel || 'Confirmar'
   // ação destrutiva: botão vermelho
   ok.style.background = opts.perigo ? 'var(--red)' : ''
-  document.getElementById('modal-confirm').classList.add('open')
+  abrirModal('modal-confirm')
 }
 function fecharConfirm() {
   _confirmOk = null
@@ -2753,7 +2866,7 @@ function renderHoje() {
   banner.style.display = 'block'
 
   if (!itens.length) {
-    lista.innerHTML = `<div style="font-size:12px;color:var(--muted);padding:4px 0">✅ Nenhum check pendente para hoje</div>`
+    lista.innerHTML = `<div style="font-size:12px;color:var(--muted);padding:4px 0">${icon('check',{size:13})} Nenhum check pendente para hoje</div>`
     return
   }
 
@@ -2840,7 +2953,7 @@ function openCSDetail(id) {
           ${CS_PRODUTOS.map(p => `<option value="${p.id}" ${c.produto===p.id?'selected':''}>${p.label}</option>`).join('')}
         </select>
       </div>
-      <div><div class="di-label">WhatsApp</div><div class="di-value">${c.tel ? `<a href="https://wa.me/55${c.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">💬 ${esc(c.tel)}</a>` : '—'}</div></div>
+      <div><div class="di-label">WhatsApp</div><div class="di-value">${c.tel ? `<a href="https://wa.me/55${c.tel.replace(/\D/g,'')}" target="_blank" style="color:var(--green);text-decoration:none">${icon('whatsapp',{size:14})} ${esc(c.tel)}</a>` : '—'}</div></div>
       <div><div class="di-label">CS Responsável</div>
         <select onchange="updateCSField('${id}',{resp_cs:this.value})" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
           <option value="" ${!c.resp_cs?'selected':''}>— Sem CS —</option>
@@ -2864,15 +2977,15 @@ function openCSDetail(id) {
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;font-size:13px">
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white)">
         <input type="checkbox" ${c.aula_assistida?'checked':''} onchange="updateCSField('${id}',{aula_assistida:this.checked})" style="width:16px;height:16px;cursor:pointer" />
-        ✅ Aula indicada assistida
+        Aula indicada assistida
       </label>
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white)">
         <input type="checkbox" ${c.campanha_rodou?'checked':''} onchange="updateCSField('${id}',{campanha_rodou:this.checked})" style="width:16px;height:16px;cursor:pointer" />
-        ✅ Campanha orgânica rodou
+        Campanha orgânica rodou
       </label>
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--white)">
         <input type="checkbox" ${c.resultado_coletado?'checked':''} onchange="updateCSField('${id}',{resultado_coletado:this.checked})" style="width:16px;height:16px;cursor:pointer" />
-        ✅ Resultado da campanha coletado
+        Resultado da campanha coletado
       </label>
     </div>
     <div class="section-sep">Diagnóstico de Triagem</div>
@@ -2900,12 +3013,12 @@ function openCSDetail(id) {
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_faz_crediario?'checked':''} onchange="updateCSField('${id}',{diag_faz_crediario:this.checked})" /> Faz crediário</label>
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" ${c.diag_tem_sistema?'checked':''} onchange="updateCSField('${id}',{diag_tem_sistema:this.checked})" /> Tem sistema integrado</label>
     </div>
-    <div class="section-sep">🎁 Entregáveis Bônus</div>
+    <div class="section-sep">Entregáveis Bônus</div>
     <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">
       ${(Array.isArray(c.entregaveis_bonus)?c.entregaveis_bonus:[]).map((b,i)=>`
         <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--white);background:var(--navy3);border:1px solid var(--border);border-radius:8px;padding:7px 10px">
-          <span style="flex:1">🎁 ${esc(b)}</span>
-          <span onclick="removeBonusCS('${id}',${i})" style="cursor:pointer;color:var(--red);font-weight:700;line-height:1" title="Remover">✕</span>
+          <span style="flex:1;display:inline-flex;align-items:center;gap:6px">${icon('gift',{size:14})} ${esc(b)}</span>
+          <span onclick="removeBonusCS('${id}',${i})" style="cursor:pointer;color:var(--red);font-weight:700;line-height:1" title="Remover" aria-label="Remover bônus">${icon('x',{size:14})}</span>
         </div>`).join('') || '<div style="font-size:12px;color:var(--muted)">Nenhum bônus adicionado.</div>'}
     </div>
     <div style="display:flex;gap:8px;margin-bottom:16px">
@@ -2916,15 +3029,25 @@ function openCSDetail(id) {
     </div>
     <div class="section-sep">Observações</div>
     <textarea placeholder="Anotações livres..." onchange="updateCSField('${id}',{obs:this.value})" style="width:100%;background:var(--navy3);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px;outline:none;resize:vertical;min-height:70px">${esc(c.obs||'')}</textarea>`
-  document.getElementById('modal-detail').classList.add('open')
+  abrirModal('modal-detail')
 }
 
+// Mesmo contrato de updateLeadField (QA Lote 1, ISSUE-3): retorna true só se o banco confirmou.
+// Antes: mostrava o erro e seguia renderizando como se tivesse salvo — a CS via o card "certo"
+// na tela e o dado não estava lá.
 async function updateCSField(id, fields) {
   const idx = cachedCS.findIndex(c => c.id === id)
-  if (idx !== -1) cachedCS[idx] = { ...cachedCS[idx], ...fields }
+  const antes = idx !== -1 ? { ...cachedCS[idx] } : null
+  if (idx !== -1) cachedCS[idx] = { ...cachedCS[idx], ...fields }   // otimista, para a UI não piscar
   const { error } = await sb.from('clientes_cs').update(fields).eq('id', id)
-  if (error) showToast('Erro ao atualizar CS: ' + error.message, 'error')
+  if (error) {
+    if (idx !== -1 && antes) cachedCS[idx] = antes                  // desfaz o otimismo
+    showToast('Erro ao atualizar CS: ' + error.message, 'error')
+    renderCS()
+    return false
+  }
   renderCS()
+  return true
 }
 
 // Item 3 — entregáveis bônus (lista em clientes_cs.entregaveis_bonus)
@@ -3030,7 +3153,7 @@ function openAgente(id) {
       <button class="btn-primary" onclick="saveAgente()">Salvar</button>
       ${id ? `<button class="btn-card-action btn-card-del" onclick="deleteAgente('${id}')" style="padding:8px 14px">Excluir</button>` : ''}
     </div>`
-  document.getElementById('modal-detail').classList.add('open')
+  abrirModal('modal-detail')
 }
 
 async function saveAgente() {
@@ -3181,9 +3304,9 @@ function renderFinSection(containerId, parcelas, totalId) {
       : `<select class="fin-metodo-sel" onchange="setMetodoParcela('${p.id}',this.value)"><option value="" ${!p.metodo?'selected':''}>—</option><option value="pix" ${p.metodo==='pix'?'selected':''}>PIX</option><option value="boleto" ${p.metodo==='boleto'?'selected':''}>Boleto</option><option value="cartao" ${p.metodo==='cartao'?'selected':''}>Cartão</option></select>`
     const stCls   = {pendente:'fin-badge-pendente',atrasado:'fin-badge-atrasado',pago:'fin-badge-pago'}[p.status]||''
     const stLabel = {pendente:'Pendente',atrasado:'Atrasado',pago:'Pago'}[p.status]||p.status
-    const waBtnHtml  = tel ? `<button class="btn-whatsapp" onclick="window.open('https://wa.me/55${tel}','_blank')">📞</button>` : ''
-    const pagoBtnHtml = p.status!=='pago' ? `<button class="btn-pago" onclick="openModalPago('${p.id}')">✓ Pago</button>` : ''
-    const editBtnHtml = `<button class="btn-whatsapp" style="background:rgba(99,102,241,.15);color:#818cf8" onclick="openEditVenda('${venda.id}')">✏️</button>`
+    const waBtnHtml  = tel ? `<button class="btn-whatsapp" onclick="window.open('https://wa.me/55${tel}','_blank')" title="WhatsApp" aria-label="WhatsApp">${icon('whatsapp',{size:13})}</button>` : ''
+    const pagoBtnHtml = p.status!=='pago' ? `<button class="btn-pago" onclick="openModalPago('${p.id}')">${icon('check',{size:12})} Pago</button>` : ''
+    const editBtnHtml = `<button class="btn-whatsapp" style="background:rgba(99,102,241,.15);color:#818cf8" onclick="openEditVenda('${venda.id}')" title="Editar venda" aria-label="Editar venda">${icon('pencil',{size:13})}</button>`
     return `<tr>
       <td><span class="fin-cliente-link" onclick="openDrillDown('${venda.id}')">${esc(venda.cliente||'—')}</span></td>
       <td style="color:var(--muted)">${p.numero}ª/${p.total_parcelas}</td>
@@ -3219,7 +3342,7 @@ function novoClienteFinanceiro() {
   document.getElementById('fneg-metodo').value   = 'pix'
   document.getElementById('fneg-obs').value      = ''
   renderParcelasInputs()
-  document.getElementById('modal-negociacao').classList.add('open')
+  abrirModal('modal-negociacao')
 }
 
 function setFinDias(n) {
@@ -3251,7 +3374,7 @@ async function onLeadFechado(leadId) {
   document.getElementById('fneg-condicao').value = 'avista'
   document.getElementById('fneg-obs').value      = ''
   renderParcelasInputs()
-  document.getElementById('modal-negociacao').classList.add('open')
+  abrirModal('modal-negociacao')
 }
 
 function fecharModalNegociacao() {
@@ -3311,7 +3434,7 @@ async function salvarNegociacao() {
   fecharModalNegociacao()
   await loadFinanceiro()
   if (document.getElementById('view-financeiro').classList.contains('active')) renderFinanceiro()
-  showToast('✅ Venda registrada com sucesso!')
+  showToast('Venda registrada com sucesso!')
 }
 
 // ── DRILL-DOWN ─────────────────────────────────────────────────────────────
@@ -3322,7 +3445,7 @@ function openDrillDown(vendaId) {
   const stCls = {pendente:'fin-badge-pendente',atrasado:'fin-badge-atrasado',pago:'fin-badge-pago'}
   const stLbl = {pendente:'Pendente',atrasado:'Atrasado',pago:'Pago'}
   const condLbl = {avista:'À Vista',parcelado:'Parcelado',entrada_saldo:'Entrada + Saldo'}
-  const drIcon = {pago:'✅',atrasado:'🔴',pendente:'⏳'}
+  const drIcon = {pago:icon('check',{size:12}),atrasado:icon('alert',{size:12}),pendente:icon('hourglass',{size:12})}
   const parcsHtml = parcs.map(p=>{
     const fmtD = d => d ? new Date(d+'T12:00:00').toLocaleDateString('pt-BR') : '—'
     const metodoLbl = {pix:'PIX',boleto:'Boleto',cartao:'Cartão'}[p.metodo]||''
@@ -3348,8 +3471,8 @@ function openDrillDown(vendaId) {
     </div>
     <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Parcelas</div>
     ${parcsHtml}
-    <div style="margin-top:16px"><button class="btn-save" onclick="openEditVenda('${vendaId}')">✏️ Editar</button></div>`
-  document.getElementById('modal-drill').classList.add('open')
+    <div style="margin-top:16px"><button class="btn-save" onclick="openEditVenda('${vendaId}')">${icon('pencil',{size:14})} Editar</button></div>`
+  abrirModal('modal-drill')
 }
 
 // ── EDITAR VENDA ───────────────────────────────────────────────────────────
@@ -3366,10 +3489,10 @@ function openEditVenda(vendaId) {
     const isPago = p.status === 'pago'
     const pagoBlock = isPago ? `
       <div class="fin-parcela-row" data-parc-id="${p.id}" data-pago-row="1" style="padding-left:32px;margin-top:-2px;margin-bottom:8px">
-        <label style="min-width:0;color:var(--green);font-size:11px;font-weight:700">✅ Pago em</label>
+        <label style="min-width:0;color:var(--green);font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px">${icon('check',{size:12})} Pago em</label>
         <input type="date" class="fedit-parc-pagoem" value="${p.pago_em||''}" style="width:auto"/>
         <span class="fin-data-fmt">${fmtDataBR(p.pago_em)}</span>
-        <button type="button" onclick="desmarcarPago('${p.id}')" style="background:rgba(249,115,22,.15);color:var(--orange);border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">↩️ Desmarcar</button>
+        <button type="button" onclick="desmarcarPago('${p.id}')" style="background:rgba(249,115,22,.15);color:var(--orange);border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">${icon('undo',{size:12})} Desmarcar</button>
       </div>` : ''
     return `
     <div class="fin-parcela-row" data-parc-id="${p.id}">
@@ -3385,7 +3508,7 @@ function openEditVenda(vendaId) {
       </select>
     </div>${pagoBlock}`}).join('')
   document.getElementById('modal-drill').classList.remove('open')
-  document.getElementById('modal-edit').classList.add('open')
+  abrirModal('modal-edit')
 }
 
 function adicionarParcela() {
@@ -3449,7 +3572,7 @@ async function salvarEditVenda() {
   document.getElementById('modal-edit').classList.remove('open')
   await loadFinanceiro()
   renderFinanceiro()
-  showToast('✅ Edições salvas!')
+  showToast('Edições salvas!')
 }
 
 function desmarcarPago(parcelaId) {
@@ -3500,7 +3623,7 @@ function openModalPago(parcelaId) {
   }
   document.getElementById('fpago-data').value   = new Date().toISOString().slice(0,10)
   document.getElementById('fpago-metodo').value = parc?.metodo || 'pix'
-  document.getElementById('modal-pago').classList.add('open')
+  abrirModal('modal-pago')
 }
 
 async function confirmarPago() {
@@ -3513,7 +3636,7 @@ async function confirmarPago() {
   pendingPagoParcelaId = null
   await loadFinanceiro()
   renderFinanceiro()
-  showToast('✅ Parcela marcada como paga!')
+  showToast('Parcela marcada como paga!')
 }
 
 // ── TOAST ──────────────────────────────────────────────────────────────────
@@ -3588,21 +3711,64 @@ const MODAL_CLOSERS = {
   'modal-transition':    cancelTransition,   // cancelar = card volta pra coluna de origem
   'modal-confirm':       fecharConfirm,
 }
+// Abrir modal SEMPRE por aqui: carimba a ordem de abertura.
+// Sem isso, com 2 modais empilhados (ex.: detalhe + transição), o "topo" seria o último no
+// DOM — e o modal-transition vem ANTES do modal-detail no HTML. Esc fecharia o de baixo.
+function abrirModal(id) {
+  const el = document.getElementById(id)
+  if (!el) return
+  el.dataset.openedAt = String(Date.now() + (openSeq++))   // seq evita empate no mesmo ms
+  el.classList.add('open')
+}
+let openSeq = 0
+
 function closeModalEl(el) {
   if (!el) return
+  delete el.dataset.openedAt
   const fn = MODAL_CLOSERS[el.id]
   if (fn) fn(); else el.classList.remove('open')
 }
+// O topo é o ÚLTIMO ABERTO (não o último no DOM) — ver comentário em abrirModal.
+function topModal() {
+  const abertos = [...document.querySelectorAll('.modal-overlay.open')]
+  if (!abertos.length) return null
+  return abertos.sort((a, b) => (+a.dataset.openedAt || 0) - (+b.dataset.openedAt || 0)).pop()
+}
 function closeTopModal() {
-  const abertos = document.querySelectorAll('.modal-overlay.open')
-  if (!abertos.length) return false
-  closeModalEl(abertos[abertos.length - 1]) // o último no DOM é o de cima
+  const el = topModal()
+  if (!el) return false
+  closeModalEl(el)
   return true
 }
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return
   if (closeTopModal()) return
   closeMobileSidebar() // sem modal aberto: Esc fecha o menu mobile
+})
+
+// ── ATALHOS (F7) — N: novo lead · /: focar busca ───────────────────────────
+// Nunca disparam digitando num campo nem com modal aberto.
+const BUSCA_DA_VIEW = { dashboard:'search-recent', leads:'search-leads', coach:'coach-search',
+                        financeiro:'fin-search', 'clientes-fin':'fin-clientes-search' }
+function digitandoEmCampo(el) {
+  return !!el && (el.isContentEditable || ['INPUT','TEXTAREA','SELECT'].includes(el.tagName))
+}
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.altKey || e.metaKey) return
+  if (digitandoEmCampo(document.activeElement)) return
+  if (document.querySelector('.modal-overlay.open')) return
+  if (!currentUser) return
+
+  const view = (document.querySelector('.view.active')?.id || '').replace('view-', '')
+
+  if (e.key === 'n' || e.key === 'N') {
+    if (['dashboard','pipeline','leads'].includes(view)) { e.preventDefault(); openNewLead() }
+    return
+  }
+  if (e.key === '/') {
+    const alvo = document.getElementById(BUSCA_DA_VIEW[view] || '')
+    if (alvo) { e.preventDefault(); alvo.focus(); alvo.select?.() }
+  }
 })
 // Só fecha se o mousedown E o clique terminarem no overlay — não fecha ao selecionar texto de dentro do modal
 let _overlayDown = null
