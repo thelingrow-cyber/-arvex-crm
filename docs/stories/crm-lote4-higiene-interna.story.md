@@ -1,7 +1,7 @@
 # Story CRM-UX-004 — Lote 4: higiene interna (Fase 2 do REFACTOR-PLAN)
 
 **Tipo:** Refatoração (brownfield, sem mudança funcional)
-**Status:** Ready for Review
+**Status:** Done
 **Owner:** @dev (Dex) — frontend puro, sem SQL
 **Criado:** 2026-07-13 por @sm (River)
 **Validado:** 2026-07-13 por @po (Pax) — **NO-GO no escopo original (6/10) · GO no escopo enxuto (9/10)**. AC3 (event delegation) ADIADO com justificativa numérica — ver §Decisão do @po
@@ -158,3 +158,15 @@
 |------|-------|---------|
 | 2026-07-13 | @sm (River) | Story criada. Escopo reduzido vs. REFACTOR-PLAN: os 54 onclick estáticos ficam; meta de inline styles ≤150. |
 | 2026-07-13 | @po (Pax) | **NO-GO no escopo original (6/10); GO no enxuto (9/10).** Cortes com base em medição: (1) inline styles = 7,5% do arquivo → a meta renderia ~3% de ganho por ~200 edições: cortada, fica só o padrão 17×; (2) event delegation ADIADA — o bug de escaping que a justificava não é mais possível (data-id é UUID) e 7 handlers dependem de stopPropagation; o seam real do SaaS é a camada `db.*` (Fase 3), não `data-action`. Sobra o que tem ganho real e risco ~zero: 2º `<style>`, o padrão de select 17×, e as bandeiras de seção no JS. |
+
+---
+
+## QA Results
+
+**Gate:** `docs/qa/gates/crm-ux-004-lote4.yml` · **Verdict: PASS** (sem iteração) · @qa (Quinn), 2026-07-13
+
+**"Zero mudança" foi provado, não afirmado.** Comparei **classe a classe contra a produção**: 9 classes `.coach-*`/`.cc-*` medidas por computed style (background, color, radius, padding, font-size, font-weight, border, display) na versão no ar (sem Lote 4) e na versão com Lote 4 → **zero divergências**. A cascata não mudou: o CSS do Coach continua depois de todas as regras originais.
+
+**Focos auditados:** nenhum dos 17 elementos convertidos tinha `class=` própria (sem sobrescrita); nenhum ficou com `style=` conflitante; 9/9 views renderizam; Lotes 0-3 intactos; console limpo.
+
+**Nota do QA sobre o valor real:** o ganho deste lote **não** é a redução de bytes (−1,1%, irrelevante). É o **índice de domínios** no cabeçalho: um agente agora greppa `===== DOMINIO: CS` e lê só aquele trecho em vez dos 235KB. E as convenções que já custaram bugs nesta própria série — a **TDZ** (Lote 2, derrubou o boot inteiro) e o **"sucesso só após o banco confirmar"** (Lote 1, toast mentia em falha) — estão agora escritas onde quem for editar o arquivo lê **antes** de repetir o erro. Isso é prevenção, não cosmética.

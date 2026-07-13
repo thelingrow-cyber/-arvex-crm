@@ -1,0 +1,52 @@
+storyId: CRM-UX-004
+story: docs/stories/crm-lote4-higiene-interna.story.md
+reviewer: "@qa (Quinn)"
+date: 2026-07-13
+verdict: PASS
+summary: >
+  Refatoração com critério de "zero mudança" — e a ausência de mudança foi PROVADA por
+  comparação de computed style contra a produção, não afirmada. Nenhuma iteração necessária.
+
+checks:
+  code_review:      PASS   # nada foi movido de lugar; bandeiras são troca de texto de comentário
+  unit_tests:       N/A
+  acceptance:       PASS   # AC1, AC2, AC4, AC5 (AC3 adiado por decisão do @po, confirmada pelo Vitor)
+  regressions:      PASS   # 9/9 views renderizam; Lotes 0-3 intactos; console limpo
+  performance:      PASS   # 1 bloco de CSS em vez de 2; -2.587 bytes
+  security:         PASS   # nenhuma superfície nova
+  documentation:    PASS   # índice + convenções no cabeçalho do script
+
+focos_auditados:
+  - id: FOCO-1
+    titulo: "O CSS do Coach mudou de cascata ao sair do <body> para o <head>?"
+    resultado: PASS
+    evidencia: >
+      Comparação DIRETA contra produção: 9 classes .coach-*/.cc-* medidas por computed style
+      (background, color, border-radius, padding, font-size, font-weight, border, display) na
+      versão em produção (sem Lote 4) e na versão local (com Lote 4). ZERO divergências.
+      A ordem relativa foi preservada: o CSS do Coach continua depois de todas as regras originais.
+  - id: FOCO-2
+    titulo: "A troca de style= por class= sobrescreveu alguma class existente?"
+    resultado: PASS
+    evidencia: "Zero elementos com dois atributos class=. Os 17 alvos não tinham class própria."
+  - id: FOCO-3
+    titulo: "Algum elemento com .di-field ficou com style inline conflitante?"
+    resultado: PASS
+    evidencia: "0 ocorrências de .di-field + style= no mesmo elemento. Os 17 esperados foram criados."
+  - id: FOCO-4
+    titulo: "Regressão dos Lotes 0-3"
+    resultado: PASS
+    evidencia: "9/9 views renderizam; Esc (L0), modal de transição + 6 chips de perda (L1), métricas de movimento (L2), 8 chips de status + valor por coluna (L3). Console limpo."
+
+issues: []
+
+nota_do_qa: >
+  O valor entregue por este lote NÃO é a redução de bytes (-1,1%) — é o índice de domínios no
+  cabeçalho do script. Ele permite que um agente greppe "===== DOMINIO: CS" e leia só aquele
+  trecho, em vez de reler 235KB. As convenções que já causaram bugs reais nesta série (TDZ do
+  Lote 2; "sucesso só após o banco confirmar", do Lote 1) agora estão escritas onde quem edita
+  o arquivo vai ler ANTES de repetir o erro. Isso é prevenção, não cosmética.
+
+coderabbit:
+  executed: false
+  reason: "CLI em WSL (7-30min); refatoração sem lógica nova, focos cobertos por comparação direta com produção."
