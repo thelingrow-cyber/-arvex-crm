@@ -2237,7 +2237,7 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
       colOrigem: card.closest(colSelector)?.dataset.col,
       toque: e.pointerType === 'touch',
       engajado: false, holdTimer: null, mundo: null,
-      placeholder: null, colAlvo: null, idx: 0, raf: null,
+      colAlvo: null, idx: 0, raf: null,
     }
     vel.reset(); vel.push(e.clientX, e.clientY)
 
@@ -2250,20 +2250,24 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     card.setPointerCapture?.(e.pointerId)
   }
 
-  // ── LEVANTAR: o card REAL vira camada fixa. Nada de clone. ──
+  // ── LEVANTAR: o card REAL vira camada fixa. Nada de clone, nada de placeholder. ──
+  //
+  // NÃO usar placeholder. Ele criava um SEGUNDO espaço: o buraco do card + o vão dos
+  // vizinhos = espaço em dobro no instante do agarre (bug reportado pelo Vitor).
+  // O card sai do fluxo => o buraco colapsa sozinho; o vão é feito SÓ por transform.
+  //
+  // Truque para não haver salto: no mesmo frame em que o card vira fixed (e os de baixo
+  // sobem), aplicamos o vão na posição ORIGINAL dele — sem transição. Os dois movimentos
+  // se anulam e, visualmente, nada se mexe. A partir daí, com transição ligada, o vão
+  // desliza para onde o cursor mandar.
   function engajar() {
     if (!g || g.engajado) return
     g.engajado = true
     clearTimeout(g.holdTimer)
 
     const card = g.card
-    g.mundo = medirMundo(card)
-
-    // placeholder ocupa o buraco deixado (mesma altura) — o layout não colapsa
-    const ph = document.createElement('div')
-    ph.style.cssText = `height:${g.h}px;margin-bottom:8px;border-radius:10px;`
-    card.parentNode.insertBefore(ph, card)
-    g.placeholder = ph
+    const colEl = card.closest(colSelector)
+    const idxOriginal = [...colEl.querySelectorAll(cardSelector)].indexOf(card)
 
     card.style.transition = 'none'
     card.style.position = 'fixed'
@@ -2275,10 +2279,24 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     card.classList.add('dragging')     // tilt + sombra que já existem no CSS
     navigator.vibrate?.(10)
 
+    // mede DEPOIS do card sair do fluxo: os rects são o layout real, sem ele.
+    // O índice-alvo passa a ser pura geometria ("onde o card caberia se não existisse"),
+    // sem depender dos transforms visuais — é o que evita jitter.
+    g.mundo = medirMundo(card)
     g.colAlvo = g.mundo.find(c => c.id === g.colOrigem) || g.mundo[0]
-    g.idx = indiceEm(g.y, g.colAlvo)
-    abrirVao(g.mundo, g.colAlvo, g.idx, g.h)
+    g.idx = Math.max(0, Math.min(idxOriginal, g.colAlvo.cards.length))
+
+    semTransicao(g.mundo, () => abrirVao(g.mundo, g.colAlvo, g.idx, g.h))
     loop()
+  }
+
+  // Aplica mudanças de transform sem animar (usado só no agarre, para anular o salto).
+  function semTransicao(mundo, fn) {
+    const todos = mundo.flatMap(c => c.cards.map(x => x.el))
+    todos.forEach(el => { el.style.transition = 'none' })
+    fn()
+    void boardEl().offsetHeight          // força o reflow: o browser "aceita" o estado
+    todos.forEach(el => { el.style.transition = '' })   // volta a animar a partir daqui
   }
 
   // ── SEGUIR: pointermove só GRAVA. Um rAF desenha. 60fps garantidos. ──
@@ -2419,7 +2437,6 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     card.style.cssText = ''
     card.classList.remove('dragging')
     card._settling = null
-    gesto.placeholder?.remove()
     if (gesto.mundo) fecharVaos(gesto.mundo)
     card.releasePointerCapture?.(gesto.pointerId)
     onEnd?.()     // aplica render represado pelo realtime durante o gesto
