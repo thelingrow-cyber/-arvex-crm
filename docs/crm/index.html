@@ -2384,8 +2384,13 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
       let t0 = performance.now()
       card.classList.remove('dragging')
 
+      // Rede de segurança: o rAF congela quando a aba perde o foco. Sem isto, soltar o card
+      // e trocar de aba na mesma hora deixaria o assentamento pendurado para sempre.
+      const fim = setTimeout(() => { st.cancelado = true; card._settling = null; resolve() }, 1200)
+      const terminar = () => { clearTimeout(fim); card._settling = null; resolve() }
+
       function frame(t) {
-        if (st.cancelado) { resolve(); return }
+        if (st.cancelado) { clearTimeout(fim); resolve(); return }
         const dt = Math.min((t - t0) / 1000, 0.032); t0 = t
         ;[sx, vX] = springStep(sx, vX, dt)
         ;[sy, vY] = springStep(sy, vY, dt)
@@ -2394,8 +2399,7 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
         card.style.transform = `translate3d(${sx}px, ${sy}px, 0)`
         if (Math.hypot(sx, sy) < 0.5 && Math.hypot(vX, vY) < 12) {
           card.style.transform = ''
-          card._settling = null
-          resolve(); return
+          terminar(); return
         }
         requestAnimationFrame(frame)
       }
@@ -2421,6 +2425,7 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     onEnd?.()     // aplica render represado pelo realtime durante o gesto
   }
 
+  // Gesto que NÃO chegou a engajar (virou scroll, ou ponteiro cancelado antes do limiar)
   function cancelarGesto() {
     if (!g) return
     clearTimeout(g.holdTimer)
@@ -2430,11 +2435,31 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     g = null
   }
 
+  // Ponteiro cancelado NO MEIO do arrasto (interrupção do SO, troca de aba, chamada).
+  // Sem isto, o card ficava preso em position:fixed, os vãos abertos e o render do realtime
+  // represado para sempre (QA ISSUE-2).
+  //
+  // A limpeza é SÍNCRONA, sem spring: o aborto costuma acontecer justamente quando a aba
+  // perde o foco — e aí o rAF é congelado pelo browser, então uma animação de volta NUNCA
+  // terminaria e o card ficaria preso (foi o que o re-teste do QA mostrou). Aborto precisa
+  // ser confiável, não bonito.
+  function abortarGesto() {
+    if (!g) return
+    if (!g.engajado) { cancelarGesto(); return }
+    const gesto = g
+    cancelAnimationFrame(gesto.raf)
+    scrollDir = { x: 0, y: 0 }
+    g = null
+    limpar(gesto)     // devolve o card ao fluxo do DOM na hora; onEnd() destrava a flag
+    renderPipeline()  // reconcilia a partir do cache (o gesto não persistiu nada)
+  }
+
   // Delegação: sobrevive ao re-render do board (innerHTML) sem re-anexar nada
   document.addEventListener('pointerdown', onPointerDown)
   document.addEventListener('pointermove', onPointerMove, { passive: false })
   document.addEventListener('pointerup', onPointerUp)
-  document.addEventListener('pointercancel', () => { if (g && !g.engajado) cancelarGesto() })
+  document.addEventListener('pointercancel', abortarGesto)
+  window.addEventListener('blur', abortarGesto)   // trocar de aba com o card na mão também aborta
 
   return { arrastando: () => !!(g && g.engajado) }
 }
@@ -2494,21 +2519,20 @@ function initPipelineDrag() {
     getItems: colId => getLeads().filter(l => l.status === colId).sort(byPos('created')),
     onClick: id => openDetail(id),        // NOVO (@po): o corpo do card abre o detalhe
     onCommit: async (id, colId, posicao, mudouColuna) => {
-      // Otimismo visual: o cache já reflete o movimento, então os contadores e o R$ das
-      // colunas atualizam junto com o pouso — o board inteiro "sabe" o que aconteceu.
-      const lead = getLeads().find(l => l.id === id)
-      if (lead) { lead.status = colId; lead.posicao = posicao }
-      atualizarCabecalhosPipeline()
-
       if (mudouColuna) {
-        // Coluna que exige dado (perdido/call/followup/fechado): o card JÁ assentou e o
-        // modal do Lote 1 abre por cima. Cancelar => cancelTransition chama renderPipeline
-        // e o card volta ao lugar (o cache é a verdade).
+        // MUDANÇA DE COLUNA: NÃO tocar no cache aqui.
+        // changeStatus() decide se abre o modal (perdido/call/followup/fechado) comparando
+        // `lead.status !== status`. Um otimismo de cache aqui zeraria essa comparação e o
+        // card iria para "Perdido" SEM PEDIR MOTIVO — anulando o Lote 1 (QA ISSUE-1, crítico).
+        // O card já assentou fisicamente; changeStatus cuida do modal, do banco e do render.
         changeStatus(id, colId, { posicao })
         return true
       }
-      const ok = await updateLeadField(id, { posicao })   // reordenar na mesma coluna
-      return ok
+      // REORDENAR NA MESMA COLUNA: não há modal, então o otimismo é seguro.
+      const lead = getLeads().find(l => l.id === id)
+      if (lead) lead.posicao = posicao
+      atualizarCabecalhosPipeline()
+      return await updateLeadField(id, { posicao })
     },
     onEnd: () => aplicarRenderPendente(),   // aplica o realtime que ficou represado
   })

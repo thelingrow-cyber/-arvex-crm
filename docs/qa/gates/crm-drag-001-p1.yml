@@ -1,0 +1,92 @@
+storyId: CRM-DRAG-001
+story: docs/stories/crm-drag-p1-motor-pipeline.story.md
+reviewer: "@qa (Quinn)"
+date: 2026-07-13
+verdict: PASS (após 1 iteração do QA Loop)
+summary: >
+  O motor está arquiteturalmente correto e a física entrega (nó único, vão antes do release,
+  momentum). Mas o otimismo de cache introduzido no onCommit ANULA O LOTE 1 INTEIRO: arrastar
+  para "Perdido" grava sem pedir motivo. E um pointercancel durante o arrasto deixa o card
+  preso na tela. Dois bloqueios.
+
+checks:
+  code_review:      PASS      # motor sólido; o acoplamento cache x changeStatus foi corrigido
+  unit_tests:       N/A
+  acceptance:       PASS      # ISSUE-1 corrigido e re-verificado
+  regressions:      PASS      # Lote 1 restaurado; Lotes 0-4 e CS intactos; 9/9 views
+  performance:      PASS      # rAF + geometria congelada; zero leitura de DOM por frame
+  security:         PASS      # nenhuma superfície nova
+  documentation:    PASS
+
+focos_auditados:
+  - id: FOCO-1
+    titulo: "Vazamento de escopo — o motor captura cards do CS?"
+    resultado: PASS
+    evidencia: "onPointerDown filtra por cardSelector ('.lead-card') E por boardEl().contains(card) ('#pipeline-board'). Um .cs-card não passa nos dois. CS seguro."
+  - id: FOCO-2
+    titulo: "Memory leak — listeners acumulam a cada render?"
+    resultado: PASS
+    evidencia: "initPipelineDrag tem guard (if (_pipelineDrag) return). makeBoardDraggable roda UMA vez; os listeners de document são anexados uma vez. A delegação sobrevive ao innerHTML do board."
+  - id: FOCO-3
+    titulo: "Flag de realtime presa"
+    resultado: FAIL
+    evidencia: "ver ISSUE-2"
+  - id: FOCO-4
+    titulo: "Cancelamento do modal de transição devolve o card?"
+    resultado: FAIL
+    evidencia: "ver ISSUE-1 — o modal nem chega a abrir"
+
+issues:
+  - id: ISSUE-1
+    status: RESOLVIDO (re-verificado no browser)
+    fix: >
+      O otimismo de cache foi restrito à REORDENAÇÃO na mesma coluna (onde não há modal).
+      Na mudança de coluna, o cache não é tocado: changeStatus() recebe o estado real e volta a
+      detectar mudouColuna. Re-teste: arrastar para 'perdido' abre o modal com os 6 chips, NÃO
+      persiste sem motivo, o status no cache permanece 'novo' até a confirmação, e cancelar
+      devolve o card.
+    severity: critical
+    category: correctness
+    description: >
+      O onCommit do motor atualiza o cache ANTES de chamar changeStatus():
+      `lead.status = colId` e só então `changeStatus(id, colId, ...)`.
+      Mas changeStatus decide se abre o modal com `const mudouColuna = lead.status !== status`
+      — que agora é SEMPRE FALSE. Consequência: arrastar um card para Perdido/Call/Follow Up/
+      Fechado NÃO abre o modal e persiste direto.
+      Evidência (browser): mover para 'perdido' => modal_de_motivo_abriu: false;
+      persistiu direto { status: 'perdido' } SEM MOTIVO.
+      Isso anula o Lote 1 (F1/F2) e volta a envenenar o Relatório por Expert — o problema que
+      a série inteira veio resolver.
+    recommendation: >
+      NÃO tocar no cache antes de changeStatus. Ou (a) calcular mudouColuna ANTES do otimismo e
+      passar adiante, ou (b) aplicar o otimismo só na reordenação dentro da mesma coluna
+      (onde não há modal), deixando a mudança de coluna inteiramente com changeStatus.
+      Os contadores podem ser atualizados a partir do estado real após a decisão.
+    files: ["docs/crm/index.html: initPipelineDrag > onCommit (l.2490+), changeStatus"]
+
+  - id: ISSUE-2
+    status: RESOLVIDO (re-verificado no browser)
+    fix: >
+      pointercancel (e blur da janela) agora abortam o gesto engajado com limpeza SÍNCRONA.
+      A 1ª tentativa de fix usava voltarPraOrigem() (spring) e FALHOU no re-teste: o aborto
+      acontece justamente quando a aba perde o foco, e aí o browser congela o rAF — o spring
+      nunca terminava e o card ficava preso. Aborto tem de ser confiável, não bonito.
+      Somado: timeout de segurança (1.2s) no assentar(), para o caso de soltar o card e trocar
+      de aba na mesma hora. Re-teste: card volta ao fluxo, sem transform residual, flag
+      destravada, board intacto e o motor continua funcionando depois do aborto.
+    severity: high
+    category: robustness
+    description: >
+      `document.addEventListener('pointercancel', () => { if (g && !g.engajado) cancelarGesto() })`
+      só trata o gesto NÃO engajado. Se o browser cancelar o ponteiro DURANTE o arrasto
+      (interrupção no celular, gesto do sistema, chamada), nada é limpo: o card fica preso em
+      position:fixed sobre a tela, o placeholder e os vãos ficam abertos, e
+      `_renderPipelinePendente` trava em true — o board nunca mais re-renderiza pelo realtime.
+    recommendation: >
+      pointercancel com gesto engajado deve abortar como uma recusa: voltarPraOrigem() + limpar()
+      (que já chama onEnd e destrava a flag). Garantir que TODO caminho de saída passe por limpar().
+    files: ["docs/crm/index.html: makeBoardDraggable > pointercancel (l.2437), cancelarGesto"]
+
+coderabbit:
+  executed: false
+  reason: "CLI em WSL (7-30min); os 2 bloqueios foram achados por auditoria de código + prova em browser."

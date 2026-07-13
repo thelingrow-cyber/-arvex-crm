@@ -1,7 +1,7 @@
 # Story CRM-DRAG-001 — P1: motor de arrasto (Pointer Events + FLIP/spring) no Pipeline
 
 **Tipo:** Feature / reescrita de interação (brownfield)
-**Status:** Ready for Review
+**Status:** Done (aguardando aval sensorial do Vitor antes do P2)
 **Owner:** @dev (Dex) — frontend puro, sem SQL
 **Criado:** 2026-07-13 por @sm (River)
 **Validado:** 2026-07-13 por @po (Pax) — score 8/10 **GO** (3 correções: clique no card era invenção; listeners globais são do CS; critério sensorial dividido em mensurável × tátil)
@@ -196,3 +196,17 @@ O critério é sensorial, mas **não é subjetivo**. Separar:
 |------|-------|---------|
 | 2026-07-13 | @sm (River) | Story criada a partir de `DRAG-ARCHITECTURE.md` (Fable). Escopo restrito ao pipeline; CS depende do aval sensorial do Vitor. |
 | 2026-07-13 | @po (Pax) | Validação 8/10 GO. 3 correções: (1) **invenção** — o card NÃO é clicável hoje (só o botão "Ver"); o clique passa a ser feature NOVA e explícita; (2) **armadilha** — os listeners globais de drag, `dragId` e `clearDropIndicator` são compartilhados com o CS e NÃO podem ser removidos no P1; (3) critério sensorial dividido em física mensurável (gate do @qa) × tempero tátil (aval do Vitor). Achado fora de escopo, para o P2: `initTouchDrag()` só roda no `renderPipeline` — **o CS não tem touch-drag; a Sabrina provavelmente não consegue arrastar card no celular hoje**. |
+
+---
+
+## QA Results
+
+**Gate:** `docs/qa/gates/crm-drag-001-p1.yml` · **Verdict: PASS** (após 1 iteração do QA Loop) · @qa (Quinn), 2026-07-13
+
+**ISSUE-1 (CRÍTICO) — o motor tinha anulado o Lote 1 inteiro.** O `onCommit` atualizava o cache (`lead.status = colId`) **antes** de chamar `changeStatus()` — que decide se abre o modal comparando `lead.status !== status`. Com o cache já alterado, essa comparação virava sempre falsa: **arrastar um card para "Perdido" gravava direto, sem pedir o motivo**. O relatório por expert voltaria a ser envenenado — exatamente o problema que a série veio resolver. **Fix:** otimismo restrito à reordenação na mesma coluna; a mudança de coluna não toca no cache. **Re-verificado:** o modal abre com os 6 chips, nada persiste sem motivo, cancelar devolve o card.
+
+**ISSUE-2 (HIGH) — card preso na tela.** `pointercancel` só tratava gesto não engajado. Uma interrupção do sistema no meio do arrasto deixava o card preso em `position:fixed`, os vãos abertos e o render do realtime represado para sempre. **A primeira tentativa de fix falhou no meu re-teste** — ela usava spring para devolver o card, mas o aborto acontece justamente quando a aba perde o foco, e aí o browser **congela o `requestAnimationFrame`**: o spring nunca terminava. **Fix final:** aborto com limpeza **síncrona** (confiável, não bonito) + timeout de segurança de 1,2s no assentamento. **Re-verificado:** card volta ao fluxo, flag destrava, board intacto, motor segue funcionando.
+
+**Focos auditados e aprovados:** o motor **não vaza para o CS** (filtra por `.lead-card` **e** por `#pipeline-board`); **sem memory leak** (`initPipelineDrag` tem guard — `makeBoardDraggable` roda uma vez e a delegação sobrevive ao `innerHTML`); Lotes 0-4 intactos; CS intacto; 9/9 views renderizam.
+
+**Limite honesto da minha verificação:** o `requestAnimationFrame` não dispara em aba automatizada, então **não pude medir o movimento contínuo a 60fps nem o assentamento real**. O que é síncrono está provado (nó único, vão antes do release, momentum na função pura, clique, botões, aborto). **A sensação final é do Vitor, no aparelho.**
