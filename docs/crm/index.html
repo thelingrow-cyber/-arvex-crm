@@ -234,7 +234,13 @@
     .col-phase-label { font-size: 9px; font-weight: 700; letter-spacing:.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; padding-left: 2px; }
     .col-drop-zone { min-height: 300px; display: flex; flex-direction: column; gap: 8px; padding: 4px; border-radius: 0 0 8px 8px; border: 2px dashed transparent; transition: border-color .2s, background .2s; }
     .col-drop-zone.drag-over { border-color: var(--blue); background: rgba(91,108,255,.05); }
-    .lead-card { background: var(--navy3); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: grab; transition: transform .15s, box-shadow .15s; user-select: none; }
+    /* touch-action é o que decide a DISPUTA entre o scroll do browser e o nosso arrasto.
+       pan-y  = o dedo pode rolar a coluna normalmente (o browser fica com o gesto vertical).
+       Quando o arrasto engaja (hold de 180ms), o motor troca para 'none' e toma o gesto.
+       Sem isto, o browser iniciava o scroll e MATAVA o arrasto (pointercancel) — era por
+       isso que o pipeline não funcionava no celular.
+       -webkit-touch-callout: none impede o menu "Copiar/Compartilhar" do iOS no toque longo. */
+    .lead-card { background: var(--navy3); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: grab; transition: transform .15s, box-shadow .15s; user-select: none; touch-action: pan-y; -webkit-touch-callout: none; }
     .lead-card:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,.4); }
     .lead-card.dragging { opacity: .4; }
     .lead-card-name { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
@@ -2279,6 +2285,13 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     card.classList.add('dragging')     // tilt + sombra que já existem no CSS
     navigator.vibrate?.(10)
 
+    // O ARRASTO GANHOU A DISPUTA: a partir daqui o scroll não pode roubar o gesto.
+    // (o card nasce com touch-action:pan-y para permitir rolar a coluna; ao engajar, trava)
+    const scroller = boardEl().closest('.pipeline-scroll, .cs-scroll')
+    g.travados = [card, boardEl(), scroller].filter(Boolean)
+    g.travados.forEach(el => { el.dataset.taAntes = el.style.touchAction || ''; el.style.touchAction = 'none' })
+    document.body.style.overscrollBehavior = 'contain'
+
     // mede DEPOIS do card sair do fluxo: os rects são o layout real, sem ele.
     // O índice-alvo passa a ser pura geometria ("onde o card caberia se não existisse"),
     // sem depender dos transforms visuais — é o que evita jitter.
@@ -2308,9 +2321,13 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     if (!g.engajado) {
       const dx = Math.abs(e.clientX - g.x0), dy = Math.abs(e.clientY - g.y0)
       if (g.toque) {
-        // scroll vs drag: subiu/desceu antes de engajar => é scroll, devolve ao browser
+        // A DISPUTA, no dedo:
+        //  - moveu na vertical antes do hold => o usuário quer ROLAR. Devolve ao browser.
+        //    (o CSS touch-action:pan-y já deixou o browser rolar; aqui só desistimos do drag)
+        //  - moveu na horizontal => só pode ser arrasto (a coluna não rola de lado). Engaja.
+        //  - ficou parado até o hold (180ms) => engaja pelo timer.
         if (dy > TOL_SCROLL && dy > dx) { cancelarGesto(); return }
-        if (dx > LIMIAR_PX * 2) engajar()   // horizontal = intenção de arrastar
+        if (dx > TOL_SCROLL && dx > dy) engajar()
       } else if (dx > LIMIAR_PX || dy > LIMIAR_PX) {
         engajar()
       }
@@ -2439,6 +2456,9 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     card._settling = null
     if (gesto.mundo) fecharVaos(gesto.mundo)
     card.releasePointerCapture?.(gesto.pointerId)
+    // devolve o scroll ao browser (o card volta a poder rolar a coluna)
+    gesto.travados?.forEach(el => { el.style.touchAction = el.dataset.taAntes || ''; delete el.dataset.taAntes })
+    document.body.style.overscrollBehavior = ''
     onEnd?.()     // aplica render represado pelo realtime durante o gesto
   }
 
@@ -2477,6 +2497,11 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
   document.addEventListener('pointerup', onPointerUp)
   document.addEventListener('pointercancel', abortarGesto)
   window.addEventListener('blur', abortarGesto)   // trocar de aba com o card na mão também aborta
+  // O menu de contexto (toque longo no celular, botão direito no desktop) abriria bem no meio
+  // do agarre — o iOS é o pior caso: mostra "Copiar/Compartilhar" e mata o gesto.
+  document.addEventListener('contextmenu', e => {
+    if (g && e.target.closest(cardSelector) && boardEl()?.contains(e.target.closest(cardSelector))) e.preventDefault()
+  })
 
   return { arrastando: () => !!(g && g.engajado) }
 }
