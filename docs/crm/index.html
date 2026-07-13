@@ -1725,15 +1725,24 @@ function setPeriod(days, btn) {
   renderDashboard()
 }
 
-function filterLeads(leads) {
+// DOIS universos, de propósito (QA ISSUE-1):
+//  - filterLeads: leads CRIADOS no período (serve "Leads Captados", tabela, funil)
+//  - filterLeadsSemPeriodo: todos os leads do vendedor/expert, sem corte por criação.
+//    É o universo das métricas de MOVIMENTO — nelas o recorte de período pertence ao `at`
+//    da TRANSIÇÃO, não à data de criação. Cortar por created faria a venda de hoje de um
+//    lead antigo sumir do filtro de 7 dias — a mesma mentira que este lote veio corrigir.
+function filterLeadsSemPeriodo(leads) {
   const resp   = document.getElementById('filter-resp')?.value || ''
   const expert = document.getElementById('filter-expert')?.value || ''
-  const cutoff = activePeriod > 0 ? Date.now() - activePeriod * 86400000 : 0
   return leads.filter(l =>
     (!resp   || l.resp === resp) &&
-    (!expert || l.expert === expert) &&
-    (cutoff === 0 || l.created >= cutoff)
+    (!expert || l.expert === expert)
   )
+}
+
+function filterLeads(leads) {
+  const cutoff = activePeriod > 0 ? Date.now() - activePeriod * 86400000 : 0
+  return filterLeadsSemPeriodo(leads).filter(l => cutoff === 0 || l.created >= cutoff)
 }
 
 // ── DASHBOARD ──────────────────────────────────────────────────────────────
@@ -1775,10 +1784,25 @@ async function loadHistory() {
   return true
 }
 
-// Transições PARA um status dentro do período, respeitando os filtros de vendedor/expert
-// (o join é pelo lead_id contra o cache de leads — status_history não duplica colunas).
-function contarMovimento(status, leadsFiltrados) {
-  const idsVisiveis = new Set(leadsFiltrados.map(l => l.id))
+// Leads que tiveram transição PARA um status dentro do período, respeitando os filtros de
+// vendedor/expert. O join é pelo lead_id contra o cache (status_history não duplica colunas).
+// O universo NÃO pode ser cortado por data de criação — ver QA ISSUE-1 em filterLeadsSemPeriodo.
+function idsComTransicaoNoPeriodo(status, universo) {
+  const idsVisiveis = new Set(universo.map(l => l.id))
+  const cutoff = activePeriod > 0 ? Date.now() - activePeriod * 86400000 : 0
+  const ids = new Set()
+  for (const h of cachedHistory) {
+    if (h.para !== status) continue
+    if (!idsVisiveis.has(h.lead_id)) continue
+    if (cutoff !== 0 && new Date(h.at).getTime() < cutoff) continue
+    ids.add(h.lead_id)
+  }
+  return [...ids]
+}
+
+// Conta TRANSIÇÕES (não leads distintos): 2 calls com o mesmo lead = 2 calls realizadas.
+function contarMovimento(status, universo) {
+  const idsVisiveis = new Set(universo.map(l => l.id))
   const cutoff = activePeriod > 0 ? Date.now() - activePeriod * 86400000 : 0
   return cachedHistory.filter(h =>
     h.para === status &&
@@ -1799,26 +1823,32 @@ function subRotuloMovimento(padrao) {
 }
 
 function renderDashboard() {
-  const all    = getLeads()
-  const leads  = filterLeads(all)
-  const total  = leads.length
-  const fechados = leads.filter(l => l.status === 'fechado')
-  const valorTotal = fechados.reduce((s, l) => s + (parseFloat(l.ticket) || 0), 0)
-  const taxa   = total ? ((fechados.length / total) * 100) : 0
-  const ticket = fechados.length ? (valorTotal / fechados.length) : 0
+  const all       = getLeads()
+  const leads     = filterLeads(all)              // criados no período (captação, tabela, funil)
+  const universo  = filterLeadsSemPeriodo(all)    // movimento: sem corte por data de criação
+  const total     = leads.length
   const $ = id => document.getElementById(id)
   const brl = n => 'R$ ' + Math.round(n).toLocaleString('pt-BR')
 
   refreshFiltrosExpert()
 
+  // Quem fechou NO PERÍODO (por transição) — não "quem foi criado no período e está fechado"
+  const idsFechadosNoPeriodo = historyOk
+    ? new Set(idsComTransicaoNoPeriodo('fechado', universo))
+    : new Set(leads.filter(l => l.status === 'fechado').map(l => l.id))
+  const fechados   = all.filter(l => idsFechadosNoPeriodo.has(l.id))
+  const valorTotal = fechados.reduce((s, l) => s + (parseFloat(l.ticket) || 0), 0)
+  const taxa       = total ? ((fechados.length / total) * 100) : 0
+  const ticket     = fechados.length ? (valorTotal / fechados.length) : 0
+
   // Captados = criação no período (não é movimento, não muda de fonte)
   animateValue($('m-total'), total)
 
   if (historyOk) {
-    animateValue($('m-contatos'), contarMovimento('contato', leads))
-    animateValue($('m-qualif'),   contarMovimento('qualificado', leads))
-    animateValue($('m-calls'),    contarMovimento('call', leads))
-    animateValue($('m-fechados'), contarMovimento('fechado', leads))
+    animateValue($('m-contatos'), contarMovimento('contato', universo))
+    animateValue($('m-qualif'),   contarMovimento('qualificado', universo))
+    animateValue($('m-calls'),    contarMovimento('call', universo))
+    animateValue($('m-fechados'), fechados.length)
   } else {
     // Degradação honesta: sem histórico, volta à contagem de posição — e o sub-rótulo diz isso.
     const count = (...s) => leads.filter(l => s.includes(l.status)).length

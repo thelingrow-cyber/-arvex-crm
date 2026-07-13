@@ -1,7 +1,7 @@
 # Story CRM-UX-002 — Lote 2: verdade dos dados (F3, F4, F6)
 
 **Tipo:** Brownfield enhancement (CRM ARVEX — sem epic formal)
-**Status:** Ready for Review
+**Status:** Done
 **Owner:** @data-engineer (Dara) — SQL · @dev (Dex) — frontend
 **Criado:** 2026-07-12 por @sm (River)
 **Validado:** 2026-07-12 por @po (Pax) — score 8/10 **GO** (3 correções aplicadas: backfill honesto, trigger SECURITY DEFINER, seed via auth.users)
@@ -143,3 +143,17 @@
 |------|-------|---------|
 | 2026-07-12 | @sm (River) | Story criada a partir do UX-IMPROVEMENT-PLAN §4 Lote 2 |
 | 2026-07-12 | @po (Pax) | Validação 8/10 GO contra o banco real (190 leads, 29 vendas, 4 profiles). 3 correções: (1) backfill com `origem` e fora das métricas — o `at=created_at` falsificaria fechamentos; (2) trigger `security definer` senão a própria RLS o bloqueia; (3) seed do financeiro via `auth.users`, não por `profiles.name`. |
+
+---
+
+## QA Results
+
+**Gate:** `docs/qa/gates/crm-ux-002-lote2.yml` · **Verdict: PASS** (após 1 iteração do QA Loop) · @qa (Quinn), 2026-07-12
+
+**ISSUE-1 (HIGH) — encontrado e corrigido:** `contarMovimento()` usava como universo os leads de `filterLeads()`, que corta por **data de criação**. Um lead criado há 60 dias e **fechado hoje** ficava fora do universo do filtro de 7 dias — a venda de hoje não era contada. Era a **mesma classe de erro que o Lote 2 veio corrigir**, apenas amarrada ao `created_at` em vez do status. Evidência: "Fechamentos" exibia 0 onde deveria exibir 1.
+**Fix:** dois universos explícitos — `filterLeadsSemPeriodo()` (só vendedor/expert) para movimento, com o recorte de período aplicado ao `at` da transição; `filterLeads()` (com `created`) segue servindo Leads Captados, tabela e funil. Taxa/Ticket/Valor Total passaram a derivar de quem **fechou no período**.
+**Re-verificado:** lead de 60 dias fechado hoje conta (7d) · venda de 45 dias atrás não polui · filtro de expert respeitado · 90d = 3 fechamentos · valor = R$ 12.000.
+
+**Focos auditados e aprovados:** Financeiro sem regressão (`currentFinanceiro` setado antes de `applyRole`); RLS de `status_history` só tem `sh_select` — insert/update/delete negados ao client, histórico imutável; Dr. Alex fora do cadastro mas presente em filtros e relatório com dados históricos, e seus leads renderizam normalmente.
+
+**Débito (low):** o gráfico "Evolução Diária — Leads" plota criação (correto), mas o título pode ser lido como movimento — renomear no Lote 3.

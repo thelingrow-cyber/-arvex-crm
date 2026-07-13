@@ -1,0 +1,53 @@
+storyId: CRM-UX-002
+story: docs/stories/crm-lote2-verdade-dos-dados.story.md
+reviewer: "@qa (Quinn)"
+date: 2026-07-12
+verdict: PASS (após 1 iteração do QA Loop)
+summary: >
+  SQL sólido e F4/F6 corretos. Mas a correção central (F3) está anulada para leads antigos:
+  o universo das métricas de movimento ainda é cortado pela data de CRIAÇÃO do lead.
+
+checks:
+  code_review:      PASS
+  unit_tests:       N/A     # single-file; validado por cenários em browser
+  acceptance:       PASS    # ISSUE-1 corrigido e re-verificado
+  regressions:      PASS    # Financeiro, Dr. Alex histórico, kanban e Lote 1 intactos
+  performance:      PASS    # índice parcial (para, at) where origem='trigger' serve a query
+  security:         PASS    # RLS: só sh_select; sem policy de insert/update/delete => histórico imutável ao client. Trigger security definer.
+  documentation:    PASS
+
+issues:
+  - id: ISSUE-1
+    status: RESOLVIDO (re-verificado no browser)
+    fix: >
+      Dois universos separados: filterLeadsSemPeriodo() (só vendedor/expert) alimenta as
+      métricas de movimento — o recorte de período passou a ser o `at` da TRANSIÇÃO; filterLeads()
+      (com created) segue servindo "Leads Captados", tabela e funil. Taxa/Ticket/Valor Total
+      passaram a derivar de quem FECHOU no período (idsComTransicaoNoPeriodo), não de quem foi
+      criado no período. Re-teste: lead de 60 dias fechado hoje CONTA no filtro de 7d; venda de
+      45 dias atrás NÃO polui; filtro de expert respeitado; 90d = 3 fechamentos; valor = R$ 12.000.
+    severity: high
+    category: correctness
+    description: >
+      contarMovimento() usa como universo os leads de filterLeads(), que corta por
+      `l.created >= cutoff` (data de CRIAÇÃO). Um lead criado há 60 dias e FECHADO HOJE
+      não entra no universo do filtro de 7 dias — e a venda de hoje não é contada.
+      Evidência (browser): lead criado há 60 dias, transição para 'fechado' hoje,
+      período 7 dias => "Fechamentos" exibe 0 (esperado 1).
+      É a MESMA classe de erro que o Lote 2 veio corrigir, agora amarrada ao created_at.
+    recommendation: >
+      Separar os universos: métricas de MOVIMENTO filtram só por resp/expert (sem corte por
+      created) — o recorte de período pertence ao `at` da transição. "Leads Captados" continua
+      usando created no período. Estender também a Taxa/Ticket/Valor Total, hoje derivados de
+      leads criados no período (inconsistentes com Fechamentos, que virou movimento).
+    files: ["docs/crm/index.html: filterLeads (l.1728), contarMovimento (l.1780), renderDashboard"]
+
+  - id: ISSUE-2
+    severity: low
+    category: consistency
+    description: "renderChartDaily continua plotando criação de leads (correto), mas o título 'Evolução Diária — Leads' pode ser lido como movimento."
+    recommendation: "Rotular como 'Leads captados por dia'. Não bloqueia."
+
+coderabbit:
+  executed: false
+  reason: "CLI em WSL (7-30min); focos de risco cobertos por cenários dirigidos em browser."
