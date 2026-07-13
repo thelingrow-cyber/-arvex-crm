@@ -240,7 +240,11 @@
        Sem isto, o browser iniciava o scroll e MATAVA o arrasto (pointercancel) — era por
        isso que o pipeline não funcionava no celular.
        -webkit-touch-callout: none impede o menu "Copiar/Compartilhar" do iOS no toque longo. */
-    .lead-card { background: var(--navy3); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: grab; transition: transform .15s, box-shadow .15s; user-select: none; touch-action: pan-y; -webkit-touch-callout: none; }
+    .lead-card { background: var(--navy3); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: grab; transition: transform .15s, box-shadow .15s; touch-action: pan-y; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+    /* O Safari iOS IGNORA `user-select` sem o prefixo -webkit — era por isso que segurar o
+       card abria a seleção de texto (as alças azuis) em vez de arrastar. E o none precisa
+       valer para os filhos: o toque cai no <strong>/<span> de dentro, não no card. */
+    .lead-card *, .cs-card * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
     .lead-card:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,.4); }
     .lead-card.dragging { opacity: .4; }
     .lead-card-name { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
@@ -704,7 +708,7 @@
     <div id="view-pipeline" class="view">
       <div class="page-header">
         <h1>Pipeline Comercial</h1>
-        <p>Segure o card por 1 segundo para arrastar</p>
+        <p>Arraste o card para mover — ou toque para abrir</p>
       </div>
       <div class="pipeline-scroll">
         <div class="pipeline-board" id="pipeline-board"></div>
@@ -2284,6 +2288,9 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
     card.style.pointerEvents = 'none'
     card.classList.add('dragging')     // tilt + sombra que já existem no CSS
     navigator.vibrate?.(10)
+    // limpa qualquer seleção que o iOS tenha iniciado antes do hold completar
+    // (é o que fazia aparecer as alças azuis por cima do card)
+    window.getSelection?.()?.removeAllRanges?.()
 
     // O ARRASTO GANHOU A DISPUTA: a partir daqui o scroll não pode roubar o gesto.
     // (o card nasce com touch-action:pan-y para permitir rolar a coluna; ao engajar, trava)
@@ -2501,6 +2508,12 @@ function makeBoardDraggable({ board, cardSelector, colSelector, getItems, onComm
   // do agarre — o iOS é o pior caso: mostra "Copiar/Compartilhar" e mata o gesto.
   document.addEventListener('contextmenu', e => {
     if (g && e.target.closest(cardSelector) && boardEl()?.contains(e.target.closest(cardSelector))) e.preventDefault()
+  })
+  // O CSS não basta no Safari iOS: ele começa a seleção de texto assim que o dedo demora no
+  // card (aparecem as alças azuis e o gesto vira "selecionar", não "arrastar"). Bloqueamos o
+  // início da seleção e limpamos qualquer seleção que tenha escapado ao engajar.
+  document.addEventListener('selectstart', e => {
+    if (g && e.target.closest?.(cardSelector)) e.preventDefault()
   })
 
   return { arrastando: () => !!(g && g.engajado) }
