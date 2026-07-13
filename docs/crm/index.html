@@ -565,17 +565,8 @@
         <button class="period-btn" onclick="setPeriod(90,this)">90 dias</button>
         <button class="period-btn" onclick="setPeriod(0,this)">Tudo</button>
         <span style="color:var(--border);margin:0 4px">|</span>
-        <select class="filter-select" id="filter-resp" onchange="renderDashboard()">
-          <option value="">Todos os vendedores</option>
-          <option value="SDR">SDR</option>
-          <option value="Closer">Closer</option>
-          <option value="Vitor">Vitor</option>
-        </select>
-        <select class="filter-select" id="filter-expert" onchange="renderDashboard()">
-          <option value="">Todos os experts</option>
-          <option value="Dr. Alex">Dr. Alex</option>
-          <option value="Cindy Batista">Cindy Batista</option>
-        </select>
+        <select class="filter-select" id="filter-resp" onchange="renderDashboard()"></select>
+        <select class="filter-select" id="filter-expert" onchange="renderDashboard()"></select>
       </div>
 
       <!-- Funil comercial (todos veem) -->
@@ -682,11 +673,7 @@
           <option value="followup">Follow Up</option><option value="quente">Quente</option>
           <option value="fechado">Fechado</option><option value="perdido">Perdido</option>
         </select>
-        <select id="filter-expert-leads" onchange="renderAllLeads()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
-          <option value="">Todos os experts</option>
-          <option value="Dr. Alex">Dr. Alex</option>
-          <option value="Cindy Batista">Cindy Batista</option>
-        </select>
+        <select id="filter-expert-leads" onchange="renderAllLeads()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer"></select>
       </div>
       <div class="table-card">
         <table>
@@ -720,7 +707,7 @@
     <div id="view-experts" class="view">
       <div class="page-header">
         <h1>Relatório por Expert</h1>
-        <p>Métricas separadas por Dr. Alex e Cindy Batista</p>
+        <p>Métricas separadas por expert</p>
       </div>
       <div id="experts-content"></div>
     </div>
@@ -927,7 +914,7 @@
       </div>
       <div class="form-row">
         <div class="form-group"><label>Expert</label>
-          <select id="f-expert"><option value="Dr. Alex">Dr. Alex (HOF)</option><option value="Cindy Batista">Cindy Batista (Ótica)</option><option value="Outro">Outro</option></select>
+          <select id="f-expert"></select>
         </div>
         <div class="form-group"><label>Origem</label>
           <select id="f-origem"><option value="WhatsApp">WhatsApp</option><option value="Instagram">Instagram</option><option value="Indicação">Indicação</option><option value="Tráfego Pago">Tráfego Pago</option></select>
@@ -935,10 +922,10 @@
       </div>
       <div class="form-row">
         <div class="form-group"><label>SDR Responsável</label>
-          <select id="f-resp"><option value="">— Sem SDR —</option><option value="Victor P">Victor P</option><option value="Gabriel">Gabriel</option><option value="Vitor">Vitor</option></select>
+          <select id="f-resp"></select>
         </div>
         <div class="form-group"><label>Closer Responsável</label>
-          <select id="f-closer"><option value="">— Sem Closer —</option><option value="Victor P">Victor P</option><option value="Gabriel">Gabriel</option><option value="Vitor">Vitor</option></select>
+          <select id="f-closer"></select>
         </div>
       </div>
       <div class="form-row">
@@ -1225,6 +1212,53 @@ let cachedLeads = []
 
 initIcons() // popula ícones estáticos (sidebar)
 
+// Popula os selects de equipe/expert a partir das constantes (nenhum <option> de pessoa no HTML).
+// Cadastro só oferece experts ATIVOS; filtros incluem quem tem histórico (ex.: Dr. Alex).
+function initSelectsEquipe() {
+  const set = (id, html) => { const el = document.getElementById(id); if (el && !el.dataset.filled) { el.innerHTML = html; el.dataset.filled = '1' } }
+  set('f-expert', expertsAtivos().map(e => `<option value="${esc(e.id)}">${esc(e.label)}</option>`).join(''))
+  set('f-resp',   opts(SDRS,    '', '— Sem SDR —'))
+  set('f-closer', opts(CLOSERS, '', '— Sem Closer —'))
+  set('filter-resp', opts([...new Set([...SDRS, ...CLOSERS])], '', 'Todos os vendedores'))
+}
+// Filtros de expert dependem dos dados carregados — repopulados a cada render
+function refreshFiltrosExpert() {
+  const lista = expertsComDados()
+  ;['filter-expert', 'filter-expert-leads'].forEach(id => {
+    const el = document.getElementById(id); if (!el) return
+    const sel = el.value
+    el.innerHTML = opts(lista, sel, 'Todos os experts')
+    el.value = sel   // preserva a seleção do usuário
+  })
+}
+// A chamada de initSelectsEquipe() fica no FIM do script: EXPERTS/SDRS/opts são const e,
+// invocada aqui, cairia na TDZ (ReferenceError) e derrubaria o boot inteiro.
+
+// ── EQUIPE E EXPERTS (fonte única — trocar alguém = editar aqui, e só aqui) ──
+// Arquivado ≠ apagado: o expert sai dos selects de CADASTRO mas continua nos filtros e
+// relatórios enquanto houver leads históricos dele (não reescrevemos o passado).
+const EXPERTS = [
+  { id: 'Cindy Batista', label: 'Cindy Batista (Ótica)', cor: 'var(--gold)',  ativo: true  },
+  { id: 'Dr. Alex',      label: 'Dr. Alex (HOF)',        cor: 'var(--blue)',  ativo: false }, // fora da operação desde 2026-07-06
+  { id: 'Outro',         label: 'Outro',                 cor: 'var(--muted)', ativo: true  },
+]
+const SDRS    = ['Victor P', 'Gabriel', 'Vitor']
+const CLOSERS = ['Victor P', 'Gabriel', 'Vitor']
+
+const expertsAtivos = () => EXPERTS.filter(e => e.ativo)
+// Experts que devem aparecer em filtros/relatórios: os ativos + os que têm dados históricos
+function expertsComDados(extra = []) {
+  const nosDados = new Set([...getLeads().map(l => l.expert), ...extra].filter(Boolean))
+  const ids = new Set([...expertsAtivos().map(e => e.id), ...nosDados])
+  ids.delete('Outro')
+  return [...ids]
+}
+const expertCor = id => (EXPERTS.find(e => e.id === id) || {}).cor || 'var(--muted)'
+// Monta <option>s a partir de uma lista de strings (o valor selecionado é preservado)
+const opts = (lista, sel = '', vazio = null) =>
+  (vazio !== null ? `<option value="">${esc(vazio)}</option>` : '') +
+  lista.map(v => `<option value="${esc(v)}"${v === sel ? ' selected' : ''}>${esc(v)}</option>`).join('')
+
 // ── CONFIG ─────────────────────────────────────────────────────────────────
 const COLS = [
   { id:'novo',        label:'Novo',        phase:'sdr',    cls:'col-sdr' },
@@ -1292,8 +1326,11 @@ function renderClientesFinanceiro() {
     </tr>`
   }).join('')
 }
-const FINANCEIRO_USERS = ['viktorsimoess@gmail.com','arvexdigital@gmail.com','vhpacheco02@gmail.com','compromissiondigital@gmail.com']
-function isFinanceiroUser() { return currentUser && FINANCEIRO_USERS.includes(currentUser.email) }
+// Acesso ao Financeiro vem de profiles.financeiro (banco) — mesma fonte que a RLS usa em
+// is_financeiro_user(). Antes era lista de e-mail hardcoded aqui E no banco: mudar quem via
+// o módulo exigia deploy. Agora é um UPDATE em profiles.
+let currentFinanceiro = false
+function isFinanceiroUser() { return !!currentUser && currentFinanceiro }
 
 // ── AUTH ──────────────────────────────────────────────────────────────────
 async function doLogin() {
@@ -1320,13 +1357,15 @@ async function doLogout() {
 sb.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
     currentUser = session.user
-    // role vem do banco (profiles.role) — fonte única de verdade, RLS protege contra auto-promoção
-    const { data: profile } = await sb.from('profiles').select('role').eq('id', currentUser.id).single()
+    // role E acesso ao financeiro vêm do banco (profiles) — fonte única, a mesma que a RLS lê
+    const { data: profile } = await sb.from('profiles').select('role, financeiro').eq('id', currentUser.id).single()
     if (profile?.role) {
       currentRole = profile.role
+      currentFinanceiro = !!profile.financeiro
     } else {
       // primeiro login: cria perfil com role mais restrito; promoção é manual (admin) depois
       currentRole = 'sdr'
+      currentFinanceiro = false
       sb.from('profiles').insert({ id: currentUser.id, name: currentUser.email, role: currentRole }).then(() => {}, () => {})
     }
     // abre o app — limpa o display inline do bootstrap, senão ele vence o .hidden e a tela de login fica por cima
@@ -1340,7 +1379,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
     applyRole()
     // carrega dados em background — loadCS PRIMEIRO pra popular csLeadIds antes do renderPipeline
     if (currentRole !== 'cs') {
-      Promise.all([loadLeads(), loadCS(), loadVendasParcelas()])
+      Promise.all([loadLeads(), loadCS(), loadVendasParcelas(), loadHistory()])
         .then(() => { renderDashboard(); renderPipeline(); })
         .catch(() => {})
     } else {
@@ -1394,7 +1433,7 @@ function subscribeRealtime() {
 
   sb.channel('leads-changes')
     .on('postgres_changes', { event:'*', schema:'public', table:'leads' }, async () => {
-      await loadLeads()
+      await Promise.all([loadLeads(), loadHistory()])   // o trigger gravou a transição — o histórico mudou junto
       renderDashboard(); renderPipeline(); renderAllLeads()
     }).subscribe()
 
@@ -1715,10 +1754,53 @@ function animateValue(el, to, opts = {}) {
   requestAnimationFrame(step)
 }
 
+// ── MOVIMENTO (status_history) ─────────────────────────────────────────────
+// O dashboard contava leads PARADOS num status: "Calls: 3" = 3 leads na coluna Call, não
+// 3 calls feitas. Lead que fazia call e avançava sumia do número. Agora contamos TRANSIÇÕES.
+// Só origem='trigger' conta: as linhas de backfill usam created_at, que não é a data real
+// das transições passadas — contá-las seria inventar histórico.
+let cachedHistory = []
+let historyDesde  = null    // data da 1ª transição real registrada (início do histórico)
+let historyOk     = false   // false => dashboard degrada e AVISA (nunca finge)
+
+async function loadHistory() {
+  const { data, error } = await sb.from('status_history')
+    .select('lead_id, para, at')
+    .eq('origem', 'trigger')
+    .order('at', { ascending: true })
+  if (error) { historyOk = false; cachedHistory = []; return false }
+  cachedHistory = data || []
+  historyOk = true
+  historyDesde = cachedHistory.length ? new Date(cachedHistory[0].at) : new Date()
+  return true
+}
+
+// Transições PARA um status dentro do período, respeitando os filtros de vendedor/expert
+// (o join é pelo lead_id contra o cache de leads — status_history não duplica colunas).
+function contarMovimento(status, leadsFiltrados) {
+  const idsVisiveis = new Set(leadsFiltrados.map(l => l.id))
+  const cutoff = activePeriod > 0 ? Date.now() - activePeriod * 86400000 : 0
+  return cachedHistory.filter(h =>
+    h.para === status &&
+    idsVisiveis.has(h.lead_id) &&
+    (cutoff === 0 || new Date(h.at).getTime() >= cutoff)
+  ).length
+}
+
+// O histórico começa na migration. Se o período pedido é mais antigo, dizemos isso — em vez
+// de exibir um número que finge cobrir o intervalo inteiro.
+function subRotuloMovimento(padrao) {
+  if (!historyOk) return 'sem histórico — mostrando posição atual'
+  if (!historyDesde) return padrao
+  const inicioPeriodo = activePeriod > 0 ? Date.now() - activePeriod * 86400000 : 0
+  const cobreTudo = inicioPeriodo !== 0 && historyDesde.getTime() <= inicioPeriodo
+  if (cobreTudo) return padrao
+  return 'desde ' + historyDesde.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
+}
+
 function renderDashboard() {
   const all    = getLeads()
   const leads  = filterLeads(all)
-  const count  = (...s) => leads.filter(l => s.includes(l.status)).length
   const total  = leads.length
   const fechados = leads.filter(l => l.status === 'fechado')
   const valorTotal = fechados.reduce((s, l) => s + (parseFloat(l.ticket) || 0), 0)
@@ -1727,21 +1809,47 @@ function renderDashboard() {
   const $ = id => document.getElementById(id)
   const brl = n => 'R$ ' + Math.round(n).toLocaleString('pt-BR')
 
+  refreshFiltrosExpert()
+
+  // Captados = criação no período (não é movimento, não muda de fonte)
   animateValue($('m-total'), total)
-  animateValue($('m-contatos'), count('contato'))
-  animateValue($('m-qualif'), count('qualificado'))
-  animateValue($('m-calls'), count('call'))
-  animateValue($('m-fechados'), fechados.length)
+
+  if (historyOk) {
+    animateValue($('m-contatos'), contarMovimento('contato', leads))
+    animateValue($('m-qualif'),   contarMovimento('qualificado', leads))
+    animateValue($('m-calls'),    contarMovimento('call', leads))
+    animateValue($('m-fechados'), contarMovimento('fechado', leads))
+  } else {
+    // Degradação honesta: sem histórico, volta à contagem de posição — e o sub-rótulo diz isso.
+    const count = (...s) => leads.filter(l => s.includes(l.status)).length
+    animateValue($('m-contatos'), count('contato'))
+    animateValue($('m-qualif'),   count('qualificado'))
+    animateValue($('m-calls'),    count('call'))
+    animateValue($('m-fechados'), fechados.length)
+  }
+
+  // Sub-rótulos dizem exatamente o que o número é
+  const subs = [
+    ['m-contatos', 'contatados no período'],
+    ['m-qualif',   'qualificados no período'],
+    ['m-calls',    'calls realizadas'],
+  ]
+  subs.forEach(([id, padrao]) => {
+    const el = $(id)?.parentElement?.querySelector('.metric-sub')
+    if (el) el.textContent = subRotuloMovimento(padrao)
+  })
 
   if (currentRole === 'admin') {
     animateValue($('m-taxa'), taxa, { format: n => n.toFixed(1) + '%' })
     animateValue($('m-ticket'), ticket, { format: brl })
     animateValue($('m-valor'), valorTotal, { format: brl })
     $('m-fechados-sub').textContent = brl(valorTotal)
+  } else {
+    $('m-fechados-sub').textContent = subRotuloMovimento('vendas fechadas')
   }
 
   renderChartDaily(leads)
-  renderFunnel(leads)
+  renderFunnel(leads)   // funil = posição acumulada (leitura diferente de movimento — de propósito)
   renderRecentTable(leads)
 }
 
@@ -2089,7 +2197,7 @@ function renderAllLeads() {
 // ── EXPERTS ───────────────────────────────────────────────────────────────
 function renderExperts() {
   const allLeads = getLeads()
-  const experts  = ['Dr. Alex', 'Cindy Batista']
+  const experts  = expertsComDados()   // ativos + quem tem histórico (Dr. Alex some quando não houver mais dados dele)
   const el = document.getElementById('experts-content')
   el.innerHTML = experts.map(expert => {
     const leads    = allLeads.filter(l => l.expert === expert)
@@ -2101,7 +2209,7 @@ function renderExperts() {
     const ticket   = fechados.length ? (valorTotal/fechados.length) : 0
     const emAndamento = leads.filter(l => !['fechado','perdido'].includes(l.status)).length
     const motivosPerda = perdidos.reduce((acc,l) => { const m=l.motivo_perda||'Não informado'; acc[m]=(acc[m]||0)+1; return acc }, {})
-    const cor = expert === 'Dr. Alex' ? 'var(--blue)' : 'var(--gold)'
+    const cor = expertCor(expert)
     return `
       <div class="chart-card" style="margin-bottom:20px;border-top:3px solid ${cor}">
         <h3 style="font-size:16px;margin-bottom:16px">${expert}</h3>
@@ -2168,18 +2276,12 @@ function openDetail(id) {
       <div><div class="di-label">Origem</div><div class="di-value">${esc(l.origem)}</div></div>
       <div><div class="di-label">SDR Responsável</div>
         <select onchange="updateLeadField('${l.id}',{resp:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
-          <option value="" ${!l.resp?'selected':''}>— Sem SDR —</option>
-          <option value="Victor P" ${l.resp==='Victor P'?'selected':''}>Victor P</option>
-          <option value="Gabriel" ${l.resp==='Gabriel'?'selected':''}>Gabriel</option>
-          <option value="Vitor" ${l.resp==='Vitor'?'selected':''}>Vitor</option>
+          ${opts(SDRS, l.resp || '', '— Sem SDR —')}
         </select>
       </div>
       <div><div class="di-label">Closer Responsável</div>
         <select onchange="updateLeadField('${l.id}',{closer:this.value});renderPipeline();renderAllLeads()" style="background:var(--navy3);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:6px 10px;outline:none;width:100%;margin-top:4px">
-          <option value="" ${!l.closer?'selected':''}>— Sem Closer —</option>
-          <option value="Victor P" ${l.closer==='Victor P'?'selected':''}>Victor P</option>
-          <option value="Gabriel" ${l.closer==='Gabriel'?'selected':''}>Gabriel</option>
-          <option value="Vitor" ${l.closer==='Vitor'?'selected':''}>Vitor</option>
+          ${opts(CLOSERS, l.closer || '', '— Sem Closer —')}
         </select>
       </div>
       <div><div class="di-label">Tem Sócio</div><div class="di-value">${esc(l.socio||'—')}</div></div>
@@ -2240,6 +2342,8 @@ async function aplicarStatus(id, status, extra = {}) {
   // Sem confirmação do banco não há sucesso: nada de toast verde nem de modal de venda
   // para um lead que continua na coluna antiga (o erro já foi mostrado por updateLeadField).
   if (!ok) return
+  await loadHistory()          // a transição acabou de ser gravada pelo trigger
+  renderDashboard()
   showToast(`Lead movido para ${BLABEL[status] || status}`)
   if (status === 'fechado' && isFinanceiroUser()) onLeadFechado(id)
 }
@@ -3485,6 +3589,8 @@ function debounce(fn, ms = 150) {
   let t
   return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms) }
 }
+initSelectsEquipe()   // só aqui: EXPERTS/SDRS/opts (const) já foram inicializados
+
 const dSearchDashboard   = debounce(() => renderDashboard())
 const dSearchLeads       = debounce(() => renderAllLeads())
 const dSearchCoach       = debounce(() => renderCoachCards())   // filtra o cache, não recarrega do banco
