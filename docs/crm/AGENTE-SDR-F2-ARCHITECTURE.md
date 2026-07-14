@@ -59,17 +59,25 @@ REGRA DE ESCALONAMENTO:
 
 ## 4. F4 — processamento da cadência (ainda não construído, schema pronto)
 
-O workflow outbound de hoje **enfileira** em `sdr_followups` (toque 0, +4h) mas não processa toques 2/3 nem encerra em 72h. Isso é outro branch do mesmo scheduleTrigger de 15min, ou um workflow separado — decisão de layout para a sessão de build, não arquitetural. Lógica:
+O workflow outbound de hoje **enfileira** em `sdr_followups` (toque 0, +4h) mas não processa os toques seguintes nem encerra. Isso é outro branch do mesmo scheduleTrigger de 15min, ou um workflow separado — decisão de layout para a sessão de build, não arquitetural.
+
+**Atualizado 2026-07-14:** cadência decidida com o Vitor tem 4 toques (não 3) — default agora é `toques_horas:[4,24,48,168]` (o último em 7 dias), `encerra_horas:192`. A lógica abaixo generaliza pra N toques (**não hardcode um índice fixo — leia o array inteiro**):
 
 ```
 buscar sdr_followups where status='pendente' and agendado_para <= now()
 para cada linha:
   se lead.status != 'contato' (respondeu e avançou) → status='cancelado', pula
-  senão, olhar tentativa:
-    0 → mandar toque de agente_sdr.cadencia.toques_horas[1] (24h), tentativa=1
-    1 → mandar toque de cadencia.toques_horas[2] (48h), tentativa=2
-    2 → marcar leads.obs='sem resposta', sdr_followups.status='concluido'
+  senão:
+    toques = agente_sdr.cadencia.toques_horas  (array, hoje [4,24,48,168])
+    proximo_indice = tentativa + 1
+    se proximo_indice < toques.length:
+      mandar toque, tentativa = proximo_indice,
+      agendado_para = now() + toques[proximo_indice] horas
+    senão:
+      marcar leads.obs='sem resposta', sdr_followups.status='concluido'
 ```
+
+Escrever a lógica assim (lendo `.length` do array em vez de contar 0/1/2 fixo) evita que uma futura mudança de cadência no jsonb quebre o workflow.
 
 Cada "toque" precisa de um TEXTO — hoje `agente_sdr` só tem `mensagem_abertura`. Decisão pendente para a sessão de build: ou Vitor escreve 3 textos de toque (`cadencia` viraria armazenar os textos, não só as horas), ou o `AI Agente` da F2 gera o toque na hora (mais natural, mas exige F2 pronta primeiro). **Recomendo esperar a F2 estar viva e deixar o próprio agente gerar os toques de follow-up** — é menos trabalho de configuração pro Vitor e mais coerente (o agente lembra o contexto da conversa via `Postgres Chat Memory`).
 

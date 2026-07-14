@@ -36,10 +36,18 @@ create index if not exists sdr_followups_poll_idx
 
 -- 2. CADÊNCIA CONFIGURÁVEL — o Vitor ajusta pela UI do CRM (aba Agente SDR)
 alter table agente_sdr add column if not exists cadencia jsonb
-  default '{"toques_horas":[4,24,48],"encerra_horas":72}'::jsonb;
+  default '{"toques_horas":[4,24,48,168],"encerra_horas":192}'::jsonb;
+
+-- Atualizado 2026-07-14 (decisão Vitor, revisão Fable): cauda de 7 dias (168h)
+-- adicionada aos toques rápidos originais (4h/24h/48h). A cadência antiga do
+-- playbook (D+1/D+3/D+7) contradizia a própria regra de ouro do SDR humano
+-- ("nenhum lead sem contato por mais de 24h") — mantido o 1º toque em 4h,
+-- só esticada a cauda antes de arquivar. Ver docs/agente-sdr/carol-adaptacao-crm-2026-07.md §7.
+alter table agente_sdr alter column cadencia
+  set default '{"toques_horas":[4,24,48,168],"encerra_horas":192}'::jsonb;
 
 comment on table sdr_followups is 'Fila de follow-up automático do agente SDR (F4). Escrita pelo n8n via service_role; nunca por trigger de banco.';
-comment on column agente_sdr.cadencia is 'Horas de espera de cada toque + prazo de encerramento. Default: 4h/24h/48h, encerra em 72h.';
+comment on column agente_sdr.cadencia is 'Horas de espera de cada toque + prazo de encerramento. Default: 4h/24h/48h/168h (7 dias), encerra em 192h.';
 
 -- 3. RLS — segue o mesmo padrão do resto (setup-rls-v2-security.sql):
 --    select amplo (dashboards podem querer mostrar fila pendente), mutação só admin.

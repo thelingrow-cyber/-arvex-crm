@@ -29,14 +29,13 @@
 
 Convenção proposta: `||` separa balões (o prompt original já usa `||` como separador de balão na confirmação de agendamento — herdamos a convenção). O workflow outbound precisa de um splitter (ver seção 8). Se o splitter não for construído já, trocar `||` por quebras de linha e enviar como mensagem única — aceitável como v1.
 
-Recomendação principal (base: Abertura A2/A3, as que mais converteram nos prints):
+**✅ APROVADO pelo Vitor (2026-07-14) — usar como está, sem a variação de escassez:**
 
 ```
 Olá, {nome}! ✨||Aqui é do time da Cindy. Vi sua aplicação pra entender nossa metodologia e chegou a sua vez de conversar com um dos nossos estrategistas.||É uma conversa rápida, de uns 15 min, pra entender o momento da sua ótica e te mostrar como aplicar no seu negócio.||Você prefere conversar pela manhã, tarde ou à noite?
 ```
 
-- ⚠️ VITOR: variação com escassez mais forte existe no material ("Selecionamos apenas 10 óticas" — Abertura A do Modelo 1). É uma alegação de negócio; só entra se for verdadeira na operação atual.
-- ⚠️ VITOR: a abertura termina com pergunta — ela **espera resposta**. Enquanto o cérebro F2 não estiver no ar, alguém do time precisa responder rápido (ligar `notificar_ativo` e monitorar). Se ninguém for monitorar, considerar fechar com CTA mais frouxo ("me responde aqui que eu te passo os horários"), mas isso enfraquece a escolha fechada que convertia.
+Nota que permanece: a abertura termina com pergunta e espera resposta. Enquanto o cérebro F2 não estiver no ar, alguém do time precisa responder rápido (ligar `notificar_ativo` e monitorar) — combinado que quem recebe isso é a Thalita (ver seção 6).
 
 ---
 
@@ -80,7 +79,7 @@ O lead chegou por um formulário de aplicação e já recebeu uma primeira mensa
 
 1. Pergunte a preferência em escolha fechada: "Você prefere pela manhã, tarde ou à noite?"
 2. Ofereça horários concretos, 3 opções por vez, dentro desta grade:
-   «⚠️ VITOR: grade real de horários — ex: seg-sex 10h, 14h, 16h, 18h, 19h, 20h»
+   **seg-sex: 10h, 14h, 16h, 18h, 19h, 20h** (aprovado pelo Vitor 2026-07-14 — usar a sugestão como está)
    Se o lead sugerir um horário fora da grade, acomode com naturalidade: "Perfeito, «hora» fica ótimo! ✅"
    Se ele preferir outro dia: "Sem problema! Pode ser amanhã? Te mando os horários 😊"
 3. Assim que o lead escolher o horário, SEMPRE peça o e-mail (obrigatório — sem ele não dá pra enviar o link): "Show! Pra fechar, me passa seu melhor e-mail? É pra te enviar o link da reunião 😊"
@@ -152,7 +151,7 @@ Qualquer pergunta de valor/condição → direcionar pra call.
 | "Não entendo de digital" | "Não precisa! A análise é pensada justamente pra quem tá começando." |
 | "Minha ótica é pequena/nova" | "Funciona! Já passaram desde óticas em inauguração até lojas com anos de mercado." |
 
-## FAQ
+## FAQ (validado pelo Vitor 2026-07-14 — sem alterações)
 
 - "Quanto custa? / É pago?" → "Os valores o estrategista te mostra na call, junto com o plano pro seu caso. Bora marcar? 😊"
 - "Como funciona a reunião?" → "É uma conversa rápida de 15-20 min com um estrategista óptico, que analisa sua ótica e te mostra o que ajustar pra crescer."
@@ -234,19 +233,20 @@ NÃO escale por pergunta de preço nem por lead querendo fechar — nesses casos
 Ao escalar, diga ao lead apenas algo natural: "Vou já chamar aqui alguém do time pra te ajudar melhor, um instante 🙏" — e pare de responder. NÃO escreva resumo na conversa com o lead.
 ```
 
-- `notificar_contato`: número do Gabriel (⚠️ VITOR confirma quem recebe hoje — o material diz Gabriel, mas a divisão de funções pode ter mudado).
+- `notificar_contato`: número da **Thalita** (confirmado pelo Vitor 2026-07-14 — ela é a nova SDR da casa; o material antigo dizia Gabriel, desatualizado). Vitor preenche o número real ao criar a linha em `agente_sdr`.
 - ⚠️ GAP TÉCNICO (dev, não Vitor): o desenho F2 atual não tem **mecanismo** de escalada — o agente consegue dizer "vou chamar alguém", mas nada notifica o humano nem pausa o agente pra aquele lead. Ver seção 8, item 3.
 
 ---
 
-## 7. Cadência — 4h/24h/48h/72h vs D+1/D+3/D+7 (⚠️ VITOR decide)
+## 7. Cadência — RESOLVIDO 2026-07-14: 4h/24h/48h + cauda de 7 dias
 
-Leitura dos dois lados:
-- A cadência antiga (D+1/D+3/D+7) veio do playbook do SDR humano, mas **conflita com a própria regra de ouro do mesmo playbook** ("nenhum lead sem contato por mais de 24h") — ela deixa o lead 24h parado antes do 1º toque.
-- A cadência nova (4h/24h/48h/72h) respeita a regra de ouro e o speed-to-lead do formulário (lead de aplicação esfria em horas, não em dias).
-- A diferença real de negócio é a **cauda**: o material antigo dava uma última tentativa em D+7; a nova arquiva em 72h.
+Decisão do Vitor: follow-up até 7 dias se o lead não responder, mantendo os toques rápidos que já existiam (dentro do escopo — é config jsonb, não mudança de código).
 
-Recomendação: manter 4h/24h/48h como está e **decidir com o Vitor se existe um 4º toque tardio ~D+7** antes de arquivar (custo zero, alguns leads tardios convertem). É config no jsonb, não mudança de código.
+**Default aplicado no banco** (`agente_sdr.cadencia`, `docs/crm/setup-followups-f4-v1.sql`):
+```json
+{"toques_horas":[4,24,48,168],"encerra_horas":192}
+```
+Toque 1 em 4h, toque 2 em 24h, toque 3 em 48h, toque 4 (cauda) em 168h (dia 7), arquiva em 192h (dia 8) se ninguém responder. Mantém a regra de ouro do playbook ("nenhum lead sem contato 24h") nos toques iniciais e recupera a cauda de 7 dias do material antigo sem repetir a contradição dele (que deixava o lead 24h parado antes do 1º toque).
 
 Pendência associada: os TEXTOS dos toques de reativação não existem no material antigo (ele só cobre objeções de quem respondeu). O F2-ARCHITECTURE §4 já recomenda deixar o próprio agente gerar os toques quando estiver vivo — concordo; até lá, os toques 2/3 nem rodam (F4 não construído), então não bloqueia nada.
 
@@ -260,13 +260,15 @@ Pendência associada: os TEXTOS dos toques de reativação não existem no mater
 4. **Áudio do lead** — a spec antiga previa Whisper (FR-10); o F2 atual não trata áudio. V1: o prompt manda a Carol pedir texto com leveza. Transcrição volta como melhoria.
 5. **Pausar agente por lead** — quando um humano assume (escalada), o webhook precisa parar de responder aquele telefone. Flag no lead ou tabela de "conversas com humano".
 
-## 9. Decisões pendentes do Vitor (resumo)
+## 9. Decisões — status em 2026-07-14
 
-| # | Decisão | Contexto |
+| # | Decisão | Status |
 |---|---|---|
-| 1 | Texto final da `mensagem_abertura` | Rascunho na seção 2; alegações de escassez ("10 óticas") só se verdadeiras |
-| 2 | Grade real de horários | Placeholder na seção 3; era pendência desde jun/2026 (§13 do base-conhecimento) |
-| 3 | Cauda da cadência (toque D+7 antes de arquivar?) | Seção 7 |
-| 4 | Quem recebe escalada/notificação hoje | Material diz Gabriel; confirmar |
-| 5 | Modelo (recomendação: Claude Sonnet, ver análise no chat) | `modelo` é coluna — trocar depois é trivial |
-| 6 | Validar FAQ (§12 do base-conhecimento nunca foi validado formalmente) | Rascunho v1 desde jun/2026 |
+| 1 | Texto final da `mensagem_abertura` | ✅ Aprovado como está (seção 2) — sem a variação de escassez "10 óticas" |
+| 2 | Grade real de horários | ✅ Aprovada como sugerida (seção 3): seg-sex 10h/14h/16h/18h/19h/20h |
+| 3 | Cauda da cadência | ✅ Resolvido (seção 7): toques 4h/24h/48h/168h, encerra em 192h — já aplicado como default no banco |
+| 4 | Quem recebe escalada/notificação | ✅ Thalita (nova SDR da casa), não mais Gabriel — número real entra em `notificar_contato` quando a linha for criada |
+| 5 | Modelo | ⚠️ EM ABERTO — Vitor avaliando Groq/API open-source gratuita vs Claude (já tem a API configurada). Recomendação do Fable: Claude, pelo prompt já calibrado pra ele e a chave já existir. `modelo` é coluna dinâmica — trocar depois é 1 nó no n8n |
+| 6 | Validar FAQ | ✅ Validado sem alterações |
+
+**Falta só para aplicar em produção:** decisão do modelo (#5) + o Vitor efetivamente criar a linha em `agente_sdr` com esses textos + `whatsapp_numero`/`notificar_contato` reais + `ativo=true`.
