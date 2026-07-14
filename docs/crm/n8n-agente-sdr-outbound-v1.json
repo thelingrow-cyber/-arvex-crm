@@ -1,0 +1,205 @@
+{
+  "name": "Agente SDR ARVEX - Outbound (abertura automatica)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "minutes", "minutesInterval": 15 }] }
+      },
+      "id": "c1d2e3f4-0001-4b11-9e01-000000000001",
+      "name": "Agenda 15min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1", "name": "evolution_server_url", "type": "string",
+              "value": "https://wpp.viziom.io"
+            },
+            {
+              "id": "a2", "name": "evolution_instance", "type": "string",
+              "value": "PREENCHER_INSTANCIA_DEDICADA_STEP0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c1d2e3f4-0002-4b11-9e01-000000000002",
+      "name": "⚠️ CONFIGURAR Evolution",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/agente_sdr?ativo=eq.true&select=id,nome,mensagem_abertura&limit=1",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "options": {}
+      },
+      "id": "c1d2e3f4-0003-4b11-9e01-000000000003",
+      "name": "Buscar Agente Ativo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/leads?origem=eq.Respondi&status=eq.novo&tel=not.is.null&select=id,nome,tel&limit=20",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "options": {}
+      },
+      "id": "c1d2e3f4-0004-4b11-9e01-000000000004",
+      "name": "Buscar Leads Novos Respondi",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const agentes = $('Buscar Agente Ativo').all();\nconst leads = $('Buscar Leads Novos Respondi').all();\n\n// nenhum agente ativo configurado ainda (agente_sdr vazio ou ativo=false) -> nao faz nada\nif (!agentes.length) return [];\n\nconst agente = agentes[0].json;\n\n// agente existe mas sem mensagem de abertura escrita -> nao inventa mensagem, nao envia\nif (!agente.mensagem_abertura) return [];\n\nconst out = [];\nfor (const item of leads) {\n  const lead = item.json;\n  if (!lead.tel) continue;\n  const primeiroNome = (lead.nome || '').trim().split(' ')[0] || '';\n  const mensagem = agente.mensagem_abertura.replace(/\\{nome\\}/gi, primeiroNome);\n  out.push({ json: { lead_id: lead.id, tel: lead.tel, nome: lead.nome, mensagem, agente_id: agente.id } });\n}\nreturn out;"
+      },
+      "id": "c1d2e3f4-0005-4b11-9e01-000000000005",
+      "name": "Montar Fila Envio",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "c1d2e3f4-0006-4b11-9e01-000000000006",
+      "name": "Loop Envio (1 por vez)",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('⚠️ CONFIGURAR Evolution').item.json.evolution_server_url + '/message/sendText/' + $('⚠️ CONFIGURAR Evolution').item.json.evolution_instance }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { number: $json.tel, text: $json.mensagem } }}",
+        "options": {}
+      },
+      "id": "c1d2e3f4-0007-4b11-9e01-000000000007",
+      "name": "Enviar Mensagem (Evolution)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 220],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PREENCHER_APOS_IMPORTAR",
+          "name": "Evolution ARVEX SDR - apikey"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/rpc/registrar_evento_lead",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { p_tel: $json.tel, p_nome: $json.nome, p_texto: $json.mensagem, p_autor: 'agente' } }}",
+        "options": {
+          "response": { "response": { "responseFormat": "text" } }
+        }
+      },
+      "id": "c1d2e3f4-0008-4b11-9e01-000000000008",
+      "name": "Registrar Envio no CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1780, 220]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/sdr_followups",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { lead_id: $json.lead_id, tel: $json.tel, agendado_para: new Date(Date.now() + 4*3600*1000).toISOString() } }}",
+        "options": {}
+      },
+      "id": "c1d2e3f4-0009-4b11-9e01-000000000009",
+      "name": "Enfileirar Followup (F4)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2000, 220]
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": "={{ Math.floor(Math.random()*60)+30 }}",
+        "unit": "seconds"
+      },
+      "id": "c1d2e3f4-0010-4b11-9e01-00000000000a",
+      "name": "Aguardar Intervalo (anti-ban)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [2220, 220]
+    },
+    {
+      "parameters": {
+        "content": "## ⚠️ ANTES DE ATIVAR\n\n1. Crie a instância Evolution dedicada (Passo 0 do plano) e cole o nome dela no node **⚠️ CONFIGURAR Evolution** (campo evolution_instance).\n2. No node **Enviar Mensagem (Evolution)**, crie a credencial Header Auth: header name `apikey`, valor = a apikey dessa instância. Renomeie pra \"Evolution ARVEX SDR\".\n3. Nos 4 nodes com Supabase, selecione a credencial já existente **Supabase CRM ARVEX** (criada na F1).\n4. Escreva `agente_sdr.mensagem_abertura` pela UI do CRM (aba Agente SDR) — use `{nome}` onde quiser o primeiro nome do lead. Sem isso o workflow não envia nada (por design, não inventa mensagem).\n5. Ative o workflow e publique.\n\nSem teste real ainda — nenhuma credencial existia quando isto foi construído. Rode 1 ciclo manual (Execute workflow) antes de deixar no automático.",
+        "height": 320,
+        "width": 460
+      },
+      "id": "c1d2e3f4-0011-4b11-9e01-00000000000b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [240, 560]
+    },
+    {
+      "parameters": {
+        "content": "## O que este workflow NÃO faz (ainda)\n\n- Não responde com IA quando o lead contesta a mensagem de abertura — isso é a F2 (cérebro), que precisa da chave OpenAI e uma sessão ao vivo pra testar o comportamento do agente antes de falar com lead real.\n- Não processa os toques 2/3 da cadência nem encerra em 72h — só ENFILEIRA em sdr_followups (schema pronto). O processamento da fila é o próximo workflow a construir, com você presente pra calibrar o texto de cada toque.\n- Não cancela o follow-up se o lead responder — enquanto a F2 não existe, isso também fica pendente.",
+        "height": 260,
+        "width": 460
+      },
+      "id": "c1d2e3f4-0012-4b11-9e01-00000000000c",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [740, 560]
+    }
+  ],
+  "connections": {
+    "Agenda 15min": { "main": [[{ "node": "⚠️ CONFIGURAR Evolution", "type": "main", "index": 0 }]] },
+    "⚠️ CONFIGURAR Evolution": { "main": [[{ "node": "Buscar Agente Ativo", "type": "main", "index": 0 }]] },
+    "Buscar Agente Ativo": { "main": [[{ "node": "Buscar Leads Novos Respondi", "type": "main", "index": 0 }]] },
+    "Buscar Leads Novos Respondi": { "main": [[{ "node": "Montar Fila Envio", "type": "main", "index": 0 }]] },
+    "Montar Fila Envio": { "main": [[{ "node": "Loop Envio (1 por vez)", "type": "main", "index": 0 }]] },
+    "Loop Envio (1 por vez)": {
+      "main": [
+        [],
+        [{ "node": "Enviar Mensagem (Evolution)", "type": "main", "index": 0 }]
+      ]
+    },
+    "Enviar Mensagem (Evolution)": { "main": [[{ "node": "Registrar Envio no CRM", "type": "main", "index": 0 }]] },
+    "Registrar Envio no CRM": { "main": [[{ "node": "Enfileirar Followup (F4)", "type": "main", "index": 0 }]] },
+    "Enfileirar Followup (F4)": { "main": [[{ "node": "Aguardar Intervalo (anti-ban)", "type": "main", "index": 0 }]] },
+    "Aguardar Intervalo (anti-ban)": { "main": [[{ "node": "Loop Envio (1 por vez)", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "criadoEm": "2026-07-14 (execucao autonoma noturna)",
+    "status": "DRAFT — nunca importado nem testado, falta credencial Evolution",
+    "nota": "So envia mensagem_abertura (template, sem IA). Ver F2 pro cerebro conversacional."
+  }
+}
