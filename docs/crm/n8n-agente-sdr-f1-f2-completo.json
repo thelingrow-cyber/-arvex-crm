@@ -12,7 +12,10 @@
       "name": "Webhook Evolution",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
-      "position": [240, 500]
+      "position": [
+        240,
+        500
+      ]
     },
     {
       "parameters": {
@@ -23,7 +26,10 @@
       "name": "Extrair Dados Evolution",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [460, 500]
+      "position": [
+        460,
+        500
+      ]
     },
     {
       "parameters": {
@@ -35,14 +41,21 @@
         "specifyBody": "json",
         "jsonBody": "={{ { p_tel: $json.tel, p_nome: $json.nome, p_texto: $json.texto, p_autor: $json.autor } }}",
         "options": {
-          "response": { "response": { "responseFormat": "text" } }
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
         }
       },
       "id": "a1b2c3d4-0003-4a11-8e01-000000000003",
       "name": "Registrar no CRM",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [680, 500]
+      "position": [
+        680,
+        500
+      ]
     },
     {
       "parameters": {
@@ -54,7 +67,10 @@
       "name": "Responder 200",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
-      "position": [2660, 500]
+      "position": [
+        2660,
+        500
+      ]
     },
     {
       "parameters": {
@@ -65,22 +81,35 @@
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
-            { "name": "tel", "value": "=eq.{{ $('Extrair Dados Evolution').item.json.tel }}" },
-            { "name": "status", "value": "eq.pendente" }
+            {
+              "name": "tel",
+              "value": "=eq.{{ $('Extrair Dados Evolution').item.json.tel }}"
+            },
+            {
+              "name": "status",
+              "value": "eq.pendente"
+            }
           ]
         },
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ { status: 'cancelado' } }}",
         "options": {
-          "response": { "response": { "neverError": true } }
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
         }
       },
       "id": "f2000001-0001-4b11-9e01-000000000001",
       "name": "Cancelar Followup Pendente",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [900, 500]
+      "position": [
+        900,
+        500
+      ]
     },
     {
       "parameters": {
@@ -94,7 +123,10 @@
       "name": "Buscar Config Agente",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1120, 500]
+      "position": [
+        1120,
+        500
+      ]
     },
     {
       "parameters": {
@@ -105,20 +137,30 @@
       "name": "Tem Agente Ativo",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1340, 500],
+      "position": [
+        1340,
+        500
+      ],
       "notesInFlow": true,
       "notes": "Buscar Config Agente PRECISA de Always Output Data=true nas Settings, senao o workflow para sozinho quando agente_sdr estiver vazio e o webhook nunca responde"
     },
     {
       "parameters": {
         "conditions": {
-          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
           "conditions": [
             {
               "id": "cond1",
               "leftValue": "={{ $json.temAgente }}",
               "rightValue": true,
-              "operator": { "type": "boolean", "operation": "equals" }
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
             }
           ],
           "combinator": "and"
@@ -129,7 +171,10 @@
       "name": "IF Agente Ativo",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
-      "position": [1560, 500]
+      "position": [
+        1560,
+        500
+      ]
     },
     {
       "parameters": {
@@ -143,7 +188,10 @@
       "name": "AI Agente",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [1800, 380]
+      "position": [
+        1800,
+        380
+      ]
     },
     {
       "parameters": {
@@ -158,7 +206,10 @@
       "name": "Anthropic Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
-      "position": [1720, 620],
+      "position": [
+        1720,
+        620
+      ],
       "credentials": {
         "anthropicApi": {
           "id": "PREENCHER_NA_IMPORTACAO",
@@ -177,7 +228,10 @@
       "name": "Postgres Chat Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
-      "position": [1880, 620],
+      "position": [
+        1880,
+        620
+      ],
       "credentials": {
         "postgres": {
           "id": "PREENCHER_NA_IMPORTACAO",
@@ -189,13 +243,16 @@
     },
     {
       "parameters": {
-        "jsCode": "const raw = $json.output || '';\nconst texto = raw.replace(/\\|\\|/g, '\\n\\n').replace(/\\n{3,}/g, '\\n\\n').trim();\nreturn [{ json: { texto_resposta: texto } }];"
+        "jsCode": "const raw = ($json.output || '').trim();\n// a Carol separa balões com || ; 1º balão = saudação, resto = corpo\nconst parts = raw.split('||').map(s => s.trim()).filter(Boolean);\nlet balao1, balao2;\nif (parts.length >= 2) {\n  balao1 = parts[0];\n  balao2 = parts.slice(1).join('\\n\\n');\n} else {\n  // sem separador: manda tudo de uma vez, sem 2º balão\n  balao1 = raw.replace(/\\|\\|/g, '\\n\\n');\n  balao2 = '';\n}\nconst texto_resposta = parts.length ? parts.join('\\n\\n') : balao1;\nreturn [{ json: { balao1, balao2, texto_resposta, tem_balao2: balao2.length > 0 } }];"
       },
       "id": "f2000001-0008-4b11-9e01-000000000008",
       "name": "Formatar Resposta",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [2040, 380]
+      "position": [
+        2040,
+        380
+      ]
     },
     {
       "parameters": {
@@ -205,14 +262,17 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ { number: $('Extrair Dados Evolution').item.json.tel, text: $json.texto_resposta } }}",
+        "jsonBody": "={{ { number: $('Extrair Dados Evolution').item.json.tel, text: $('Formatar Resposta').item.json.balao1, delay: 500 } }}",
         "options": {}
       },
       "id": "f2000001-0009-4b11-9e01-000000000009",
-      "name": "Enviar Resposta (Evolution)",
+      "name": "Enviar Balao 1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2260, 380],
+      "position": [
+        2260,
+        380
+      ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "PREENCHER_NA_IMPORTACAO",
@@ -230,61 +290,216 @@
         "specifyBody": "json",
         "jsonBody": "={{ { p_tel: $('Extrair Dados Evolution').item.json.tel, p_nome: $('Extrair Dados Evolution').item.json.nome, p_texto: $('Formatar Resposta').item.json.texto_resposta, p_autor: 'agente' } }}",
         "options": {
-          "response": { "response": { "responseFormat": "text" } }
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
         }
       },
       "id": "f2000001-0010-4b11-9e01-000000000010",
       "name": "Registrar Resposta no CRM",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2460, 380]
+      "position": [
+        2460,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ 'https://wpp.viziom.io/message/sendText/arvex-agente-sdr' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { number: $('Extrair Dados Evolution').item.json.tel, text: $('Formatar Resposta').item.json.balao2, delay: 2500 } }}",
+        "options": {}
+      },
+      "id": "f2000001-0009-4b11-9e01-00000000000b",
+      "name": "Enviar Balao 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2440,
+        380
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PREENCHER_NA_IMPORTACAO",
+          "name": "Evolution ARVEX SDR - apikey"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "connections": {
     "Webhook Evolution": {
-      "main": [[{ "node": "Extrair Dados Evolution", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Extrair Dados Evolution",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Extrair Dados Evolution": {
-      "main": [[{ "node": "Registrar no CRM", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Registrar no CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Registrar no CRM": {
-      "main": [[{ "node": "Cancelar Followup Pendente", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Cancelar Followup Pendente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Cancelar Followup Pendente": {
-      "main": [[{ "node": "Buscar Config Agente", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Buscar Config Agente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Buscar Config Agente": {
-      "main": [[{ "node": "Tem Agente Ativo", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Tem Agente Ativo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Tem Agente Ativo": {
-      "main": [[{ "node": "IF Agente Ativo", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "IF Agente Ativo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "IF Agente Ativo": {
       "main": [
-        [{ "node": "AI Agente", "type": "main", "index": 0 }],
-        [{ "node": "Responder 200", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "AI Agente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder 200",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Anthropic Chat Model": {
-      "ai_languageModel": [[{ "node": "AI Agente", "type": "ai_languageModel", "index": 0 }]]
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agente",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Postgres Chat Memory": {
-      "ai_memory": [[{ "node": "AI Agente", "type": "ai_memory", "index": 0 }]]
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agente",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
     },
     "AI Agente": {
-      "main": [[{ "node": "Formatar Resposta", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Formatar Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Formatar Resposta": {
-      "main": [[{ "node": "Enviar Resposta (Evolution)", "type": "main", "index": 0 }]]
-    },
-    "Enviar Resposta (Evolution)": {
-      "main": [[{ "node": "Registrar Resposta no CRM", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Enviar Balao 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Registrar Resposta no CRM": {
-      "main": [[{ "node": "Responder 200", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Responder 200",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Balao 1": {
+      "main": [
+        [
+          {
+            "node": "Enviar Balao 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Balao 2": {
+      "main": [
+        [
+          {
+            "node": "Registrar Resposta no CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "settings": { "executionOrder": "v1" },
+  "settings": {
+    "executionOrder": "v1"
+  },
   "meta": {
     "criadoEm": "2026-07-14 (execucao autonoma noturna, com Vitor destravando credenciais)",
     "status": "DRAFT com credenciais reais plugadas e caminho de seguranca VERIFICADO em producao (nao publicado). Workflow id no n8n: h8Ka2arQgTvl92oD.",
