@@ -28,25 +28,25 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/registrar_evento_lead",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/rpc/registrar_evento_lead",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ { p_tel: $json.tel, p_nome: $json.nome, p_texto: $json.texto, p_autor: $json.autor } }}",
-        "options": {}
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
       },
       "id": "a1b2c3d4-0003-4a11-8e01-000000000003",
       "name": "Registrar no CRM",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [680, 300],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "PREENCHER_APOS_IMPORTAR",
-          "name": "Supabase CRM ARVEX - service_role"
-        }
-      }
+      "position": [680, 300]
     },
     {
       "parameters": {
