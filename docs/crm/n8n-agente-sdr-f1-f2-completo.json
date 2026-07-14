@@ -189,7 +189,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const raw = $json.output || '';\nconst texto = raw.replace(/\\|\\|/g, '\\n\\n').trim();\nreturn [{ json: { texto_resposta: texto } }];"
+        "jsCode": "const raw = $json.output || '';\nconst texto = raw.replace(/\\|\\|/g, '\\n\\n').replace(/\\n{3,}/g, '\\n\\n').trim();\nreturn [{ json: { texto_resposta: texto } }];"
       },
       "id": "f2000001-0008-4b11-9e01-000000000008",
       "name": "Formatar Resposta",
@@ -288,8 +288,8 @@
   "meta": {
     "criadoEm": "2026-07-14 (execucao autonoma noturna, com Vitor destravando credenciais)",
     "status": "DRAFT com credenciais reais plugadas e caminho de seguranca VERIFICADO em producao (nao publicado). Workflow id no n8n: h8Ka2arQgTvl92oD.",
-    "testadoEExecutado": "Execute workflow com payload sintetico (tel 5599999999903): Webhook->Extrair Dados->Registrar no CRM->Cancelar Followup Pendente->Buscar Config Agente->Tem Agente Ativo->IF Agente Ativo(false, pq agente_sdr vazio)->Responder 200. TODOS os nos rodaram sem erro (checkmark verde), lead criado no banco com status=contato e activity registrada, HTTP 200 no webhook. Lead de teste removido depois.",
-    "naoTestado": "O ramo verdadeiro do IF (AI Agente + Anthropic Chat Model + Postgres Chat Memory + Formatar Resposta + Enviar Resposta + Registrar Resposta no CRM) NUNCA rodou — precisa de uma linha real em agente_sdr (ativo=true, instrucoes preenchidas) pra disparar. Fazer isso numa sessao com o Vitor presente, ver AGENTE-SDR-F2-ARCHITECTURE.md secao 5.",
+    "testadoEExecutado": "TESTE 1 (agente_sdr vazio): Webhook->Extrair Dados->Registrar no CRM->Cancelar Followup Pendente->Buscar Config Agente->Tem Agente Ativo->IF(false)->Responder 200. Todos os nos ok, lead criado, HTTP 200. TESTE 2 (depois de inserir a linha real da Carol, ativo=true, modelo=claude-sonnet-5): IF entrou no ramo VERDADEIRO. AI Agente rodou com Claude de verdade, Postgres Chat Memory CRIOU A PROPRIA TABELA sozinha (agente_sdr_historico, 2 linhas: pergunta+resposta) e gravou, Formatar Resposta rodou. A resposta gerada foi boa: usou o conhecimento certo (explicou a Sessao Estrategica), tom on-brand, e ate comecou a qualificar sozinha (perguntou se a pessoa tem loja em operacao). So falhou em 'Enviar Resposta (Evolution)' — esperado, numero de teste falso + instancia Evolution ainda sem QR escaneado. Bug real achado e corrigido: quebras de linha duplicadas quando o modelo usa || perto de \\n (regex de colapso adicionado). Dados de teste (lead + linha de memoria) removidos depois.",
+    "naoTestado": "O envio de fato pelo WhatsApp (Enviar Resposta) — precisa da instancia Evolution com QR escaneado (numero real). O resto do cerebro (raciocinio, prompt, memoria) ja esta provado funcionando.",
     "nota": "Extensao do F1 ponte (que esta em producao, workflow separado, intocado) com o cerebro F2. Formatar Resposta troca || por quebra de linha (splitter de balao real fica pra depois, ver AGENTE-SDR-F2-ARCHITECTURE.md secao 8)."
   }
 }
