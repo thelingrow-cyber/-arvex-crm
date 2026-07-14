@@ -1,0 +1,75 @@
+{
+  "name": "Agente SDR ARVEX - F1 Ponte (eco)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agente-sdr-arvex-inbound",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4a11-8e01-000000000001",
+      "name": "Webhook Evolution",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const body = $input.item.json.body || $input.item.json;\nconst data = body.data || {};\nconst key = data.key || {};\n\n// ignora eco do proprio agente e mensagens de grupo (F1 e so 1:1)\nif (key.fromMe) { return null; }\nconst remoteJid = key.remoteJid || '';\nif (remoteJid.endsWith('@g.us')) { return null; }\n\nconst tel = remoteJid.split('@')[0].split(':')[0];\nif (!tel) { return null; }\n\nconst msg = data.message || {};\nconst texto = msg.conversation\n  || (msg.extendedTextMessage && msg.extendedTextMessage.text)\n  || '[mensagem nao textual - audio/imagem, tratar em F2]';\nconst nome = data.pushName || tel;\nconst instance = body.instance || '';\n\nreturn { json: { tel, texto, nome, instance, autor: 'lead' } };"
+      },
+      "id": "a1b2c3d4-0002-4a11-8e01-000000000002",
+      "name": "Extrair Dados Evolution",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/registrar_evento_lead",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { p_tel: $json.tel, p_nome: $json.nome, p_texto: $json.texto, p_autor: $json.autor } }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-4a11-8e01-000000000003",
+      "name": "Registrar no CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PREENCHER_APOS_IMPORTAR",
+          "name": "Supabase CRM ARVEX - service_role"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"ok\" } }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0004-4a11-8e01-000000000004",
+      "name": "Responder 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Evolution": {
+      "main": [[{ "node": "Extrair Dados Evolution", "type": "main", "index": 0 }]]
+    },
+    "Extrair Dados Evolution": {
+      "main": [[{ "node": "Registrar no CRM", "type": "main", "index": 0 }]]
+    },
+    "Registrar no CRM": {
+      "main": [[{ "node": "Responder 200", "type": "main", "index": 0 }]]
+    }
+  }
+}
