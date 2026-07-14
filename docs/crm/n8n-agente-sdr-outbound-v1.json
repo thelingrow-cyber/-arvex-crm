@@ -21,7 +21,7 @@
             },
             {
               "id": "a2", "name": "evolution_instance", "type": "string",
-              "value": "PREENCHER_INSTANCIA_DEDICADA_STEP0"
+              "value": "arvex-agente-sdr"
             }
           ]
         },
@@ -199,7 +199,7 @@
   "settings": { "executionOrder": "v1" },
   "meta": {
     "criadoEm": "2026-07-14 (execucao autonoma noturna)",
-    "status": "DRAFT — nunca importado nem testado, falta credencial Evolution",
-    "nota": "So envia mensagem_abertura (template, sem IA). Ver F2 pro cerebro conversacional."
+    "status": "DRAFT publicavel — importado, credenciais reais plugadas (Supabase CRM ARVEX + Evolution ARVEX SDR), Execute workflow rodou ok (parou em 'no output data' porque agente_sdr esta vazio, comportamento correto). NAO PUBLICADO — falta Vitor escrever agente_sdr e decidir ir ao ar.",
+    "nota": "So envia mensagem_abertura (template, sem IA). Ver F2 pro cerebro conversacional. Instancia Evolution: arvex-agente-sdr (criada nesta sessao, ainda sem QR escaneado)."
   }
 }
