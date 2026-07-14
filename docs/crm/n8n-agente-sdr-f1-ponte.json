@@ -4,7 +4,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "agente-sdr-arvex-inbound",
+        "path": "agente-sdr-arvex-inbound-56ce9cbc0f33f2394e8cf78e",
         "responseMode": "responseNode",
         "options": {}
       },
