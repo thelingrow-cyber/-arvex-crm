@@ -1,8 +1,8 @@
 # Agente SDR ARVEX — F2 (cérebro conversacional) — arquitetura para build
 
 > Autor: execução autônoma noturna (Sonnet 5) · 2026-07-14
-> Status: **ESPECIFICADO, NÃO CONSTRUÍDO NO N8N.** Precisa de sessão ao vivo com credencial OpenAI real para montar e testar — ver seção 5.
-> Pré-requisitos que já estão prontos: F0 (RLS fechada), F1 (ponte com path secreto, verificada), F4-schema (`sdr_followups` + `agente_sdr.cadencia`, aplicado).
+> **ATUALIZAÇÃO (mesma madrugada, depois do Vitor destravar as credenciais):** CONSTRUÍDO e parcialmente testado. Ver `docs/crm/n8n-agente-sdr-f1-f2-completo.json` (workflow id `h8Ka2arQgTvl92oD`, DRAFT, não publicado, separado do F1 em produção). As 4 credenciais (Supabase, Evolution, Anthropic, Postgres direto) estão plugadas e testadas. O caminho de segurança (IF que pula a IA quando `agente_sdr` está vazio) foi **executado e verificado em produção** — lead criado, HTTP 200, nada quebrou. **O ramo que chama a IA de fato (AI Agente + Chat Model + Memória) nunca rodou** — falta a linha real em `agente_sdr` (conteúdo do Vitor) pra disparar. Isto é o que resta da seção 5 abaixo.
+> Pré-requisitos que já estão prontos: F0 (RLS fechada), F1 (ponte com path secreto, verificada), F4-schema (`sdr_followups` + `agente_sdr.cadencia`, aplicado, cadência com cauda de 7 dias).
 
 ## 1. Por que isto não foi construído às cegas esta noite
 
