@@ -55,14 +55,24 @@ Usa o envio de mídia do WhatsApp (Evolution `sendMedia`).
 **Problema que resolve:** hoje o trabalho da Carol é invisível no CRM e não dá pra um
 humano assumir. Sem isso, quando escalar, vira bagunça.
 **Entrega:**
-1. **Fix BUG-A** (fundação) — hoje as mensagens da Carol NÃO aparecem no modal do lead
-   (formato incompatível). Corrigir a gravação + leitura.
-2. **Card se move sozinho** — Carol abre → move Novo→Contato; qualifica → move pra
+1. ✅ **Fix BUG-A** (fundação) — FEITO 2026-07-14. RPC grava `{text,date,autor}`; front
+   normaliza os 2 formatos. As mensagens da Carol voltam a aparecer no modal.
+2. ✅ **Chat de atendimento (bolhas)** — FEITO 2026-07-14 (front, no master). O histórico
+   do lead virou conversa estilo WhatsApp: lead à esquerda, Carol à direita (dourado),
+   humano à direita (verde), nota interna ao centro. **Falta publicar em produção.**
+3. **Responder pelo chat** — campo que envia mensagem real ao lead via Evolution (não só
+   nota interna). Depende de EDGE FUNCTION (proxy seguro) + número definitivo.
+4. **Conexão do WhatsApp DENTRO do CRM** — botão "Conectar WhatsApp" na aba Agente SDR
+   que mostra o QR ali (sem abrir o painel Evolution). Depende da MESMA edge function
+   (a chave do Evolution não pode ir pro front).
+5. **Card se move sozinho** — Carol abre → move Novo→Contato; qualifica → move pra
    Qualificado e **notifica a Thalita**; escala → marca vermelho e pausa.
-3. **Takeover humano** — botão "Pausar agente" por lead (a Thalita assume, a Carol cala).
-4. **Visual** — badge no card (`🤖 toque 2/4 · próx. 14h`), conversa em **bolhas estilo
-   WhatsApp** no modal, filtro "Em cadência" na lista, cards no dashboard.
-**Esforço:** 2-3 sessões (SQL + n8n + front). **Depende de:** Fases 1-2 (pra ter o que mostrar).
+6. **Takeover humano** — botão "Pausar agente" por lead (a Thalita assume, a Carol cala).
+7. **Visual** — badge no card (`🤖 toque 2/4 · próx. 14h`), filtro "Em cadência" na
+   lista, cards no dashboard.
+**Esforço:** 2-3 sessões (SQL + edge function + n8n + front). **Depende de:** Fases 1-2.
+**Peça-chave:** a **edge function `evolution-proxy`** (guarda a chave do Evolution como
+secret e repassa QR/envio pro CRM) destrava os itens 3 e 4 de uma vez.
 
 ### FASE 5 — Polish premium ✨ o que faz "pagar caro"
 - Painel de métricas do agente (taxa de resposta por toque, conversão, escalações).
