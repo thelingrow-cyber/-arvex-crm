@@ -357,6 +357,16 @@
     .chat-autor { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; opacity: .7; }
     .chat-ag .chat-autor { color: var(--gold2); }
     .chat-hu .chat-autor { color: var(--green); }
+    /* conexão WhatsApp (aba Agente SDR) */
+    .wa-card { background: var(--navy3); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .wa-card.wa-qr { flex-direction: column; align-items: flex-start; }
+    .wa-status { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
+    .wa-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .wa-dot.wa-on { background: var(--green); box-shadow: 0 0 0 3px rgba(52,199,89,.2); }
+    .wa-dot.wa-off { background: #F87171; }
+    .wa-dot.wa-loading { background: var(--gold2); animation: wa-pulse 1s infinite; }
+    @keyframes wa-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .wa-qr-img { width: 240px; height: 240px; background: #fff; border-radius: 8px; padding: 8px; }
     .add-act-row { display: flex; gap: 8px; }
     .add-act-row input { flex: 1; }
     .btn-add-act { background: var(--blue); border: none; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
@@ -907,6 +917,7 @@
         <h1>Agente SDR</h1>
         <p>Configure e treine seu SDR virtual</p>
       </div>
+      <div id="wa-conexao-card"></div>
       <div class="agente-grid" id="agente-board"></div>
     </div>
 
@@ -1644,7 +1655,7 @@ function goTo(id, el) {
   if (id === 'cs')         renderCS()
   if (id === 'financeiro')    { loadFinanceiro().then(() => renderFinanceiro()) }
   if (id === 'clientes-fin') { loadFinanceiro().then(() => renderClientesFinanceiro()) }
-  if (id === 'agente-sdr')   { loadAgentes().then(() => renderAgentes()) }
+  if (id === 'agente-sdr')   { loadAgentes().then(() => renderAgentes()); renderConexaoWhatsApp() }
   if (id === 'coach')        renderCoach()
 }
 
@@ -2955,7 +2966,11 @@ function openDetail(id) {
     <div class="activity-log">
       ${renderChatLead(l.activities)}
     </div>
-    <div class="add-act-row" style="margin-top:8px">
+    ${l.tel ? `<div class="add-act-row" style="margin-top:8px">
+      <input type="text" id="wa-reply-input" placeholder="Responder pelo WhatsApp (você assume a conversa)..." onkeydown="if(event.key==='Enter')responderWhatsApp('${id}','${esc(l.tel)}')" />
+      <button class="btn-add-act" style="background:var(--green);color:#fff" onclick="responderWhatsApp('${id}','${esc(l.tel)}')">Enviar</button>
+    </div>` : ''}
+    <div class="add-act-row" style="margin-top:6px">
       <input type="text" id="act-input" placeholder="Anotar interação interna (nota, não vai pro lead)..." />
       <button class="btn-add-act" onclick="addActivity('${id}')">+ Nota</button>
     </div>`
@@ -4253,6 +4268,60 @@ function normAct(a) {
   let date = a.date != null ? a.date : a.data
   if (typeof date === 'string') { const p = Date.parse(date); date = isNaN(p) ? 0 : p }
   return { text, date: date || 0, autor: a.autor || null }
+}
+
+// ── Ponte segura Evolution (WhatsApp) via edge function ────────────────────
+// A chave do Evolution vive no servidor; aqui só chamamos a function autenticada.
+async function evoProxy(action, params = {}) {
+  const { data, error } = await sb.functions.invoke('evolution-proxy', { body: { action, ...params } })
+  if (error) throw new Error(error.message || 'ponte Evolution indisponível')
+  if (data && data.error) throw new Error(data.error)
+  return data
+}
+
+async function renderConexaoWhatsApp() {
+  const el = document.getElementById('wa-conexao-card'); if (!el) return
+  el.innerHTML = `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-loading"></span> Verificando conexão do WhatsApp…</div></div>`
+  try {
+    const st = await evoProxy('status')
+    el.innerHTML = st.connected
+      ? `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-on"></span> WhatsApp do agente conectado</div><button class="btn-card-action" onclick="renderConexaoWhatsApp()">Atualizar</button></div>`
+      : `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-off"></span> WhatsApp do agente desconectado</div><button class="btn-save" onclick="conectarWhatsApp()">Conectar WhatsApp</button></div>`
+  } catch (e) {
+    el.innerHTML = `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-off"></span> Ponte de conexão indisponível <span style="color:var(--muted);font-size:11px;font-weight:400">(${esc(e.message)})</span></div></div>`
+  }
+}
+
+async function conectarWhatsApp() {
+  const el = document.getElementById('wa-conexao-card'); if (!el) return
+  el.innerHTML = `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-loading"></span> Gerando QR…</div></div>`
+  try {
+    const r = await evoProxy('qr')
+    if (r.connected) { renderConexaoWhatsApp(); return }
+    if (!r.base64) throw new Error('QR não retornado')
+    const src = String(r.base64).startsWith('data:') ? r.base64 : 'data:image/png;base64,' + r.base64
+    el.innerHTML = `<div class="wa-card wa-qr"><div class="wa-status"><span class="wa-dot wa-loading"></span> Escaneie no WhatsApp → Aparelhos conectados → Conectar um aparelho</div><img src="${src}" alt="QR de conexão do WhatsApp" class="wa-qr-img"/><div style="display:flex;gap:8px"><button class="btn-card-action" onclick="conectarWhatsApp()">Gerar novo QR</button><button class="btn-card-action" onclick="renderConexaoWhatsApp()">Já conectei</button></div></div>`
+  } catch (e) {
+    el.innerHTML = `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-off"></span> Falha ao gerar QR <span style="color:var(--muted);font-size:11px;font-weight:400">(${esc(e.message)})</span></div><button class="btn-save" onclick="conectarWhatsApp()">Tentar de novo</button></div>`
+  }
+}
+
+// Responder pelo WhatsApp de dentro do chat (humano assume — pausa o agente)
+async function responderWhatsApp(id, tel) {
+  const input = document.getElementById('wa-reply-input')
+  const text = (input && input.value || '').trim()
+  if (!text) return
+  if (!tel) { showToast('Lead sem telefone', 'error'); return }
+  if (input) input.disabled = true
+  try {
+    await evoProxy('send', { number: tel, text })
+    if (input) input.value = ''
+    showToast('Mensagem enviada — você assumiu a conversa', 'success')
+    await loadLeads(); openDetail(id)
+  } catch (e) {
+    showToast('Falha ao enviar: ' + e.message, 'error')
+    if (input) input.disabled = false
+  }
 }
 
 // Renderiza o histórico do lead como chat de atendimento (bolhas por autor)
