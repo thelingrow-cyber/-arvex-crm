@@ -266,7 +266,7 @@
         "options": {}
       },
       "id": "f2000001-0009-4b11-9e01-000000000009",
-      "name": "Enviar Balao 1",
+      "name": "Enviar Resposta (Evolution)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
@@ -456,7 +456,7 @@
       "main": [
         [
           {
-            "node": "Enviar Balao 1",
+            "node": "Enviar Resposta (Evolution)",
             "type": "main",
             "index": 0
           }
@@ -474,22 +474,22 @@
         ]
       ]
     },
-    "Enviar Balao 1": {
+    "Enviar Balao 2": {
       "main": [
         [
           {
-            "node": "Enviar Balao 2",
+            "node": "Registrar Resposta no CRM",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Enviar Balao 2": {
+    "Enviar Resposta (Evolution)": {
       "main": [
         [
           {
-            "node": "Registrar Resposta no CRM",
+            "node": "Enviar Balao 2",
             "type": "main",
             "index": 0
           }
