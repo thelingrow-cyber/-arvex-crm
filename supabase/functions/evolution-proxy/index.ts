@@ -56,6 +56,13 @@ Deno.serve(async (req: Request) => {
       });
     }
 
+    // 3a2) desconectar (logout) — pra trocar de número
+    if (action === "disconnect") {
+      const r = await fetch(`${EVO_URL}/instance/logout/${EVO_INST}`, { method: "DELETE", headers: H });
+      const d = await r.json().catch(() => ({}));
+      return json({ ok: r.ok, detail: d });
+    }
+
     // 3b) estado da conexão
     if (action === "status") {
       const r = await fetch(`${EVO_URL}/instance/connectionState/${EVO_INST}`, { headers: H });
@@ -91,7 +98,7 @@ Deno.serve(async (req: Request) => {
       return json({ ok: true });
     }
 
-    return json({ error: "action_invalida", validas: ["qr", "status", "send"] }, 400);
+    return json({ error: "action_invalida", validas: ["qr", "status", "send", "disconnect"] }, 400);
   } catch (e) {
     return json({ error: String((e as Error).message || e) }, 500);
   }
