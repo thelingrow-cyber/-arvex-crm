@@ -1,0 +1,329 @@
+{
+  "name": "Agente SDR ARVEX - Lembrete de Call (D-0 + prova)",
+  "nodes": [
+    {
+      "id": "n1",
+      "name": "Agenda 9h (dia da call)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "n2",
+      "name": "Buscar Calls",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        400
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/leads?status=eq.call&tel=not.is.null&select=id,nome,tel,data_call",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "options": {}
+      },
+      "credentials": {
+        "supabaseApi": {
+          "id": "1iRNtfk808yJMz2V",
+          "name": "Supabase CRM ARVEX"
+        }
+      }
+    },
+    {
+      "id": "n3",
+      "name": "Buscar Midias",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        400
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/sdr_midias?ativo=eq.true&select=chave,base64,mime,ordem&order=ordem",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "options": {}
+      },
+      "credentials": {
+        "supabaseApi": {
+          "id": "1iRNtfk808yJMz2V",
+          "name": "Supabase CRM ARVEX"
+        }
+      }
+    },
+    {
+      "id": "n4",
+      "name": "Montar Fila",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        400
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Monta a fila de lembretes: filtra calls de HOJE, monta texto + caption, alterna a imagem.\nconst calls = $('Buscar Calls').all().map(i => i.json).filter(l => l && l.tel);\nconst midias = $('Buscar Midias').all().map(i => i.json).filter(m => m && m.base64).sort((a, b) => (a.ordem || 0) - (b.ordem || 0));\n\nconst hoje = new Date();\nconst hj = { ano: hoje.getFullYear(), mes: hoje.getMonth() + 1, dia: hoje.getDate() };\n\n// data_call é text com 3 formatos possiveis (ISO, BR com/sem hora) — parse robusto\nfunction parseDataCall(s) {\n  if (!s) return null;\n  s = String(s).trim();\n  let m = s.match(/^(\\d{4})-(\\d{2})-(\\d{2})(?:[T ](\\d{2}):(\\d{2}))?/);\n  if (m) return { ano: +m[1], mes: +m[2], dia: +m[3], hora: m[4] || null, min: m[5] || null };\n  m = s.match(/^(\\d{2})\\/(\\d{2})\\/(\\d{4})(?:\\D*(\\d{2}):(\\d{2}))?/);\n  if (m) return { ano: +m[3], mes: +m[2], dia: +m[1], hora: m[4] || null, min: m[5] || null };\n  return null;\n}\n\nconst fila = [];\nlet idx = 0;\nfor (const l of calls) {\n  const d = parseDataCall(l.data_call);\n  if (!d) continue;\n  if (d.ano !== hj.ano || d.mes !== hj.mes || d.dia !== hj.dia) continue; // só calls de HOJE\n  const hora = d.hora ? (d.hora + 'h' + (d.min && d.min !== '00' ? d.min : '')) : null;\n  const nome = (l.nome || '').trim().split(' ')[0] || l.nome || '';\n  const texto = 'Oi ' + nome + '! Passando pra te lembrar da nossa conversa hoje ⏰\\n\\nOlha o resultado de uma das óticas que a gente ajudou 👇';\n  const caption = 'Aplicou o método e o faturamento veio rápido ✅\\n\\n' + (hora ? ('A gente se fala às ' + hora + '. ') : '') + 'Até já! 🙌';\n  const midia = midias.length ? midias[idx % midias.length] : null; // alterna as 2 provas\n  idx++;\n  fila.push({ json: {\n    lead_id: l.id, tel: l.tel, nome: l.nome, texto, caption,\n    media_base64: midia ? midia.base64 : null,\n    media_mime: midia ? midia.mime : 'image/jpeg',\n    media_chave: midia ? midia.chave : null,\n  }});\n}\nreturn fila;"
+      }
+    },
+    {
+      "id": "n5",
+      "name": "Loop Envio",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        400
+      ],
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      }
+    },
+    {
+      "id": "n6",
+      "name": "Enviar Lembrete",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1340,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://wpp.viziom.io/message/sendText/arvex-agente-sdr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { number: $('Loop Envio').item.json.tel, text: $('Loop Envio').item.json.texto, delay: 600 } }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "AavAlYGGnp4VsGpu",
+          "name": "Evolution ARVEX SDR - apikey"
+        }
+      }
+    },
+    {
+      "id": "n7",
+      "name": "Aguardar (texto->prova)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1560,
+        300
+      ],
+      "parameters": {
+        "amount": 3,
+        "unit": "seconds"
+      }
+    },
+    {
+      "id": "n8",
+      "name": "Enviar Prova (imagem)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1780,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://wpp.viziom.io/message/sendMedia/arvex-agente-sdr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { number: $('Loop Envio').item.json.tel, mediatype: 'image', media: $('Loop Envio').item.json.media_base64, caption: $('Loop Envio').item.json.caption, fileName: 'resultado.jpeg' } }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "AavAlYGGnp4VsGpu",
+          "name": "Evolution ARVEX SDR - apikey"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "n9",
+      "name": "Registrar no CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2000,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://sgeoikzyahhdrncesbpn.supabase.co/rest/v1/rpc/registrar_evento_lead",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { p_tel: $('Loop Envio').item.json.tel, p_nome: $('Loop Envio').item.json.nome, p_texto: '[lembrete de call + prova social enviado]', p_autor: 'agente' } }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "credentials": {
+        "supabaseApi": {
+          "id": "1iRNtfk808yJMz2V",
+          "name": "Supabase CRM ARVEX"
+        }
+      }
+    },
+    {
+      "id": "n10",
+      "name": "Intervalo anti-ban",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2220,
+        300
+      ],
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*40)+20 }}",
+        "unit": "seconds"
+      }
+    }
+  ],
+  "connections": {
+    "Agenda 9h (dia da call)": {
+      "main": [
+        [
+          {
+            "node": "Buscar Calls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Calls": {
+      "main": [
+        [
+          {
+            "node": "Buscar Midias",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Midias": {
+      "main": [
+        [
+          {
+            "node": "Montar Fila",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar Fila": {
+      "main": [
+        [
+          {
+            "node": "Loop Envio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Envio": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Enviar Lembrete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Lembrete": {
+      "main": [
+        [
+          {
+            "node": "Aguardar (texto->prova)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardar (texto->prova)": {
+      "main": [
+        [
+          {
+            "node": "Enviar Prova (imagem)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Prova (imagem)": {
+      "main": [
+        [
+          {
+            "node": "Registrar no CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar no CRM": {
+      "main": [
+        [
+          {
+            "node": "Intervalo anti-ban",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intervalo anti-ban": {
+      "main": [
+        [
+          {
+            "node": "Loop Envio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}
