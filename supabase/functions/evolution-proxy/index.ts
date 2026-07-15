@@ -4,7 +4,8 @@
 //
 // Deploy:  supabase functions deploy evolution-proxy --project-ref <ref>
 // Secrets: supabase secrets set EVOLUTION_API_URL=... EVOLUTION_API_KEY=... EVOLUTION_INSTANCE=arvex-agente-sdr
-import { createClient } from "jsr:@supabase/supabase-js@2";
+// import npm: (jsr pode dar BOOT_ERROR — padrão das outras functions do projeto)
+import { createClient } from "npm:@supabase/supabase-js@2";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
