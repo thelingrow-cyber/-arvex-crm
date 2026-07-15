@@ -340,10 +340,23 @@
     .fin-toast { pointer-events: auto; display: flex; align-items: center; gap: 14px; }
     .toast-action { background: transparent; border: none; color: var(--blue); font-family: Inter,sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; padding: 4px 6px; border-radius: 6px; white-space: nowrap; }
     .toast-action:hover { background: var(--accent-dim); }
-    .activity-log { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto; margin-bottom: 10px; }
+    .activity-log { display: flex; flex-direction: column; gap: 6px; max-height: 260px; overflow-y: auto; margin-bottom: 10px; }
     .activity-item { background: var(--navy3); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; }
-    .act-text { font-size: 12px; }
-    .act-date { font-size: 10px; color: var(--muted); margin-top: 2px; }
+    .act-text { font-size: 12px; white-space: pre-wrap; word-break: break-word; }
+    .act-date { font-size: 10px; color: var(--muted); margin-top: 3px; text-align: right; }
+    /* chat de atendimento — bolhas por autor (lead esquerda; agente/humano direita) */
+    .chat-msg { display: flex; margin-bottom: 2px; }
+    .chat-msg.chat-ld { justify-content: flex-start; }
+    .chat-msg.chat-ag, .chat-msg.chat-hu { justify-content: flex-end; }
+    .chat-msg.chat-nota { justify-content: center; }
+    .chat-bubble { max-width: 80%; border-radius: 11px; padding: 8px 11px; border: 1px solid var(--border); }
+    .chat-ld .chat-bubble { background: var(--navy3); border-bottom-left-radius: 3px; }
+    .chat-ag .chat-bubble { background: rgba(200,169,110,.15); border-color: rgba(200,169,110,.38); border-bottom-right-radius: 3px; }
+    .chat-hu .chat-bubble { background: rgba(52,199,89,.13); border-color: rgba(52,199,89,.4); border-bottom-right-radius: 3px; }
+    .chat-nota .chat-bubble { background: transparent; border-style: dashed; max-width: 92%; opacity: .82; }
+    .chat-autor { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; opacity: .7; }
+    .chat-ag .chat-autor { color: var(--gold2); }
+    .chat-hu .chat-autor { color: var(--green); }
     .add-act-row { display: flex; gap: 8px; }
     .add-act-row input { flex: 1; }
     .btn-add-act { background: var(--blue); border: none; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
@@ -2938,15 +2951,13 @@ function openDetail(id) {
       ).join('')}
     </div>
     ${l.obs ? `<p style="font-size:13px;color:var(--muted);margin-bottom:14px">${esc(l.obs)}</p>` : ''}
-    <div class="section-sep">Histórico de Atividades</div>
+    <div class="section-sep">Conversa &amp; Atendimento</div>
     <div class="activity-log">
-      ${(l.activities||[]).length
-        ? [...l.activities].reverse().map(a=>`<div class="activity-item"><div class="act-text">${esc(a.text)}</div><div class="act-date">${fmtDate(a.date)}</div></div>`).join('')
-        : '<div style="color:var(--muted);font-size:12px">Nenhuma atividade registrada.</div>'}
+      ${renderChatLead(l.activities)}
     </div>
     <div class="add-act-row" style="margin-top:8px">
-      <input type="text" id="act-input" placeholder="Ex: Ligação feita, reunião confirmada..." />
-      <button class="btn-add-act" onclick="addActivity('${id}')">+ Log</button>
+      <input type="text" id="act-input" placeholder="Anotar interação interna (nota, não vai pro lead)..." />
+      <button class="btn-add-act" onclick="addActivity('${id}')">+ Nota</button>
     </div>`
   abrirModal('modal-detail')
   // deep-link: a URL passa a apontar para este lead (dá pra colar no WhatsApp do time)
@@ -4232,6 +4243,29 @@ document.addEventListener('input', e => {
 function fmtDate(ts) {
   if (!ts) return '—'
   return new Date(ts).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+}
+
+// Normaliza um evento de activities. Aceita o formato antigo {texto,data(ISO)} da RPC v1
+// e o novo {text,date(epoch),autor} — sem isso as mensagens do agente sumiam do modal.
+function normAct(a) {
+  if (!a || typeof a !== 'object') return { text: '', date: 0, autor: null }
+  const text = a.text != null ? a.text : (a.texto != null ? a.texto : '')
+  let date = a.date != null ? a.date : a.data
+  if (typeof date === 'string') { const p = Date.parse(date); date = isNaN(p) ? 0 : p }
+  return { text, date: date || 0, autor: a.autor || null }
+}
+
+// Renderiza o histórico do lead como chat de atendimento (bolhas por autor)
+function renderChatLead(activities) {
+  if (!(activities || []).length) return '<div style="color:var(--muted);font-size:12px">Nenhuma conversa ainda.</div>'
+  const LADO = { lead: 'ld', agente: 'ag', humano: 'hu' }
+  const NOME = { lead: '', agente: 'Carol', humano: 'Você' }
+  return activities.map(normAct).map(a => {
+    const lado = LADO[a.autor] || 'nota'
+    const nome = NOME[a.autor]
+    const autorHtml = nome ? `<div class="chat-autor">${esc(nome)}</div>` : ''
+    return `<div class="chat-msg chat-${lado}"><div class="chat-bubble">${autorHtml}<div class="act-text">${esc(a.text)}</div><div class="act-date">${fmtDate(a.date)}</div></div></div>`
+  }).join('')
 }
 
 // ── MODAIS: Esc e clique no overlay fecham ─────────────────────────────────
