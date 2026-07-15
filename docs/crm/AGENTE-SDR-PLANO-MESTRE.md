@@ -43,13 +43,16 @@ lead responde ou a call é marcada.
 **Esforço:** 1-2 sessões (construir do zero, padrão já desenhado na arquitetura).
 **Depende de:** Fase 1 no ar (a cadência começa na abertura).
 
-### FASE 3 — Lembrete de Call com prova social (Fluxo C) 📸 pedido do Vitor
+### FASE 3 — Lembrete de Call com prova social (Fluxo C) 📸 ✅ CONSTRUÍDO 2026-07-15
 **Problema que resolve:** lead marca call e sói (no-show). Falta o lembrete no dia.
-**Entrega:** robô diário — de manhã, pega os leads com **call marcada pra hoje**
-(campo `data_call` já existe no CRM), manda lembrete + **imagem de prova social**
-(as 2 provas já estão salvas em `docs/agente-sdr/provas-sociais/`) + reconfirma o horário.
-Usa o envio de mídia do WhatsApp (Evolution `sendMedia`).
-**Esforço:** 1 sessão. **Depende de:** nada técnico; depende das DECISÕES D-3/D-4 abaixo.
+**Entregue (DRAFT, não vai ao ar até o número definitivo):**
+- `docs/crm/n8n-agente-sdr-lembrete-call-v1.json` — workflow 10 nós: cron **9h** →
+  busca calls de hoje (parse robusto dos 3 formatos de `data_call`) → sendText
+  (lembrete, texto do Fluxo C real) → sendMedia (prova social) → registra + jitter.
+- `sdr_midias` (banco): 2 provas em base64, **alternadas** a cada envio.
+- Decisões do Vitor aplicadas: as 2 imagens alternando · 9h da manhã · texto aprovado.
+- Lógica validada com casos sintéticos (ISO/BR, com/sem hora, alternância ok).
+**Falta pra ligar:** importar no n8n + número definitivo conectado.
 
 ### FASE 4 — Carol INTEGRADA ao pipeline (visível e controlável) 🖥️ vira produto
 **Problema que resolve:** hoje o trabalho da Carol é invisível no CRM e não dá pra um
