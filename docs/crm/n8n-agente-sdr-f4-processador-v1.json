@@ -261,7 +261,8 @@
           "id": "AavAlYGGnp4VsGpu",
           "name": "Evolution ARVEX SDR - apikey"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "id": "f4b2",
