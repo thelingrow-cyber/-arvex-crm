@@ -9,7 +9,8 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, content-type",
+  // supabase-js manda authorization + apikey + x-client-info; "*" evita bloqueio no preflight
+  "Access-Control-Allow-Headers": "*, authorization, apikey, content-type, x-client-info",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
