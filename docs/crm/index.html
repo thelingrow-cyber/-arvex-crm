@@ -367,6 +367,32 @@
     .wa-dot.wa-loading { background: var(--gold2); animation: wa-pulse 1s infinite; }
     @keyframes wa-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
     .wa-qr-img { width: 240px; height: 240px; background: #fff; border-radius: 8px; padding: 8px; }
+    /* Atendimento — inbox WhatsApp */
+    .at-inbox { display: grid; grid-template-columns: 320px 1fr; height: calc(100vh - 210px); min-height: 440px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--navy2); }
+    .at-lista { border-right: 1px solid var(--border); overflow-y: auto; }
+    .at-conv-item { padding: 11px 14px; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; flex-direction: column; gap: 3px; }
+    .at-conv-item:hover { background: var(--navy3); }
+    .at-conv-item.sel { background: var(--navy3); border-left: 3px solid var(--gold2); padding-left: 11px; }
+    .at-conv-nome { font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+    .at-conv-hora { font-size: 10px; color: var(--text-3); font-weight: 400; flex-shrink: 0; }
+    .at-conv-prev { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 5px; }
+    .at-conversa { display: flex; flex-direction: column; overflow: hidden; }
+    .at-conv-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .at-conv-msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .at-conv-reply { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+    .at-conv-reply input { flex: 1; background: var(--navy3); border: 1px solid var(--border); border-radius: 8px; color: var(--white); padding: 10px 12px; font-family: inherit; font-size: 13px; outline: none; }
+    .at-vazio { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--muted); font-size: 13px; padding: 20px; text-align: center; }
+    .at-badge { font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 700; flex-shrink: 0; }
+    .at-badge.ativo { background: rgba(200,169,110,.2); color: var(--gold2); }
+    .at-badge.pausado { background: rgba(148,163,184,.22); color: var(--muted); }
+    .at-back { display: none; }
+    @media (max-width: 820px) {
+      .at-inbox { grid-template-columns: 1fr; }
+      .at-inbox .at-conversa { display: none; }
+      .at-inbox.ver-conversa .at-lista { display: none; }
+      .at-inbox.ver-conversa .at-conversa { display: flex; }
+      .at-back { display: inline-flex; }
+    }
     .add-act-row { display: flex; gap: 8px; }
     .add-act-row input { flex: 1; }
     .btn-add-act { background: var(--blue); border: none; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
@@ -590,6 +616,9 @@
   </div>
   <div class="sidebar-item" onclick="goTo('experts',this)" id="nav-experts">
     <span class="si-icon" data-icon="experts"></span> Por Expert
+  </div>
+  <div class="sidebar-item" onclick="goTo('atendimento',this)" id="nav-atendimento">
+    <span class="si-icon" data-icon="whatsapp"></span> Atendimento
   </div>
   <div class="sidebar-item admin-only" onclick="goTo('agente-sdr',this)" id="nav-agente-sdr">
     <span class="si-icon" data-icon="bot"></span> Agente SDR
@@ -919,6 +948,18 @@
       </div>
       <div id="wa-conexao-card"></div>
       <div class="agente-grid" id="agente-board"></div>
+    </div>
+
+    <!-- ATENDIMENTO — inbox WhatsApp -->
+    <div id="view-atendimento" class="view">
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div><h1>Atendimento</h1><p>Conversas do WhatsApp — Carol + você</p></div>
+        <div id="at-conexao"></div>
+      </div>
+      <div class="at-inbox" id="at-inbox">
+        <div class="at-lista" id="at-lista"></div>
+        <div class="at-conversa" id="at-conversa"><div class="at-vazio">Selecione uma conversa à esquerda</div></div>
+      </div>
     </div>
 
     <!-- COACH — Sales Coach -->
@@ -1375,7 +1416,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', coach:'Reuniões' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', atendimento:'Atendimento — WhatsApp', coach:'Reuniões' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
@@ -1537,7 +1578,7 @@ function subscribeRealtime() {
   sb.channel('leads-changes')
     .on('postgres_changes', { event:'*', schema:'public', table:'leads' }, async () => {
       await Promise.all([loadLeads(), loadHistory()])   // o trigger gravou a transição — o histórico mudou junto
-      renderDashboard(); renderAllLeads()
+      renderDashboard(); renderAllLeads(); atendimentoRealtime()
       // Nunca re-renderizar o board com um card na mão do usuário: o innerHTML destruiria
       // o nó que ele está arrastando. Adia para o release (ver renderPipeline).
       if (_pipelineDrag?.arrastando()) { _renderPipelinePendente = true; return }
@@ -1608,7 +1649,7 @@ function closeMobileSidebar() {
 // ── ROTA POR HASH (deep-link) ──────────────────────────────────────────────
 // #pipeline · #leads · #lead/{id} (abre o detalhe). Sem framework: goTo escreve o hash e
 // o hashchange navega. A flag _navegando evita o loop goTo -> hash -> hashchange -> goTo.
-const VIEWS = ['dashboard','pipeline','leads','experts','agente-sdr','coach','cs','financeiro','clientes-fin']
+const VIEWS = ['dashboard','pipeline','leads','experts','atendimento','agente-sdr','coach','cs','financeiro','clientes-fin']
 let _navegando = false
 
 // A view existe para este usuário? applyRole() esconde itens por role (@po: link não pode
@@ -1619,7 +1660,7 @@ function viewPermitida(id) {
   return !nav || nav.style.display !== 'none'
 }
 function navDaView(id) {
-  const porId = { dashboard:'nav-dashboard', experts:'nav-experts', 'agente-sdr':'nav-agente-sdr',
+  const porId = { dashboard:'nav-dashboard', experts:'nav-experts', atendimento:'nav-atendimento', 'agente-sdr':'nav-agente-sdr',
                   coach:'nav-coach', cs:'nav-cs', financeiro:'nav-financeiro', 'clientes-fin':'nav-clientes-fin' }[id]
   if (porId) return document.getElementById(porId)
   return [...document.querySelectorAll('.sidebar-item')].find(s => (s.getAttribute('onclick')||'').includes(`goTo('${id}'`)) || null
@@ -1656,6 +1697,7 @@ function goTo(id, el) {
   if (id === 'financeiro')    { loadFinanceiro().then(() => renderFinanceiro()) }
   if (id === 'clientes-fin') { loadFinanceiro().then(() => renderClientesFinanceiro()) }
   if (id === 'agente-sdr')   { loadAgentes().then(() => renderAgentes()); renderConexaoWhatsApp() }
+  if (id === 'atendimento')  renderAtendimento()
   if (id === 'coach')        renderCoach()
 }
 
@@ -4321,6 +4363,151 @@ async function responderWhatsApp(id, tel) {
   } catch (e) {
     showToast('Falha ao enviar: ' + e.message, 'error')
     if (input) input.disabled = false
+  }
+}
+
+// ── ABA ATENDIMENTO (inbox WhatsApp) ───────────────────────────────────────
+let _atConvAtiva = null
+
+function fmtHora(ts) {
+  if (!ts) return ''
+  const d = new Date(ts), hoje = new Date()
+  const mesmaData = d.toDateString() === hoje.toDateString()
+  return mesmaData
+    ? d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    : d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
+}
+
+// só leads que têm conversa de WhatsApp (algum evento com autor)
+function conversasAtendimento() {
+  return getLeads()
+    .map(l => {
+      const msgs = (l.activities || []).map(normAct).filter(a => a.autor)
+      return { l, msgs, ultima: msgs[msgs.length - 1] || null }
+    })
+    .filter(c => c.ultima)
+    .sort((a, b) => b.ultima.date - a.ultima.date)
+}
+
+function renderAtendimento() {
+  renderConexaoAtendimento()
+  const lista = document.getElementById('at-lista'); if (!lista) return
+  const convs = conversasAtendimento()
+  if (!convs.length) { lista.innerHTML = '<div class="at-vazio">Nenhuma conversa ainda.<br>Quando a Carol atender um lead, aparece aqui.</div>'; return }
+  lista.innerHTML = convs.map(({ l, ultima }) => {
+    const sel = _atConvAtiva === l.id ? ' sel' : ''
+    const badge = l.agente_pausado ? '<span class="at-badge pausado">humano</span>' : '<span class="at-badge ativo">Carol</span>'
+    return `<div class="at-conv-item${sel}" onclick="abrirConversa('${l.id}')">
+      <div class="at-conv-nome">${esc(l.nome)} <span class="at-conv-hora">${fmtHora(ultima.date)}</span></div>
+      <div class="at-conv-prev">${badge}<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ultima.text)}</span></div>
+    </div>`
+  }).join('')
+  if (_atConvAtiva && !convs.some(c => c.l.id === _atConvAtiva)) _atConvAtiva = null
+}
+
+function abrirConversa(id) {
+  _atConvAtiva = id
+  const l = getLeads().find(x => x.id === id); if (!l) return
+  const painel = document.getElementById('at-conversa'); if (!painel) return
+  document.getElementById('at-inbox')?.classList.add('ver-conversa')
+  const ctrl = l.agente_pausado
+    ? `<button class="btn-card-action" onclick="retomarAgente('${l.id}')" title="Voltar a Carol a responder">▶ Retomar Carol</button>`
+    : `<button class="btn-card-action" onclick="pausarAgente('${l.id}')" title="Assumir a conversa (Carol para)">⏸ Assumir</button>`
+  painel.innerHTML = `
+    <div class="at-conv-header">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="btn-card-action at-back" onclick="voltarInbox()">←</button>
+        <div><div style="font-weight:700;font-size:14px">${esc(l.nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(l.tel || '—')} · ${l.agente_pausado ? 'você está atendendo' : 'Carol respondendo'}</div></div>
+      </div>
+      <div style="display:flex;gap:6px">${ctrl}<button class="btn-card-action" onclick="openDetail('${l.id}')">Ver lead</button></div>
+    </div>
+    <div class="at-conv-msgs" id="at-conv-msgs">${renderChatLead(l.activities)}</div>
+    ${l.tel ? `<div class="at-conv-reply">
+      <input type="text" id="at-reply-input" placeholder="Escreva uma mensagem..." onkeydown="if(event.key==='Enter')enviarAtendimento('${l.id}','${esc(l.tel)}')" />
+      <button class="btn-save" onclick="enviarAtendimento('${l.id}','${esc(l.tel)}')">Enviar</button>
+    </div>` : '<div class="at-conv-reply" style="color:var(--muted);font-size:12px">Lead sem telefone — não dá pra responder.</div>'}`
+  const m = document.getElementById('at-conv-msgs'); if (m) m.scrollTop = m.scrollHeight
+  document.querySelectorAll('.at-conv-item').forEach(el => el.classList.toggle('sel', (el.getAttribute('onclick') || '').includes("'" + id + "'")))
+  document.getElementById('at-reply-input')?.focus()
+}
+
+function voltarInbox() { document.getElementById('at-inbox')?.classList.remove('ver-conversa'); _atConvAtiva = null; renderAtendimento() }
+
+// Atualiza só as bolhas da conversa aberta (preserva o input que o usuário está digitando)
+function atualizarMsgsConversa() {
+  if (!_atConvAtiva) return
+  const l = getLeads().find(x => x.id === _atConvAtiva); if (!l) return
+  const m = document.getElementById('at-conv-msgs'); if (!m) return
+  const noFim = m.scrollHeight - m.scrollTop - m.clientHeight < 50
+  m.innerHTML = renderChatLead(l.activities)
+  if (noFim) m.scrollTop = m.scrollHeight
+}
+
+// chamado pelo realtime quando a aba Atendimento está ativa
+function atendimentoRealtime() {
+  if (!document.getElementById('view-atendimento')?.classList.contains('active')) return
+  renderAtendimento()
+  atualizarMsgsConversa()
+}
+
+async function enviarAtendimento(id, tel) {
+  const input = document.getElementById('at-reply-input')
+  const text = (input && input.value || '').trim(); if (!text) return
+  if (input) input.disabled = true
+  try {
+    await evoProxy('send', { number: tel, text })
+    if (input) input.value = ''
+    await loadLeads(); abrirConversa(id); renderAtendimento()
+  } catch (e) {
+    showToast('Falha ao enviar: ' + e.message, 'error')
+    if (input) { input.disabled = false; input.focus() }
+  }
+}
+
+async function pausarAgente(id) {
+  const l = getLeads().find(x => x.id === id); if (l) l.agente_pausado = true
+  await updateLeadField(id, { agente_pausado: true })
+  showToast('Você assumiu — a Carol parou de responder este lead', 'success')
+  abrirConversa(id); renderAtendimento()
+}
+async function retomarAgente(id) {
+  const l = getLeads().find(x => x.id === id); if (l) l.agente_pausado = false
+  await updateLeadField(id, { agente_pausado: false })
+  showToast('Carol voltou a responder este lead', 'success')
+  abrirConversa(id); renderAtendimento()
+}
+
+async function renderConexaoAtendimento() {
+  const el = document.getElementById('at-conexao'); if (!el) return
+  el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> verificando…</div>`
+  try {
+    const st = await evoProxy('status')
+    el.innerHTML = st.connected
+      ? `<div class="wa-status"><span class="wa-dot wa-on"></span> WhatsApp conectado</div>`
+      : `<div class="wa-status"><span class="wa-dot wa-off"></span> Desconectado <button class="btn-card-action" onclick="conectarWhatsAppAt()">Conectar</button></div>`
+  } catch (e) {
+    el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-off"></span> Ponte indisponível</div>`
+  }
+}
+
+// Conecta o WhatsApp mostrando o QR no painel grande da aba Atendimento
+async function conectarWhatsAppAt() {
+  const painel = document.getElementById('at-conversa'); if (!painel) return
+  document.getElementById('at-inbox')?.classList.add('ver-conversa')
+  painel.innerHTML = `<div class="at-vazio"><div class="wa-status"><span class="wa-dot wa-loading"></span> Gerando QR…</div></div>`
+  try {
+    const r = await evoProxy('qr')
+    if (r.connected) { renderAtendimento(); return }
+    if (!r.base64) throw new Error('QR não retornado')
+    const src = String(r.base64).startsWith('data:') ? r.base64 : 'data:image/png;base64,' + r.base64
+    painel.innerHTML = `<div class="at-vazio"><div style="text-align:center">
+      <div style="font-weight:700;margin-bottom:6px">Escaneie pra conectar o WhatsApp</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">WhatsApp → Aparelhos conectados → Conectar um aparelho</div>
+      <img src="${src}" alt="QR de conexão" class="wa-qr-img"/>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:12px"><button class="btn-card-action" onclick="conectarWhatsAppAt()">Novo QR</button><button class="btn-save" onclick="renderConexaoAtendimento()">Já conectei</button></div>
+    </div></div>`
+  } catch (e) {
+    painel.innerHTML = `<div class="at-vazio">Falha ao gerar QR: ${esc(e.message)}<br><button class="btn-save" onclick="conectarWhatsAppAt()" style="margin-top:10px">Tentar de novo</button></div>`
   }
 }
 
