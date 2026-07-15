@@ -4483,10 +4483,32 @@ async function renderConexaoAtendimento() {
   try {
     const st = await evoProxy('status')
     el.innerHTML = st.connected
-      ? `<div class="wa-status"><span class="wa-dot wa-on"></span> WhatsApp conectado</div>`
-      : `<div class="wa-status"><span class="wa-dot wa-off"></span> Desconectado <button class="btn-card-action" onclick="conectarWhatsAppAt()">Conectar</button></div>`
+      ? `<div class="wa-status"><span class="wa-dot wa-on"></span> WhatsApp conectado <button class="btn-card-action" onclick="trocarNumeroAt()" title="Desconectar e conectar outro número">Trocar número</button></div>`
+      : `<div class="wa-status"><span class="wa-dot wa-off"></span> Desconectado <button class="btn-save" onclick="conectarWhatsAppAt()">Conectar WhatsApp</button></div>`
   } catch (e) {
     el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-off"></span> Ponte indisponível</div>`
+  }
+}
+
+// Troca de número: usa o modal de confirmação padrão do CRM (sem confirm() nativo)
+function trocarNumeroAt() {
+  confirmarAcao(
+    'Isso vai desconectar o número atual do WhatsApp. Você precisará escanear o QR com o novo número.',
+    trocarNumeroConfirmar,
+    { titulo: 'Trocar número', okLabel: 'Sim, trocar', perigo: true }
+  )
+}
+async function trocarNumeroConfirmar() {
+  const el = document.getElementById('at-conexao')
+  if (el) el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> desconectando…</div>`
+  try {
+    await evoProxy('disconnect')
+    await new Promise(r => setTimeout(r, 1500))  // dá tempo do Evolution processar o logout
+    await conectarWhatsAppAt()
+    renderConexaoAtendimento()
+  } catch (e) {
+    showToast('Falha ao desconectar: ' + e.message, 'error')
+    renderConexaoAtendimento()
   }
 }
 
