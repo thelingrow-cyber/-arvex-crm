@@ -88,8 +88,10 @@ Deno.serve(async (req: Request) => {
         Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
       );
       const tel = String(number).replace(/\D/g, "");
+      // "por" = quem atendeu, vindo do login validado (não forjável pelo front)
+      const atendente = (user.email || "").split("@")[0] || "humano";
       await service.rpc("registrar_evento_lead", {
-        p_tel: tel, p_nome: tel, p_texto: text, p_autor: "humano",
+        p_tel: tel, p_nome: tel, p_texto: text, p_autor: "humano", p_por: atendente,
       });
       // pausa o agente (best-effort; a coluna pode ainda não existir — não quebra o envio)
       await service.from("leads").update({ agente_pausado: true }).eq("tel", tel).then(
