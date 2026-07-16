@@ -4309,7 +4309,7 @@ function normAct(a) {
   const text = a.text != null ? a.text : (a.texto != null ? a.texto : '')
   let date = a.date != null ? a.date : a.data
   if (typeof date === 'string') { const p = Date.parse(date); date = isNaN(p) ? 0 : p }
-  return { text, date: date || 0, autor: a.autor || null }
+  return { text, date: date || 0, autor: a.autor || null, por: a.por || null }
 }
 
 // ── Ponte segura Evolution (WhatsApp) via edge function ────────────────────
@@ -4540,7 +4540,8 @@ function renderChatLead(activities) {
   const NOME = { lead: '', agente: 'Carol', humano: 'Você' }
   return activities.map(normAct).map(a => {
     const lado = LADO[a.autor] || 'nota'
-    const nome = NOME[a.autor]
+    // humano com 'por' registrado mostra QUEM atendeu (Thalita/Gabriel/você); senão cai no genérico
+    const nome = a.autor === 'humano' ? (a.por || NOME.humano) : NOME[a.autor]
     const autorHtml = nome ? `<div class="chat-autor">${esc(nome)}</div>` : ''
     return `<div class="chat-msg chat-${lado}"><div class="chat-bubble">${autorHtml}<div class="act-text">${esc(a.text)}</div><div class="act-date">${fmtDate(a.date)}</div></div></div>`
   }).join('')
