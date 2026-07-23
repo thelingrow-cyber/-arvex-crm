@@ -9,11 +9,23 @@ user's Startup folder that launches WhisperFlow silently on login:
 pythonw.exe (not python.exe) has no console window attached — the daemon
 runs fully invisible from boot, per AD-9/PRD CS4 ("sem terminal visivel").
 
-Deliberately dependency-free: shortcut (.lnk) creation uses the built-in
-Windows Script Host (cscript.exe + WScript.Shell COM object) via a small
-throwaway .vbs file, so this script needs nothing beyond the Python
-standard library — no new entry in requirements.txt, no pywin32 required
-just to install an icon in Startup.
+S7 fix (REFACTOR-PLAN.md): shortcut (.lnk) creation is a PowerShell
+one-liner that drives the same `WScript.Shell.CreateShortcut` COM object
+as before, invoked directly via `subprocess` — NOT through an intermediate
+.vbs file anymore. Root cause of the old bug: cscript.exe reads a .vbs
+script using the system ANSI codepage, which corrupted any non-ASCII path
+segment baked into the script text (this machine's own username,
+"Simões", is exactly such a segment) — a script whose OWN content depended
+on the broken path could never render its accented characters correctly.
+The PowerShell command is instead passed via `-EncodedCommand`
+(base64 of UTF-16LE), which PowerShell decodes explicitly as UTF-16 — no
+ANSI round-trip, no corruption, regardless of what's in the path. This is
+the same mechanism as the manual workaround that has been running this
+machine's production autostart since 2026-07-17.
+
+Still dependency-free: `powershell.exe` and its WScript.Shell COM access
+are both part of every Windows install — no new entry in requirements.txt,
+no pywin32.
 
 V1 stage only (AD-9): runs from source (this checkout's own .venv). The
 PyInstaller --onefile --noconsole packaging is V1.1/later, not built here.
@@ -25,10 +37,10 @@ Usage:
 """
 from __future__ import annotations
 
+import base64
 import os
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 APP_NAME = "WhisperFlow"
@@ -49,45 +61,53 @@ def get_shortcut_path() -> Path:
     return get_startup_dir() / f"{APP_NAME}.lnk"
 
 
-def _run_vbscript_shortcut_creator(
+def _create_shortcut_via_powershell(
     shortcut_path: Path, target: Path, arguments: str, working_dir: Path
 ) -> None:
-    """Writes a tiny .vbs that creates/overwrites the .lnk via WScript.Shell,
-    runs it with cscript.exe, then deletes the throwaway script."""
-    vbs = f'''
-Set oWS = WScript.CreateObject("WScript.Shell")
-Set oLink = oWS.CreateShortcut("{shortcut_path}")
-oLink.TargetPath = "{target}"
-oLink.Arguments = "{arguments}"
-oLink.WorkingDirectory = "{working_dir}"
-oLink.WindowStyle = 7
-oLink.Description = "WhisperFlow -- ditado por voz global (Ctrl+Win para gravar)"
-oLink.Save
-'''.strip()
+    """Creates/overwrites the .lnk via WScript.Shell.CreateShortcut, driven
+    straight from a PowerShell one-liner over subprocess -- no .vbs file on
+    disk at any point (see module docstring for why that mattered:
+    cscript's ANSI reading of the old .vbs corrupted accented paths).
 
-    with tempfile.NamedTemporaryFile(
-        mode="w", suffix=".vbs", delete=False, encoding="utf-8"
-    ) as f:
-        f.write(vbs)
-        vbs_path = Path(f.name)
+    The script text is passed via `-EncodedCommand` (base64 of its
+    UTF-16LE bytes) instead of as a quoted `-Command` string: this sidesteps
+    BOTH remaining risk classes at once -- PowerShell's own command-line
+    quoting rules (paths with spaces/quotes/special chars) and any codepage
+    translation between Python's subprocess call and the process launch --
+    since the payload is decoded explicitly as UTF-16 text, never
+    reinterpreted through a locale-dependent ANSI codepage.
+    """
+    description = "WhisperFlow -- ditado por voz global (Ctrl+Win para gravar)"
+    ps_script = (
+        f'$ws = New-Object -ComObject WScript.Shell\n'
+        f'$s = $ws.CreateShortcut("{shortcut_path}")\n'
+        f'$s.TargetPath = "{target}"\n'
+        f'$s.Arguments = "{arguments}"\n'
+        f'$s.WorkingDirectory = "{working_dir}"\n'
+        f'$s.WindowStyle = 7\n'
+        f'$s.Description = "{description}"\n'
+        f'$s.Save()\n'
+    )
+    encoded = base64.b64encode(ps_script.encode("utf-16-le")).decode("ascii")
 
-    try:
-        result = subprocess.run(
-            ["cscript.exe", "//nologo", str(vbs_path)],
-            capture_output=True,
-            text=True,
-            timeout=15,
+    result = subprocess.run(
+        [
+            "powershell.exe",
+            "-NoProfile",
+            "-NonInteractive",
+            "-NoLogo",
+            "-EncodedCommand",
+            encoded,
+        ],
+        capture_output=True,
+        text=True,
+        timeout=15,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(
+            f"powershell falhou (code {result.returncode}): "
+            f"stdout={result.stdout!r} stderr={result.stderr!r}"
         )
-        if result.returncode != 0:
-            raise RuntimeError(
-                f"cscript falhou (code {result.returncode}): "
-                f"stdout={result.stdout!r} stderr={result.stderr!r}"
-            )
-    finally:
-        try:
-            vbs_path.unlink()
-        except OSError:
-            pass
 
 
 def install() -> None:
@@ -105,12 +125,11 @@ def install() -> None:
         sys.exit(1)
 
     shortcut_path = get_shortcut_path()
-    _run_vbscript_shortcut_creator(
+    _create_shortcut_via_powershell(
         shortcut_path=shortcut_path,
         target=VENV_PYTHONW,
-        # No manual quotes here -- the .vbs template already wraps
-        # {arguments} in double quotes; adding our own produced a
-        # double-quoted literal ("") that VBScript's compiler rejected.
+        # No manual quotes here -- the PowerShell template already wraps
+        # {arguments} in double quotes.
         arguments=str(MAIN_PY),
         working_dir=THIS_DIR,
     )

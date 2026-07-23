@@ -3,3 +3,9 @@ sounddevice
 keyboard
 pyperclip
 numpy
+
+# S8 (ADR-17) — web UI + tray icon, pinned per REFACTOR-PLAN.md instructions
+fastapi==0.139.2
+uvicorn==0.51.0
+pystray==0.19.5
+pillow==12.3.0

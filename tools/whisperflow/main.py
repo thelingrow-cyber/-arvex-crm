@@ -6,6 +6,11 @@ S2: transcriber.py (faster-whisper, loaded once at boot) plugged in —
     release -> transcribe -> log text + latency.
 S3: paster.py plugged in — transcribed text is pasted at the cursor
     (AD-5); empty transcription (silence) pastes nothing (AD-7).
+S7: history.py migrated to SQLite (ADR-16); every paste also enqueues the
+    same audio buffer into refiner.py's async worker (ADR-14), which
+    reprocesses it with the `small` model and fills in `refined_text` on
+    the same row, seconds later -- the synchronous flow above is
+    otherwise untouched.
 
 Hotkey detection note (S1 implementation detail, not an architecture
 change — AD-4 still says use the `keyboard` lib): `keyboard.is_pressed()`
@@ -38,6 +43,7 @@ import paster
 import polish as polish_mod
 import recorder as recorder_mod
 from overlay import Overlay
+from refiner import RefineWorker
 from transcriber import Transcriber
 
 INSTANCE_LOCK_PORT = 52700
@@ -114,18 +120,25 @@ def _save_debug_wav(audio, config: dict, logger) -> None:
     )
 
 
-def _transcribe_and_paste(audio, transcriber: Transcriber, config: dict, logger) -> str:
+def _transcribe_and_paste(
+    audio, transcriber: Transcriber, config: dict, logger, refiner: Optional[RefineWorker] = None
+) -> str:
     """S2+S3: soltar tecla -> transcrever -> log do texto + latencia medida
-    -> colar no cursor (AD-5). Texto vazio/silencio (AD-7) nao cola nada."""
+    -> colar no cursor (AD-5). Texto vazio/silencio (AD-7) nao cola nada.
+
+    S7 (ADR-14): grava a entrada em history.db (SQLite, ADR-16) e enfileira
+    o MESMO buffer de audio no worker de refino assincrono, que reprocessa
+    com o modelo `small` e grava `refined_text` na mesma linha, segundos
+    depois -- nunca recola, nunca notifica (decisao fechada)."""
     if len(audio) == 0:
         logger.info("buffer vazio, nada para transcrever")
         return ""
     try:
         t0 = time.time()
-        text = transcriber.transcribe(audio)
+        raw_text = transcriber.transcribe(audio)
         elapsed = time.time() - t0
-        if text:
-            logger.info("transcricao (%.2fs): %s", elapsed, text)
+        if raw_text:
+            logger.info("transcricao (%.2fs): %s", elapsed, raw_text)
         else:
             logger.info("transcricao (%.2fs): <vazio/silencio>", elapsed)
     except Exception:
@@ -134,9 +147,10 @@ def _transcribe_and_paste(audio, transcriber: Transcriber, config: dict, logger)
         feedback.beep_error(config.get("beeps", True))
         return ""
 
-    if not text:
+    if not raw_text:
         return ""  # AD-7: silence/no speech -> neutral no-op, nothing pasted
 
+    text = raw_text
     was_polished = False
     if config.get("polish_enabled", False):
         try:
@@ -149,7 +163,16 @@ def _transcribe_and_paste(audio, transcriber: Transcriber, config: dict, logger)
             # Polish is a nice-to-have -- never block dictation on it (AD-10 spirit).
             logger.warning("polimento indisponível, colando texto cru: %s", exc)
 
-    history_mod.append_entry(text, polished=was_polished, logger=logger)
+    duration_ms = int(len(audio) / recorder_mod.SAMPLE_RATE * 1000)
+    entry_id = history_mod.add_entry(
+        pasted_text=text,
+        was_polished=was_polished,
+        raw_text=raw_text,
+        duration_ms=duration_ms,
+        logger=logger,
+    )
+    if refiner is not None:
+        refiner.submit(entry_id, audio)
 
     try:
         paster.paste(text, mode=config.get("paste_mode", "clipboard"))
@@ -168,6 +191,7 @@ def run_hotkey_loop(
     tracker: HeldKeysTracker,
     transcriber: Transcriber,
     overlay: Optional[Overlay] = None,
+    refiner: Optional[RefineWorker] = None,
 ) -> None:
     """Push-to-talk main loop (AD-7):
     - hold >= 300ms: beep start -> record -> (release) beep stop -> transcribe -> log
@@ -223,7 +247,7 @@ def run_hotkey_loop(
                         max_seconds, len(audio),
                     )
                     _save_debug_wav(audio, config, logger)
-                    _transcribe_and_paste(audio, transcriber, config, logger)
+                    _transcribe_and_paste(audio, transcriber, config, logger, refiner)
 
             elif not down and held:
                 held = False
@@ -245,7 +269,7 @@ def run_hotkey_loop(
                         hold_duration, len(audio),
                     )
                     _save_debug_wav(audio, config, logger)
-                    _transcribe_and_paste(audio, transcriber, config, logger)
+                    _transcribe_and_paste(audio, transcriber, config, logger, refiner)
 
             time.sleep(0.02)
         except Exception:
@@ -301,6 +325,17 @@ def main() -> int:
         return 1
     logger.info("modelo carregado em %.2fs (1x no boot -- AD-1)", time.time() - t0)
 
+    history_mod.init_db()  # ADR-16: idempotent, safe to call every boot.
+
+    refiner = RefineWorker(
+        language=config["language"],
+        custom_vocabulary=config.get("custom_vocabulary"),
+        polish_enabled=config.get("polish_enabled", False),
+        logger=logger,
+    )
+    refiner.start()
+    logger.info("worker de refino assincrono iniciado (modelo small, lazy-load no 1o job)")
+
     tracker = HeldKeysTracker()
     tracker.start()
 
@@ -316,7 +351,7 @@ def main() -> int:
             overlay = None
 
     try:
-        run_hotkey_loop(config, logger, tracker, transcriber, overlay)
+        run_hotkey_loop(config, logger, tracker, transcriber, overlay, refiner)
     except KeyboardInterrupt:
         logger.info("daemon encerrado (Ctrl+C)")
     finally:
