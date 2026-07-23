@@ -299,3 +299,118 @@ Nota de honestidade: o harness atual muta `textContent` atomicamente e ticka DEP
 - [ ] Regressão inteira verde (`node tests/run.js`).
 
 **O que NÃO fazer no S7:** dedupe global por similaridade de texto (mata repetição genuína) · reescrever mergeRolling antes do recorder apontar que ele é o culpado · polimento de CSS antes da atribuição funcionar.
+
+---
+
+## 7. ADENDO — Refatoração do front (2026-07-19) — ADRs 11-13, árvore H3/H4, S8/S9
+
+> Contexto: pedido de "front nível grandes plugins do mercado". Última sessão com Fable — este adendo
+> transforma todo julgamento pendente em decisão executável por Sonnet/Opus, sem redecidir nada.
+> **Distinção central:** (a) redesign visual ≠ (b) refatoração arquitetural da view. O (a) já foi feito
+> na S5/ADR-7 e NÃO será refeito sem dado de uso de call validada. O (b) é ortogonal à atribuição de
+> falante (parser lê o DOM do Meet; painel escreve o DOM da ARVEX; zero código compartilhado) e pode
+> andar em paralelo ao S7 sem violar a regra "não polir antes do dado real".
+
+### 7.1 Ordem de prioridade (inegociável — cada item destrava o seguinte)
+
+| # | O quê | Quem | Custo |
+|---|-------|------|-------|
+| P0a | Revogar os 3 tokens Supabase vazados + rotacionar chave Anthropic (endpoint gasta crédito por chamada) | Vitor | 10 min |
+| P0b | Call protocolo ADR-10 (frases curtas/distintas, 🐞 no meio e no fim) → colar dumps | Vitor | 10 min |
+| P1 | Push dos commits locais existentes (`fcf7d99`, `606a164`, `94f9f31`) + o que sair da árvore 7.2 | @devops | ½ sessão |
+| P2 | S8 — refatoração da view (ADR-11 + ADR-12), comportamento idêntico | @dev | 1 sessão |
+| P3 | S9 — polish pass (ADR-13) | @dev | ½-1 sessão |
+
+P0a/P0b são tarefas humanas de 10 min pendentes há ~2 semanas — são O gargalo do projeto. Nenhuma
+sessão de agente deve iniciar S8/S9 sem antes perguntar se P0 foi feito (e registrar a resposta).
+
+### 7.2 Árvore de decisão H3/H4 — executável com os dumps, sem Fable
+
+Com os 2 dumps `{html, recorder}` da call ADR-10 em mãos, aplicar na ordem:
+
+1. **Assinatura H3 (nó recriado):** eventos `new` consecutivos no recorder, MESMO falante, onde o
+   fim do texto do turno anterior == começo do texto do novo (sobreposição de ≥2 palavras).
+   → **Fix:** merge por adjacência no `upsert`: antes de criar turno novo, se o último turno tem o
+   mesmo speaker, `at` há <5s, e `mergeRolling(last.text, text)` com sobreposição ≥2 palavras
+   resolve → funde no último em vez de push. Gerar fixture `real-h3-*.html` a partir do dump.
+2. **Assinatura H4 (mergeRolling permissivo):** eventos `merged-overlap` cujo ponto de fusão é uma
+   frase curta repetida (1 palavra ou <8 chars). **Achado estático que já aponta pra cá:**
+   `mergeRolling` (`transcript-core.js`) aceita sobreposição de 1 palavra — "…sim" + "sim, mas…"
+   funde. → **Fix:** exigir sobreposição mínima de 2 palavras E ≥8 chars. Baixo risco (legenda
+   rolante real sobrepõe por muitas palavras), mas SÓ entra com fixture derivada do dump (regra de
+   evidência mantida). Sabotar o mínimo → teste deve falhar.
+3. **Nome inline no texto persiste:** inspecionar `rows[]` do recorder — se `row.text` já chega
+   concatenado ("Nome fala"), o strip do `caption-parser` falhou pra essa forma de DOM → fixture
+   nova + ajuste do `speakerFor`/strip (não tocar no core).
+4. **Nenhuma assinatura presente:** Guards 1-2 (S7) já resolveram os sintomas → marcar H3/H4
+   refutadas AQUI e liberar S9 sem fix adicional.
+
+### 7.3 ADR-11 — Shadow DOM: o painel sai do DOM da página
+
+**Decisão:** `#arvex-host` no body + `attachShadow({mode:"open"})` (open, para os testes). Painel,
+tab recolhida e flash vivem DENTRO do shadow root. CSS: `styles.css` sai do `content_scripts.css`
+do manifest, entra em `web_accessible_resources`, é carregado via `fetch(chrome.runtime.getURL())`
+e injetado como `<style>` no shadow root (mantém o CSS em arquivo próprio, sem build step).
+**Por quê:** o Meet reescreve o próprio CSS sem aviso; hoje um reset agressivo do Google pode
+quebrar o painel silenciosamente. Isolamento fecha a classe inteira de bug. É o que
+Tactiq/Grammarly/Loom fazem. **Consequência:** todo `document.getElementById` de elemento do painel
+vira `root.getElementById` (o shadow root tem getElementById); fixtures do harness (scenario-e/f)
+passam a consultar via shadow root.
+
+### 7.4 ADR-12 — Separação view/lógica por ARQUIVO, não por framework
+
+**Decisão:** extrair a view para `panel.js` (novo, carregado no manifest entre `transcript-core.js`
+e `content.js`). Contrato explícito e mínimo:
+- `ArvexPanel.mount(handlers)` — handlers: `{onToggle, onSend, onCopy, onDownload, onClear, onDebug, onConfigSave}`.
+- `ArvexPanel.update(state)` — state: `{capturing, statusState, transcript, resolveSpeaker, sentAt, sendInFlight, notes}`.
+`content.js` fica: identidade da reunião, storage, tick/canário/guards, recorder, pipeline de envio.
+NUNCA toca DOM do painel diretamente.
+**Bug real que motiva (não é estética):** hoje o cabeçalho de grupo é criado uma vez com o falante
+resolvido naquele instante, mas `selfName` chega assíncrono do storage — turnos renderizados antes
+ficam "Você" para sempre (render incremental só atualiza `txEl.textContent`). O contrato `update()`
+DEVE invalidar cabeçalhos quando a resolução de speaker mudar. Teste novo: renderizar 2 turnos com
+selfName vazio → setar selfName → cabeçalhos refletem o nome real.
+**Vetado (reafirmação do §5):** framework, build step, bundler, iframe. Em ~1100 linhas o custo de
+manutenção excede o benefício e quebra o fluxo "carregar sem compactação" + harness de arquivo direto.
+
+### 7.5 ADR-13 — "Nível grandes plugins" = densidade de polish, não redesign
+
+Estrutura e hierarquia do ADR-7 NÃO mudam. O que muda (lista fechada — não inventar além):
+1. **Ícones SVG inline** no lugar de emoji (`⧉ ⋯ ⚙ ☁ ● – ⏺ ⬆`) — maior delta isolado de percepção
+   "produto vs projeto pessoal"; emoji renderiza diferente por OS. SVG string no `panel.js`, zero deps.
+2. ● de gravação com pulso (animation CSS) quando `capturing`.
+3. Transição de aba (opacity/transform 120ms) e hover/focus states em todos os controles.
+4. Auto-scroll suave (`scrollTo({behavior:"smooth"})` só quando já está no fundo — manter guard atual).
+5. Cor determinística por falante (hash do nome → 1 de 6 hues; "você" mantém o verde atual).
+6. Scrollbar estilizada dentro do painel.
+Paleta/identidade do ADR-7 intocadas (#0E1420 / #5B6CFF / #86E5A0, radius 14/8, system-ui).
+**Vetado:** light mode, temas, resize/drag do painel (reavaliar só depois de uso real), qualquer
+elemento novo de UI não listado acima.
+
+### 7.6 S8 — Refatoração da view (ADR-11 + ADR-12) — comportamento idêntico
+
+**Fazer:** criar `panel.js` com mount/update · mover buildPanel/render*/switchTab/config/flash/
+download-UI · shadow root + CSS via fetch (ADR-11) · fix do cabeçalho "Você" (ADR-12) · popup.js
+permanece atalho fino de status (ADR-7) · atualizar harness (consulta via shadow root).
+**Pronto quando:**
+- [ ] Zero mudança visual perceptível (diff de screenshot antes/depois nos 4 estados da S5).
+- [ ] `node tests/run.js` verde, incluindo teste novo do cabeçalho selfName-assíncrono.
+- [ ] `grep -c "getElementById\|querySelector" content.js` ≈ só os seletores do MEET (parser/canário);
+      nenhum seletor de elemento do painel fora do `panel.js`.
+- [ ] CSS do painel não aparece mais em `content_scripts.css` do manifest; painel intacto com CC ligado.
+
+### 7.7 S9 — Polish pass (ADR-13)
+
+**Fazer:** os 6 itens da lista fechada do ADR-13, nesta ordem (SVG primeiro — maior impacto).
+**Pronto quando:**
+- [ ] Screenshot dos 4 estados (vazio/gravando/alerta/pós-envio) com ícones SVG e ● pulsando.
+- [ ] 2+ falantes na mesma transcrição → cores distintas e estáveis entre reloads.
+- [ ] Nenhum emoji-como-ícone restante no painel; regressão verde.
+**Gate:** S9 só inicia depois que a árvore 7.2 tiver sido percorrida (fix ou refutação registrada) —
+polir legibilidade de transcrição faz mais sentido COM transcrição real validada na tela.
+
+### 7.8 O que NÃO fazer (adendo ao §5)
+
+- ❌ Refazer o redesign da S5 "pra ficar mais moderno" — sem dado de uso, é churn.
+- ❌ Copiar do Tactiq qualquer coisa além de percepção de qualidade (cota/upgrade/aba IA seguem descartados).
+- ❌ Iniciar S8/S9 com P0a (tokens) pendente — torneira aberta tem precedência sobre qualquer estética.
