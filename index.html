@@ -1781,6 +1781,13 @@ function renderCoachCards() {
 
 // ── S4 — Nova Reunião ──
 let cmResultado = ''
+let cmDupeConfirmed = false
+// ADR-18/D3-D4: hash simples (tamanho + primeiros/últimos 200 chars) — não é
+// criptográfico, só serve pra flagar "provavelmente a mesma call colada de novo".
+function transcriptHash(t) {
+  const s = (t || '').toString()
+  return s.length + '|' + s.slice(0, 200) + '|' + s.slice(-200)
+}
 function cmSetResultado(v) {
   cmResultado = v
   document.querySelectorAll('#cm-resultado button').forEach(b => b.classList.toggle('active', b.dataset.val === v))
@@ -1788,6 +1795,7 @@ function cmSetResultado(v) {
 }
 function openNewMeeting() {
   cmResultado = ''
+  cmDupeConfirmed = false
   ;['cm-transcript','cm-cliente','cm-produto','cm-ticket'].forEach(id => { const e = document.getElementById(id); if (e) e.value = '' })
   document.getElementById('cm-error').style.display = 'none'
   document.getElementById('cm-ticket-wrap').style.display = 'none'
@@ -1802,7 +1810,19 @@ async function saveMeeting() {
   const transcript = document.getElementById('cm-transcript').value.trim()
   const err = document.getElementById('cm-error')
   if (!transcript) { err.textContent = 'Cole a transcrição para analisar.'; err.style.display = ''; return }
+  // ADR-18/D3: bloqueia lixo/teste (4 das 7 linhas do banco eram transcript de 4-393 chars)
+  if (transcript.length < 500) { err.textContent = 'Transcrição curta demais pra análise (mínimo 500 caracteres).'; err.style.display = ''; return }
   if (!cmResultado) { err.textContent = 'Selecione o resultado da reunião.'; err.style.display = ''; return }
+  // ADR-18/D4: dedupe por hash simples contra as reuniões do mesmo closer já carregadas
+  if (!cmDupeConfirmed && !COACH_DEMO && currentUser) {
+    const hash = transcriptHash(transcript)
+    const dupe = coachMeetings.find(m => m.closer_id === currentUser.id && m.transcript && transcriptHash(m.transcript) === hash)
+    if (dupe) {
+      err.innerHTML = `Essa call parece já ter sido enviada (${esc(dupe.cliente_nome || '—')}, ${esc(dupe.data_reuniao || '')}). <button type="button" class="btn-cancel" style="margin-left:8px;padding:4px 10px" onclick="cmDupeConfirmed=true;saveMeeting()">Enviar mesmo assim</button>`
+      err.style.display = ''
+      return
+    }
+  }
   const rec = {
     cliente_nome: document.getElementById('cm-cliente').value.trim() || null,
     produto: document.getElementById('cm-produto').value.trim() || null,
@@ -1817,6 +1837,7 @@ async function saveMeeting() {
   rec.closer_nome = currentUser?.email
   const { data, error } = await sb.from('meetings').insert(rec).select().single()
   if (error) { err.textContent = 'Erro ao salvar: ' + error.message; err.style.display = ''; return }
+  cmDupeConfirmed = false
   closeNewMeeting()
   sb.functions.invoke('analyze-meeting', { body: { meeting_id: data.id } })
   renderCoach()
@@ -1858,7 +1879,7 @@ function openMeeting(id) {
     ${extras}${obj}
     ${blocks}
     ${missao}
-    <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button></div>
+    <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button>${isOwner ? `<button class="btn-cancel" style="color:var(--red);margin-left:auto" onclick="deleteMeetingConfirm('${m.id}')">${icon('trash',{size:13})} Excluir</button>` : ''}</div>
     <div class="coach-chat">
       <div class="coach-meter-label">Converse sobre esta call</div>
       <div class="coach-chat-msgs" id="cc-msgs"></div>
@@ -1918,6 +1939,23 @@ function reanalisar(id) {
     sb.functions.invoke('analyze-meeting', { body: { meeting_id: id } })
     closeMeeting(); renderCoach()
   })
+}
+// ADR-18/D5: excluir reunião (owner ou admin — RLS meetings_delete confere o mesmo)
+function deleteMeetingConfirm(id) {
+  confirmarAcao('Excluir esta reunião? A transcrição e a análise se perdem — não pode ser desfeito.', () => deleteMeeting(id), { titulo: 'Excluir reunião', okLabel: 'Excluir', perigo: true })
+}
+async function deleteMeeting(id) {
+  if (COACH_DEMO) {
+    coachMeetings = coachMeetings.filter(m => m.id !== id)
+    closeMeeting(); renderCoachCards()
+    showToast('Reunião excluída.')
+    return
+  }
+  const { error } = await sb.from('meetings').delete().eq('id', id)
+  if (error) { showToast('Erro ao excluir: ' + error.message, 'error'); return }
+  closeMeeting()
+  renderCoach()
+  showToast('Reunião excluída.')
 }
 
 function setPeriod(days, btn) {
