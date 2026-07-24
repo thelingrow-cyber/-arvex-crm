@@ -4503,9 +4503,21 @@ async function renderConexaoAtendimento() {
   el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> verificando…</div>`
   try {
     const st = await evoProxy('status')
-    el.innerHTML = st.connected
-      ? `<div class="wa-status"><span class="wa-dot wa-on"></span> WhatsApp conectado <button class="btn-card-action" onclick="trocarNumeroAt()" title="Desconectar e conectar outro número">Trocar número</button></div>`
-      : `<div class="wa-status"><span class="wa-dot wa-off"></span> Desconectado <button class="btn-save" onclick="conectarWhatsAppAt()">Conectar WhatsApp</button></div>`
+    if (st.connected) {
+      // mostra QUAL número está conectado (some quando troca de número) — resolve "não atualiza"
+      const fmtNum = n => { const s = String(n || '').replace(/\D/g, ''); if (!s) return ''
+        if (s.length === 13) return `+${s.slice(0,2)} ${s.slice(2,4)} ${s.slice(4,9)}-${s.slice(9)}`
+        if (s.length === 12) return `+${s.slice(0,2)} ${s.slice(2,4)} ${s.slice(4,8)}-${s.slice(8)}`
+        return '+' + s }
+      const num = fmtNum(st.number)
+      const quem = st.profileName ? ` (${esc(st.profileName)})` : ''
+      const rotulo = num ? `WhatsApp conectado · <strong>${esc(num)}</strong>${quem}` : 'WhatsApp conectado'
+      el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-on"></span> ${rotulo}
+        <button class="btn-card-action" onclick="trocarNumeroAt()" title="Desconectar e conectar outro número">Trocar número</button>
+        <button class="btn-card-action btn-card-del" onclick="desconectarAt()" title="Desconectar este número (sem conectar outro)">Desconectar</button></div>`
+    } else {
+      el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-off"></span> Desconectado <button class="btn-save" onclick="conectarWhatsAppAt()">Conectar WhatsApp</button></div>`
+    }
   } catch (e) {
     el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-off"></span> Ponte indisponível</div>`
   }
@@ -4524,13 +4536,42 @@ async function trocarNumeroConfirmar() {
   if (el) el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> desconectando…</div>`
   try {
     await evoProxy('disconnect')
-    await new Promise(r => setTimeout(r, 1500))  // dá tempo do Evolution processar o logout
+    await aguardarDesconexao()  // espera sair de "open" (logout é assíncrono) — antes era sleep fixo de 1,5s
     await conectarWhatsAppAt()
     renderConexaoAtendimento()
   } catch (e) {
     showToast('Falha ao desconectar: ' + e.message, 'error')
     renderConexaoAtendimento()
   }
+}
+
+// Desconectar de vez (sem re-parear). Resolve o "tiro o número e não desconecta".
+function desconectarAt() {
+  confirmarAcao(
+    'Desconectar o número do WhatsApp do Atendimento? As conversas antigas continuam no histórico, mas o time para de enviar/receber por aqui até reconectar.',
+    async () => {
+      const el = document.getElementById('at-conexao')
+      if (el) el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> desconectando…</div>`
+      try {
+        await evoProxy('disconnect')
+        const saiu = await aguardarDesconexao()
+        showToast(saiu ? 'WhatsApp desconectado' : 'Logout enviado — pode levar alguns segundos', saiu ? 'success' : 'info')
+      } catch (e) {
+        showToast('Falha ao desconectar: ' + e.message, 'error')
+      }
+      renderConexaoAtendimento()
+    },
+    { titulo: 'Desconectar WhatsApp', okLabel: 'Sim, desconectar', perigo: true }
+  )
+}
+
+// O Evolution processa o logout de forma assíncrona; confere o status até sair de "open"
+async function aguardarDesconexao(tentativas = 6, intervalo = 800) {
+  for (let i = 0; i < tentativas; i++) {
+    await new Promise(r => setTimeout(r, intervalo))
+    try { const st = await evoProxy('status'); if (!st.connected) return true } catch { /* segue tentando */ }
+  }
+  return false
 }
 
 // Conecta o WhatsApp mostrando o QR no painel grande da aba Atendimento

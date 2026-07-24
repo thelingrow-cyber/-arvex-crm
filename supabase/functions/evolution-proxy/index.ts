@@ -63,12 +63,26 @@ Deno.serve(async (req: Request) => {
       return json({ ok: r.ok, detail: d });
     }
 
-    // 3b) estado da conexão
+    // 3b) estado da conexão (+ qual número/dono está conectado — resolve "não atualiza" no front)
     if (action === "status") {
       const r = await fetch(`${EVO_URL}/instance/connectionState/${EVO_INST}`, { headers: H });
       const d = await r.json().catch(() => ({}));
       const state = d?.instance?.state || d?.state || "unknown";
-      return json({ state, connected: state === "open" });
+      const connected = state === "open";
+      // número só faz sentido conectado; best-effort via fetchInstances (não quebra o status se falhar)
+      let number: string | null = null;
+      let profileName: string | null = null;
+      if (connected) {
+        try {
+          const fr = await fetch(`${EVO_URL}/instance/fetchInstances?instanceName=${EVO_INST}`, { headers: H });
+          const fd = await fr.json().catch(() => null);
+          const inst = Array.isArray(fd) ? fd[0] : (fd?.instance || fd);
+          const owner = inst?.ownerJid || inst?.owner || inst?.instance?.ownerJid || inst?.instance?.owner || null;
+          number = owner ? String(owner).split("@")[0].split(":")[0] : null;
+          profileName = inst?.profileName || inst?.instance?.profileName || null;
+        } catch { /* best-effort */ }
+      }
+      return json({ state, connected, number, profileName });
     }
 
     // 3c) enviar mensagem (humano assume a conversa — takeover / responder pelo chat)
