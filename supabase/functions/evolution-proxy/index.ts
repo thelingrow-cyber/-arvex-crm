@@ -104,9 +104,27 @@ Deno.serve(async (req: Request) => {
       const tel = String(number).replace(/\D/g, "");
       // "por" = quem atendeu, vindo do login validado (não forjável pelo front)
       const atendente = (user.email || "").split("@")[0] || "humano";
+
+      // Fonte de verdade da conversa = agente_sdr_historico (memória da Carol).
+      // Grava o turno do operador como mensagem 'ai' marcada com operator: assim
+      // aparece no chat do CRM como "Você" E a Carol, ao retomar, não repete nem
+      // lê como fala do cliente (session_id = telefone, igual ao n8n).
+      await service.from("agente_sdr_historico").insert({
+        session_id: tel,
+        message: {
+          type: "ai",
+          content: text,
+          tool_calls: [],
+          additional_kwargs: { operator: atendente, ts: Date.now() },
+          response_metadata: {},
+          invalid_tool_calls: [],
+        },
+      }).then(() => {}, () => {});
+
+      // continuidade do lead (status/nota) — best-effort, não é mais a fonte do chat
       await service.rpc("registrar_evento_lead", {
         p_tel: tel, p_nome: tel, p_texto: text, p_autor: "humano", p_por: atendente,
-      });
+      }).then(() => {}, () => {});
       // pausa o agente (best-effort; a coluna pode ainda não existir — não quebra o envio)
       await service.from("leads").update({ agente_pausado: true }).eq("tel", tel).then(
         () => {}, () => {},

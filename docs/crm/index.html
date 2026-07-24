@@ -1590,6 +1590,12 @@ function subscribeRealtime() {
       await loadCS()
       renderPipeline(); renderCS()
     }).subscribe()
+
+  // conversa do Atendimento vive em agente_sdr_historico (Carol + cliente + operador)
+  sb.channel('atendimento-historico')
+    .on('postgres_changes', { event:'INSERT', schema:'public', table:'agente_sdr_historico' }, () => {
+      atendimentoRealtime()
+    }).subscribe()
 }
 
 // ── DATA ──────────────────────────────────────────────────────────────────
@@ -4378,57 +4384,101 @@ function fmtHora(ts) {
     : d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
 }
 
-// só leads que têm conversa de WhatsApp (algum evento com autor)
+// ── Conversas do Atendimento: fonte de verdade = agente_sdr_historico ────────
+// Memória viva da Carol (session_id=telefone, message jsonb LangChain).
+// leads.activities NÃO é mais a fonte da conversa — virou só nota interna do lead.
+let cachedConversas = null   // { [sessionTel]: [ {autor,text,date,por,_id} ] }
+
+async function loadConversas() {
+  const { data, error } = await sb.from('agente_sdr_historico')
+    .select('id, session_id, message').order('id', { ascending: true })
+  if (error) { console.warn('[atendimento] historico:', error.message); cachedConversas = cachedConversas || {}; return cachedConversas }
+  const bySession = {}
+  for (const row of (data || [])) {
+    let m = row.message
+    if (typeof m === 'string') { try { m = JSON.parse(m) } catch { continue } }
+    if (!m || !m.type) continue
+    const ak = m.additional_kwargs || {}
+    let autor, por = null
+    if (m.type === 'human') { autor = 'lead' }                                   // cliente
+    else if (m.type === 'ai') { if (ak.operator) { autor = 'humano'; por = ak.operator } else { autor = 'agente' } } // operador vs Carol
+    else { continue }
+    const baloes = String(m.content || '').split('||').map(s => s.trim()).filter(Boolean)
+    const arr = bySession[row.session_id] || (bySession[row.session_id] = [])
+    for (const b of baloes) arr.push({ autor, text: b, date: ak.ts || null, por, _id: row.id })
+  }
+  cachedConversas = bySession
+  return bySession
+}
+
+// mensagens (já normalizadas) de uma conversa
+function msgsConversa(tel) { return (cachedConversas && cachedConversas[tel]) || [] }
+
+// casa o session_id (telefone) com um lead por dígitos (nome + ações de pausa/transferência)
+function leadPorTel(tel) {
+  const d = String(tel || '').replace(/\D/g, ''); if (!d) return null
+  const leads = getLeads()
+  return leads.find(l => (l.tel || '').replace(/\D/g, '') === d)
+      || leads.find(l => (l.tel || '').replace(/\D/g, '').replace(/^55/, '') === d.replace(/^55/, ''))
+      || null
+}
+
 function conversasAtendimento() {
-  return getLeads()
-    .map(l => {
-      const msgs = (l.activities || []).map(normAct).filter(a => a.autor)
-      return { l, msgs, ultima: msgs[msgs.length - 1] || null }
-    })
-    .filter(c => c.ultima)
-    .sort((a, b) => b.ultima.date - a.ultima.date)
+  const sess = cachedConversas || {}
+  return Object.keys(sess).map(tel => {
+    const lead = leadPorTel(tel)
+    const msgs = sess[tel]
+    return { tel, lead, nome: lead ? lead.nome : tel, msgs, ultima: msgs[msgs.length - 1] || null }
+  }).filter(c => c.ultima).sort((a, b) => (b.ultima._id || 0) - (a.ultima._id || 0))
 }
 
 function renderAtendimento() {
   renderConexaoAtendimento()
   if (!cachedAtendentes.length) loadAtendentes()
   const lista = document.getElementById('at-lista'); if (!lista) return
+  if (!cachedConversas) { lista.innerHTML = '<div class="at-vazio">Carregando conversas…</div>'; loadConversas().then(renderAtendimento); return }
   const convs = conversasAtendimento()
   if (!convs.length) { lista.innerHTML = '<div class="at-vazio">Nenhuma conversa ainda.<br>Quando a Carol atender um lead, aparece aqui.</div>'; return }
-  lista.innerHTML = convs.map(({ l, ultima }) => {
-    const sel = _atConvAtiva === l.id ? ' sel' : ''
-    const badge = l.atendente ? `<span class="at-badge pausado">👤 ${esc(l.atendente)}</span>` : (l.agente_pausado ? '<span class="at-badge pausado">humano</span>' : '<span class="at-badge ativo">Carol</span>')
-    return `<div class="at-conv-item${sel}" onclick="abrirConversa('${l.id}')">
-      <div class="at-conv-nome">${esc(l.nome)} <span class="at-conv-hora">${fmtHora(ultima.date)}</span></div>
+  lista.innerHTML = convs.map(({ tel, lead, nome, ultima }) => {
+    const sel = _atConvAtiva === tel ? ' sel' : ''
+    const badge = (lead && lead.atendente) ? `<span class="at-badge pausado">👤 ${esc(lead.atendente)}</span>` : ((lead && lead.agente_pausado) ? '<span class="at-badge pausado">humano</span>' : '<span class="at-badge ativo">Carol</span>')
+    return `<div class="at-conv-item${sel}" onclick="abrirConversa('${esc(tel)}')">
+      <div class="at-conv-nome">${esc(nome)} <span class="at-conv-hora">${fmtHora(ultima.date)}</span></div>
       <div class="at-conv-prev">${badge}<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ultima.text)}</span></div>
     </div>`
   }).join('')
-  if (_atConvAtiva && !convs.some(c => c.l.id === _atConvAtiva)) _atConvAtiva = null
+  if (_atConvAtiva && !convs.some(c => c.tel === _atConvAtiva)) _atConvAtiva = null
 }
 
-function abrirConversa(id) {
-  _atConvAtiva = id
-  const l = getLeads().find(x => x.id === id); if (!l) return
+function abrirConversa(tel) {
+  _atConvAtiva = tel
+  const lead = leadPorTel(tel)
   const painel = document.getElementById('at-conversa'); if (!painel) return
   document.getElementById('at-inbox')?.classList.add('ver-conversa')
-  const ctrl = l.agente_pausado
-    ? `<button class="btn-card-action" onclick="retomarAgente('${l.id}')" title="Voltar a Carol a responder">▶ Retomar Carol</button>`
-    : `<button class="btn-card-action" onclick="pausarAgente('${l.id}')" title="Assumir a conversa (Carol para)">⏸ Assumir</button>`
+  const nome = lead ? lead.nome : tel
+  const pausado = lead ? lead.agente_pausado : false
+  const atendente = lead ? lead.atendente : null
+  // pausar/transferir/ver-lead só fazem sentido com um lead vinculado
+  const ctrl = lead ? (pausado
+    ? `<button class="btn-card-action" onclick="retomarAgente('${esc(tel)}')" title="Voltar a Carol a responder">▶ Retomar Carol</button>`
+    : `<button class="btn-card-action" onclick="pausarAgente('${esc(tel)}')" title="Assumir a conversa (Carol para)">⏸ Assumir</button>`) : ''
+  const transferBtn = lead ? `<button class="btn-card-action" onclick="mostrarTransferir('${esc(tel)}')" title="Transferir a conversa pra outro atendente (tira da Carol)">↦ Transferir</button>` : ''
+  const verLead = lead ? `<button class="btn-card-action" onclick="openDetail('${lead.id}')">Ver lead</button>` : ''
   painel.innerHTML = `
     <div class="at-conv-header">
       <div style="display:flex;align-items:center;gap:10px">
         <button class="btn-card-action at-back" onclick="voltarInbox()">←</button>
-        <div><div style="font-weight:700;font-size:14px">${esc(l.nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(l.tel || '—')}${l.atendente ? ' · 👤 <strong style="color:var(--gold2)">' + esc(l.atendente) + '</strong>' : (l.agente_pausado ? ' · humano atendendo' : ' · Carol respondendo')}</div></div>
+        <div><div style="font-weight:700;font-size:14px">${esc(nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(tel || '—')}${atendente ? ' · 👤 <strong style="color:var(--gold2)">' + esc(atendente) + '</strong>' : (pausado ? ' · humano atendendo' : ' · Carol respondendo')}</div></div>
       </div>
-      <div style="display:flex;gap:6px">${ctrl}<button class="btn-card-action" onclick="mostrarTransferir('${l.id}')" title="Transferir a conversa pra outro atendente (tira da Carol)">↦ Transferir</button><button class="btn-card-action" onclick="openDetail('${l.id}')">Ver lead</button></div>
+      <div style="display:flex;gap:6px">${ctrl}${transferBtn}${verLead}</div>
     </div>
-    <div class="at-conv-msgs" id="at-conv-msgs">${renderChatLead(l.activities)}</div>
-    ${l.tel ? `<div class="at-conv-reply">
-      <input type="text" id="at-reply-input" placeholder="Escreva uma mensagem..." onkeydown="if(event.key==='Enter')enviarAtendimento('${l.id}','${esc(l.tel)}')" />
-      <button class="btn-save" onclick="enviarAtendimento('${l.id}','${esc(l.tel)}')">Enviar</button>
-    </div>` : '<div class="at-conv-reply" style="color:var(--muted);font-size:12px">Lead sem telefone — não dá pra responder.</div>'}`
+    <div class="at-conv-msgs" id="at-conv-msgs">${renderChatLead(msgsConversa(tel))}</div>
+    <div class="at-conv-reply">
+      <input type="text" id="at-reply-input" placeholder="Escreva uma mensagem..." onkeydown="if(event.key==='Enter')enviarAtendimento('${esc(tel)}')" />
+      <button class="btn-save" onclick="enviarAtendimento('${esc(tel)}')">Enviar</button>
+    </div>`
   const m = document.getElementById('at-conv-msgs'); if (m) m.scrollTop = m.scrollHeight
-  document.querySelectorAll('.at-conv-item').forEach(el => el.classList.toggle('sel', (el.getAttribute('onclick') || '').includes("'" + id + "'")))
+  document.querySelectorAll('.at-conv-item').forEach(el => el.classList.toggle('sel', (el.getAttribute('onclick') || '').includes("'" + tel + "'")))
   document.getElementById('at-reply-input')?.focus()
 }
 
@@ -4440,62 +4490,65 @@ async function loadAtendentes() {
   const { data } = await sb.from('profiles').select('display_name, role').in('role', ['admin', 'sdr'])
   cachedAtendentes = [...new Set((data || []).filter(p => p.display_name).map(p => p.display_name))].sort()
 }
-function mostrarTransferir(id) {
+function mostrarTransferir(tel) {
   const painel = document.getElementById('at-conversa'); if (!painel) return
   const hdr = painel.querySelector('.at-conv-header'); if (!hdr) return
-  if (!cachedAtendentes.length) { loadAtendentes().then(() => mostrarTransferir(id)); return }
-  const opts = cachedAtendentes.map(a => `<button class="btn-card-action" onclick="transferir('${id}','${esc(a)}')">${esc(a)}</button>`).join('')
-  hdr.innerHTML = `<div style="font-size:12px;color:var(--muted);white-space:nowrap">Transferir para:</div><div style="display:flex;gap:6px;flex-wrap:wrap">${opts}<button class="btn-card-action" onclick="abrirConversa('${id}')">Cancelar</button></div>`
+  if (!cachedAtendentes.length) { loadAtendentes().then(() => mostrarTransferir(tel)); return }
+  const opts = cachedAtendentes.map(a => `<button class="btn-card-action" onclick="transferir('${esc(tel)}','${esc(a)}')">${esc(a)}</button>`).join('')
+  hdr.innerHTML = `<div style="font-size:12px;color:var(--muted);white-space:nowrap">Transferir para:</div><div style="display:flex;gap:6px;flex-wrap:wrap">${opts}<button class="btn-card-action" onclick="abrirConversa('${esc(tel)}')">Cancelar</button></div>`
 }
-async function transferir(id, nome) {
-  const l = getLeads().find(x => x.id === id); if (l) { l.atendente = nome; l.agente_pausado = true }
-  await updateLeadField(id, { atendente: nome, agente_pausado: true })
+async function transferir(tel, nome) {
+  const l = leadPorTel(tel); if (!l) { showToast('Sem lead vinculado a este número', 'error'); return }
+  l.atendente = nome; l.agente_pausado = true
+  await updateLeadField(l.id, { atendente: nome, agente_pausado: true })
   showToast('Transferido para ' + nome + ' — Carol pausada neste lead', 'success')
-  abrirConversa(id); renderAtendimento()
+  abrirConversa(tel); renderAtendimento()
 }
 
 // Atualiza só as bolhas da conversa aberta (preserva o input que o usuário está digitando)
 function atualizarMsgsConversa() {
   if (!_atConvAtiva) return
-  const l = getLeads().find(x => x.id === _atConvAtiva); if (!l) return
   const m = document.getElementById('at-conv-msgs'); if (!m) return
   const noFim = m.scrollHeight - m.scrollTop - m.clientHeight < 50
-  m.innerHTML = renderChatLead(l.activities)
+  m.innerHTML = renderChatLead(msgsConversa(_atConvAtiva))
   if (noFim) m.scrollTop = m.scrollHeight
 }
 
-// chamado pelo realtime quando a aba Atendimento está ativa
-function atendimentoRealtime() {
+// chamado pelo realtime quando a aba Atendimento está ativa (leads OU historico mudou)
+async function atendimentoRealtime() {
   if (!document.getElementById('view-atendimento')?.classList.contains('active')) return
+  await loadConversas()
   renderAtendimento()
   atualizarMsgsConversa()
 }
 
-async function enviarAtendimento(id, tel) {
+async function enviarAtendimento(tel) {
   const input = document.getElementById('at-reply-input')
   const text = (input && input.value || '').trim(); if (!text) return
   if (input) input.disabled = true
   try {
-    await evoProxy('send', { number: tel, text })
+    await evoProxy('send', { number: tel, text })   // envia + grava no historico como turno do operador
     if (input) input.value = ''
-    await loadLeads(); abrirConversa(id); renderAtendimento()
+    await loadConversas(); abrirConversa(tel); renderAtendimento()
   } catch (e) {
     showToast('Falha ao enviar: ' + e.message, 'error')
     if (input) { input.disabled = false; input.focus() }
   }
 }
 
-async function pausarAgente(id) {
-  const l = getLeads().find(x => x.id === id); if (l) l.agente_pausado = true
-  await updateLeadField(id, { agente_pausado: true })
+async function pausarAgente(tel) {
+  const l = leadPorTel(tel); if (!l) { showToast('Sem lead vinculado a este número', 'error'); return }
+  l.agente_pausado = true
+  await updateLeadField(l.id, { agente_pausado: true })
   showToast('Você assumiu — a Carol parou de responder este lead', 'success')
-  abrirConversa(id); renderAtendimento()
+  abrirConversa(tel); renderAtendimento()
 }
-async function retomarAgente(id) {
-  const l = getLeads().find(x => x.id === id); if (l) l.agente_pausado = false
-  await updateLeadField(id, { agente_pausado: false })
+async function retomarAgente(tel) {
+  const l = leadPorTel(tel); if (!l) return
+  l.agente_pausado = false
+  await updateLeadField(l.id, { agente_pausado: false })
   showToast('Carol voltou a responder este lead', 'success')
-  abrirConversa(id); renderAtendimento()
+  abrirConversa(tel); renderAtendimento()
 }
 
 async function renderConexaoAtendimento() {
