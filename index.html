@@ -4412,6 +4412,7 @@ async function responderWhatsApp(id, tel) {
 
 // ── ABA ATENDIMENTO (inbox WhatsApp) ───────────────────────────────────────
 let _atConvAtiva = null
+let _atConectado = null   // null=desconhecido · true/false = estado da conexão (some a lista se false)
 
 function fmtHora(ts) {
   if (!ts) return ''
@@ -4471,10 +4472,21 @@ function conversasAtendimento() {
 }
 
 function renderAtendimento() {
-  renderConexaoAtendimento()
+  renderConexaoAtendimento()   // async: seta _atConectado e re-renderiza a lista quando souber
   if (!cachedAtendentes.length) loadAtendentes()
+  renderListaAtendimento()
+}
+
+function renderListaAtendimento() {
   const lista = document.getElementById('at-lista'); if (!lista) return
-  if (!cachedConversas) { lista.innerHTML = '<div class="at-vazio">Carregando conversas…</div>'; loadConversas().then(renderAtendimento); return }
+  // desconectado: o histórico continua no banco, mas some do inbox até reconectar
+  if (_atConectado === false) {
+    _atConvAtiva = null
+    document.getElementById('at-inbox')?.classList.remove('ver-conversa')
+    lista.innerHTML = '<div class="at-vazio">WhatsApp desconectado.<br>Conecte um número pra ver e responder as conversas.</div>'
+    return
+  }
+  if (!cachedConversas) { lista.innerHTML = '<div class="at-vazio">Carregando conversas…</div>'; loadConversas().then(renderListaAtendimento); return }
   const convs = conversasAtendimento()
   if (!convs.length) { lista.innerHTML = '<div class="at-vazio">Nenhuma conversa ainda.<br>Quando a Carol atender um lead, aparece aqui.</div>'; return }
   lista.innerHTML = convs.map(({ tel, lead, nome, ultima }) => {
@@ -4594,6 +4606,7 @@ async function renderConexaoAtendimento() {
   el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> verificando…</div>`
   try {
     const st = await evoProxy('status')
+    _atConectado = !!st.connected
     if (st.connected) {
       // mostra QUAL número está conectado (some quando troca de número) — resolve "não atualiza"
       const fmtNum = n => { const s = String(n || '').replace(/\D/g, ''); if (!s) return ''
@@ -4609,7 +4622,9 @@ async function renderConexaoAtendimento() {
     } else {
       el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-off"></span> Desconectado <button class="btn-save" onclick="conectarWhatsAppAt()">Conectar WhatsApp</button></div>`
     }
+    renderListaAtendimento()   // conectado mostra conversas; desconectado esconde (histórico fica no banco)
   } catch (e) {
+    // erro transiente da ponte: NÃO força esconder (mantém o estado conhecido)
     el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-off"></span> Ponte indisponível</div>`
   }
 }
