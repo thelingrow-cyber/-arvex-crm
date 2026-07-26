@@ -1,0 +1,23 @@
+name: financas
+title: FINANCAS Squad
+description: Squad financeiro da ARVEX — caixa, unit economics e precificação da operação de co-produção 50/50 e das ofertas próprias; analisa e recomenda, nunca executa pagamento
+version: "1.0.0"
+icon: "💰"
+namespace: Financas
+scope: project
+created_at: "2026-07-19"
+author: thelingrow-cyber
+
+agents:
+  - cfo
+  - controller
+  - pricing-analyst
+
+stats:
+  agents_count: 3
+  tasks_count: 9
+  workflow_steps: 4
+
+distribution:
+  level: local
+  path: ./squads/financas/

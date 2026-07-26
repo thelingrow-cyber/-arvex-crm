@@ -1,0 +1,137 @@
+squad:
+  name: comercial
+  title: COMERCIAL Squad
+  description: Squad comercial que converte leads em receita — conecta closers, SDR, Sales Coach e ofertas da ARVEX em um único motor de fechamento
+  version: "1.0.0"
+  icon: "🤝"
+  domain: sales
+  namespace: Comercial
+  scope: project
+  confidence: 95%
+  created_at: "2026-07-19"
+
+  agents_count: 5
+  tasks_count: 15
+
+# Contexto real ARVEX (fonte de verdade — NÃO inventar dados):
+#   - Closers: Gabriel e Thalita
+#   - SDR: Carol (humana) + agente de IA no CRM (docs/agente-sdr/carol-system-prompt.md)
+#   - Sales Coach: aba "Reuniões" do arvex-crm (Fases 1-2 no ar; Fase 3 especificada)
+#   - Transcrições de call: plugin Meet Transcriber
+#   - Dados do funil: pipeline no arvex-crm (acesso via SUPABASE_DB_URL por env — nunca colar credencial)
+
+agents:
+
+  - id: sales-director
+    title: Sales Director
+    role: Orquestrador do squad — diagnostica o funil, define metas por closer e mantém os rituais do time comercial real
+    is_lead: true
+    tasks:
+      - id: diagnostico-funil
+        description: Taxas de conversão etapa a etapa do pipeline no arvex-crm — onde o funil vaza
+        input: Dados do pipeline do CRM (período + closer/oferta)
+        output: Diagnóstico de funil com gargalos priorizados
+      - id: metas-forecast
+        description: Metas por closer (Gabriel/Thalita) e previsão de fechamento do período
+        input: Diagnóstico de funil + pipeline atual + histórico
+        output: Metas por closer + forecast com cenários (pessimista/base/otimista)
+      - id: rituais-comerciais
+        description: Agenda de dailies, reviews de pipeline e 1:1 de coaching do time comercial
+        input: Estrutura do time (closers, SDR) + metas
+        output: Cadência de rituais comerciais documentada
+
+  - id: offer-strategist
+    title: Offer Strategist
+    role: Desenha e audita ofertas usando o framework $100M do clone hormozi — value equation, garantias, bônus e pricing
+    tasks:
+      - id: desenho-oferta
+        description: Estrutura a oferta pela value equation (sonho, probabilidade, tempo, esforço), garantias, bônus e naming
+        input: Produto/serviço + ICP + dor central + fonte hormozi
+        output: Oferta estruturada (Grand Slam) documentada
+      - id: grand-slam-audit
+        description: Dá nota à oferta atual contra o framework $100M Offers e aponta os pontos fracos
+        input: Oferta atual (preço, entrega, garantia, bônus)
+        output: Auditoria com score por dimensão + recomendações de melhoria
+      - id: pricing-oferta
+        description: Âncoras de preço, parcelamento e order bump alinhados à margem
+        input: Oferta estruturada + custo de entrega + ticket-alvo
+        output: Estrutura de pricing (âncora, parcelas, upsell/bump)
+
+  - id: closer-coach
+    title: Closer Coach
+    role: Treina os closers a partir de calls reais — analisa transcrições, cria roleplays por objeção e mantém o talk track de fechamento
+    tasks:
+      - id: analise-call
+        description: Analisa call real (via Sales Coach / transcrição do Meet Transcriber) — objeções, momentos-chave, o que fechou ou perdeu
+        input: Transcrição/gravação da call + closer + resultado
+        output: Análise da call com pontos fortes, erros e ações de melhoria
+      - id: roleplay-script
+        description: Roteiros de treino por tipo de objeção (preço, tempo, autoridade, confiança)
+        input: Objeções mais comuns (extraídas das análises de call)
+        output: Scripts de roleplay por objeção prontos para treino
+      - id: playbook-fechamento
+        description: Talk track por etapa da call — abertura, diagnóstico, apresentação, fechamento, contorno
+        input: Análises de call + oferta estruturada
+        output: Playbook de fechamento por etapa
+
+  - id: sdr-playbook-manager
+    title: SDR Playbook Manager
+    role: Dono do playbook de pré-vendas — cadências de follow-up, critérios de qualificação e o system prompt do agente de IA da Carol
+    tasks:
+      - id: cadencia-followup
+        description: Regras de no-show, remarcação e não-resposta (dor mapeada nos ditados de 15/jul)
+        input: Cenários de follow-up + política comercial
+        output: Cadência de follow-up documentada (gatilhos, canais, timing)
+      - id: prompt-agente-sdr
+        description: Mantém e evolui o system prompt do agente de IA da Carol no CRM
+        input: docs/agente-sdr/carol-system-prompt.md + feedback de conversas reais
+        output: System prompt da Carol atualizado (Edit incremental, versionado)
+      - id: qualificacao-icp
+        description: Critérios de qualificação e regras de passagem SDR → closer
+        input: Definição de ICP + histórico de leads convertidos/perdidos
+        output: Checklist de qualificação + critério de handoff SDR→closer
+
+  - id: proposal-writer
+    title: Proposal Writer
+    role: Redige propostas comerciais, minutas de contrato e sequências de follow-up pós-envio
+    tasks:
+      - id: proposta-comercial
+        description: Proposta formatada por oferta/ticket, pronta para enviar ao lead
+        input: Oferta estruturada + pricing + dados do lead
+        output: Proposta comercial formatada
+      - id: contrato-base
+        description: Minuta padrão de contrato para a oferta — SEMPRE com aviso de revisão jurídica humana obrigatória
+        input: Escopo da oferta + condições comerciais
+        output: Minuta de contrato com AVISO destacado de revisão jurídica humana obrigatória
+      - id: follow-up-proposta
+        description: Sequência de mensagens de follow-up após o envio da proposta
+        input: Proposta enviada + política de cadência comercial
+        output: Sequência de follow-up (timing, canais, mensagens)
+
+workflow:
+  sequence:
+    - step: 1
+      agents: [sales-director]
+      tasks: [diagnostico-funil]
+    - step: 2
+      agents: [offer-strategist]
+      tasks: [desenho-oferta]
+    - step: 3
+      agents: [closer-coach, sdr-playbook-manager]
+      tasks: [playbook-fechamento, cadencia-followup]
+      parallel: true
+    - step: 4
+      agents: [proposal-writer]
+      tasks: [proposta-comercial]
+    - step: 5
+      agents: [sales-director]
+      tasks: [metas-forecast]
+    - step: 6
+      agents: [closer-coach]
+      tasks: [analise-call]
+      loop: mensal
+      note: analise-call semanal alimenta diagnostico-funil, playbook-fechamento e desenho-oferta no próximo ciclo
+
+distribution:
+  level: local
+  path: ./squads/comercial/

@@ -1,0 +1,25 @@
+name: comercial
+title: COMERCIAL Squad
+description: Squad comercial que converte leads em receita — conecta closers, SDR, Sales Coach e ofertas da ARVEX em um único motor de fechamento
+version: "1.0.0"
+icon: "🤝"
+namespace: Comercial
+scope: project
+created_at: "2026-07-19"
+author: thelingrow-cyber
+
+agents:
+  - sales-director
+  - offer-strategist
+  - closer-coach
+  - sdr-playbook-manager
+  - proposal-writer
+
+stats:
+  agents_count: 5
+  tasks_count: 15
+  workflow_steps: 6
+
+distribution:
+  level: local
+  path: ./squads/comercial/

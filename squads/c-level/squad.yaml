@@ -1,0 +1,23 @@
+name: c-level
+title: C-LEVEL Squad
+description: A camada executiva (o "board") acima dos squads operacionais — decide, prioriza e orquestra; não executa trabalho de domínio
+version: "1.0.0"
+icon: "👔"
+namespace: CLevel
+scope: project
+created_at: "2026-07-19"
+author: thelingrow-cyber
+
+agents:
+  - coo-orchestrator
+  - cso
+  - cmo
+
+stats:
+  agents_count: 3
+  tasks_count: 9
+  workflow_steps: 5
+
+distribution:
+  level: local
+  path: ./squads/c-level/

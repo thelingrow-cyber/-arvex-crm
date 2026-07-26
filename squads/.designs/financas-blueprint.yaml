@@ -1,0 +1,103 @@
+squad:
+  name: financas
+  title: FINANCAS Squad
+  description: Squad financeiro da ARVEX — caixa, unit economics e precificação da operação de co-produção 50/50 e das ofertas próprias; analisa e recomenda, nunca executa pagamento
+  version: "1.0.0"
+  icon: "💰"
+  domain: finance
+  namespace: Financas
+  scope: project
+  confidence: 95%
+  created_at: "2026-07-19"
+
+  agents_count: 3
+  tasks_count: 9
+
+# Contexto real ARVEX (fonte de verdade — NÃO inventar dados):
+#   - Modelo: co-produção 50/50 com experts + ofertas próprias
+#   - Módulo financeiro do CRM (arvex-crm) já especificado/implantado: vendas + parcelas
+#   - Unit economics (LTGP:CAC) usam o framework do clone hormozi (.claude/clones/hormozi/)
+#   - Dados financeiros leem-se do CRM via SUPABASE_DB_URL por env — nunca colar credencial em chat/arquivo
+#   - REGRA DURA: nenhum agente executa pagamento ou transferência — só analisa e recomenda
+#   - No Invention (Art. IV): todo número rastreia ao CRM/extrato ou é marcado como estimativa
+
+agents:
+
+  - id: cfo
+    title: CFO
+    role: Orquestrador do squad — visão de caixa consolidada, unit economics por oferta/expert e decisões de investimento go/no-go
+    is_lead: true
+    tasks:
+      - id: visao-caixa
+        description: Posição de caixa consolidada, runway e projeção de 90 dias a partir das entradas/saídas do CRM
+        input: Fluxo de caixa mensal (controller) + saldo atual + compromissos futuros
+        output: Painel de caixa (posição, runway em meses, projeção 90d com cenários)
+      - id: unit-economics
+        description: LTGP:CAC por oferta/expert usando o framework do clone hormozi — saúde econômica de cada braço
+        input: Margem por oferta (pricing-analyst) + custo de aquisição (marketing/comercial) + fonte hormozi
+        output: LTGP:CAC por oferta/expert com veredito de saúde (saudável / atenção / insustentável)
+      - id: decisao-investimento
+        description: Análise go/no-go de um gasto — verba de tráfego, contratação, ferramenta — contra caixa e retorno esperado
+        input: Proposta de gasto (valor, recorrência, retorno esperado) + visão de caixa + unit economics
+        output: Recomendação go/no-go com justificativa, impacto no runway e condições de gatilho
+
+  - id: controller
+    title: Controller
+    role: Integra os dados do módulo financeiro do CRM (vendas + parcelas), categoriza fluxo de caixa, concilia e produz o relatório mensal
+    tasks:
+      - id: fluxo-caixa-mensal
+        description: Entradas e saídas categorizadas do mês — integra o módulo financeiro do CRM (vendas + parcelas a receber)
+        input: Vendas + parcelas do CRM (via SUPABASE_DB_URL por env) + despesas do período
+        output: Fluxo de caixa mensal categorizado (entradas, saídas, saldo, parcelas em aberto)
+      - id: conciliacao
+        description: Confronta o que o CRM registra contra o extrato bancário real — aponta divergências
+        input: Fluxo de caixa do CRM + extrato bancário do período
+        output: Relatório de conciliação (itens batidos, divergências, pendências a investigar)
+      - id: relatorio-mensal
+        description: DRE simplificado do mês + comissões de closers (Gabriel/Thalita) e repasses de co-produção
+        input: Fluxo de caixa mensal conciliado + regras de comissão + splits de co-produção 50/50
+        output: DRE simplificado + tabela de comissões e repasses do mês
+
+  - id: pricing-analyst
+    title: Pricing Analyst
+    role: Precifica ofertas por custo de entrega e margem, mede margem real por expert/oferta e simula cenários de ticket/churn
+    tasks:
+      - id: precificacao-oferta
+        description: Preço da oferta a partir do custo de entrega, margem-alvo e ancoragem — sob demanda quando nasce uma oferta
+        input: Escopo da oferta + custo de entrega + margem-alvo (conecta Comercial:offer-strategist)
+        output: Estrutura de preço recomendada (custo, margem, âncora, faixa de parcelamento)
+      - id: analise-margem
+        description: Margem real por expert/oferta cruzando receita registrada no CRM com o custo de entrega
+        input: Receita por oferta/expert (CRM) + custos de entrega + splits de co-produção
+        output: Margem real por expert/oferta (bruta e líquida do split) com ranking
+      - id: cenarios
+        description: Simulação what-if — impacto de mudar ticket, churn, mix de ofertas ou split de co-produção
+        input: Baseline (margem, ticket, volume atual) + variáveis a simular
+        output: Tabela de cenários (base × variações) com efeito em margem, caixa e unit economics
+
+workflow:
+  sequence:
+    - step: 1
+      agents: [controller]
+      tasks: [fluxo-caixa-mensal]
+    - step: 2
+      agents: [cfo, pricing-analyst]
+      tasks: [unit-economics, analise-margem]
+      parallel: true
+      note: analise-margem (pricing-analyst) alimenta unit-economics (cfo)
+    - step: 3
+      agents: [cfo]
+      tasks: [visao-caixa]
+    - step: 4
+      agents: [controller]
+      tasks: [relatorio-mensal]
+      loop: mensal
+      note: >-
+        Loop mensal fecha o ciclo. precificacao-oferta e cenarios (pricing-analyst)
+        e decisao-investimento (cfo) rodam SOB DEMANDA — precificacao quando nasce
+        uma oferta (conecta Comercial:offer-strategist), decisao-investimento quando
+        surge um gasto a avaliar.
+
+distribution:
+  level: local
+  path: ./squads/financas/

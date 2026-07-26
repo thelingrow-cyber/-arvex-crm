@@ -1,0 +1,23 @@
+name: branding
+title: BRANDING Squad
+description: Squad que governa e aplica os ativos de marca já existentes da ARVEX e da marca pessoal do Vitor ("O Futuro Instalado") — mantém brand book, posicionamento e sistema visual, não recria do zero
+version: "1.0.0"
+icon: "🎭"
+namespace: Branding
+scope: project
+created_at: "2026-07-19"
+author: thelingrow-cyber
+
+agents:
+  - brand-director
+  - positioning-strategist
+  - identity-keeper
+
+stats:
+  agents_count: 3
+  tasks_count: 7
+  workflow_steps: 3
+
+distribution:
+  level: local
+  path: ./squads/branding/

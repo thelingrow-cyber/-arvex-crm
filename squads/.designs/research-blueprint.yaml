@@ -1,0 +1,110 @@
+squad:
+  name: research
+  title: RESEARCH Squad
+  description: Squad "The Deep Researcher" — revisão sistemática multi-fonte com síntese citada, nível consultoria, com protocolo e citações verificáveis
+  version: "1.0.0"
+  icon: "🔬"
+  domain: research
+  namespace: Research
+  scope: project
+  confidence: 93%
+  created_at: "2026-07-19"
+
+  agents_count: 3
+  tasks_count: 8
+
+# ── Regras transversais do squad ─────────────────────────────────────────────
+rules:
+  no_invention: >
+    Constituição Art. IV (No Invention) — regra dura: toda afirmação de qualquer
+    relatório rastreia a uma fonte numerada [n] ou é marcada explicitamente como
+    inferência/estimativa. Nada é inventado. Números sem fonte são proibidos.
+  output_location: docs/research/
+  distillation: >
+    Material cru grande (PDFs, páginas longas, transcrições, dumps de scraping)
+    NUNCA é lido no contexto principal — é destilado por subagente que devolve só
+    o resumo citado (heurística feedback_destilar_material_grande).
+  search_tools:
+    exa: Busca web geral, research, análise de concorrentes — mcp__docker-gateway__web_search_exa
+    apify: Scraping de site/rede específica — search-actors · call-actor · get-actor-output (prefixo mcp__docker-gateway__)
+    context7: Docs atualizadas de bibliotecas/APIs — resolve-library-id → get-library-docs (prefixo mcp__docker-gateway__)
+    reference: .claude/rules/mcp-usage.md (busca geral → EXA · site específico → Apify · docs de lib → Context7)
+
+agents:
+
+  - id: deep-researcher
+    title: Deep Researcher
+    role: Orquestrador do squad (alias dr-orchestrator) — define protocolo, executa busca sistemática e sintetiza relatório com citações verificáveis
+    is_lead: true
+    persona: Darwin
+    tasks:
+      - id: protocolo-revisao
+        description: Definir a pergunta de pesquisa, critérios de inclusão/exclusão de fontes e a estratégia de busca (PRISMA-lite)
+        input: Demanda do usuário (tema, objetivo, escopo, prazo)
+        output: Protocolo de revisão de 1 página (pergunta, critérios, fontes-alvo, estratégia)
+      - id: busca-sistematica
+        description: Executar buscas em N fontes conforme o protocolo (EXA p/ web geral, Apify p/ sites/redes específicos, Context7 p/ docs técnicas); material cru grande destilado por subagente
+        input: Protocolo de revisão aprovado
+        output: Corpus de fontes numeradas [1..n] com metadados (título, autor, data, URL, tipo)
+      - id: sintese-com-citacoes
+        description: Relatório final — achados numerados, cada afirmação com [n] apontando para a fonte, seção de limitações e inferências marcadas
+        input: Corpus de fontes numeradas + verdict do evidence-auditor
+        output: "docs/research/{tema}-{data}.md — relatório citado"
+
+  - id: evidence-auditor
+    title: Evidence Auditor
+    role: Auditor de evidência — classifica a qualidade das fontes e verifica se as citações do relatório sustentam de fato as afirmações
+    persona: Pierce
+    tasks:
+      - id: qualidade-fontes
+        description: Classificar cada fonte (primária/secundária/opinião), identificar vieses e nível de confiança
+        input: Corpus de fontes numeradas
+        output: Matriz de qualidade das fontes (tipo, viés, confiança) + fontes fracas sinalizadas
+      - id: checagem-citacoes
+        description: Amostrar as citações do relatório e verificar se a fonte [n] realmente diz o que a afirmação alega (gate anti-invenção)
+        input: Relatório de síntese + corpus de fontes
+        output: Verdict APPROVED / NEEDS-REVISION com lista de citações divergentes
+      - id: audit-lacunas
+        description: Apontar afirmações sem fonte, inferências não marcadas e lacunas de cobertura do protocolo
+        input: Relatório de síntese + protocolo de revisão
+        output: Lista de lacunas e correções obrigatórias antes da entrega
+
+  - id: competitive-intel
+    title: Competitive Intel
+    role: Inteligência competitiva — análise estruturada de concorrentes e monitoramento de movimentos de mercado
+    persona: Sun
+    tasks:
+      - id: analise-concorrente
+        description: "Análise de concorrente REUSANDO o template do core (não recriar): .aiox-core/product/templates/competitor-analysis-tmpl.yaml"
+        input: Concorrente(s)-alvo + fontes coletadas na busca sistemática
+        output: docs/research/ — relatório de análise competitiva citado, no formato do template do core
+      - id: monitor-mercado
+        description: Monitorar mudanças de players (posicionamento, oferta, preço, movimentos) como insumo para o mapa de posicionamento existente
+        input: Lista de players + fontes atualizadas
+        output: Nota de monitoramento — mudanças detectadas [n] + impacto no mapa (docs/ecossistema/)
+
+workflow:
+  sequence:
+    - step: 1
+      agents: [deep-researcher]
+      tasks: [protocolo-revisao]
+    - step: 2
+      agents: [deep-researcher, competitive-intel]
+      tasks: [busca-sistematica, analise-concorrente]
+      parallel: true
+      note: competitive-intel só entra quando a demanda envolve concorrentes/mercado; senão o passo é só busca-sistematica
+    - step: 3
+      agents: [evidence-auditor]
+      tasks: [qualidade-fontes]
+    - step: 4
+      agents: [deep-researcher]
+      tasks: [sintese-com-citacoes]
+    - step: 5
+      agents: [evidence-auditor]
+      tasks: [checagem-citacoes, audit-lacunas]
+      gate: true
+      note: "gate anti-invenção — APPROVED libera entrega; NEEDS-REVISION volta ao deep-researcher para corrigir citações/lacunas"
+
+distribution:
+  level: local
+  path: ./squads/research/

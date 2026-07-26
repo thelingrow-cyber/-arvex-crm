@@ -1,0 +1,117 @@
+squad:
+  name: c-level
+  title: C-LEVEL Squad
+  description: A camada executiva (o "board") acima dos squads operacionais — decide, prioriza e orquestra; não executa trabalho de domínio
+  version: "1.0.0"
+  icon: "👔"
+  domain: executive-orchestration
+  namespace: CLevel
+  scope: project
+  confidence: 95%
+  created_at: "2026-07-19"
+
+  agents_count: 3
+  tasks_count: 9
+
+# CONCEITO (fonte de verdade — NÃO inventar):
+#   Este squad é o "board" da startup 1-person. Fica ACIMA dos squads operacionais.
+#   Os C-levels DECIDEM e ORQUESTRAM; os squads EXECUTAM.
+#   Squads operacionais e seus leads:
+#     - security   → appsec-auditor  (Vega)
+#     - marketing  → marketing-director (Maya)
+#     - comercial  → sales-director  (Blake)
+#     - research   → deep-researcher (Darwin)
+#     - financas   → cfo             (Sterling)
+#     - branding   → brand-director  (Iris)
+#     - webdesign  → creative-director (Leo)
+#
+# PRINCÍPIO IDS (evitar duplicação):
+#   O CFO da mesa executiva NÃO é um agente novo — é o Sterling (lead de squads/financas),
+#   CONVOCADO quando a decisão envolve capital. O c-level referencia o squad financas,
+#   não duplica finanças. A "mesa" = Atlas + Vision + Reign + Sterling-convocado.
+#
+# REGRA ANTI-DISPERSÃO (memória do projeto — ameaça nº1 do venture builder):
+#   Toda priorização do cso é ancorada na tese (docs/ecossistema/brand-book-marca-pessoal.md)
+#   e defende foco: 1 build por vez, não abrir frente nova sem fechar/pausar outra.
+
+agents:
+
+  - id: coo-orchestrator
+    title: COO / Orchestrator
+    role: Chief Operating Officer — conhece todos os squads e seus leads e ROTEIA o trabalho; produz o plano de execução e acompanha as frentes
+    is_lead: true
+    tasks:
+      - id: rotear-demanda
+        description: Recebe um objetivo do Vitor, decide qual(is) squad(s) aciona e em que ordem, e produz o plano de execução
+        input: Objetivo/demanda do Vitor (já priorizado pelo cso quando aplicável)
+        output: Plano de execução — squads acionados, sequência/paralelismo, lead responsável por frente e entregável esperado
+      - id: acompanhar-execucao
+        description: Status consolidado das frentes ativas nos squads operacionais
+        input: Frentes em andamento (planos de execução abertos) + retorno dos leads
+        output: Painel de status por frente (verde/amarelo/vermelho) + próxima ação por squad
+      - id: remover-bloqueio
+        description: Escala e desbloqueia frentes travadas — conflito de boundary, dependência entre squads ou decisão pendente do Vitor
+        input: Bloqueio reportado (frente + causa)
+        output: Bloqueio endereçado — reroteamento, escalada ao cso/Vitor ou convocação de squad de apoio
+
+  - id: cso
+    title: Chief Strategy Officer
+    role: Estratégia, tese e priorização — o papel que hoje o Vitor faz no chat; guardião da regra anti-dispersão
+    tasks:
+      - id: definir-prioridades
+        description: Decide o que fazer agora vs depois, ancorado na tese do venture builder e na regra ANTI-DISPERSÃO (ameaça nº1)
+        input: Frentes candidatas + estado atual + tese (brand book)
+        output: Fila priorizada (agora / depois / não-agora) com justificativa por item e o foco único do ciclo
+      - id: avaliar-oportunidade
+        description: Go/no-go estratégico de uma nova frente antes de qualquer execução
+        input: Nova oportunidade/frente proposta + custo de foco vs frentes ativas
+        output: Veredito GO / NO-GO / ADIAR com critério de reversão e gate que a destrava
+      - id: revisar-tese
+        description: Checa coerência de uma decisão/frente com a tese e o brand book
+        input: Decisão ou frente + docs/ecossistema/brand-book-marca-pessoal.md
+        output: Parecer de coerência com a tese (alinhado / desvia / requer ajuste da tese)
+
+  - id: cmo
+    title: Chief Marketing Officer
+    role: Visão de aquisição e marca de alto nível — orquestra os squads marketing + branding + webdesign
+    tasks:
+      - id: estrategia-aquisicao
+        description: Mix macro de canais e campanhas para o objetivo do período
+        input: Objetivo de aquisição + oferta/expert + tese de marca
+        output: Estratégia de aquisição — mix de canais, big bets e o que cada squad (marketing/branding/webdesign) executa
+      - id: alinhar-marca-oferta
+        description: Garante coerência marca ↔ oferta ↔ campanha antes de investir em mídia
+        input: Oferta (comercial) + identidade de marca (branding) + campanha proposta
+        output: Alinhamento aprovado ou lista de incoerências a corrigir antes de escalar
+      - id: revisar-funil-macro
+        description: Revisão do funil de aquisição de ponta a ponta (topo → meio → fundo) no nível macro
+        input: Métricas de funil disponíveis + frentes de marketing/branding/webdesign ativas
+        output: Diagnóstico macro do funil + gargalo de aquisição #1 + recomendação de realocação
+
+workflow:
+  sequence:
+    - step: 1
+      agents: [cso]
+      tasks: [definir-prioridades]
+      note: Vitor traz o objetivo; o cso prioriza (anti-dispersão) e define o foco do ciclo
+    - step: 2
+      agents: [cso]
+      tasks: [avaliar-oportunidade]
+      note: Se a demanda é frente NOVA, passa pelo go/no-go antes de rotear
+    - step: 3
+      agents: [coo-orchestrator]
+      tasks: [rotear-demanda]
+      note: Roteia para os squads operacionais; se envolver aquisição/marca, o cmo desenha a estratégia macro; se envolver capital, convoca Sterling (financas)
+    - step: 4
+      agents: [coo-orchestrator]
+      tasks: [acompanhar-execucao]
+      note: Acompanha as frentes; remove-bloqueio quando alguma trava
+    - step: 5
+      agents: [coo-orchestrator, cso]
+      tasks: [acompanhar-execucao, revisar-tese]
+      loop: por-ciclo
+      note: Reporta ao Vitor o status consolidado + coerência com a tese; realimenta a fila de prioridades
+
+distribution:
+  level: local
+  path: ./squads/c-level/

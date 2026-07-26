@@ -1,0 +1,109 @@
+squad:
+  name: branding
+  title: BRANDING Squad
+  description: Squad que governa e aplica os ativos de marca já existentes da ARVEX e da marca pessoal do Vitor ("O Futuro Instalado") — mantém brand book, posicionamento e sistema visual, não recria do zero
+  version: "1.0.0"
+  icon: "🎭"
+  domain: brand-governance
+  namespace: Branding
+  scope: project
+  confidence: 95%
+  created_at: "2026-07-19"
+
+  agents_count: 3
+  tasks_count: 7
+
+# REGRA CENTRAL (fonte de verdade — este squad GOVERNA e APLICA, NÃO recria):
+#   - Brand book:        docs/ecossistema/brand-book-marca-pessoal.md (categoria "O Futuro Instalado", verbo INSTALAR, oferta "A Instalação")
+#   - Mapa posicionamento: docs/ecossistema/mapa-posicionamento-marca.md (12 players, 5 eixos, 4 brechas)
+#   - Sistema visual:    regras em docs/aprendizados-ia/ + feedback herdado de landing-cindy-vendas
+#                        (memória: feedback_landing_cindy_sistema_visual — Inter 900, gold+navy+verde; reprovado: serif, cutout, vw explosivo)
+#   - Fonte de posicionamento: clone tay-dantas (.claude/clones/tay-dantas/) — marca de creator, big idea
+#   - Art. IV (No Invention): toda decisão de marca rastreia a um ativo existente ou é marcada como proposta a validar
+
+agents:
+
+  - id: brand-director
+    title: Brand Director
+    role: Orquestrador do squad — guardião do brand book existente e árbitro da arquitetura de marcas da casa (ARVEX × Viziom × marca pessoal)
+    is_lead: true
+    tasks:
+      - id: guardia-brand-book
+        description: Mantém docs/ecossistema/brand-book-marca-pessoal.md como fonte de verdade e audita qualquer conteúdo/página contra ele (categoria, verbo, oferta, roadmap)
+        input: Material a auditar (página, post, copy, deck) + brand book atual
+        output: Veredito de aderência ao brand book + lista de desvios e correções
+      - id: decisao-marca
+        description: Decisões de naming e arquitetura de marcas — como ARVEX, Viziom e a marca pessoal se relacionam, quando criar submarca vs endossar
+        input: Nova iniciativa/produto/oferta + arquitetura de marcas vigente
+        output: Recomendação de arquitetura de marca (naming + relação + racional), marcada como proposta a validar quando não houver precedente
+
+  - id: positioning-strategist
+    title: Positioning Strategist
+    role: Guardião do posicionamento — mantém o mapa de 12 players, evolui a big idea "instalar o futuro" e define ângulos de entrada por ICP/oferta. Usa o clone tay-dantas como fonte primária
+    tasks:
+      - id: mapa-posicionamento
+        description: Mantém e atualiza o mapa de posicionamento de 12 players já existente (docs/ecossistema/mapa-posicionamento-marca.md) — 5 eixos, 4 brechas
+        input: Movimentos de mercado/players + mapa atual
+        output: Mapa de posicionamento atualizado (players, eixos, brechas) versionado por Edit incremental
+      - id: tese-narrativa
+        description: Evolui a big idea e a tese de marca "O Futuro Instalado" (verbo INSTALAR) mantendo coerência com o brand book
+        input: Brand book + clone tay-dantas + contexto/estágio atual da marca
+        output: Tese narrativa evoluída (categoria, big idea, verbo, prova) alinhada ao brand book
+      - id: angulo-de-entrada
+        description: Define o ângulo de posicionamento para um ICP ou oferta específica sem quebrar a tese-mãe
+        input: ICP/oferta-alvo + tese narrativa vigente
+        output: Ângulo de entrada (mensagem-âncora, inimigo, promessa) coerente com a tese-mãe
+
+  - id: identity-keeper
+    title: Identity Keeper
+    role: Guardião do sistema visual e verbal aplicado — mantém o sistema visual das landings e varre materiais publicados contra as guidelines. ADAPT (<30%) do brand-strategist do WebDesign
+    tasks:
+      - id: sistema-visual
+        description: Mantém o sistema visual das landings (cores, tipografia, elementos) herdando as regras validadas de landing-cindy-vendas e docs/aprendizados-ia/
+        input: Ativo visual novo/existente + regras do sistema visual vigente
+        output: Especificação/ajuste do sistema visual aplicado, fiel às regras herdadas (sem reinventar)
+      - id: audit-consistencia
+        description: Varre materiais publicados (páginas, posts, decks) contra brand book + sistema visual e reporta inconsistências
+        input: Conjunto de materiais publicados + guidelines vigentes
+        output: Relatório de consistência com desvios priorizados e correções
+
+# ADAPT vs WebDesign (regra IDS <30%):
+#   - WebDesign:brand-strategist (Stella) CRIA identidade de marca por-projeto, do zero, escopo de uma página.
+#   - Branding:identity-keeper (Forma) GOVERNA as marcas da casa (ARVEX, Viziom, marca pessoal) — aplica e fiscaliza
+#     ativos que JÁ existem. Não cria marca nova; garante consistência das existentes.
+
+workflow:
+  # Ciclo trimestral de governança de marca (3 passos núcleo).
+  sequence:
+    - step: 1
+      agents: [positioning-strategist]
+      tasks: [tese-narrativa]
+      note: revalida a big idea "O Futuro Instalado" contra o brand book e o clone tay-dantas
+    - step: 2
+      agents: [brand-director]
+      tasks: [guardia-brand-book]
+      note: reconcilia o brand book com a tese evoluída (fonte de verdade)
+    - step: 3
+      agents: [identity-keeper]
+      tasks: [audit-consistencia]
+      loop: trimestral
+      note: varre os materiais publicados no trimestre contra brand book + sistema visual
+
+  # Tasks sob demanda (fora do ciclo trimestral):
+  on_demand:
+    - task: decisao-marca
+      agent: brand-director
+      trigger: nasce nova iniciativa/produto/oferta que precisa de naming ou arquitetura de marca
+    - task: mapa-posicionamento
+      agent: positioning-strategist
+      trigger: um player relevante se mexe no mercado (insumo de Research:competitive-intel)
+    - task: angulo-de-entrada
+      agent: positioning-strategist
+      trigger: nova oferta/ICP precisa de posicionamento (conecta Comercial:offer-strategist e Marketing)
+    - task: sistema-visual
+      agent: identity-keeper
+      trigger: novo material/landing precisa aplicar o sistema visual da casa
+
+distribution:
+  level: local
+  path: ./squads/branding/

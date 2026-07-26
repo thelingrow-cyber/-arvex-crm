@@ -1,0 +1,109 @@
+squad:
+  name: security
+  title: SECURITY Squad
+  description: Squad de segurança defensiva do stack ARVEX — AppSec e OpSec contínuos sobre arvex-crm, Supabase, Vercel, landings e plugins
+  version: "1.0.0"
+  icon: "🔐"
+  domain: application-security
+  namespace: Security
+  scope: project
+  confidence: 92%
+  created_at: "2026-07-19"
+
+  agents_count: 2
+  tasks_count: 7
+
+  mission: >
+    Garantir a segurança contínua de tudo que a ARVEX roda em produção
+    (arvex-crm, landings, plugins, Supabase). Este squad é DEFENSIVO — AppSec e
+    OpSec do próprio stack. NÃO faz pentest ofensivo, exploração de terceiros ou
+    engenharia social. Todo verdict usa o vocabulário do @qa: PASS / CONCERNS / FAIL.
+
+agents:
+
+  - id: appsec-auditor
+    title: AppSec Auditor
+    role: Orquestrador do squad — auditoria de segurança de aplicação (código, RLS, secrets) e modelagem de ameaça
+    is_lead: true
+    persona: Vega
+    integrations:
+      - Skill nativa /security-review do Claude Code como motor da task audit-codigo
+    tasks:
+      - id: threat-model
+        description: Modelagem de ameaça de feature nova via STRIDE-lite (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege)
+        input: Story ou documento de arquitetura da feature nova
+        output: Lista de riscos priorizados por severidade com mitigação sugerida
+      - id: audit-codigo
+        description: Varredura OWASP Top-10 no diff ou módulo indicado (XSS, injection, auth/authz, deserialização insegura) — usa a skill nativa /security-review como motor
+        input: Path de arquivo/módulo ou PR/diff
+        output: Relatório com achados, severidade (crítico/alto/médio/baixo) e fix sugerido por achado
+      - id: audit-rls
+        description: Auditoria das policies RLS do Supabase tabela a tabela — quem lê e quem escreve o quê
+        input: Schema do Supabase (tabelas + policies) do arvex-crm
+        output: Matriz de acesso (tabela × role × read/write) + gaps de policy identificados
+      - id: audit-secrets
+        description: Caça a secrets hardcoded no repositório e no histórico git (tokens, chaves, senhas, connection strings)
+        input: Repositório e histórico git
+        output: Lista de secrets encontrados + plano de rotação (regra ADR-3.3 — secret nunca aparece em chat/arquivo)
+
+  - id: opsec-guardian
+    title: OpSec Guardian
+    role: Segurança operacional — controle de acessos, resposta a incidente e higiene de dependências
+    persona: Locke
+    tasks:
+      - id: audit-acessos
+        description: Revisão de contas e roles em todas as plataformas (Supabase users, Vercel, Google) — princípio do menor privilégio
+        input: Inventário de contas/roles das plataformas ARVEX
+        output: Quem tem acesso a quê + lista de revogações e ajustes de privilégio sugeridos
+      - id: incident-runbook
+        description: Cria e mantém o runbook de resposta a incidente (vazamento de dados, conta comprometida, secret exposto)
+        input: Tipo de incidente + ativos afetados
+        output: Runbook de resposta passo a passo (conter → erradicar → recuperar → post-mortem)
+      - id: dependency-audit
+        description: Levantamento de CVEs em dependências (npm audit / pip) do arvex-crm e plugins
+        input: Manifests de dependências (package.json, requirements.txt, lockfiles)
+        output: Relatório de CVEs com upgrades priorizados por severidade e esforço
+
+workflow:
+  description: >
+    Fluxo defensivo de 4 passos. threat-model roda quando há feature nova;
+    as auditorias de código/RLS e de secrets/dependências rodam em paralelo;
+    o passo final consolida tudo num verdict PASS/CONCERNS/FAIL (vocabulário @qa).
+  sequence:
+    - step: 1
+      agents: [appsec-auditor]
+      tasks: [threat-model]
+      note: Executado quando a demanda é uma feature nova; pulado em auditorias de stack existente
+    - step: 2
+      agents: [appsec-auditor]
+      tasks: [audit-codigo, audit-rls]
+      parallel: true
+    - step: 3
+      agents: [appsec-auditor, opsec-guardian]
+      tasks: [audit-secrets, dependency-audit]
+      parallel: true
+    - step: 4
+      agents: [appsec-auditor]
+      tasks: []
+      note: Relatório consolidado com verdict PASS / CONCERNS / FAIL (mesmo vocabulário do @qa)
+
+sdc_hook:
+  description: >
+    Gancho no Story Development Cycle. Stories que tocam auth, RLS ou pagamento
+    DEVEM passar por Security:agents:appsec-auditor antes do qa-gate. Documentado
+    como extensão do SDC — NÃO altera L2 (.aiox-core/ permanece intocado).
+  trigger_paths:
+    - auth
+    - rls
+    - pagamento/financeiro
+  gate: appsec-auditor antes de qa-gate
+
+boundaries:
+  - Squad DEFENSIVO — sem pentest ofensivo, exploração de sistemas de terceiros ou engenharia social
+  - Nunca expõe secret em chat ou arquivo (ADR-3.3); reporta localização e plano de rotação
+  - push/PR/MCP continuam EXCLUSIVOS de @devops; este squad recomenda, @devops executa
+  - Vive em L4 (squads/) — nunca toca .aiox-core/ (L1/L2)
+
+distribution:
+  level: local
+  path: ./squads/security/

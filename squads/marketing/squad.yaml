@@ -1,0 +1,26 @@
+name: marketing
+title: MARKETING Squad
+description: Squad de aquisição completa — tráfego pago, conteúdo orgânico, e-mail e analytics para encher o topo do funil da ARVEX e da marca pessoal
+version: "1.0.0"
+icon: "📈"
+namespace: Marketing
+scope: project
+created_at: "2026-07-19"
+author: thelingrow-cyber
+
+agents:
+  - marketing-director
+  - media-buyer
+  - copy-chief
+  - social-content-strategist
+  - email-crm-marketer
+  - analytics-tracker
+
+stats:
+  agents_count: 6
+  tasks_count: 19
+  workflow_steps: 7
+
+distribution:
+  level: local
+  path: ./squads/marketing/

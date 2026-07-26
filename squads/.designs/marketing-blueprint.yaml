@@ -1,0 +1,188 @@
+squad:
+  name: marketing
+  title: MARKETING Squad
+  description: Squad de aquisição completa — tráfego pago, conteúdo orgânico, e-mail e analytics para encher o topo do funil da ARVEX e da marca pessoal
+  version: "1.0.0"
+  icon: "📈"
+  domain: marketing
+  namespace: Marketing
+  scope: project
+  confidence: 92%
+  created_at: "2026-07-19"
+
+  agents_count: 6
+  tasks_count: 19
+
+agents:
+
+  - id: marketing-director
+    title: Marketing Director
+    role: Orquestrador do squad — conduz o briefing de campanha, define o mix de canais e aprova entregáveis antes de irem ao ar
+    is_lead: true
+    persona: Maya
+    tasks:
+      - id: briefing-campanha
+        description: Coletar objetivo, verba, ICP, canal e restrições da campanha
+        input: Demanda do usuário (produto/oferta, objetivo de aquisição)
+        output: Briefing de campanha estruturado
+      - id: plano-de-canal
+        description: Definir o mix entre orgânico e pago e a alocação de esforço/verba por canal
+        input: Briefing de campanha aprovado
+        output: Plano de canal (mix orgânico × pago, verba por canal)
+      - id: aprovacao-campanha
+        description: Revisar e aprovar todos os entregáveis do squad antes de a campanha ir ao ar
+        input: Entregáveis dos agentes (plano de mídia, copy, calendário, tracking)
+        output: Campanha aprovada ou lista de ajustes
+
+  - id: media-buyer
+    title: Media Buyer
+    role: Tráfego pago — audita contas, estrutura campanhas, otimiza verba e desenha testes criativos (nasce em modo co-piloto)
+    persona: Buck
+    modes:
+      - id: co-piloto
+        status: ativo
+        description: >-
+          Modo padrão atual. O agente GERA os planos (estrutura de campanha,
+          realocação de verba, matriz de teste) e o humano (Vitor) EXECUTA
+          manualmente na plataforma (Google Ads / Meta). Nenhuma alteração é
+          aplicada diretamente na conta.
+      - id: operador
+        status: pendente
+        description: >-
+          Modo futuro. Depende de @devops instalar o MCP de Google Ads
+          (*search-mcp google ads → *add-mcp). Quando disponível, o agente lê
+          métricas e aplica mudanças diretamente na conta, dentro de guardrails.
+        blocker: MCP de Google Ads não instalado (autoridade EXCLUSIVA @devops)
+    tasks:
+      - id: auditoria-conta
+        description: Auditar conta ativa (Google Ads/Meta) — estrutura, verba, CPA, quality score
+        input: Acesso ou export da conta ativa
+        output: Relatório de auditoria + quick wins priorizados
+      - id: estrutura-campanha
+        description: Desenhar campanhas, conjuntos e anúncios
+        input: Briefing de campanha + plano de canal
+        output: Plano de campanha pronto para subir (co-piloto) ou aplicado (operador)
+      - id: otimizacao-semanal
+        description: Rotina de leitura de métricas e realocação de verba
+        input: Métricas da semana (CPL, CPA, ROAS)
+        output: Log de decisões de otimização
+      - id: plano-de-teste
+        description: Matriz de testes criativos (hipótese / métrica / verba)
+        input: Aprendizados de campanha + hipóteses de ângulo
+        output: Matriz de testes priorizada
+
+  - id: copy-chief
+    title: Copy Chief
+    role: Direct response cross-canal (anúncios, e-mails, VSL, scripts) e revisor final de todo o copy da casa
+    persona: Halbert
+    scope_note: >-
+      NÃO duplica o copywriter do WebDesign (que faz copy DE PÁGINA). O copy-chief
+      escreve direct response cross-canal e é o revisor final (chief) de qualquer
+      copy da empresa, incluindo os entregáveis do WebDesign.
+    knowledge_sources:
+      - .claude/clones/hormozi/ (ofertas, value equation, hooks)
+      - docs/aprendizados-ia/heuristicas-vitor.md (voz e critérios do Vitor)
+    tasks:
+      - id: copy-anuncios
+        description: Hooks, primary text e headlines por ângulo para anúncios pagos
+        input: Briefing de campanha + oferta + ICP
+        output: 3+ ângulos de anúncio (hook + primary text + headlines)
+      - id: copy-emails
+        description: Cadências e sequências de e-mail direct response
+        input: Objetivo da cadência + segmento + oferta
+        output: Sequência de e-mails redigida
+      - id: roteiro-vsl
+        description: Roteiro de VSL / script de vídeo direct response
+        input: Oferta + arco de persuasão + prova
+        output: Roteiro de VSL estruturado
+      - id: review-copy
+        description: Nota e ajustes em qualquer copy da empresa (inclusive WebDesign)
+        input: Peça de copy a revisar
+        output: Nota + lista de ajustes acionáveis
+
+  - id: social-content-strategist
+    title: Social Content Strategist
+    role: Conteúdo orgânico — calendário, roteiros de short-form e repurpose alinhados à tese "20 vids/dia" da marca pessoal
+    persona: Nina
+    tasks:
+      - id: calendario-conteudo
+        description: Calendário editorial alinhado à tese de volume (20 vids/dia) da marca pessoal
+        input: Tese de marca + pilares de conteúdo + objetivo
+        output: Calendário de conteúdo com temas e formatos
+      - id: roteiro-short
+        description: Roteiro de reels/tiktok com estrutura hook-retenção-CTA
+        input: Tema do calendário + ângulo
+        output: Roteiro de short-form pronto para gravar
+      - id: repurpose
+        description: Transformar 1 conteúdo em N formatos por canal
+        input: Peça de conteúdo original
+        output: Variações de repurpose por formato/canal
+
+  - id: email-crm-marketer
+    title: Email & CRM Marketer
+    role: E-mail marketing e fluxos — nutrição por segmento, broadcasts de campanha e desenho de automações (integração futura com o CRM)
+    persona: Reva
+    tasks:
+      - id: cadencia-nutricao
+        description: Sequências de nutrição por segmento
+        input: Segmento + jornada + oferta
+        output: Cadência de nutrição desenhada
+      - id: broadcast
+        description: E-mails pontuais de campanha
+        input: Ocasião/campanha + oferta
+        output: Broadcast redigido e pronto para envio
+      - id: automacao-fluxo
+        description: Desenho de fluxos de automação (integração futura com o CRM)
+        input: Gatilho + objetivo do fluxo
+        output: Diagrama do fluxo + condições/ramificações
+
+  - id: analytics-tracker
+    title: Analytics Tracker
+    role: Mensuração — plano de tracking (UTMs, pixels, eventos), dashboard de KPIs e relatório executivo semanal
+    persona: Dot
+    tasks:
+      - id: plano-de-tracking
+        description: UTMs, pixels e eventos de conversão por canal
+        input: Plano de canal + destinos/páginas
+        output: Plano de tracking documentado (convenção de UTM, eventos, pixels)
+      - id: dashboard-kpis
+        description: Dashboard de KPIs — CPL, CPA, ROAS por canal
+        input: Fontes de dados + plano de tracking
+        output: Estrutura de dashboard com KPIs por canal
+      - id: relatorio-semanal
+        description: Síntese executiva semanal de performance
+        input: Dados da semana + KPIs
+        output: Relatório semanal executivo com insights e recomendações
+
+workflow:
+  sequence:
+    - step: 1
+      agents: [marketing-director]
+      tasks: [briefing-campanha]
+    - step: 2
+      agents: [marketing-director]
+      tasks: [plano-de-canal]
+    - step: 3
+      agents: [media-buyer, copy-chief, social-content-strategist]
+      tasks: [estrutura-campanha, copy-anuncios, calendario-conteudo]
+      parallel: true
+    - step: 4
+      agents: [analytics-tracker]
+      tasks: [plano-de-tracking]
+    - step: 5
+      agents: [marketing-director]
+      tasks: [aprovacao-campanha]
+    - step: 6
+      agents: []
+      tasks: []
+      note: Campanha no ar (execução — co-piloto humano na plataforma até MCP de ads)
+    - step: 7
+      agents: [media-buyer, analytics-tracker]
+      tasks: [otimizacao-semanal, relatorio-semanal]
+      parallel: true
+      loop: true
+      note: Loop semanal de otimização e reporte que realimenta o briefing
+
+distribution:
+  level: local
+  path: ./squads/marketing/
