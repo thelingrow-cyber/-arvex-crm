@@ -290,6 +290,7 @@ dependencies:
     - modify-task.md
     - modify-workflow.md
     - propose-modification.md
+    - roundtable.md
     - shard-doc.md
     - undo-last.md
     - update-manifest.md

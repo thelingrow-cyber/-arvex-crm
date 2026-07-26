@@ -1,7 +1,19 @@
+---
+id: roundtable
+name: Roundtable — Deliberação Multi-Clone
+agent: aiox-master
+category: decision
+complexity: medium
+---
+
 # Task: Roundtable — Deliberação Multi-Clone
 
-> Mecanismo de decisão estratégica. N clones debatem uma questão sob perspectivas
-> incompatíveis entre si e convergem (ou não) num veredito auditável.
+**Purpose**: Submeter uma decisão estratégica a N clones com perspectivas incompatíveis entre si
+e convergir (ou não) num veredito auditável.
+
+**Elicit**: true — a Rodada 0 PARA e devolve ao usuário se a questão não for decidível, e a
+composição da mesa é confirmada antes de começar. Não pule por eficiência.
+
 > Executor padrão: `@aiox-master` (Orion). Constituição: Art. IV (No Invention) é gate duro.
 
 ## Quando usar
@@ -84,15 +96,55 @@ compartilhar o mesmo ponto cego. A síntese expõe:
 
 ## Modos de execução
 
-| Modo | Como roda | Custo | Quando |
-|---|---|---|---|
-| `solo` (padrão) | Orion carrega os arquivos de cada clone e escreve os pareceres em sequência, sem consultar os anteriores | Baixo | Maioria dos casos |
-| `painel` | Um subagente por clone, disparados **em paralelo** na Rodada 1 — isolamento de contexto real | Alto (N× cota) | Decisão irreversível ou cara. **Requer pedido explícito do usuário** |
+| Modo | Como roda | Independência | Custo | Quando |
+|---|---|---|---|---|
+| `solo` (padrão) | Orion carrega os arquivos de cada clone e escreve os pareceres em sequência | **Parcial** — ver limitação abaixo | Baixo | Maioria dos casos |
+| `painel` | Um subagente por clone na Rodada 1, disparados em paralelo | **Real** — contextos isolados | Alto (N× cota) | Decisão irreversível ou cara. **Requer pedido explícito do usuário** |
 
-Risco conhecido do modo `solo`: homogeneização de voz — os pareceres saem parecidos porque
-saíram do mesmo contexto. Mitigação: escrever cada parecer imediatamente após carregar aquele
-clone, sem reler os anteriores, e checar no fim se algum parecer poderia ter sido assinado por
-outro participante. Se poderia, refaça aquele.
+### ⚠️ Limitação honesta do modo `solo`
+
+A "cegueira" da Rodada 1 no modo `solo` é **disciplina, não garantia**. Quem escreve os cinco
+pareceres é o mesmo modelo, com todos os pareceres anteriores no próprio contexto — não existe
+"não ver" o que já está ali. O modo `solo` entrega **diversidade de perspectiva** (cada clone
+carrega heurísticas e crenças próprias, que genuinamente puxam para lados diferentes), mas **não**
+entrega independência estatística. Dois pareceres podem convergir por contaminação, não por
+concordância real.
+
+Consequências práticas:
+- Consenso obtido no modo `solo` é evidência **fraca**. Trate-o como hipótese, não como veredito.
+- Dissenso no modo `solo` é evidência **forte** — se saiu divergência apesar da contaminação, a
+  divergência é real.
+- Decisão irreversível ou cara → use `painel`. Não finja que `solo` basta.
+
+Mitigações no modo `solo` (reduzem, não eliminam): escrever cada parecer imediatamente após
+carregar aquele clone; ao terminar, checar se algum parecer poderia ter sido assinado por outro
+participante — se poderia, refaça. Declarar o modo usado no arquivo de saída, sempre.
+
+### Como disparar o modo `painel`
+
+Um subagente por clone, **todos no mesmo bloco** (paralelismo real). Cada um recebe:
+
+```
+Você é o clone {NOME}. Leia estes arquivos e adote a persona integralmente:
+  .claude/clones/{id}/system.md
+  .claude/clones/{id}/heuristics.md
+  .claude/clones/{id}/beliefs.md
+  .claude/clones/{id}/context.md
+
+QUESTÃO: {questão enquadrada na Rodada 0}
+
+Responda em ~200 palavras, nesta estrutura exata:
+  **Posição** — o que você faria, sem hedge
+  **Razão** — a heurística/modelo PRÓPRIO que sustenta (cite qual)
+  **O que me faria mudar de ideia** — a evidência concreta que derrubaria isso
+
+GATE (Art. IV): fale SÓ do que está nos seus arquivos. Fora do círculo de competência,
+responda literalmente "difícil demais, passo" e pare. Não fabrique citação, dado ou posição.
+NÃO consulte outros clones nem a internet. Devolva apenas o parecer.
+```
+
+Orion recebe os N pareceres e conduz as Rodadas 2 e 3 normalmente (essas não precisam de
+isolamento — o confronto exige justamente ver os outros).
 
 ## Saída
 

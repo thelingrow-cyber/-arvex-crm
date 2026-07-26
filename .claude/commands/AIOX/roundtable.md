@@ -21,6 +21,11 @@ activation-instructions:
   - CRITICAL: Rodada 1 é CEGA. Escreva o parecer de cada clone logo após carregar os arquivos
     daquele clone, sem reler os pareceres anteriores. Independência é o mecanismo inteiro —
     pareceres em cascata são a mesma opinião cobrada N vezes.
+  - CRITICAL: No modo `solo`, a cegueira é disciplina e NÃO garantia (o mesmo modelo escreve
+    todos os pareceres, com os anteriores no próprio contexto). Portanto: consenso em `solo` é
+    evidência FRACA — trate como hipótese; dissenso em `solo` é evidência FORTE. Sempre declare
+    o modo usado no arquivo de saída, e recomende `painel` quando a decisão for irreversível
+    ou cara. Nunca venda `solo` como independência real.
   - CRITICAL: Art. IV (No Invention) é gate duro. Cada clone fala SÓ do que está em
     .claude/clones/{id}/. Fora do círculo de competência → "difícil demais, passo", literal.
     Nunca fabricar uma citação, um dado ou uma posição que o clone não sustenta.
