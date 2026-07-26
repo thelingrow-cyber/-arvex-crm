@@ -369,7 +369,13 @@
     .wa-qr-img { width: 240px; height: 240px; background: #fff; border-radius: 8px; padding: 8px; }
     /* Atendimento — inbox WhatsApp */
     .at-inbox { display: grid; grid-template-columns: 320px 1fr; height: calc(100vh - 210px); min-height: 440px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--navy2); }
-    .at-lista { border-right: 1px solid var(--border); overflow-y: auto; }
+    .at-lista { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+    .at-search { padding: 8px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .at-search input { width: 100%; box-sizing: border-box; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--navy3); color: var(--white); font-size: 13px; }
+    #at-lista-items { overflow-y: auto; flex: 1; }
+    .at-conv-item.at-unread .at-conv-nome { font-weight: 800; color: var(--white); }
+    .at-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: middle; }
+    .at-unread-badge { display: inline-flex; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--green); color: #04120a; font-size: 11px; font-weight: 800; align-items: center; justify-content: center; margin-left: auto; }
     .at-conv-item { padding: 11px 14px; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; flex-direction: column; gap: 3px; }
     .at-conv-item:hover { background: var(--navy3); }
     .at-conv-item.sel { background: var(--navy3); border-left: 3px solid var(--gold2); padding-left: 11px; }
@@ -619,6 +625,7 @@
   </div>
   <div class="sidebar-item" onclick="goTo('atendimento',this)" id="nav-atendimento">
     <span class="si-icon" data-icon="whatsapp"></span> Atendimento
+    <span id="at-unread-badge" class="at-unread-badge" style="display:none"></span>
   </div>
   <div class="sidebar-item admin-only" onclick="goTo('agente-sdr',this)" id="nav-agente-sdr">
     <span class="si-icon" data-icon="bot"></span> Agente SDR
@@ -957,7 +964,10 @@
         <div id="at-conexao"></div>
       </div>
       <div class="at-inbox" id="at-inbox">
-        <div class="at-lista" id="at-lista"></div>
+        <div class="at-lista" id="at-lista">
+          <div class="at-search"><input type="text" id="at-search" placeholder="Buscar por nome ou telefone…" oninput="renderListaAtendimento()" /></div>
+          <div id="at-lista-items"></div>
+        </div>
         <div class="at-conversa" id="at-conversa"><div class="at-vazio">Selecione uma conversa à esquerda</div></div>
       </div>
     </div>
@@ -4462,6 +4472,17 @@ function leadPorTel(tel) {
       || null
 }
 
+// garante um lead vinculado ao telefone (cria on-demand) — pra "Assumir"/"Transferir"
+// sempre funcionarem e o pause ter onde pegar, mesmo em conversa que a Carol não cadastrou
+async function garantirLead(tel) {
+  const existente = leadPorTel(tel); if (existente) return existente
+  const d = String(tel || '').replace(/\D/g, ''); if (!d) return null
+  const { data, error } = await sb.from('leads').insert({ nome: d, tel: d, status: 'contato', origem: 'whatsapp-agente-sdr' }).select().single()
+  if (error) { showToast('Erro ao vincular lead: ' + error.message, 'error'); return null }
+  await loadLeads()
+  return leadPorTel(tel) || data
+}
+
 function conversasAtendimento() {
   const sess = cachedConversas || {}
   return Object.keys(sess).map(tel => {
@@ -4477,23 +4498,47 @@ function renderAtendimento() {
   renderListaAtendimento()
 }
 
+// ── Não-lida (por navegador, via localStorage) ───────────────────────────────
+// Marca até qual mensagem (id) o usuário já viu em cada conversa. Não-lida =
+// última mensagem é do cliente e mais nova que a vista. Sem schema/servidor.
+function atSeenMap() { try { return JSON.parse(localStorage.getItem('at_lastseen') || '{}') } catch { return {} } }
+function atMarkSeen(tel) {
+  const maxId = msgsConversa(tel).reduce((m, x) => Math.max(m, x._id || 0), 0)
+  const map = atSeenMap(); map[tel] = maxId
+  try { localStorage.setItem('at_lastseen', JSON.stringify(map)) } catch {}
+}
+function updateAtBadge(n) {
+  const el = document.getElementById('at-unread-badge'); if (!el) return
+  if (n > 0) { el.textContent = n > 99 ? '99+' : String(n); el.style.display = '' } else { el.style.display = 'none' }
+}
+
 function renderListaAtendimento() {
-  const lista = document.getElementById('at-lista'); if (!lista) return
+  const box = document.getElementById('at-lista-items'); if (!box) return
   // desconectado: o histórico continua no banco, mas some do inbox até reconectar
   if (_atConectado === false) {
     _atConvAtiva = null
     document.getElementById('at-inbox')?.classList.remove('ver-conversa')
-    lista.innerHTML = '<div class="at-vazio">WhatsApp desconectado.<br>Conecte um número pra ver e responder as conversas.</div>'
-    return
+    box.innerHTML = '<div class="at-vazio">WhatsApp desconectado.<br>Conecte um número pra ver e responder as conversas.</div>'
+    updateAtBadge(0); return
   }
-  if (!cachedConversas) { lista.innerHTML = '<div class="at-vazio">Carregando conversas…</div>'; loadConversas().then(renderListaAtendimento); return }
-  const convs = conversasAtendimento()
-  if (!convs.length) { lista.innerHTML = '<div class="at-vazio">Nenhuma conversa ainda.<br>Quando a Carol atender um lead, aparece aqui.</div>'; return }
-  lista.innerHTML = convs.map(({ tel, lead, nome, ultima }) => {
+  if (!cachedConversas) { box.innerHTML = '<div class="at-vazio">Carregando conversas…</div>'; loadConversas().then(renderListaAtendimento); return }
+  let convs = conversasAtendimento()
+  // não-lida: última msg do cliente ainda não vista
+  const seen = atSeenMap()
+  convs.forEach(c => { c.unread = !!(c.ultima && c.ultima.autor === 'lead' && (c.ultima._id || 0) > (seen[c.tel] || 0)) })
+  updateAtBadge(convs.filter(c => c.unread).length)
+  // busca por nome ou telefone
+  const q = (document.getElementById('at-search')?.value || '').trim().toLowerCase()
+  if (q) {
+    const qd = q.replace(/\D/g, '')
+    convs = convs.filter(c => (c.nome || '').toLowerCase().includes(q) || (qd && String(c.tel).replace(/\D/g, '').includes(qd)))
+  }
+  if (!convs.length) { box.innerHTML = `<div class="at-vazio">${q ? 'Nada encontrado.' : 'Nenhuma conversa ainda.<br>Quando a Carol atender um lead, aparece aqui.'}</div>`; return }
+  box.innerHTML = convs.map(({ tel, lead, nome, ultima, unread }) => {
     const sel = _atConvAtiva === tel ? ' sel' : ''
     const badge = (lead && lead.atendente) ? `<span class="at-badge pausado">👤 ${esc(lead.atendente)}</span>` : ((lead && lead.agente_pausado) ? '<span class="at-badge pausado">humano</span>' : '<span class="at-badge ativo">Carol</span>')
-    return `<div class="at-conv-item${sel}" onclick="abrirConversa('${esc(tel)}')">
-      <div class="at-conv-nome">${esc(nome)} <span class="at-conv-hora">${fmtHora(ultima.date)}</span></div>
+    return `<div class="at-conv-item${sel}${unread ? ' at-unread' : ''}" onclick="abrirConversa('${esc(tel)}')">
+      <div class="at-conv-nome">${unread ? '<span class="at-dot"></span>' : ''}${esc(nome)} <span class="at-conv-hora">${fmtHora(ultima.date)}</span></div>
       <div class="at-conv-prev">${badge}<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ultima.text)}</span></div>
     </div>`
   }).join('')
@@ -4509,10 +4554,10 @@ function abrirConversa(tel) {
   const pausado = lead ? lead.agente_pausado : false
   const atendente = lead ? lead.atendente : null
   // pausar/transferir/ver-lead só fazem sentido com um lead vinculado
-  const ctrl = lead ? (pausado
+  const ctrl = pausado
     ? `<button class="btn-card-action" onclick="retomarAgente('${esc(tel)}')" title="Voltar a Carol a responder">▶ Retomar Carol</button>`
-    : `<button class="btn-card-action" onclick="pausarAgente('${esc(tel)}')" title="Assumir a conversa (Carol para)">⏸ Assumir</button>`) : ''
-  const transferBtn = lead ? `<button class="btn-card-action" onclick="mostrarTransferir('${esc(tel)}')" title="Transferir a conversa pra outro atendente (tira da Carol)">↦ Transferir</button>` : ''
+    : `<button class="btn-card-action" onclick="pausarAgente('${esc(tel)}')" title="Assumir a conversa (Carol para)">⏸ Assumir</button>`
+  const transferBtn = `<button class="btn-card-action" onclick="mostrarTransferir('${esc(tel)}')" title="Transferir a conversa pra outro atendente (tira da Carol)">↦ Transferir</button>`
   const verLead = lead ? `<button class="btn-card-action" onclick="openDetail('${lead.id}')">Ver lead</button>` : ''
   painel.innerHTML = `
     <div class="at-conv-header">
@@ -4528,7 +4573,7 @@ function abrirConversa(tel) {
       <button class="btn-save" onclick="enviarAtendimento('${esc(tel)}')">Enviar</button>
     </div>`
   const m = document.getElementById('at-conv-msgs'); if (m) m.scrollTop = m.scrollHeight
-  document.querySelectorAll('.at-conv-item').forEach(el => el.classList.toggle('sel', (el.getAttribute('onclick') || '').includes("'" + tel + "'")))
+  atMarkSeen(tel); renderListaAtendimento()   // limpa não-lida desta conversa + atualiza contador
   document.getElementById('at-reply-input')?.focus()
 }
 
@@ -4548,7 +4593,7 @@ function mostrarTransferir(tel) {
   hdr.innerHTML = `<div style="font-size:12px;color:var(--muted);white-space:nowrap">Transferir para:</div><div style="display:flex;gap:6px;flex-wrap:wrap">${opts}<button class="btn-card-action" onclick="abrirConversa('${esc(tel)}')">Cancelar</button></div>`
 }
 async function transferir(tel, nome) {
-  const l = leadPorTel(tel); if (!l) { showToast('Sem lead vinculado a este número', 'error'); return }
+  const l = await garantirLead(tel); if (!l) return
   l.atendente = nome; l.agente_pausado = true
   await updateLeadField(l.id, { atendente: nome, agente_pausado: true })
   showToast('Transferido para ' + nome + ' — Carol pausada neste lead', 'success')
@@ -4587,7 +4632,7 @@ async function enviarAtendimento(tel) {
 }
 
 async function pausarAgente(tel) {
-  const l = leadPorTel(tel); if (!l) { showToast('Sem lead vinculado a este número', 'error'); return }
+  const l = await garantirLead(tel); if (!l) return
   l.agente_pausado = true
   await updateLeadField(l.id, { agente_pausado: true })
   showToast('Você assumiu — a Carol parou de responder este lead', 'success')
