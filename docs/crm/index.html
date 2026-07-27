@@ -4458,7 +4458,21 @@ function renderAtendimento() {
   renderConexaoAtendimento()   // async: seta _atConectado e re-renderiza a lista quando souber
   if (!cachedAtendentes.length) loadAtendentes()
   renderListaAtendimento()
+  startAtPoll()                // verifica a conexão de tempos em tempos → some/volta automático
 }
+
+// Verificação periódica da conexão enquanto a aba Atendimento está aberta:
+// se o número cair (mesmo desconectado pelo celular), as conversas somem sozinhas;
+// ao reconectar, voltam — sem precisar recarregar a página.
+let _atPollTimer = null
+function startAtPoll() {
+  stopAtPoll()
+  _atPollTimer = setInterval(() => {
+    if (document.getElementById('view-atendimento')?.classList.contains('active')) renderConexaoAtendimento(true)
+    else stopAtPoll()
+  }, 25000)
+}
+function stopAtPoll() { if (_atPollTimer) { clearInterval(_atPollTimer); _atPollTimer = null } }
 
 // ── Não-lida (por navegador, via localStorage) ───────────────────────────────
 // Marca até qual mensagem (id) o usuário já viu em cada conversa. Não-lida =
@@ -4608,9 +4622,9 @@ async function retomarAgente(tel) {
   abrirConversa(tel); renderAtendimento()
 }
 
-async function renderConexaoAtendimento() {
+async function renderConexaoAtendimento(silent = false) {
   const el = document.getElementById('at-conexao'); if (!el) return
-  el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> verificando…</div>`
+  if (!silent) el.innerHTML = `<div class="wa-status"><span class="wa-dot wa-loading"></span> verificando…</div>`   // silent=poll: sem flicker
   try {
     const st = await evoProxy('status')
     _atConectado = !!st.connected
