@@ -132,7 +132,74 @@ Deno.serve(async (req: Request) => {
       return json({ ok: true });
     }
 
-    return json({ error: "action_invalida", validas: ["qr", "status", "send", "disconnect"] }, 400);
+    // 3d) sincroniza mensagens que SAÍRAM do celular (fromMe) → historico
+    // As da Carol também são fromMe; dedup por balão já gravado (type:ai) separa
+    // "Carol" de "humano digitou no celular". wa_id evita re-inserir a mesma msg.
+    if (action === "sync_out") {
+      const SYNC_APPLY = false;  // dry-run: só diagnostica, NÃO escreve no historico (fase de verificação)
+      const service = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+      );
+      const r = await fetch(`${EVO_URL}/chat/findMessages/${EVO_INST}`, {
+        method: "POST",
+        headers: H,
+        body: JSON.stringify({ where: {}, page: 1, offset: 100 }),
+      });
+      const d = await r.json().catch(() => ({}));
+      // normaliza vários formatos possíveis de resposta do Evolution v2
+      const records = d?.messages?.records || d?.records ||
+        (Array.isArray(d?.messages) ? d.messages : (Array.isArray(d) ? d : []));
+      const out = (records as any[]).filter((m) => m?.key?.fromMe === true);
+
+      // balões já gravados (type:ai) por sessão → pra pular o que é da Carol
+      const { data: hist } = await service.from("agente_sdr_historico").select("session_id, message");
+      const baloesPorSessao: Record<string, Set<string>> = {};
+      const waIds = new Set<string>();
+      for (const row of (hist || []) as any[]) {
+        const sid = row.session_id;
+        const m = row.message || {};
+        const wa = m?.additional_kwargs?.wa_id; if (wa) waIds.add(wa);
+        if (m.type === "ai") {
+          const set = baloesPorSessao[sid] || (baloesPorSessao[sid] = new Set());
+          String(m.content || "").split("||").map((s: string) => s.trim()).filter(Boolean).forEach((b: string) => set.add(b));
+        }
+      }
+      const textoDe = (msg: any) => msg?.conversation || msg?.extendedTextMessage?.text
+        || (msg?.imageMessage ? (msg.imageMessage.caption ? "📷 " + msg.imageMessage.caption : "📷 imagem") : "")
+        || (msg?.audioMessage ? "🎤 áudio" : "") || (msg?.videoMessage ? "🎬 vídeo" : "")
+        || (msg?.documentMessage ? "📎 documento" : "") || "[mídia]";
+
+      const candidatos: any[] = [];
+      for (const m of out) {
+        const jid = String(m?.key?.remoteJid || "");
+        if (jid.endsWith("@g.us")) continue;
+        const sid = jid.split("@")[0].split(":")[0]; if (!sid) continue;
+        const waId = m?.key?.id; if (waId && waIds.has(waId)) continue;         // já sincronizada
+        const texto = textoDe(m?.message || {});
+        if ((baloesPorSessao[sid] || new Set()).has(texto)) continue;           // é balão da Carol → pula
+        candidatos.push({ sid, waId, texto, ts: m?.messageTimestamp ? Number(m.messageTimestamp) * 1000 : Date.now() });
+      }
+
+      let inseridas = 0;
+      if (SYNC_APPLY) {
+        for (const c of candidatos) {
+          await service.from("agente_sdr_historico").insert({
+            session_id: c.sid,
+            message: { type: "ai", content: c.texto, tool_calls: [], additional_kwargs: { operator: "Equipe (WhatsApp)", wa_id: c.waId, ts: c.ts }, response_metadata: {}, invalid_tool_calls: [] },
+          }).then(() => { inseridas++; }, () => {});
+        }
+      }
+
+      // diagnóstico (leio via DB direto pra validar formato/lógica antes de ligar o insert)
+      await service.from("_evo_sync_debug").insert({
+        info: { apply: SYNC_APPLY, http: r.status, ok: r.ok, keys: Object.keys(d || {}), total: (records as any[]).length, fromMe: out.length, candidatos: candidatos.length, amostra_record: (records as any[])[0] || null, amostra_candidato: candidatos[0] || null },
+      }).then(() => {}, () => {});
+
+      return json({ ok: true, apply: SYNC_APPLY, total: (records as any[]).length, saidas: out.length, candidatos: candidatos.length, inseridas });
+    }
+
+    return json({ error: "action_invalida", validas: ["qr", "status", "send", "disconnect", "sync_out"] }, 400);
   } catch (e) {
     return json({ error: String((e as Error).message || e) }, 500);
   }
