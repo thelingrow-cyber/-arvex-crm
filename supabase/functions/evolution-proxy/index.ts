@@ -172,10 +172,14 @@ Deno.serve(async (req: Request) => {
 
       const candidatos: any[] = [];
       for (const m of out) {
-        const jid = String(m?.key?.remoteJid || "");
-        if (jid.endsWith("@g.us")) continue;
-        const sid = jid.split("@")[0].split(":")[0]; if (!sid) continue;
-        const waId = m?.key?.id; if (waId && waIds.has(waId)) continue;         // já sincronizada
+        const keyO = m?.key || {};
+        const jid = String(keyO.remoteJid || "");
+        if (jid.endsWith("@g.us")) continue;                                     // grupo
+        // WhatsApp @lid: o telefone real vem em remoteJidAlt (…@s.whatsapp.net)
+        const jidPhone = String(keyO.remoteJidAlt || keyO.remoteJid || "");
+        const sid = jidPhone.split("@")[0].split(":")[0].replace(/\D/g, "");
+        if (!sid) continue;
+        const waId = keyO.id; if (waId && waIds.has(waId)) continue;             // já sincronizada
         const texto = textoDe(m?.message || {});
         if ((baloesPorSessao[sid] || new Set()).has(texto)) continue;           // é balão da Carol → pula
         candidatos.push({ sid, waId, texto, ts: m?.messageTimestamp ? Number(m.messageTimestamp) * 1000 : Date.now() });
@@ -193,7 +197,7 @@ Deno.serve(async (req: Request) => {
 
       // diagnóstico (leio via DB direto pra validar formato/lógica antes de ligar o insert)
       await service.from("_evo_sync_debug").insert({
-        info: { apply: SYNC_APPLY, http: r.status, ok: r.ok, keys: Object.keys(d || {}), total: (records as any[]).length, fromMe: out.length, candidatos: candidatos.length, amostra_record: (records as any[])[0] || null, amostra_candidato: candidatos[0] || null },
+        info: { apply: SYNC_APPLY, http: r.status, ok: r.ok, total: (records as any[]).length, fromMe: out.length, candidatos: candidatos.length, amostra_candidatos: candidatos.slice(0, 8) },
       }).then(() => {}, () => {});
 
       return json({ ok: true, apply: SYNC_APPLY, total: (records as any[]).length, saidas: out.length, candidatos: candidatos.length, inseridas });
