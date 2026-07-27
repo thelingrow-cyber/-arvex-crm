@@ -4497,6 +4497,16 @@ function renderAtendimento() {
   if (!cachedAtendentes.length) loadAtendentes()
   renderListaAtendimento()
   startAtPoll()                // verifica a conexão de tempos em tempos → some/volta automático
+  syncSaidas()                 // puxa do Evolution as mensagens enviadas pelo celular (fromMe)
+}
+
+// Sincroniza as mensagens que SAÍRAM pelo WhatsApp (celular) → historico, via edge.
+// Fire-and-forget; ao concluir, recarrega e re-renderiza se algo entrou.
+async function syncSaidas() {
+  try {
+    const r = await evoProxy('sync_out')
+    if (r && r.inseridas > 0) { await loadConversas(); renderListaAtendimento(); atualizarMsgsConversa() }
+  } catch (e) { /* silencioso: não atrapalha o inbox se a sync falhar */ }
 }
 
 // Verificação periódica da conexão enquanto a aba Atendimento está aberta:
@@ -4506,7 +4516,7 @@ let _atPollTimer = null
 function startAtPoll() {
   stopAtPoll()
   _atPollTimer = setInterval(() => {
-    if (document.getElementById('view-atendimento')?.classList.contains('active')) renderConexaoAtendimento(true)
+    if (document.getElementById('view-atendimento')?.classList.contains('active')) { renderConexaoAtendimento(true); syncSaidas() }
     else stopAtPoll()
   }, 25000)
 }
