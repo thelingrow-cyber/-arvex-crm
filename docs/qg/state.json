@@ -1,0 +1,1102 @@
+{
+  "generated_at": "2026-07-27T19:09:25-03:00",
+  "branch": "master",
+  "head": "cef6cfe",
+  "squads": [
+    {
+      "id": "branding",
+      "title": "BRANDING Squad",
+      "description": "Squad que governa e aplica os ativos de marca já existentes da ARVEX e da marca pessoal do Vitor (\"O Futuro Instalado\") — mantém brand book, posicionamento e sistema visual, não recria do zero",
+      "icon": "🎭",
+      "namespace": "Branding",
+      "created_at": "2026-07-19",
+      "tasks_declared": 7,
+      "workflow_steps": 3,
+      "agents": [
+        {
+          "id": "brand-director",
+          "squad": "branding",
+          "persona": "Iris",
+          "role": "Orquestradora do squad BRANDING — guardiã do brand book existente e árbitra da arquitetura de marcas da casa (ARVEX × Viziom × marca pessoal)",
+          "icon": "🎭",
+          "is_lead": true,
+          "sources": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            ".claude/clones/simon-sinek/",
+            ".claude/clones/al-ries/"
+          ],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md"
+          ],
+          "clones": [
+            "al-ries",
+            "simon-sinek"
+          ],
+          "clones_formal": [
+            "al-ries",
+            "simon-sinek"
+          ],
+          "clones_prose_only": [],
+          "commands": 3,
+          "tasks": 2,
+          "file": "squads/branding/agents/brand-director.md"
+        },
+        {
+          "id": "identity-keeper",
+          "squad": "branding",
+          "persona": "Forma",
+          "role": "Guardião do sistema visual e verbal aplicado — mantém o sistema visual das landings e fiscaliza materiais publicados contra as guidelines",
+          "icon": "🖋️",
+          "is_lead": false,
+          "sources": [],
+          "docs": [
+            "docs/aprendizados-ia/",
+            "docs/ecossistema/brand-book-marca-pessoal.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 2,
+          "file": "squads/branding/agents/identity-keeper.md"
+        },
+        {
+          "id": "positioning-strategist",
+          "squad": "branding",
+          "persona": "North",
+          "role": "Guardião do posicionamento — mantém o mapa de 12 players, evolui a big idea \"instalar o futuro\" e define ângulos de entrada por ICP/oferta",
+          "icon": "🧭",
+          "is_lead": false,
+          "sources": [],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md"
+          ],
+          "clones": [
+            "al-ries",
+            "tay-dantas"
+          ],
+          "clones_formal": [],
+          "clones_prose_only": [
+            "al-ries",
+            "tay-dantas"
+          ],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/branding/agents/positioning-strategist.md"
+        }
+      ]
+    },
+    {
+      "id": "c-level",
+      "title": "C-LEVEL Squad",
+      "description": "A camada executiva (o \"board\") acima dos squads operacionais — decide, prioriza e orquestra; não executa trabalho de domínio",
+      "icon": "👔",
+      "namespace": "CLevel",
+      "created_at": "2026-07-19",
+      "tasks_declared": 9,
+      "workflow_steps": 5,
+      "agents": [
+        {
+          "id": "coo-orchestrator",
+          "squad": "c-level",
+          "persona": "Atlas",
+          "role": "Chief Operating Officer — conhece todos os squads e seus leads e ROTEIA o trabalho; produz o plano de execução e mantém as frentes andando",
+          "icon": "🧭",
+          "is_lead": true,
+          "sources": [
+            "docs/processos/mapa-operacional.md",
+            "docs/processos/sop-gestao-semanal.md",
+            "docs/aprendizados-ia/heuristicas-vitor.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/processos/mapa-operacional.md",
+            "docs/processos/sop-gestao-semanal.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 4,
+          "tasks": 3,
+          "file": "squads/c-level/agents/coo-orchestrator.md"
+        },
+        {
+          "id": "cmo",
+          "squad": "c-level",
+          "persona": "Reign",
+          "role": "Visão de aquisição e marca de alto nível — orquestra os squads marketing + branding + webdesign no nível macro",
+          "icon": "📣",
+          "is_lead": false,
+          "sources": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md",
+            "docs/ecossistema/one-pager-comercial.md",
+            "docs/roundtables/2026-07-25-estrategia-conteudo.md"
+          ],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md",
+            "docs/ecossistema/one-pager-comercial.md",
+            "docs/roundtables/2026-07-25-estrategia-conteudo.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/c-level/agents/cmo.md"
+        },
+        {
+          "id": "cso",
+          "squad": "c-level",
+          "persona": "Vision",
+          "role": "Estratégia, tese e priorização — o papel que hoje o Vitor faz no chat; guardião da regra anti-dispersão",
+          "icon": "🎯",
+          "is_lead": false,
+          "sources": [
+            ".claude/clones/charlie-munger/",
+            ".claude/clones/naval-ravikant/",
+            ".claude/clones/michael-gerber/",
+            "docs/ecossistema/brand-book-marca-pessoal.md"
+          ],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/roundtables/"
+          ],
+          "clones": [
+            "charlie-munger",
+            "michael-gerber",
+            "naval-ravikant"
+          ],
+          "clones_formal": [
+            "charlie-munger",
+            "michael-gerber",
+            "naval-ravikant"
+          ],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/c-level/agents/cso.md"
+        }
+      ]
+    },
+    {
+      "id": "comercial",
+      "title": "COMERCIAL Squad",
+      "description": "Squad comercial que converte leads em receita — conecta closers, SDR, Sales Coach e ofertas da ARVEX em um único motor de fechamento",
+      "icon": "🤝",
+      "namespace": "Comercial",
+      "created_at": "2026-07-19",
+      "tasks_declared": 15,
+      "workflow_steps": 6,
+      "agents": [
+        {
+          "id": "sales-director",
+          "squad": "comercial",
+          "persona": "Blake",
+          "role": "Orquestrador do squad COMERCIAL — diagnostica o funil, define metas por closer e mantém os rituais do time comercial real",
+          "icon": "🎯",
+          "is_lead": true,
+          "sources": [
+            "docs/processos/sop-fluxo-vendas.md",
+            "docs/processos/playbook-rotina-sdr.md",
+            "docs/crm/sales-coach-vision.md",
+            "docs/ecossistema/one-pager-comercial.md"
+          ],
+          "docs": [
+            "docs/crm/sales-coach-vision.md",
+            "docs/ecossistema/one-pager-comercial.md",
+            "docs/processos/playbook-rotina-sdr.md",
+            "docs/processos/sop-fluxo-vendas.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 4,
+          "tasks": 3,
+          "file": "squads/comercial/agents/sales-director.md"
+        },
+        {
+          "id": "sdr-playbook-manager",
+          "squad": "comercial",
+          "persona": "Cady",
+          "role": "Dona do playbook de pré-vendas — cadências de follow-up, critérios de qualificação e o system prompt do agente de IA da Carol",
+          "icon": "📋",
+          "is_lead": false,
+          "sources": [],
+          "docs": [
+            "docs/agente-sdr/carol-system-prompt.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/comercial/agents/sdr-playbook-manager.md"
+        },
+        {
+          "id": "offer-strategist",
+          "squad": "comercial",
+          "persona": "Grand",
+          "role": "Desenha e audita ofertas usando o framework $100M — value equation, garantias, bônus, naming e pricing",
+          "icon": "💎",
+          "is_lead": false,
+          "sources": [],
+          "docs": [],
+          "clones": [
+            "hormozi"
+          ],
+          "clones_formal": [],
+          "clones_prose_only": [
+            "hormozi"
+          ],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/comercial/agents/offer-strategist.md"
+        },
+        {
+          "id": "proposal-writer",
+          "squad": "comercial",
+          "persona": "Quill",
+          "role": "Redige propostas comerciais, minutas de contrato e sequências de follow-up pós-envio",
+          "icon": "📝",
+          "is_lead": false,
+          "sources": [
+            "docs/ecossistema/one-pager-comercial.md",
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/processos/sop-onboarding-expert.md"
+          ],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/one-pager-comercial.md",
+            "docs/processos/sop-onboarding-expert.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/comercial/agents/proposal-writer.md"
+        },
+        {
+          "id": "closer-coach",
+          "squad": "comercial",
+          "persona": "Wolf",
+          "role": "Treina os closers a partir de calls reais — analisa transcrições, cria roleplays por objeção e mantém o talk track de fechamento",
+          "icon": "🐺",
+          "is_lead": false,
+          "sources": [],
+          "docs": [
+            "docs/crm/sales-coach-fase3-ARCHITECTURE.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/comercial/agents/closer-coach.md"
+        }
+      ]
+    },
+    {
+      "id": "financas",
+      "title": "FINANCAS Squad",
+      "description": "Squad financeiro da ARVEX — caixa, unit economics e precificação da operação de co-produção 50/50 e das ofertas próprias; analisa e recomenda, nunca executa pagamento",
+      "icon": "💰",
+      "namespace": "Financas",
+      "created_at": "2026-07-19",
+      "tasks_declared": 9,
+      "workflow_steps": 4,
+      "agents": [
+        {
+          "id": "cfo",
+          "squad": "financas",
+          "persona": "Sterling",
+          "role": "Orquestrador do squad FINANCAS — consolida a visão de caixa, mede unit economics por oferta/expert e dá o veredito go/no-go de cada investimento",
+          "icon": "🏦",
+          "is_lead": true,
+          "sources": [],
+          "docs": [],
+          "clones": [
+            "hormozi"
+          ],
+          "clones_formal": [],
+          "clones_prose_only": [
+            "hormozi"
+          ],
+          "commands": 4,
+          "tasks": 3,
+          "file": "squads/financas/agents/cfo.md"
+        },
+        {
+          "id": "pricing-analyst",
+          "squad": "financas",
+          "persona": "Costa",
+          "role": "Precifica ofertas por custo de entrega e margem, mede a margem real por expert/oferta e simula cenários de ticket, churn e mix",
+          "icon": "🏷️",
+          "is_lead": false,
+          "sources": [],
+          "docs": [],
+          "clones": [
+            "hormozi"
+          ],
+          "clones_formal": [],
+          "clones_prose_only": [
+            "hormozi"
+          ],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/financas/agents/pricing-analyst.md"
+        },
+        {
+          "id": "controller",
+          "squad": "financas",
+          "persona": "Ledger",
+          "role": "Integra os dados do módulo financeiro do CRM (vendas + parcelas), categoriza o fluxo de caixa, concilia contra o extrato e produz o relatório mensal",
+          "icon": "📒",
+          "is_lead": false,
+          "sources": [
+            "docs/stories/crm-modulo-financeiro-v1.story.md",
+            "docs/processos/sop-fluxo-vendas.md"
+          ],
+          "docs": [
+            "docs/processos/sop-fluxo-vendas.md",
+            "docs/stories/crm-modulo-financeiro-v1.story.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/financas/agents/controller.md"
+        }
+      ]
+    },
+    {
+      "id": "marketing",
+      "title": "MARKETING Squad",
+      "description": "Squad de aquisição completa — tráfego pago, conteúdo orgânico, e-mail e analytics para encher o topo do funil da ARVEX e da marca pessoal",
+      "icon": "📈",
+      "namespace": "Marketing",
+      "created_at": "2026-07-19",
+      "tasks_declared": 19,
+      "workflow_steps": 7,
+      "agents": [
+        {
+          "id": "marketing-director",
+          "squad": "marketing",
+          "persona": "Maya",
+          "role": "Orquestradora do squad MARKETING — conduz o briefing de campanha, define o mix de canais e aprova entregáveis antes de irem ao ar",
+          "icon": "📈",
+          "is_lead": true,
+          "sources": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/processos/sop-ciclo-lancamento.md",
+            "docs/roundtables/2026-07-25-estrategia-conteudo.md"
+          ],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/processos/sop-ciclo-lancamento.md",
+            "docs/roundtables/2026-07-25-estrategia-conteudo.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 4,
+          "tasks": 3,
+          "file": "squads/marketing/agents/marketing-director.md"
+        },
+        {
+          "id": "media-buyer",
+          "squad": "marketing",
+          "persona": "Buck",
+          "role": "Tráfego pago — audita contas, estrutura campanhas, otimiza verba e desenha testes criativos",
+          "icon": "🎯",
+          "is_lead": false,
+          "sources": [
+            ".claude/clones/molly-pittman/",
+            ".claude/clones/eugene-schwartz/"
+          ],
+          "docs": [],
+          "clones": [
+            "eugene-schwartz",
+            "molly-pittman"
+          ],
+          "clones_formal": [
+            "eugene-schwartz",
+            "molly-pittman"
+          ],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 4,
+          "file": "squads/marketing/agents/media-buyer.md"
+        },
+        {
+          "id": "analytics-tracker",
+          "squad": "marketing",
+          "persona": "Dot",
+          "role": "Mensuração — plano de tracking (UTMs, pixels, eventos), dashboard de KPIs e relatório executivo semanal",
+          "icon": "📊",
+          "is_lead": false,
+          "sources": [
+            "docs/processos/sop-gestao-semanal.md",
+            "docs/semanas/arvex-semana-2026-04-20.md"
+          ],
+          "docs": [
+            "docs/processos/sop-gestao-semanal.md",
+            "docs/semanas/arvex-semana-2026-04-20.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/marketing/agents/analytics-tracker.md"
+        },
+        {
+          "id": "copy-chief",
+          "squad": "marketing",
+          "persona": "Halbert",
+          "role": "Direct response cross-canal (anúncios, e-mails, VSL, scripts) e revisor final de todo o copy da casa",
+          "icon": "🖊️",
+          "is_lead": false,
+          "sources": [
+            ".claude/clones/eugene-schwartz/",
+            ".claude/clones/hormozi/",
+            "docs/aprendizados-ia/heuristicas-vitor.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md"
+          ],
+          "clones": [
+            "eugene-schwartz",
+            "hormozi"
+          ],
+          "clones_formal": [
+            "eugene-schwartz",
+            "hormozi"
+          ],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 4,
+          "file": "squads/marketing/agents/copy-chief.md"
+        },
+        {
+          "id": "social-content-strategist",
+          "squad": "marketing",
+          "persona": "Nina",
+          "role": "Conteúdo orgânico — calendário, roteiros de short-form e repurpose alinhados à tese \"20 vids/dia\" da marca pessoal",
+          "icon": "📱",
+          "is_lead": false,
+          "sources": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/roundtables/2026-07-25-estrategia-conteudo.md",
+            "docs/ecossistema/benchmark-marca-pessoal-completo.md",
+            "docs/carrossel-marca-pessoal/PROMPT-INSTRUCOES.md"
+          ],
+          "docs": [
+            "docs/carrossel-marca-pessoal/PROMPT-INSTRUCOES.md",
+            "docs/ecossistema/benchmark-marca-pessoal-completo.md",
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/roundtables/2026-07-25-estrategia-conteudo.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/marketing/agents/social-content-strategist.md"
+        },
+        {
+          "id": "email-crm-marketer",
+          "squad": "marketing",
+          "persona": "Reva",
+          "role": "E-mail marketing e fluxos — nutrição por segmento, broadcasts de campanha e desenho de automações",
+          "icon": "✉️",
+          "is_lead": false,
+          "sources": [
+            "docs/agente-sdr/base-conhecimento-sdr.md",
+            "docs/processos/sop-cs-cindy.md",
+            "docs/crm/MODULO-CS.md"
+          ],
+          "docs": [
+            "docs/agente-sdr/base-conhecimento-sdr.md",
+            "docs/crm/MODULO-CS.md",
+            "docs/processos/sop-cs-cindy.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/marketing/agents/email-crm-marketer.md"
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "RESEARCH Squad",
+      "description": "Squad \"The Deep Researcher\" — revisão sistemática multi-fonte com síntese citada, nível consultoria, com protocolo e citações verificáveis",
+      "icon": "🔬",
+      "namespace": "Research",
+      "created_at": "2026-07-19",
+      "tasks_declared": 8,
+      "workflow_steps": 5,
+      "agents": [
+        {
+          "id": "deep-researcher",
+          "squad": "research",
+          "persona": "Darwin",
+          "role": "Orquestrador do squad RESEARCH — define o protocolo, executa a busca sistemática multi-fonte e sintetiza o relatório final com citações verificáveis",
+          "icon": "🔬",
+          "is_lead": true,
+          "sources": [
+            "docs/saas-otica/pesquisa-mercado.md",
+            "docs/oculos-anti-scroll/dossie-viabilidade-2026-07-10.md",
+            ".aiox-core/constitution.md"
+          ],
+          "docs": [
+            ".aiox-core/constitution.md",
+            "docs/oculos-anti-scroll/dossie-viabilidade-2026-07-10.md",
+            "docs/research/",
+            "docs/saas-otica/pesquisa-mercado.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 4,
+          "tasks": 3,
+          "file": "squads/research/agents/deep-researcher.md"
+        },
+        {
+          "id": "evidence-auditor",
+          "squad": "research",
+          "persona": "Pierce",
+          "role": "Auditor de evidência do squad RESEARCH — classifica a qualidade das fontes e verifica se cada citação sustenta de fato a afirmação",
+          "icon": "🕵️",
+          "is_lead": false,
+          "sources": [
+            ".aiox-core/constitution.md",
+            "docs/oculos-anti-scroll/dossie-viabilidade-2026-07-10.md"
+          ],
+          "docs": [
+            ".aiox-core/constitution.md",
+            "docs/oculos-anti-scroll/dossie-viabilidade-2026-07-10.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/research/agents/evidence-auditor.md"
+        },
+        {
+          "id": "competitive-intel",
+          "squad": "research",
+          "persona": "Sun",
+          "role": "Inteligência competitiva do squad RESEARCH — análise estruturada de concorrentes e monitoramento de movimentos de mercado",
+          "icon": "🎯",
+          "is_lead": false,
+          "sources": [
+            "docs/ecossistema/mapa-posicionamento-marca.md",
+            "docs/ecossistema/hipotese-agencia-ia-vertical.md",
+            "docs/saas-otica/pesquisa-saas-outros-nichos.md"
+          ],
+          "docs": [
+            ".aiox-core/product/templates/competitor-analysis-tmpl.yaml",
+            "docs/ecossistema/",
+            "docs/ecossistema/hipotese-agencia-ia-vertical.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md",
+            "docs/research/",
+            "docs/saas-otica/pesquisa-saas-outros-nichos.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 2,
+          "file": "squads/research/agents/competitive-intel.md"
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "title": "SECURITY Squad",
+      "description": "Squad de segurança defensiva do stack ARVEX — AppSec e OpSec contínuos sobre arvex-crm, Supabase, Vercel, landings e plugins",
+      "icon": "🔐",
+      "namespace": "Security",
+      "created_at": "2026-07-19",
+      "tasks_declared": 7,
+      "workflow_steps": 4,
+      "agents": [
+        {
+          "id": "appsec-auditor",
+          "squad": "security",
+          "persona": "Vega",
+          "role": "Orquestrador do squad SECURITY — auditoria de segurança de aplicação (código, RLS, secrets) e modelagem de ameaça do stack ARVEX",
+          "icon": "🛡️",
+          "is_lead": true,
+          "sources": [
+            "docs/crm/security-audit-rls-2026-07-23.md",
+            "docs/crm/REFACTOR-PLAN.md"
+          ],
+          "docs": [
+            "docs/crm/REFACTOR-PLAN.md",
+            "docs/crm/security-audit-rls-2026-07-23.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 5,
+          "tasks": 4,
+          "file": "squads/security/agents/appsec-auditor.md"
+        },
+        {
+          "id": "opsec-guardian",
+          "squad": "security",
+          "persona": "Locke",
+          "role": "Segurança operacional do stack ARVEX — controle de acessos, resposta a incidente e higiene de dependências",
+          "icon": "🔑",
+          "is_lead": false,
+          "sources": [
+            "docs/crm/security-audit-rls-2026-07-23.md",
+            "docs/plugin-meet-transcriber/DEEP-ANALYSIS-FABLE.md",
+            "docs/aprendizados-ia/heuristicas-vitor.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/crm/security-audit-rls-2026-07-23.md",
+            "docs/plugin-meet-transcriber/DEEP-ANALYSIS-FABLE.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 3,
+          "tasks": 3,
+          "file": "squads/security/agents/opsec-guardian.md"
+        }
+      ]
+    },
+    {
+      "id": "webdesign",
+      "title": "WEBDESIGN Squad",
+      "description": "Squad especializado em criação de sites e landing pages profissionais que convertem",
+      "icon": "🎨",
+      "namespace": "WebDesign",
+      "created_at": "2026-05-21",
+      "tasks_declared": 35,
+      "workflow_steps": 12,
+      "agents": [
+        {
+          "id": "creative-director",
+          "squad": "webdesign",
+          "persona": "Leo",
+          "role": "Orquestrador do squad WEBDESIGN — conduz briefing, define direção criativa e aprova entregáveis",
+          "icon": "🎬",
+          "is_lead": true,
+          "sources": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/landing-cindy-vendas/",
+            "docs/crm/design-direction.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/crm/design-direction.md",
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/landing-cindy-vendas/"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 4,
+          "tasks": 3,
+          "file": "squads/webdesign/agents/creative-director.md"
+        },
+        {
+          "id": "copywriter",
+          "squad": "webdesign",
+          "persona": "Cole",
+          "role": "Copy persuasivo orientado a conversão — headlines, CTAs e textos de todas as seções",
+          "icon": "✍️",
+          "is_lead": false,
+          "sources": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/one-pager-comercial.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/one-pager-comercial.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 4,
+          "file": "squads/webdesign/agents/copywriter.md"
+        },
+        {
+          "id": "cro-analyst",
+          "squad": "webdesign",
+          "persona": "Cro",
+          "role": "Conversão, auditoria de funil e recomendações de A/B testing",
+          "icon": "📊",
+          "is_lead": false,
+          "sources": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/processos/sop-fluxo-vendas.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/processos/sop-fluxo-vendas.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/webdesign/agents/cro-analyst.md"
+        },
+        {
+          "id": "frontend-developer",
+          "squad": "webdesign",
+          "persona": "Dev",
+          "role": "Implementação técnica da página — HTML semântico, CSS, JS e integrações",
+          "icon": "💻",
+          "is_lead": false,
+          "sources": [
+            "docs/landing-cindy-vendas/",
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/crm/design-direction.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/crm/design-direction.md",
+            "docs/landing-cindy-vendas/"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 4,
+          "file": "squads/webdesign/agents/frontend-developer.md"
+        },
+        {
+          "id": "motion-designer",
+          "squad": "webdesign",
+          "persona": "Mo",
+          "role": "Animações, micro-interações e assets dinâmicos que elevam a experiência",
+          "icon": "✨",
+          "is_lead": false,
+          "sources": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/landing-cindy-vendas/"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/landing-cindy-vendas/"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/webdesign/agents/motion-designer.md"
+        },
+        {
+          "id": "ux-researcher",
+          "squad": "webdesign",
+          "persona": "Rea",
+          "role": "Pesquisa de usuário, personas e mapeamento de jornada — informa o squad com dados reais",
+          "icon": "🔬",
+          "is_lead": false,
+          "sources": [
+            "docs/saas-otica/voz-do-cliente-reclameaqui.md",
+            "docs/saas-otica/pesquisa-mercado.md",
+            "docs/aprendizados-ia/heuristicas-vitor.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/saas-otica/pesquisa-mercado.md",
+            "docs/saas-otica/voz-do-cliente-reclameaqui.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 4,
+          "file": "squads/webdesign/agents/ux-researcher.md"
+        },
+        {
+          "id": "seo-specialist",
+          "squad": "webdesign",
+          "persona": "Seo",
+          "role": "Otimização para buscadores — keywords, estrutura semântica e performance",
+          "icon": "🔍",
+          "is_lead": false,
+          "sources": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md"
+          ],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 4,
+          "file": "squads/webdesign/agents/seo-specialist.md"
+        },
+        {
+          "id": "brand-strategist",
+          "squad": "webdesign",
+          "persona": "Stella",
+          "role": "Define identidade de marca antes do design — posicionamento, tom de voz, paleta",
+          "icon": "🎯",
+          "is_lead": false,
+          "sources": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md",
+            "docs/ecossistema/universo-marca.md"
+          ],
+          "docs": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/mapa-posicionamento-marca.md",
+            "docs/ecossistema/universo-marca.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/webdesign/agents/brand-strategist.md"
+        },
+        {
+          "id": "storytelling-expert",
+          "squad": "webdesign",
+          "persona": "Story",
+          "role": "Narrativa, jornada do herói e conexão emocional da página",
+          "icon": "📖",
+          "is_lead": false,
+          "sources": [
+            "docs/ecossistema/brand-book-marca-pessoal.md",
+            "docs/ecossistema/benchmark-marca-pessoal-completo.md",
+            "docs/aprendizados-ia/heuristicas-vitor.md"
+          ],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md",
+            "docs/ecossistema/benchmark-marca-pessoal-completo.md",
+            "docs/ecossistema/brand-book-marca-pessoal.md"
+          ],
+          "clones": [],
+          "clones_formal": [],
+          "clones_prose_only": [],
+          "commands": 0,
+          "tasks": 3,
+          "file": "squads/webdesign/agents/storytelling-expert.md"
+        },
+        {
+          "id": "web-designer",
+          "squad": "webdesign",
+          "persona": "Vera",
+          "role": "Layout, UX/UI, wireframes e identidade visual aplicada à página",
+          "icon": "🖌️",
+          "is_lead": false,
+          "sources": [],
+          "docs": [
+            "docs/aprendizados-ia/heuristicas-vitor.md"
+          ],
+          "clones": [
+            "dan-mall"
+          ],
+          "clones_formal": [],
+          "clones_prose_only": [
+            "dan-mall"
+          ],
+          "commands": 0,
+          "tasks": 4,
+          "file": "squads/webdesign/agents/web-designer.md"
+        }
+      ]
+    }
+  ],
+  "clones": [
+    {
+      "id": "al-ries",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "charlie-munger",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "dan-mall",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "eugene-schwartz",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "hormozi",
+      "files": 4,
+      "complete": true,
+      "depth": "primária",
+      "source_docs": 16,
+      "has_command": true
+    },
+    {
+      "id": "michael-gerber",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "molly-pittman",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "naval-ravikant",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "simon-sinek",
+      "files": 4,
+      "complete": true,
+      "depth": "consultiva",
+      "source_docs": 0,
+      "has_command": true
+    },
+    {
+      "id": "tay-dantas",
+      "files": 4,
+      "complete": true,
+      "depth": "primária",
+      "source_docs": 6,
+      "has_command": true
+    }
+  ],
+  "core_agents": [
+    "aiox-master",
+    "analyst",
+    "architect",
+    "data-engineer",
+    "dev",
+    "devops",
+    "pm",
+    "po",
+    "qa",
+    "sm",
+    "squad-creator",
+    "ux-design-expert"
+  ],
+  "activity": [
+    {
+      "sha": "cef6cfe",
+      "date": "2026-07-27",
+      "subject": "fix(crm): sync_out lida com endereçamento @lid do WhatsApp [VIZIOM]"
+    },
+    {
+      "sha": "81b79e9",
+      "date": "2026-07-27",
+      "subject": "feat(crm): sync de mensagens enviadas pelo celular (fromMe) — dry-run [VIZIOM]"
+    },
+    {
+      "sha": "62f7c58",
+      "date": "2026-07-27",
+      "subject": "fix(security): revoga grants de anon em agente_sdr_historico e sdr_midias [A-1]"
+    },
+    {
+      "sha": "b41f2d8",
+      "date": "2026-07-27",
+      "subject": "feat(crm): atendimento auto-esconde/mostra conversas via polling de conexão [VIZIOM]"
+    },
+    {
+      "sha": "fae8964",
+      "date": "2026-07-26",
+      "subject": "docs(aiox): cascata de agentes para aprimoramento da estrutura de squads"
+    },
+    {
+      "sha": "2733151",
+      "date": "2026-07-26",
+      "subject": "feat(crm): atendimento pronto p/ equipe — não-lida, busca, lead on-demand [VIZIOM]"
+    },
+    {
+      "sha": "a70c104",
+      "date": "2026-07-26",
+      "subject": "fix(squads): conecta os clones órfãos aos agentes que deveriam consultá-los"
+    },
+    {
+      "sha": "cae4569",
+      "date": "2026-07-26",
+      "subject": "docs(clones): plano de upgrade #1 — Eugene Schwartz, mapa de fontes primárias"
+    },
+    {
+      "sha": "ec59ae2",
+      "date": "2026-07-25",
+      "subject": "docs(roundtable): primeira mesa real — estratégia de conteúdo para vender Implementação de IA"
+    },
+    {
+      "sha": "52ebdc1",
+      "date": "2026-07-25",
+      "subject": "fix(aiox): roundtable — formato de task, registro no master e honestidade do modo solo"
+    },
+    {
+      "sha": "66f4e8c",
+      "date": "2026-07-25",
+      "subject": "feat(aiox): roundtable — mecanismo de deliberação multi-clone (Onda 3, P0)"
+    },
+    {
+      "sha": "dd3de1b",
+      "date": "2026-07-25",
+      "subject": "feat(aiox): fundação da startup team — 7 squads novos + 8 clones + QA gate"
+    }
+  ],
+  "state": {
+    "blocks": [],
+    "findings": [],
+    "last_op": null
+  },
+  "totals": {
+    "squads": 8,
+    "agents": 35,
+    "clones": 10,
+    "links": 15,
+    "orphan_clones": [],
+    "consultive_clones": 8,
+    "agents_with_sources": 35,
+    "agents_without_clone": 26,
+    "prose_only_links": 6
+  }
+}
