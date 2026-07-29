@@ -355,6 +355,23 @@
     .chat-hu .chat-bubble { background: rgba(52,199,89,.13); border-color: rgba(52,199,89,.4); border-bottom-right-radius: 3px; }
     .chat-nota .chat-bubble { background: transparent; border-style: dashed; max-width: 92%; opacity: .82; }
     .chat-autor { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; opacity: .7; }
+    /* ── Fase 1 do inbox: leitura limpa (benchmark Chatwoot) ── */
+    /* separador de dia: a data saiu de DENTRO de cada balão e virou uma marca por dia */
+    .chat-dia { display: flex; justify-content: center; margin: 12px 0 8px; }
+    .chat-dia span { font-size: 10px; font-weight: 700; color: var(--muted); background: var(--navy3); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; }
+    /* avatar de 2 letras: identifica o autor de relance, sem ler o rótulo */
+    .chat-av { width: 26px; height: 26px; border-radius: 50%; flex: 0 0 26px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; letter-spacing: .02em; align-self: flex-end; margin-bottom: 2px; }
+    .chat-ld .chat-av { background: var(--navy3); color: var(--text-2); border: 1px solid var(--border); margin-right: 6px; }
+    .chat-ag .chat-av { background: rgba(200,169,110,.2); color: var(--gold2); border: 1px solid rgba(200,169,110,.45); margin-left: 6px; }
+    .chat-hu .chat-av { background: rgba(52,199,89,.18); color: var(--green); border: 1px solid rgba(52,199,89,.45); margin-left: 6px; }
+    .chat-msg.chat-ag, .chat-msg.chat-hu { flex-direction: row; }   /* bolha, depois avatar */
+    .act-hora { font-size: 10px; color: var(--muted); margin-top: 3px; text-align: right; }
+    /* mídia com cara de player em vez de link solto */
+    .mid-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--navy3); border: 1px solid var(--border); color: var(--white); border-radius: 999px; padding: 5px 12px 5px 6px; cursor: pointer; font-family: inherit; font-size: 12px; }
+    .mid-btn:hover { border-color: var(--blue); }
+    .mid-btn i { width: 20px; height: 20px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 9px; font-style: normal; color: #fff; }
+    .mid-box audio { max-width: 220px; height: 34px; display: block; }
+    .mid-box img { max-width: 220px; border-radius: 8px; display: block; cursor: zoom-in; }
     .chat-ag .chat-autor { color: var(--gold2); }
     .chat-hu .chat-autor { color: var(--green); }
     /* conexão WhatsApp (aba Agente SDR) */
@@ -4706,6 +4723,8 @@ function abrirConversa(tel) {
   const m = document.getElementById('at-conv-msgs'); if (m) m.scrollTop = m.scrollHeight
   atMarkSeen(tel); renderListaAtendimento()   // limpa não-lida desta conversa + atualiza contador
   document.getElementById('at-reply-input')?.focus()
+  // áudio/imagem das últimas mensagens já vêm prontos (fire-and-forget: não trava a abertura)
+  autoloadMidias().then(() => { const c = document.getElementById('at-conv-msgs'); if (c) c.scrollTop = c.scrollHeight })
 }
 
 function voltarInbox() { document.getElementById('at-inbox')?.classList.remove('ver-conversa'); _atConvAtiva = null; renderAtendimento() }
@@ -4913,11 +4932,37 @@ async function conectarWhatsAppAt() {
 }
 
 // Renderiza o histórico do lead como chat de atendimento (bolhas por autor)
+// iniciais pro avatar: "Thalita Oliveira" → "TO" · "Carol" → "CA"
+function iniciais(nome) {
+  const p = String(nome || '').trim().split(/\s+/).filter(Boolean)
+  if (!p.length) return '??'
+  return (p.length === 1 ? p[0].slice(0, 2) : p[0][0] + p[1][0]).toUpperCase()
+}
+const _HOJE_STR = () => new Date().toDateString()
+// rótulo do separador de dia: Hoje / Ontem / dd/mm/aaaa
+function rotuloDia(ts) {
+  if (!ts) return ''
+  const d = new Date(ts)
+  if (d.toDateString() === _HOJE_STR()) return 'Hoje'
+  const ontem = new Date(); ontem.setDate(ontem.getDate() - 1)
+  if (d.toDateString() === ontem.toDateString()) return 'Ontem'
+  return d.toLocaleDateString('pt-BR')
+}
+function soHora(ts) {
+  return ts ? new Date(ts).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : ''
+}
+
 function renderChatLead(activities) {
   if (!(activities || []).length) return '<div style="color:var(--muted);font-size:12px">Nenhuma conversa ainda.</div>'
   const LADO = { lead: 'ld', agente: 'ag', humano: 'hu' }
   const NOME = { lead: '', agente: 'Carol', humano: 'Você' }
-  return activities.map(normAct).map(a => {
+  const msgs = activities.map(normAct)
+  let diaAnterior = null
+  const html = []
+  for (const a of msgs) {
+    // separador de dia: a data era repetida em CADA balão, o que virava ruído puro
+    const dia = a.date ? new Date(a.date).toDateString() : null
+    if (dia && dia !== diaAnterior) { html.push(`<div class="chat-dia"><span>${esc(rotuloDia(a.date))}</span></div>`); diaAnterior = dia }
     const lado = LADO[a.autor] || 'nota'
     // humano com 'por' registrado mostra QUEM atendeu (Thalita/Gabriel/você); senão cai no genérico.
     // "Equipe (WhatsApp)" é o rótulo genérico que o sync grava pra mensagem digitada no
@@ -4925,17 +4970,33 @@ function renderChatLead(activities) {
     let nome = a.autor === 'humano' ? (a.por || NOME.humano) : NOME[a.autor]
     if (nome === 'Equipe (WhatsApp)') nome = nomeResponsavel(false) || 'Equipe (WhatsApp)'
     const autorHtml = nome ? `<div class="chat-autor">${esc(nome)}</div>` : ''
-    // áudio/imagem: em vez do texto morto ("🎤 áudio"), oferece carregar a mídia
+    // áudio/imagem: player em vez do texto morto ("🎤 áudio"). data-midia deixa o
+    // autoload achar as mídias da conversa aberta sem varrer o DOM inteiro.
     const corpo = (a.media && a.waId)
-      ? `<div class="act-text" id="mid-${esc(a.waId)}"><button class="btn-card-action" onclick="carregarMidia('${esc(a.waId)}','${esc(a.media)}')">${a.media === 'audio' ? '▶ ouvir áudio' : a.media === 'image' ? '🖼 ver imagem' : '⬇ abrir ' + esc(a.media)}</button></div>`
+      ? `<div class="act-text mid-box" id="mid-${esc(a.waId)}" data-midia="${esc(a.media)}" data-wa="${esc(a.waId)}"><button class="mid-btn" onclick="carregarMidia('${esc(a.waId)}','${esc(a.media)}')"><i>${a.media === 'audio' ? '▶' : '↓'}</i>${a.media === 'audio' ? 'áudio' : a.media === 'image' ? 'imagem' : esc(a.media)}</button></div>`
       : `<div class="act-text">${esc(a.text)}</div>`
-    return `<div class="chat-msg chat-${lado}"><div class="chat-bubble">${autorHtml}${corpo}<div class="act-date">${fmtDate(a.date)}</div></div></div>`
-  }).join('')
+    const av = lado === 'nota' ? '' : `<div class="chat-av" title="${esc(nome || 'cliente')}">${esc(iniciais(nome || 'cliente'))}</div>`
+    const bolha = `<div class="chat-bubble">${autorHtml}${corpo}<div class="act-hora">${esc(soHora(a.date))}</div></div>`
+    // lead: avatar à esquerda · nós: avatar à direita (espelha o lado da bolha)
+    html.push(`<div class="chat-msg chat-${lado}">${lado === 'ld' ? av + bolha : bolha + av}</div>`)
+  }
+  return html.join('')
+}
+
+// Carrega sozinho as mídias da conversa ABERTA, no máximo 8 — o suficiente pra
+// leitura parecer imediata sem baixar base64 de conversa antiga inteira.
+async function autoloadMidias(limite = 8) {
+  const box = document.getElementById('at-conv-msgs'); if (!box) return
+  const pend = [...box.querySelectorAll('.mid-box[data-wa]')].slice(-limite)   // as mais recentes
+  for (const el of pend) {
+    if (!el.querySelector('.mid-btn')) continue      // já carregada
+    await carregarMidia(el.dataset.wa, el.dataset.midia, true)
+  }
 }
 
 // Busca a mídia no Evolution (pelo wa_id) e troca o botão pelo player/imagem.
 // On-demand de propósito: guardar base64 no histórico inflaria a tabela.
-async function carregarMidia(waId, tipo) {
+async function carregarMidia(waId, tipo, silencioso = false) {
   const box = document.getElementById('mid-' + waId); if (!box) return
   const antes = box.innerHTML
   box.innerHTML = '<span style="font-size:11px;color:var(--muted)">carregando…</span>'
@@ -4944,12 +5005,13 @@ async function carregarMidia(waId, tipo) {
     if (!r.base64) throw new Error('mídia não retornada')
     const mime = r.mimetype || (tipo === 'audio' ? 'audio/ogg' : tipo === 'image' ? 'image/jpeg' : 'application/octet-stream')
     const src = `data:${mime};base64,${r.base64}`
-    if (tipo === 'audio') box.innerHTML = `<audio controls preload="none" src="${src}" style="max-width:220px"></audio>`
-    else if (tipo === 'image') box.innerHTML = `<img src="${src}" alt="imagem recebida" style="max-width:220px;border-radius:8px;display:block" />`
+    if (tipo === 'audio') box.innerHTML = `<audio controls preload="metadata" src="${src}"></audio>`
+    else if (tipo === 'image') box.innerHTML = `<img src="${src}" alt="imagem recebida" onclick="window.open(this.src,'_blank')" title="abrir em nova aba" />`
     else box.innerHTML = `<a href="${src}" download style="color:var(--blue)">baixar arquivo</a>`
   } catch (e) {
     box.innerHTML = antes
-    showToast('Não deu pra carregar a mídia: ' + e.message, 'error')
+    // silencioso no autoload: um toast por mídia que falha viraria enxurrada
+    if (!silencioso) showToast('Não deu pra carregar a mídia: ' + e.message, 'error')
   }
 }
 
