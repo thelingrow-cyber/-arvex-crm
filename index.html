@@ -370,10 +370,17 @@
     .mid-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--navy3); border: 1px solid var(--border); color: var(--white); border-radius: 999px; padding: 5px 12px 5px 6px; cursor: pointer; font-family: inherit; font-size: 12px; }
     .mid-btn:hover { border-color: var(--blue); }
     .mid-btn i { width: 20px; height: 20px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 9px; font-style: normal; color: #fff; }
-    /* cabeçalhos de seção da lista: dão a ordem sem virar aba que esconde conversa */
+    /* abas do inbox: Geral · Aguardando · IA — contador vira dourado quando há não-lida */
+    .at-tabs { display: flex; gap: 2px; padding: 6px 8px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--navy2); z-index: 2; }
+    .at-tab { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; background: transparent; border: 1px solid transparent; border-radius: 8px; color: var(--muted); font-family: inherit; font-size: 11px; font-weight: 700; padding: 6px 4px; cursor: pointer; }
+    .at-tab:hover { color: var(--white); }
+    .at-tab.sel { background: var(--navy3); border-color: var(--border); color: var(--white); }
+    .at-tab-n { background: var(--navy3); border: 1px solid var(--border); border-radius: 999px; padding: 0 5px; font-size: 9px; color: var(--text-2); min-width: 16px; }
+    .at-tab.sel .at-tab-n { background: var(--navy2); }
+    .at-tab-n.urg { background: rgba(200,169,110,.22); border-color: rgba(200,169,110,.5); color: var(--gold2); }
+    /* cabeçalhos de seção da lista */
     .at-sec { display: flex; align-items: center; gap: 6px; padding: 9px 12px 5px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--gold2); }
     .at-sec span { background: var(--navy3); border: 1px solid var(--border); border-radius: 999px; padding: 1px 6px; font-size: 9px; color: var(--text-2); }
-    .at-sec-fraca { color: var(--muted); border-top: 1px solid var(--border); margin-top: 4px; }
     .at-sec-link { color: var(--muted); cursor: pointer; border-top: 1px solid var(--border); margin-top: 4px; }
     .at-sec-link:hover { color: var(--white); }
     .btn-resolver { border-color: rgba(52,199,89,.45) !important; color: var(--green) !important; }
@@ -4602,6 +4609,19 @@ async function garantirLead(tel) {
 //   aguardando ele = última mensagem é nossa
 let cachedEstados = {}          // { [tel]: { resolvida_em, resolvida_por } }
 let _atVerResolvidas = false    // seção de resolvidas expandida?
+let _atAba = 'geral'            // geral | aguardando | ia
+
+// Em qual grupo a conversa cai. Mutuamente exclusivos, todos DERIVADOS —
+// ninguém marca nada à mão, então não há como ficar desatualizado:
+//   ia         → a Carol está cuidando (agente ligado e não pausado nesse lead)
+//   geral      → é nossa e o cliente falou por último = precisa resposta
+//   aguardando → é nossa e nós falamos por último = a bola está com o cliente
+// "Assumir" pausa a Carol → a conversa sai de IA e cai em geral/aguardando sozinha.
+function grupoConversa(c) {
+  if (c.resolvida) return 'resolvida'
+  if (carolAtiva() && !(c.lead && c.lead.agente_pausado)) return 'ia'
+  return c.esperando ? 'geral' : 'aguardando'
+}
 
 async function loadEstadosConversa() {
   const { data, error } = await sb.from('conversa_estado').select('session_id, resolvida_em, resolvida_por').limit(5000)
@@ -4761,31 +4781,41 @@ function renderListaAtendimento() {
     </div>`
   }
 
-  // A lista já vem na ordem certa em vez de oferecer filtros pra escolher:
-  // quem está esperando resposta primeiro, resolvidas fora do caminho. Filtro em
-  // aba esconderia conversa — e mensagem nova chegaria justo na aba que ninguém
-  // está olhando.
-  const ativas    = convs.filter(c => !c.resolvida)
-  const esperando = ativas.filter(c => c.esperando)
-  const aguardando = ativas.filter(c => !c.esperando)
-  const resolvidas = convs.filter(c => c.resolvida)
+  // Três grupos: Geral (precisa de nós) · Aguardando (bola com o cliente) · IA
+  // (Carol cuidando). Cada aba mostra as não-lidas em destaque justamente pra
+  // mensagem nova NÃO passar despercebida numa aba que ninguém está olhando —
+  // que é o risco de qualquer filtro que esconde conversa.
+  const grupos = { geral: [], aguardando: [], ia: [], resolvida: [] }
+  for (const c of convs) grupos[grupoConversa(c)].push(c)
+  const naoLidas = g => grupos[g].filter(c => c.unread).length
 
-  const partes = []
-  if (esperando.length) {
-    partes.push(`<div class="at-sec">⏳ Esperando você <span>${esperando.length}</span></div>`)
-    partes.push(esperando.map(item).join(''))
+  const ABAS = [['geral', 'Geral'], ['aguardando', 'Aguardando'], ['ia', 'IA']]
+  // se a aba ativa esvaziou e outra tem gente esperando, cai pra ela sozinho
+  if (!grupos[_atAba].length) {
+    const comAlgo = ABAS.find(([k]) => grupos[k].length)
+    if (comAlgo) _atAba = comAlgo[0]
   }
-  if (aguardando.length) {
-    if (esperando.length) partes.push(`<div class="at-sec at-sec-fraca">Aguardando o cliente</div>`)
-    partes.push(aguardando.map(item).join(''))
-  }
-  if (resolvidas.length) {
-    partes.push(`<div class="at-sec at-sec-link" onclick="toggleResolvidas()">${_atVerResolvidas ? '▾' : '▸'} resolvidas <span>${resolvidas.length}</span></div>`)
-    if (_atVerResolvidas) partes.push(resolvidas.map(item).join(''))
-  }
-  box.innerHTML = partes.join('')
+  const tabs = ABAS.map(([k, rot]) => {
+    const n = grupos[k].length, u = naoLidas(k)
+    return `<button class="at-tab${_atAba === k ? ' sel' : ''}" onclick="setAbaAtendimento('${k}')">${rot}
+      <span class="at-tab-n${u ? ' urg' : ''}">${u || n}</span></button>`
+  }).join('')
+
+  const lista = grupos[_atAba].length
+    ? grupos[_atAba].map(item).join('')
+    : `<div class="at-vazio">${_atAba === 'ia' ? (carolAtiva() ? 'A Carol não está com nenhuma conversa agora.' : 'A Carol está desligada — nenhuma conversa com IA.') : _atAba === 'geral' ? 'Nada esperando resposta. 👏' : 'Nenhuma conversa aguardando o cliente.'}</div>`
+
+  const resolvidas = grupos.resolvida
+  const rodape = resolvidas.length
+    ? `<div class="at-sec at-sec-link" onclick="toggleResolvidas()">${_atVerResolvidas ? '▾' : '▸'} resolvidas <span>${resolvidas.length}</span></div>`
+      + (_atVerResolvidas ? resolvidas.map(item).join('') : '')
+    : ''
+
+  box.innerHTML = `<div class="at-tabs">${tabs}</div>${lista}${rodape}`
   if (_atConvAtiva && !convs.some(c => c.tel === _atConvAtiva)) _atConvAtiva = null
 }
+
+function setAbaAtendimento(k) { _atAba = k; renderListaAtendimento() }
 
 function abrirConversa(tel) {
   _atConvAtiva = tel
