@@ -4498,6 +4498,16 @@ async function responderWhatsApp(id, tel) {
 // ── ABA ATENDIMENTO (inbox WhatsApp) ───────────────────────────────────────
 let _atConvAtiva = null
 let _atConectado = null   // null=desconhecido · true/false = estado da conexão (some a lista se false)
+// Quem é o responsável pelo atendimento = o dono do número conectado. Uma
+// instância Evolution atende um número por vez, então hoje TODA conversa é de
+// quem escaneou o QR (a Thalita). Vem do profileName do WhatsApp.
+let _atPerfil = { number: null, profileName: null }
+// "Thalita Oliveira- Equipe Cindy Batista" → "Thalita Oliveira" → "Thalita"
+function nomeResponsavel(curto = true) {
+  const p = String(_atPerfil.profileName || '').split(/[-–|(]/)[0].trim()
+  if (!p) return ''
+  return curto ? p.split(/\s+/)[0] : p
+}
 
 function fmtHora(ts) {
   if (!ts) return ''
@@ -4621,11 +4631,15 @@ function updateAtBadge(n) {
 function carolAtiva() { return (cachedAgentes || []).some(a => a && a.ativo === true) }
 
 // Quem está atendendo esta conversa, na ordem de precedência real:
-// atendente nomeado > humano assumiu > Carol (só se ligada) > ninguém
+// atendente nomeado > Carol (só se ligada) > dono do número conectado > nada.
+// O responsável pelo número entra por último porque é o padrão: se ninguém
+// assumiu e a Carol está desligada, quem responde é quem está com o WhatsApp.
 function badgeAtendimento(lead) {
   if (lead && lead.atendente) return `<span class="at-badge pausado">👤 ${esc(lead.atendente)}</span>`
+  if (carolAtiva() && !(lead && lead.agente_pausado)) return '<span class="at-badge ativo">Carol</span>'
+  const resp = nomeResponsavel()
+  if (resp) return `<span class="at-badge pausado">👤 ${esc(resp)}</span>`
   if (lead && lead.agente_pausado) return '<span class="at-badge pausado">humano</span>'
-  if (carolAtiva()) return '<span class="at-badge ativo">Carol</span>'
   return ''
 }
 
@@ -4680,7 +4694,7 @@ function abrirConversa(tel) {
     <div class="at-conv-header">
       <div style="display:flex;align-items:center;gap:10px">
         <button class="btn-card-action at-back" onclick="voltarInbox()">←</button>
-        <div><div style="font-weight:700;font-size:14px">${esc(nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(tel || '—')}${atendente ? ' · 👤 <strong style="color:var(--gold2)">' + esc(atendente) + '</strong>' : (pausado ? ' · humano atendendo' : (carolAtiva() ? ' · Carol respondendo' : ' · agente desligado'))}</div></div>
+        <div><div style="font-weight:700;font-size:14px">${esc(nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(tel || '—')}${atendente ? ' · 👤 <strong style="color:var(--gold2)">' + esc(atendente) + '</strong>' : (carolAtiva() && !pausado ? ' · Carol respondendo' : (nomeResponsavel(false) ? ' · 👤 <strong style="color:var(--gold2)">' + esc(nomeResponsavel(false)) + '</strong>' : (pausado ? ' · humano atendendo' : ' · sem responsável')))}</div></div>
       </div>
       <div style="display:flex;gap:6px">${ctrl}${transferBtn}${verLead}</div>
     </div>
@@ -4800,6 +4814,8 @@ async function renderConexaoAtendimento(silent = false) {
   try {
     const st = await evoProxy('status')
     _atConectado = !!st.connected
+    // guarda o dono do número: é o responsável mostrado em cada conversa
+    _atPerfil = { number: st.number || null, profileName: st.connected ? (st.profileName || null) : null }
     if (st.connected) {
       // mostra QUAL número está conectado (some quando troca de número) — resolve "não atualiza"
       const fmtNum = n => { const s = String(n || '').replace(/\D/g, ''); if (!s) return ''
@@ -4903,8 +4919,11 @@ function renderChatLead(activities) {
   const NOME = { lead: '', agente: 'Carol', humano: 'Você' }
   return activities.map(normAct).map(a => {
     const lado = LADO[a.autor] || 'nota'
-    // humano com 'por' registrado mostra QUEM atendeu (Thalita/Gabriel/você); senão cai no genérico
-    const nome = a.autor === 'humano' ? (a.por || NOME.humano) : NOME[a.autor]
+    // humano com 'por' registrado mostra QUEM atendeu (Thalita/Gabriel/você); senão cai no genérico.
+    // "Equipe (WhatsApp)" é o rótulo genérico que o sync grava pra mensagem digitada no
+    // celular — trocamos pelo nome do dono do número, que é quem de fato mandou.
+    let nome = a.autor === 'humano' ? (a.por || NOME.humano) : NOME[a.autor]
+    if (nome === 'Equipe (WhatsApp)') nome = nomeResponsavel(false) || 'Equipe (WhatsApp)'
     const autorHtml = nome ? `<div class="chat-autor">${esc(nome)}</div>` : ''
     // áudio/imagem: em vez do texto morto ("🎤 áudio"), oferece carregar a mídia
     const corpo = (a.media && a.waId)
