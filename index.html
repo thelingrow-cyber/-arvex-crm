@@ -1051,7 +1051,7 @@
       </div>
       <div class="form-row">
         <div class="form-group"><label>Data da reunião</label><input type="date" id="cm-data" /></div>
-        <div class="form-group"><label>Lead vinculado (opcional)</label><select id="cm-lead"><option value="">—</option></select></div>
+        <div class="form-group"><label>Lead vinculado (opcional)</label><input type="text" id="cm-lead" list="cm-lead-opts" placeholder="Digite o nome do lead…" autocomplete="off" /><datalist id="cm-lead-opts"></datalist></div>
       </div>
       <div class="form-group"><label>Resultado *</label>
         <div class="coach-seg" id="cm-resultado">
@@ -1798,6 +1798,7 @@ function renderCoachCards() {
 // ── S4 — Nova Reunião ──
 let cmResultado = ''
 let cmDupeConfirmed = false
+let cmLeadMap = {}   // rótulo digitado (lowercase) → lead_id, preenchido em openNewMeeting()
 // ADR-18/D3-D4: hash simples (tamanho + primeiros/últimos 200 chars) — não é
 // criptográfico, só serve pra flagar "provavelmente a mesma call colada de novo".
 function transcriptHash(t) {
@@ -1812,13 +1813,24 @@ function cmSetResultado(v) {
 function openNewMeeting() {
   cmResultado = ''
   cmDupeConfirmed = false
-  ;['cm-transcript','cm-cliente','cm-produto','cm-ticket'].forEach(id => { const e = document.getElementById(id); if (e) e.value = '' })
+  ;['cm-transcript','cm-cliente','cm-produto','cm-ticket','cm-lead'].forEach(id => { const e = document.getElementById(id); if (e) e.value = '' })
   document.getElementById('cm-error').style.display = 'none'
   document.getElementById('cm-ticket-wrap').style.display = 'none'
   document.querySelectorAll('#cm-resultado button').forEach(b => b.classList.remove('active'))
   document.getElementById('cm-data').value = new Date().toISOString().slice(0,10)
-  const sel = document.getElementById('cm-lead')
-  if (sel) sel.innerHTML = '<option value="">—</option>' + (cachedLeads||[]).map(l => `<option value="${l.id}">${esc(l.nome||'')}</option>`).join('')
+  // ADR-19: era um <select> com a base inteira (228 leads) — inutilizável, e lead_id
+  // vazio quebra a trigger vendas_marca_meeting_ganhou (o resultado nunca vira "ganhou"
+  // sozinho). Datalist = busca por digitação, nativa, sem lib e sem quebrar no mobile.
+  cmLeadMap = {}
+  const dl = document.getElementById('cm-lead-opts')
+  if (dl) {
+    dl.innerHTML = (cachedLeads||[]).map(l => {
+      // rótulo com telefone desempata homônimos — e é o que o closer reconhece
+      const label = (l.nome || 'sem nome') + (l.tel ? ' · ' + l.tel : '')
+      cmLeadMap[label.toLowerCase()] = l.id
+      return `<option value="${esc(label)}"></option>`
+    }).join('')
+  }
   abrirModal('modal-coach-new')
 }
 function closeNewMeeting() { document.getElementById('modal-coach-new').classList.remove('open') }
@@ -1839,11 +1851,16 @@ async function saveMeeting() {
       return
     }
   }
+  // lead: texto livre → id. Digitou algo que não está na lista? Avisa em vez de
+  // salvar sem vínculo em silêncio — lead_id nulo é o que mata a conversão real.
+  const leadTxt = document.getElementById('cm-lead').value.trim()
+  const leadId = leadTxt ? (cmLeadMap[leadTxt.toLowerCase()] || null) : null
+  if (leadTxt && !leadId) { err.textContent = 'Lead não encontrado — escolha um da lista ou deixe o campo vazio.'; err.style.display = ''; return }
   const rec = {
     cliente_nome: document.getElementById('cm-cliente').value.trim() || null,
     produto: document.getElementById('cm-produto').value.trim() || null,
     data_reuniao: document.getElementById('cm-data').value || null,
-    lead_id: document.getElementById('cm-lead').value || null,
+    lead_id: leadId,
     resultado: cmResultado,
     ticket: cmResultado === 'ganhou' ? (parseFloat(document.getElementById('cm-ticket').value) || null) : null,
     transcript, status: 'pending',
