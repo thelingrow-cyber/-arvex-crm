@@ -4392,7 +4392,48 @@ async function evoProxy(action, params = {}) {
   return data
 }
 
+// ── QR do WhatsApp: renovação automática ────────────────────────────────────
+// O QR do WhatsApp/Baileys expira em ~20-30s e o Evolution já gera outro do lado
+// do servidor. A tela antiga buscava o QR UMA vez e deixava a imagem parada: quem
+// escaneava sem pressa lia um código morto e a conexão nunca acontecia — era o
+// "passo o QR e não conecta". Agora a imagem se renova sozinha e o status é
+// verificado até conectar, sem depender do botão "Já conectei".
+let _qrRenovarTimer = null, _qrStatusTimer = null
+function pararQrLoop() {
+  if (_qrRenovarTimer) { clearInterval(_qrRenovarTimer); _qrRenovarTimer = null }
+  if (_qrStatusTimer) { clearInterval(_qrStatusTimer); _qrStatusTimer = null }
+}
+// troca só o src da <img> — não re-renderiza a tela (sem piscar, sem perder o scroll)
+// vivo = QR ainda na tela E visível (offsetParent some quando a view fica display:none),
+// senão o loop seguiria batendo na ponte a cada 3s com o usuário em outra aba
+function qrNaTela(imgId) {
+  const img = document.getElementById(imgId)
+  return img && img.offsetParent !== null ? img : null
+}
+async function renovarQrImg(imgId) {
+  const img = qrNaTela(imgId)
+  if (!img) { pararQrLoop(); return }   // usuário saiu da tela do QR
+  try {
+    const r = await evoProxy('qr')
+    if (r.connected || !r.base64) return
+    img.src = String(r.base64).startsWith('data:') ? r.base64 : 'data:image/png;base64,' + r.base64
+  } catch { /* falha transiente da ponte: mantém o QR atual e tenta no próximo ciclo */ }
+}
+// renova a cada 20s (antes do TTL) e confere a conexão a cada 3s
+function iniciarQrLoop(imgId, aoConectar) {
+  pararQrLoop()
+  _qrRenovarTimer = setInterval(() => renovarQrImg(imgId), 20000)
+  _qrStatusTimer = setInterval(async () => {
+    if (!qrNaTela(imgId)) { pararQrLoop(); return }
+    try {
+      const st = await evoProxy('status')
+      if (st.connected) { pararQrLoop(); showToast('WhatsApp conectado!', 'success'); aoConectar() }
+    } catch { /* ignora: só continua tentando */ }
+  }, 3000)
+}
+
 async function renderConexaoWhatsApp() {
+  pararQrLoop()
   const el = document.getElementById('wa-conexao-card'); if (!el) return
   el.innerHTML = `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-loading"></span> Verificando conexão do WhatsApp…</div></div>`
   try {
@@ -4413,7 +4454,8 @@ async function conectarWhatsApp() {
     if (r.connected) { renderConexaoWhatsApp(); return }
     if (!r.base64) throw new Error('QR não retornado')
     const src = String(r.base64).startsWith('data:') ? r.base64 : 'data:image/png;base64,' + r.base64
-    el.innerHTML = `<div class="wa-card wa-qr"><div class="wa-status"><span class="wa-dot wa-loading"></span> Escaneie no WhatsApp → Aparelhos conectados → Conectar um aparelho</div><img src="${src}" alt="QR de conexão do WhatsApp" class="wa-qr-img"/><div style="display:flex;gap:8px"><button class="btn-card-action" onclick="conectarWhatsApp()">Gerar novo QR</button><button class="btn-card-action" onclick="renderConexaoWhatsApp()">Já conectei</button></div></div>`
+    el.innerHTML = `<div class="wa-card wa-qr"><div class="wa-status"><span class="wa-dot wa-loading"></span> Escaneie no WhatsApp → Aparelhos conectados → Conectar um aparelho</div><img id="wa-qr-img" src="${src}" alt="QR de conexão do WhatsApp" class="wa-qr-img"/><div style="font-size:11px;color:var(--muted);margin-top:6px">O código se renova sozinho — pode escanear sem pressa.</div><div style="display:flex;gap:8px"><button class="btn-card-action" onclick="conectarWhatsApp()">Gerar novo QR</button><button class="btn-card-action" onclick="renderConexaoWhatsApp()">Já conectei</button></div></div>`
+    iniciarQrLoop('wa-qr-img', renderConexaoWhatsApp)
   } catch (e) {
     el.innerHTML = `<div class="wa-card"><div class="wa-status"><span class="wa-dot wa-off"></span> Falha ao gerar QR <span style="color:var(--muted);font-size:11px;font-weight:400">(${esc(e.message)})</span></div><button class="btn-save" onclick="conectarWhatsApp()">Tentar de novo</button></div>`
   }
@@ -4779,9 +4821,11 @@ async function conectarWhatsAppAt() {
     painel.innerHTML = `<div class="at-vazio"><div style="text-align:center">
       <div style="font-weight:700;margin-bottom:6px">Escaneie pra conectar o WhatsApp</div>
       <div style="font-size:12px;color:var(--muted);margin-bottom:12px">WhatsApp → Aparelhos conectados → Conectar um aparelho</div>
-      <img src="${src}" alt="QR de conexão" class="wa-qr-img"/>
+      <img id="at-qr-img" src="${src}" alt="QR de conexão" class="wa-qr-img"/>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px">O código se renova sozinho — pode escanear sem pressa.<br>A tela muda sozinha quando conectar.</div>
       <div style="display:flex;gap:8px;justify-content:center;margin-top:12px"><button class="btn-card-action" onclick="conectarWhatsAppAt()">Novo QR</button><button class="btn-save" onclick="renderConexaoAtendimento()">Já conectei</button></div>
     </div></div>`
+    iniciarQrLoop('at-qr-img', () => { renderConexaoAtendimento(); renderAtendimento() })
   } catch (e) {
     painel.innerHTML = `<div class="at-vazio">Falha ao gerar QR: ${esc(e.message)}<br><button class="btn-save" onclick="conectarWhatsAppAt()" style="margin-top:10px">Tentar de novo</button></div>`
   }
