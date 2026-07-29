@@ -232,7 +232,10 @@ Deno.serve(async (req)=>{
     // não mais um Set em memória alimentado por um .select() que o PostgREST
     // truncava em 1000 linhas, que foi exatamente o que estourou a tabela.
     if (action === "sync_out") {
-      const SYNC_APPLY = false; // dry-run: valida o escopo antes de gravar (ver _evo_sync_debug)
+      // LIGADO 2026-07-29 depois do dry-run confirmar o escopo: 14 conversas
+      // dentro (todas de leads), 4 fora, 105 candidatos — e não mais a caixa
+      // inteira. A duplicação agora é barrada pelo índice único em wa_id.
+      const SYNC_APPLY = true;
       const service = createClient(Deno.env.get("SUPABASE_URL"), Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"));
 
       // marco temporal + lista de ignorados
@@ -319,8 +322,20 @@ Deno.serve(async (req)=>{
       // ordem cronológica: o CRM ordena a conversa pelo id serial da tabela, então
       // inserir fora de ordem embaralharia os balões na tela
       candidatos.sort((a, b)=>a.ts - b.ts);
+      // janela de tempo lida do Evolution — se as mensagens recentes não vierem
+      // nesta fatia de 300, é aqui que se enxerga
+      const tsRecords = records.map((m)=>Number(m?.messageTimestamp || 0) * 1000).filter(Boolean);
+      const janela = tsRecords.length ? {
+        de: new Date(Math.min(...tsRecords)).toISOString(),
+        ate: new Date(Math.max(...tsRecords)).toISOString()
+      } : null;
+      // Disjuntor: no incidente das 76.145 linhas o polling reinseria tudo a cada
+      // 25s. Um ciclo normal traz dezenas de mensagens; centenas significa que
+      // algo voltou a escapar — melhor não gravar e deixar registrado.
+      const TETO = 500;
+      const estourou = candidatos.length > TETO;
       let inseridas = 0, falhas = 0;
-      if (SYNC_APPLY) {
+      if (SYNC_APPLY && !estourou) {
         for (const c of candidatos){
           const message = c.saida ? {
             type: "ai",
@@ -356,6 +371,8 @@ Deno.serve(async (req)=>{
       await service.from("_evo_sync_debug").insert({
         info: {
           apply: SYNC_APPLY,
+          estourou_teto: estourou,
+          janela,
           http: r.status,
           ok: r.ok,
           total: records.length,
