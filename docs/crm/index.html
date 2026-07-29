@@ -370,6 +370,13 @@
     .mid-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--navy3); border: 1px solid var(--border); color: var(--white); border-radius: 999px; padding: 5px 12px 5px 6px; cursor: pointer; font-family: inherit; font-size: 12px; }
     .mid-btn:hover { border-color: var(--blue); }
     .mid-btn i { width: 20px; height: 20px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 9px; font-style: normal; color: #fff; }
+    /* cabeçalhos de seção da lista: dão a ordem sem virar aba que esconde conversa */
+    .at-sec { display: flex; align-items: center; gap: 6px; padding: 9px 12px 5px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--gold2); }
+    .at-sec span { background: var(--navy3); border: 1px solid var(--border); border-radius: 999px; padding: 1px 6px; font-size: 9px; color: var(--text-2); }
+    .at-sec-fraca { color: var(--muted); border-top: 1px solid var(--border); margin-top: 4px; }
+    .at-sec-link { color: var(--muted); cursor: pointer; border-top: 1px solid var(--border); margin-top: 4px; }
+    .at-sec-link:hover { color: var(--white); }
+    .btn-resolver { border-color: rgba(52,199,89,.45) !important; color: var(--green) !important; }
     .mid-box audio { max-width: 220px; height: 34px; display: block; }
     .mid-box img { max-width: 220px; border-radius: 8px; display: block; cursor: zoom-in; }
     .chat-ag .chat-autor { color: var(--gold2); }
@@ -4587,20 +4594,78 @@ async function garantirLead(tel) {
   return leadPorTel(tel) || data
 }
 
+// ── Estado da conversa (Fase 2 do inbox) ────────────────────────────────────
+// UM estado manual só: resolvida ou não. O benchmark tinha 4 abas e o resultado
+// real era "Aguardando 50 · Fechado 0" — estado que depende de disciplina não se
+// mantém. O resto é DERIVADO do histórico e por isso está sempre certo:
+//   esperando você = última mensagem é do cliente
+//   aguardando ele = última mensagem é nossa
+let cachedEstados = {}          // { [tel]: { resolvida_em, resolvida_por } }
+let _atVerResolvidas = false    // seção de resolvidas expandida?
+
+async function loadEstadosConversa() {
+  const { data, error } = await sb.from('conversa_estado').select('session_id, resolvida_em, resolvida_por').limit(5000)
+  if (error) { console.warn('[atendimento] estados:', error.message); return cachedEstados }
+  cachedEstados = {}
+  for (const r of (data || [])) cachedEstados[r.session_id] = r
+  return cachedEstados
+}
+
+// Resolvida SÓ enquanto resolvida_em for mais novo que a última mensagem do
+// cliente — assim o cliente responder reabre a conversa sozinho, sem trigger
+// nem estado pra manter em sincronia.
+function conversaResolvida(tel, msgs) {
+  const e = cachedEstados[tel]
+  if (!e || !e.resolvida_em) return false
+  const marcada = Date.parse(e.resolvida_em) || 0
+  const ultimaDoCliente = (msgs || []).filter(m => m.autor === 'lead').reduce((mx, m) => Math.max(mx, m.date || 0), 0)
+  return marcada >= ultimaDoCliente
+}
+
 function conversasAtendimento() {
   const sess = cachedConversas || {}
   return Object.keys(sess).map(tel => {
     const lead = leadPorTel(tel)
     const msgs = sess[tel]
-    return { tel, lead, nome: lead ? lead.nome : tel, msgs, ultima: msgs[msgs.length - 1] || null }
+    const ultima = msgs[msgs.length - 1] || null
+    return {
+      tel, lead, nome: lead ? lead.nome : tel, msgs, ultima,
+      resolvida: conversaResolvida(tel, msgs),
+      // esperando resposta nossa = quem falou por último foi o cliente
+      esperando: !!(ultima && ultima.autor === 'lead')
+    }
   }).filter(c => c.ultima).sort((a, b) => (b.ultima._id || 0) - (a.ultima._id || 0))
 }
+
+async function resolverConversa(tel) {
+  const quem = (currentUser?.email || '').split('@')[0] || 'equipe'
+  const { error } = await sb.from('conversa_estado').upsert({
+    session_id: tel, resolvida_em: new Date().toISOString(), resolvida_por: quem, updated_at: new Date().toISOString()
+  }, { onConflict: 'session_id' })
+  if (error) { showToast('Erro ao resolver: ' + error.message, 'error'); return }
+  await loadEstadosConversa()
+  showToast('Conversa resolvida — sai da lista até o cliente responder')
+  voltarInbox()
+}
+
+async function reabrirConversa(tel) {
+  const { error } = await sb.from('conversa_estado').upsert({
+    session_id: tel, resolvida_em: null, resolvida_por: null, updated_at: new Date().toISOString()
+  }, { onConflict: 'session_id' })
+  if (error) { showToast('Erro ao reabrir: ' + error.message, 'error'); return }
+  await loadEstadosConversa()
+  showToast('Conversa reaberta')
+  abrirConversa(tel); renderListaAtendimento()
+}
+
+function toggleResolvidas() { _atVerResolvidas = !_atVerResolvidas; renderListaAtendimento() }
 
 function renderAtendimento() {
   renderConexaoAtendimento()   // async: seta _atConectado e re-renderiza a lista quando souber
   if (!cachedAtendentes.length) loadAtendentes()
   // precisa saber se a Carol está ligada pra não rotular conversa como dela (badgeAtendimento)
   if (!cachedAgentes.length) loadAgentes().then(renderListaAtendimento)
+  loadEstadosConversa().then(renderListaAtendimento)   // quais conversas estão resolvidas
   renderListaAtendimento()
   startAtPoll()                // verifica a conexão de tempos em tempos → some/volta automático
   syncSaidas()                 // puxa do Evolution as mensagens enviadas pelo celular (fromMe)
@@ -4622,7 +4687,11 @@ let _atPollTimer = null
 function startAtPoll() {
   stopAtPoll()
   _atPollTimer = setInterval(() => {
-    if (document.getElementById('view-atendimento')?.classList.contains('active')) { renderConexaoAtendimento(true); syncSaidas() }
+    if (document.getElementById('view-atendimento')?.classList.contains('active')) {
+      renderConexaoAtendimento(true); syncSaidas()
+      // o inbox é compartilhado: se a Thalita resolver uma conversa, o Vitor vê sem recarregar
+      loadEstadosConversa().then(renderListaAtendimento)
+    }
     else stopAtPoll()
   }, 25000)
 }
@@ -4682,14 +4751,39 @@ function renderListaAtendimento() {
     convs = convs.filter(c => (c.nome || '').toLowerCase().includes(q) || (qd && String(c.tel).replace(/\D/g, '').includes(qd)))
   }
   if (!convs.length) { box.innerHTML = `<div class="at-vazio">${q ? 'Nada encontrado.' : 'Nenhuma conversa ainda.<br>Use <strong>+ Nova conversa</strong> pra começar a falar com um número.'}</div>`; return }
-  box.innerHTML = convs.map(({ tel, lead, nome, ultima, unread }) => {
+
+  const item = ({ tel, lead, nome, ultima, unread }) => {
     const sel = _atConvAtiva === tel ? ' sel' : ''
     const badge = badgeAtendimento(lead)
     return `<div class="at-conv-item${sel}${unread ? ' at-unread' : ''}" onclick="abrirConversa('${esc(tel)}')">
       <div class="at-conv-nome">${unread ? '<span class="at-dot"></span>' : ''}${esc(nome)} <span class="at-conv-hora">${fmtHora(ultima.date)}</span></div>
       <div class="at-conv-prev">${badge}<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ultima.text)}</span></div>
     </div>`
-  }).join('')
+  }
+
+  // A lista já vem na ordem certa em vez de oferecer filtros pra escolher:
+  // quem está esperando resposta primeiro, resolvidas fora do caminho. Filtro em
+  // aba esconderia conversa — e mensagem nova chegaria justo na aba que ninguém
+  // está olhando.
+  const ativas    = convs.filter(c => !c.resolvida)
+  const esperando = ativas.filter(c => c.esperando)
+  const aguardando = ativas.filter(c => !c.esperando)
+  const resolvidas = convs.filter(c => c.resolvida)
+
+  const partes = []
+  if (esperando.length) {
+    partes.push(`<div class="at-sec">⏳ Esperando você <span>${esperando.length}</span></div>`)
+    partes.push(esperando.map(item).join(''))
+  }
+  if (aguardando.length) {
+    if (esperando.length) partes.push(`<div class="at-sec at-sec-fraca">Aguardando o cliente</div>`)
+    partes.push(aguardando.map(item).join(''))
+  }
+  if (resolvidas.length) {
+    partes.push(`<div class="at-sec at-sec-link" onclick="toggleResolvidas()">${_atVerResolvidas ? '▾' : '▸'} resolvidas <span>${resolvidas.length}</span></div>`)
+    if (_atVerResolvidas) partes.push(resolvidas.map(item).join(''))
+  }
+  box.innerHTML = partes.join('')
   if (_atConvAtiva && !convs.some(c => c.tel === _atConvAtiva)) _atConvAtiva = null
 }
 
@@ -4707,13 +4801,18 @@ function abrirConversa(tel) {
     : `<button class="btn-card-action" onclick="pausarAgente('${esc(tel)}')" title="Assumir a conversa (Carol para)">⏸ Assumir</button>`
   const transferBtn = `<button class="btn-card-action" onclick="mostrarTransferir('${esc(tel)}')" title="Transferir a conversa pra outro atendente (tira da Carol)">↦ Transferir</button>`
   const verLead = lead ? `<button class="btn-card-action" onclick="openDetail('${lead.id}')">Ver lead</button>` : ''
+  // Resolver = o único estado manual do inbox. Tira da lista até o cliente responder.
+  const jaResolvida = conversaResolvida(tel, msgsConversa(tel))
+  const resolverBtn = jaResolvida
+    ? `<button class="btn-card-action" onclick="reabrirConversa('${esc(tel)}')" title="Voltar pra lista de ativas">↩ Reabrir</button>`
+    : `<button class="btn-card-action btn-resolver" onclick="resolverConversa('${esc(tel)}')" title="Tira da lista até o cliente responder">✓ Resolver</button>`
   painel.innerHTML = `
     <div class="at-conv-header">
       <div style="display:flex;align-items:center;gap:10px">
         <button class="btn-card-action at-back" onclick="voltarInbox()">←</button>
         <div><div style="font-weight:700;font-size:14px">${esc(nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(tel || '—')}${atendente ? ' · 👤 <strong style="color:var(--gold2)">' + esc(atendente) + '</strong>' : (carolAtiva() && !pausado ? ' · Carol respondendo' : (nomeResponsavel(false) ? ' · 👤 <strong style="color:var(--gold2)">' + esc(nomeResponsavel(false)) + '</strong>' : (pausado ? ' · humano atendendo' : ' · sem responsável')))}</div></div>
       </div>
-      <div style="display:flex;gap:6px">${ctrl}${transferBtn}${verLead}</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">${resolverBtn}${ctrl}${transferBtn}${verLead}</div>
     </div>
     <div class="at-conv-msgs" id="at-conv-msgs">${renderChatLead(msgsConversa(tel))}</div>
     <div class="at-conv-reply">
