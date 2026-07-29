@@ -1,4 +1,10 @@
 // ============================================================================
+// [SYNC 2026-07-29] Este arquivo foi RESSINCRONIZADO a partir do que está
+// deployado em produção (Management API → projects/{ref}/functions/analyze-meeting/body).
+// O repo havia ficado para trás do deploy: a autorização JWT + posse (ADR-18/D2) e
+// o limite de transcript de 180k (ADR-18/D1) já rodavam em produção e NÃO existiam
+// aqui. A formatação é a do bundle (transpilado) — o comportamento é o de produção.
+// Regra: editar aqui e deployar; nunca editar só pelo dashboard.
 // Sales Coach — Edge Function: analyze-meeting
 // arvex-crm · Story S2 · Autor: @dev (build autônomo) · 2026-06-27
 // Refs: docs/crm/sales-coach-architecture.md §2/§3 · setup-sales-coach-v1.sql
@@ -14,30 +20,33 @@
 //   SUPABASE_SERVICE_ROLE_KEY    (injetado automaticamente)
 //   SUPABASE_ANON_KEY            (injetado automaticamente)
 // ============================================================================
-
 import { createClient } from "npm:@supabase/supabase-js@2";
-
 const CLAUDE_MODEL = "claude-sonnet-4-6"; // qualidade p/ análise; trocar p/ claude-haiku-4-5 se quiser mais barato
 const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
-
 const DIMENSOES = [
-  "rapport", "diagnostico", "escuta", "valor",
-  "controle", "fechamento", "transicao", "objecoes",
-] as const;
-
+  "rapport",
+  "diagnostico",
+  "escuta",
+  "valor",
+  "controle",
+  "fechamento",
+  "transicao",
+  "objecoes"
+];
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Methods": "POST, OPTIONS"
 };
-
-function json(body: unknown, status = 200) {
+function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { ...corsHeaders, "Content-Type": "application/json" },
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "application/json"
+    }
   });
 }
-
 // ── PERSONA + MÉTODO (calibrado no gold-standard caso-01) ───────────────────
 // A IA age como um DIRETOR COMERCIAL sênior que acabou de assistir a call.
 // Regra de ouro: PRIMEIRO o julgamento central, DEPOIS as métricas. Nunca o contrário.
@@ -66,13 +75,11 @@ objecao: { tipo: "genuina", explicacao: "Manteve a mesma narrativa do início ao
 erro_estrategico: "Aceitou o enquadramento 'estou investindo numa nova loja' sem reframar para 'justamente por isso é a hora de ter estrutura'. Tentou tarde demais."
 missao: "Na próxima call, fique 100% no impacto da dor emocional (custo de continuar assim) ANTES de mostrar qualquer parte do programa."
 `.trim();
-
 // Rubrica de notas (0-10) — só DEPOIS do julgamento qualitativo
 const RUBRICA = `
 Dê nota 0-10 por dimensão (âncoras): rapport (conexão genuína) · diagnostico (profundidade na dor real) · escuta (deixou falar/validou) · valor (valor antes de preço) · controle (conduziu) · fechamento (firmeza/próximo passo) · transicao (ofertou na hora certa, não cedo) · objecoes (tratou com segurança).
 `.trim();
-
-function buildPrompt(transcript: string): string {
+function buildPrompt(transcript) {
   return `${RUBRICA}
 
 Analise a transcrição abaixo SEGUINDO O MÉTODO e responda via ferramenta "registrar_analise".
@@ -83,7 +90,6 @@ TRANSCRIÇÃO:
 ${transcript}
 """`;
 }
-
 // Tool schema p/ forçar JSON estrito do Claude
 const TOOL = {
   name: "registrar_analise",
@@ -91,106 +97,227 @@ const TOOL = {
   input_schema: {
     type: "object",
     properties: {
-      resumo_diretor: { type: "string", description: "O feedback central (julgamento-raiz), 3-5 frases. É o que o closer vê primeiro." },
-      dor_dominante: { type: "string", description: "A dor REAL/emocional por trás das de superfície." },
+      resumo_diretor: {
+        type: "string",
+        description: "O feedback central (julgamento-raiz), 3-5 frases. É o que o closer vê primeiro."
+      },
+      dor_dominante: {
+        type: "string",
+        description: "A dor REAL/emocional por trás das de superfície."
+      },
       objecao: {
         type: "object",
         properties: {
-          tipo: { type: "string", enum: ["genuina", "falsa", "sem_objecao"] },
-          explicacao: { type: "string" },
+          tipo: {
+            type: "string",
+            enum: [
+              "genuina",
+              "falsa",
+              "sem_objecao"
+            ]
+          },
+          explicacao: {
+            type: "string"
+          }
         },
-        required: ["tipo", "explicacao"],
+        required: [
+          "tipo",
+          "explicacao"
+        ]
       },
-      erro_estrategico: { type: "string", description: "Erro de condução + reframe que faltou." },
-      missao: { type: "string", description: "UMA missão pra próxima call." },
+      erro_estrategico: {
+        type: "string",
+        description: "Erro de condução + reframe que faltou."
+      },
+      missao: {
+        type: "string",
+        description: "UMA missão pra próxima call."
+      },
       scores: {
         type: "object",
-        properties: Object.fromEntries(
-          DIMENSOES.map((d) => [d, { type: "number", minimum: 0, maximum: 10 }]),
-        ),
-        required: [...DIMENSOES],
+        properties: Object.fromEntries(DIMENSOES.map((d)=>[
+            d,
+            {
+              type: "number",
+              minimum: 0,
+              maximum: 10
+            }
+          ])),
+        required: [
+          ...DIMENSOES
+        ]
       },
       insights: {
         type: "object",
         properties: {
-          acertos: { type: "array", items: { type: "string" } },
-          erros: { type: "array", items: { type: "string" } },
-          faltou: { type: "array", items: { type: "string" } },
-          sugestoes: { type: "array", items: { type: "string" } },
+          acertos: {
+            type: "array",
+            items: {
+              type: "string"
+            }
+          },
+          erros: {
+            type: "array",
+            items: {
+              type: "string"
+            }
+          },
+          faltou: {
+            type: "array",
+            items: {
+              type: "string"
+            }
+          },
+          sugestoes: {
+            type: "array",
+            items: {
+              type: "string"
+            }
+          }
         },
-        required: ["acertos", "erros", "faltou", "sugestoes"],
-      },
+        required: [
+          "acertos",
+          "erros",
+          "faltou",
+          "sugestoes"
+        ]
+      }
     },
-    required: ["resumo_diretor", "dor_dominante", "objecao", "erro_estrategico", "missao", "scores", "insights"],
-  },
+    required: [
+      "resumo_diretor",
+      "dor_dominante",
+      "objecao",
+      "erro_estrategico",
+      "missao",
+      "scores",
+      "insights"
+    ]
+  }
 };
-
-function clamp10(n: unknown): number {
+function clamp10(n) {
   const v = typeof n === "number" ? n : Number(n);
   if (!isFinite(v)) return 0;
   return Math.max(0, Math.min(10, Math.round(v * 10) / 10));
 }
-
-Deno.serve(async (req: Request) => {
-  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
-  if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
-
-  const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-  const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-  const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
+// ── ADR-18: auth real ────────────────────────────────────────────────────────
+// Extrai o Bearer do header Authorization. Dois caminhos válidos:
+//  1. service-to-service (ingest-meeting → analyze-meeting): o token É a própria
+//     SERVICE_ROLE_KEY (é como ingest-meeting já invoca hoje) → autorizado como admin.
+//  2. usuário logado no CRM: token é o JWT de sessão do Supabase Auth → resolve o
+//     usuário via admin.auth.getUser(jwt) e confere role em `profiles` (mesma fonte
+//     que a RLS usa e que o front já consulta em profile?.role).
+async function authenticate(req, admin, SERVICE_KEY) {
+  const authHeader = req.headers.get("authorization") || req.headers.get("Authorization") || "";
+  const token = authHeader.replace(/^Bearer\s+/i, "").trim();
+  if (!token) return {
+    ok: false,
+    status: 401,
+    msg: "não autorizado (sem token)"
+  };
+  if (token === SERVICE_KEY) return {
+    ok: true,
+    userId: null,
+    isAdmin: true,
+    isService: true
+  };
+  const { data, error } = await admin.auth.getUser(token);
+  if (error || !data?.user) return {
+    ok: false,
+    status: 401,
+    msg: "token inválido"
+  };
+  const userId = data.user.id;
+  const { data: profile } = await admin.from("profiles").select("role").eq("id", userId).single();
+  const isAdmin = profile?.role === "admin";
+  return {
+    ok: true,
+    userId,
+    isAdmin,
+    isService: false
+  };
+}
+Deno.serve(async (req)=>{
+  if (req.method === "OPTIONS") return new Response("ok", {
+    headers: corsHeaders
+  });
+  if (req.method !== "POST") return json({
+    error: "Method not allowed"
+  }, 405);
+  const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+  const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY");
   const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY");
-
   // service client (bypassa RLS — só no servidor)
   const admin = createClient(SUPABASE_URL, SERVICE_KEY);
-
-  let meeting_id: string | undefined;
+  let meeting_id;
   try {
-    // payload (acesso controlado pela própria invocação; meeting_id é UUID não-adivinhável)
-    const body = await req.json().catch(() => ({}));
+    const auth = await authenticate(req, admin, SERVICE_KEY);
+    if (!auth.ok) return json({
+      error: auth.msg
+    }, auth.status);
+    // payload (meeting_id é UUID; a posse é validada abaixo, não mais "não-adivinhável" como barreira)
+    const body = await req.json().catch(()=>({}));
     meeting_id = body?.meeting_id;
-    if (!meeting_id) return json({ error: "meeting_id obrigatório" }, 400);
-
+    if (!meeting_id) return json({
+      error: "meeting_id obrigatório"
+    }, 400);
     if (!ANTHROPIC_API_KEY) throw new Error("ANTHROPIC_API_KEY não configurada");
-
+    // lê a reunião ANTES de mexer em qualquer status — precisa do closer_id p/ checar posse
+    const { data: meetingRow, error: mErr0 } = await admin.from("meetings").select("id, closer_id, transcript").eq("id", meeting_id).single();
+    if (mErr0 || !meetingRow) return json({
+      error: "Reunião não encontrada"
+    }, 404);
+    if (!auth.isService && !auth.isAdmin && meetingRow.closer_id !== auth.userId) {
+      return json({
+        error: "não autorizado (não é dono desta reunião)"
+      }, 403);
+    }
     // 3. marca processing + lê transcript
-    await admin.from("meetings").update({ status: "processing", erro_msg: null }).eq("id", meeting_id);
-    const { data: meeting, error: mErr } = await admin
-      .from("meetings").select("id, transcript").eq("id", meeting_id).single();
-    if (mErr || !meeting) throw new Error("Reunião não encontrada");
+    await admin.from("meetings").update({
+      status: "processing",
+      erro_msg: null
+    }).eq("id", meeting_id);
+    const meeting = meetingRow;
     const transcript = (meeting.transcript ?? "").toString().trim();
     if (!transcript) throw new Error("Transcrição vazia");
-
     // 4. chama Claude (temp 0, tool use força JSON)
     const resp = await fetch(ANTHROPIC_URL, {
       method: "POST",
       headers: {
         "x-api-key": ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
+        "content-type": "application/json"
       },
       body: JSON.stringify({
         model: CLAUDE_MODEL,
         max_tokens: 3000,
         temperature: 0,
         system: SYSTEM,
-        tools: [TOOL],
-        tool_choice: { type: "tool", name: "registrar_analise" },
-        messages: [{ role: "user", content: buildPrompt(transcript) }],
-      }),
+        tools: [
+          TOOL
+        ],
+        tool_choice: {
+          type: "tool",
+          name: "registrar_analise"
+        },
+        messages: [
+          {
+            role: "user",
+            content: buildPrompt(transcript)
+          }
+        ]
+      })
     });
     if (!resp.ok) throw new Error(`Claude API ${resp.status}: ${await resp.text()}`);
     const data = await resp.json();
-    const toolUse = (data.content ?? []).find((c: any) => c.type === "tool_use");
+    const toolUse = (data.content ?? []).find((c)=>c.type === "tool_use");
     if (!toolUse?.input) throw new Error("Resposta da IA sem JSON estruturado");
-
     // 5. valida + clampa
     const raw = toolUse.input;
-    const scores: Record<string, number> = {};
-    for (const d of DIMENSOES) scores[d] = clamp10(raw?.scores?.[d]);
-    const nota_geral = clamp10(
-      DIMENSOES.reduce((s, d) => s + scores[d], 0) / DIMENSOES.length,
-    );
-    const str = (v: unknown) => typeof v === "string" ? v : "";
+    const scores = {};
+    for (const d of DIMENSOES)scores[d] = clamp10(raw?.scores?.[d]);
+    const nota_geral = clamp10(DIMENSOES.reduce((s, d)=>s + scores[d], 0) / DIMENSOES.length);
+    const str = (v)=>typeof v === "string" ? v : "";
     const insights = {
       resumo_diretor: str(raw?.resumo_diretor),
       dor_dominante: str(raw?.dor_dominante),
@@ -200,23 +327,37 @@ Deno.serve(async (req: Request) => {
       acertos: Array.isArray(raw?.insights?.acertos) ? raw.insights.acertos.slice(0, 5) : [],
       erros: Array.isArray(raw?.insights?.erros) ? raw.insights.erros.slice(0, 5) : [],
       faltou: Array.isArray(raw?.insights?.faltou) ? raw.insights.faltou.slice(0, 8) : [],
-      sugestoes: Array.isArray(raw?.insights?.sugestoes) ? raw.insights.sugestoes.slice(0, 8) : [],
+      sugestoes: Array.isArray(raw?.insights?.sugestoes) ? raw.insights.sugestoes.slice(0, 8) : []
     };
-
     // 6. grava resultado
     const { error: upErr } = await admin.from("meetings").update({
-      scores, insights, nota_geral,
-      status: "done", erro_msg: null, analyzed_at: new Date().toISOString(),
+      scores,
+      insights,
+      nota_geral,
+      status: "done",
+      erro_msg: null,
+      analyzed_at: new Date().toISOString()
     }).eq("id", meeting_id);
     if (upErr) throw new Error(`Falha ao gravar: ${upErr.message}`);
-
-    return json({ ok: true, meeting_id, nota_geral, scores, insights });
+    return json({
+      ok: true,
+      meeting_id,
+      nota_geral,
+      scores,
+      insights
+    });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     // tenta marcar a reunião como erro (não derruba a função)
     if (meeting_id) {
-      await admin.from("meetings").update({ status: "error", erro_msg: msg }).eq("id", meeting_id).catch(() => {});
+      await admin.from("meetings").update({
+        status: "error",
+        erro_msg: msg
+      }).eq("id", meeting_id).catch(()=>{});
     }
-    return json({ ok: false, error: msg }, 500);
+    return json({
+      ok: false,
+      error: msg
+    }, 500);
   }
 });
