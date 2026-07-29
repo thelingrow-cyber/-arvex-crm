@@ -965,7 +965,10 @@
       </div>
       <div class="at-inbox" id="at-inbox">
         <div class="at-lista" id="at-lista">
-          <div class="at-search"><input type="text" id="at-search" placeholder="Buscar por nome ou telefone…" oninput="renderListaAtendimento()" /></div>
+          <div class="at-search">
+            <input type="text" id="at-search" placeholder="Buscar por nome ou telefone…" oninput="renderListaAtendimento()" />
+            <button class="btn-save" style="width:100%;margin-top:6px" onclick="novaConversaAt()">+ Nova conversa</button>
+          </div>
           <div id="at-lista-items"></div>
         </div>
         <div class="at-conversa" id="at-conversa"><div class="at-vazio">Selecione uma conversa à esquerda</div></div>
@@ -1040,6 +1043,19 @@
 </div>
 
 <!-- MODAL COACH — NOVA REUNIÃO (S4) -->
+<!-- MODAL — NOVA CONVERSA (Atendimento) -->
+<div class="modal-overlay" id="modal-nova-conversa">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Nova conversa</div><button class="modal-close" onclick="fecharNovaConversa()">×</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Número do WhatsApp</label><input type="text" id="nc-tel" placeholder="(11) 91234-5678" onkeydown="if(event.key==='Enter')novaConversaConfirmar()" /></div>
+      <div style="font-size:11px;color:var(--muted)">Sem o código do país, assumimos +55.</div>
+      <div id="nc-error" style="display:none;color:var(--red);font-size:12px;margin-top:8px"></div>
+    </div>
+    <div class="modal-footer"><button class="btn-cancel" onclick="fecharNovaConversa()">Cancelar</button><button class="btn-save" onclick="novaConversaConfirmar()">Abrir conversa</button></div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="modal-coach-new">
   <div class="modal">
     <div class="modal-header"><div class="modal-title">Nova Reunião</div><button class="modal-close" onclick="closeNewMeeting()">×</button></div>
@@ -4616,7 +4632,7 @@ function renderListaAtendimento() {
     const qd = q.replace(/\D/g, '')
     convs = convs.filter(c => (c.nome || '').toLowerCase().includes(q) || (qd && String(c.tel).replace(/\D/g, '').includes(qd)))
   }
-  if (!convs.length) { box.innerHTML = `<div class="at-vazio">${q ? 'Nada encontrado.' : 'Nenhuma conversa ainda.<br>Quando a Carol atender um lead, aparece aqui.'}</div>`; return }
+  if (!convs.length) { box.innerHTML = `<div class="at-vazio">${q ? 'Nada encontrado.' : 'Nenhuma conversa ainda.<br>Use <strong>+ Nova conversa</strong> pra começar a falar com um número.'}</div>`; return }
   box.innerHTML = convs.map(({ tel, lead, nome, ultima, unread }) => {
     const sel = _atConvAtiva === tel ? ' sel' : ''
     const badge = (lead && lead.atendente) ? `<span class="at-badge pausado">👤 ${esc(lead.atendente)}</span>` : ((lead && lead.agente_pausado) ? '<span class="at-badge pausado">humano</span>' : '<span class="at-badge ativo">Carol</span>')
@@ -4661,6 +4677,37 @@ function abrirConversa(tel) {
 }
 
 function voltarInbox() { document.getElementById('at-inbox')?.classList.remove('ver-conversa'); _atConvAtiva = null; renderAtendimento() }
+
+// ── Nova conversa ───────────────────────────────────────────────────────────
+// Faltava a porta de entrada: a lista só mostra conversas que JÁ estão no
+// histórico, e abrirConversa() só era chamada de dentro dela. Sem nenhuma
+// conversa gravada, não havia como falar com ninguém — mesmo com o número
+// conectado e o envio funcionando. Aqui se digita o telefone e o chat abre.
+function novaConversaAt() {
+  const t = document.getElementById('nc-tel'); if (t) t.value = ''
+  const err = document.getElementById('nc-error'); if (err) err.style.display = 'none'
+  abrirModal('modal-nova-conversa')
+  setTimeout(() => document.getElementById('nc-tel')?.focus(), 50)
+}
+function fecharNovaConversa() { document.getElementById('modal-nova-conversa')?.classList.remove('open') }
+
+// Só dígitos; sem DDI assume Brasil (55). O Evolution espera o número cru.
+function normalizarTelBr(v) {
+  let d = String(v || '').replace(/\D/g, '')
+  if (!d) return ''
+  if (d.length <= 11) d = '55' + d
+  return d
+}
+
+async function novaConversaConfirmar() {
+  const err = document.getElementById('nc-error')
+  const tel = normalizarTelBr(document.getElementById('nc-tel')?.value)
+  if (tel.length < 12) { err.textContent = 'Número incompleto — informe DDD + número.'; err.style.display = ''; return }
+  fecharNovaConversa()
+  await garantirLead(tel)     // vincula/cria o lead: "Assumir" e "Transferir" dependem dele
+  await loadConversas()
+  abrirConversa(tel)          // conversa nova abre vazia; a 1ª mensagem enviada já a materializa
+}
 
 // ── Transferir conversa pra outro atendente (tira da Carol) ─────────────────
 let cachedAtendentes = []
@@ -4855,6 +4902,7 @@ const MODAL_CLOSERS = {
   'modal-negociacao':    fecharModalNegociacao,
   'modal-transition':    cancelTransition,   // cancelar = card volta pra coluna de origem
   'modal-confirm':       fecharConfirm,
+  'modal-nova-conversa': fecharNovaConversa,
 }
 // Abrir modal SEMPRE por aqui: carimba a ordem de abertura.
 // Sem isso, com 2 modais empilhados (ex.: detalhe + transição), o "topo" seria o último no
