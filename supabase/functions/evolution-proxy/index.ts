@@ -48,17 +48,40 @@ Deno.serve(async (req)=>{
       "Content-Type": "application/json"
     };
     const { action, number, text } = await req.json().catch(()=>({}));
+
+    // Diagnóstico da ponte: grava em _evo_sync_debug o que o Evolution respondeu.
+    // Sem isto, quando o QR "não vai" não sobra evidência nenhuma — o front só
+    // mostra "Falha ao gerar QR" e o motivo real (estado da instância, HTTP,
+    // mensagem de erro do Evolution) se perde. base64 é grande: guarda só o
+    // tamanho, nunca o conteúdo.
+    const logEvo = async (acao, r, d, extra = null)=>{
+      try {
+        const service = createClient(Deno.env.get("SUPABASE_URL"), Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"));
+        const resumo = {};
+        for (const k of Object.keys(d || {})){
+          const v = d[k];
+          resumo[k] = (k === "base64" || k === "qrcode") ? `<${String(v || "").length} chars>` : (typeof v === "object" ? v : String(v).slice(0, 300));
+        }
+        await service.from("_evo_sync_debug").insert({
+          info: { acao, http: r?.status ?? null, ok: r?.ok ?? null, instancia: EVO_INST, resposta: resumo, ...(extra || {}) }
+        });
+      } catch  {}
+    };
+
     // 3a) QR de conexão — devolve o base64 pra desenhar no CRM
     if (action === "qr") {
       const r = await fetch(`${EVO_URL}/instance/connect/${EVO_INST}`, {
         headers: H
       });
       const d = await r.json().catch(()=>({}));
+      await logEvo("qr", r, d, { tem_base64: !!d.base64 });
       // Evolution devolve {base64, code, pairingCode} se desconectado; {instance:{state}} se já ligado
       return json({
         base64: d.base64 || null,
         pairingCode: d.pairingCode || null,
-        connected: !d.base64 && (d?.instance?.state === "open" || d?.state === "open")
+        connected: !d.base64 && (d?.instance?.state === "open" || d?.state === "open"),
+        // repassa o erro do Evolution pro front em vez de virar só "QR não retornado"
+        evo_error: (!d.base64 && !r.ok) ? (d?.message || d?.error || `HTTP ${r.status}`) : null
       });
     }
     // 3a2) desconectar (logout) — pra trocar de número
@@ -68,10 +91,29 @@ Deno.serve(async (req)=>{
         headers: H
       });
       const d = await r.json().catch(()=>({}));
+      await logEvo("disconnect", r, d);
       return json({
         ok: r.ok,
         detail: d
       });
+    }
+    // 3a3) diagnóstico completo da instância (pra descobrir por que o QR não vai)
+    if (action === "diag") {
+      const out = {};
+      for (const [nome, url, met] of [
+        ["connectionState", `${EVO_URL}/instance/connectionState/${EVO_INST}`, "GET"],
+        ["fetchInstances", `${EVO_URL}/instance/fetchInstances?instanceName=${EVO_INST}`, "GET"]
+      ]){
+        try {
+          const rr = await fetch(url, { method: met, headers: H });
+          const dd = await rr.json().catch(()=>({}));
+          out[nome] = { http: rr.status, ok: rr.ok, body: dd };
+        } catch (err) {
+          out[nome] = { erro: String(err?.message || err) };
+        }
+      }
+      await logEvo("diag", { status: 200, ok: true }, {}, { diag: out });
+      return json({ ok: true, instancia: EVO_INST, diag: out });
     }
     // 3b) estado da conexão (+ qual número/dono está conectado — resolve "não atualiza" no front)
     if (action === "status") {
@@ -350,7 +392,8 @@ Deno.serve(async (req)=>{
         "status",
         "send",
         "disconnect",
-        "sync_out"
+        "sync_out",
+        "diag"
       ]
     }, 400);
   } catch (e) {

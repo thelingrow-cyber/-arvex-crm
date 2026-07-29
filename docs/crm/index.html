@@ -4468,7 +4468,7 @@ async function conectarWhatsApp() {
   try {
     const r = await evoProxy('qr')
     if (r.connected) { renderConexaoWhatsApp(); return }
-    if (!r.base64) throw new Error('QR não retornado')
+    if (!r.base64) throw new Error(r.evo_error || 'QR não retornado')   // mostra o motivo real do Evolution
     const src = String(r.base64).startsWith('data:') ? r.base64 : 'data:image/png;base64,' + r.base64
     el.innerHTML = `<div class="wa-card wa-qr"><div class="wa-status"><span class="wa-dot wa-loading"></span> Escaneie no WhatsApp → Aparelhos conectados → Conectar um aparelho</div><img id="wa-qr-img" src="${src}" alt="QR de conexão do WhatsApp" class="wa-qr-img"/><div style="font-size:11px;color:var(--muted);margin-top:6px">O código se renova sozinho — pode escanear sem pressa.</div><div style="display:flex;gap:8px"><button class="btn-card-action" onclick="conectarWhatsApp()">Gerar novo QR</button><button class="btn-card-action" onclick="renderConexaoWhatsApp()">Já conectei</button></div></div>`
     iniciarQrLoop('wa-qr-img', renderConexaoWhatsApp)
@@ -4863,7 +4863,7 @@ async function conectarWhatsAppAt() {
   try {
     const r = await evoProxy('qr')
     if (r.connected) { renderAtendimento(); return }
-    if (!r.base64) throw new Error('QR não retornado')
+    if (!r.base64) throw new Error(r.evo_error || 'QR não retornado')   // mostra o motivo real do Evolution
     const src = String(r.base64).startsWith('data:') ? r.base64 : 'data:image/png;base64,' + r.base64
     painel.innerHTML = `<div class="at-vazio"><div style="text-align:center">
       <div style="font-weight:700;margin-bottom:6px">Escaneie pra conectar o WhatsApp</div>
