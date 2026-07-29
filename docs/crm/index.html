@@ -4396,7 +4396,7 @@ function normAct(a) {
   const text = a.text != null ? a.text : (a.texto != null ? a.texto : '')
   let date = a.date != null ? a.date : a.data
   if (typeof date === 'string') { const p = Date.parse(date); date = isNaN(p) ? 0 : p }
-  return { text, date: date || 0, autor: a.autor || null, por: a.por || null }
+  return { text, date: date || 0, autor: a.autor || null, por: a.por || null, media: a.media || null, waId: a.waId || null }
 }
 
 // ── Ponte segura Evolution (WhatsApp) via edge function ────────────────────
@@ -4529,7 +4529,9 @@ async function loadConversas() {
     else { continue }
     const baloes = String(m.content || '').split('||').map(s => s.trim()).filter(Boolean)
     const arr = bySession[row.session_id] || (bySession[row.session_id] = [])
-    for (const b of baloes) arr.push({ autor, text: b, date: ak.ts || null, por, _id: row.id })
+    // media/wa_id vêm do sync: é o que permite buscar o arquivo on-demand e
+    // trocar o texto "🎤 áudio" por um player de verdade
+    for (const b of baloes) arr.push({ autor, text: b, date: ak.ts || null, por, _id: row.id, media: ak.media || null, waId: ak.wa_id || null })
   }
   cachedConversas = bySession
   return bySession
@@ -4570,6 +4572,8 @@ function conversasAtendimento() {
 function renderAtendimento() {
   renderConexaoAtendimento()   // async: seta _atConectado e re-renderiza a lista quando souber
   if (!cachedAtendentes.length) loadAtendentes()
+  // precisa saber se a Carol está ligada pra não rotular conversa como dela (badgeAtendimento)
+  if (!cachedAgentes.length) loadAgentes().then(renderListaAtendimento)
   renderListaAtendimento()
   startAtPoll()                // verifica a conexão de tempos em tempos → some/volta automático
   syncSaidas()                 // puxa do Evolution as mensagens enviadas pelo celular (fromMe)
@@ -4611,6 +4615,20 @@ function updateAtBadge(n) {
   if (n > 0) { el.textContent = n > 99 ? '99+' : String(n); el.style.display = '' } else { el.style.display = 'none' }
 }
 
+// A Carol só está atendendo se existir agente com ativo=true. Antes o badge
+// escrevia "Carol" como PADRÃO — então toda conversa aparecia como se ela
+// estivesse respondendo, inclusive com o agente desligado. Mentira na tela.
+function carolAtiva() { return (cachedAgentes || []).some(a => a && a.ativo === true) }
+
+// Quem está atendendo esta conversa, na ordem de precedência real:
+// atendente nomeado > humano assumiu > Carol (só se ligada) > ninguém
+function badgeAtendimento(lead) {
+  if (lead && lead.atendente) return `<span class="at-badge pausado">👤 ${esc(lead.atendente)}</span>`
+  if (lead && lead.agente_pausado) return '<span class="at-badge pausado">humano</span>'
+  if (carolAtiva()) return '<span class="at-badge ativo">Carol</span>'
+  return ''
+}
+
 function renderListaAtendimento() {
   const box = document.getElementById('at-lista-items'); if (!box) return
   // desconectado: o histórico continua no banco, mas some do inbox até reconectar
@@ -4635,7 +4653,7 @@ function renderListaAtendimento() {
   if (!convs.length) { box.innerHTML = `<div class="at-vazio">${q ? 'Nada encontrado.' : 'Nenhuma conversa ainda.<br>Use <strong>+ Nova conversa</strong> pra começar a falar com um número.'}</div>`; return }
   box.innerHTML = convs.map(({ tel, lead, nome, ultima, unread }) => {
     const sel = _atConvAtiva === tel ? ' sel' : ''
-    const badge = (lead && lead.atendente) ? `<span class="at-badge pausado">👤 ${esc(lead.atendente)}</span>` : ((lead && lead.agente_pausado) ? '<span class="at-badge pausado">humano</span>' : '<span class="at-badge ativo">Carol</span>')
+    const badge = badgeAtendimento(lead)
     return `<div class="at-conv-item${sel}${unread ? ' at-unread' : ''}" onclick="abrirConversa('${esc(tel)}')">
       <div class="at-conv-nome">${unread ? '<span class="at-dot"></span>' : ''}${esc(nome)} <span class="at-conv-hora">${fmtHora(ultima.date)}</span></div>
       <div class="at-conv-prev">${badge}<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ultima.text)}</span></div>
@@ -4662,7 +4680,7 @@ function abrirConversa(tel) {
     <div class="at-conv-header">
       <div style="display:flex;align-items:center;gap:10px">
         <button class="btn-card-action at-back" onclick="voltarInbox()">←</button>
-        <div><div style="font-weight:700;font-size:14px">${esc(nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(tel || '—')}${atendente ? ' · 👤 <strong style="color:var(--gold2)">' + esc(atendente) + '</strong>' : (pausado ? ' · humano atendendo' : ' · Carol respondendo')}</div></div>
+        <div><div style="font-weight:700;font-size:14px">${esc(nome)}</div><div style="font-size:11px;color:var(--muted)">${esc(tel || '—')}${atendente ? ' · 👤 <strong style="color:var(--gold2)">' + esc(atendente) + '</strong>' : (pausado ? ' · humano atendendo' : (carolAtiva() ? ' · Carol respondendo' : ' · agente desligado'))}</div></div>
       </div>
       <div style="display:flex;gap:6px">${ctrl}${transferBtn}${verLead}</div>
     </div>
@@ -4888,8 +4906,32 @@ function renderChatLead(activities) {
     // humano com 'por' registrado mostra QUEM atendeu (Thalita/Gabriel/você); senão cai no genérico
     const nome = a.autor === 'humano' ? (a.por || NOME.humano) : NOME[a.autor]
     const autorHtml = nome ? `<div class="chat-autor">${esc(nome)}</div>` : ''
-    return `<div class="chat-msg chat-${lado}"><div class="chat-bubble">${autorHtml}<div class="act-text">${esc(a.text)}</div><div class="act-date">${fmtDate(a.date)}</div></div></div>`
+    // áudio/imagem: em vez do texto morto ("🎤 áudio"), oferece carregar a mídia
+    const corpo = (a.media && a.waId)
+      ? `<div class="act-text" id="mid-${esc(a.waId)}"><button class="btn-card-action" onclick="carregarMidia('${esc(a.waId)}','${esc(a.media)}')">${a.media === 'audio' ? '▶ ouvir áudio' : a.media === 'image' ? '🖼 ver imagem' : '⬇ abrir ' + esc(a.media)}</button></div>`
+      : `<div class="act-text">${esc(a.text)}</div>`
+    return `<div class="chat-msg chat-${lado}"><div class="chat-bubble">${autorHtml}${corpo}<div class="act-date">${fmtDate(a.date)}</div></div></div>`
   }).join('')
+}
+
+// Busca a mídia no Evolution (pelo wa_id) e troca o botão pelo player/imagem.
+// On-demand de propósito: guardar base64 no histórico inflaria a tabela.
+async function carregarMidia(waId, tipo) {
+  const box = document.getElementById('mid-' + waId); if (!box) return
+  const antes = box.innerHTML
+  box.innerHTML = '<span style="font-size:11px;color:var(--muted)">carregando…</span>'
+  try {
+    const r = await evoProxy('media', { text: waId })
+    if (!r.base64) throw new Error('mídia não retornada')
+    const mime = r.mimetype || (tipo === 'audio' ? 'audio/ogg' : tipo === 'image' ? 'image/jpeg' : 'application/octet-stream')
+    const src = `data:${mime};base64,${r.base64}`
+    if (tipo === 'audio') box.innerHTML = `<audio controls preload="none" src="${src}" style="max-width:220px"></audio>`
+    else if (tipo === 'image') box.innerHTML = `<img src="${src}" alt="imagem recebida" style="max-width:220px;border-radius:8px;display:block" />`
+    else box.innerHTML = `<a href="${src}" download style="color:var(--blue)">baixar arquivo</a>`
+  } catch (e) {
+    box.innerHTML = antes
+    showToast('Não deu pra carregar a mídia: ' + e.message, 'error')
+  }
 }
 
 // ── MODAIS: Esc e clique no overlay fecham ─────────────────────────────────

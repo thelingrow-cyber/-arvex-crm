@@ -97,6 +97,28 @@ Deno.serve(async (req)=>{
         detail: d
       });
     }
+    // 3a4) mídia de uma mensagem (áudio/imagem/vídeo/documento) em base64.
+    // Buscada ON-DEMAND pelo wa_id: guardar o arquivo no histórico inflaria a
+    // tabela sem necessidade, já que o Evolution mantém a mídia.
+    if (action === "media") {
+      const waId = (text || number || "").toString().trim();   // reaproveita o payload existente
+      if (!waId) return json({ error: "wa_id obrigatorio" }, 400);
+      const r = await fetch(`${EVO_URL}/chat/getBase64FromMediaMessage/${EVO_INST}`, {
+        method: "POST",
+        headers: H,
+        body: JSON.stringify({ message: { key: { id: waId } }, convertToMp4: false })
+      });
+      const d = await r.json().catch(()=>({}));
+      if (!r.ok) {
+        await logEvo("media", r, d, { wa_id: waId });
+        return json({ error: d?.message || d?.error || `HTTP ${r.status}` }, 502);
+      }
+      return json({
+        ok: true,
+        base64: d?.base64 || d?.media || null,
+        mimetype: d?.mimetype || d?.mimeType || null
+      });
+    }
     // 3a3) diagnóstico completo da instância (pra descobrir por que o QR não vai)
     if (action === "diag") {
       const out = {};
@@ -283,6 +305,10 @@ Deno.serve(async (req)=>{
         }
       }
       const textoDe = (msg)=>msg?.conversation || msg?.extendedTextMessage?.text || (msg?.imageMessage ? msg.imageMessage.caption ? "📷 " + msg.imageMessage.caption : "📷 imagem" : "") || (msg?.audioMessage ? "🎤 áudio" : "") || (msg?.videoMessage ? "🎬 vídeo" : "") || (msg?.documentMessage ? "📎 documento" : "") || "";
+      // tipo de mídia guardado à parte: é o que permite ao CRM oferecer o player
+      // (o texto "🎤 áudio" era um beco sem saída — dizia que existia e não dava
+      // como ouvir). O arquivo em si é buscado on-demand pela action "media".
+      const midiaDe = (msg)=>msg?.audioMessage ? "audio" : msg?.imageMessage ? "image" : msg?.videoMessage ? "video" : msg?.documentMessage ? "document" : null;
       const candidatos = [];
       let entradas = 0, saidas = 0, foraEscopo = 0, ignoradas = 0;
       const forasAmostra = new Set();   // quem ficou de fora, pra conferir a regra
@@ -299,6 +325,7 @@ Deno.serve(async (req)=>{
         if (ignorados.has(semDdi(sid))) { ignoradas++; continue; }
         const texto = textoDe(m?.message || {});
         if (!texto) continue;                           // sem conteúdo legível: ignora
+        const midia = midiaDe(m?.message || {});
         const ts = m?.messageTimestamp ? Number(m.messageTimestamp) * 1000 : Date.now();
 
         // ── a REGRA de escopo ──
@@ -317,7 +344,7 @@ Deno.serve(async (req)=>{
           if ((textosHuman[sid] || new Set()).has(texto)) continue;
           entradas++;
         }
-        candidatos.push({ sid, waId, texto, saida, ts, lead });
+        candidatos.push({ sid, waId, texto, saida, ts, lead, midia });
       }
       // ordem cronológica: o CRM ordena a conversa pelo id serial da tabela, então
       // inserir fora de ordem embaralharia os balões na tela
@@ -344,6 +371,7 @@ Deno.serve(async (req)=>{
             additional_kwargs: {
               operator: "Equipe (WhatsApp)",
               wa_id: c.waId,
+              media: c.midia,
               ts: c.ts
             },
             response_metadata: {},
@@ -353,6 +381,7 @@ Deno.serve(async (req)=>{
             content: c.texto,
             additional_kwargs: {
               wa_id: c.waId,
+              media: c.midia,
               ts: c.ts
             },
             response_metadata: {}
@@ -410,7 +439,8 @@ Deno.serve(async (req)=>{
         "send",
         "disconnect",
         "sync_out",
-        "diag"
+        "diag",
+        "media"
       ]
     }, 400);
   } catch (e) {
