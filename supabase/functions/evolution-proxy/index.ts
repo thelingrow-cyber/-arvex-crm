@@ -180,7 +180,11 @@ Deno.serve(async (req)=>{
     //   3. textos type "human" já gravados — mesma ideia para a entrada, cobrindo
     //               o que o n8n porventura tenha gravado (ele não grava wa_id).
     if (action === "sync_out") {
-      const SYNC_APPLY = true; // ligado: grava no histórico (era dry-run desde 81b79e9)
+      // DESLIGADO 2026-07-29: ligar isto despejou a caixa INTEIRA do WhatsApp no
+      // inbox (conversas pessoais do número, contatos que nada têm a ver com a
+      // operação). findMessages com where:{} traz tudo — falta um critério de
+      // quais conversas pertencem ao atendimento antes de gravar qualquer coisa.
+      const SYNC_APPLY = false;
       const service = createClient(Deno.env.get("SUPABASE_URL"), Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"));
       const r = await fetch(`${EVO_URL}/chat/findMessages/${EVO_INST}`, {
         method: "POST",
