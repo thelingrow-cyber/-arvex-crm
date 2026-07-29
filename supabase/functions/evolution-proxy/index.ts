@@ -131,14 +131,19 @@ Deno.serve(async (req)=>{
       // Grava o turno do operador como mensagem 'ai' marcada com operator: assim
       // aparece no chat do CRM como "Você" E a Carol, ao retomar, não repete nem
       // lê como fala do cliente (session_id = telefone, igual ao n8n).
+      // grava o wa_id devolvido pelo Evolution: é o que faz o sync reconhecer
+      // esta mensagem quando ela voltar como fromMe, em vez de duplicar
+      const waIdEnviada = d?.key?.id || null;
       await service.from("agente_sdr_historico").insert({
         session_id: tel,
+        wa_id: waIdEnviada,
         message: {
           type: "ai",
           content: text,
           tool_calls: [],
           additional_kwargs: {
             operator: atendente,
+            wa_id: waIdEnviada,
             ts: Date.now()
           },
           response_metadata: {},
@@ -171,21 +176,38 @@ Deno.serve(async (req)=>{
     //   fromMe=false → type "human" (o cliente)
     // Isto torna o Evolution a fonte de verdade da conversa, sem depender do n8n.
     //
-    // Dedupe em 3 camadas, pra não duplicar no polling de 25s:
-    //   1. wa_id  — id da mensagem no WhatsApp: a prova mais forte, cobre tudo
-    //               que já entrou por esta rota.
-    //   2. balões type "ai" já gravados — o que a Carol/o operador mandou pelo
-    //               CRM chega de volta como fromMe; compara o texto pra não
-    //               gravar a mesma fala duas vezes.
-    //   3. textos type "human" já gravados — mesma ideia para a entrada, cobrindo
-    //               o que o n8n porventura tenha gravado (ele não grava wa_id).
+    // ESCOPO (a regra que faltava e causou o incidente das 76.145 linhas):
+    // findMessages traz TODAS as conversas do número, inclusive as pessoais.
+    // Entra no CRM apenas a conversa que:
+    //   (a) for com um telefone que JÁ é lead no banco — inclusive o histórico
+    //       antigo dela; OU
+    //   (b) começar depois do marco evo_sync_state.desde — conversa nova, tanto
+    //       iniciada pela equipe no celular quanto pela Carol.
+    // Conversa antiga com quem não é lead fica de fora. Números em
+    // evo_sync_state.ignorados nunca entram.
+    //
+    // ANTI-DUPLICAÇÃO: agora é o BANCO que garante (índice único em wa_id) —
+    // não mais um Set em memória alimentado por um .select() que o PostgREST
+    // truncava em 1000 linhas, que foi exatamente o que estourou a tabela.
     if (action === "sync_out") {
-      // DESLIGADO 2026-07-29: ligar isto despejou a caixa INTEIRA do WhatsApp no
-      // inbox (conversas pessoais do número, contatos que nada têm a ver com a
-      // operação). findMessages com where:{} traz tudo — falta um critério de
-      // quais conversas pertencem ao atendimento antes de gravar qualquer coisa.
-      const SYNC_APPLY = false;
+      const SYNC_APPLY = false; // dry-run: valida o escopo antes de gravar (ver _evo_sync_debug)
       const service = createClient(Deno.env.get("SUPABASE_URL"), Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"));
+
+      // marco temporal + lista de ignorados
+      const stR = await service.from("evo_sync_state").select("desde, ignorados").eq("id", 1).maybeSingle();
+      const desdeMs = stR?.data?.desde ? new Date(stR.data.desde).getTime() : Date.now();
+      const ignorados = new Set((stR?.data?.ignorados || []).map((t)=>String(t).replace(/\D/g, "")));
+
+      // telefones que já são lead. O CRM guarda em formatos variados, então
+      // normaliza e indexa com e sem o DDI 55 pra casar dos dois jeitos.
+      const semDdi = (s)=>String(s || "").replace(/\D/g, "").replace(/^55/, "");
+      const ldR = await service.from("leads").select("tel").limit(5000);
+      const leadTels = new Set();
+      for (const l of ldR.data || []){
+        const d = semDdi(l.tel);
+        if (d) leadTels.add(d);
+      }
+      const ehLead = (sid)=>leadTels.has(semDdi(sid));
       const r = await fetch(`${EVO_URL}/chat/findMessages/${EVO_INST}`, {
         method: "POST",
         headers: H,
@@ -198,15 +220,15 @@ Deno.serve(async (req)=>{
       const d = await r.json().catch(()=>({}));
       // normaliza vários formatos possíveis de resposta do Evolution v2
       const records = d?.messages?.records || d?.records || (Array.isArray(d?.messages) ? d.messages : Array.isArray(d) ? d : []);
-      const { data: hist } = await service.from("agente_sdr_historico").select("session_id, message");
+      // Guard secundário só para o que NÃO tem wa_id (mensagens gravadas pelo n8n
+      // ou pelo CRM antes deste deploy). O limite é explícito: sem ele o PostgREST
+      // corta em 1000 silenciosamente — a causa raiz do incidente.
+      const { data: hist } = await service.from("agente_sdr_historico").select("session_id, message").is("wa_id", null).limit(5000);
       const baloesAi = {};      // sessão → Set de balões já gravados como "ai"
       const textosHuman = {};   // sessão → Set de textos já gravados como "human"
-      const waIds = new Set();
       for (const row of hist || []){
         const sid = row.session_id;
         const m = row.message || {};
-        const wa = m?.additional_kwargs?.wa_id;
-        if (wa) waIds.add(wa);
         if (m.type === "ai") {
           const set = baloesAi[sid] || (baloesAi[sid] = new Set());
           String(m.content || "").split("||").map((s)=>s.trim()).filter(Boolean).forEach((b)=>set.add(b));
@@ -217,7 +239,9 @@ Deno.serve(async (req)=>{
       }
       const textoDe = (msg)=>msg?.conversation || msg?.extendedTextMessage?.text || (msg?.imageMessage ? msg.imageMessage.caption ? "📷 " + msg.imageMessage.caption : "📷 imagem" : "") || (msg?.audioMessage ? "🎤 áudio" : "") || (msg?.videoMessage ? "🎬 vídeo" : "") || (msg?.documentMessage ? "📎 documento" : "") || "";
       const candidatos = [];
-      let entradas = 0, saidas = 0;
+      let entradas = 0, saidas = 0, foraEscopo = 0, ignoradas = 0;
+      const forasAmostra = new Set();   // quem ficou de fora, pra conferir a regra
+      const dentroPorLead = new Set(), dentroPorNova = new Set();
       for (const m of records){
         const keyO = m?.key || {};
         const jid = String(keyO.remoteJid || "");
@@ -227,30 +251,33 @@ Deno.serve(async (req)=>{
         const jidPhone = String(keyO.remoteJidAlt || keyO.remoteJid || "");
         const sid = jidPhone.split("@")[0].split(":")[0].replace(/\D/g, "");
         if (!sid) continue;
-        const waId = keyO.id;
-        if (waId && waIds.has(waId)) continue;          // já sincronizada
+        if (ignorados.has(semDdi(sid))) { ignoradas++; continue; }
         const texto = textoDe(m?.message || {});
         if (!texto) continue;                           // sem conteúdo legível: ignora
+        const ts = m?.messageTimestamp ? Number(m.messageTimestamp) * 1000 : Date.now();
+
+        // ── a REGRA de escopo ──
+        const lead = ehLead(sid);
+        const nova = ts >= desdeMs;
+        if (!lead && !nova) { foraEscopo++; if (forasAmostra.size < 20) forasAmostra.add(sid); continue; }
+        if (lead) dentroPorLead.add(sid); else dentroPorNova.add(sid);
+
+        const waId = keyO.id || null;
         const saida = keyO.fromMe === true;
+        // guard textual só vale pro histórico sem wa_id; o resto o índice único barra
         if (saida) {
-          if ((baloesAi[sid] || new Set()).has(texto)) continue;      // já é balão nosso
+          if ((baloesAi[sid] || new Set()).has(texto)) continue;
           saidas++;
         } else {
-          if ((textosHuman[sid] || new Set()).has(texto)) continue;   // entrada já gravada
+          if ((textosHuman[sid] || new Set()).has(texto)) continue;
           entradas++;
         }
-        candidatos.push({
-          sid,
-          waId,
-          texto,
-          saida,
-          ts: m?.messageTimestamp ? Number(m.messageTimestamp) * 1000 : Date.now()
-        });
+        candidatos.push({ sid, waId, texto, saida, ts, lead });
       }
       // ordem cronológica: o CRM ordena a conversa pelo id serial da tabela, então
       // inserir fora de ordem embaralharia os balões na tela
       candidatos.sort((a, b)=>a.ts - b.ts);
-      let inseridas = 0;
+      let inseridas = 0, falhas = 0;
       if (SYNC_APPLY) {
         for (const c of candidatos){
           const message = c.saida ? {
@@ -273,11 +300,15 @@ Deno.serve(async (req)=>{
             },
             response_metadata: {}
           };
+          // wa_id na COLUNA: o índice único torna a duplicata impossível.
+          // Conflito (23505) = já sincronizada → não é erro, é o guard funcionando.
           const ins = await service.from("agente_sdr_historico").insert({
             session_id: c.sid,
+            wa_id: c.waId,
             message
           });
           if (!ins.error) inseridas++;
+          else if (ins.error.code !== "23505") falhas++;
         }
       }
       await service.from("_evo_sync_debug").insert({
@@ -286,10 +317,18 @@ Deno.serve(async (req)=>{
           http: r.status,
           ok: r.ok,
           total: records.length,
+          desde: new Date(desdeMs).toISOString(),
+          leads_no_banco: leadTels.size,
           entradas,
           saidas,
+          fora_do_escopo: foraEscopo,
+          ignoradas,
+          conversas_por_lead: [...dentroPorLead],
+          conversas_novas: [...dentroPorNova],
+          conversas_fora: [...forasAmostra],
           candidatos: candidatos.length,
           inseridas,
+          falhas,
           amostra_candidatos: candidatos.slice(0, 8)
         }
       }).then(()=>{}, ()=>{});
@@ -299,6 +338,7 @@ Deno.serve(async (req)=>{
         total: records.length,
         entradas,
         saidas,
+        fora_do_escopo: foraEscopo,
         candidatos: candidatos.length,
         inseridas
       });
