@@ -8,16 +8,20 @@
 
 ## 1. Ponto de partida (medido, não suposto)
 
-Estado em 2026-07-29, depois de o sync entrar no ar:
+Estado em 2026-07-30:
 
 | Item | Hoje |
 |---|---|
-| Fonte da conversa | `agente_sdr_historico` (Evolution → sync nos 2 sentidos) |
-| Volume | 112 msgs · 14 conversas · número da Thalita |
-| Estado da conversa | **não existe** — lista única, cresce para sempre |
-| Mídia | áudio/imagem por clique (`action media`, base64 on-demand) |
-| Responsável | dono do número conectado (`profileName`) |
+| Fonte da conversa | `agente_sdr_historico` (Evolution → sync nos 2 sentidos, escopo lead-ou-nova) |
+| Volume | 112+ msgs · 14 conversas · número da Thalita |
+| Estado da conversa | ✅ `conversa_estado` + abas Geral/Aguardando/IA derivadas |
+| Mídia recebida | corrigida na v18 (busca a mensagem inteira antes do base64) — **aguarda confirmação na tela** |
+| Mídia enviada | ❌ só texto sai do CRM |
+| Latência | ⚠️ até 25s (polling, e só com a aba aberta) |
+| Nome do contato | ⚠️ número cru quando não há lead com aquele telefone |
+| Responsável | ✅ dono do número conectado (`profileName`) |
 | Carol | `agente_sdr.ativo = false` (desligada) |
+| Edge | `evolution-proxy` v18 · actions: qr · status · send · disconnect · sync_out · diag · media |
 
 ## 2. Benchmark — o que adotar e o que recusar
 
@@ -39,39 +43,74 @@ Estado em 2026-07-29, depois de o sync entrar no ar:
 
 Metodologia: SDC (`workflow-execution.md` §1). Multi-camada (schema + edge + front) → justifica ciclo completo nas fases 2+; Fase 1 é front puro e vai por `@dev` direto (padrão ~80% do Vitor, `feedback_sdc_decision_pattern`).
 
-### Fase 1 — Leitura do chat (front puro, sem schema)
-- **Executor:** `@dev` (Dex) · **Revisão visual:** `@ux-design-expert` (Uma) se algo fugir dos tokens
-- **Entrega:** separador de data por dia · hora curta (HH:MM) no balão · avatar com iniciais por autor · mídia com aparência de player + autoload limitado das últimas 8 mídias da conversa aberta
-- **AC:**
-  - [ ] a data aparece UMA vez por dia, não em cada balão
-  - [ ] balão mostra só `HH:MM`
-  - [ ] avatar com 2 letras identifica lead / Carol / responsável
-  - [ ] áudio e imagem da conversa aberta carregam sem clique (até 8); acima disso, sob demanda
-  - [ ] mobile: nada estoura a largura (heurística A2 — mobile é o juiz)
-- **Verificação:** abrir uma conversa com áudio + imagem + mensagens de 2 dias distintos, desktop e mobile
+### ✅ Fase 1 — Leitura do chat — ENTREGUE (main `0c70fc3` · `38322b6`)
+Separador de dia · hora curta · avatar de iniciais · mídia com cara de player + autoload das últimas 8 · chat ocupando a tela (`100vh - 132px`) · áudio 260px e imagem até 320px.
 
-### Fase 2 — Estado da conversa (o que dá controle)
-- **Decisão arquitetural:** `@architect` (Aria) — **a conversa não tem tabela própria hoje** (é agrupamento por `session_id` em `agente_sdr_historico`). Decidir: tabela `conversas` própria × coluna em `leads` × tabela leve `conversa_estado(session_id, estado, ...)`. Impacta multi-conta futura e o SaaS Viziom.
-- **Schema:** `@data-engineer` (Dara) — DDL, índices, RLS por role (padrão `is_admin()` / `is_cs_or_admin()` já existente)
-- **Implementação:** `@dev` (Dex) — abas com contadores, filtro, ação de fechar/reabrir/pôr em espera
-- **Gate:** `@qa` (Quinn) — 7 checks; atenção a RLS (SDR não pode fechar conversa de outro, se a regra for essa)
-- **AC:**
-  - [ ] abas Aberto / Aguardando / Fechado / IA com contagem correta
-  - [ ] fechar conversa a remove de "Aberto" sem apagar histórico
-  - [ ] mensagem nova do cliente reabre a conversa automaticamente
-  - [ ] estado sobrevive ao polling de 25s e ao reload
+### ✅ Fase 2 — Estado + abas — ENTREGUE (main `16d3cdd` · `9b8e091`)
+`conversa_estado` (session_id PK) · botão Resolver/Reabrir · abas **Geral · Aguardando · IA** todas DERIVADAS · reabertura automática por comparação de timestamp (sem trigger) · contador de não-lida em destaque por aba · poll recarrega estados (inbox compartilhado).
 
-### Fase 3 — Produtividade da SDR
-- **Executor:** `@dev` (Dex) · **Conteúdo das respostas:** `Comercial:sdr-playbook-manager` (as mensagens padrão são ativo comercial, não texto solto de dev)
-- **Entrega:** respostas rápidas por `/` (atalho → texto) · gravar áudio no CRM (`MediaRecorder` → `sendWhatsAppAudio` no Evolution)
-- **AC:**
-  - [ ] `/` abre a lista e filtra por digitação; Enter insere no composer
-  - [ ] áudio gravado no CRM chega no WhatsApp do cliente e aparece no histórico
-- **Dependência:** áudio precisa de nova action no `evolution-proxy` (`/message/sendWhatsAppAudio`)
+### ⏳ Fase 2.1 — Mídia recebida — CORRIGIDA, aguarda confirmação (edge v18)
+Estava quebrada: mandava só `{key:{id}}` e o Evolution respondia `400 Cannot read properties of null (reading 'ephemeralMessage')`. Agora busca a mensagem inteira no `findMessages` antes de pedir o base64.
+- **Verificação (bloqueia a Fase 3):** abrir a conversa da Thainá (2 áudios de 29/07 20:41) e uma com imagem → tocar/ver. Falha nova fica em `_evo_sync_debug` com `acao='media'`.
 
-### Fase 4 — Multi-conta (só quando o Vitor decidir)
+---
+
+### Fase 3 — Enviar mídia pelo CRM ⭐ prioridade
+**Por quê:** hoje só texto sai daqui. Em óptica o cliente manda receita e a SDR precisa mandar foto de armação — sem isso ela volta pro celular, e todo o controle que construímos evapora junto.
+- **Executor:** `@dev` (Dex) · **Edge:** nova action no `evolution-proxy`
+- **Entrega:** botão de anexo (foto/arquivo) · gravar áudio no próprio CRM (`MediaRecorder`)
+- **Endpoints Evolution:** `/message/sendMedia/{inst}` (imagem/documento) · `/message/sendWhatsAppAudio/{inst}` (áudio, base64)
+- **AC:**
+  - [ ] anexar foto e enviar → chega no WhatsApp do cliente
+  - [ ] gravar áudio no CRM e enviar → chega como áudio (não como arquivo)
+  - [ ] a mensagem enviada aparece no histórico com `wa_id` (o `send` já grava; estender para mídia)
+  - [ ] limite de tamanho tratado com erro claro, não falha muda
+- **Risco conhecido:** o `send` atual grava o turno do operador em `agente_sdr_historico`; a versão com mídia precisa gravar `additional_kwargs.media` para o balão renderizar player em vez de texto vazio
+
+### Fase 4 — Tempo real (matar o atraso de 25s)
+**Por quê:** chat que demora 25s parece quebrado. E o polling só roda com a aba aberta.
+- **Decisão:** `@architect` (Aria) — Realtime do Supabase na `agente_sdr_historico` (a tabela **já está** na publicação `supabase_realtime`, feito na Fase 1 de 2026-07-24) × manter polling só como fallback. Definir também se o `sync_out` continua em 25s ou afrouxa para 60s quando o Realtime estiver ativo.
+- **Executor:** `@dev`
+- **AC:**
+  - [ ] mensagem que chega no WhatsApp aparece no chat em < 3s, sem recarregar
+  - [ ] a lista reordena sozinha (conversa sobe para "Geral")
+  - [ ] reconecta sozinho depois de perder rede
+  - [ ] o polling continua existindo como rede de segurança — Realtime caído não pode significar inbox parado
+
+### Fase 5 — Identidade do contato (barata, vai junto com 3 ou 4)
+Metade do inbox mostra número cru quando não há lead com aquele telefone.
+- **Executor:** `@dev`
+- **Entrega:** guardar o `pushName` do WhatsApp no sync e usá-lo como nome quando não houver lead
+- **AC:**
+  - [ ] conversa sem lead mostra o nome do WhatsApp, não o número
+  - [ ] havendo lead, o nome do lead continua ganhando (é o dado curado)
+- **Verificar antes:** confirmar que o `findMessages` do Evolution v2.3.7 devolve `pushName` nos registros
+
+### Fase 6 — Respostas rápidas por `/`
+- **Executor:** `@dev` · **Conteúdo:** `Comercial:sdr-playbook-manager` (as mensagens padrão são ativo comercial, não texto solto de dev)
+- **AC:**
+  - [ ] `/` no composer abre a lista e filtra por digitação; Enter insere
+  - [ ] editável sem deploy (tabela, não hardcoded — mesma lição do `CS_SUBS`)
+
+### Fase 7 — Higiene do inbox
+- **Schema:** `@data-engineer` · **Executor:** `@dev`
+- **Entrega:**
+  1. **não-lida no banco** (hoje é `localStorage`: a Thalita perde ao trocar de máquina e o Vitor não vê o que ela já leu — num inbox compartilhado isso é furo)
+  2. **botão "não é atendimento"** → remove a conversa e alimenta `evo_sync_state.ignorados` (a coluna já existe). Fecha o furo conhecido: pela regra, toda conversa NOVA entra, inclusive pessoal
+- **AC:**
+  - [ ] marcar lido numa máquina reflete na outra
+  - [ ] conversa ignorada some e não volta no próximo sync
+
+### Fase 8 — Histórico completo
+- `findMessages` traz 300 mensagens e não há "carregar mais" ao rolar para cima; conversa antiga fica cortada.
+- **Executor:** `@dev` · **AC:** rolar para o topo carrega o lote anterior sem perder a posição
+
+### Fase 9 — Multi-conta (quando o número deixar de ser só o da Thalita)
 - **Executor:** `@architect` + `@data-engineer` + `@dev`
-- Uma instância Evolution por pessoa (`arvex-thalita`, `arvex-vitor`), origem gravada por mensagem, filtro por caixa. Hoje é 1 instância = 1 número; foi isso que misturou as conversas da Thalita com as do Vitor.
+- Uma instância Evolution por pessoa (`arvex-thalita`, `arvex-vitor`), origem gravada por mensagem, filtro por caixa. Hoje 1 instância = 1 número — foi isso que misturou as conversas da Thalita com as do Vitor.
+
+### Fora do plano por enquanto (registrado para não voltar como "esqueceu")
+Busca dentro do texto das mensagens · status de entregue/lido · waveform no player de áudio (exige decodificar no cliente) · notificação sonora.
 
 ## 4. Autoridades respeitadas
 
@@ -89,4 +128,24 @@ Herdadas do incidente das 76.145 linhas (2026-07-29):
 
 ## 6. Ordem de execução
 
-`Fase 1 (agora, front puro) → Fase 2 (decisão de @architect primeiro) → Fase 3 → Fase 4 (quando o número deixar de ser só da Thalita)`
+```
+✅ 1 Leitura  →  ✅ 2 Estado/abas  →  ⏳ 2.1 Mídia recebida (CONFIRMAR na tela)
+                                          │
+                                          ▼
+                        3 Enviar mídia  +  5 Nome do contato      ← próximo
+                                          │
+                                          ▼
+                        4 Tempo real (decisão de @architect)
+                                          │
+                                          ▼
+                        6 Respostas rápidas  →  7 Higiene  →  8 Histórico
+                                          │
+                                          ▼
+                        9 Multi-conta (quando o Vitor decidir)
+```
+
+**Gate único antes de seguir:** a Fase 2.1 precisa ser confirmada na tela. Não faz sentido construir envio de mídia (Fase 3) se receber mídia ainda estiver quebrado — seria construir por cima de fundação não verificada, que foi exatamente o erro que gerou o incidente das 76.145 linhas.
+
+**Por que 3 antes de 4:** enviar mídia decide se a Thalita usa o CRM ou volta pro celular; tempo real melhora a experiência de quem já está usando. Adoção antes de polimento.
+
+**Ritmo:** uma fase por vez, publicando ao fim de cada uma (`project_crm_deploy_flow`). Nada de acumular três fases num deploy só — foi assim que o sync foi ligado junto com a mudança de escopo e virou incidente.
