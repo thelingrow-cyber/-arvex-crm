@@ -349,7 +349,9 @@
     .chat-msg.chat-ld { justify-content: flex-start; }
     .chat-msg.chat-ag, .chat-msg.chat-hu { justify-content: flex-end; }
     .chat-msg.chat-nota { justify-content: center; }
-    .chat-bubble { max-width: 80%; border-radius: 11px; padding: 8px 11px; border: 1px solid var(--border); }
+    /* teto em px além do %: com o chat ocupando a tela inteira, 80% viraria
+       linha longa demais pra ler de relance */
+    .chat-bubble { max-width: min(80%, 560px); border-radius: 11px; padding: 8px 11px; border: 1px solid var(--border); }
     .chat-ld .chat-bubble { background: var(--navy3); border-bottom-left-radius: 3px; }
     .chat-ag .chat-bubble { background: rgba(200,169,110,.15); border-color: rgba(200,169,110,.38); border-bottom-right-radius: 3px; }
     .chat-hu .chat-bubble { background: rgba(52,199,89,.13); border-color: rgba(52,199,89,.4); border-bottom-right-radius: 3px; }
@@ -384,8 +386,12 @@
     .at-sec-link { color: var(--muted); cursor: pointer; border-top: 1px solid var(--border); margin-top: 4px; }
     .at-sec-link:hover { color: var(--white); }
     .btn-resolver { border-color: rgba(52,199,89,.45) !important; color: var(--green) !important; }
-    .mid-box audio { max-width: 220px; height: 34px; display: block; }
-    .mid-box img { max-width: 220px; border-radius: 8px; display: block; cursor: zoom-in; }
+    /* mídia com presença: áudio largo o bastante pra usar a barra, imagem em
+       tamanho que dá pra ler sem abrir (óptica manda muita foto de receita) */
+    .mid-box audio { width: 260px; max-width: 100%; height: 38px; display: block; }
+    .mid-box img { max-width: min(320px, 60vw); max-height: 340px; border-radius: 10px; display: block; cursor: zoom-in; object-fit: cover; }
+    .chat-ag .chat-bubble:has(.mid-box img), .chat-hu .chat-bubble:has(.mid-box img),
+    .chat-ld .chat-bubble:has(.mid-box img) { padding: 5px; }   /* imagem quase sem moldura */
     .chat-ag .chat-autor { color: var(--gold2); }
     .chat-hu .chat-autor { color: var(--green); }
     /* conexão WhatsApp (aba Agente SDR) */
@@ -399,7 +405,10 @@
     @keyframes wa-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
     .wa-qr-img { width: 240px; height: 240px; background: #fff; border-radius: 8px; padding: 8px; }
     /* Atendimento — inbox WhatsApp */
-    .at-inbox { display: grid; grid-template-columns: 320px 1fr; height: calc(100vh - 210px); min-height: 440px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--navy2); }
+    /* header enxuto = mais altura pro chat (o inbox é a tela inteira, não um card) */
+    .at-header { margin-bottom: 10px !important; }
+    .at-header h1 { margin: 0; }
+    .at-inbox { display: grid; grid-template-columns: 340px 1fr; height: calc(100vh - 132px); min-height: 460px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--navy2); }
     .at-lista { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
     .at-search { padding: 8px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
     .at-search input { width: 100%; box-sizing: border-box; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--navy3); color: var(--white); font-size: 13px; }
@@ -990,8 +999,9 @@
 
     <!-- ATENDIMENTO — inbox WhatsApp -->
     <div id="view-atendimento" class="view">
-      <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div><h1>Atendimento</h1><p>Conversas do WhatsApp — Carol + você</p></div>
+      <!-- header compacto: o subtítulo comia altura que o chat precisa -->
+      <div class="page-header at-header" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div><h1>Atendimento</h1></div>
         <div id="at-conexao"></div>
       </div>
       <div class="at-inbox" id="at-inbox">
