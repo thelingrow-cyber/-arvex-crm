@@ -103,15 +103,43 @@ Deno.serve(async (req)=>{
     if (action === "media") {
       const waId = (text || number || "").toString().trim();   // reaproveita o payload existente
       if (!waId) return json({ error: "wa_id obrigatorio" }, 400);
+
+      // 1) o Evolution precisa do OBJETO da mensagem, não só do id: ele lê
+      // message.ephemeralMessage/audioMessage pra saber como baixar e
+      // descriptografar. Mandar {key:{id}} dava 400 "Cannot read properties of
+      // null (reading 'ephemeralMessage')". Então primeiro recupera a mensagem.
+      const achar = async (where, offset)=>{
+        const rf = await fetch(`${EVO_URL}/chat/findMessages/${EVO_INST}`, {
+          method: "POST",
+          headers: H,
+          body: JSON.stringify({ where, page: 1, offset })
+        });
+        const df = await rf.json().catch(()=>({}));
+        const recs = df?.messages?.records || df?.records || (Array.isArray(df?.messages) ? df.messages : Array.isArray(df) ? df : []);
+        return Array.isArray(recs) ? recs : [];
+      };
+      // tenta filtrado; se o Evolution ignorar o where, varre uma página e acha pelo id
+      let recs = await achar({ key: { id: waId } }, 5);
+      let msg = recs.find((m)=>m?.key?.id === waId);
+      if (!msg) {
+        recs = await achar({}, 300);
+        msg = recs.find((m)=>m?.key?.id === waId);
+      }
+      if (!msg) {
+        await logEvo("media", { status: 404, ok: false }, {}, { wa_id: waId, motivo: "mensagem_nao_encontrada" });
+        return json({ error: "mensagem não encontrada no Evolution" }, 404);
+      }
+
+      // 2) agora sim: pede o base64 passando a mensagem completa
       const r = await fetch(`${EVO_URL}/chat/getBase64FromMediaMessage/${EVO_INST}`, {
         method: "POST",
         headers: H,
-        body: JSON.stringify({ message: { key: { id: waId } }, convertToMp4: false })
+        body: JSON.stringify({ message: msg, convertToMp4: false })
       });
       const d = await r.json().catch(()=>({}));
       if (!r.ok) {
         await logEvo("media", r, d, { wa_id: waId });
-        return json({ error: d?.message || d?.error || `HTTP ${r.status}` }, 502);
+        return json({ error: d?.response?.message?.[0] || d?.message || d?.error || `HTTP ${r.status}` }, 502);
       }
       return json({
         ok: true,
