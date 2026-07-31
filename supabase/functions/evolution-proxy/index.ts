@@ -337,7 +337,7 @@ Deno.serve(async (req)=>{
       // (o texto "🎤 áudio" era um beco sem saída — dizia que existia e não dava
       // como ouvir). O arquivo em si é buscado on-demand pela action "media".
       const midiaDe = (msg)=>msg?.audioMessage ? "audio" : msg?.imageMessage ? "image" : msg?.videoMessage ? "video" : msg?.documentMessage ? "document" : null;
-      const candidatos = [];
+      let candidatos = [];
       let entradas = 0, saidas = 0, foraEscopo = 0, ignoradas = 0;
       const forasAmostra = new Set();   // quem ficou de fora, pra conferir a regra
       const dentroPorLead = new Set(), dentroPorNova = new Set();
@@ -376,6 +376,21 @@ Deno.serve(async (req)=>{
       }
       // ordem cronológica: o CRM ordena a conversa pelo id serial da tabela, então
       // inserir fora de ordem embaralharia os balões na tela
+      // Tira o que JÁ está gravado antes de tentar inserir. Sem isto o ciclo
+      // mandava ~236 inserts a cada 25s e o índice único rejeitava todos: correto,
+      // porém puro desperdício. Consulta só os wa_id candidatos (em blocos, pra não
+      // estourar a URL) — não depende de carregar a tabela inteira, que é o que
+      // esbarrava no limite de 1000 do PostgREST.
+      const ids = candidatos.map((c)=>c.waId).filter(Boolean);
+      if (ids.length) {
+        const jaTem = new Set();
+        for (let i = 0; i < ids.length; i += 100){
+          const bloco = ids.slice(i, i + 100);
+          const { data: achados } = await service.from("agente_sdr_historico").select("wa_id").in("wa_id", bloco);
+          for (const a of (achados || [])) jaTem.add(a.wa_id);
+        }
+        candidatos = candidatos.filter((c)=>!c.waId || !jaTem.has(c.waId));
+      }
       candidatos.sort((a, b)=>a.ts - b.ts);
       // janela de tempo lida do Evolution — se as mensagens recentes não vierem
       // nesta fatia de 300, é aqui que se enxerga
@@ -425,7 +440,11 @@ Deno.serve(async (req)=>{
           else if (ins.error.code !== "23505") falhas++;
         }
       }
-      await service.from("_evo_sync_debug").insert({
+      // Só registra quando há o que contar. Antes gravava TODO ciclo: 97% das
+      // 5.648 linhas eram "li 300, nada novo" — diário que ninguém lê e que
+      // cresce sozinho a cada 25s.
+      const valeRegistrar = !SYNC_APPLY || inseridas > 0 || falhas > 0 || estourou || !r.ok;
+      if (valeRegistrar) await service.from("_evo_sync_debug").insert({
         info: {
           apply: SYNC_APPLY,
           estourou_teto: estourou,
