@@ -185,11 +185,16 @@ if __name__ == "__main__":
         worker.submit(eid, audio)
         print(f"job {i+1} enfileirado (entry_id={eid})")
 
-    # Wait for the queue to drain (worker is serial: 3 jobs on `small`).
-    deadline = time.time() + 120
-    while not worker._queue.empty() and time.time() < deadline:
-        time.sleep(0.5)
-    time.sleep(2.0)  # let the last _process() finish writing
+    # Wait for ALL 3 rows to actually have refined_text filled in -- NOT
+    # just "queue reports empty", which is also true while the last job is
+    # still mid-_process() (get() already dequeued it). Polling the DB
+    # itself is the only correct completion signal here.
+    deadline = time.time() + 180
+    while time.time() < deadline:
+        rows = [history_mod.get_entry(eid) for eid in ids]
+        if all(r is not None and r["refined_text"] is not None for r in rows):
+            break
+        time.sleep(1.0)
 
     for eid in ids:
         print(history_mod.get_entry(eid))
