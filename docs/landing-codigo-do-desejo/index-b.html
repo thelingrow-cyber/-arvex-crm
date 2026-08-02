@@ -16,26 +16,29 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
    WORKSHOP: ÓTICA MAGNÉTICA — Captura (Cindy Batista)
-   VERSÃO MINIMALISTA: logo → eyebrow → headline → subhead → CTA → foto.
-   SISTEMA VISUAL CINDY: Inter 900 · dourado+navy+verde WhatsApp.
+   VARIANTE B (teste A/B) — redesign a pedido do Vitor:
+   fonte Sora, paleta vermelha (era dourado), logo sem cantos,
+   foto sem fade pesado no topo, cronômetro de escassez na topbar.
+   VERSÃO MINIMALISTA: topbar(escassez) → logo → eyebrow → headline → subhead → CTA → foto.
+   SISTEMA VISUAL: Sora 800 · vermelho+navy+verde WhatsApp.
    CENTRALIZADO · MOBILE-FIRST · CTA direto WhatsApp.
    ============================================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#E6E6E6; --bg-2:#EDEDED; --bg-3:#F2F2F2;
-  --gold:#A07830; --gold-lt:#8A6526; --gold-dk:#7A5A1C;
+  --red:#C41E3A; --red-lt:#E23350; --red-dk:#8C1220;
   --text:#16182C; --muted:#5A5A68;
   --navy:#14172E; --navy-2:#1F2D52;
-  --green:#25D366; --green-dk:#1DA851;
-  --border:rgba(160,120,48,0.28);
+  --green:#2FE070; --green-dk:#1DA851;
+  --border:rgba(196,30,58,0.28);
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;
+body{background:var(--bg);color:var(--text);font-family:'Sora',system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw;line-height:1.6}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
@@ -45,65 +48,69 @@ a{text-decoration:none;color:inherit}
   display:flex;align-items:center;justify-content:center;gap:9px;
   padding:9px 16px;border-bottom:1px solid var(--border);
   font-size:clamp(10px,2.8vw,12px);font-weight:800;letter-spacing:.6px;
-  text-transform:uppercase;color:var(--gold);text-align:center;line-height:1.3}
+  text-transform:uppercase;color:var(--red);text-align:center;line-height:1.3}
 .topbar .dot{width:6px;height:6px;border-radius:50%;background:#ff4444;
   box-shadow:0 0 8px #ff4444;animation:pulse-dot 1.8s ease-in-out infinite;flex-shrink:0}
+.topbar .clock{display:inline-flex;align-items:center;background:var(--navy);color:#fff;
+  font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums;
+  font-weight:700;letter-spacing:.5px;padding:2px 8px 3px;border-radius:6px;margin-left:2px;font-size:1.08em}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.45}}
 
 /* ── LOGO DO EVENTO (frame com cantos) ── */
 .evlogo{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:10px 20px;margin-bottom:20px}
-.evlogo .c{position:absolute;width:12px;height:12px;border:2px solid var(--gold)}
-.evlogo .tl{top:0;left:0;border-right:0;border-bottom:0}
-.evlogo .tr{top:0;right:0;border-left:0;border-bottom:0}
-.evlogo .bl{bottom:0;left:0;border-right:0;border-top:0}
-.evlogo .br{bottom:0;right:0;border-left:0;border-top:0}
-.evlogo .k{font-size:8px;font-weight:800;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold)}
-.evlogo .n{font-size:clamp(16px,4.8vw,23px);font-weight:900;letter-spacing:1px;line-height:.98;text-align:center;color:var(--text)}
-.evlogo .n b{font-weight:900;background:linear-gradient(135deg,#B8902F,#8A6A1E);
+.evlogo .k{font-family:'Unbounded',sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red)}
+.evlogo .n{font-family:'Unbounded',sans-serif;font-size:clamp(15px,4.4vw,21px);font-weight:900;letter-spacing:.5px;line-height:1.15;text-align:center;color:var(--text)}
+.evlogo .n b{font-weight:900;background:linear-gradient(135deg,#E23350,#8C1220);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ========================= HERO ========================= */
 .hero{position:relative;display:flex;flex-direction:column;overflow:hidden;
   background:
-    radial-gradient(120% 55% at 50% 0%, rgba(201,150,63,.12), transparent 46%),
+    radial-gradient(120% 55% at 50% 0%, rgba(196,30,58,.12), transparent 46%),
     var(--bg)}
 .hero-content{position:relative;z-index:3;width:100%;max-width:640px;margin:0 auto;
   padding:22px 22px 8px;display:flex;flex-direction:column;align-items:center;text-align:center}
 
 .eyebrow{font-size:clamp(11px,3vw,13px);font-weight:800;letter-spacing:1.6px;text-transform:uppercase;
-  color:var(--gold);margin:0 0 14px}
+  color:var(--red);margin:0 0 14px}
 
-.hero h1{font-size:clamp(25px,6vw,38px);font-weight:900;line-height:1.14;letter-spacing:-.5px;
+.hero h1{font-size:clamp(25px,6vw,38px);font-weight:800;line-height:1.14;letter-spacing:-.5px;
   color:var(--text);max-width:16ch;margin:0 0 18px}
-.hero h1 em{font-style:normal;background:linear-gradient(135deg,#B8902F,#8A6A1E);
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,#E23350,#8C1220);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* subhead — apoio discreto, não compete com o H1 */
 .subhead{font-size:clamp(14px,4vw,17px);font-weight:500;line-height:1.5;letter-spacing:0;
   color:var(--muted);max-width:30ch;margin:0 auto 22px}
-.subhead b{font-weight:700;color:var(--gold-dk)}
+.subhead b{font-weight:700;color:var(--red-dk)}
 
 /* CTA verde WhatsApp */
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;position:relative;overflow:hidden;
   background:linear-gradient(135deg,var(--green),var(--green-dk));color:#fff;
-  font-family:inherit;font-weight:800;font-size:clamp(15px,4.2vw,17px);
-  padding:18px 32px;border-radius:13px;border:none;cursor:pointer;width:100%;max-width:440px;
-  box-shadow:0 8px 32px rgba(37,211,102,.34);animation:pulse-glow 2.6s ease-in-out infinite}
-@keyframes pulse-glow{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,.34)}50%{box-shadow:0 8px 48px rgba(37,211,102,.6)}}
+  font-family:inherit;font-weight:800;font-size:clamp(16px,4.4vw,18px);
+  padding:19px 32px;border-radius:16px;border:none;cursor:pointer;width:100%;max-width:440px;
+  box-shadow:0 10px 34px rgba(47,224,112,.4),inset 0 1px 0 rgba(255,255,255,.35);
+  animation:pulse-glow 2.2s ease-in-out infinite}
+.cta::before{content:"";position:absolute;top:0;left:-60%;width:35%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:skewX(-20deg);animation:shine 3s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{box-shadow:0 10px 34px rgba(47,224,112,.4),inset 0 1px 0 rgba(255,255,255,.35);transform:scale(1)}
+  50%{box-shadow:0 10px 46px rgba(47,224,112,.65),inset 0 1px 0 rgba(255,255,255,.45);transform:scale(1.015)}}
+@keyframes shine{0%{left:-60%}100%{left:130%}}
 .cta:hover{transform:translateY(-2px)}
 .cta:active{transform:scale(.99)}
 .cta-micro{display:block;margin-top:13px;font-size:12px;color:#5c5c66}
-.cta-micro b{color:var(--gold-dk);font-weight:800}
+.cta-micro b{color:var(--red-dk);font-weight:800}
 
 /* ── FOTO (Cindy · fade no topo e na base p/ fundir no fundo claro) ── */
 .hero-figure{position:relative;z-index:1;width:100%;margin-top:14px;
   background:var(--bg);display:flex;align-items:flex-end;justify-content:center}
 .hero-figure .fig{position:relative;z-index:1;width:100%;height:auto;display:block;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 88%,transparent 100%);
-  mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 88%,transparent 100%)}
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 6%,#000 92%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 6%,#000 92%,transparent 100%)}
 .hero-figure::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(180deg, var(--bg) 0%, transparent 14%, transparent 86%, var(--bg) 100%),
+    linear-gradient(180deg, var(--bg) 0%, transparent 5%, transparent 88%, var(--bg) 100%),
     linear-gradient(90deg, var(--bg) 0%, transparent 8%, transparent 92%, var(--bg) 100%)}
 
 /* rodapé */
@@ -138,22 +145,21 @@ a{text-decoration:none;color:inherit}
 <!-- TRACKING (preencher IDs antes de publicar) -->
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','PIXEL_ID');fbq('track','PageView');</script>
 
-<div class="topbar"><span class="dot"></span> Workshop ao vivo · Online</div>
+<div class="topbar"><span class="dot"></span> Acesso à oferta especial expira em <b id="countdown" class="clock">05:00</b></div>
 
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-content">
     <div class="evlogo reveal">
-      <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
       <span class="k">O Workshop</span>
       <span class="n">ÓTICA <b>MAGNÉTICA</b></span>
     </div>
 
     <p class="eyebrow reveal" data-delay="1">Sua ótica faturando 2x</p>
 
-    <h1 class="reveal" data-delay="2">São <em>5 dias</em> criando a máquina de captação que vai <em>dobrar o seu faturamento</em>, sem depender só do movimento da rua.</h1>
+    <h1 class="reveal" data-delay="2">Descubra em 5 dias, comigo, a <em>máquina de captação</em> que faz a sua loja <em>dobrar o faturamento</em>.</h1>
 
-    <p class="subhead reveal" data-delay="2">Entre no Grupo VIP e garanta acesso à <b>oferta especial</b> do workshop.</p>
+    <p class="subhead reveal" data-delay="2">Em um evento fechado, vamos transformar a sua loja em um <b>ímã de clientes</b>. Clique no link para ter acesso à <b>oferta especial</b>.</p>
 
     <div class="reveal" data-delay="3">
       <!-- href = link do grupo WhatsApp -->
@@ -183,6 +189,21 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})()
   b.addEventListener('click',function(){
     if(typeof fbq==='function')fbq('track','Lead',{content_name:'Otica Magnetica'});
     if(typeof gtag==='function')gtag('event','generate_lead',{event_label:'Otica Magnetica'});});});})();
+
+(function(){
+  var KEY='om_deadline_b',DURATION=5*60*1000;
+  var deadline=Number(sessionStorage.getItem(KEY));
+  if(!deadline||deadline<Date.now()){deadline=Date.now()+DURATION;sessionStorage.setItem(KEY,deadline);}
+  var el=document.getElementById('countdown');
+  function tick(){
+    var diff=Math.max(0,deadline-Date.now());
+    var m=Math.floor(diff/60000),s=Math.floor((diff%60000)/1000);
+    el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    if(diff<=0)clearInterval(iv);
+  }
+  tick();
+  var iv=setInterval(tick,1000);
+})();
 </script>
 </body>
 </html>
