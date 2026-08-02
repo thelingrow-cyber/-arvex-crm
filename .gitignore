@@ -38,3 +38,6 @@ supabase/.temp/
 # PCH Veículos — backup do WordPress (contém credenciais do banco) e artefatos
 backup-wp-pchveiculos/
 docs/pch-veiculos-site.zip
+
+# Listas de trabalho temporarias (scrapes, dedupe) - nao versionar
+tmp-listas/
