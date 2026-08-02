@@ -41,3 +41,6 @@ docs/pch-veiculos-site.zip
 
 # Listas de trabalho temporarias (scrapes, dedupe) - nao versionar
 tmp-listas/
+
+# Listas temporárias de trabalho (JSONs grandes, descartáveis)
+tmp-listas/
