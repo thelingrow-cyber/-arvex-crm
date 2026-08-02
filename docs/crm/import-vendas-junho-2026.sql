@@ -1,8 +1,8 @@
 -- ╔═══════════════════════════════════════════════════════════════════════════╗
 -- ║          CRM ARVEX — Import de vendas fechadas (junho/2026 · Cindy)        ║
 -- ╠═══════════════════════════════════════════════════════════════════════════╣
--- ║ Data:  2026-07-01                                                          ║
--- ║ Fonte: planilha enviada pelo Vitor (6 vendas de junho não lançadas)        ║
+-- ║ Data:  2026-07-01 (atualizado 2026-07-08 — + Tamires)                     ║
+-- ║ Fonte: planilha enviada pelo Vitor (7 vendas de junho não lançadas)        ║
 -- ║ Autor: @data-engineer (Dara)                                              ║
 -- ║                                                                           ║
 -- ║ O QUE FAZ (por venda):                                                    ║
@@ -115,6 +115,7 @@ select _imp_venda_mensal('Roberta',         4997.00, 'Mentoria',    'parcelado',
 select _imp_venda_mensal('Aline',           4500.00, 'Mentoria',    'parcelado',  'cartao', 10,  date '2026-06-16', 'Renovação · cliente paga 10x R$500 no cartão (c/ juros)');
 select _imp_venda_mensal('Alanna',          2500.00, 'Mentoria',    'avista',     'pix',    1,   date '2026-06-15', 'Renovação');
 select _imp_venda_mensal('Willian',         4500.00, 'Mentoria',    'parcelado',  'cartao', 12,  date '2026-06-29');
+select _imp_venda_mensal('Tamires',         2000.00, 'Mentoria',    'avista',     'cartao', 1,   date '2026-06-10');
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- 3. Marília — Consultoria R$10.000, 2x Pix em datas coladas (não mensal)
@@ -167,7 +168,7 @@ select v.cliente,
 from   vendas v
 join   parcelas p on p.venda_id = v.id
 left   join leads l on l.id = v.lead_id
-where  v.cliente in ('Kamila Torquato','Roberta','Marília','Aline','Alanna','Willian')
+where  v.cliente in ('Kamila Torquato','Roberta','Marília','Aline','Alanna','Willian','Tamires')
 group  by v.cliente, v.valor_total, v.condicao_negociada
 order  by v.cliente;
 
@@ -175,10 +176,10 @@ order  by v.cliente;
 -- COMO REVERTER (rode SÓ se precisar desfazer o import):
 --   begin;
 --     delete from vendas
---      where cliente in ('Kamila Torquato','Roberta','Marília','Aline','Alanna','Willian');
+--      where cliente in ('Kamila Torquato','Roberta','Marília','Aline','Alanna','Willian','Tamires');
 --     -- parcelas caem automaticamente (ON DELETE CASCADE)
 --     delete from leads
---      where nome in ('Kamila Torquato','Roberta','Marília','Aline','Alanna','Willian')
+--      where nome in ('Kamila Torquato','Roberta','Marília','Aline','Alanna','Willian','Tamires')
 --        and status = 'fechado' and expert = 'Cindy Batista';
 --   commit;
 -- ─────────────────────────────────────────────────────────────────────────────
