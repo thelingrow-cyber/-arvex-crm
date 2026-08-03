@@ -659,8 +659,8 @@
        container de rolagem, o que cortaria os halos das bolhas das pontas. */
     .pj-board.modo-bolhas { display:block; overflow-x:clip; }
     .pj-campo { position:relative; display:flex; flex-wrap:wrap;
-                gap:8px 30px; align-items:center; justify-content:center;
-                padding:44px 10px 30px; }
+                gap:14px 26px; align-items:center; justify-content:center;
+                padding:48px 4px 32px; }
     /* brilho de fundo do campo — dá profundidade e evita o "flutuar no vazio" */
     .pj-campo::before { content:""; position:absolute; inset:-40px 0; pointer-events:none;
       background:radial-gradient(60% 55% at 50% 45%, rgba(91,108,255,.10), transparent 70%);
@@ -4753,8 +4753,16 @@ function pjBolhas() {
              feitas: t.filter(x => x.status === 'feito').length }
   })
   const maxAb = Math.max(1, ...dados.map(d => d.abertas))
-  const estreito = window.innerWidth < 780                       // heurística A2: mobile é o juiz
-  const D_MIN = estreito ? 74 : 96, D_MAX = estreito ? 152 : 208
+  // As bolhas devem OCUPAR a largura, mas caber numa linha só: divisor fixo não
+  // garante isso (a 6ª quebrava sozinha). Dimensiono pela SOMA dos fatores.
+  const larg = document.getElementById('pj-board').clientWidth || window.innerWidth
+  const estreito = larg < 720                                    // heurística A2: mobile é o juiz
+  const vao = estreito ? 18 : 26
+  const fatores = dados.map(d => d.abertas ? Math.sqrt(d.abertas / maxAb) : 0.34)
+  const soma = fatores.reduce((a, b) => a + b, 0) || 1
+  let base = (larg - vao * (dados.length - 1) - 24) / soma        // diâmetro do fator 1
+  if (estreito) base = larg * 0.46                               // celular: 2 por linha
+  base = Math.max(110, Math.min(base, 280))
   // Deriva determinística por posição: sempre a mesma, senão as bolhas "pulam" a cada render.
   const DERIVA = [
     { dx:'10px', dy:'13px', dur:'17s', atraso:'-2s',  off:'0px'  },
@@ -4767,7 +4775,7 @@ function pjBolhas() {
 
   const bolhas = dados.map((d, i) => {
     const mv = DERIVA[i % DERIVA.length]
-    const dia = d.abertas ? D_MIN + (D_MAX - D_MIN) * Math.sqrt(d.abertas / maxAb) : D_MIN * .62
+    const dia = Math.round(Math.max(estreito ? 66 : 88, base * fatores[i]))
     const cx = dia / 2, R = dia / 2 - 7, C = 2 * Math.PI * R
     let off = 0
     const anel = [[d.vc, 'var(--gold)'], [d.ia, 'var(--blue)'], [d.am, 'var(--text-3)']]
