@@ -772,10 +772,18 @@
     .pj-row.blk { background:rgba(255,255,255,.02); }
     .pj-row.done .pj-tit { color:var(--text-3); text-decoration:line-through; }
 
-    .pj-check { width:17px; height:17px; border-radius:5px; border:1.5px solid var(--border-2); flex:none; margin-top:1px; display:flex; align-items:center; justify-content:center; color:transparent; transition:all var(--dur) var(--ease); }
+    /* Alvo de toque: o quadrado tem 20px mas a área clicável usa margem negativa
+       para chegar a ~40px — 17px era pequeno demais para o dedo no celular. */
+    .pj-check { width:20px; height:20px; border-radius:6px; border:1.5px solid var(--border-2); flex:none;
+                margin:-9px 0 -9px -9px; padding:9px; box-sizing:content-box; background-clip:content-box;
+                display:flex; align-items:center; justify-content:center; color:transparent;
+                transition:background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease); }
     .pj-check:hover { border-color:var(--green); }
-    .pj-row.done .pj-check { background:var(--green); border-color:var(--green); color:var(--navy); }
-    .pj-row.doing .pj-check { border-color:var(--orange); background:rgba(210,153,34,.18); }
+    .pj-row.done .pj-check { background-color:var(--green); border-color:var(--green); color:var(--navy); }
+    .pj-row.doing .pj-check { border-color:var(--orange); background-color:rgba(210,153,34,.18); }
+    /* Feita continua visível e legível — riscada, não apagada a ponto de sumir. */
+    .pj-row.done { opacity:.72; }
+    .pj-row.done:hover { opacity:1; }
 
     .pj-body { min-width:0; flex:1; display:flex; flex-direction:column; gap:4px; }
     .pj-line1 { display:flex; gap:7px; align-items:baseline; min-width:0; }
@@ -1224,8 +1232,8 @@
         <button class="pj-chip" data-f="ex" data-v="equipe" onclick="pjFiltro(this)">equipe</button>
         <span class="pj-sep"></span>
         <span class="pj-lbl">Estado</span>
-        <button class="pj-chip on" data-f="st" data-v="abertos" onclick="pjFiltro(this)">em aberto</button>
-        <button class="pj-chip" data-f="st" data-v="all" onclick="pjFiltro(this)">incluir feitas</button>
+        <button class="pj-chip on" data-f="st" data-v="all" onclick="pjFiltro(this)">tudo</button>
+        <button class="pj-chip" data-f="st" data-v="abertos" onclick="pjFiltro(this)">só abertas</button>
         <button class="pj-chip c-red" data-f="st" data-v="late" onclick="pjFiltro(this)">atrasados</button>
         <button class="pj-chip" data-f="st" data-v="livre" onclick="pjFiltro(this)">destravados</button>
         <span class="pj-sep"></span>
@@ -4697,7 +4705,9 @@ function showToast(msg, type='success', opts = {}) {
 // Regra visual: DOURADO = tarefa do Vitor. É o recurso escasso; nada mais usa dourado aqui.
 let pjFrentes = []
 let pjTarefas = []
-const pjFiltros = { ex:'all', st:'abertos' }
+// Padrão mostra TUDO, inclusive as feitas: escondê-las fazia a tarefa sumir no clique
+// e o Vitor achou que não tinha funcionado. Ver o check é a recompensa.
+const pjFiltros = { ex:'all', st:'all' }
 let pjEditando = null       // id da tarefa aberta no modal; null = criação
 let pjFrenteAberta = null   // null = visão geral em bolhas; 'LG' = quadro da Lingrow
 
