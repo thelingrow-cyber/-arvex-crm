@@ -629,6 +629,7 @@
     .pj-stat.s-vitor::before { background:var(--gold); }
     .pj-stat.s-eu::before    { background:var(--blue); }
     .pj-stat.s-late::before  { background:var(--red); }
+    .pj-stat.s-ok::before    { background:var(--green); }
     .pj-stat-n { font-size:24px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
     .pj-stat.s-vitor .pj-stat-n { color:var(--gold2); }
     .pj-stat.s-eu .pj-stat-n    { color:var(--blue); }
@@ -1224,7 +1225,7 @@
         <span class="pj-sep"></span>
         <span class="pj-lbl">Estado</span>
         <button class="pj-chip on" data-f="st" data-v="abertos" onclick="pjFiltro(this)">em aberto</button>
-        <button class="pj-chip" data-f="st" data-v="all" onclick="pjFiltro(this)">com feitos</button>
+        <button class="pj-chip" data-f="st" data-v="all" onclick="pjFiltro(this)">incluir feitas</button>
         <button class="pj-chip c-red" data-f="st" data-v="late" onclick="pjFiltro(this)">atrasados</button>
         <button class="pj-chip" data-f="st" data-v="livre" onclick="pjFiltro(this)">destravados</button>
         <span class="pj-sep"></span>
@@ -4838,13 +4839,15 @@ function pjRender() {
   const minhas  = abertas.filter(t => t.executor === 'eu').length
   const atras   = pjTarefas.filter(pjAtrasada).length
   const feitas  = pjTarefas.filter(t => t.status === 'feito').length
+  const d0 = new Date().toISOString().slice(0, 10)
+  const hoje = pjTarefas.filter(t => (t.concluido_em || '').slice(0, 10) === d0).length
   const semanas = Math.ceil(suas / PJ_TETO_SEMANAL)
   document.getElementById('pj-stats').innerHTML = `
     <div class="pj-stat"><div class="pj-stat-n">${abertas.length}</div><div class="pj-stat-l">em aberto<br>de ${pjTarefas.length} no total</div></div>
     <div class="pj-stat s-vitor"><div class="pj-stat-n">${suas}</div><div class="pj-stat-l">passam por você<br>≈${semanas} ${semanas === 1 ? 'semana' : 'semanas'} a ${PJ_TETO_SEMANAL}/sem</div></div>
     <div class="pj-stat s-eu"><div class="pj-stat-n">${minhas}</div><div class="pj-stat-l">a IA executa<br>você só aprova</div></div>
     <div class="pj-stat s-late"><div class="pj-stat-n">${atras}</div><div class="pj-stat-l">com prazo vencido</div></div>
-    <div class="pj-stat"><div class="pj-stat-n">${feitas}</div><div class="pj-stat-l">concluídas</div></div>`
+    <div class="pj-stat${hoje ? ' s-ok' : ''}"><div class="pj-stat-n">${feitas}</div><div class="pj-stat-l">concluídas${hoje ? `<br><b style="color:var(--green)">${hoje} ${hoje === 1 ? 'hoje' : 'hoje'}</b>` : '<br>nenhuma hoje'}</div></div>`
 
   // Sem frente escolhida = visão geral em bolhas. Os filtros não fazem sentido lá.
   const barra = document.querySelector('#view-projetos .pj-bar')
@@ -4950,7 +4953,8 @@ function pjLinha(t) {
   ].join('')
   const cls = [t.status === 'feito' ? 'done' : '', t.status === 'fazendo' ? 'doing' : '', t.bloqueado_por ? 'blk' : ''].filter(Boolean).join(' ')
   return `<div class="pj-row ${cls}" data-ex="${t.executor}" onclick="openTarefa('${t.id}')">
-    <div class="pj-check" onclick="event.stopPropagation();pjToggle('${t.id}')" title="Avançar status">${icon('check', { size:12 })}</div>
+    <div class="pj-check" onclick="event.stopPropagation();pjToggle('${t.id}')"
+         title="${t.status === 'feito' ? 'Reabrir' : 'Marcar como feita'}">${icon('check', { size:12 })}</div>
     <div class="pj-body">
       <div class="pj-line1"><span class="pj-cod">${esc(t.codigo)}</span><span class="pj-tit">${esc(t.titulo)}</span></div>
       <div class="pj-tags">${tags}</div>
@@ -4958,15 +4962,25 @@ function pjLinha(t) {
     </div></div>`
 }
 
-// Ciclo do clique no quadrado: aberto → fazendo → feito → aberto.
+// O quadrado MARCA E DESMARCA, em um clique — era um ciclo de 3 estados e concluir
+// custava dois cliques, o que num checkbox é errado. "Fazendo" vive no modal.
 // Só atualiza a tela DEPOIS que o banco confirma (convenção do CRM).
 async function pjToggle(id) {
   const t = pjTarefas.find(x => x.id === id); if (!t) return
-  const proximo = { aberto:'fazendo', fazendo:'feito', feito:'aberto', congelado:'aberto' }[t.status]
+  const anterior = t.status
+  const proximo  = t.status === 'feito' ? 'aberto' : 'feito'
   const { error } = await sb.from('projetos_tarefas').update({ status: proximo }).eq('id', id)
   if (error) { showToast('Não foi possível atualizar.', 'error'); return }
   t.status = proximo
-  if (proximo === 'feito') showToast(`${t.codigo} concluída.`, 'success')
+  if (proximo === 'feito') {
+    t.concluido_em = new Date().toISOString()
+    showToast(`${t.codigo} concluída.`, 'success', {
+      actionLabel: 'desfazer', onAction: () => pjToggle(id)
+    })
+  } else {
+    t.concluido_em = null
+    if (anterior === 'feito') showToast(`${t.codigo} reaberta.`, 'success')
+  }
   pjRender()
 }
 
