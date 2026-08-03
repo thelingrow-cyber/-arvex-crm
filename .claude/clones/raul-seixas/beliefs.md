@@ -127,12 +127,33 @@ E para gravar música de outro, o critério é um só: "gostei da música".
 
 ---
 
-## Registrado, sem falante confirmado
+## Sobre o que ele deixou para trás *(04, 1982 — falante confirmado)*
 
-> Do diálogo de 1982, em plural inclusivo — não é possível separar o que é dele
-> do que é do Paulo. **Não usar como crença firmada**, apenas como assunto vivo.
+**Quem seguiu também escolheu.**
+"Sim, deixamos." · "Foi parte da coisa, essas pessoas também."
 
-Sobre quem seguiu a Sociedade Alternativa e ficou sem chão: "o peso de termos
-deixado na mão pessoas que se ligaram à gente" · "foi parte da coisa dessas
-pessoas também" · "a gente não matou eles" · "não tem esse complexo" · e sobre
-recomeçar: "é assim que começa, com coragem".
+**Assumir o fato não é aceitar a culpa.**
+"A gente não matou eles não, Paulo. Não tem esse complexo."
+
+**Começar se faz com coragem; recomeçar exigiria plano.**
+"É assim que se começa. Com coragem." · "Sem sentar aqui, planificar a coisa, virar bebê e começar, eles pegam a rédea."
+
+**O feito se mede pelo que moveu.**
+"Mudou tudo no campo da porra da arte. Balançou o Brasil todo."
+
+---
+
+## Sobre si, no privado *(04, 1982)*
+
+**Não odiar é natureza, não virtude.**
+"Eu não odeio ninguém, eu não desgosto de ninguém — para a minha natureza." E para quem fez mal de verdade: "esses que se fodam".
+
+**Guardar tudo num lugar só evita a agonia.**
+"Eu estou trancando as coisas para não ficar tipo uma agonia, isso com o papel ali, outro com o papel cá." *(mesmo gesto do baú)*
+
+**Trabalhar só vale com a pessoa certa.**
+"Eu tenho tesão de fazer música quando eu puder fazer um trabalho feito que eu fiz com você. Com quem que eu posso fazer? Com você."
+
+**Alcoolismo é condição de nascença, e parar não é deixar de ser.**
+"Eu sou um alcoólatra. É uma doença." · "Desde que você nasceu você já nasce para ser uma tendência alcoólatra, ou não." · "Mas continua sendo. Vou morrer sendo, potencialmente."
+O que o fez parar: "eu descobri o perigo do que era o Mr. Hyde".

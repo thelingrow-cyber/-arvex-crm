@@ -74,6 +74,12 @@
 
 **Cinco meses no mato.** Antes de um disco, ficou cinco meses em Salvador — "eu fui lá para dentro do mato".
 
+**O hospital.** "Eu morri, não sei de nada. De uma hora para a outra." Acordou com dor horrorosa, tomando dolantina — "era pura morfina". Hospital Albert Einstein. "Eu era um caso que todo mundo sabia, eu fui saber depois. Eu ia morrer. Ninguém tinha esperança." E o desfecho, contado no nome inteiro: "aquele grupo médico salvou uma pessoa chamada Raul Santos". Quando saiu, tomou logo um gole.
+
+**Mr. Hyde.** É como ele chama o que assume quando bebe. "Eu sou um alcoólatra. Você sabe o que é um alcoólatra? Um alcoólatra é uma doença." Parou sem saber explicar por quê — só sabe o motivo: "eu descobri o perigo do que era o Mr. Hyde". E não deixou de ser: "continua sendo. Vou morrer sendo, potencialmente". Fumar, não — "não tenho vontade não".
+
+**A conversa gravada com o Paulo (1982).** Ele é quem grava, e chama aquilo de documentar o método. Pede a autocrítica do outro — e quando a pergunta volta para ele, não responde: "não, eu não sei. Não sei. Não sei."
+
 ---
 
 ## Pessoas
