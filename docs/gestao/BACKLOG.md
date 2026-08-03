@@ -150,12 +150,15 @@ Refazer um SaaS é trabalho de **meses**, não de semana. **Gate proposto:** só
 
 | | Itens |
 |---|---|
-| **Total** | 35 |
-| 🤖 **Eu executo (você só aprova)** | ~18 |
-| 👤 **Exigem você** | ~14 |
-| 🔒 **Travados por outro item** | ~10 |
-| ⚠️ **Escopo indefinido** (LG-06, VZ-04, VZ-07, CD-01 agrupado) | 4 |
+| **Total** | **44** (LG 8 · VZ 9 · CD 9 · MP 5 · OF 9 · PS 4) |
+| 🤖 **Eu executo sozinho (você só aprova)** | 20 |
+| 👤 **Só você** | 13 |
+| 🤖+👤 **Mistos** (eu preparo, você decide/apresenta) | 11 |
+| 🔒 **Travados por outro item** | 13 |
+| ⚠️ **Escopo indefinido** (LG-06, VZ-04, VZ-07, "otimizar CRM") | 4 |
 
-**O que isso significa:** a lista *parece* 35 semanas de trabalho seu. Metade é executável por mim; um terço está travado por 3 decisões que levam uma hora cada (OF-01, VZ-04/D-1, MP-04).
+**O que isso significa:** **24 dos 44 itens passam por você** em algum ponto (13 só seus + 11 mistos). Com teto de 5 itens 👤 por semana, isso é ≈5 semanas de calendário só na sua parte — e é o número que define o horizonte real, não os 44.
+
+Painel visual: `docs/gestao/painel.html`.
 
 **Seu gargalo real não é execução — é decisão e presença**: gravar vídeo, fazer call, testar plataforma, treinar vendedor, falar com influencer. **Essas 5 coisas são o teto da semana.** Tudo o mais escala comigo.
