@@ -648,28 +648,77 @@
        Área do círculo ∝ atividades ABERTAS (feita não pesa mais). O anel em volta
        reparte por quem executa — dourado é o Vitor, e é o que responde de relance
        "qual projeto come o meu tempo". */
-    /* A visão de bolhas desliga o column-count do board (senão as bolhas e a legenda
-       são fatiadas em colunas de texto). */
-    .pj-board.modo-bolhas { display:block; }
-    .pj-bolhas { display:flex; flex-wrap:wrap; gap:30px 40px; align-items:flex-end; justify-content:center;
-                 padding:30px 10px 26px; }
-    .pj-bolha { display:flex; flex-direction:column; align-items:center; gap:9px; cursor:pointer;
-                background:none; border:none; font-family:'Inter',sans-serif; padding:0;
-                transition:transform var(--dur) var(--ease); }
-    .pj-bolha:hover { transform:translateY(-3px) scale(1.03); }
-    .pj-bolha:focus-visible { outline:2px solid var(--blue); outline-offset:6px; border-radius:50%; }
+    /* ── BOLHAS ─────────────────────────────────────────────────────────────
+       Mo (motion): flutuar SEM virar adesivo pairando (heurística A5 — cutout
+       solto lê como amador). Cada bolha é uma fonte de luz: o halo em radial-
+       gradient sangra no fundo e integra o círculo à página. O que se move é
+       transform/opacity apenas — 6 elementos, custo desprezível.
+       Duas camadas aninhadas: .pj-drift carrega a deriva contínua, .pj-lift
+       carrega o hover. Uma só camada faria os dois transforms se anularem. */
+    /* overflow-x:clip (não hidden) — impede a barra horizontal do brilho sem virar
+       container de rolagem, o que cortaria os halos das bolhas das pontas. */
+    .pj-board.modo-bolhas { display:block; overflow-x:clip; }
+    .pj-campo { position:relative; display:flex; flex-wrap:wrap;
+                gap:8px 30px; align-items:center; justify-content:center;
+                padding:44px 10px 30px; }
+    /* brilho de fundo do campo — dá profundidade e evita o "flutuar no vazio" */
+    .pj-campo::before { content:""; position:absolute; inset:-40px 0; pointer-events:none;
+      background:radial-gradient(60% 55% at 50% 45%, rgba(91,108,255,.10), transparent 70%);
+      filter:blur(30px); }
+
+    .pj-bolha { position:relative; display:flex; flex-direction:column; align-items:center; gap:10px;
+                cursor:pointer; background:none; border:none; font-family:'Inter',sans-serif; padding:0;
+                margin-bottom:var(--offset,0px); animation:pj-entra .7s var(--ease) backwards; }
+    .pj-drift { display:block; animation:pj-flutua var(--dur-flutua,16s) ease-in-out infinite;
+                animation-delay:var(--atraso,0s); will-change:transform; }
+    .pj-lift  { display:block; position:relative; transition:transform .32s var(--ease); }
+    .pj-bolha:hover .pj-lift, .pj-bolha:focus-visible .pj-lift { transform:scale(1.06); }
+    .pj-bolha:active .pj-lift { transform:scale(.97); transition-duration:.12s; }
+
+    /* halo: a luz que integra a bolha ao fundo em vez de recortá-la */
+    .pj-lift::before { content:""; position:absolute; inset:-24%; border-radius:50%; z-index:-1;
+      background:radial-gradient(circle, var(--halo) 0%, transparent 68%);
+      opacity:.5; filter:blur(16px); transition:opacity .32s var(--ease), transform .32s var(--ease); }
+    .pj-bolha:hover .pj-lift::before { opacity:.9; transform:scale(1.12); }
+
+    .pj-bolha:focus-visible { outline:none; }
+    .pj-bolha:focus-visible .pj-bolha-nome { text-decoration:underline; text-underline-offset:3px; }
     .pj-bolha-svg { display:block; overflow:visible; }
-    .pj-bolha:hover .pj-bolha-fill { filter:brightness(1.35); }
+    .pj-bolha-fill { transition:opacity .32s var(--ease); }
+    .pj-bolha:hover .pj-bolha-fill { opacity:.3; }
     .pj-bolha-num { font-size:26px; font-weight:800; letter-spacing:-.03em; fill:var(--white);
                     font-variant-numeric:tabular-nums; }
-    .pj-bolha-cap { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; fill:var(--text-3); }
-    .pj-bolha-nome { font-size:12px; font-weight:750; letter-spacing:.05em; text-transform:uppercase; color:var(--white); }
-    .pj-bolha-sub { font-size:10.5px; color:var(--text-3); margin-top:-6px; }
-    .pj-bolha-vc { font-size:10.5px; color:var(--gold); margin-top:-6px; font-weight:600; }
+    .pj-bolha-cap { font-size:8.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; fill:var(--text-3); }
+    .pj-bolha-nome { font-size:12px; font-weight:750; letter-spacing:.05em; text-transform:uppercase; }
+    .pj-bolha-sub { font-size:10.5px; color:var(--text-3); margin-top:-7px; }
+    .pj-bolha-vc { font-size:10.5px; color:var(--gold); margin-top:-7px; font-weight:600; }
+
+    @keyframes pj-flutua {
+      0%,100% { transform:translate3d(0,0,0); }
+      25%     { transform:translate3d(var(--dx), calc(var(--dy) * -1), 0); }
+      50%     { transform:translate3d(calc(var(--dx) * -.7), calc(var(--dy) * .5), 0); }
+      75%     { transform:translate3d(calc(var(--dx) * .35), calc(var(--dy) * .85), 0); }
+    }
+    @keyframes pj-entra {
+      from { opacity:0; transform:translateY(14px) scale(.9); }
+      to   { opacity:1; transform:none; }
+    }
 
     .pj-legenda { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; font-size:11px;
-                  color:var(--text-3); padding-bottom:6px; }
+                  color:var(--text-3); padding-bottom:6px; align-items:center; }
     .pj-legenda i { width:9px; height:9px; border-radius:3px; display:inline-block; margin-right:5px; vertical-align:-1px; }
+    .pj-vertudo { background:rgba(255,255,255,.05); border:1px solid var(--border); color:var(--muted);
+                  padding:5px 12px; border-radius:7px; font-size:11.5px; font-weight:600; cursor:pointer;
+                  font-family:'Inter',sans-serif; transition:all var(--dur) var(--ease); }
+    .pj-vertudo:hover { border-color:var(--border-2); color:var(--white); }
+
+    /* Movimento é enfeite: sem ele a tela continua inteira (e o usuário que pediu
+       menos animação no sistema operacional recebe a versão parada). */
+    @media (prefers-reduced-motion:reduce) {
+      .pj-drift { animation:none; }
+      .pj-bolha { animation:none; }
+      .pj-lift, .pj-lift::before { transition:none; }
+    }
 
     .pj-voltar { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.04);
                  border:1px solid var(--border); color:var(--muted); padding:6px 12px; border-radius:7px;
@@ -685,6 +734,14 @@
        primeira coluna e deixa a terceira vazia. */
     .pj-board { display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:14px; align-items:start; }
     .pj-board > .pj-col { margin-bottom:0; }
+
+    /* "Ver tudo": as 6 frentes de uma vez. Aqui NÃO há ordem entre elas e as alturas são
+       muito diferentes (17 itens × 4) — column-count empacota sem deixar vão morto. */
+    .pj-board.modo-tudo { display:block; column-count:3; column-gap:14px; }
+    @media (max-width:1250px){ .pj-board.modo-tudo { column-count:2; } }
+    @media (max-width:820px) { .pj-board.modo-tudo { column-count:1; } }
+    .modo-tudo > .pj-col { break-inside:avoid; -webkit-column-break-inside:avoid;
+                           margin-bottom:14px; display:inline-block; width:100%; }
 
     .pj-col { background:var(--navy2); border:1px solid var(--border); border-radius:12px; overflow:hidden;
               min-width:0; }
@@ -4696,9 +4753,20 @@ function pjBolhas() {
              feitas: t.filter(x => x.status === 'feito').length }
   })
   const maxAb = Math.max(1, ...dados.map(d => d.abertas))
-  const D_MIN = 96, D_MAX = 208
+  const estreito = window.innerWidth < 780                       // heurística A2: mobile é o juiz
+  const D_MIN = estreito ? 74 : 96, D_MAX = estreito ? 152 : 208
+  // Deriva determinística por posição: sempre a mesma, senão as bolhas "pulam" a cada render.
+  const DERIVA = [
+    { dx:'10px', dy:'13px', dur:'17s', atraso:'-2s',  off:'0px'  },
+    { dx:'-8px', dy:'11px', dur:'21s', atraso:'-7s',  off:'34px' },
+    { dx:'12px', dy:'-9px', dur:'19s', atraso:'-4s',  off:'10px' },
+    { dx:'-11px',dy:'-12px',dur:'23s', atraso:'-11s', off:'42px' },
+    { dx:'9px',  dy:'12px', dur:'18s', atraso:'-9s',  off:'6px'  },
+    { dx:'-10px',dy:'-10px',dur:'22s', atraso:'-5s',  off:'38px' }
+  ]
 
-  const bolhas = dados.map(d => {
+  const bolhas = dados.map((d, i) => {
+    const mv = DERIVA[i % DERIVA.length]
     const dia = d.abertas ? D_MIN + (D_MAX - D_MIN) * Math.sqrt(d.abertas / maxAb) : D_MIN * .62
     const cx = dia / 2, R = dia / 2 - 7, C = 2 * Math.PI * R
     let off = 0
@@ -4713,15 +4781,25 @@ function pjBolhas() {
         return seg
       }).join('')
     const pct = d.total ? Math.round(d.feitas / d.total * 100) : 0
+    const gid = 'g' + d.f.key
     return `<button class="pj-bolha" onclick="pjAbrirFrente('${esc(d.f.key)}')"
+        style="--offset:${mv.off};animation-delay:${i * 70}ms"
         title="${esc(d.f.nome)} — ${d.abertas} em aberto de ${d.total}">
-      <svg class="pj-bolha-svg" width="${dia}" height="${dia}" viewBox="0 0 ${dia} ${dia}" aria-hidden="true">
-        <circle class="pj-bolha-fill" cx="${cx}" cy="${cx}" r="${R - 6}" fill="${esc(d.f.cor)}" opacity=".16"></circle>
-        <circle cx="${cx}" cy="${cx}" r="${R}" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="7"></circle>
-        ${anel}
-        <text class="pj-bolha-num" x="${cx}" y="${cx + 2}" text-anchor="middle" dominant-baseline="middle">${d.abertas}</text>
-        <text class="pj-bolha-cap" x="${cx}" y="${cx + 20}" text-anchor="middle">abertas</text>
-      </svg>
+      <span class="pj-drift" style="--dx:${mv.dx};--dy:${mv.dy};--dur-flutua:${mv.dur};--atraso:${mv.atraso}">
+        <span class="pj-lift" style="--halo:${esc(d.f.cor)}55">
+          <svg class="pj-bolha-svg" width="${dia}" height="${dia}" viewBox="0 0 ${dia} ${dia}" aria-hidden="true">
+            <defs><radialGradient id="${gid}" cx="38%" cy="32%" r="72%">
+              <stop offset="0%" stop-color="${esc(d.f.cor)}" stop-opacity=".42"></stop>
+              <stop offset="100%" stop-color="${esc(d.f.cor)}" stop-opacity=".10"></stop>
+            </radialGradient></defs>
+            <circle class="pj-bolha-fill" cx="${cx}" cy="${cx}" r="${R - 5}" fill="url(#${gid})" opacity=".9"></circle>
+            <circle cx="${cx}" cy="${cx}" r="${R}" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="7"></circle>
+            ${anel}
+            <text class="pj-bolha-num" x="${cx}" y="${cx + 2}" text-anchor="middle" dominant-baseline="middle">${d.abertas}</text>
+            <text class="pj-bolha-cap" x="${cx}" y="${cx + 20}" text-anchor="middle">abertas</text>
+          </svg>
+        </span>
+      </span>
       <span class="pj-bolha-nome" style="color:${esc(d.f.cor)}">${esc(d.f.nome)}</span>
       ${d.vc ? `<span class="pj-bolha-vc">${d.vc} ${d.vc === 1 ? 'sua' : 'suas'}</span>` : '<span class="pj-bolha-sub">nada com você</span>'}
       ${d.feitas ? `<span class="pj-bolha-sub">${pct}% concluída</span>` : ''}
@@ -4729,19 +4807,21 @@ function pjBolhas() {
   }).join('')
 
   const board = document.getElementById('pj-board')
-  board.classList.add('modo-bolhas')
+  board.className = 'pj-board modo-bolhas'
   board.innerHTML =
-    `<div class="pj-bolhas">${bolhas}</div>
+    `<div class="pj-campo">${bolhas}</div>
      <div class="pj-legenda">
        <span><i style="background:var(--gold)"></i>você</span>
        <span><i style="background:var(--blue)"></i>IA</span>
        <span><i style="background:var(--text-3)"></i>ambos / equipe</span>
-       <span style="opacity:.7">— o tamanho da bolha é o que falta fazer</span>
+       <span style="opacity:.7">— o tamanho é o que falta fazer</span>
+       <button class="pj-vertudo" onclick="pjVerTudo()">ver tudo em lista</button>
      </div>`
 }
 
 function pjAbrirFrente(key) { pjFrenteAberta = key; pjRender() }
 function pjVoltarBolhas()   { pjFrenteAberta = null; pjRender() }
+function pjVerTudo()        { pjFrenteAberta = 'TUDO'; pjRender() }
 
 function pjRender() {
   // ── leitura de topo ──
@@ -4766,17 +4846,53 @@ function pjRender() {
     pjBolhas(); return
   }
 
+  // ── TUDO: as 6 frentes em lista, como antes das bolhas ──
+  if (pjFrenteAberta === 'TUDO') {
+    barra.style.display = ''; topo.style.display = ''
+    topo.innerHTML = `
+      <button class="pj-voltar" onclick="pjVoltarBolhas()">${icon('undo', { size:13 })} voltar às bolhas</button>
+      <h2>Todas as frentes</h2>
+      <span class="sub">${pjTarefas.length} atividades · agrupadas por frente e trilha</span>`
+    const board = document.getElementById('pj-board')
+    board.className = 'pj-board modo-tudo'
+    board.innerHTML = pjFrentes.map(fr => {
+      const itens = pjTarefas.filter(t => t.frente === fr.key)
+      const vis   = itens.filter(pjPassa)
+      const feito = itens.filter(t => t.status === 'feito').length
+      let corpo = '', trilhaAtual = null
+      vis.forEach(t => {
+        if (t.trilha !== trilhaAtual) {
+          corpo += `<div class="pj-trilha">${esc(t.trilha || 'Sem trilha')}${t.trilha_nota ? ` <em>· ${esc(t.trilha_nota)}</em>` : ''}</div>`
+          trilhaAtual = t.trilha
+        }
+        corpo += pjLinha(t)
+      })
+      if (!vis.length) corpo = '<div class="pj-vazio">nada com este filtro</div>'
+      return `<section class="pj-col">
+        <div class="pj-col-head">
+          <div class="pj-col-top"><span class="pj-dot" style="background:${esc(fr.cor)}"></span>
+            <span class="pj-col-name" style="cursor:pointer" onclick="pjAbrirFrente('${esc(fr.key)}')">${esc(fr.nome)}</span>
+            <span class="pj-col-n">${vis.length}/${itens.length}</span></div>
+          ${fr.subtitulo ? `<div class="pj-col-sub">${esc(fr.subtitulo)}</div>` : ''}
+          <div class="pj-meta-goal${fr.meta ? '' : ' vazia'}" onclick="event.stopPropagation();editarMeta('${esc(fr.key)}')">${fr.meta ? icon('target', { size:11 }) + ' ' + esc(fr.meta) : '+ definir a meta desta frente'}</div>
+          <div class="pj-prog"><i style="width:${itens.length ? Math.round(feito / itens.length * 100) : 0}%"></i></div>
+        </div>${corpo}</section>`
+    }).join('')
+    return
+  }
+
   // ── quadro de UMA frente: cada trilha vira uma coluna ──
   const f = pjFrentes.find(x => x.key === pjFrenteAberta)
   if (!f) { pjVoltarBolhas(); return }
   barra.style.display = ''
-  document.getElementById('pj-board').classList.remove('modo-bolhas')
+  document.getElementById('pj-board').className = 'pj-board'
   const daFrente = pjTarefas.filter(t => t.frente === f.key)
   const done = daFrente.filter(t => t.status === 'feito').length
   const pct  = daFrente.length ? Math.round(done / daFrente.length * 100) : 0
   topo.style.display = ''
   topo.innerHTML = `
-    <button class="pj-voltar" onclick="pjVoltarBolhas()">${icon('undo', { size:13 })} todas as frentes</button>
+    <button class="pj-voltar" onclick="pjVoltarBolhas()">${icon('undo', { size:13 })} bolhas</button>
+    <button class="pj-voltar" onclick="pjVerTudo()">ver tudo</button>
     <span class="pj-dot" style="background:${esc(f.cor)};width:11px;height:11px"></span>
     <h2>${esc(f.nome)}</h2>
     <span class="sub">${esc(f.subtitulo || '')} · ${done}/${daFrente.length} concluídas (${pct}%)</span>
