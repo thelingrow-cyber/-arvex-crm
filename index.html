@@ -1226,7 +1226,7 @@
       <div class="pj-bar" style="display:none">
         <span class="pj-lbl">Executa</span>
         <button class="pj-chip on" data-f="ex" data-v="all" onclick="pjFiltro(this)">tudo</button>
-        <button class="pj-chip c-gold" data-f="ex" data-v="vitor" onclick="pjFiltro(this)">você</button>
+        <button class="pj-chip c-gold" data-f="ex" data-v="vitor" onclick="pjFiltro(this)" id="pj-chip-vitor">você</button>
         <button class="pj-chip" data-f="ex" data-v="eu" onclick="pjFiltro(this)">IA</button>
         <button class="pj-chip" data-f="ex" data-v="ambos" onclick="pjFiltro(this)">ambos</button>
         <button class="pj-chip" data-f="ex" data-v="equipe" onclick="pjFiltro(this)">equipe</button>
@@ -1824,6 +1824,9 @@ function isFinanceiroUser() { return !!currentUser && currentFinanceiro }
 // Projetos NÃO é admin-only: há 3 admins e as frentes pessoais/estratégicas são de um só.
 // Flag própria em profiles (mesmo padrão de financeiro) — a RLS lê a mesma coluna.
 let currentProjetos = false
+// escopo NULL = dono (vê todas as frentes). Com escopo, é convidado: só as frentes da lista,
+// e os rótulos deixam de dizer "você" para as tarefas do Vitor.
+let currentProjetosDono = false
 function isProjetosUser() { return !!currentUser && currentProjetos }
 
 // ===== DOMINIO: AUTH & ROLES =====
@@ -1852,16 +1855,18 @@ sb.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
     currentUser = session.user
     // role E acesso ao financeiro vêm do banco (profiles) — fonte única, a mesma que a RLS lê
-    const { data: profile } = await sb.from('profiles').select('role, financeiro, projetos').eq('id', currentUser.id).single()
+    const { data: profile } = await sb.from('profiles').select('role, financeiro, projetos, projetos_escopo').eq('id', currentUser.id).single()
     if (profile?.role) {
       currentRole = profile.role
       currentFinanceiro = !!profile.financeiro
-      currentProjetos   = !!profile.projetos
+      currentProjetos     = !!profile.projetos
+      currentProjetosDono = !!profile.projetos && !profile.projetos_escopo
     } else {
       // primeiro login: cria perfil com role mais restrito; promoção é manual (admin) depois
       currentRole = 'sdr'
       currentFinanceiro = false
-      currentProjetos   = false
+      currentProjetos     = false
+      currentProjetosDono = false
       sb.from('profiles').insert({ id: currentUser.id, name: currentUser.email, role: currentRole }).then(() => {}, () => {})
     }
     // abre o app — limpa o display inline do bootstrap, senão ele vence o .hidden e a tela de login fica por cima
@@ -4711,7 +4716,10 @@ const pjFiltros = { ex:'all', st:'all' }
 let pjEditando = null       // id da tarefa aberta no modal; null = criação
 let pjFrenteAberta = null   // null = visão geral em bolhas; 'LG' = quadro da Lingrow
 
-const PJ_EXEC = { vitor:'você', eu:'IA', ambos:'ambos', equipe:'equipe' }
+// "você" só faz sentido para o dono; convidado lê "Vitor".
+function pjExecLabel(ex) {
+  return { vitor: currentProjetosDono ? 'você' : 'Vitor', eu:'IA', ambos:'ambos', equipe:'equipe' }[ex]
+}
 const PJ_TETO_SEMANAL = 5   // itens do Vitor por semana — o teto que define o horizonte
 
 async function loadProjetos() {
@@ -4830,7 +4838,7 @@ function pjBolhas() {
   board.innerHTML =
     `<div class="pj-campo">${bolhas}</div>
      <div class="pj-legenda">
-       <span><i style="background:var(--gold)"></i>você</span>
+       <span><i style="background:var(--gold)"></i>${currentProjetosDono ? 'você' : 'Vitor'}</span>
        <span><i style="background:var(--blue)"></i>IA</span>
        <span><i style="background:var(--text-3)"></i>ambos / equipe</span>
        <span style="opacity:.7">— o tamanho é o que falta fazer</span>
@@ -4854,14 +4862,16 @@ function pjRender() {
   const semanas = Math.ceil(suas / PJ_TETO_SEMANAL)
   document.getElementById('pj-stats').innerHTML = `
     <div class="pj-stat"><div class="pj-stat-n">${abertas.length}</div><div class="pj-stat-l">em aberto<br>de ${pjTarefas.length} no total</div></div>
-    <div class="pj-stat s-vitor"><div class="pj-stat-n">${suas}</div><div class="pj-stat-l">passam por você<br>≈${semanas} ${semanas === 1 ? 'semana' : 'semanas'} a ${PJ_TETO_SEMANAL}/sem</div></div>
-    <div class="pj-stat s-eu"><div class="pj-stat-n">${minhas}</div><div class="pj-stat-l">a IA executa<br>você só aprova</div></div>
+    <div class="pj-stat s-vitor"><div class="pj-stat-n">${suas}</div><div class="pj-stat-l">${currentProjetosDono ? 'passam por você' : 'passam pelo Vitor'}<br>≈${semanas} ${semanas === 1 ? 'semana' : 'semanas'} a ${PJ_TETO_SEMANAL}/sem</div></div>
+    <div class="pj-stat s-eu"><div class="pj-stat-n">${minhas}</div><div class="pj-stat-l">a IA executa<br>${currentProjetosDono ? 'você só aprova' : 'só falta aprovar'}</div></div>
     <div class="pj-stat s-late"><div class="pj-stat-n">${atras}</div><div class="pj-stat-l">com prazo vencido</div></div>
     <div class="pj-stat${hoje ? ' s-ok' : ''}"><div class="pj-stat-n">${feitas}</div><div class="pj-stat-l">concluídas${hoje ? `<br><b style="color:var(--green)">${hoje} ${hoje === 1 ? 'hoje' : 'hoje'}</b>` : '<br>nenhuma hoje'}</div></div>`
 
   // Sem frente escolhida = visão geral em bolhas. Os filtros não fazem sentido lá.
   const barra = document.querySelector('#view-projetos .pj-bar')
   const topo  = document.getElementById('pj-frente-topo')
+  const chipV = document.getElementById('pj-chip-vitor')
+  if (chipV) chipV.textContent = currentProjetosDono ? 'você' : 'Vitor'
   if (!pjFrenteAberta) {
     barra.style.display = 'none'; topo.style.display = 'none'
     pjBolhas(); return
@@ -4955,7 +4965,7 @@ function pjLinha(t) {
   const prazoCls = late ? ' late' : (dias !== null && dias <= 3 ? ' soon' : '')
   const prazoTxt = t.prazo ? new Date(t.prazo + 'T00:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' }) : ''
   const tags = [
-    `<span class="pj-tag t-${t.executor}">${PJ_EXEC[t.executor]}${t.responsavel ? ' · ' + esc(t.responsavel) : ''}</span>`,
+    `<span class="pj-tag t-${t.executor}">${pjExecLabel(t.executor)}${t.responsavel ? ' · ' + esc(t.responsavel) : ''}</span>`,
     `<span class="pj-tag${t.tamanho === 'XG' ? ' t-xg' : ''}">${t.tamanho}</span>`,
     t.maquina ? `<span class="pj-tag">${t.maquina}</span>` : '',
     t.bloqueado_por ? `<span class="pj-tag t-blk">↳ ${esc(t.bloqueado_por)}</span>` : '',
