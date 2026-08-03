@@ -644,14 +644,50 @@
     .pj-chip.on.c-red  { background:var(--red);  border-color:var(--red);  color:#fff; }
     .pj-sep { width:1px; align-self:stretch; background:var(--border); margin:0 3px; }
 
-    /* Colunas CSS (não grid): as frentes têm alturas muito diferentes — 17 itens na Lingrow
-       contra 4 na Pessoal — e o grid deixaria um vão morto embaixo das curtas. */
-    .pj-board { column-count:3; column-gap:14px; }
-    @media (max-width:1250px){ .pj-board { column-count:2; } }
-    @media (max-width:820px) { .pj-board { column-count:1; } }
+    /* ── VISÃO DE BOLHAS (tela inicial de Projetos) ──────────────────────────
+       Área do círculo ∝ atividades ABERTAS (feita não pesa mais). O anel em volta
+       reparte por quem executa — dourado é o Vitor, e é o que responde de relance
+       "qual projeto come o meu tempo". */
+    /* A visão de bolhas desliga o column-count do board (senão as bolhas e a legenda
+       são fatiadas em colunas de texto). */
+    .pj-board.modo-bolhas { display:block; }
+    .pj-bolhas { display:flex; flex-wrap:wrap; gap:30px 40px; align-items:flex-end; justify-content:center;
+                 padding:30px 10px 26px; }
+    .pj-bolha { display:flex; flex-direction:column; align-items:center; gap:9px; cursor:pointer;
+                background:none; border:none; font-family:'Inter',sans-serif; padding:0;
+                transition:transform var(--dur) var(--ease); }
+    .pj-bolha:hover { transform:translateY(-3px) scale(1.03); }
+    .pj-bolha:focus-visible { outline:2px solid var(--blue); outline-offset:6px; border-radius:50%; }
+    .pj-bolha-svg { display:block; overflow:visible; }
+    .pj-bolha:hover .pj-bolha-fill { filter:brightness(1.35); }
+    .pj-bolha-num { font-size:26px; font-weight:800; letter-spacing:-.03em; fill:var(--white);
+                    font-variant-numeric:tabular-nums; }
+    .pj-bolha-cap { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; fill:var(--text-3); }
+    .pj-bolha-nome { font-size:12px; font-weight:750; letter-spacing:.05em; text-transform:uppercase; color:var(--white); }
+    .pj-bolha-sub { font-size:10.5px; color:var(--text-3); margin-top:-6px; }
+    .pj-bolha-vc { font-size:10.5px; color:var(--gold); margin-top:-6px; font-weight:600; }
+
+    .pj-legenda { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; font-size:11px;
+                  color:var(--text-3); padding-bottom:6px; }
+    .pj-legenda i { width:9px; height:9px; border-radius:3px; display:inline-block; margin-right:5px; vertical-align:-1px; }
+
+    .pj-voltar { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.04);
+                 border:1px solid var(--border); color:var(--muted); padding:6px 12px; border-radius:7px;
+                 font-size:12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif;
+                 transition:all var(--dur) var(--ease); }
+    .pj-voltar:hover { border-color:var(--border-2); color:var(--white); }
+    .pj-titulo-frente { display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+    .pj-titulo-frente h2 { font-size:19px; font-weight:800; letter-spacing:-.01em; }
+    .pj-titulo-frente .sub { font-size:12px; color:var(--text-3); }
+
+    /* Dentro de uma frente as trilhas têm ORDEM (caminho crítico) — então grid, lado a lado,
+       da esquerda para a direita. Nada de column-count aqui: ele empilha duas trilhas na
+       primeira coluna e deixa a terceira vazia. */
+    .pj-board { display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:14px; align-items:start; }
+    .pj-board > .pj-col { margin-bottom:0; }
 
     .pj-col { background:var(--navy2); border:1px solid var(--border); border-radius:12px; overflow:hidden;
-              break-inside:avoid; -webkit-column-break-inside:avoid; margin-bottom:14px; display:inline-block; width:100%; }
+              min-width:0; }
     .pj-col-head { padding:13px 15px 11px; border-bottom:1px solid var(--border); }
     .pj-col-top { display:flex; align-items:center; gap:8px; }
     .pj-dot { width:9px; height:9px; border-radius:3px; flex:none; }
@@ -1120,7 +1156,8 @@
     <div id="view-projetos" class="view">
       <div class="page-header"><h1>Projetos</h1><p>Todas as frentes num lugar só — a cor da barra diz quem executa</p></div>
       <div class="pj-topline" id="pj-stats"></div>
-      <div class="pj-bar">
+      <div class="pj-titulo-frente" id="pj-frente-topo" style="display:none"></div>
+      <div class="pj-bar" style="display:none">
         <span class="pj-lbl">Executa</span>
         <button class="pj-chip on" data-f="ex" data-v="all" onclick="pjFiltro(this)">tudo</button>
         <button class="pj-chip c-gold" data-f="ex" data-v="vitor" onclick="pjFiltro(this)">você</button>
@@ -4603,7 +4640,8 @@ function showToast(msg, type='success', opts = {}) {
 let pjFrentes = []
 let pjTarefas = []
 const pjFiltros = { ex:'all', st:'abertos' }
-let pjEditando = null   // id da tarefa aberta no modal; null = criação
+let pjEditando = null       // id da tarefa aberta no modal; null = criação
+let pjFrenteAberta = null   // null = visão geral em bolhas; 'LG' = quadro da Lingrow
 
 const PJ_EXEC = { vitor:'você', eu:'IA', ambos:'ambos', equipe:'equipe' }
 const PJ_TETO_SEMANAL = 5   // itens do Vitor por semana — o teto que define o horizonte
@@ -4644,6 +4682,67 @@ function pjPassa(t) {
   return true
 }
 
+// ── VISÃO DE BOLHAS ────────────────────────────────────────────────────────
+// Área ∝ atividades abertas (√ no diâmetro, senão a diferença vira exagero visual).
+// O anel reparte por executor: dourado = Vitor. Feita não entra na conta — já não pesa.
+function pjBolhas() {
+  const dados = pjFrentes.map(f => {
+    const t  = pjTarefas.filter(x => x.frente === f.key)
+    const ab = t.filter(x => x.status !== 'feito' && x.status !== 'congelado')
+    return { f, total: t.length, abertas: ab.length,
+             vc: ab.filter(x => x.executor === 'vitor').length,
+             ia: ab.filter(x => x.executor === 'eu').length,
+             am: ab.filter(x => x.executor === 'ambos' || x.executor === 'equipe').length,
+             feitas: t.filter(x => x.status === 'feito').length }
+  })
+  const maxAb = Math.max(1, ...dados.map(d => d.abertas))
+  const D_MIN = 96, D_MAX = 208
+
+  const bolhas = dados.map(d => {
+    const dia = d.abertas ? D_MIN + (D_MAX - D_MIN) * Math.sqrt(d.abertas / maxAb) : D_MIN * .62
+    const cx = dia / 2, R = dia / 2 - 7, C = 2 * Math.PI * R
+    let off = 0
+    const anel = [[d.vc, 'var(--gold)'], [d.ia, 'var(--blue)'], [d.am, 'var(--text-3)']]
+      .filter(([n]) => n > 0)
+      .map(([n, cor]) => {
+        const len = Math.max(0, C * (n / d.abertas) - 2)   // -2 = respiro entre arcos
+        const seg = `<circle cx="${cx}" cy="${cx}" r="${R}" fill="none" stroke="${cor}" stroke-width="7"
+           stroke-linecap="butt" stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-off}"
+           transform="rotate(-90 ${cx} ${cx})"></circle>`
+        off += C * (n / d.abertas)
+        return seg
+      }).join('')
+    const pct = d.total ? Math.round(d.feitas / d.total * 100) : 0
+    return `<button class="pj-bolha" onclick="pjAbrirFrente('${esc(d.f.key)}')"
+        title="${esc(d.f.nome)} — ${d.abertas} em aberto de ${d.total}">
+      <svg class="pj-bolha-svg" width="${dia}" height="${dia}" viewBox="0 0 ${dia} ${dia}" aria-hidden="true">
+        <circle class="pj-bolha-fill" cx="${cx}" cy="${cx}" r="${R - 6}" fill="${esc(d.f.cor)}" opacity=".16"></circle>
+        <circle cx="${cx}" cy="${cx}" r="${R}" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="7"></circle>
+        ${anel}
+        <text class="pj-bolha-num" x="${cx}" y="${cx + 2}" text-anchor="middle" dominant-baseline="middle">${d.abertas}</text>
+        <text class="pj-bolha-cap" x="${cx}" y="${cx + 20}" text-anchor="middle">abertas</text>
+      </svg>
+      <span class="pj-bolha-nome" style="color:${esc(d.f.cor)}">${esc(d.f.nome)}</span>
+      ${d.vc ? `<span class="pj-bolha-vc">${d.vc} ${d.vc === 1 ? 'sua' : 'suas'}</span>` : '<span class="pj-bolha-sub">nada com você</span>'}
+      ${d.feitas ? `<span class="pj-bolha-sub">${pct}% concluída</span>` : ''}
+    </button>`
+  }).join('')
+
+  const board = document.getElementById('pj-board')
+  board.classList.add('modo-bolhas')
+  board.innerHTML =
+    `<div class="pj-bolhas">${bolhas}</div>
+     <div class="pj-legenda">
+       <span><i style="background:var(--gold)"></i>você</span>
+       <span><i style="background:var(--blue)"></i>IA</span>
+       <span><i style="background:var(--text-3)"></i>ambos / equipe</span>
+       <span style="opacity:.7">— o tamanho da bolha é o que falta fazer</span>
+     </div>`
+}
+
+function pjAbrirFrente(key) { pjFrenteAberta = key; pjRender() }
+function pjVoltarBolhas()   { pjFrenteAberta = null; pjRender() }
+
 function pjRender() {
   // ── leitura de topo ──
   const abertas = pjTarefas.filter(t => t.status !== 'feito' && t.status !== 'congelado')
@@ -4659,53 +4758,80 @@ function pjRender() {
     <div class="pj-stat s-late"><div class="pj-stat-n">${atras}</div><div class="pj-stat-l">com prazo vencido</div></div>
     <div class="pj-stat"><div class="pj-stat-n">${feitas}</div><div class="pj-stat-l">concluídas</div></div>`
 
-  // ── colunas ──
-  document.getElementById('pj-board').innerHTML = pjFrentes.map(f => {
-    const daFrente = pjTarefas.filter(t => t.frente === f.key)
-    const vis = daFrente.filter(pjPassa)
-    const done = daFrente.filter(t => t.status === 'feito').length
-    const pct  = daFrente.length ? Math.round(done / daFrente.length * 100) : 0
+  // Sem frente escolhida = visão geral em bolhas. Os filtros não fazem sentido lá.
+  const barra = document.querySelector('#view-projetos .pj-bar')
+  const topo  = document.getElementById('pj-frente-topo')
+  if (!pjFrenteAberta) {
+    barra.style.display = 'none'; topo.style.display = 'none'
+    pjBolhas(); return
+  }
 
-    let corpo = '', trilhaAtual = null
-    vis.forEach(t => {
-      if (t.trilha !== trilhaAtual) {
-        corpo += `<div class="pj-trilha">${esc(t.trilha || 'Sem trilha')}${t.trilha_nota ? ` <em>· ${esc(t.trilha_nota)}</em>` : ''}</div>`
-        trilhaAtual = t.trilha
-      }
-      const late = pjAtrasada(t)
-      const dias = t.prazo ? pjDias(t.prazo) : null
-      const prazoCls = late ? ' late' : (dias !== null && dias <= 3 ? ' soon' : '')
-      const prazoTxt = t.prazo ? new Date(t.prazo + 'T00:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' }) : ''
-      const tags = [
-        `<span class="pj-tag t-${t.executor}">${PJ_EXEC[t.executor]}${t.responsavel ? ' · ' + esc(t.responsavel) : ''}</span>`,
-        `<span class="pj-tag${t.tamanho === 'XG' ? ' t-xg' : ''}">${t.tamanho}</span>`,
-        t.maquina ? `<span class="pj-tag">${t.maquina}</span>` : '',
-        t.bloqueado_por ? `<span class="pj-tag t-blk">↳ ${esc(t.bloqueado_por)}</span>` : '',
-        t.prazo ? `<span class="pj-tag t-prazo${prazoCls}">${prazoTxt}</span>` : ''
-      ].join('')
-      const cls = [t.status === 'feito' ? 'done' : '', t.status === 'fazendo' ? 'doing' : '', t.bloqueado_por ? 'blk' : ''].filter(Boolean).join(' ')
-      corpo += `<div class="pj-row ${cls}" data-ex="${t.executor}" onclick="openTarefa('${t.id}')">
-        <div class="pj-check" onclick="event.stopPropagation();pjToggle('${t.id}')" title="Marcar como feita">${icon('check', { size:12 })}</div>
-        <div class="pj-body">
-          <div class="pj-line1"><span class="pj-cod">${esc(t.codigo)}</span><span class="pj-tit">${esc(t.titulo)}</span></div>
-          <div class="pj-tags">${tags}</div>
-          ${t.nota ? `<div class="pj-nota${t.alerta ? ' alerta' : ''}">${esc(t.nota)}</div>` : ''}
-        </div></div>`
-    })
-    if (!vis.length) corpo = '<div class="pj-vazio">nada com este filtro</div>'
+  // ── quadro de UMA frente: cada trilha vira uma coluna ──
+  const f = pjFrentes.find(x => x.key === pjFrenteAberta)
+  if (!f) { pjVoltarBolhas(); return }
+  barra.style.display = ''
+  document.getElementById('pj-board').classList.remove('modo-bolhas')
+  const daFrente = pjTarefas.filter(t => t.frente === f.key)
+  const done = daFrente.filter(t => t.status === 'feito').length
+  const pct  = daFrente.length ? Math.round(done / daFrente.length * 100) : 0
+  topo.style.display = ''
+  topo.innerHTML = `
+    <button class="pj-voltar" onclick="pjVoltarBolhas()">${icon('undo', { size:13 })} todas as frentes</button>
+    <span class="pj-dot" style="background:${esc(f.cor)};width:11px;height:11px"></span>
+    <h2>${esc(f.nome)}</h2>
+    <span class="sub">${esc(f.subtitulo || '')} · ${done}/${daFrente.length} concluídas (${pct}%)</span>
+    <span class="pj-meta-goal${f.meta ? '' : ' vazia'}" style="margin-left:auto"
+          onclick="editarMeta('${esc(f.key)}')">${f.meta ? icon('target', { size:11 }) + ' ' + esc(f.meta) : '+ definir a meta desta frente'}</span>`
 
+  // agrupa por trilha preservando a ordem de execução
+  const trilhas = []
+  daFrente.forEach(t => {
+    let g = trilhas.find(x => x.nome === (t.trilha || 'Sem trilha'))
+    if (!g) { g = { nome: t.trilha || 'Sem trilha', nota: t.trilha_nota, itens: [] }; trilhas.push(g) }
+    if (t.trilha_nota && !g.nota) g.nota = t.trilha_nota
+    g.itens.push(t)
+  })
+
+  document.getElementById('pj-board').innerHTML = trilhas.map(g => {
+    const vis = g.itens.filter(pjPassa)
+    const corpo = vis.length
+      ? vis.map(pjLinha).join('')
+      : '<div class="pj-vazio">nada com este filtro</div>'
+    const feitas = g.itens.filter(t => t.status === 'feito').length
     return `<section class="pj-col">
       <div class="pj-col-head">
         <div class="pj-col-top"><span class="pj-dot" style="background:${esc(f.cor)}"></span>
-          <span class="pj-col-name">${esc(f.nome)}</span>
-          <span class="pj-col-n">${vis.length}/${daFrente.length}</span></div>
-        ${f.subtitulo ? `<div class="pj-col-sub">${esc(f.subtitulo)}</div>` : ''}
-        <div class="pj-meta-goal${f.meta ? '' : ' vazia'}" onclick="event.stopPropagation();editarMeta('${esc(f.key)}')">${f.meta ? icon('target', { size:11 }) + ' ' + esc(f.meta) : '+ definir a meta desta frente'}</div>
-        <div class="pj-prog"><i style="width:${pct}%"></i></div>
+          <span class="pj-col-name">${esc(g.nome)}</span>
+          <span class="pj-col-n">${vis.length}/${g.itens.length}</span></div>
+        ${g.nota ? `<div class="pj-col-sub">${esc(g.nota)}</div>` : ''}
+        <div class="pj-prog"><i style="width:${g.itens.length ? Math.round(feitas / g.itens.length * 100) : 0}%"></i></div>
       </div>
       ${corpo}
     </section>`
   }).join('')
+}
+
+// Uma linha de tarefa — usada pelo quadro da frente
+function pjLinha(t) {
+  const late = pjAtrasada(t)
+  const dias = t.prazo ? pjDias(t.prazo) : null
+  const prazoCls = late ? ' late' : (dias !== null && dias <= 3 ? ' soon' : '')
+  const prazoTxt = t.prazo ? new Date(t.prazo + 'T00:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' }) : ''
+  const tags = [
+    `<span class="pj-tag t-${t.executor}">${PJ_EXEC[t.executor]}${t.responsavel ? ' · ' + esc(t.responsavel) : ''}</span>`,
+    `<span class="pj-tag${t.tamanho === 'XG' ? ' t-xg' : ''}">${t.tamanho}</span>`,
+    t.maquina ? `<span class="pj-tag">${t.maquina}</span>` : '',
+    t.bloqueado_por ? `<span class="pj-tag t-blk">↳ ${esc(t.bloqueado_por)}</span>` : '',
+    t.prazo ? `<span class="pj-tag t-prazo${prazoCls}">${prazoTxt}</span>` : ''
+  ].join('')
+  const cls = [t.status === 'feito' ? 'done' : '', t.status === 'fazendo' ? 'doing' : '', t.bloqueado_por ? 'blk' : ''].filter(Boolean).join(' ')
+  return `<div class="pj-row ${cls}" data-ex="${t.executor}" onclick="openTarefa('${t.id}')">
+    <div class="pj-check" onclick="event.stopPropagation();pjToggle('${t.id}')" title="Avançar status">${icon('check', { size:12 })}</div>
+    <div class="pj-body">
+      <div class="pj-line1"><span class="pj-cod">${esc(t.codigo)}</span><span class="pj-tit">${esc(t.titulo)}</span></div>
+      <div class="pj-tags">${tags}</div>
+      ${t.nota ? `<div class="pj-nota${t.alerta ? ' alerta' : ''}">${esc(t.nota)}</div>` : ''}
+    </div></div>`
 }
 
 // Ciclo do clique no quadrado: aberto → fazendo → feito → aberto.
