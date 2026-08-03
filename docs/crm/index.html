@@ -620,6 +620,86 @@
     .di-field  { background: var(--navy3); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-family: Inter, sans-serif; outline: none; width: 100%; margin-top: 4px; }
     .di-select { font-size: 13px; padding: 6px 10px; }   /* usar junto de .di-field */
     .di-input  { font-size: 12px; padding: 5px 9px; }    /* idem */
+    /* ── PROJETOS (gestão das frentes) ───────────────────────────────────────
+       Cor = quem executa. Dourado é o recurso escasso (Vitor); índigo sou eu.
+       Nunca usar dourado aqui para outra coisa — ele carrega o gargalo. */
+    .pj-topline { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+    .pj-stat { flex:1 1 130px; background:var(--navy2); border:1px solid var(--border); border-radius:10px; padding:13px 15px; position:relative; overflow:hidden; }
+    .pj-stat::before { content:""; position:absolute; inset:0 auto 0 0; width:3px; background:var(--border-2); }
+    .pj-stat.s-vitor::before { background:var(--gold); }
+    .pj-stat.s-eu::before    { background:var(--blue); }
+    .pj-stat.s-late::before  { background:var(--red); }
+    .pj-stat-n { font-size:24px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+    .pj-stat.s-vitor .pj-stat-n { color:var(--gold2); }
+    .pj-stat.s-eu .pj-stat-n    { color:var(--blue); }
+    .pj-stat.s-late .pj-stat-n  { color:var(--red); }
+    .pj-stat-l { font-size:11px; color:var(--text-3); font-weight:600; margin-top:1px; line-height:1.3; }
+
+    .pj-bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; background:var(--navy2); border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:14px; }
+    .pj-lbl { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); }
+    .pj-chip { padding:5px 11px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer; border:1px solid var(--border); background:rgba(255,255,255,.04); color:var(--muted); transition:all var(--dur) var(--ease); white-space:nowrap; }
+    .pj-chip:hover { border-color:var(--border-2); color:var(--white); }
+    .pj-chip.on { background:var(--blue); border-color:var(--blue); color:#fff; }
+    .pj-chip.on.c-gold { background:var(--gold); border-color:var(--gold); color:var(--navy); }
+    .pj-chip.on.c-red  { background:var(--red);  border-color:var(--red);  color:#fff; }
+    .pj-sep { width:1px; align-self:stretch; background:var(--border); margin:0 3px; }
+
+    /* Colunas CSS (não grid): as frentes têm alturas muito diferentes — 17 itens na Lingrow
+       contra 4 na Pessoal — e o grid deixaria um vão morto embaixo das curtas. */
+    .pj-board { column-count:3; column-gap:14px; }
+    @media (max-width:1250px){ .pj-board { column-count:2; } }
+    @media (max-width:820px) { .pj-board { column-count:1; } }
+
+    .pj-col { background:var(--navy2); border:1px solid var(--border); border-radius:12px; overflow:hidden;
+              break-inside:avoid; -webkit-column-break-inside:avoid; margin-bottom:14px; display:inline-block; width:100%; }
+    .pj-col-head { padding:13px 15px 11px; border-bottom:1px solid var(--border); }
+    .pj-col-top { display:flex; align-items:center; gap:8px; }
+    .pj-dot { width:9px; height:9px; border-radius:3px; flex:none; }
+    .pj-col-name { font-size:13px; font-weight:750; letter-spacing:.04em; text-transform:uppercase; }
+    .pj-col-n { margin-left:auto; font-size:11px; color:var(--text-3); font-variant-numeric:tabular-nums; }
+    .pj-col-sub { font-size:11px; color:var(--text-3); margin-top:3px; }
+    .pj-meta-goal { font-size:11px; color:var(--gold); margin-top:5px; cursor:pointer; }
+    .pj-meta-goal.vazia { color:var(--text-3); font-style:italic; }
+    .pj-prog { height:3px; background:rgba(255,255,255,.06); border-radius:2px; margin-top:9px; overflow:hidden; }
+    .pj-prog > i { display:block; height:100%; background:var(--green); border-radius:2px; transition:width .3s var(--ease); }
+
+    .pj-trilha { padding:8px 15px 5px; font-size:9.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); background:rgba(255,255,255,.02); border-bottom:1px solid var(--border); display:flex; gap:6px; align-items:baseline; }
+    .pj-trilha em { font-style:normal; font-weight:500; letter-spacing:.02em; text-transform:none; font-size:10px; opacity:.8; }
+    .pj-trilha.hide { display:none; }
+
+    .pj-row { display:flex; gap:9px; padding:9px 13px 9px 12px; border-bottom:1px solid var(--border); position:relative; cursor:pointer; transition:background var(--dur); }
+    .pj-row:last-child { border-bottom:none; }
+    .pj-row:hover { background:rgba(255,255,255,.025); }
+    .pj-row.hide { display:none; }
+    .pj-row::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--text-3); }
+    .pj-row[data-ex="vitor"]::before  { background:var(--gold); }
+    .pj-row[data-ex="eu"]::before     { background:var(--blue); }
+    .pj-row[data-ex="equipe"]::before { background:var(--purple); }
+    .pj-row.blk { background:rgba(255,255,255,.02); }
+    .pj-row.done .pj-tit { color:var(--text-3); text-decoration:line-through; }
+
+    .pj-check { width:17px; height:17px; border-radius:5px; border:1.5px solid var(--border-2); flex:none; margin-top:1px; display:flex; align-items:center; justify-content:center; color:transparent; transition:all var(--dur) var(--ease); }
+    .pj-check:hover { border-color:var(--green); }
+    .pj-row.done .pj-check { background:var(--green); border-color:var(--green); color:var(--navy); }
+    .pj-row.doing .pj-check { border-color:var(--orange); background:rgba(210,153,34,.18); }
+
+    .pj-body { min-width:0; flex:1; display:flex; flex-direction:column; gap:4px; }
+    .pj-line1 { display:flex; gap:7px; align-items:baseline; min-width:0; }
+    .pj-cod { font-size:9.5px; font-weight:700; color:var(--text-3); letter-spacing:.05em; flex:none; font-variant-numeric:tabular-nums; }
+    .pj-tit { font-size:12.5px; line-height:1.35; font-weight:500; overflow-wrap:anywhere; }
+    .pj-tags { display:flex; gap:4px; flex-wrap:wrap; }
+    .pj-tag { font-size:9px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1.5px 5px; border-radius:4px; background:rgba(255,255,255,.06); color:var(--muted); white-space:nowrap; }
+    .pj-tag.t-vitor  { background:rgba(200,169,110,.16); color:var(--gold2); }
+    .pj-tag.t-eu     { background:var(--accent-dim); color:#9AA6FF; }
+    .pj-tag.t-equipe { background:rgba(139,92,246,.16); color:#B79BFA; }
+    .pj-tag.t-xg     { background:rgba(248,81,73,.18); color:var(--red); }
+    .pj-tag.t-blk    { background:transparent; border:1px solid rgba(139,92,246,.5); color:#B79BFA; }
+    .pj-tag.t-prazo  { background:rgba(255,255,255,.06); color:var(--muted); }
+    .pj-tag.t-prazo.late { background:rgba(248,81,73,.18); color:var(--red); }
+    .pj-tag.t-prazo.soon { background:rgba(210,153,34,.18); color:var(--orange); }
+    .pj-nota { font-size:10.5px; color:var(--text-3); line-height:1.4; }
+    .pj-nota.alerta { color:#E88B84; }
+    .pj-vazio { padding:16px 14px; font-size:11px; color:var(--text-3); text-align:center; }
   </style>
 </head>
 <body>
@@ -648,6 +728,11 @@
   <div class="sidebar-user">
     <div class="sidebar-user-name" id="user-name">—</div>
     <div class="sidebar-user-role" id="user-role">—</div>
+  </div>
+
+  <div class="sidebar-section" id="nav-sec-projetos" style="display:none">Gestão</div>
+  <div class="sidebar-item" onclick="goTo('projetos',this)" id="nav-projetos" style="display:none">
+    <span class="si-icon" data-icon="target"></span> Projetos
   </div>
 
   <div class="sidebar-section">Comercial</div>
@@ -1032,6 +1117,96 @@
       <div class="coach-grid" id="coach-list"></div>
     </div>
 
+    <div id="view-projetos" class="view">
+      <div class="page-header"><h1>Projetos</h1><p>Todas as frentes num lugar só — a cor da barra diz quem executa</p></div>
+      <div class="pj-topline" id="pj-stats"></div>
+      <div class="pj-bar">
+        <span class="pj-lbl">Executa</span>
+        <button class="pj-chip on" data-f="ex" data-v="all" onclick="pjFiltro(this)">tudo</button>
+        <button class="pj-chip c-gold" data-f="ex" data-v="vitor" onclick="pjFiltro(this)">você</button>
+        <button class="pj-chip" data-f="ex" data-v="eu" onclick="pjFiltro(this)">IA</button>
+        <button class="pj-chip" data-f="ex" data-v="ambos" onclick="pjFiltro(this)">ambos</button>
+        <button class="pj-chip" data-f="ex" data-v="equipe" onclick="pjFiltro(this)">equipe</button>
+        <span class="pj-sep"></span>
+        <span class="pj-lbl">Estado</span>
+        <button class="pj-chip on" data-f="st" data-v="abertos" onclick="pjFiltro(this)">em aberto</button>
+        <button class="pj-chip" data-f="st" data-v="all" onclick="pjFiltro(this)">com feitos</button>
+        <button class="pj-chip c-red" data-f="st" data-v="late" onclick="pjFiltro(this)">atrasados</button>
+        <button class="pj-chip" data-f="st" data-v="livre" onclick="pjFiltro(this)">destravados</button>
+        <span class="pj-sep"></span>
+        <input type="text" id="pj-busca" placeholder="Buscar…" oninput="pjRender()" style="width:auto;min-width:150px;padding:6px 10px;font-size:12px" />
+        <button class="pj-chip" onclick="openNovaTarefa()" style="margin-left:auto;background:var(--blue);border-color:var(--blue);color:#fff">+ Tarefa</button>
+      </div>
+      <div class="pj-board" id="pj-board"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL TAREFA (Projetos) -->
+<div class="modal-overlay" id="modal-tarefa">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="pj-modal-title">Tarefa</div>
+      <button class="modal-close" onclick="closeTarefa()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group" style="margin-bottom:12px"><label>Título</label><input type="text" id="pj-f-titulo" /></div>
+      <div class="form-row">
+        <div class="form-group"><label>Frente</label><select id="pj-f-frente"></select></div>
+        <div class="form-group"><label>Trilha</label><input type="text" id="pj-f-trilha" placeholder="Ex: Lançamento na loja" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Quem executa</label>
+          <select id="pj-f-executor">
+            <option value="vitor">Você (Vitor)</option><option value="eu">IA</option>
+            <option value="ambos">Ambos</option><option value="equipe">Equipe</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Responsável (se equipe)</label><input type="text" id="pj-f-responsavel" placeholder="Ex: Gabriel" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Tamanho</label>
+          <select id="pj-f-tamanho"><option value="P">P — até 1h</option><option value="M">M — meio dia</option><option value="G">G — 1-2 dias</option><option value="XG">XG — semanas</option></select>
+        </div>
+        <div class="form-group"><label>Prazo</label><input type="date" id="pj-f-prazo" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Status</label>
+          <select id="pj-f-status"><option value="aberto">Em aberto</option><option value="fazendo">Fazendo</option><option value="feito">Feito</option><option value="congelado">Congelado</option></select>
+        </div>
+        <div class="form-group"><label>Travada por (código)</label><input type="text" id="pj-f-bloq" placeholder="Ex: OF-01" /></div>
+      </div>
+      <div class="form-group"><label>Nota</label><textarea id="pj-f-nota" rows="2"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="pj-btn-del" onclick="excluirTarefa()" style="margin-right:auto;color:var(--red)">Excluir</button>
+      <button class="btn-cancel" onclick="closeTarefa()">Cancelar</button>
+      <button class="btn-save" onclick="salvarTarefa()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL META DA FRENTE (Projetos) -->
+<div class="modal-overlay" id="modal-meta">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <div class="modal-title">Meta — <span id="pj-meta-frente"></span></div>
+      <button class="modal-close" onclick="fecharMeta()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>O número que esta frente persegue</label>
+        <input type="text" id="pj-f-meta" placeholder="Ex: 100 na waitlist até 30/08"
+               onkeydown="if(event.key==='Enter')salvarMeta()" />
+      </div>
+      <p style="font-size:11.5px;color:var(--text-3);margin-top:8px;line-height:1.5">
+        Sem meta, o board mede movimento e não resultado. Deixe em branco para limpar.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="fecharMeta()">Cancelar</button>
+      <button class="btn-save" onclick="salvarMeta()">Salvar</button>
+    </div>
   </div>
 </div>
 
@@ -1326,6 +1501,7 @@
 //    ===== DOMINIO: CS (kanban Cindy) ........ clientes_cs, checks, gates, bônus
 //    ===== DOMINIO: AGENTE SDR ............... configuração do SDR de IA
 //    ===== DOMINIO: FINANCEIRO ............... vendas, parcelas, cobranças
+//    ===== DOMINIO: PROJETOS ................. frentes/tarefas, board por trilha (admin-only)
 //    ===== DOMINIO: UTILS & MODAIS ........... esc(), toast, abrirModal/closeTopModal, atalhos
 //
 //  Convenções (não quebrar):
@@ -1483,7 +1659,7 @@ const COLS = [
 ]
 const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
 const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'Quente', fechado:'Fechado', perdido:'Perdido' }
-const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', atendimento:'Atendimento — WhatsApp', coach:'Reuniões' }
+const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', atendimento:'Atendimento — WhatsApp', coach:'Reuniões', projetos:'Projetos — todas as frentes' }
 
 let activePeriod = 7
 let csLeadIds = new Set()  // lead_ids que já estão em CS — usado pra badge "Em CS" e ocultar botão →CS
@@ -1542,6 +1718,10 @@ function renderClientesFinanceiro() {
 // o módulo exigia deploy. Agora é um UPDATE em profiles.
 let currentFinanceiro = false
 function isFinanceiroUser() { return !!currentUser && currentFinanceiro }
+// Projetos NÃO é admin-only: há 3 admins e as frentes pessoais/estratégicas são de um só.
+// Flag própria em profiles (mesmo padrão de financeiro) — a RLS lê a mesma coluna.
+let currentProjetos = false
+function isProjetosUser() { return !!currentUser && currentProjetos }
 
 // ===== DOMINIO: AUTH & ROLES =====
 async function doLogin() {
@@ -1569,14 +1749,16 @@ sb.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
     currentUser = session.user
     // role E acesso ao financeiro vêm do banco (profiles) — fonte única, a mesma que a RLS lê
-    const { data: profile } = await sb.from('profiles').select('role, financeiro').eq('id', currentUser.id).single()
+    const { data: profile } = await sb.from('profiles').select('role, financeiro, projetos').eq('id', currentUser.id).single()
     if (profile?.role) {
       currentRole = profile.role
       currentFinanceiro = !!profile.financeiro
+      currentProjetos   = !!profile.projetos
     } else {
       // primeiro login: cria perfil com role mais restrito; promoção é manual (admin) depois
       currentRole = 'sdr'
       currentFinanceiro = false
+      currentProjetos   = false
       sb.from('profiles').insert({ id: currentUser.id, name: currentUser.email, role: currentRole }).then(() => {}, () => {})
     }
     // abre o app — limpa o display inline do bootstrap, senão ele vence o .hidden e a tela de login fica por cima
@@ -1621,6 +1803,12 @@ function applyRole() {
   if (navFin) navFin.style.display = isFinanceiroUser() ? '' : 'none'
   const navClientesFin = document.getElementById('nav-clientes-fin')
   if (navClientesFin) navClientesFin.style.display = isFinanceiroUser() ? '' : 'none'
+
+  // Projetos: flag própria (não é admin) — ver isProjetosUser()
+  const navProj = document.getElementById('nav-projetos')
+  const secProj = document.getElementById('nav-sec-projetos')
+  if (navProj) navProj.style.display = isProjetosUser() ? '' : 'none'
+  if (secProj) secProj.style.display = isProjetosUser() ? '' : 'none'
 
   if (isCS) {
     // CS só vê a seção Customer Success — esconde tudo do Comercial
@@ -1722,7 +1910,7 @@ function closeMobileSidebar() {
 // ── ROTA POR HASH (deep-link) ──────────────────────────────────────────────
 // #pipeline · #leads · #lead/{id} (abre o detalhe). Sem framework: goTo escreve o hash e
 // o hashchange navega. A flag _navegando evita o loop goTo -> hash -> hashchange -> goTo.
-const VIEWS = ['dashboard','pipeline','leads','experts','atendimento','agente-sdr','coach','cs','financeiro','clientes-fin']
+const VIEWS = ['dashboard','pipeline','leads','experts','atendimento','agente-sdr','coach','cs','financeiro','clientes-fin','projetos']
 let _navegando = false
 
 // A view existe para este usuário? applyRole() esconde itens por role (@po: link não pode
@@ -1734,7 +1922,8 @@ function viewPermitida(id) {
 }
 function navDaView(id) {
   const porId = { dashboard:'nav-dashboard', experts:'nav-experts', atendimento:'nav-atendimento', 'agente-sdr':'nav-agente-sdr',
-                  coach:'nav-coach', cs:'nav-cs', financeiro:'nav-financeiro', 'clientes-fin':'nav-clientes-fin' }[id]
+                  coach:'nav-coach', cs:'nav-cs', financeiro:'nav-financeiro', 'clientes-fin':'nav-clientes-fin',
+                  projetos:'nav-projetos' }[id]
   if (porId) return document.getElementById(porId)
   return [...document.querySelectorAll('.sidebar-item')].find(s => (s.getAttribute('onclick')||'').includes(`goTo('${id}'`)) || null
 }
@@ -1772,6 +1961,7 @@ function goTo(id, el) {
   if (id === 'agente-sdr')   { loadAgentes().then(() => renderAgentes()); renderConexaoWhatsApp() }
   if (id === 'atendimento')  renderAtendimento()
   if (id === 'coach')        renderCoach()
+  if (id === 'projetos')     loadProjetos().then(() => pjRender()).catch(() => {})
 }
 
 // Lê o hash atual e navega. Chamado no boot (depois dos dados) e no botão voltar.
@@ -4406,6 +4596,231 @@ function showToast(msg, type='success', opts = {}) {
   setTimeout(fechar, opts.duration || 3000)
 }
 
+// ===== DOMINIO: PROJETOS =====
+// Acompanhamento das frentes (Lingrow, Viziom, Cindy, marca, oferta, pessoal).
+// Admin-only pela RLS — as outras roles nem veem o item na sidebar.
+// Regra visual: DOURADO = tarefa do Vitor. É o recurso escasso; nada mais usa dourado aqui.
+let pjFrentes = []
+let pjTarefas = []
+const pjFiltros = { ex:'all', st:'abertos' }
+let pjEditando = null   // id da tarefa aberta no modal; null = criação
+
+const PJ_EXEC = { vitor:'você', eu:'IA', ambos:'ambos', equipe:'equipe' }
+const PJ_TETO_SEMANAL = 5   // itens do Vitor por semana — o teto que define o horizonte
+
+async function loadProjetos() {
+  // .limit() EXPLÍCITO: sem ele o PostgREST corta em 1000 silenciosamente (incidente 29/07)
+  const [f, t] = await Promise.all([
+    sb.from('projetos_frentes').select('*').eq('ativo', true).order('ordem').limit(200),
+    sb.from('projetos_tarefas').select('*').order('frente').order('ordem').limit(2000)
+  ])
+  if (f.error || t.error) { showToast('Erro ao carregar projetos.', 'error'); throw (f.error || t.error) }
+  pjFrentes = f.data || []
+  pjTarefas = t.data || []
+}
+
+function pjFiltro(el) {
+  pjFiltros[el.dataset.f] = el.dataset.v
+  document.querySelectorAll(`.pj-chip[data-f="${el.dataset.f}"]`).forEach(c => c.classList.remove('on'))
+  el.classList.add('on')
+  pjRender()
+}
+
+function pjAtrasada(t) {
+  return t.prazo && t.status !== 'feito' && t.prazo < new Date().toISOString().slice(0, 10)
+}
+function pjDias(prazo) {
+  const hoje = new Date(); hoje.setHours(0,0,0,0)
+  return Math.round((new Date(prazo + 'T00:00:00') - hoje) / 86400000)
+}
+
+function pjPassa(t) {
+  const q = (document.getElementById('pj-busca').value || '').trim().toLowerCase()
+  if (q && !(`${t.codigo} ${t.titulo} ${t.nota || ''}`.toLowerCase().includes(q))) return false
+  if (pjFiltros.ex !== 'all' && t.executor !== pjFiltros.ex) return false
+  if (pjFiltros.st === 'abertos' && t.status === 'feito') return false
+  if (pjFiltros.st === 'late'    && !pjAtrasada(t)) return false
+  if (pjFiltros.st === 'livre'   && (t.bloqueado_por || t.status === 'feito')) return false
+  return true
+}
+
+function pjRender() {
+  // ── leitura de topo ──
+  const abertas = pjTarefas.filter(t => t.status !== 'feito' && t.status !== 'congelado')
+  const suas    = abertas.filter(t => t.executor === 'vitor' || t.executor === 'ambos').length
+  const minhas  = abertas.filter(t => t.executor === 'eu').length
+  const atras   = pjTarefas.filter(pjAtrasada).length
+  const feitas  = pjTarefas.filter(t => t.status === 'feito').length
+  const semanas = Math.ceil(suas / PJ_TETO_SEMANAL)
+  document.getElementById('pj-stats').innerHTML = `
+    <div class="pj-stat"><div class="pj-stat-n">${abertas.length}</div><div class="pj-stat-l">em aberto<br>de ${pjTarefas.length} no total</div></div>
+    <div class="pj-stat s-vitor"><div class="pj-stat-n">${suas}</div><div class="pj-stat-l">passam por você<br>≈${semanas} ${semanas === 1 ? 'semana' : 'semanas'} a ${PJ_TETO_SEMANAL}/sem</div></div>
+    <div class="pj-stat s-eu"><div class="pj-stat-n">${minhas}</div><div class="pj-stat-l">a IA executa<br>você só aprova</div></div>
+    <div class="pj-stat s-late"><div class="pj-stat-n">${atras}</div><div class="pj-stat-l">com prazo vencido</div></div>
+    <div class="pj-stat"><div class="pj-stat-n">${feitas}</div><div class="pj-stat-l">concluídas</div></div>`
+
+  // ── colunas ──
+  document.getElementById('pj-board').innerHTML = pjFrentes.map(f => {
+    const daFrente = pjTarefas.filter(t => t.frente === f.key)
+    const vis = daFrente.filter(pjPassa)
+    const done = daFrente.filter(t => t.status === 'feito').length
+    const pct  = daFrente.length ? Math.round(done / daFrente.length * 100) : 0
+
+    let corpo = '', trilhaAtual = null
+    vis.forEach(t => {
+      if (t.trilha !== trilhaAtual) {
+        corpo += `<div class="pj-trilha">${esc(t.trilha || 'Sem trilha')}${t.trilha_nota ? ` <em>· ${esc(t.trilha_nota)}</em>` : ''}</div>`
+        trilhaAtual = t.trilha
+      }
+      const late = pjAtrasada(t)
+      const dias = t.prazo ? pjDias(t.prazo) : null
+      const prazoCls = late ? ' late' : (dias !== null && dias <= 3 ? ' soon' : '')
+      const prazoTxt = t.prazo ? new Date(t.prazo + 'T00:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' }) : ''
+      const tags = [
+        `<span class="pj-tag t-${t.executor}">${PJ_EXEC[t.executor]}${t.responsavel ? ' · ' + esc(t.responsavel) : ''}</span>`,
+        `<span class="pj-tag${t.tamanho === 'XG' ? ' t-xg' : ''}">${t.tamanho}</span>`,
+        t.maquina ? `<span class="pj-tag">${t.maquina}</span>` : '',
+        t.bloqueado_por ? `<span class="pj-tag t-blk">↳ ${esc(t.bloqueado_por)}</span>` : '',
+        t.prazo ? `<span class="pj-tag t-prazo${prazoCls}">${prazoTxt}</span>` : ''
+      ].join('')
+      const cls = [t.status === 'feito' ? 'done' : '', t.status === 'fazendo' ? 'doing' : '', t.bloqueado_por ? 'blk' : ''].filter(Boolean).join(' ')
+      corpo += `<div class="pj-row ${cls}" data-ex="${t.executor}" onclick="openTarefa('${t.id}')">
+        <div class="pj-check" onclick="event.stopPropagation();pjToggle('${t.id}')" title="Marcar como feita">${icon('check', { size:12 })}</div>
+        <div class="pj-body">
+          <div class="pj-line1"><span class="pj-cod">${esc(t.codigo)}</span><span class="pj-tit">${esc(t.titulo)}</span></div>
+          <div class="pj-tags">${tags}</div>
+          ${t.nota ? `<div class="pj-nota${t.alerta ? ' alerta' : ''}">${esc(t.nota)}</div>` : ''}
+        </div></div>`
+    })
+    if (!vis.length) corpo = '<div class="pj-vazio">nada com este filtro</div>'
+
+    return `<section class="pj-col">
+      <div class="pj-col-head">
+        <div class="pj-col-top"><span class="pj-dot" style="background:${esc(f.cor)}"></span>
+          <span class="pj-col-name">${esc(f.nome)}</span>
+          <span class="pj-col-n">${vis.length}/${daFrente.length}</span></div>
+        ${f.subtitulo ? `<div class="pj-col-sub">${esc(f.subtitulo)}</div>` : ''}
+        <div class="pj-meta-goal${f.meta ? '' : ' vazia'}" onclick="event.stopPropagation();editarMeta('${esc(f.key)}')">${f.meta ? icon('target', { size:11 }) + ' ' + esc(f.meta) : '+ definir a meta desta frente'}</div>
+        <div class="pj-prog"><i style="width:${pct}%"></i></div>
+      </div>
+      ${corpo}
+    </section>`
+  }).join('')
+}
+
+// Ciclo do clique no quadrado: aberto → fazendo → feito → aberto.
+// Só atualiza a tela DEPOIS que o banco confirma (convenção do CRM).
+async function pjToggle(id) {
+  const t = pjTarefas.find(x => x.id === id); if (!t) return
+  const proximo = { aberto:'fazendo', fazendo:'feito', feito:'aberto', congelado:'aberto' }[t.status]
+  const { error } = await sb.from('projetos_tarefas').update({ status: proximo }).eq('id', id)
+  if (error) { showToast('Não foi possível atualizar.', 'error'); return }
+  t.status = proximo
+  if (proximo === 'feito') showToast(`${t.codigo} concluída.`, 'success')
+  pjRender()
+}
+
+let pjMetaKey = null
+function editarMeta(key) {
+  const f = pjFrentes.find(x => x.key === key); if (!f) return
+  pjMetaKey = key
+  document.getElementById('pj-meta-frente').textContent = f.nome
+  document.getElementById('pj-f-meta').value = f.meta || ''
+  abrirModal('modal-meta')
+}
+function fecharMeta() { pjMetaKey = null; document.getElementById('modal-meta').classList.remove('open') }
+async function salvarMeta() {
+  if (!pjMetaKey) return
+  const valor = document.getElementById('pj-f-meta').value.trim()
+  const { error } = await sb.from('projetos_frentes').update({ meta: valor || null }).eq('key', pjMetaKey)
+  if (error) { showToast('Não foi possível salvar a meta.', 'error'); return }
+  const f = pjFrentes.find(x => x.key === pjMetaKey)
+  if (f) f.meta = valor || null
+  fecharMeta(); pjRender()
+  showToast('Meta salva.', 'success')
+}
+
+function openTarefa(id) {
+  const t = pjTarefas.find(x => x.id === id); if (!t) return
+  pjEditando = id
+  document.getElementById('pj-modal-title').textContent = t.codigo + ' — editar'
+  document.getElementById('pj-btn-del').style.display = ''
+  pjPreencheFrentes(t.frente)
+  document.getElementById('pj-f-titulo').value      = t.titulo || ''
+  document.getElementById('pj-f-trilha').value      = t.trilha || ''
+  document.getElementById('pj-f-executor').value    = t.executor
+  document.getElementById('pj-f-responsavel').value = t.responsavel || ''
+  document.getElementById('pj-f-tamanho').value     = t.tamanho
+  document.getElementById('pj-f-prazo').value       = t.prazo || ''
+  document.getElementById('pj-f-status').value      = t.status
+  document.getElementById('pj-f-bloq').value        = t.bloqueado_por || ''
+  document.getElementById('pj-f-nota').value        = t.nota || ''
+  abrirModal('modal-tarefa')
+}
+
+function openNovaTarefa() {
+  pjEditando = null
+  document.getElementById('pj-modal-title').textContent = 'Nova tarefa'
+  document.getElementById('pj-btn-del').style.display = 'none'
+  pjPreencheFrentes(pjFrentes[0]?.key)
+  ;['pj-f-titulo','pj-f-trilha','pj-f-responsavel','pj-f-prazo','pj-f-bloq','pj-f-nota'].forEach(i => document.getElementById(i).value = '')
+  document.getElementById('pj-f-executor').value = 'vitor'
+  document.getElementById('pj-f-tamanho').value  = 'M'
+  document.getElementById('pj-f-status').value   = 'aberto'
+  abrirModal('modal-tarefa')
+}
+
+function pjPreencheFrentes(sel) {
+  document.getElementById('pj-f-frente').innerHTML =
+    pjFrentes.map(f => `<option value="${esc(f.key)}"${f.key === sel ? ' selected' : ''}>${esc(f.nome)}</option>`).join('')
+}
+function closeTarefa() { document.getElementById('modal-tarefa').classList.remove('open'); pjEditando = null }
+
+async function salvarTarefa() {
+  const titulo = document.getElementById('pj-f-titulo').value.trim()
+  if (!titulo) { showToast('O título é obrigatório.', 'error'); return }
+  const frente = document.getElementById('pj-f-frente').value
+  const dados = {
+    frente, titulo,
+    trilha:        document.getElementById('pj-f-trilha').value.trim() || null,
+    executor:      document.getElementById('pj-f-executor').value,
+    responsavel:   document.getElementById('pj-f-responsavel').value.trim() || null,
+    tamanho:       document.getElementById('pj-f-tamanho').value,
+    prazo:         document.getElementById('pj-f-prazo').value || null,
+    status:        document.getElementById('pj-f-status').value,
+    bloqueado_por: document.getElementById('pj-f-bloq').value.trim().toUpperCase() || null,
+    nota:          document.getElementById('pj-f-nota').value.trim() || null
+  }
+  if (pjEditando) {
+    const { error } = await sb.from('projetos_tarefas').update(dados).eq('id', pjEditando)
+    if (error) { showToast('Não foi possível salvar.', 'error'); return }
+  } else {
+    // código sequencial dentro da frente: LG-18, VZ-13…
+    const daFrente = pjTarefas.filter(t => t.frente === frente)
+    const maior = daFrente.reduce((m, t) => Math.max(m, parseInt((t.codigo.split('-')[1] || '0'), 10) || 0), 0)
+    dados.codigo = `${frente}-${String(maior + 1).padStart(2, '0')}`
+    dados.ordem  = daFrente.length + 1
+    const { error } = await sb.from('projetos_tarefas').insert(dados)
+    if (error) { showToast('Não foi possível criar.', 'error'); return }
+  }
+  await loadProjetos()
+  closeTarefa(); pjRender()
+  showToast('Salvo.', 'success')
+}
+
+function excluirTarefa() {
+  if (!pjEditando) return
+  const id = pjEditando
+  const t  = pjTarefas.find(x => x.id === id)
+  confirmarAcao(`Excluir ${t?.codigo || 'esta tarefa'}? Ela some do board e não dá para desfazer.`, async () => {
+    const { error } = await sb.from('projetos_tarefas').delete().eq('id', id)
+    if (error) { showToast('Não foi possível excluir.', 'error'); return }
+    await loadProjetos()
+    closeTarefa(); pjRender()
+    showToast('Tarefa excluída.', 'success')
+  }, { titulo: 'Excluir tarefa', okLabel: 'Excluir', perigo: true })
+}
+
 // ===== DOMINIO: UTILS & MODAIS =====
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
 // Safari/macOS nao renderiza valor do <input type=date> — adiciona classe pra ativar fallback
@@ -5165,6 +5580,8 @@ const MODAL_CLOSERS = {
   'modal-transition':    cancelTransition,   // cancelar = card volta pra coluna de origem
   'modal-confirm':       fecharConfirm,
   'modal-nova-conversa': fecharNovaConversa,
+  'modal-tarefa':        closeTarefa,        // limpa pjEditando
+  'modal-meta':          fecharMeta,
 }
 // Abrir modal SEMPRE por aqui: carimba a ordem de abertura.
 // Sem isso, com 2 modais empilhados (ex.: detalhe + transição), o "topo" seria o último no
