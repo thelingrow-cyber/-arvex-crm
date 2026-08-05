@@ -58,7 +58,7 @@ function json(body, status) {
 // Mesmo conhecimento curado que o analyze-meeting usa: quem é o comprador, o que
 // a casa vende, objeções reais do nicho. É o que separa "responder sobre a call"
 // de "responder como quem conhece o negócio". Falha na leitura degrada em silêncio.
-const KB_MAX_CHARS = 18000; // 12k→18k (2026-08-05): ICP v2 + blocos do Hormozi somam ~15,5k
+const KB_MAX_CHARS = 24000; // 12k→18k→24k (2026-08-05): 11 blocos ativos somam ~19,4k (~6k tokens)
 async function carregarCerebro(admin) {
   try {
     const { data, error } = await admin.from("sales_knowledge").select("tipo, titulo, conteudo").eq("ativo", true).order("peso", {
