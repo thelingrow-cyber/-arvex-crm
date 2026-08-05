@@ -1207,7 +1207,10 @@
     <div id="view-coach" class="view">
       <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
         <div><h1>Reuniões</h1><p>Análise das suas reuniões</p></div>
-        <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn-cancel admin-only" onclick="openCerebro()" style="white-space:nowrap;display:none" title="O que o coach sabe antes de analisar uma call">Cérebro do coach</button>
+          <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
+        </div>
       </div>
       <div id="coach-demo-banner" class="coach-banner" style="display:none">Modo demonstração — dados fictícios</div>
       <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
@@ -1399,6 +1402,57 @@
       <div id="cm-error" style="display:none;color:var(--red);font-size:12px"></div>
     </div>
     <div class="modal-footer"><button class="btn-cancel" onclick="closeNewMeeting()">Cancelar</button><button class="btn-save" onclick="saveMeeting()">Analisar reunião</button></div>
+  </div>
+</div>
+
+<!-- MODAL CÉREBRO — o que o coach sabe antes de analisar (sales_knowledge) -->
+<div class="modal-overlay" id="modal-cerebro">
+  <div class="modal" style="max-width:720px">
+    <div class="modal-header">
+      <div class="modal-title">Cérebro do coach</div>
+      <button class="modal-close" onclick="fecharCerebro()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--muted);margin:0 0 14px">
+        Isto entra no prompt de toda análise: quem é o comprador, o que a casa vende, método e objeções.
+        Cole material bruto (trecho de livro, script de aula, SOP) e o sistema destila em critério aplicável a uma call.
+        <strong>Material cru nunca vai para o prompt</strong> — só o destilado.
+      </p>
+
+      <div class="form-group"><label>Material bruto</label>
+        <textarea id="kb-texto" placeholder="Cole aqui o trecho do livro, o script do vídeo, o SOP…" style="min-height:120px"></textarea></div>
+      <div class="form-row">
+        <div class="form-group"><label>Tipo</label>
+          <select id="kb-tipo">
+            <option value="metodo">Método / como conduzir</option>
+            <option value="icp">ICP / quem é o comprador</option>
+            <option value="oferta">Oferta / o que vendemos</option>
+            <option value="objecao">Objeções</option>
+            <option value="caso">Caso real</option>
+            <option value="produto">Produto</option>
+          </select></div>
+        <div class="form-group"><label>Fonte</label><input type="text" id="kb-fonte" placeholder="Ex: livro $100M Offers, aula 03 da Cindy" /></div>
+      </div>
+      <div id="kb-erro" style="display:none;color:var(--red);font-size:12px;margin-bottom:8px"></div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px">
+        <button class="btn-save" id="kb-btn-destilar" onclick="kbDestilar()">Destilar</button>
+        <span style="font-size:11px;color:var(--text-3)">a IA transforma em bloco operável antes de salvar</span>
+      </div>
+
+      <div id="kb-preview" style="display:none;margin:12px 0;padding:12px;background:var(--navy2);border:1px solid var(--border);border-radius:8px">
+        <div class="coach-meter-label" style="margin-bottom:6px">Destilado — revise antes de salvar</div>
+        <input type="text" id="kb-prev-titulo" style="margin-bottom:8px" />
+        <textarea id="kb-prev-conteudo" style="min-height:150px"></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+          <button class="btn-save" onclick="kbSalvar()">Salvar no cérebro</button>
+          <button class="btn-cancel" onclick="kbDescartar()">Descartar</button>
+          <span id="kb-prev-meta" style="font-size:11px;color:var(--text-3);margin-left:auto"></span>
+        </div>
+      </div>
+
+      <div class="coach-meter-label" style="margin:18px 0 8px">No cérebro agora <span id="kb-uso" style="color:var(--text-3);font-weight:400"></span></div>
+      <div id="kb-lista"></div>
+    </div>
   </div>
 </div>
 
@@ -2278,6 +2332,129 @@ function openMeeting(id) {
   ccInit(m)
 }
 function closeMeeting() { document.getElementById('modal-coach-detail').classList.remove('open') }
+
+// ── CÉREBRO DO COACH (sales_knowledge) ────────────────────────────────────
+// O que o coach sabe ANTES de olhar a call: comprador, oferta, método, objeções.
+// Entra no system prompt de analyze-meeting e coach-chat. Só admin gerencia (RLS).
+// KB_LIMITE espelha o corte da Edge Function: o que passar disso não é enviado.
+const KB_LIMITE = 12000
+const KB_TIPOS = { icp:'ICP', metodo:'Método', oferta:'Oferta', objecao:'Objeções', caso:'Caso', produto:'Produto' }
+let kbBlocos = []
+let kbPendente = null
+
+async function openCerebro() { abrirModal('modal-cerebro'); kbDescartar(); await loadCerebro() }
+function fecharCerebro() { document.getElementById('modal-cerebro').classList.remove('open') }
+
+async function loadCerebro() {
+  const el = document.getElementById('kb-lista')
+  if (el) el.innerHTML = '<div style="color:var(--text-3);font-size:12px">Carregando…</div>'
+  const { data, error } = await sb.from('sales_knowledge')
+    .select('id,tipo,titulo,conteudo,fonte,peso,ativo').order('peso', { ascending:false }).limit(200)
+  kbBlocos = error ? [] : (data || [])
+  if (error) { if (el) el.innerHTML = `<div style="color:var(--red);font-size:12px">${esc(error.message)}</div>`; return }
+  renderCerebro()
+}
+
+function renderCerebro() {
+  const usados = kbBlocos.filter(b => b.ativo).reduce((s, b) => s + (b.conteudo || '').length, 0)
+  const cor = usados > KB_LIMITE ? 'var(--red)' : usados > KB_LIMITE * 0.8 ? 'var(--orange)' : 'var(--text-3)'
+  const uso = document.getElementById('kb-uso')
+  if (uso) uso.innerHTML = `<span style="color:${cor}">· ${usados.toLocaleString('pt-BR')} de ${KB_LIMITE.toLocaleString('pt-BR')} caracteres em uso` +
+    `${usados > KB_LIMITE ? ' — o excedente NÃO é enviado; desative algum bloco' : ''}</span>`
+
+  const el = document.getElementById('kb-lista')
+  if (!el) return
+  if (!kbBlocos.length) { el.innerHTML = '<div style="color:var(--text-3);font-size:12px">Nenhum bloco ainda.</div>'; return }
+  el.innerHTML = kbBlocos.map(b => `
+    <div style="border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;background:var(--navy2);${b.ativo ? '' : 'opacity:.5'}">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <span class="at-badge">${esc(KB_TIPOS[b.tipo] || b.tipo)}</span>
+        <strong style="font-size:13px">${esc(b.titulo)}</strong>
+        <span style="font-size:11px;color:var(--text-3)">peso ${b.peso} · ${(b.conteudo || '').length} chars</span>
+        <label class="sw" style="margin-left:auto" title="${b.ativo ? 'Ativo no prompt' : 'Fora do prompt'}">
+          <input type="checkbox" ${b.ativo ? 'checked' : ''} onchange="kbToggle('${b.id}', this.checked)"><span></span></label>
+        <button class="btn-card-action btn-card-del" onclick="kbDelete('${b.id}')">Excluir</button>
+      </div>
+      ${b.fonte ? `<div style="font-size:11px;color:var(--text-3);margin-top:4px">fonte: ${esc(b.fonte)}</div>` : ''}
+      <details style="margin-top:6px"><summary style="cursor:pointer;font-size:11px;color:var(--muted)">ver conteúdo</summary>
+        <pre style="white-space:pre-wrap;font-family:Inter,sans-serif;font-size:12px;color:var(--muted);margin:8px 0 0">${esc(b.conteudo)}</pre></details>
+    </div>`).join('')
+}
+
+function kbErro(msg) {
+  const e = document.getElementById('kb-erro')
+  if (!e) return
+  e.textContent = msg || ''
+  e.style.display = msg ? '' : 'none'
+}
+
+async function kbDestilar() {
+  const texto = (document.getElementById('kb-texto').value || '').trim()
+  if (texto.length < 200) return kbErro('Cole pelo menos 200 caracteres de material.')
+  kbErro('')
+  const btn = document.getElementById('kb-btn-destilar')
+  btn.disabled = true; btn.textContent = 'Destilando…'
+  try {
+    const { data, error } = await sb.functions.invoke('distill-knowledge', {
+      body: {
+        texto,
+        tipo: document.getElementById('kb-tipo').value,
+        fonte: (document.getElementById('kb-fonte').value || '').trim(),
+      },
+    })
+    if (error || !data || data.error) throw new Error((data && data.error) || (error && error.message) || 'falha ao destilar')
+    kbPendente = data.bloco
+    document.getElementById('kb-prev-titulo').value = kbPendente.titulo || ''
+    document.getElementById('kb-prev-conteudo').value = kbPendente.conteudo || ''
+    document.getElementById('kb-prev-meta').textContent =
+      `${(kbPendente.conteudo || '').length} chars · tipo ${kbPendente.tipo} · peso ${kbPendente.peso}`
+    document.getElementById('kb-preview').style.display = ''
+  } catch (e) {
+    kbErro(String(e.message || e))
+  } finally {
+    btn.disabled = false; btn.textContent = 'Destilar'
+  }
+}
+
+async function kbSalvar() {
+  if (!kbPendente) return
+  const titulo = (document.getElementById('kb-prev-titulo').value || '').trim()
+  const conteudo = (document.getElementById('kb-prev-conteudo').value || '').trim()
+  if (!titulo || !conteudo) return kbErro('Título e conteúdo são obrigatórios.')
+  const { error } = await sb.from('sales_knowledge').insert({
+    tipo: kbPendente.tipo, titulo, conteudo,
+    fonte: kbPendente.fonte || (document.getElementById('kb-fonte').value || '').trim() || null,
+    tags: kbPendente.tags || [], peso: kbPendente.peso || 3, ativo: true,
+  })
+  if (error) return kbErro(error.message)
+  document.getElementById('kb-texto').value = ''
+  kbDescartar()
+  await loadCerebro()
+}
+
+function kbDescartar() {
+  kbPendente = null
+  const p = document.getElementById('kb-preview')
+  if (p) p.style.display = 'none'
+  kbErro('')
+}
+
+async function kbToggle(id, ativo) {
+  const { error } = await sb.from('sales_knowledge').update({ ativo, updated_at: new Date().toISOString() }).eq('id', id)
+  if (error) return kbErro(error.message)
+  const b = kbBlocos.find(x => x.id === id)
+  if (b) b.ativo = ativo
+  renderCerebro()
+}
+
+function kbDelete(id) {
+  const b = kbBlocos.find(x => x.id === id)
+  confirmarAcao(`Excluir o bloco "${b ? b.titulo : ''}" do cérebro?`, async () => {
+    const { error } = await sb.from('sales_knowledge').delete().eq('id', id)
+    if (error) return kbErro(error.message)
+    await loadCerebro()
+  })
+}
 
 // ── Chat da reunião (camada 4) ──
 let ccMeeting = null
@@ -5860,6 +6037,7 @@ const MODAL_CLOSERS = {
   'modal-detail':        closeDetail,
   'modal-coach-new':     closeNewMeeting,
   'modal-coach-detail':  closeMeeting,
+  'modal-cerebro':       fecharCerebro,
   'modal-negociacao':    fecharModalNegociacao,
   'modal-transition':    cancelTransition,   // cancelar = card volta pra coluna de origem
   'modal-confirm':       fecharConfirm,
