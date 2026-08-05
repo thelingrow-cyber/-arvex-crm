@@ -79,6 +79,33 @@ missao: "Na próxima call, fique 100% no impacto da dor emocional (custo de cont
 const RUBRICA = `
 Dê nota 0-10 por dimensão (âncoras): rapport (conexão genuína) · diagnostico (profundidade na dor real) · escuta (deixou falar/validou) · valor (valor antes de preço) · controle (conduziu) · fechamento (firmeza/próximo passo) · transicao (ofertou na hora certa, não cedo) · objecoes (tratou com segurança).
 `.trim();
+// ── CÉREBRO (sales_knowledge) ───────────────────────────────────────────────
+// O coach não pode julgar uma call sem saber quem é o comprador, o que a casa
+// vende e quais objeções são reais nesse nicho. Sem isto ele vira um consultor
+// genérico de vendas. Conteúdo curado vive na tabela `sales_knowledge` (ativo=true),
+// ordenado por peso. Falha na leitura NUNCA derruba a análise — degrada para o
+// comportamento antigo (prompt sem cérebro).
+const KB_MAX_CHARS = 12000;
+async function carregarCerebro(admin) {
+  try {
+    const { data, error } = await admin.from("sales_knowledge").select("tipo, titulo, conteudo, peso").eq("ativo", true).order("peso", {
+      ascending: false
+    }).limit(30);
+    if (error || !data || !data.length) return "";
+    const blocos = [];
+    let total = 0;
+    for (const k of data){
+      const bloco = `--- [${k.tipo}] ${k.titulo} ---\n${k.conteudo}`;
+      if (total + bloco.length > KB_MAX_CHARS) break;
+      blocos.push(bloco);
+      total += bloco.length;
+    }
+    if (!blocos.length) return "";
+    return `\n\n=== O QUE VOCÊ SABE SOBRE ESTE NEGÓCIO (conhecimento curado, extraído de calls e material da casa) ===\nUse isto para julgar a call com o critério de quem conhece o comprador e a oferta. Se a call contradiz este conhecimento, aponte. NÃO invente nada que não esteja aqui nem na transcrição.\n\n${blocos.join("\n\n")}`;
+  } catch (_e) {
+    return "";
+  }
+}
 function buildPrompt(transcript) {
   return `${RUBRICA}
 
@@ -280,6 +307,7 @@ Deno.serve(async (req)=>{
     const meeting = meetingRow;
     const transcript = (meeting.transcript ?? "").toString().trim();
     if (!transcript) throw new Error("Transcrição vazia");
+    const cerebro = await carregarCerebro(admin);
     // 4. chama Claude (temp 0, tool use força JSON)
     const resp = await fetch(ANTHROPIC_URL, {
       method: "POST",
@@ -292,7 +320,7 @@ Deno.serve(async (req)=>{
         model: CLAUDE_MODEL,
         max_tokens: 3000,
         temperature: 0,
-        system: SYSTEM,
+        system: SYSTEM + cerebro,
         tools: [
           TOOL
         ],

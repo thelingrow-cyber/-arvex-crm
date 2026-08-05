@@ -54,7 +54,31 @@ function json(body, status) {
     }
   });
 }
-function buildSystem(m) {
+// ── CÉREBRO (sales_knowledge) ───────────────────────────────────────────────
+// Mesmo conhecimento curado que o analyze-meeting usa: quem é o comprador, o que
+// a casa vende, objeções reais do nicho. É o que separa "responder sobre a call"
+// de "responder como quem conhece o negócio". Falha na leitura degrada em silêncio.
+const KB_MAX_CHARS = 12000;
+async function carregarCerebro(admin) {
+  try {
+    const { data, error } = await admin.from("sales_knowledge").select("tipo, titulo, conteudo").eq("ativo", true).order("peso", {
+      ascending: false
+    }).limit(30);
+    if (error || !data || !data.length) return "";
+    const blocos = [];
+    let total = 0;
+    for (const k of data){
+      const b = `--- [${k.tipo}] ${k.titulo} ---\n${k.conteudo}`;
+      if (total + b.length > KB_MAX_CHARS) break;
+      blocos.push(b);
+      total += b.length;
+    }
+    return blocos.length ? `\n\n=== O QUE VOCÊ SABE SOBRE ESTE NEGÓCIO (conhecimento curado da casa) ===\n${blocos.join("\n\n")}` : "";
+  } catch (_e) {
+    return "";
+  }
+}
+function buildSystem(m, cerebro) {
   const sc = m.scores || {};
   const ins = m.insights || {};
   const notas = Object.keys(sc).map((k)=>k + " " + sc[k]).join(", ");
@@ -71,6 +95,7 @@ function buildSystem(m) {
     "Resultado: " + (m.resultado || "—") + " | Nota geral: " + (m.nota_geral != null ? m.nota_geral : "—"),
     "Notas: " + notas + resumo + dor,
     ins.erro_estrategico ? "Erro estratégico: " + ins.erro_estrategico : "",
+    cerebro || "",
     "\n=== TRANSCRIÇÃO ===\n" + transcript
   ].join("\n");
 }
@@ -132,7 +157,7 @@ Deno.serve(async function(req) {
         model: CLAUDE_MODEL,
         max_tokens: 1200,
         temperature: 0.3,
-        system: buildSystem(m),
+        system: buildSystem(m, await carregarCerebro(admin)),
         messages: messages
       })
     });
