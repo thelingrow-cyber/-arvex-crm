@@ -85,7 +85,7 @@ Dê nota 0-10 por dimensão (âncoras): rapport (conexão genuína) · diagnosti
 // genérico de vendas. Conteúdo curado vive na tabela `sales_knowledge` (ativo=true),
 // ordenado por peso. Falha na leitura NUNCA derruba a análise — degrada para o
 // comportamento antigo (prompt sem cérebro).
-const KB_MAX_CHARS = 12000;
+const KB_MAX_CHARS = 18000; // 12k→18k (2026-08-05): ICP v2 + blocos do Hormozi somam ~15,5k
 async function carregarCerebro(admin) {
   try {
     const { data, error } = await admin.from("sales_knowledge").select("tipo, titulo, conteudo, peso").eq("ativo", true).order("peso", {

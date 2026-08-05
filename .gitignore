@@ -44,3 +44,5 @@ tmp-listas/
 
 # Listas temporárias de trabalho (JSONs grandes, descartáveis)
 tmp-listas/
+
+.tmp-icp/
