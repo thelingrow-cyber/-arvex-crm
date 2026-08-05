@@ -54,3 +54,39 @@ Formação 6.997 → condição 4.997 (12x ~416-516); bônus: 1 mês de gestor g
 - "Virou explicador" da estrutura em vez de vender a transformação. (recorrente!)
 - Ancorar no desejo emocional nº1 antes de apresentar.
 - **NOVO padrão:** adaptar o fechamento ao ESTILO do comprador (analítico/pé-no-chão → matemática+prova; nunca pressão).
+
+---
+
+## Adendo 2026-08-05 — o que o dataset de 6 calls acrescenta
+
+> A análise acima segue válida (validada por Vitor em 28/06). Transcrição-fonte agora persistida em
+> `docs/crm/transcricoes/2026-06-aline-coelho-curitiba.md` e importada no CRM.
+
+**1. O sinal simbólico virou padrão da casa — e falhou aqui do jeito mais explícito.**
+Com 6 calls transcritas, o pedido de "valor simbólico para reservar" aparece em 5, com 3 closers
+diferentes, e **não converteu nenhuma**. A única call ganha (caso-06) não o usou. Nesta call a recusa foi
+frontal, e a lead explicou o porquê logo em seguida: *"eu não gosto de ser pressionada: 'você tem que
+fazer, você tem que garantir, você tem que ter vaga', depois pede pressa"*. Ela nomeou a mecânica inteira.
+
+**2. A prova social que ela pediu duas vezes não foi entregue na call.**
+Ela pediu falar com a mentorada de Curitiba no meio (*"se você conseguisse passar essa pessoa que vocês
+atendem de Curitiba"*) e repetiu no fim (*"fiquei com dúvida de [falar com] qualquer ótica de Curitiba"*).
+Recebeu casos do Pará e de São Paulo na tela e a promessa de mandar o vídeo depois. O bloco do cérebro
+"Quem tira o medo do 'é tudo online' é a autoridade" prevê exatamente isso: **prova social de porte e
+região iguais, antes do preço** — e quando o lead PEDE nominalmente, a call devia parar para entregar.
+
+**3. A objeção de custo total foi levantada por ela e nunca somada.**
+*"Não adianta falar 'vou te ajudar a melhorar', mas tu vai ter que investir dois mil, três mil por mês
+em tráfego."* Ela antecipou o custo escondido. A resposta foi R$200-300/semana (≈R$800-1.200/mês), sem
+nunca fechar a conta total na frente dela: programa + tráfego ≈ R$2.200-2.400/mês nos primeiros meses.
+Para uma compradora que se declara orçamentária, deixar a soma implícita é pior do que dizê-la.
+
+**4. O melhor argumento da oferta já tinha histórico negativo com ela — e ninguém investigou.**
+*"Esse eu já tentei fazer. E eles não gostaram, pediram para sair."* O pivot para a campanha "oi sumido"
+foi bom, mas passou ao largo da pergunta que valia a venda: **como** ela fez? O método da casa manda
+*convidar, não adicionar*, e trabalhar 2-3 dias de antecipação antes de qualquer oferta. Se ela adicionou
+direto e mandou promoção, a falha dela é a prova viva de que o método importa — o fracasso anterior
+viraria o argumento mais forte da call. Ficou como objeção não resolvida.
+
+**5. Dado operacional novo:** parte da base se perdeu — *"muitos se perderam com troca de sistema"*.
+Isso muda o dimensionamento da campanha de reativação e devia ter sido quantificado ali.
