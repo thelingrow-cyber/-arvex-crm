@@ -23,6 +23,7 @@ deve usar `on conflict (titulo) do nothing`.
 | 011 | `011-guard-titulo-unico.sql` | Índice único em `titulo` — impede migration reaplicada de duplicar bloco | ✅ 2026-08-07 |
 | 012 | `012-normaliza-closer-nome.sql` | Normaliza `meetings.closer_nome` pelo profile (o mesmo closer aparecia como duas pessoas) | ✅ 2026-08-07 |
 | 013 | `013-desfecho-real.sql` | `desfecho_em`, `motivo_perda`, `desfecho_origem` + trigger de venda carimbando data/origem + backfill retroativo | ✅ 2026-08-07 |
+| 014 | `014-restaura-curadoria.sql` | Desativa ICP v1 (duplicava o v2) e reativa o bloco da autoridade — reparo de curadoria feita sob alarme falso do medidor | ✅ 2026-08-07 |
 
 ## Como aplicar uma nova
 
