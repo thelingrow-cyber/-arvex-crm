@@ -2365,7 +2365,7 @@ function closeMeeting() { document.getElementById('modal-coach-detail').classLis
 // O que o coach sabe ANTES de olhar a call: comprador, oferta, método, objeções.
 // Entra no system prompt de analyze-meeting e coach-chat. Só admin gerencia (RLS).
 // KB_LIMITE espelha o corte da Edge Function: o que passar disso não é enviado.
-const KB_LIMITE = 24000
+const KB_LIMITE = 28000
 const KB_TIPOS = { icp:'ICP', metodo:'Método', oferta:'Oferta', objecao:'Objeções', caso:'Caso', produto:'Produto' }
 let kbBlocos = []
 let kbPendente = null
