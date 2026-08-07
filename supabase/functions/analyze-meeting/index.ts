@@ -85,7 +85,7 @@ Dê nota 0-10 por dimensão (âncoras): rapport (conexão genuína) · diagnosti
 // genérico de vendas. Conteúdo curado vive na tabela `sales_knowledge` (ativo=true),
 // ordenado por peso. Falha na leitura NUNCA derruba a análise — degrada para o
 // comportamento antigo (prompt sem cérebro).
-const KB_MAX_CHARS = 24000; // 12k→18k→24k (2026-08-05): 11 blocos ativos somam ~19,4k (~6k tokens)
+const KB_MAX_CHARS = 28000; // teto final: ~7k tokens de contexto fixo por analise. Acima disso a atencao do modelo dilui — a partir daqui, bloco novo EXPULSA bloco antigo.
 async function carregarCerebro(admin) {
   try {
     const { data, error } = await admin.from("sales_knowledge").select("tipo, titulo, conteudo, peso").eq("ativo", true).order("peso", {

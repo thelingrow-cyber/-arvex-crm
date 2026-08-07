@@ -58,7 +58,7 @@ function json(body, status) {
 // Mesmo conhecimento curado que o analyze-meeting usa: quem é o comprador, o que
 // a casa vende, objeções reais do nicho. É o que separa "responder sobre a call"
 // de "responder como quem conhece o negócio". Falha na leitura degrada em silêncio.
-const KB_MAX_CHARS = 24000; // 12k→18k→24k (2026-08-05): 11 blocos ativos somam ~19,4k (~6k tokens)
+const KB_MAX_CHARS = 28000; // teto final: ~7k tokens de contexto fixo por analise. Acima disso a atencao do modelo dilui — a partir daqui, bloco novo EXPULSA bloco antigo.
 async function carregarCerebro(admin) {
   try {
     const { data, error } = await admin.from("sales_knowledge").select("tipo, titulo, conteudo").eq("ativo", true).order("peso", {
