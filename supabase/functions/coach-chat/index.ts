@@ -78,7 +78,39 @@ async function carregarCerebro(admin) {
     return "";
   }
 }
-function buildSystem(m, cerebro) {
+// ── HISTÓRICO DO CLOSER ─────────────────────────────────────────────────────
+// Permite que o closer pergunte "onde eu sempre erro?" e receba resposta baseada
+// em TODAS as calls dele, não só nesta. Degrada em silêncio.
+const HIST_MAX = 12;
+async function carregarHistoricoCloser(admin, closerId, meetingIdAtual) {
+  if (!closerId) return "";
+  try {
+    const { data, error } = await admin.from("meetings")
+      .select("id, data_reuniao, cliente_nome, resultado, nota_geral, insights")
+      .eq("closer_id", closerId).eq("status", "done").neq("id", meetingIdAtual)
+      .order("data_reuniao", { ascending: false }).limit(HIST_MAX);
+    if (error || !data || !data.length) return "";
+    const linhas = data.map((m)=>{
+      const i = m.insights || {};
+      const p = [
+        `• ${m.data_reuniao || "?"} — ${m.cliente_nome || "sem nome"} [${m.resultado || "aberto"}${m.nota_geral != null ? ", nota " + m.nota_geral : ""}]`
+      ];
+      if (i.dor_dominante) p.push(`  dor: ${String(i.dor_dominante).slice(0, 180)}`);
+      if (i.erro_estrategico) p.push(`  erro: ${String(i.erro_estrategico).slice(0, 220)}`);
+      if (i.missao) p.push(`  missão dada: ${String(i.missao).slice(0, 180)}`);
+      return p.join("\n");
+    });
+    return `\n\n=== AS OUTRAS CALLS DESTE MESMO CLOSER (${data.length}, mais recente primeiro) ===
+Você é o coach DELE, não de uma call avulsa. Se ele perguntar sobre padrão, evolução ou "o que eu sempre
+erro", responda com base neste histórico, citando datas e clientes. Se um erro se repete, diga há quantas
+calls. Não invente evolução que os dados não mostram.
+
+${linhas.join("\n")}`;
+  } catch (_e) {
+    return "";
+  }
+}
+function buildSystem(m, cerebro, historico) {
   const sc = m.scores || {};
   const ins = m.insights || {};
   const notas = Object.keys(sc).map((k)=>k + " " + sc[k]).join(", ");
@@ -96,6 +128,7 @@ function buildSystem(m, cerebro) {
     "Notas: " + notas + resumo + dor,
     ins.erro_estrategico ? "Erro estratégico: " + ins.erro_estrategico : "",
     cerebro || "",
+    historico || "",
     "\n=== TRANSCRIÇÃO ===\n" + transcript
   ].join("\n");
 }
@@ -157,7 +190,7 @@ Deno.serve(async function(req) {
         model: CLAUDE_MODEL,
         max_tokens: 1200,
         temperature: 0.3,
-        system: buildSystem(m, await carregarCerebro(admin)),
+        system: buildSystem(m, await carregarCerebro(admin), await carregarHistoricoCloser(admin, m.closer_id, m.id)),
         messages: messages
       })
     });

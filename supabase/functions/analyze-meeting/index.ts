@@ -106,6 +106,42 @@ async function carregarCerebro(admin) {
     return "";
   }
 }
+// ── HISTÓRICO DO CLOSER ─────────────────────────────────────────────────────
+// O coach deixa de analisar calls soltas e passa a acompanhar UMA PESSOA ao
+// longo do tempo. Puxa as análises anteriores DESTE closer (nunca a call atual)
+// para poder dizer "esse erro é a 3ª vez" ou "isto você melhorou".
+// Degrada em silêncio: sem histórico, a análise segue normal.
+const HIST_MAX = 12;
+async function carregarHistoricoCloser(admin, closerId, meetingIdAtual) {
+  if (!closerId) return "";
+  try {
+    const { data, error } = await admin.from("meetings")
+      .select("id, data_reuniao, cliente_nome, resultado, nota_geral, insights")
+      .eq("closer_id", closerId).eq("status", "done").neq("id", meetingIdAtual)
+      .order("data_reuniao", { ascending: false }).limit(HIST_MAX);
+    if (error || !data || !data.length) return "";
+    const linhas = data.map((m)=>{
+      const i = m.insights || {};
+      const partes = [
+        `• ${m.data_reuniao || "?"} — ${m.cliente_nome || "sem nome"} [${m.resultado || "aberto"}${m.nota_geral != null ? ", nota " + m.nota_geral : ""}]`,
+      ];
+      if (i.dor_dominante) partes.push(`  dor: ${String(i.dor_dominante).slice(0, 180)}`);
+      if (i.erro_estrategico) partes.push(`  erro: ${String(i.erro_estrategico).slice(0, 220)}`);
+      if (i.missao) partes.push(`  missão dada: ${String(i.missao).slice(0, 180)}`);
+      return partes.join("\n");
+    });
+    return `\n\n=== HISTÓRICO DESTE CLOSER (${data.length} call${data.length > 1 ? "s" : ""} anterior${data.length > 1 ? "es" : ""}, da mais recente para a mais antiga) ===
+Você acompanha esta pessoa, não analisa calls avulsas. USE ISTO:
+· Se um erro se repete, DIGA que se repete e há quantas calls ("é a 3ª vez que...").
+· Se a missão dada na call anterior foi cumprida, RECONHEÇA explicitamente. Se foi ignorada, aponte.
+· A missão desta call deve ter CONTINUIDADE com a anterior — não recomece do zero a cada análise.
+· Não invente evolução que os dados não mostram.
+
+${linhas.join("\n")}`;
+  } catch (_e) {
+    return "";
+  }
+}
 function buildPrompt(transcript) {
   return `${RUBRICA}
 
@@ -308,6 +344,7 @@ Deno.serve(async (req)=>{
     const transcript = (meeting.transcript ?? "").toString().trim();
     if (!transcript) throw new Error("Transcrição vazia");
     const cerebro = await carregarCerebro(admin);
+    const historico = await carregarHistoricoCloser(admin, meetingRow.closer_id, meeting_id);
     // 4. chama Claude (temp 0, tool use força JSON)
     const resp = await fetch(ANTHROPIC_URL, {
       method: "POST",
@@ -320,7 +357,7 @@ Deno.serve(async (req)=>{
         model: CLAUDE_MODEL,
         max_tokens: 3000,
         temperature: 0,
-        system: SYSTEM + cerebro,
+        system: SYSTEM + cerebro + historico,
         tools: [
           TOOL
         ],
