@@ -35,6 +35,7 @@ um consultor genérico de vendas.
 | UI | `index.html` (branch **main**, raiz) | ✅ aba Reuniões, tela "Cérebro do coach", seletor por closer (admin) |
 | Importação em lote | `tools/coach-import/import.js` | ✅ .vtt/.txt/.md, dedupe por hash |
 | Estado do sistema | `tools/sales-coach/estado.js` | ✅ lê o banco e reporta |
+| Desfecho real | colunas + trigger de venda + UI no modal | ✅ data, motivo da perda, ciclo e cobrança após 14 dias |
 
 **Regra de deploy:** o front do coach vive em `index.html` da **raiz, branch `main`** (produção Vercel).
 `docs/crm/index.html` (branch master) **não** tem o módulo. Edge functions: editar em
@@ -44,12 +45,11 @@ um consultor genérico de vendas.
 
 | # | O quê | Por quê importa |
 |---|---|---|
-| 1 | **Desfecho real** (trigger venda→meeting + campo com data e motivo) | O coach analisa e nunca descobre se acertou. Pré-requisito de tudo abaixo |
-| 2 | Métricas determinísticas (`meetings.metrics`) — talk ratio, monólogo, nº de perguntas | Código, custo zero, comparável entre calls. Teria pego os monólogos de 15-25 min sozinho |
-| 3 | Briefing pré-call | Muda o coach de retrovisor para copiloto |
-| 4 | `stats_closer()` + aba Direção | Comparar time, conversão real |
-| 5 | Notificação pós-call (WhatsApp via `evolution-proxy`) | O coaching indo até o closer |
-| 6 | Evolução do cérebro com aprovação | Hoje a curadoria é 100% manual |
+| 1 | Métricas determinísticas (`meetings.metrics`) — talk ratio, monólogo, nº de perguntas | Código, custo zero, comparável entre calls. Teria pego os monólogos de 15-25 min sozinho |
+| 2 | Briefing pré-call | Muda o coach de retrovisor para copiloto |
+| 3 | `stats_closer()` + aba Direção | Comparar time, conversão real |
+| 4 | Notificação pós-call (WhatsApp via `evolution-proxy`) | O coaching indo até o closer |
+| 5 | Evolução do cérebro com aprovação | Hoje a curadoria é 100% manual |
 
 Detalhamento e comparativo de mercado: **[AUDITORIA-2026-08-07.md](AUDITORIA-2026-08-07.md)**.
 
@@ -100,8 +100,6 @@ node tools\sales-coach\estado.js
 
 - **6 reuniões pendentes de análise.** O cérebro atual (11 blocos, SPIN/DEF/CLOSER) **nunca rodou uma
   análise** — está armado e não disparado. Depende de abrir Reuniões e clicar em *Reanalisar*.
-- **`closer_nome` inconsistente**: algumas reuniões gravaram o e-mail em vez do nome ("Vitor" ×
-  "viktorsimoess@gmail.com"). Não quebra nada (o histórico usa `closer_id`), mas polui relatório.
 - **Só 2 de 9 reuniões têm `lead_id`** — sem isso o desfecho automático não funciona.
 - **O SOP de vendas está desatualizado**: `docs/processos/sop-fluxo-vendas.md` lista R$5.000/7.000/10.000;
   as calls reais mostram R$4.997, R$2.500 (Express) e R$12.500. **Qual é a oferta válida hoje é decisão

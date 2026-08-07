@@ -21,6 +21,8 @@ deve usar `on conflict (titulo) do nothing`.
 | 009 | `009-ajuste-de-teto.sql` | Enxuga o bloco da autoridade para caber no teto | ✅ 2026-08-07 |
 | 010 | `010-objecoes-loop-acq.sql` | Loop de isolamento (ACQ) + respostas prontas por objeção + BAMFAM | ✅ 2026-08-07 |
 | 011 | `011-guard-titulo-unico.sql` | Índice único em `titulo` — impede migration reaplicada de duplicar bloco | ✅ 2026-08-07 |
+| 012 | `012-normaliza-closer-nome.sql` | Normaliza `meetings.closer_nome` pelo profile (o mesmo closer aparecia como duas pessoas) | ✅ 2026-08-07 |
+| 013 | `013-desfecho-real.sql` | `desfecho_em`, `motivo_perda`, `desfecho_origem` + trigger de venda carimbando data/origem + backfill retroativo | ✅ 2026-08-07 |
 
 ## Como aplicar uma nova
 
