@@ -2221,7 +2221,7 @@ function renderCoachCards() {
     <div class="coach-card" ${m.status==='done'?`onclick="openMeeting('${m.id}')"`:''}>
       <div class="coach-card-top">
         <div class="coach-card-title">${esc(m.cliente_nome||'—')}${m.produto?` · ${esc(m.produto)}`:''}</div>
-        <div class="coach-result">${resultadoDot(m.resultado)}</div>
+        <div class="coach-result">${resultadoDot(m.resultado)}${(!m.resultado || m.resultado === 'aberto') && diasDesde(m.data_reuniao) >= DIAS_COBRANCA_DESFECHO ? ` <span class="at-badge pausado" title="Marque o desfecho: é o que faz o coach aprender com o resultado real">desfecho? ${diasDesde(m.data_reuniao)}d</span>` : ''}</div>
       </div>
       <div class="coach-card-meta">${esc(m.data_reuniao||'')} · Closer: ${esc(m.closer_nome||'—')}</div>
       <div class="coach-card-bottom">
@@ -2348,6 +2348,7 @@ function openMeeting(id) {
     ${extras}${obj}
     ${blocks}
     ${missao}
+    ${desfechoBloco(m)}
     <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button>${isOwner ? `<button class="btn-cancel" style="color:var(--red);margin-left:auto" onclick="deleteMeetingConfirm('${m.id}')">${icon('trash',{size:13})} Excluir</button>` : ''}</div>
     <div class="coach-chat">
       <div class="coach-meter-label">Converse sobre esta call</div>
@@ -2520,10 +2521,58 @@ async function ccSend(preset) {
   }
   ccRender()
 }
+// ── DESFECHO ───────────────────────────────────────────────────────────────
+// O coach analisa a call e nunca descobre se acertou. Marcar o desfecho (com
+// DATA e, na perda, o MOTIVO) é o que fecha esse loop: permite comparar a nota
+// dada com o que aconteceu de verdade e medir o ciclo de fechamento.
+// Motivos de perda da CALL. Conversa com MOTIVOS_PERDA do pipeline (linha ~3729), mas aqui
+// os motivos são os que apareceram nas calls reais analisadas — preço, decisor e timing.
+const MOTIVOS_PERDA_CALL = [['preco','Preço / não cabia'],['decisor','Decisor não comprou'],['timing','Momento errado'],['concorrente','Foi com concorrente'],['sumiu','Sumiu / não respondeu'],['outro','Outro']]
+const DIAS_COBRANCA_DESFECHO = 14
+
 function editResultado(id, val) {
   const m = coachMeetings.find(x => x.id === id); if (m) m.resultado = val
-  if (!COACH_DEMO) sb.from('meetings').update({ resultado: val }).eq('id', id)
+  const patch = { resultado: val }
+  if (val === 'aberto') { patch.desfecho_em = null; patch.motivo_perda = null; patch.desfecho_origem = null }
+  else {
+    patch.desfecho_em = (m && m.desfecho_em) || new Date().toISOString().slice(0, 10)
+    patch.desfecho_origem = 'manual'
+    if (val === 'ganhou') patch.motivo_perda = null
+    if (m) { m.desfecho_em = patch.desfecho_em; m.desfecho_origem = 'manual' }
+  }
+  if (!COACH_DEMO) sb.from('meetings').update(patch).eq('id', id)
+  openMeeting(id)   // redesenha o bloco de desfecho (mostra data / motivo)
   renderCoachCards()
+}
+function editDesfechoCampo(id, campo, val) {
+  const m = coachMeetings.find(x => x.id === id); if (m) m[campo] = val || null
+  if (!COACH_DEMO) sb.from('meetings').update({ [campo]: val || null }).eq('id', id)
+  renderCoachCards()
+}
+// Dias entre a reunião e hoje — usado para cobrar desfecho de call parada em aberto.
+function diasDesde(d) {
+  if (!d) return null
+  const t = new Date(d + 'T12:00:00').getTime()
+  return isNaN(t) ? null : Math.floor((Date.now() - t) / 86400000)
+}
+function desfechoBloco(m) {
+  const em = (m.desfecho_em || '').slice(0, 10)
+  const dias = diasDesde(m.data_reuniao)
+  if (m.resultado === 'aberto' || !m.resultado) {
+    return dias != null && dias >= DIAS_COBRANCA_DESFECHO
+      ? `<div class="coach-extra" style="border-color:var(--orange)"><span class="coach-meter-label" style="color:var(--orange)">Desfecho pendente</span><p>Essa call foi há ${dias} dias e continua "em aberto". O que aconteceu? Marcar o desfecho é o que permite o coach aprender com o resultado real.</p></div>`
+      : ''
+  }
+  const ciclo = (em && m.data_reuniao) ? diasDesde(m.data_reuniao) - diasDesde(em) : null
+  const motivo = m.resultado === 'perdeu'
+    ? `<select onchange="editDesfechoCampo('${m.id}','motivo_perda',this.value)" style="width:auto"><option value="">Por quê?</option>${MOTIVOS_PERDA_CALL.map(([v,l]) => `<option value="${v}"${m.motivo_perda===v?' selected':''}>${l}</option>`).join('')}</select>` : ''
+  return `<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px">
+      <span class="coach-meter-label">Desfecho em</span>
+      <input type="date" value="${esc(em)}" onchange="editDesfechoCampo('${m.id}','desfecho_em',this.value)" style="width:auto" />
+      ${motivo}
+      ${ciclo != null && ciclo >= 0 ? `<span style="font-size:11px;color:var(--text-3)">${ciclo === 0 ? 'fechou no mesmo dia' : ciclo + ' dia(s) até decidir'}</span>` : ''}
+      ${m.desfecho_origem === 'auto' ? '<span class="at-badge ativo">registrado pela venda</span>' : ''}
+    </div>`
 }
 function reanalisar(id) {
   if (COACH_DEMO) { closeMeeting(); return }
