@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # Roteiro da call ARVEX — v0 (rascunho derivado de evidência)
 
 > **Status: RASCUNHO.** Construído a partir das 6 calls reais transcritas (1 ganha, 5 não).
@@ -5,7 +9,7 @@
 > e a revisão de call externa (contraste de estrutura). **Não copiar estrutura de fora sem passar
 > pelo filtro das nossas calls.**
 >
-> Fontes: `caso-01` a `caso-07` em `docs/crm/sales-brain/` · transcrições em `docs/crm/transcricoes/`
+> Fontes: `caso-01` a `caso-07` em `docs/crm/sales-coach/conhecimento/` · transcrições em `docs/crm/sales-coach/transcricoes/`
 
 ---
 

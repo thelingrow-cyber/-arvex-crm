@@ -60,7 +60,7 @@ Formação 6.997 → condição 4.997 (12x ~416-516); bônus: 1 mês de gestor g
 ## Adendo 2026-08-05 — o que o dataset de 6 calls acrescenta
 
 > A análise acima segue válida (validada por Vitor em 28/06). Transcrição-fonte agora persistida em
-> `docs/crm/transcricoes/2026-06-aline-coelho-curitiba.md` e importada no CRM.
+> `docs/crm/sales-coach/transcricoes/2026-06-aline-coelho-curitiba.md` e importada no CRM.
 
 **1. O sinal simbólico virou padrão da casa — e falhou aqui do jeito mais explícito.**
 Com 6 calls transcritas, o pedido de "valor simbólico para reservar" aparece em 5, com 3 closers

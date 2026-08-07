@@ -15,7 +15,7 @@ Plugin Meet (auto, bugado)   analyze-meeting (Sonnet 4.6) sales_knowledge (11 bl
 Colar no modal (manual)      · rubrica 8 dimensões          27.7k chars, curada à mão)   diretor, missão)
 tools/coach-import (lote,    · julgamento-raiz + missão   histórico por closer (12     Chat com a call
   dedupe, só eu rodo)        · JSON estrito, temp 0         últimas análises, auto)     (grounded + histórico)
-                             · cérebro + histórico        sales-brain/ (7 casos, ICP,  Tela Cérebro (destilar
+                             · cérebro + histórico        conhecimento/ (7 casos, ICP,  Tela Cérebro (destilar
                                injetados no prompt          2 roteiros, DEF)             e gerir blocos)
                              coach-chat (idem)                                          Seletor por closer (admin)
 

@@ -1,6 +1,6 @@
 # Caso 06 — Vitor × Wal Leite (optometrista) — 2026-08-01 — **GANHA**
 
-> Transcrição: `docs/crm/transcricoes/2026-08-01-wal-leite-optometrista.md`
+> Transcrição: `docs/crm/sales-coach/transcricoes/2026-08-01-wal-leite-optometrista.md`
 > **Primeira call com desfecho positivo do dataset.** Compromisso fechado na própria call:
 > R$1.000 na quarta 05/08 + R$1.500 na quarta seguinte = R$2.500, com reunião de diagnóstico com a
 > Sabrina marcada para 05/08 às 16h.

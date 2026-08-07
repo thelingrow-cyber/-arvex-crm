@@ -32,7 +32,7 @@ ESTRATÉGICO — não erro de fechamento. Perguntar "quem decide" no começo da 
 comparar RETORNO com RETORNO: 13 anos de carteira própria (ativo que ele já pagou para construir) contra
 30 dias de atenção alugada. Sem esse contraste, o anúncio barato continua parecendo o melhor negócio —
 e responder só "é outra linha, não é só um anúncio" não desmonta a âncora.$$,
- 'docs/crm/sales-brain/caso-07-vivalle-londrina.md',
+ 'docs/crm/sales-coach/conhecimento/casos/caso-07-vivalle-londrina.md',
  array['metodo','decisor','ancora','preco'], 5)
 
 on conflict do nothing;

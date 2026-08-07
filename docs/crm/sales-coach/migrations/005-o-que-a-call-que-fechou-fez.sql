@@ -40,7 +40,7 @@ $$Em 4 calls transcritas — 1 ganha, 1 perdida, 2 em aberto — cinco diferenç
 OBSERVAÇÃO DE FUNIL: a call que fechou foi com quem JÁ tinha comprado o produto de entrada (R$297 +
 Restart Óptico ≈ R$2.800) e já acompanhava a mentora. É o mesmo mecanismo que a casa vende às óticas —
 vender para a base é mais fácil que captar frio.$$,
- 'docs/crm/sales-brain/caso-06-wal-leite-GANHA.md (comparativo das 4 calls)',
+ 'docs/crm/sales-coach/conhecimento/casos/caso-06-wal-leite-GANHA.md (comparativo das 4 calls)',
  array['metodo','fechamento','call-ganha','pagamento'], 5)
 
 on conflict do nothing;

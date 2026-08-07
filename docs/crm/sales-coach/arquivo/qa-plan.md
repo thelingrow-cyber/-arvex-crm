@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # Plano de Testes / QA — Sales Coach MVP (arvex-crm)
 
 **Autor:** @qa (Quinn) · Data: 2026-06-27 · Refs: stories + brief + architecture + DDL + UX spec

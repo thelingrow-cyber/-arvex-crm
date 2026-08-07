@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # Plano de Rollout / Deploy — Sales Coach MVP (arvex-crm)
 
 **Autor:** @devops (Gage) · Data: 2026-06-27 · Refs: architecture · setup-sales-coach-v1.sql · stories (P1–P3) · qa-plan (gate)

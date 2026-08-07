@@ -1,7 +1,7 @@
 -- ============================================================================
 -- Cérebro do coach — atualização do ICP para v2 (2026-08-05)
 -- Base: 3 calls de venda + 15 lives/encontros da Cindy (~45 participantes),
--- destilados em docs/crm/sales-brain/icp-fontes/.
+-- destilados em docs/crm/sales-coach/conhecimento/icp-fontes/.
 -- Substitui o bloco de ICP da v1 (que vinha só das 3 calls) e adiciona os dois
 -- padrões que só apareceram com o volume das lives.
 -- ============================================================================
@@ -51,7 +51,7 @@ VOCABULÁRIO DELE: guerra de preço · público chorão · cliente de porta · p
 simples/multifocal · marca própria vs grife · clip-on · o "ar" (antirreflexo) · exame de vista como
 chamariz · feira de São Paulo · grupo VIP · campanha em dobro · "o mercado tá frio" · "grupo VIP
 falecido" · "loja do precinho" · "querem o óculos pra ontem" · "quem sou eu na fila do pão".$$,
- 'docs/crm/sales-brain/icp-dono-de-otica.md v2 — 3 calls + 15 lives (lotes 1-3 em icp-fontes/)',
+ 'docs/crm/sales-coach/conhecimento/icp-dono-de-otica.md v2 — 3 calls + 15 lives (lotes 1-3 em icp-fontes/)',
  array['icp','otica','comprador'], 5),
 
 ('objecao', 'A objeção nº1 não é preço — é cicatriz de mentoria anterior',
@@ -78,7 +78,7 @@ O QUE DESTRAVA (razões declaradas de compra, palavras deles):
 REGRA PARA O COACH: se o closer apresentou a oferta sem perguntar o que o lead já comprou antes e por que
 não funcionou, ele deixou a objeção mais forte da call intacta. Perguntar isso cedo entrega de graça a
 estrutura do próprio pitch. Tratar isso como erro de diagnóstico, não de fechamento.$$,
- 'docs/crm/sales-brain/icp-fontes/ (lotes 2 e 3) + calls reais',
+ 'docs/crm/sales-coach/conhecimento/icp-fontes/ (lotes 2 e 3) + calls reais',
  array['objecao','mentoria','diagnostico'], 5),
 
 ('metodo', 'Quem tira o medo do "é tudo online" é a autoridade, não o closer',
@@ -104,7 +104,7 @@ CONSEQUÊNCIAS PARA A CALL:
 3. Aproximar a autoridade (áudio dela, DM, presença numa call) vale mais que qualquer bônus material.
    Se o closer respondeu a insegurança com desconto ou bônus em vez de aproximação/prova, aponte como
    erro estratégico.$$,
- 'docs/crm/sales-brain/icp-fontes/lote-3 + call Djarla 04/08',
+ 'docs/crm/sales-coach/conhecimento/icp-fontes/lote-3 + call Djarla 04/08',
  array['metodo','prova-social','autoridade','confianca'], 5),
 
 ('metodo', 'A primeira vitória vem da base — com payback medido em dias',
@@ -131,7 +131,7 @@ COMO USAR (o que os closers NÃO estão fazendo): parar de dizer "tem dinheiro p
 CONTA ao vivo — "quantos clientes vocês têm no cadastro? Se 2% voltarem com o ticket de vocês, é R$ X numa
 semana". Sem perguntar o tamanho da base, o argumento vira retórica. Em call real o closer identificou o
 ouro, disse a frase certa e não perguntou o número: a call terminou sem decisão.$$,
- 'docs/crm/sales-brain/icp-dono-de-otica.md §5 (8 casos independentes)',
+ 'docs/crm/sales-coach/conhecimento/icp-dono-de-otica.md §5 (8 casos independentes)',
  array['metodo','base','payback','prova'], 5)
 
 on conflict do nothing;

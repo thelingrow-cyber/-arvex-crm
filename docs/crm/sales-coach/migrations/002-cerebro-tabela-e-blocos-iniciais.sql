@@ -36,7 +36,7 @@ create policy sales_knowledge_admin on sales_knowledge
   with check (exists (select 1 from profiles p where p.id = auth.uid() and p.role = 'admin'));
 
 -- ── conteúdo inicial ────────────────────────────────────────────────────────
--- Destilado de calls reais (ver docs/crm/sales-brain/). Nada aqui é suposição:
+-- Destilado de calls reais (ver docs/crm/sales-coach/conhecimento/). Nada aqui é suposição:
 -- cada bloco tem fonte rastreável.
 
 insert into sales_knowledge (tipo, titulo, conteudo, fonte, tags, peso) values
@@ -61,7 +61,7 @@ MARCAS RECORRENTES:
 6. O cônjuge é o rosto do conteúdo e está sobrecarregado ("tem que gravar vídeo, tem bastante funções").
 7. Vocabulário dele: guerra de preço, público chorão, multifocal/visão simples, marca própria vs grife,
    feira de São Paulo, exame de vista como chamariz, passante, curadoria de peças.$$,
- 'docs/crm/sales-brain/icp-dono-de-otica.md (3 calls: Djarla 04/08, Anderson 03/08, Tatiane 09/07)',
+ 'docs/crm/sales-coach/conhecimento/icp-dono-de-otica.md (3 calls: Djarla 04/08, Anderson 03/08, Tatiane 09/07)',
  array['icp','otica','comprador'], 5),
 
 ('oferta', 'O que a ARVEX/Cindy vende (para julgar se o closer apresentou certo)',
@@ -103,7 +103,7 @@ de orçamento apertado, que aparece em praticamente toda call.
 
 REGRA DERIVADA: não apresentar a oferta sem ter três números do lead na tela — faturamento médio,
 ticket médio e tamanho da base. Sem esses três, a apresentação vira folheto.$$,
- 'docs/crm/sales-brain/caso-04-djarla-oticas-adrian.md',
+ 'docs/crm/sales-coach/conhecimento/casos/caso-04-djarla-oticas-adrian.md',
  array['metodo','fechamento','reframe'], 5),
 
 ('objecao', 'Objeções reais x cortinas no nicho óptico',
@@ -124,7 +124,7 @@ ANTIPADRÃO DETECTADO NO TIME: responder ao "vou pensar" pedindo um SINAL SIMBÓ
 lead saiu sem decidir. Pedir R$100 num programa de R$4.997 sinaliza que o valor não foi construído,
 e substitui o "sim" grande por um "sim" pequeno. Alternativa: fazer a conta da base e fechar no
 valor cheio, OU marcar a call de decisão COM o segundo decisor presente e data no calendário.$$,
- 'docs/crm/sales-brain/ (calls Djarla 04/08 e Tatiane 09/07)',
+ 'docs/crm/sales-coach/conhecimento/ (calls Djarla 04/08 e Tatiane 09/07)',
  array['objecao','fechamento'], 4)
 
 on conflict do nothing;

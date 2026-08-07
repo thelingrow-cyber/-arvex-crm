@@ -1,6 +1,6 @@
 # Caso 05 — Vitor × Anderson (2 óticas, Fortaleza/CE) — 2026-08-03
 
-> Transcrição: `docs/crm/transcricoes/2026-08-03-anderson-fortaleza.md` (versão Tactiq completa —
+> Transcrição: `docs/crm/sales-coach/transcricoes/2026-08-03-anderson-fortaleza.md` (versão Tactiq completa —
 > substituiu a captura do plugin, que vinha truncada e sem o fechamento).
 > Resultado: **aberto**. "Faz total sentido, eu acho que agrega muito" — travou no limite do cartão.
 

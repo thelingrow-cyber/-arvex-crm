@@ -6,7 +6,7 @@ fonte: Tactiq (falantes separados)
 resultado: perdeu — "analiso até o final da semana"; recusou o sinal simbólico
 oferta_apresentada: formação R$6.997 → condição em call R$4.997 / 12× R$516 → "tiro parte dos juros, fica ~R$5.000 em parcelas de ~R$400"
 contexto_lead: loja desde 2013 · faturamento R$25-35k/mês · só ~10% das vendas vêm do Instagram · ela + 1 vendedora (marido trabalha fora) · capta via serviço de foto para documento · tráfego parado desde o começo do ano · já tentou grupo VIP e os clientes pediram para sair · movimento em curso: marca própria de lentes
-analise: docs/crm/sales-brain/caso-02-aline-coelho.md (VALIDADA por Vitor em 28/06 — gold-standard)
+analise: docs/crm/sales-coach/conhecimento/casos/caso-02-aline-coelho.md (VALIDADA por Vitor em 28/06 — gold-standard)
 ---
 
 # Call — Vitor × Aline Coelho (ótica, Curitiba/PR)

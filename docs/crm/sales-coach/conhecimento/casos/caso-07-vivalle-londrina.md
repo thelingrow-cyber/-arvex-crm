@@ -1,6 +1,6 @@
 # Caso 07 — Vitor Manoel × Maria (Ótica Vivalle, Londrina/PR) — 2026-08-01
 
-> Transcrição: `docs/crm/transcricoes/2026-08-vivalle-londrina.md`
+> Transcrição: `docs/crm/sales-coach/transcricoes/2026-08-vivalle-londrina.md`
 > Resultado: **não fechou.** Pediu a chave Pix do sinal de R$100 mas condicionou tudo a falar com a filha.
 
 ## O lead

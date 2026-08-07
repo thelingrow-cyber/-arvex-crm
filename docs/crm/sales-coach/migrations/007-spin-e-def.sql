@@ -56,7 +56,7 @@ TRAVA DE CAIXA ≠ TRAVA DE VALOR. "Não tenho limite no cartão" / "tô com com
 capacidade de pagamento — resolve-se com CALENDÁRIO (data da parcela, entrada menor amarrada ao início
 da execução), nunca com desconto. Em call real o preço caiu 4 vezes para uma trava de cartão e não
 fechou; noutra o preço ficou de pé, o prazo mudou, e fechou.$$,
- 'docs/crm/sales-brain/ (calls Djarla, Anderson, Tatiane, Aline, Vivalle, Wal Leite) + $100M Offers',
+ 'docs/crm/sales-coach/conhecimento/ (calls Djarla, Anderson, Tatiane, Aline, Vivalle, Wal Leite) + $100M Offers',
  array['objecao','preco','risco','mentoria'], 5),
 
 ('metodo', 'SPIN — as 4 perguntas e a régua de resultado da call',
@@ -148,7 +148,7 @@ presumido — "fica melhor à vista ou parcelado?", não "o que você acha?". Co
 NUNCA estimular "pense mais uma semana". Escassez só se for verdade verificável fora da call
 (exclusividade por cidade é legítima; "condição só hoje" num comprador que decide em dupla aumenta a
 resistência).$$,
- 'Método DEF (Vendas Pro, revisão do closer do Ladeira) + docs/crm/sales-brain/metodo-def-revisao-externa.md',
+ 'Método DEF (Vendas Pro, revisão do closer do Ladeira) + docs/crm/sales-coach/conhecimento/metodo-def.md',
  array['metodo','estrutura','fechamento','isolamento','escuta-ativa'], 5)
 
 on conflict do nothing;

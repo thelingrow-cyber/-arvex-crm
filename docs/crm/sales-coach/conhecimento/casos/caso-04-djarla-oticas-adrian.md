@@ -1,6 +1,6 @@
 # Caso 04 — Gabriel × Djarla (Óticas Adrian, Valparaíso/GO) — 2026-08-04
 
-> Análise no método diretor comercial. Transcrição: `docs/crm/transcricoes/2026-08-04-djarla-oticas-adrian-valparaiso.md`
+> Análise no método diretor comercial. Transcrição: `docs/crm/sales-coach/transcricoes/2026-08-04-djarla-oticas-adrian-valparaiso.md`
 > Resultado: **aberto** — "a gente vai fechar com você sim, mas deixa a gente ver o orçamento";
 > sinal de R$100 combinado para o dia seguinte às 15h. Oferta: R$4.997 / 12× R$516.
 

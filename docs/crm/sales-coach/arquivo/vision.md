@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # Visão Completa — Sales Coach como MENTOR (não transcritor)
 
 **Autor:** Vitor + Orion · Data: 2026-06-27 · Status: visão/roadmap (NÃO altera o escopo do MVP)

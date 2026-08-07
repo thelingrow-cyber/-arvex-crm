@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # UX/UI Spec — Sales Coach (aba "Coach") · arvex-crm
 
 **Autor:** @ux-design-expert (Uma) · Data: 2026-06-27 · Refs: brief + architecture + `design-direction.md`

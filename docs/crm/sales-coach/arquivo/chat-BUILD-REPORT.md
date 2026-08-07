@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # Build Report — Chat do Sales Coach ("converse com a call")
 
 **Data:** 2026-06-29 · Loop autônomo (não parou, não pediu aprovação) · Autorização: [[feedback_autonomia_deploy]]

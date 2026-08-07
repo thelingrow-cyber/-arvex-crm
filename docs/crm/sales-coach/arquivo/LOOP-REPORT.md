@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # Loop Report — evolução autônoma do Sales Coach
 
 **Data:** 2026-06-28 · Modo: loop autônomo com auto-aprovação (travas de segurança) · Autorização: [[feedback_autonomia_deploy]]

@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # 🌙 Build Report — Sales Coach MVP (build autônomo noturno)
 
 **Data:** 2026-06-27 (madrugada) · Executor: @dev em loop autônomo · Para: Vitor

@@ -1,3 +1,7 @@
+> ⚠️ **DOCUMENTO ARQUIVADO — não use como referência.**
+> Superado pelo estado atual do sistema. Ponto de entrada: [../README.md](../README.md)
+> Mantido só como registro histórico.
+
 # Project Brief — Sales Coach (Sales Intelligence) · MVP
 
 **Módulo do arvex-crm** · Autor: @pm (Morgan) · Data: 2026-06-27 · Status: Brief aprovado p/ arquitetura
