@@ -1218,6 +1218,7 @@
         <select id="coach-filter-resultado" onchange="renderCoach()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
           <option value="">Todos os resultados</option><option value="ganhou">Ganhou</option><option value="perdeu">Perdeu</option><option value="aberto">Em aberto</option>
         </select>
+        <select id="coach-filter-closer" class="admin-only" onchange="renderCoachCards()" style="display:none;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer" title="Cada closer tem o próprio espaço; aqui você acompanha o time"></select>
       </div>
       <div class="coach-grid" id="coach-list"></div>
     </div>
@@ -2184,12 +2185,38 @@ function renderCoach() {
   if (COACH_DEMO && coachMeetings.length) { renderCoachCards() } else { loadCoach().then(renderCoachCards) }
   coachSubscribe()
 }
+// Cada closer tem o próprio espaço: o admin abre em "Minhas calls" e troca para
+// acompanhar o time. Sem isso, quem é admin via as calls de todo mundo misturadas
+// com as suas — e o próprio painel deixava de ser dele.
+function coachPopularClosers() {
+  const sel = document.getElementById('coach-filter-closer')
+  if (!sel || currentRole !== 'admin') return
+  const vistos = new Map()
+  coachMeetings.forEach(m => { if (m.closer_id && !vistos.has(m.closer_id)) vistos.set(m.closer_id, m.closer_nome || 'sem nome') })
+  const atual = sel.value || (currentUser ? currentUser.id : '')
+  const outros = [...vistos.entries()].filter(([id]) => !currentUser || id !== currentUser.id)
+  sel.innerHTML =
+    `<option value="${currentUser ? esc(currentUser.id) : ''}">Minhas calls</option>` +
+    outros.map(([id, nome]) => `<option value="${esc(id)}">${esc(nome)}</option>`).join('') +
+    `<option value="__todos">Time inteiro</option>`
+  sel.value = atual
+}
+
 function renderCoachCards() {
   const grid = document.getElementById('coach-list'); if (!grid) return
+  coachPopularClosers()
   const q  = (document.getElementById('coach-search')?.value || '').toLowerCase()
   const fr = document.getElementById('coach-filter-resultado')?.value || ''
-  const list = coachMeetings.filter(m => (!q || (m.cliente_nome||'').toLowerCase().includes(q)) && (!fr || m.resultado === fr))
-  if (!list.length) { grid.innerHTML = `<div class="coach-empty">${icon('grad',{size:32})}<h3>Nenhuma reunião ainda</h3><p>Suba a transcrição da sua primeira call e receba a análise.</p></div>`; return }
+  const fc = (currentRole === 'admin' && !COACH_DEMO) ? (document.getElementById('coach-filter-closer')?.value || '') : ''
+  const list = coachMeetings.filter(m =>
+    (!q || (m.cliente_nome||'').toLowerCase().includes(q)) &&
+    (!fr || m.resultado === fr) &&
+    (!fc || fc === '__todos' || m.closer_id === fc))
+  if (!list.length) {
+    const doTime = fc && fc !== '__todos' && currentUser && fc !== currentUser.id
+    grid.innerHTML = `<div class="coach-empty">${icon('grad',{size:32})}<h3>Nenhuma reunião ${doTime ? 'deste closer' : 'ainda'}</h3><p>${doTime ? 'Esse closer ainda não subiu nenhuma call.' : 'Suba a transcrição da sua primeira call e receba a análise.'}</p></div>`
+    return
+  }
   grid.innerHTML = list.map(m => `
     <div class="coach-card" ${m.status==='done'?`onclick="openMeeting('${m.id}')"`:''}>
       <div class="coach-card-top">
