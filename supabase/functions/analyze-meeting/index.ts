@@ -64,9 +64,17 @@ MÉTODO OBRIGATÓRIO (nesta ordem mental):
 
 REGRA EXTRA — ESTILO DO COMPRADOR: leia o estilo de decisão do lead. Se for analítico/pé-no-chão ("não decido na hora", "preciso colocar no orçamento", "não gosto de ser pressionada"), o fechamento certo é CONTA/ROI + PROVA SOCIAL — gatilho de pressão/escassez AUMENTA a resistência nesse perfil. Avalie se o closer adaptou o fechamento ao estilo (entra em erro_estrategico se errou).
 
-SEQUÊNCIA VENCEDORA (padrão das calls que FECHAM): o closer deve AQUECER antes de apresentar — rapport → normalizar a dor ("você não está sozinho") → reframe ("o jogo mudou") → autoridade (história/origem que mata objeção de "já tentei agência") → diagnóstico com NÚMEROS → conectar ao SONHO do lead → SÓ ENTÃO apresentar estrutura/oferta. Se o closer apresentou a solução/estrutura ANTES de aquecer (pulou etapas), esse é normalmente o erro_estrategico central. Explicar muito a estrutura só funciona DEPOIS de aquecer.
+A estrutura de call de referência (fases, transições, isolamento de objeção, fechamento) está no conhecimento curado abaixo — use-a como régua e NÃO repita aqui o que já está lá.
 
 TOM: honesto, específico, sem bajular. Fale com o closer ("você"). Use as palavras do lead. Profundidade > quantidade.
+
+REGRAS DE ESCRITA (o closer lê isso no celular, entre duas calls):
+· NÃO REPITA o mesmo erro em vários campos. Se o erro central já está no resumo_diretor, os outros campos acrescentam coisa nova — não reformulam o mesmo ponto.
+· resumo_diretor: no máximo 5 frases, ancorado na PIOR dimensão da rubrica.
+· erro_estrategico: no máximo 6 linhas. Uma frase dizendo o erro + o reframe que faltou, com a frase pronta que ele deveria ter dito. Sem recapitular a call.
+· Cada item de acertos/erros/faltou: UMA linha, começando por verbo, com evidência entre aspas quando houver.
+· "faltou" é OBRIGATÓRIO: liste 2 a 4 PERGUNTAS EXATAS que o closer deveria ter feito, no formato em que ele as faria. Nunca devolva vazio.
+· proxima_acao_lead: escreva a MENSAGEM PRONTA para o closer mandar hoje para ESTE lead (WhatsApp, 1º pessoa, tom dele, sem emoji, referenciando algo específico da conversa). Se a venda estiver perdida de forma irreversível, escreva a mensagem de encerramento com porta aberta. Este campo nunca fica vazio — toda call tem um próximo movimento.
 
 EXEMPLO DE NÍVEL ESPERADO (gold-standard, resumido):
 resumo_diretor: "Essa venda não foi perdida no fechamento — foi perdida antes. Você conduz bem e gera conexão, mas apresenta a solução ANTES de tornar o problema inevitável. Quando ela disse 'tenho ideias que precisam sair do papel' e 'a operação me puxa', ali estava a venda (dor de execução) — e você passou para a apresentação em vez de ficar mais tempo nesse lugar emocional."
@@ -75,9 +83,39 @@ objecao: { tipo: "genuina", explicacao: "Manteve a mesma narrativa do início ao
 erro_estrategico: "Aceitou o enquadramento 'estou investindo numa nova loja' sem reframar para 'justamente por isso é a hora de ter estrutura'. Tentou tarde demais."
 missao: "Na próxima call, fique 100% no impacto da dor emocional (custo de continuar assim) ANTES de mostrar qualquer parte do programa."
 `.trim();
-// Rubrica de notas (0-10) — só DEPOIS do julgamento qualitativo
+// Rubrica de notas (0-10) — só DEPOIS do julgamento qualitativo.
+// ÂNCORAS EXPLÍCITAS por faixa: sem elas a nota é ruído (a mesma call recebia
+// 3.0 ou 4.5 em rodadas diferentes). Cada faixa descreve um FATO verificável na
+// transcrição, não uma impressão — é o que torna a nota comparável entre calls
+// e entre closers, que é o uso que interessa (evolução no tempo).
 const RUBRICA = `
-Dê nota 0-10 por dimensão (âncoras): rapport (conexão genuína) · diagnostico (profundidade na dor real) · escuta (deixou falar/validou) · valor (valor antes de preço) · controle (conduziu) · fechamento (firmeza/próximo passo) · transicao (ofertou na hora certa, não cedo) · objecoes (tratou com segurança).
+Dê nota 0-10 por dimensão usando ESTAS ÂNCORAS. Escolha a faixa pelo que ACONTECEU na transcrição, não pela impressão geral. Se ficar entre duas faixas, use o limite inferior.
+
+RAPPORT — conexão genuína
+0-3 foi direto ao assunto, lead monossilábico · 4-6 cordial mas protocolar · 7-8 o lead revelou coisas que não foram perguntadas (contexto pessoal, medo, números) · 9-10 além disso o lead pediu opinião ou se abriu sobre algo sensível.
+
+DIAGNOSTICO — profundidade até a dor real
+0-3 só perguntas de situação (quanto fatura, quantos anos), ou menos de 5 min · 4-6 chegou a perguntas de problema ("qual o gargalo?") mas parou aí · 7-8 fez ao menos 2 perguntas de IMPLICAÇÃO (o que isso te custa / o que acontece se continuar) · 9-10 o lead MEDIU o próprio problema em voz alta, com número ou consequência concreta.
+
+ESCUTA — deixou falar e usou o que ouviu
+0-3 interrompeu ou emendou pergunta sem reagir à resposta · 4-6 ouviu mas não devolveu · 7-8 parafraseou ("então o que eu entendi é...") ao menos 2 vezes · 9-10 usou as PALAVRAS EXATAS do lead depois, na apresentação.
+
+VALOR — construiu antes do preço
+0-3 apresentou catálogo de entregáveis · 4-6 ligou alguns entregáveis a dores genéricas · 7-8 cada pilar amarrado a uma dor que o lead verbalizou · 9-10 além disso fez conta/prova com número na frente do lead (ex.: conta da base).
+
+CONTROLE — conduziu a call
+0-3 o lead conduziu ou a call dispersou · 4-6 seguiu roteiro mas perdeu momentos · 7-8 contrato de call no início e transições claras · 9-10 recuperou desvios e manteve o tempo (diagnóstico ≥ apresentação).
+
+FECHAMENTO — pediu e amarrou
+0-3 não pediu a venda, ou terminou com "me manda no WhatsApp" · 4-6 pediu de forma vaga ou aceitou "vou pensar" sem tratar · 7-8 pediu com clareza e tratou a objeção real · 9-10 saiu com PEDIDO ou AVANÇO: valor, data e próximo passo com dia/hora marcados.
+
+TRANSICAO — apresentou na hora certa
+0-3 apresentou antes de qualquer dor verbalizada · 4-6 apresentou logo após o primeiro problema aparecer · 7-8 apresentou depois da dor construída · 9-10 fez pergunta de verificação ABERTA antes de avançar ("do que eu falei, o que mais fez sentido?").
+
+OBJECOES — isolou e resolveu
+0-3 respondeu a primeira objeção que apareceu, ou ignorou · 4-6 respondeu bem mas sem isolar · 7-8 isolou ("além disso, tem mais alguma coisa?") antes de resolver · 9-10 isolou, resolveu e RE-PERGUNTOU ("isso resolve? podemos seguir?").
+
+Depois de dar as notas, identifique a PIOR dimensão — ela deve ser o eixo do resumo_diretor e da missão.
 `.trim();
 // ── CÉREBRO (sales_knowledge) ───────────────────────────────────────────────
 // O coach não pode julgar uma call sem saber quem é o comprador, o que a casa
@@ -194,7 +232,16 @@ const TOOL = {
       },
       missao: {
         type: "string",
-        description: "UMA missão pra próxima call."
+        description: "UMA missão pra próxima call, ancorada na pior dimensão da rubrica."
+      },
+      pior_dimensao: {
+        type: "string",
+        enum: [...DIMENSOES],
+        description: "A dimensão de menor nota — é o eixo do resumo e da missão."
+      },
+      proxima_acao_lead: {
+        type: "string",
+        description: "MENSAGEM PRONTA para o closer mandar HOJE para ESTE lead (WhatsApp, 1ª pessoa, tom natural, sem emoji, citando algo específico da conversa). Toda call tem próximo movimento — se a venda morreu, escreva o encerramento com porta aberta."
       },
       scores: {
         type: "object",
@@ -252,6 +299,8 @@ const TOOL = {
       "objecao",
       "erro_estrategico",
       "missao",
+      "pior_dimensao",
+      "proxima_acao_lead",
       "scores",
       "insights"
     ]
@@ -389,6 +438,8 @@ Deno.serve(async (req)=>{
       objecao: raw?.objecao && typeof raw.objecao === "object" ? raw.objecao : null,
       erro_estrategico: str(raw?.erro_estrategico),
       missao: str(raw?.missao),
+      pior_dimensao: str(raw?.pior_dimensao),
+      proxima_acao_lead: str(raw?.proxima_acao_lead),
       acertos: Array.isArray(raw?.insights?.acertos) ? raw.insights.acertos.slice(0, 5) : [],
       erros: Array.isArray(raw?.insights?.erros) ? raw.insights.erros.slice(0, 5) : [],
       faltou: Array.isArray(raw?.insights?.faltou) ? raw.insights.faltou.slice(0, 8) : [],
