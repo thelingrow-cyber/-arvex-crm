@@ -2327,8 +2327,13 @@ function openMeeting(id) {
   const m = coachMeetings.find(x => x.id === id); if (!m) return
   document.getElementById('cd-title').textContent = m.cliente_nome || 'Reunião'
   const sc = m.scores || {}
-  const meters = COACH_DIMS.map(([k,label]) => { const v = sc[k]; const pct = v!=null?v*10:0; return `<div class="coach-meter"><span class="coach-meter-label">${label}</span><span class="coach-meter-bar"><span class="coach-meter-fill" style="width:${pct}%"></span></span><span class="coach-meter-val tnum">${v!=null?Number(v).toFixed(1):'—'}</span></div>` }).join('')
   const ins = m.insights || {}
+  // A pior dimensão é onde a call se perdeu — destacá-la evita que a média
+  // (que diluí o que decide a venda) vire o veredito.
+  const pior = ins.pior_dimensao || (Object.keys(sc).length
+    ? Object.keys(sc).reduce((a, b) => (sc[a] ?? 99) <= (sc[b] ?? 99) ? a : b) : null)
+  const meters = COACH_DIMS.map(([k,label]) => { const v = sc[k]; const pct = v!=null?v*10:0; const eh = k === pior
+    return `<div class="coach-meter"${eh?' style="background:rgba(239,68,68,.08);border-radius:6px;padding:2px 6px;margin:0 -6px"':''}><span class="coach-meter-label"${eh?' style="color:var(--red);font-weight:700"':''}>${label}${eh?' ·  onde se perdeu':''}</span><span class="coach-meter-bar"><span class="coach-meter-fill" style="width:${pct}%${eh?';background:var(--red)':''}"></span></span><span class="coach-meter-val tnum"${eh?' style="color:var(--red)"':''}>${v!=null?Number(v).toFixed(1):'—'}</span></div>` }).join('')
   const blocks = [['check','Acertos',ins.acertos],['x','Erros',ins.erros],['help','O que faltou',ins.faltou],['bulb','Sugestões',ins.sugestoes]].map(([ic,t,arr]) => `<div class="coach-insight"><h4>${icon(ic)} ${t}</h4><ul>${((arr||[]).map(x => `<li>• ${esc(x)}</li>`).join(''))||'<li style="color:var(--text-3)">—</li>'}</ul></div>`).join('')
   const isOwner = COACH_DEMO || (currentUser && m.closer_id === currentUser.id) || currentRole === 'admin'
   const editSel = isOwner ? `<select onchange="editResultado('${m.id}',this.value)" style="width:auto"><option value="ganhou"${m.resultado==='ganhou'?' selected':''}>Ganhou</option><option value="perdeu"${m.resultado==='perdeu'?' selected':''}>Perdeu</option><option value="aberto"${m.resultado==='aberto'?' selected':''}>Em aberto</option></select>` : ''
@@ -2337,8 +2342,20 @@ function openMeeting(id) {
   const extras = [['Dor dominante',ins.dor_dominante],['Erro estratégico',ins.erro_estrategico]].filter(x=>x[1]).map(x=>`<div class="coach-extra"><span class="coach-meter-label">${x[0]}</span><p>${esc(x[1])}</p></div>`).join('')
   const obj = (ins.objecao && ins.objecao.explicacao) ? `<div class="coach-extra"><span class="coach-meter-label">Objeção · ${esc(ins.objecao.tipo||'')}</span><p>${esc(ins.objecao.explicacao)}</p></div>` : ''
   const missao = ins.missao ? `<div class="coach-missao">${icon('target',{size:18})}<div><div class="coach-meter-label" style="margin-bottom:4px">Missão da próxima call</div>${esc(ins.missao)}</div></div>` : ''
+  // A análise olhava só para trás. Esta é a parte que vira ação HOJE: mensagem
+  // pronta para o lead desta call, com botão copiar.
+  const acaoLead = ins.proxima_acao_lead ? `
+    <div class="coach-diretor" style="border-color:var(--green);background:rgba(34,197,94,.06)">
+      ${icon('send',{size:18})}
+      <div style="flex:1">
+        <div class="coach-meter-label" style="margin-bottom:4px;color:var(--green)">Manda isso pra ${esc((m.cliente_nome||'o lead').split(' ')[0])} hoje</div>
+        <div id="cd-acao-txt" style="white-space:pre-wrap">${esc(ins.proxima_acao_lead)}</div>
+        <button class="btn-card-action" style="margin-top:8px" onclick="copiarAcaoLead(this)">Copiar mensagem</button>
+      </div>
+    </div>` : ''
   document.getElementById('cd-body').innerHTML = `
     ${diretor}
+    ${acaoLead}
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
       <div><div class="coach-card-meta" style="font-size:12px">${esc(m.produto||'')} · ${esc(m.data_reuniao||'')} · Closer: ${esc(m.closer_nome||'—')}</div>
         <div class="coach-result" style="margin-top:6px">${resultadoDot(m.resultado)}${m.ticket?` · R$ ${Number(m.ticket).toLocaleString('pt-BR')}`:''}</div></div>
@@ -2360,6 +2377,13 @@ function openMeeting(id) {
   ccInit(m)
 }
 function closeMeeting() { document.getElementById('modal-coach-detail').classList.remove('open') }
+function copiarAcaoLead(btn) {
+  const el = document.getElementById('cd-acao-txt'); if (!el) return
+  const txt = el.innerText || el.textContent || ''
+  const ok = () => { const t = btn.textContent; btn.textContent = 'Copiado ✓'; setTimeout(() => btn.textContent = t, 1800) }
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(txt).then(ok).catch(() => {})
+  else { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok() } catch (_) {} ta.remove() }
+}
 
 // ── CÉREBRO DO COACH (sales_knowledge) ────────────────────────────────────
 // O que o coach sabe ANTES de olhar a call: comprador, oferta, método, objeções.
