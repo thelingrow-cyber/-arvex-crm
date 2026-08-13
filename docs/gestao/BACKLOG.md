@@ -133,12 +133,12 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 
 ### Trilha 1 — Base *(destrava a produção)*
 
-- [ ] **MP-04** Refinar posicionamento — 👤 · M · M5 · *o brand book já existe — é revisão, não criação*
-- [ ] **MP-05** Criar o Projeto do carrossel no Claude — 👤 · **P (15 min)** · M1 · *prompt e tool prontos, parados esperando só isso*
+- [x] **MP-04** Refinar posicionamento — 👤 · M · M5 · *13/08: conflito 25/07 (nichar) × 13/07 (horizontal) resolvido — marca horizontal, vertical vive no registro OBRA. Ver `docs/ecossistema/linha-editorial-e-calendario.md` §01*
+- [ ] **MP-05** Criar o Projeto do carrossel no Claude — 👤 · **P (15 min)** · M1 · *prompt e tool prontos, parados esperando só isso* · ⚠️ **bloqueia o bloco de produção de MP-02/MP-03**
 
 ### Trilha 2 — Produção
 
-- [ ] **MP-01** Criar calendário de conteúdo — 🤖 · M · M1 · ↳ MP-04
+- [x] **MP-01** Criar calendário de conteúdo — 🤖 · M · M1 · *13/08: grade semanal fixa 7/sem (5 VISÃO : 2 OBRA), piso de 3 na semana ruim, regime de lote e banco de 28 pautas em `docs/ecossistema/linha-editorial-e-calendario.md`*
 - [ ] **MP-02** Escrever roteiros — 🤖 · M · M1 · ↳ MP-01
 - [ ] **MP-03** Gravar vídeos — 👤 · M · M1 · *recorrente · o único gargalo que não terceiriza*
 
