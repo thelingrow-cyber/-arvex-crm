@@ -34,6 +34,7 @@ um consultor genérico de vendas.
 | Histórico do closer | query nas `meetings` do mesmo `closer_id` | ✅ últimas 12 análises, injetadas no prompt |
 | UI | `index.html` (branch **main**, raiz) | ✅ aba Reuniões, tela "Cérebro do coach", seletor por closer (admin) |
 | Importação em lote | `tools/coach-import/import.js` | ✅ .vtt/.txt/.md, dedupe por hash |
+| Disparo em lote | `tools/sales-coach/analisar-pendentes.js` | ✅ analisa tudo que está `pending`/`error` sem passar pela UI |
 | Estado do sistema | `tools/sales-coach/estado.js` | ✅ lê o banco e reporta |
 | Desfecho real | colunas + trigger de venda + UI no modal | ✅ data, motivo da perda, ciclo e cobrança após 14 dias |
 
@@ -89,6 +90,12 @@ Aceita `.vtt` (Zoom), `.txt` (plugin/Tactiq) e `.md`. Dedupe por hash em `client
 excedente é silenciosamente cortado. **Bloco novo exige dizer qual sai** — isso é decisão de curadoria,
 não acidente: acima de ~7k tokens de contexto fixo a atenção do modelo dilui.
 
+**Analisar o que ficou parado** (importar NÃO analisa — este é o passo que faltava)
+```
+$env:SUPABASE_ACCESS_TOKEN = (Get-ItemProperty -Path 'HKCU:\Environment').SUPABASE_ACCESS_TOKEN
+node tools\sales-coach\analisar-pendentes.js
+```
+
 **Ver a verdade do sistema**
 ```
 node tools\sales-coach\estado.js
@@ -98,9 +105,13 @@ node tools\sales-coach\estado.js
 
 ## Pendências conhecidas (dívida honesta)
 
-- **6 reuniões pendentes de análise.** O cérebro atual (11 blocos, SPIN/DEF/CLOSER) **nunca rodou uma
-  análise** — está armado e não disparado. Depende de abrir Reuniões e clicar em *Reanalisar*.
-- **Só 2 de 9 reuniões têm `lead_id`** — sem isso o desfecho automático não funciona.
+- ~~6 reuniões pendentes de análise~~ **RESOLVIDO 2026-08-13:** as 6 foram analisadas com o cérebro de 11
+  blocos (`tools/sales-coach/analisar-pendentes.js`). **10/10 `done`.** O disparo não depende mais de clique.
+  Primeira leitura agregada das 8 dimensões (10 calls): rapport 6,2 · controle 4,8 · escuta 4,3 · valor 4,2 ·
+  objeções 3,6 · fechamento 3,2 · **transição 3,0 · diagnóstico 2,9**. O padrão que os casos já sugeriam
+  agora está medido: conecta bem, não escava a dor, apresenta cedo, não fecha. A única call GANHA (Wal, 5,9)
+  é a nota mais alta do acervo — e mesmo nela o diagnóstico ficou raso.
+- **Só 3 de 10 reuniões têm `lead_id`** — sem isso o desfecho automático não funciona.
 - **O SOP de vendas está desatualizado**: `docs/processos/sop-fluxo-vendas.md` lista R$5.000/7.000/10.000;
   as calls reais mostram R$4.997, R$2.500 (Express) e R$12.500. **Qual é a oferta válida hoje é decisão
   do Vitor** — e o coach julga a apresentação de preço contra essa tabela.
