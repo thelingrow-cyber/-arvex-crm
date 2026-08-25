@@ -21,6 +21,22 @@ O `Formatar Resposta` (Code node já existente) passa a: (1) detectar via regex 
 ### ADR-ESC-2 · [QUALIFICADO] → move o card + notifica
 Pós-envio: `PATCH leads?id=eq.{lead_id}` com `status='qualificado'` **apenas se o status atual for `contato`** (guard `&status=eq.contato` no PATCH — não atropela um lead que um humano já moveu). Depois, notifica (ADR-ESC-4). A Carol move Contato→Qualificado; daí o humano/closer assume pra marcar a call.
 
+> ⚠️ **QUEBRADO desde o pipeline v2 (2026-08-24) — corrigir ANTES de ligar o interruptor.**
+> A etapa `qualificado` não existe mais: foi extinta na migração (`pipeline-v2-followup-etapas.sql`)
+> porque acumulava leads sem ninguém tocar, e o board novo não tem coluna para ela
+> (`renderPipeline` filtra por `l.status === col.id`). Se o marcador `[QUALIFICADO]` for
+> ativado hoje, **o lead some da tela** — exatamente o bug dos 87 leads invisíveis que o
+> commit `a37f67f` corrigiu.
+>
+> O fluxo está DORMANTE (o interruptor é aplicar `f2-prompt-secao-sinalizacao.txt` ao
+> `agente_sdr.instrucoes`, nunca feito), então nada está quebrado em produção agora.
+>
+> Decisão pendente do Vitor, porque muda o comportamento do agente: no board novo, o passo
+> depois de `contato` é `call` (Agendado) — e agendar exige **data**, que a Carol não tem.
+> Duas saídas: (a) `[QUALIFICADO]` deixa de mover o card e só notifica (igual `[ESCALAR]`,
+> mas sem pausar), ou (b) a Carol passa a coletar o horário e o PATCH vai para `call` com
+> `data_call`. A opção (a) é a mínima e não inventa dado.
+
 ### ADR-ESC-3 · [ESCALAR] → pausa a Carol + notifica com motivo
 Pós-envio: `PATCH leads?id=eq.{lead_id}` com `agente_pausado=true`. A Carol para de responder aquele lead (o gate de takeover do F2 já respeita `agente_pausado`). Notifica com o `motivo` (ADR-ESC-4). O card **NÃO se move** (fica em contato, aguardando humano) — escalar ≠ qualificar.
 
