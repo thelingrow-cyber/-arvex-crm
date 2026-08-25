@@ -175,6 +175,11 @@
     .badge-call     { background: rgba(234,179,8,.15); color: #FBBF24; }
     .badge-agendado { background: rgba(249,115,22,.15); color: #FB923C; }
     .badge-quente   { background: rgba(239,68,68,.18); color: #FCA5A5; box-shadow: 0 0 8px rgba(251,146,60,.25); }
+    /* Os 3 follow-ups esfriam junto com o lead: do âmbar do 1º toque ao cinza do último. */
+    .badge-fup1     { background: rgba(234,179,8,.15); color: #FBBF24; }
+    .badge-fup2     { background: rgba(249,115,22,.15); color: #FB923C; }
+    .badge-fup3     { background: rgba(148,163,184,.15); color: #94A3B8; }
+    .badge-futuro   { background: rgba(139,92,246,.15); color: #A78BFA; }
     .badge-fechado  { background: rgba(34,197,94,.2); color: #4ADE80; }
     .badge-perdido  { background: rgba(239,68,68,.15); color: #F87171; }
     .badge-em-cs    { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; background: rgba(200,169,110,.15); color: var(--gold2); margin-left: 6px; vertical-align: middle; }
@@ -230,6 +235,7 @@
     .col-sdr    { --dot: var(--blue); }
     .col-closer { --dot: var(--gold2); }
     .col-won    { --dot: var(--green); }
+    .col-pause  { --dot: var(--purple); }
     .col-lost   { --dot: var(--red); }
     .col-phase-label { font-size: 9px; font-weight: 700; letter-spacing:.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; padding-left: 2px; }
     .col-drop-zone { min-height: 300px; display: flex; flex-direction: column; gap: 8px; padding: 4px; border-radius: 0 0 8px 8px; border: 2px dashed transparent; transition: border-color .2s, background .2s; }
@@ -927,14 +933,15 @@
           <div class="metric-sub">em fase SDR</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-head"><div class="metric-label">Qualificados</div><span class="metric-icon" data-icon="check"></span></div>
+          <!-- ids m-qualif/m-calls são legados (v1 do funil); o que medem está nos rótulos. -->
+          <div class="metric-card-head"><div class="metric-label">Agendadas</div><span class="metric-icon" data-icon="calendar"></span></div>
           <div class="metric-value" id="m-qualif">0</div>
-          <div class="metric-sub">prontos pro closer</div>
+          <div class="metric-sub">calls marcadas</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-head"><div class="metric-label">Calls</div><span class="metric-icon" data-icon="calendar"></span></div>
+          <div class="metric-card-head"><div class="metric-label">Calls feitas</div><span class="metric-icon" data-icon="check"></span></div>
           <div class="metric-value" id="m-calls">0</div>
-          <div class="metric-sub">realizadas</div>
+          <div class="metric-sub">em negociação</div>
         </div>
         <div class="metric-card metric-card--gold">
           <div class="metric-card-head"><div class="metric-label">Fechamentos</div><span class="metric-icon" data-icon="target"></span></div>
@@ -1012,10 +1019,12 @@
           style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 14px;outline:none" /></span>
         <select id="filter-status-leads" onchange="renderAllLeads()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
           <option value="">Todos os status</option>
-          <option value="novo">Novo</option><option value="contato">Contato</option>
-          <option value="qualificado">Qualificado</option><option value="call">Call</option>
-          <option value="followup">Follow Up</option><option value="quente">Quente</option>
-          <option value="fechado">Fechado</option><option value="perdido">Perdido</option>
+          <option value="novo">Novo</option><option value="contato">Conversando</option>
+          <option value="call">Agendado</option><option value="quente">Call feita (negociação)</option>
+          <option value="fup1">Follow-up 1</option><option value="fup2">Follow-up 2</option>
+          <option value="fup3">Follow-up 3</option>
+          <option value="fechado">Fechado</option><option value="volta_depois">Abordar no futuro</option>
+          <option value="perdido">Perdido</option>
         </select>
         <select id="filter-expert-leads" onchange="renderAllLeads()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer"></select>
       </div>
@@ -1349,7 +1358,7 @@
       </div>
       <div class="form-row">
         <div class="form-group"><label>Status inicial</label>
-          <select id="f-status"><option value="novo">Novo</option><option value="contato">Contato</option><option value="qualificado">Qualificado</option><option value="call">Call</option><option value="followup">Follow Up</option></select>
+          <select id="f-status"><option value="novo">Novo</option><option value="contato">Conversando</option><option value="call">Agendado</option><option value="quente">Call feita (negociação)</option></select>
         </div>
       </div>
       <div class="form-group"><label>Observações</label><textarea id="f-obs" placeholder="Contexto, interesse, como chegou..."></textarea></div>
@@ -1750,18 +1759,27 @@ const opts = (lista, sel = '', vazio = null) =>
   lista.map(v => `<option value="${esc(v)}"${v === sel ? ' selected' : ''}>${esc(v)}</option>`).join('')
 
 // ── CONFIG ─────────────────────────────────────────────────────────────────
+// Pipeline v2 (pipeline-v2-followup-etapas.sql, 2026-08-24): o follow-up virou contagem
+// e quem sumiu deixou de ser "perdido". `quente` e `call` mantêm o id no banco e mudam só
+// de rótulo — renomear o id quebraria status_history, RLS e o agente SDR.
 const COLS = [
-  { id:'novo',        label:'Novo',        phase:'sdr',    cls:'col-sdr' },
-  { id:'contato',     label:'Contato',     phase:'sdr',    cls:'col-sdr' },
-  { id:'qualificado', label:'Qualificado', phase:'sdr',    cls:'col-sdr' },
-  { id:'call',        label:'Call',        phase:'closer', cls:'col-closer' },
-  { id:'followup',    label:'Follow Up',   phase:'closer', cls:'col-closer' },
-  { id:'quente',      label:'Quente',      phase:'closer', cls:'col-closer' },
-  { id:'fechado',     label:'Fechado',     phase:'won',    cls:'col-won' },
-  { id:'perdido',     label:'Perdido',     phase:'lost',   cls:'col-lost' },
+  { id:'novo',         label:'Novo',                    phase:'sdr',    cls:'col-sdr' },
+  { id:'contato',      label:'Conversando',             phase:'sdr',    cls:'col-sdr' },
+  { id:'call',         label:'Agendado',                phase:'sdr',    cls:'col-sdr' },
+  { id:'quente',       label:'Call feita (negociação)', phase:'closer', cls:'col-closer' },
+  { id:'fup1',         label:'Follow-up 1',             phase:'closer', cls:'col-closer' },
+  { id:'fup2',         label:'Follow-up 2',             phase:'closer', cls:'col-closer' },
+  { id:'fup3',         label:'Follow-up 3',             phase:'closer', cls:'col-closer' },
+  { id:'fechado',      label:'Fechado',                 phase:'won',    cls:'col-won' },
+  { id:'volta_depois', label:'Abordar no futuro',       phase:'pausa',  cls:'col-pause' },
+  { id:'perdido',      label:'Perdido',                 phase:'lost',   cls:'col-lost' },
 ]
-const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fechado:'badge-fechado', perdido:'badge-perdido' }
-const BLABEL = { novo:'Novo', contato:'Contato', qualificado:'Qualificado', call:'Call', followup:'Follow Up', quente:'Quente', fechado:'Fechado', perdido:'Perdido' }
+// `qualificado` e `followup` seguem aqui de propósito: sumiram do board, mas continuam
+// existindo em status_history — sem eles a timeline do lead mostraria o id cru.
+const BADGE  = { novo:'badge-novo', contato:'badge-contato', qualificado:'badge-qualif', call:'badge-call', followup:'badge-agendado', quente:'badge-quente', fup1:'badge-fup1', fup2:'badge-fup2', fup3:'badge-fup3', fechado:'badge-fechado', volta_depois:'badge-futuro', perdido:'badge-perdido' }
+const BLABEL = { novo:'Novo', contato:'Conversando', qualificado:'Qualificado', call:'Agendado', followup:'Follow Up', quente:'Call feita', fup1:'Follow-up 1', fup2:'Follow-up 2', fup3:'Follow-up 3', fechado:'Fechado', volta_depois:'Abordar no futuro', perdido:'Perdido' }
+// Ordem do funil — usada para saber o que é "avançar" e para o gráfico do dashboard.
+const FUNIL_ORDEM = ['novo','contato','call','quente','fup1','fup2','fup3','fechado']
 const TOPBAR = { dashboard:'Relatório de Movimento', pipeline:'Pipeline Comercial', leads:'Todos os Leads', experts:'Por Expert', cs:'Customer Success — Cindy', financeiro:'Financeiro — Cobranças', 'clientes-fin':'Financeiro — Clientes', 'agente-sdr':'Agente SDR', atendimento:'Atendimento — WhatsApp', coach:'Reuniões', projetos:'Projetos — todas as frentes' }
 
 let activePeriod = 7
@@ -2397,6 +2415,7 @@ function animateValue(el, to, opts = {}) {
 // Só origem='trigger' conta: as linhas de backfill usam created_at, que não é a data real
 // das transições passadas — contá-las seria inventar histórico.
 let cachedHistory = []
+let ultimoMov = {}   // lead_id → timestamp da última mudança de status
 let historyDesde  = null    // data da 1ª transição real registrada (início do histórico)
 let historyOk     = false   // false => dashboard degrada e AVISA (nunca finge)
 
@@ -2407,6 +2426,10 @@ async function loadHistory() {
     .order('at', { ascending: true })
   if (error) { historyOk = false; cachedHistory = []; return false }
   cachedHistory = data || []
+  // Última vez que cada lead se MOVEU — o histórico vem asc, então a última escrita vence.
+  // É o que alimenta o "Xd parado" das colunas de fechamento.
+  ultimoMov = {}
+  for (const h of cachedHistory) ultimoMov[h.lead_id] = h.at
   historyOk = true
   historyDesde = cachedHistory.length ? new Date(cachedHistory[0].at) : new Date()
   return true
@@ -2474,23 +2497,23 @@ function renderDashboard() {
 
   if (historyOk) {
     animateValue($('m-contatos'), contarMovimento('contato', universo))
-    animateValue($('m-qualif'),   contarMovimento('qualificado', universo))
-    animateValue($('m-calls'),    contarMovimento('call', universo))
+    animateValue($('m-qualif'),   contarMovimento('call', universo))
+    animateValue($('m-calls'),    contarMovimento('quente', universo))
     animateValue($('m-fechados'), fechados.length)
   } else {
     // Degradação honesta: sem histórico, volta à contagem de posição — e o sub-rótulo diz isso.
     const count = (...s) => leads.filter(l => s.includes(l.status)).length
     animateValue($('m-contatos'), count('contato'))
-    animateValue($('m-qualif'),   count('qualificado'))
-    animateValue($('m-calls'),    count('call'))
+    animateValue($('m-qualif'),   count('call'))
+    animateValue($('m-calls'),    count('quente'))
     animateValue($('m-fechados'), fechados.length)
   }
 
   // Sub-rótulos dizem exatamente o que o número é
   const subs = [
     ['m-contatos', 'contatados no período'],
-    ['m-qualif',   'qualificados no período'],
-    ['m-calls',    'calls realizadas'],
+    ['m-qualif',   'calls marcadas'],
+    ['m-calls',    'em negociação'],
   ]
   subs.forEach(([id, padrao]) => {
     const el = $(id)?.parentElement?.querySelector('.metric-sub')
@@ -2538,12 +2561,18 @@ function renderChartDaily(leads) {
 function renderFunnel(leads) {
   const el    = document.getElementById('chart-funnel')
   const total = Math.max(leads.length, 1)
+  // Um lead conta numa etapa se está NELA ou adiante — posição atual, não histórico
+  // (perdido e "abordar no futuro" saem do funil, como sempre saíram).
+  // Status legados de antes do pipeline v2 continuam caindo no degrau equivalente.
+  const LEGADO  = { qualificado:'contato', followup:'fup1' }
+  const grau    = s => FUNIL_ORDEM.indexOf(LEGADO[s] || s)
+  const daqui   = st => leads.filter(l => grau(l.status) >= grau(st)).length
   const steps = [
     { label:'Captados',    count: leads.length },
-    { label:'Contato',     count: leads.filter(l => ['contato','qualificado','call','followup','fechado'].includes(l.status)).length },
-    { label:'Qualificado', count: leads.filter(l => ['qualificado','call','followup','fechado'].includes(l.status)).length },
-    { label:'Call',        count: leads.filter(l => ['call','followup','fechado'].includes(l.status)).length },
-    { label:'Follow Up',   count: leads.filter(l => ['followup','fechado'].includes(l.status)).length },
+    { label:'Conversando', count: daqui('contato') },
+    { label:'Agendado',    count: daqui('call') },
+    { label:'Call feita',  count: daqui('quente') },
+    { label:'Follow-up',   count: daqui('fup1') },
     { label:'Fechado',     count: leads.filter(l => l.status === 'fechado').length },
   ]
   el.innerHTML = steps.map((s, i) => {
@@ -3126,6 +3155,24 @@ function atualizarCabecalhosPipeline() {
 }
 
 function getSLABadge(l) {
+  // "Abordar no futuro" só não vira cemitério se a data cobrar de alguém quando vence.
+  if (l.status === 'volta_depois' && l.reabordar_em) {
+    const hoje = new Date().toISOString().slice(0,10)
+    if (l.reabordar_em <= hoje) {
+      const venceu = l.reabordar_em < hoje
+      return `<div class="sla-badge ${venceu ? 'sla-urgent' : 'sla-warn'}">${icon('alert',{size:11})} ${venceu ? 'retomada atrasada' : 'retomar hoje'}</div>`
+    }
+    return ''
+  }
+  // Nas colunas de fechamento o risco não é "sem contato", é PARADO: o lead já falou com a
+  // gente e está esfriando em silêncio. Foi o que aconteceu com os 10 leads de `quente`
+  // (13 a 68 dias sem movimento nenhum) antes do pipeline v2.
+  if (PASSO_OBRIGATORIO.includes(l.status)) {
+    const base = ultimoMov[l.id] ? new Date(ultimoMov[l.id]).getTime() : l.created
+    const dias = Math.floor((Date.now() - base) / 86400000)
+    if (dias < 3) return ''
+    return `<div class="sla-badge ${dias < 7 ? 'sla-warn' : 'sla-urgent'}">${icon('alert',{size:11})} ${dias}d parado</div>`
+  }
   // só mostra "sem contato" se status for 'novo' — em 'contato' já houve interação
   if (l.status !== 'novo') return ''
   const horas = Math.floor((Date.now() - l.created) / 3600000)
@@ -3169,6 +3216,7 @@ function renderCard(l) {
         ${l.socio && l.socio !== 'Não informado' ? `<span>${icon('handshake',{size:13})} Sócio: <strong>${esc(l.socio)}</strong></span>` : ''}
         ${l.data_call ? `<span>${icon('video',{size:13})} Call: <strong>${esc(l.data_call.replace('T',' '))}</strong></span>` : ''}
         ${l.proximo_passo ? `<span>${icon('target',{size:13})} <strong style="color:var(--gold2)">${esc(l.proximo_passo)}</strong></span>` : ''}
+        ${l.reabordar_em ? `<span>${icon('calendar',{size:13})} Retomar: <strong style="color:#A78BFA">${esc(fmtDataBR(l.reabordar_em))}</strong></span>` : ''}
         ${l.motivo_perda ? `<span>${icon('x',{size:13})} <strong style="color:#F87171">${esc(l.motivo_perda)}</strong></span>` : ''}
       </div>
       ${finHtml}
@@ -3420,6 +3468,7 @@ function openDetail(id) {
       <div><div class="di-label">Entrada</div><div class="di-value">${fmtDate(l.created)}</div></div>
       ${l.data_call ? `<div><div class="di-label">Data da Call</div><div class="di-value">${esc(l.data_call.replace('T',' '))}</div></div>` : ''}
       ${l.proximo_passo ? `<div><div class="di-label">Próximo Passo</div><div class="di-value" style="color:var(--gold2)">${esc(l.proximo_passo)}</div></div>` : ''}
+      ${l.reabordar_em ? `<div><div class="di-label">Retomar em</div><div class="di-value" style="color:#A78BFA">${esc(fmtDataBR(l.reabordar_em))}</div></div>` : ''}
       ${l.motivo_perda ? `<div><div class="di-label">Motivo da Perda</div><div class="di-value" style="color:#F87171">${esc(l.motivo_perda)}</div></div>` : ''}
     </div>
     <div class="section-sep">Status — toque para mover</div>
@@ -3477,12 +3526,20 @@ function moveTo(id, status) {
 // Motivos fechados: renderExperts() agrupa por string exata — texto livre fragmenta os buckets.
 const MOTIVOS_PERDA = ['Sem budget','Não era o perfil','Não atendeu','Concorrente','Sumiu/Ghost','Outro']
 // Colunas que exigem informação extra ao receber o card
+// `quente` e os 3 follow-ups exigem PRÓXIMO PASSO escrito. Antes de 2026-08-25 o campo era
+// opcional e o resultado foi medido: os 10 leads em `quente` estavam parados de 13 a 68 dias,
+// nenhum com passo definido. Sem o passo, a coluna vira depósito.
 const TRANSICOES = {
-  perdido:  { titulo: 'Por que perdemos?',   ok: 'Marcar como perdido' },
-  call:     { titulo: 'Agendar call',        ok: 'Registrar call' },
-  followup: { titulo: 'Próximo passo',       ok: 'Salvar follow up' },
-  fechado:  { titulo: 'Fechamento',          ok: 'Registrar venda' },
+  perdido:      { titulo: 'Por que perdemos?',        ok: 'Marcar como perdido' },
+  call:         { titulo: 'Agendar call',             ok: 'Registrar call' },
+  quente:       { titulo: 'Call feita — e agora?',    ok: 'Salvar negociação' },
+  fup1:         { titulo: 'Follow-up 1',              ok: 'Salvar follow-up' },
+  fup2:         { titulo: 'Follow-up 2',              ok: 'Salvar follow-up' },
+  fup3:         { titulo: 'Follow-up 3',              ok: 'Salvar follow-up' },
+  volta_depois: { titulo: 'Quando abordar de novo?',  ok: 'Agendar retomada' },
+  fechado:      { titulo: 'Fechamento',               ok: 'Registrar venda' },
 }
+const PASSO_OBRIGATORIO = ['quente','fup1','fup2','fup3']
 let pendingTransition = null   // { id, status, extra }
 let motivoSelecionado = null
 
@@ -3544,11 +3601,33 @@ function abrirTransition(status, lead) {
         <label>Data e hora da call</label>
         <input type="datetime-local" id="mt-data-call" value="${agora}" />
       </div>`
-  } else if (status === 'followup') {
+  } else if (PASSO_OBRIGATORIO.includes(status)) {
+    const dica = status === 'quente'
+      ? 'Ex: Enviar proposta hoje 18h, Ligar amanhã 10h'
+      : 'Ex: Áudio de retomada terça, Mandar case da ótica X'
     body.innerHTML = `
       <div class="form-group">
-        <label>Próximo passo do closer</label>
-        <input type="text" id="mt-proximo" placeholder="Ex: Ligar segunda 14h, Enviar proposta" onkeydown="if(event.key==='Enter')submitTransition()" />
+        <label>Próximo passo do closer *</label>
+        <input type="text" id="mt-proximo" placeholder="${dica}" value="${esc(lead.proximo_passo || '')}" onkeydown="if(event.key==='Enter')submitTransition()" />
+        <div style="font-size:11px;color:var(--text-3);margin-top:4px">Sem próximo passo o lead para nesta coluna e ninguém percebe.</div>
+      </div>
+      ${status === 'quente' ? `
+      <div class="form-group">
+        <label>Valor da proposta (R$)</label>
+        <input type="number" id="mt-ticket" min="0" step="0.01" placeholder="Ex: 5000" value="${lead.ticket || ''}" />
+        <div style="font-size:11px;color:var(--text-3);margin-top:4px">Opcional — mas é o que faz a coluna somar dinheiro real.</div>
+      </div>` : ''}`
+  } else if (status === 'volta_depois') {
+    const d = new Date(Date.now() + 30*86400000).toISOString().slice(0,10)
+    body.innerHTML = `
+      <div class="form-group">
+        <label>Voltar a abordar em *</label>
+        <input type="date" id="mt-reabordar" value="${d}" />
+        <div style="font-size:11px;color:var(--text-3);margin-top:4px">Sai do funil ativo, mas volta com data marcada — não é perda.</div>
+      </div>
+      <div class="form-group">
+        <label>Contexto (opcional)</label>
+        <input type="text" id="mt-proximo" placeholder="Ex: Disse que reavalia depois da alta temporada" onkeydown="if(event.key==='Enter')submitTransition()" />
       </div>`
   } else if (status === 'fechado') {
     body.innerHTML = `
@@ -3591,7 +3670,19 @@ async function submitTransition() {
     const d = document.getElementById('mt-data-call').value
     if (d) updates.data_call = d
   }
-  if (status === 'followup') {
+  if (PASSO_OBRIGATORIO.includes(status)) {
+    const p = (document.getElementById('mt-proximo').value || '').trim()
+    if (!p) { showToast('Escreva o próximo passo.', 'error'); return }
+    updates.proximo_passo = p
+    if (status === 'quente') {
+      const t = parseFloat(document.getElementById('mt-ticket').value)
+      if (!isNaN(t)) updates.ticket = t
+    }
+  }
+  if (status === 'volta_depois') {
+    const d = document.getElementById('mt-reabordar').value
+    if (!d) { showToast('Escolha a data de retomada.', 'error'); return }
+    updates.reabordar_em = d
     const p = (document.getElementById('mt-proximo').value || '').trim()
     if (p) updates.proximo_passo = p
   }
