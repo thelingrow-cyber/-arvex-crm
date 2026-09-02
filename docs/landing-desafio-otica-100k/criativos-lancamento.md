@@ -1,7 +1,7 @@
 # Criativos do lançamento — Cindy (CD-05)
 
-> **Duas variáveis abertas.** Onde aparecer `{{NOME}}` entra o nome do evento (CD-12, decisão do Vitor)
-> e `{{DATA}}` a data. Nada mais depende de decisão: ângulo, prova e CTA estão fechados.
+> **Uma variável aberta.** O nome do evento está fechado (CD-12, 02/09): **Desafio Ótica +100K**.
+> Onde aparecer `{{DATA}}` entra a data. Nada mais depende de decisão: ângulo, prova e CTA estão fechados.
 >
 > **Toda linha aqui vem do ICP real** (`docs/crm/sales-coach/conhecimento/icp-dono-de-otica.md` —
 > 15 lives, ~45 donos de ótica, 3 calls de venda). Nenhuma frase foi inventada para soar bem.
@@ -37,7 +37,7 @@
 > Nove mil reais em menos de dez dias.
 >
 > A maioria das óticas está atrás de cliente de porta enquanto tem 700, 2 mil, às vezes 20 mil contatos
-> parados no celular. Em `{{NOME}}`, dia `{{DATA}}`, a Cindy mostra exatamente como fazer essa campanha —
+> parados no celular. No Desafio Ótica +100K, dia `{{DATA}}`, a Cindy mostra exatamente como fazer essa campanha —
 > a mesma que a Fran fez, passo a passo, do jeito que dá pra rodar na sua loja essa semana.
 
 **CTA:** Entrar no Grupo VIP
@@ -67,7 +67,7 @@ mais alto dos três, e o mais arriscado: pode soar acusatório se o tom escorreg
 > Não é falta de trabalho. É falta de direção: fazer campanha sem saber se é do jeito certo, mexer de um
 > lado, mexer do outro, e olhar pra rua vazia.
 >
-> `{{NOME}}` começa dia `{{DATA}}`. É sobre sair do mesmo número.
+> O Desafio Ótica +100K começa dia `{{DATA}}`. É sobre sair do mesmo número.
 
 **CTA:** Entrar no Grupo VIP
 
@@ -93,7 +93,7 @@ no celular. Serve bem como criativo de topo, para público mais frio.
 > O problema quase nunca é o anúncio. É o que acontece depois que a conversa começa: a hora que você
 > responde, a ordem do que você fala, o que você pergunta antes de mandar valor.
 >
-> Em `{{NOME}}`, dia `{{DATA}}`, a Cindy mostra o caminho da conversa que faz o cliente voltar a responder
+> No Desafio Ótica +100K, dia `{{DATA}}`, a Cindy mostra o caminho da conversa que faz o cliente voltar a responder
 > — e comprar.
 
 **CTA:** Entrar no Grupo VIP
@@ -117,3 +117,8 @@ no celular. Serve bem como criativo de topo, para público mais frio.
 - **Números redondos de faturamento** — os valores do ICP vêm de transcrição automática e não estão
   auditados. Só usei os R$9 mil da Fran, que aparecem em duas fontes independentes. **Confirmar com a
   Cindy antes de subir.**
+
+> **Tensão consciente (02/09).** O nome fechado — *Desafio Ótica +100K* — carrega justamente o número
+> redondo que a copy evita, e ecoa o material antigo "Desafio 100K Ótica". A decisão é do Vitor e está
+> mantida: o número vive só no nome do evento, o corpo dos três criativos continua sem prometer
+> faturamento. Se o CPL do Criativo 1 subir, essa é a primeira hipótese a testar.

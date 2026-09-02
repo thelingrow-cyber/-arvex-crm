@@ -52,4 +52,4 @@ Funil real (253 leads): 25 fechados (9,9%), 154 perdidos (60,9%), 74 vivos, R$ 5
 - `docs/crm/diagnostico-funil-2026-07-31.md`
 - `docs/crm/atendimento-inbox-PLANO.md` (fases, ACs, o que foi recusado do benchmark)
 - `docs/agente-sdr/carol-system-prompt.md`
-- `docs/landing-codigo-do-desejo/` (Workshop Ótica Magnética)
+- `docs/landing-desafio-otica-100k/` (Workshop Ótica Magnética)
