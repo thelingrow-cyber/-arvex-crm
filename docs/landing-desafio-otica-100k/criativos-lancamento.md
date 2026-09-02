@@ -237,18 +237,239 @@ produção alta demais.
 
 ---
 
+# CRIATIVO 5 — O quarteirão inteiro com a mesma promoção
+**Ângulo:** guerra de preço e diferenciação. · **Público:** frio. · **Modelo:** B.
+**Evidência:** *"os quatro concorrentes diretos nossos do mesmo quarteirão estavam com a mesma
+campanha em dobro"* · *"todas com a promoção em dobro, lente a um real"* · *"deve ter mais de
+cinquenta óticas ali no calçadão"* [ICP §2.6]
+
+**Primary text**
+> Quatro óticas no mesmo quarteirão. A mesma campanha em dobro. Na mesma semana.
+>
+> Você abaixa o preço da armação. A da esquina abaixa mais.
+>
+> Aí vem a lente a um real, o leve 2 pague 1, o cartaz na porta.
+>
+> E no fim do mês todo mundo vendeu parecido, ganhando menos.
+>
+> Promoção não é estratégia. É reflexo.
+>
+> Quando a única coisa que separa a sua loja da de trás é o preço, o cliente escolhe pelo preço.
+> Sempre.
+>
+> Existe outro jeito de ser escolhida — e não passa por ser a mais barata do calçadão.
+>
+> Passa por posicionamento: a razão pela qual alguém atravessa a rua pra comprar com você mesmo
+> custando um pouco mais.
+>
+> No Desafio Ótica +100K, dias `{{DATA}}`, eu mostro como construir isso na prática.
+>
+> Sem promoção. Sem queimar margem.
+>
+> 👉 Clique no botão e entre no grupo VIP. A oferta especial vai ser liberada só lá.
+
+**Headlines:** 1) Quatro óticas, a mesma promoção · 2) Promoção não é estratégia · 3) Como parar de brigar por preço
+**Description:** Desafio ao vivo e gratuito para donos de ótica.
+**Imagem:** duas ou três fachadas de ótica lado a lado com cartazes de promoção iguais. Ou o
+cartaz "LENTE A R$ 1" fotografado de frente.
+
+---
+
+# CRIATIVO 6 — A margem está na lente
+**Ângulo:** insight econômico. É o mais diferenciado do conjunto — **nenhum concorrente ocupa esse
+terreno**, e o ICP registra que o dono raciocina em preço de venda, nunca em margem (§3).
+**Público:** frio qualificado. · **Modelo:** B. · **Risco:** exige que a Cindy sustente a conta ao vivo.
+
+**Primary text**
+> Tem uma conta que quase nenhuma ótica faz.
+>
+> A gente passa o mês inteiro brigando pelo preço da armação.
+>
+> Desconto, brinde, leve 2 pague 1, armação a 49.
+>
+> E a armação é justamente a parte que menos deixa dinheiro na loja.
+>
+> A margem está na lente. Sempre esteve.
+>
+> Tem dona de ótica que inverteu isso: baixou o valor da armação e subiu o valor da lente com marca
+> própria. O cliente pagou menos do que pagaria numa grife, saiu satisfeito — e a loja ganhou mais.
+>
+> Mesma venda. Outro resultado.
+>
+> A maioria não faz essa conta porque nunca parou pra olhar margem. Só olha preço de venda.
+>
+> No Desafio Ótica +100K, dias `{{DATA}}`, essa é uma das primeiras coisas que a gente arruma.
+>
+> 👉 Clique no botão e entre no grupo VIP.
+
+**Headlines:** 1) A margem não está na armação · 2) A conta que quase nenhuma ótica faz · 3) Você está brigando pelo produto errado
+**Description:** O que muda quando você olha margem, não preço.
+**Imagem:** armação e lente lado a lado, com a lente destacada. Ou a Cindy escrevendo a conta à mão.
+**⚠️ Confirmar com a Cindy:** os valores de comparação (Varilux/Crizal × marca própria) vêm de
+transcrição não auditada. A peça funciona sem número — foi escrita assim de propósito.
+
+---
+
+# CRIATIVO 7 — Preso no WhatsApp
+**Ângulo:** o dono é o gargalo. Dor emocional alta, com a família dentro.
+**Público:** morno. · **Modelo:** A (com fecho binário).
+**Evidência:** *"Eu fico ali no Whatsapp, no Whatsapp e no Whatsapp"* · *"já trouxe armações para
+casa para gravar, porque na loja não dá"* · *"não abri empresa para ficar me matando de trabalhar…
+não estou tendo tempo com meus filhos"* [ICP §2.4, §2.9]
+
+**Primary text**
+> "Eu fico ali no WhatsApp, no WhatsApp e no WhatsApp."
+>
+> Quem me disse isso é dona de ótica. Loja rodando, duas funcionárias, e oito da noite ainda
+> respondendo mensagem.
+>
+> Ela já levou armação pra casa pra conseguir gravar um vídeo, porque na loja não dava.
+>
+> Isso não é falta de trabalho. É excesso de trabalho errado.
+>
+> Você não abriu uma ótica pra virar o atendimento, o marketing, o financeiro e o laboratório ao
+> mesmo tempo.
+>
+> Só que enquanto não existe estrutura por trás — posicionamento, captação e conversão funcionando
+> sozinhos — tudo volta pra você.
+>
+> Durante `{{DIAS}}` dias, ao vivo, eu vou montar essa estrutura junto com você.
+>
+> Pra loja rodar sem depender de você estar no balcão o dia inteiro.
+>
+> Desafio Ótica +100K. Dias `{{DATA}}`.
+>
+> 👉 Clique em saiba mais e entre no grupo VIP.
+>
+> Ou você organiza isso agora… ou passa mais um ano sendo o gargalo da própria loja.
+
+**Headlines:** 1) No WhatsApp, no WhatsApp e no WhatsApp · 2) Você virou o gargalo da sua loja · 3) A loja não pode depender de você o dia inteiro
+**Description:** Estrutura pra loja rodar sem você no balcão.
+**Imagem:** celular na mão, à noite, loja já fechada ao fundo. Cena real, não posada.
+
+---
+
+# CRIATIVO 8 — A cicatriz
+**Ângulo:** ataca a objeção nº1 do ICP de frente, na primeira linha. **É a peça de retargeting mais
+forte do conjunto** — fala com quem clicou, pensou e travou.
+**Público:** retargeting quente. · **Modelo:** A.
+**Evidência:** *"estou bem doída de mentoria"* · *"foi uma mentoria muito genérica, porque não tinha
+um mercado definido"* · *"toda resposta que eu tinha do mentor era: na mentoria de cinquenta mil eu
+ensino isso"* [ICP §4.1]
+
+**Primary text**
+> Se você já pagou caro por uma mentoria e não viu resultado, eu entendo que você não acredite em
+> mim agora.
+>
+> Eu ouço isso toda semana.
+>
+> "Foi tudo muito genérico."
+> "O cara não conhecia o meu mercado."
+> "Toda resposta dele era: na mentoria de cinquenta mil eu ensino isso."
+>
+> A diferença não está na promessa. Está no que você leva embora no primeiro dia.
+>
+> Nesses `{{DIAS}}` dias você não vai sair com um caderno de teoria.
+>
+> Vai sair com uma campanha montada pra rodar na sua base — a mesma que deu nove mil reais em menos
+> de dez dias pra uma ótica de Curitiba, sem um real a mais em anúncio.
+>
+> Se não funcionar pra você, você perdeu `{{DIAS}}` dias. Não uma mentoria.
+>
+> Desafio Ótica +100K. Dias `{{DATA}}`. Ao vivo e gratuito.
+>
+> 👉 Clique em saiba mais e entre no grupo VIP.
+
+**Headlines:** 1) Se você já se queimou com mentoria · 2) Sem teoria — uma campanha pronta · 3) Você arrisca `{{DIAS}}` dias, não uma mentoria
+**Description:** Ao vivo e gratuito, para donos de ótica.
+**Imagem:** Cindy falando à câmera, plano fechado, sem corte. A peça é confissão — produção alta
+estraga.
+
+---
+
+# CRIATIVO 9 — Refém do gestor
+**Ângulo:** dependência externa. Cada dependência custa um mês de faturamento.
+**Público:** frio. · **Modelo:** B.
+**Evidência:** *"Estou sem o gestor, então não subi campanha nenhuma"* · *"o gerenciador de anúncios
+hoje não quer funcionar"* · *"não tô conseguindo patrocinar pelo Meta"* [ICP §2.7]
+
+**Primary text**
+> "Estou sem o gestor, então não subi campanha nenhuma."
+>
+> Um mês inteiro parado. Por causa de uma pessoa.
+>
+> E isso acontece o tempo todo: o gestor some, o gerenciador trava, o Meta bloqueia, o fornecedor
+> não responde.
+>
+> E a loja fica esperando.
+>
+> O problema não é o gestor. É a loja não ter nada que funcione sem ele.
+>
+> Quando a sua base está organizada e você sabe fazer uma campanha na própria carteira, você para
+> de ser refém: no dia que o tráfego cai, você ainda tem pra quem vender.
+>
+> É a parte mais simples do negócio. E quase ninguém tem.
+>
+> No Desafio Ótica +100K, dias `{{DATA}}`, é por aí que a gente começa.
+>
+> 👉 Clique no botão e entre no grupo VIP.
+
+**Headlines:** 1) Um mês parado esperando o gestor · 2) Sua loja não pode depender de uma pessoa · 3) O que fazer no dia que o tráfego para
+**Description:** Desafio ao vivo e gratuito para donos de ótica.
+**Imagem:** tela de gerenciador de anúncios com campanha pausada. Reconhecimento imediato.
+
+---
+
+# CRIATIVO 10 — Prova pura
+**Ângulo:** empilhamento de casos do mesmo porte. Sem argumento — só evidência.
+**Público:** frio e morno; funciona bem como estático e como vídeo curto.
+**Modelo:** B, versão curta. **Evidência:** ICP §5, casos Astronildo, Kesia e Rafaela.
+
+**Primary text**
+> Nove mil reais num sábado.
+>
+> Não foi Black Friday. Não foi liquidação. Não teve anúncio novo.
+>
+> Foi campanha de aniversário da loja, disparada no grupo VIP, pra clientes que já tinham comprado
+> ali.
+>
+> Outra ótica colocou 100 pessoas no grupo em 20 dias — e vendeu em quatro dias o que vendia em
+> vinte.
+>
+> Outra saiu de 10 mil pra 22 mil por mês trocando o jeito de anunciar. Não o valor investido.
+>
+> Nenhuma delas tinha nada que você não tem.
+>
+> Tinham ordem: o que fazer primeiro, o que fazer depois.
+>
+> Nos dias `{{DATA}}`, eu abro esse passo a passo no Desafio Ótica +100K.
+>
+> 👉 Clique no botão e entre no grupo VIP. A metodologia inteira vai ser aberta só lá.
+
+**Headlines:** 1) R$ 9 mil num sábado · 2) Sem anúncio novo, sem liquidação · 3) Três óticas, o mesmo passo a passo
+**Description:** O passo a passo que essas óticas seguiram.
+**Imagem:** carrossel — um caso por card, número grande, cidade e tempo de loja. Sem foto de pessoa.
+**⚠️ Confirmar com a Cindy:** os três casos (Astronildo, Kesia, Rafaela) vêm de transcrição
+automática. São os números mais expostos do conjunto.
+
+---
+
 ## Plano de mídia — qual roda onde
 
 A regra que sai do swipe: **público frio recebe Modelo B; quem interagiu recebe Modelo A.** Rodar
 o Modelo A em frio é pagar para explicar data de evento a quem ainda não sabe que tem problema.
 
-| Etapa | Criativo | Público | Papel |
+| Etapa | Criativos | Público | Papel |
 |---|---|---|---|
-| 1 — Topo | **C4** e **C3** | Frio, interesse ótica/varejo | Abrir consciência e baratear o lead |
-| 2 — Principal | **C1** | Frio qualificado + engajamento | Maior verba. É o único com prova numérica |
-| 3 — Retarget | **C2** | Quem viu 50%+ de vídeo, engajou ou visitou a página | A dor emocional fecha melhor em quem já foi tocado |
+| 1 — Topo | **C4 · C3 · C5 · C9** | Frio, interesse ótica/varejo | Abrir consciência e baratear o lead. C3, C5 e C9 são reconhecimento puro — a cena acontece com ela hoje |
+| 2 — Principal | **C1 · C10 · C6** | Frio qualificado + engajamento | Maior verba. São as peças com prova e com mecanismo |
+| 3 — Retarget | **C8 · C2 · C7** | Quem viu 50%+ de vídeo, engajou ou visitou a página | Emoção e objeção fecham melhor em quem já foi tocado. **C8 é a peça de fechamento** |
 
-Ordem de investimento: **C1 → C4 → C3 → C2**.
+Ordem de investimento: **C1 → C4 → C10 → C3 → C8 → C5 → C9 → C6 → C7 → C2**.
+
+**Se for para começar com poucas peças**, comece com quatro: **C1** (mecanismo + prova),
+**C4** (topo frio, ancora o nome), **C3** (CPL mais baixo) e **C8** (retargeting).
+As outras seis entram como rotação quando a frequência subir e o CPL começar a piorar.
 
 ---
 
