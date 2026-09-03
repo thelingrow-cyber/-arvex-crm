@@ -1,124 +1,103 @@
 # Live — Os próximos 100 dias · 04/09/2026, 12h, Instagram
 
 > **Objetivo único:** capturar contato qualificado e aquecer o comercial. Não é live de branding.
-> Métrica de sucesso: número de pessoas que comentam a palavra-chave + entradas no grupo VIP.
+> Métrica de sucesso: comentários da palavra-chave + entradas no grupo VIP.
 >
-> **Título:** Os próximos 100 dias — como transformar o fim de 2026 no melhor faturamento da
-> história da sua ótica
-> **Subtítulo:** Descubra em qual dos 4 estágios a sua ótica está — e o que fazer em cada um
-> até dezembro.
+> **Título:** Os próximos 100 dias — como fazer o fim de 2026 ser o maior faturamento da história
+> da sua ótica
+>
+> **Variações de título** (a mesma promessa, ênfases diferentes):
+> - *100 dias para o recorde: o plano de fim de ano da sua ótica*
+> - *Os próximos 100 dias decidem o seu ano — e a maioria vai deixar passar*
+> - *Dia do Cliente, Black Friday e Natal: o plano dos 100 dias sem dar desconto*
 
 ---
 
 ## Por que este tema, e por que amanhã
 
-**A conta do calendário é real, não fabricada.** De 04/09 até 13/12 — a última semana útil de
-compra de Natal — são exatamente **100 dias**. Dentro deles cabem as três únicas datas que
-importam para uma ótica no ano: **Dia do Cliente (15/09), Black Friday (27/11) e Natal**.
-Depois disso, o ano acabou. Essa é a tensão que segura a audiência.
+**A conta é literal, não é força de expressão.** De 04/09 até 13/12 — a última semana útil de
+compra de Natal — são exatamente **100 dias**. Dentro deles cabem as três únicas datas que movem
+uma ótica no ano: **Dia do Cliente (15/09), Black Friday (27/11) e Natal**. Depois disso, o ano
+acabou e não tem segunda chance.
 
-**Os 4 estágios resolvem o problema de conversão da live.** Sem eles, "planeje seu último
-trimestre" vira conselho genérico. Com eles, cada pessoa descobre onde está, entende que o
-próximo passo dela é diferente do da vizinha, e **se classifica publicamente no comentário** —
-o que entrega ao comercial uma lista segmentada no fim da live.
+**A urgência mais afiada é a mais próxima:** faltam **12 dias** para o Dia do Cliente. Quem sair da
+live sem começar hoje, perde a primeira das três. Isso é o que transforma audiência em ação — e
+ação em contato.
 
----
-
-## Os 4 estágios de uma ótica
-
-Cada estágio tem um gargalo único. Trabalhar o gargalo do estágio errado é o que faz a dona
-"se matar fazendo as coisas" sem sair do lugar.
-
-### Estágio 1 — A loja que ESPERA
-**Como se reconhece:** o faturamento do mês depende de quem passou na porta. Semana de chuva é
-semana ruim. Não existe campanha, existe promoção quando o movimento cai.
-**Gargalo:** previsibilidade zero — ela não tem como *causar* uma venda.
-**O que fazer nos 100 dias:** organizar a base de contatos que já existe no celular e fazer a
-primeira campanha da vida no Dia do Cliente. Antes de anunciar para estranho, falar com quem já
-comprou.
-
-### Estágio 2 — A loja que CORRE
-**Como se reconhece:** já paga tráfego, tem gestor, chega lead — e o lead trava no WhatsApp.
-A dona responde tudo, das 8 da manhã às 10 da noite. Se ela para, a loja para.
-**Gargalo:** conversão e dependência da dona. Não falta lead, falta processo depois do "oi".
-**O que fazer nos 100 dias:** arrumar o caminho da conversa antes de aumentar verba, e usar a
-base para as três datas. É o estágio que destrava mais rápido — dias, não meses.
-**Onde está a maioria do público dela.**
-
-### Estágio 3 — A loja que REPETE
-**Como se reconhece:** operação boa, equipe razoável, contas em dia — e o mesmo faturamento do
-ano passado. Não é aperto, é estagnação.
-**Gargalo:** posicionamento e margem. Ela cresce em esforço, não em valor.
-**O que fazer nos 100 dias:** parar de brigar no preço da armação, subir a margem pela lente, e
-usar o Q4 para elevar ticket em vez de dar desconto.
-
-### Estágio 4 — A loja que ESCALA
-**Como se reconhece:** mais de uma loja ou equipe que vende sem a dona presente. O problema
-deixou de ser venda.
-**Gargalo:** gente e sistema — delegação, indicador, padrão de atendimento.
-**O que fazer nos 100 dias:** transformar o que funciona em processo replicável antes de abrir
-a próxima unidade.
-
-> **A frase que fecha o bloco:** *"Não existe um plano de fim de ano. Existem quatro. E aplicar o
-> plano do estágio errado é o motivo de você se matar de trabalhar e o número não mudar."*
+**O inimigo da live:** chegar em novembro improvisando e resolver tudo com desconto. É o reflexo
+padrão do nicho, e é o que queima a margem justamente no trimestre que deveria pagar o ano.
 
 ---
 
-## Roteiro — 50 minutos
+## A espinha: as 3 janelas
+
+A live inteira se organiza nas três datas. Cada uma tem uma função diferente — e é isso que
+quase ninguém sabe.
+
+### Janela 1 — Dia do Cliente · 15/09 · faltam 12 dias
+**Função:** é a data de **reativação**, não de aquisição. Serve para fazer a base parada voltar a
+comprar, com desculpa legítima para mandar mensagem.
+**O que fazer:** separar quem já comprou, mandar uma sequência simples de mensagens e dar uma
+condição de agradecimento — não uma promoção geral. Quem comprou lente há mais de um ano é o
+primeiro nome da lista.
+**Por que essa é a mais importante:** é a única das três que dá retorno **antes** de exigir
+investimento. E é o ensaio das outras duas.
+
+### Janela 2 — Black Friday · 27/11 · faltam 85 dias
+**Função:** é a data de **volume**, e a mais perigosa. Todo mundo entra na guerra de preço, e a
+ótica que só compete por desconto sai com o mesmo faturamento e menos margem.
+**O que fazer:** preparar a oferta em outubro, não na semana. Trabalhar valor no lugar de desconto —
+a margem está na lente, não na armação — e chegar na data com uma lista de interessados já
+aquecida, montada nas semanas anteriores.
+**Erro clássico:** começar a pensar nela em novembro.
+
+### Janela 3 — Natal · até 13/12
+**Função:** é a data de **ticket alto**. O cliente está disposto a gastar mais, e é quando a venda
+de lente melhor e segundo par acontece com menos resistência.
+**O que fazer:** presente, segundo par, upgrade de lente. Nada de liquidar estoque — isso é
+janeiro.
+
+> **A frase que amarra os três blocos:** *"Não é sobre fazer três promoções. É sobre chegar em
+> cada uma dessas datas com gente pra quem vender — e isso se constrói nas semanas antes, não no
+> dia."*
+
+---
+
+## A regra que vale nas três
+
+Antes de qualquer anúncio: **campanha na base que você já tem.** Nas três datas, a primeira venda
+vem de quem já comprou — é mais rápido, mais barato e não depende de gestor, gerenciador nem
+aprovação do Meta.
+
+É esse o fio que liga a live ao Desafio: quem quiser fazer isso direito nas três datas precisa do
+plano inteiro, e o plano inteiro é o que vem no Desafio Ótica +100K.
+
+---
+
+## Roteiro — 45 a 50 minutos
 
 | Tempo | Bloco | O que acontece |
 |---|---|---|
-| **0-5** | A conta do calendário | "De hoje até a última semana de compra do Natal são 100 dias. Dentro deles: Dia do Cliente, Black Friday e Natal. Esse trimestre decide o seu ano." Tensão montada antes de qualquer conteúdo |
-| **5-8** | O que a live é | Promessa explícita: sair sabendo o estágio e o próximo passo. Pedido de compromisso: "fica até o fim que eu vou mandar o mapa" |
-| **8-25** | Os 4 estágios | Um por um, com o sintoma que ela reconhece na própria loja. **Ao fim de cada estágio: "comenta 1 se é você"** |
-| **25-40** | O plano de cada estágio nos 100 dias | As três datas × o que fazer em cada estágio. Aqui ela entrega de verdade |
-| **40-46** | A prova | Um caso só, contado inteiro: 9 mil em menos de 10 dias, sem anúncio novo, campanha só na base. Mostra que o Estágio 2 destrava em dias |
-| **46-50** | Captura | Palavra-chave + grupo VIP. Nada de despedida longa |
+| **0-5** | A conta do calendário | "De hoje até a última semana de compra do Natal são 100 dias. Cabe Dia do Cliente, Black Friday e Natal. Esse trimestre decide o seu ano." Tensão antes de qualquer conteúdo |
+| **5-8** | O que a live é | Promessa explícita: sair com o plano das três datas. Pedido de permanência: "fica até o fim que eu mando o mapa" |
+| **8-10** | O erro do fim de ano | Chegar em novembro improvisando e resolver no desconto. Nomeia o inimigo |
+| **10-22** | **Janela 1 — Dia do Cliente** | A mais detalhada das três: faltam 12 dias, dá pra fazer. Passo a passo real |
+| **22-32** | **Janela 2 — Black Friday** | O que preparar em outubro. Por que desconto é a pior forma de aproveitar |
+| **32-38** | **Janela 3 — Natal** | Ticket alto, segundo par, upgrade de lente |
+| **38-44** | A prova | Um caso só, contado inteiro: 9 mil em menos de 10 dias, campanha só na base, sem anúncio novo |
+| **44-50** | Captura | Palavra-chave + grupo VIP. Sem despedida longa |
 
 ---
 
-## Mecânica de captura — duas camadas
+## Mecânica de captura
 
-**Camada 1 — a classificação.** Durante o bloco dos estágios: *"comenta 1, 2, 3 ou 4"*.
-Cada comentário é um lead **com o diagnóstico já declarado por ela mesma**. É a melhor lista que
-o comercial pode receber.
+**Durante a live, no fim de cada janela:** *"comenta AQUI se você ainda não tem essa campanha
+pronta"* — mantém o comentário girando e sinaliza quem está atrás.
 
-**Camada 2 — a palavra-chave.** No fechamento: *"comenta a palavra PLANO que eu mando no seu
-direct o mapa dos 100 dias com o que fazer em cada data"*. Traz o contato para a DM, que é onde
-o comercial trabalha.
+**No fechamento:** *"comenta a palavra **PLANO** que eu mando no seu direct o mapa dos 100 dias,
+com o que fazer em cada uma das três datas"*.
 
-**O que o comercial faz no dia seguinte, por estágio:**
-
-| Estágio | Abordagem |
-|---|---|
-| 1 | Mais educativo. Ela precisa de primeiro passo, não de diagnóstico sofisticado |
-| 2 | **Prioridade máxima.** Dor aguda, destrava rápido, é o perfil que mais compra |
-| 3 | Conversa de margem e posicionamento. Ticket maior, ciclo mais longo |
-| 4 | Poucos, mas alto valor. Conversa de estrutura, não de campanha |
-
----
-
-## Stories de convocação
-
-**Hoje, à noite (2 stories)**
-1. Print de calendário com os 100 dias marcados. Texto: *"De amanhã até a semana do Natal são
-   100 dias. Cabe Dia do Cliente, Black Friday e Natal. É o trimestre que decide o ano da sua
-   ótica — e a maioria vai deixar passar."*
-2. *"Amanhã, 12h, aqui. Vou mostrar os 4 estágios de uma ótica e o que fazer em cada um nesses
-   100 dias. Se você não souber em qual está, vai trabalhar o mês inteiro na coisa errada."*
-
-**Amanhã, 9h**
-3. *"Hoje 12h. Traz papel — você vai sair sabendo exatamente o que fazer até dezembro."*
-
-**Amanhã, 11h45 — lembrete**
-4. Contagem: *"Em 15 minutos."* Caixinha: *"você já planejou o seu fim de ano?"* (Sim / Nem comecei)
-
-**Depois da live**
-5. Corte do melhor momento + *"quem não viu, tá salvo no perfil"*. Boa parte do lead vem do replay.
-
----
-
-## Texto da DM da palavra-chave
+**Texto da DM:**
 
 > Oi! Aqui é o mapa dos 100 dias que eu prometi na live 💛
 >
@@ -126,17 +105,38 @@ o comercial trabalha.
 >
 > [mapa / carrossel / PDF]
 >
-> Me conta uma coisa rápida: em qual dos 4 estágios você se colocou?
+> Me conta rapidinho: das três, qual você já tem campanha pronta?
 >
-> Pergunto porque o plano muda bastante de um pro outro — e eu prefiro te falar do certo.
+> Pergunto porque quem está começando pelo Dia do Cliente ainda dá tempo — faltam 12 dias.
 
-*A pergunta final não é cortesia: é o que qualifica o lead e abre a conversa para o comercial.*
+*A pergunta final não é cortesia: é o que qualifica o lead e abre a conversa para o comercial.
+Quem responde "nenhuma" é prioridade de ligação.*
+
+---
+
+## Stories de convocação
+
+**Hoje, à noite (2)**
+1. Calendário com os 100 dias marcados: *"De amanhã até a semana do Natal são 100 dias. Cabe Dia
+   do Cliente, Black Friday e Natal. É o trimestre que decide o ano da sua ótica — e a maioria vai
+   deixar passar."*
+2. *"Amanhã, 12h, aqui. Vou abrir o plano das três datas. O Dia do Cliente é daqui a 12 dias — se
+   você ainda não tem campanha pronta, essa live é pra você."*
+
+**Amanhã, 9h**
+3. *"Hoje 12h. Traz papel — você sai daqui com o plano até dezembro."*
+
+**Amanhã, 11h45**
+4. Contagem: *"Em 15 minutos."* Caixinha: *"já tem campanha de Dia do Cliente pronta?"* (Sim / Nem comecei)
+
+**Depois**
+5. Corte do melhor momento + *"tá salvo no perfil"*. Boa parte do lead vem do replay.
 
 ---
 
 ## Pendências antes das 12h
 
-- [ ] Confirmar o caso que será contado no bloco de prova (e se pode citar cidade e valor)
-- [ ] Produzir o material da palavra-chave — o "mapa dos 100 dias" precisa existir antes da live
-- [ ] Definir quem monitora os comentários e coleta os @ durante a transmissão
-- [ ] Alinhar com o comercial que a lista chega amanhã à tarde, segmentada por estágio
+- [ ] Produzir o **mapa dos 100 dias** — o material da palavra-chave precisa existir antes da live
+- [ ] Confirmar o caso do bloco de prova (e se pode citar cidade e valor)
+- [ ] Definir quem monitora comentários e coleta os @ durante a transmissão
+- [ ] Avisar o comercial que a lista chega amanhã à tarde
