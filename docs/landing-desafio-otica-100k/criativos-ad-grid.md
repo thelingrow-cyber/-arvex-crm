@@ -263,6 +263,205 @@ foi feito. Último card = convite.
 
 ---
 
+# M7 — A1 × Feel · Modelo B · frio e morno
+*Feel na estagnada não é tristeza, é indignação contida. A peça nomeia a sensação antes de
+explicá-la — quem sente, para.*
+
+**Primary text**
+> Não é cansaço. É a sensação de estar correndo parada.
+>
+> Você trabalha mais do que trabalhava três anos atrás.
+>
+> Atende melhor, tem produto melhor, entende mais do negócio do que nunca.
+>
+> E o número no fim do mês não acompanha.
+>
+> Isso tem nome, e não é falta de esforço. É falta de direção.
+>
+> Esforço sem direção não leva a lugar nenhum — só deixa você mais cansada no mesmo lugar.
+>
+> Uma ótica cresce quando três coisas param de ser improviso: posicionamento, captação e conversão.
+>
+> Enquanto elas não existem, todo mês recomeça do zero. E o cansaço vira a única coisa que acumula.
+>
+> Eu vou abrir `{{DIAS}}` dias ao vivo pra mostrar como sair disso.
+>
+> Se você quer entender o que está travando antes de decidir qualquer coisa…
+>
+> 👉 Clique no botão e entre no grupo VIP.
+
+**Headlines:** Não é cansaço. É correr parada. · Você trabalha mais e fatura igual · Esforço sem direção cansa igual
+**Criativo:** Cindy sentada, tom baixo, sem energia de palco. A peça é reconhecimento, não animação.
+
+---
+
+# M8 — A2 × Have · Modelo B · frio
+*O melhor hook do grid inteiro: uma pergunta que ela não consegue não responder. E o teste dos
+cinco dias transforma a pergunta em diagnóstico imediato.*
+
+**Primary text**
+> Você tem uma ótica. Ou a ótica tem você?
+>
+> Dá pra saber com uma pergunta: se você tirar cinco dias, o que acontece com a loja?
+>
+> Se a resposta for "para", você não tem um negócio. Você tem um emprego que paga mal e não dá
+> férias.
+>
+> E não é porque você faz por menos. É o contrário: é porque você faz tudo.
+>
+> Atendimento, marketing, financeiro, fornecedor, laboratório, zap. Tudo passa por você.
+>
+> O que separa uma coisa da outra não é trabalhar menos — é ter estrutura. Posicionamento, captação
+> e conversão funcionando sem depender de você estar presente.
+>
+> É isso que eu vou montar ao vivo em `{{DIAS}}` dias.
+>
+> Se você quer uma loja que funcione sem te consumir…
+>
+> 👉 Clique no botão e entre no grupo VIP.
+
+**Headlines:** Você tem uma ótica, ou ela tem você? · Se você tirar 5 dias, o que acontece? · Um emprego que não dá férias
+**Criativo:** loja fechada, luz apagada, placa de "voltamos já". Ou a Cindy fazendo a pergunta em
+plano fechado, sem cortes.
+
+---
+
+# M9 — A2 × Status · Modelo B · frio e morno
+*Status pela negativa: o título que ela tem × a função que ela exerce. Dói porque é preciso.*
+
+**Primary text**
+> Todo mundo te chama de dona. Na prática, você é a atendente.
+>
+> E a gerente. E a social media. E quem paga o boleto.
+>
+> Você atende no balcão, responde o zap, negocia com fornecedor, grava o vídeo e ainda tenta
+> entender por que o anúncio não trouxe ninguém.
+>
+> Ser dona virou fazer tudo.
+>
+> E fazer tudo é justamente o motivo de nada crescer — porque não sobra nem tempo nem cabeça pra
+> pensar no que faria a loja mudar de patamar.
+>
+> Ótica que cresce não é a que tem dona mais dedicada. É a que tem estrutura: posicionamento,
+> captação e conversão que continuam funcionando quando você não está.
+>
+> Eu vou abrir `{{DIAS}}` dias ao vivo pra montar isso na prática.
+>
+> 👉 Clique no botão e entre no grupo VIP.
+
+**Headlines:** Te chamam de dona. Você é a atendente. · Fazer tudo é o motivo de nada crescer · Não é a loja da dona mais dedicada que cresce
+**Criativo:** carrossel de "funções" — um card por chapéu que ela usa, o último com a pergunta.
+
+---
+
+# M10 — A3 × Average Day · Modelo A · retargeting
+*A cena não é da loja: é da segunda-feira depois do evento anterior. Fala com quem já consumiu
+conteúdo e não saiu do lugar — que é exatamente quem está no retargeting.*
+
+**Primary text**
+> Você assiste tudo. Anota tudo. E na segunda-feira não sabe por onde começar.
+>
+> Já aconteceu antes, né?
+>
+> Aula boa, caderno cheio, motivação lá em cima — aí você abre a loja na segunda e a rotina engole
+> tudo. Duas semanas depois, o caderno virou enfeite.
+>
+> O problema não é você. É que informação solta não vira ação. Ordem vira.
+>
+> Por isso esses `{{DIAS}}` dias não são uma sequência de aulas.
+>
+> Cada dia termina com uma coisa feita, não com um tópico explicado. No fim, você tem uma campanha
+> rodando na sua base — não um resumo do que deveria fazer.
+>
+> Você não sai com anotação. Sai com campanha.
+>
+> Desafio Ótica +100K. Dias `{{DATA}}`.
+>
+> 👉 Clique em saiba mais e entre no grupo VIP.
+>
+> Ou você faz junto agora… ou enche mais um caderno.
+
+**Headlines:** Na segunda-feira o caderno vira enfeite · Você não sai com anotação. Sai com campanha. · Informação solta não vira ação
+**⚠️ Confirmar com a Cindy:** a promessa "cada dia termina com uma coisa feita" precisa bater com
+o formato real do evento. Se as lives forem expositivas, esta peça mente e queima na entrega.
+
+---
+
+# M11 — A3 × Status · Modelo A · morno e retargeting
+*O ICP é explícito: o que destrava a cicatriz de mentoria é especificidade de nicho. Esta é a
+única peça do conjunto construída inteira em cima disso.*
+
+**Primary text**
+> A maioria das mentorias trata a sua ótica como se fosse uma loja de roupa.
+>
+> Aí vem conselho de vitrine, de coleção, de sazonalidade. E nada disso responde o que você
+> precisa saber.
+>
+> Como falar com quem comprou multifocal no ano passado e não voltou.
+>
+> O que responder quando pedem o preço antes de mandar a receita.
+>
+> Por que a sua margem some quando a loja da esquina baixa a armação.
+>
+> Ótica não é varejo genérico. Tem grau, tem adaptação, tem laboratório, tem cliente que some entre
+> o orçamento e a montagem.
+>
+> Esses `{{DIAS}}` dias são só sobre ótica. Nada adaptado, nada traduzido de outro mercado.
+>
+> Desafio Ótica +100K. Dias `{{DATA}}`. Ao vivo e gratuito.
+>
+> 👉 Clique em saiba mais e entre no grupo VIP.
+
+**Headlines:** Sua ótica não é uma loja de roupa · Nada adaptado de outro mercado · Conselho de vitrine não resolve multifocal
+
+---
+
+## Revisão do Chief — o corte
+
+**Nota do conjunto antes do corte: 6/10.** Não por qualidade de escrita — por acúmulo. Eram 16
+peças, com sobreposição de território e três abrindo em citação entre aspas, que não é hook.
+Ninguém consegue ler um teste com 16 criativos: 2 a 6 variações por campanha é o limite do que se
+consegue interpretar.
+
+**Aposentadas — substituídas por versão melhor da mesma ideia:**
+
+| Peça | Substituída por | Motivo |
+|---|---|---|
+| C1 A base parada | **M4** e **M6** | M4 leva o mesmo mecanismo com hook de Speed; M6 leva a mesma prova com hook mais forte |
+| C2 O ano igual | **M2** | Mesma ideia, hook em Have e a conta que ela faz sozinha |
+| C3 O lead que some | **M3** | M3 tem cena com hora e objeto; C3 abria em citação |
+| C4 A nova geração | **M1** | M1 troca "existe uma coisa que ninguém fala" por Status concreto — loja do tamanho da dela |
+| C7 Preso no WhatsApp | **M3** e **M9** | As duas cobrem o território sem abrir em aspas |
+| C8 A cicatriz | **M5** | Mesma jogada, hook melhor: "se você desconfia, você tem razão" |
+| C9 Refém do gestor | — | Território secundário e hook em citação. Fica no banco, não sobe |
+| C10 Prova pura | **M6** | M6 é a mesma peça com abertura mais dura |
+
+**Sobrevivem do conjunto antigo — território que nenhuma peça M cobre:**
+- **C5 — O quarteirão com a mesma promoção** (guerra de preço)
+- **C6 — A margem está na lente** (economia; o terreno mais vazio do nicho)
+
+**Conjunto final: 13 peças.**
+Núcleo M1-M6 · novas M7-M11 · sobreviventes C5 e C6.
+
+**O que sobe no lançamento — 6, não 13:**
+
+| Ad Set | Peças |
+|---|---|
+| Frio 1 | **M1 · M3** |
+| Frio 2 | **M6 · M8** |
+| Morno | **M2 · M4** |
+| Retarget | **M5** |
+
+As outras seis (M7, M9, M10, M11, C5, C6) entram na rotação quando a frequência subir e o CPL
+começar a piorar — que é o momento certo de trocar criativo, não antes.
+
+**Ajuste que vale para todas:** nenhuma peça deste conjunto promete faturamento diretamente ao
+leitor. A página, sim. Enquanto a headline dela disser "dobrar o seu faturamento", existe ruptura
+de congruência entre o anúncio e o destino — e isso aparece como entrada baixa no grupo com CTR
+bom, que é o sintoma clássico de ad scent quebrado.
+
+---
+
 ## Protocolo de teste
 
 **Estrutura de conta, 3 níveis:** Campanha (objetivo: cadastro/conversa) → Ad Set (um público por

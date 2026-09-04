@@ -1,5 +1,14 @@
 # Criativos do lançamento — Desafio Ótica +100K (CD-05)
 
+> ⚠️ **APOSENTADO EM PARTE (04/09) — o conjunto oficial agora é `criativos-ad-grid.md`.**
+> Na revisão do Chief, oito das dez peças deste arquivo foram substituídas por versão melhor da
+> mesma ideia (C1→M4/M6 · C2→M2 · C3→M3 · C4→M1 · C7→M3/M9 · C8→M5 · C10→M6; C9 saiu por hook
+> fraco). **Sobrevivem só C5 (o quarteirão com a mesma promoção) e C6 (a margem está na lente)** —
+> território que nenhuma peça nova cobre.
+>
+> O que continua valendo aqui e não está no outro arquivo: o **diagnóstico Schwartz**, a **tabela
+> de regras** com a evidência de cada uma, e as **confirmações pendentes com a Cindy**.
+
 > **v2 — 02/09/2026, reescrita pelo Copy Chief (Halbert).** A v1 foi escrita só sobre o ICP.
 > Esta versão entra ancorada também no **swipe das 2 peças que já rodaram e performaram**
 > (`docs/materiais-cindy/swipe-criativos.md`), que mudou duas decisões estruturais: a arquitetura
