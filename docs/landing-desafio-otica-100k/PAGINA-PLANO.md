@@ -1,6 +1,7 @@
 # Plano — Página de captura do Desafio Ótica +100K (CD-06)
 
-> **Status:** plano. Nada de código antes das decisões da seção 5 estarem fechadas.
+> **Status:** estrutura fechada pelo CRO em 04/09. Pronto para copy e build.
+> Falta antes de subir tráfego: link do grupo VIP, prova nomeável e Pixel.
 > **Story/atividade:** CD-06 · ↳ CD-05 (criativos, prontos) · ↳ CD-12 (nome, fechado)
 
 ---
@@ -63,22 +64,87 @@ narrativa longa é da live, não da captura).
 
 ---
 
-## 4. Estrutura proposta
+## 4. Estrutura — fechada pelo CRO em 04/09
 
-**Princípio:** tráfego frio + oferta gratuita = **página curta**. Página longa é para venda, não
-para captura. Mas o ICP exige uma dose mínima de prova, porque a objeção nº1 é cicatriz de
-mentoria anterior e o medo de "é tudo online".
+### 4.1 Auditoria da página atual
 
-| Bloco | Conteúdo | Por quê |
+A construção técnica está boa: mobile-first de verdade, `clamp()` em toda tipografia, media query
+única em 820px, `prefers-reduced-motion` respeitado. O problema não é código — é conteúdo e
+credibilidade.
+
+| Elemento | Nota | Leitura |
 |---|---|---|
-| **1. Primeira dobra** | Logo do evento · headline · subhead de 1 linha · CTA · data e formato | Tudo visível no celular sem scroll (A2). É aqui que a página é ganha ou perdida |
-| **2. O que você sai tendo** | 3 a 4 bullets do que ela leva embora — não do que vai ser ensinado | O ICP não quer aula, quer direção e algo aplicável |
-| **3. Prova de par** | 1 a 3 casos de ótica do mesmo porte, com cidade e tempo de loja | *"Quando a gente viu o depoimento da Amanda — a pessoa que a gente conhece"*. Prova de par vale mais que aluno-estrela |
-| **4. Quem é a Cindy** | Curto, 3 a 4 linhas + foto integrada | Resolve o medo de "é tudo online" — quem tira esse medo é a autoridade, não o vendedor |
-| **5. CTA final** | Repetição do botão + a razão de entrar no grupo | O valor fica atrás da porta: a oferta especial só é liberada lá |
+| Logo do evento | **8** | Dá identidade e ancora o nome. Mantém |
+| CTA (verde WhatsApp, verbo claro) | **8** | Bom contraste e bom verbo. Mas é o único da página |
+| Subhead ("garanta acesso à oferta especial") | **7** | O valor atrás da porta está certo |
+| Topbar "Desafio ao vivo · Online" | **6** | Ocupa o espaço mais nobre da tela com informação, não com persuasão. Deveria carregar a **data** |
+| Foto da Cindy | **5** | Carregada de `cindyb.com.br` — **URL externa** com latência e risco de quebra, existindo cópia local na pasta |
+| Eyebrow "Sua ótica faturando 2x" | **3** | Promessa numérica solta, sem mecanismo, no primeiro contato — exatamente onde a cicatriz de mentoria reage |
+| Micro-CTA "Vagas limitadas" | **2** | **Escassez fabricada em evento online e gratuito.** Ninguém acredita em vaga limitada em grupo de WhatsApp, e o ICP registra que pressão artificial aumenta a resistência de quem decide em dupla |
+| Prova social | **0** | Não existe. Para um público cuja objeção nº1 é cicatriz de mentoria, é o maior buraco da página |
+| Data do evento | **ausente** | O evento tem data e a página não diz. Falha básica de página de captura |
 
-**Sem FAQ, sem contador regressivo, sem depoimento em vídeo pesado, sem seção de bônus.**
-Escassez fabricada aumenta resistência em quem decide em dupla — e o público decide em dupla.
+### 4.2 O achado mais importante: o furo pode não estar na página
+
+O benchmark é **16 leads marcados, 8 entraram**. Metade se perde — mas *entre o quê e o quê*?
+Hoje não dá para saber, porque não existe evento de clique no CTA. As duas hipóteses têm soluções
+opostas:
+
+- **Se ela não clica** → o furo é a página (headline, prova, credibilidade).
+- **Se ela clica e não entra** → o furo é a passagem para o WhatsApp: abrir o app, ver um grupo de
+  desconhecidos, decidir entrar. Nesse caso, mexer na página não resolve nada.
+
+**Antes de otimizar qualquer coisa, instrumentar o clique.** É meia hora de trabalho e separa dois
+problemas que exigem respostas diferentes. Sem isso, toda melhoria vira palpite.
+
+### 4.3 A estrutura aprovada
+
+**Princípio:** tráfego frio + oferta gratuita = **página curta**. Página longa é para venda. Mas o
+ICP exige uma dose mínima de prova, porque a objeção nº1 é cicatriz de mentoria e o medo de "é
+tudo online".
+
+| Bloco | Conteúdo | Função na conversão |
+|---|---|---|
+| **1. Primeira dobra** | Barra com a **data** · logo do evento · headline · subhead · CTA | Tudo visível no celular sem scroll (A2). É aqui que a página é ganha ou perdida |
+| **2. O que você sai tendo** | 3 bullets do que ela **leva embora** — não do que vai ser ensinado | O ICP não quer aula, quer direção e algo aplicável. Reduz esforço percebido |
+| **3. Prova de par** | 1 a 3 casos de ótica do mesmo porte, com cidade e tempo de loja | Responde à cicatriz. Prova de par vale mais que aluno-estrela |
+| **4. Quem é a Cindy** | 3 a 4 linhas + foto **local**, integrada ao fundo (A5) | Resolve o medo de "é tudo online": quem tira esse medo é a autoridade |
+| **5. CTA final** | Botão repetido + a razão de entrar no grupo | Segundo ponto de conversão para quem rolou a página |
+
+**Regra de CTA:** um a cada dobra e meia. Com cinco blocos, são dois botões — hero e fechamento.
+Mais que isso vira ruído.
+
+**Sai da página:** "vagas limitadas", contador regressivo, FAQ, seção de bônus, depoimento em
+vídeo pesado, imagem hospedada fora.
+
+**Fica de fora também a animação `reveal` na primeira dobra.** Conteúdo que entra por
+IntersectionObserver com `data-delay` atrasa o que precisa aparecer primeiro — e o público está no
+4G do interior. Animação só do bloco 2 para baixo.
+
+### 4.4 Urgência, escassez e prova — o que é legítimo aqui
+
+- **Urgência: sim, e ela é real.** O evento tem data — 22, 23 e 24 de setembro. Data é urgência
+  honesta e não precisa de contador para funcionar.
+- **Escassez: não.** Evento gratuito e online não tem vaga limitada, e o público sente a mentira.
+  Escassez legítima neste nicho existe (exclusividade por cidade), mas é argumento de venda da
+  mentoria, não de entrada em grupo.
+- **Prova: obrigatória, e do mesmo porte.** Um caso com cidade e tempo de loja vale mais que três
+  números grandes sem rosto.
+
+### 4.5 Hipóteses de teste, por impacto × facilidade
+
+| # | Hipótese | Impacto | Facilidade |
+|---|---|---|---|
+| 1 | **Instrumentar o clique no CTA** (não é teste, é pré-requisito) | Alto — separa dois problemas distintos | Alta |
+| 2 | Trocar o eyebrow "Sua ótica faturando 2x" pela **data do evento** | Alto — tira a promessa solta do primeiro contato | Alta |
+| 3 | Remover "vagas limitadas" | Médio-alto — credibilidade com público queimado | Alta |
+| 4 | Página com prova × página de uma dobra só | Alto | Média |
+| 5 | CTA "Entrar no grupo VIP" × "Quero participar do desafio" | Médio | Alta |
+
+**Ressalva honesta:** A/B só se lê com volume. Com o tráfego previsto para um lançamento de 3 dias,
+provavelmente não haverá amostra para separar 2, 3 e 5 com confiança. Recomendo **aplicar 1, 2 e 3
+direto** — são correções, não apostas — e reservar o teste real para 4, que é a única decisão
+estrutural em aberto.
 
 ---
 
