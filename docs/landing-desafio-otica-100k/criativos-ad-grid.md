@@ -9,7 +9,8 @@
 > Modelo A = o Desafio (data, formato, fecho binário) para morno. Modelo B = a Revelação
 > (mecanismo, sem data, auto-seleção) para frio.
 >
-> **Variáveis abertas:** `{{DATA}}` · `{{DIAS}}` (4 ou 5).
+> **Data fechada (04/09):** 22, 23 e 24 de setembro — terça, quarta e quinta. **3 dias**, não 4 nem 5.
+> Todas as peças abaixo já estão com a data aplicada.
 
 ---
 
@@ -47,8 +48,8 @@ Average Day). Um grid bem montado cobre seis.
 | **Feel** (emoção) | Não é cansaço. É a sensação de correr parada. | Você não abriu uma loja pra virar funcionária dela. | Se você desconfia de mais um lançamento, você tem razão. |
 | **Average Day** (rotina) | Você atende bem o dia inteiro. E no fim do mês o número é o mesmo. | Oito da noite, loja fechada, e você ainda mandando orçamento no zap. | Você assiste tudo, anota tudo, e na segunda não sabe por onde começar. |
 | **Status** (como é vista) | Tem loja do mesmo tamanho da sua passando de 100 mil por mês. | Todo mundo te chama de dona. Na prática você é o atendimento. | Mentoria genérica trata a sua ótica como se fosse loja de roupa. |
-| **Proof** (resultado) | Ela saiu de 10 mil pra 22 mil por mês sem investir um real a mais. | Ela montou a campanha numa tarde e vendeu num sábado o que vendia numa semana. | Não é aula: é uma campanha montada e disparada dentro dos `{{DIAS}}` dias. |
-| **Speed** (tempo/esforço) | A primeira campanha dela deu retorno em menos de dez dias. | Uma campanha que continua vendendo depois que você fecha a loja. | Em vez de um ano de mentoria, `{{DIAS}}` dias e uma campanha rodando. |
+| **Proof** (resultado) | Ela saiu de 10 mil pra 22 mil por mês sem investir um real a mais. | Ela montou a campanha numa tarde e vendeu num sábado o que vendia numa semana. | Não é aula: é uma campanha montada e disparada dentro dos 3 dias. |
+| **Speed** (tempo/esforço) | A primeira campanha dela deu retorno em menos de dez dias. | Uma campanha que continua vendendo depois que você fecha a loja. | Em vez de um ano de mentoria, 3 dias e uma campanha rodando. |
 
 **Como usar:** cada célula pode virar anúncio. As seis escritas abaixo são as de maior potencial —
 uma por avatar em cada temperatura. As outras doze entram na rotação quando a frequência subir.
@@ -77,7 +78,7 @@ move não é ganhar dinheiro, é não ficar para trás.*
 >
 > Não é sorte, e não é talento. É estrutura.
 >
-> Eu vou abrir `{{DIAS}}` dias ao vivo pra mostrar como esse modelo funciona por dentro.
+> Eu vou abrir 3 dias ao vivo pra mostrar como esse modelo funciona por dentro.
 >
 > Sem teoria. Sem papo de coach. Sem promessa milagrosa.
 >
@@ -109,12 +110,12 @@ aplicativo. Quem faz a conta, se envolve.*
 >
 > E rodar sem plano cansa igual. Só não leva a lugar nenhum.
 >
-> Durante `{{DIAS}}` dias, ao vivo, eu vou montar esse plano junto com você — posicionamento,
+> Durante 3 dias, ao vivo, eu vou montar esse plano junto com você — posicionamento,
 > captação e conversão, na ordem certa.
 >
 > Começando pela campanha que dá resultado logo na primeira semana, com os clientes que você já tem.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 >
@@ -122,7 +123,7 @@ aplicativo. Quem faz a conta, se envolve.*
 >
 > Ou você monta esse plano agora… ou daqui a dois anos faz essa conta de novo.
 
-**Headlines:** O mesmo faturamento de dois anos atrás · Faça essa conta antes de continuar · `{{DIAS}}` dias pra sair do mesmo número
+**Headlines:** O mesmo faturamento de dois anos atrás · Faça essa conta antes de continuar · 3 dias pra sair do mesmo número
 **Criativo:** estático de altíssimo contraste, só a frase do hook em tipografia grande. Sem foto.
 Feed cheio de imagem colorida — o bloco de texto limpo é que destaca.
 
@@ -151,7 +152,7 @@ Feed cheio de imagem colorida — o bloco de texto limpo é que destaca.
 > O que muda esse jogo não é atender mais rápido. É ter estrutura: posicionamento, captação e
 > conversão funcionando sem depender de você estar com o celular na mão.
 >
-> Eu vou abrir `{{DIAS}}` dias ao vivo pra montar isso na prática.
+> Eu vou abrir 3 dias ao vivo pra montar isso na prática.
 >
 > Se você quer uma loja que cresça sem te consumir…
 >
@@ -180,11 +181,11 @@ concorrência não está brigando, porque todo mundo briga na promessa.*
 >
 > Gente que já comprou. Que já confiou. Que já sabe onde fica a loja.
 >
-> Nos `{{DIAS}}` dias do Desafio Ótica +100K, essa campanha é a primeira coisa que a gente monta.
+> Nos 3 dias do Desafio Ótica +100K, essa campanha é a primeira coisa que a gente monta.
 >
 > Não é teoria pra aplicar depois. Você sai com ela pronta.
 >
-> Dias `{{DATA}}`, ao vivo e gratuito.
+> Dias 22, 23 e 24 de setembro, ao vivo e gratuito.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 >
@@ -213,18 +214,18 @@ dela confirma o ceticismo. Vai só para quem já engajou.*
 >
 > Então vou ser direta sobre o que isso aqui é.
 >
-> São `{{DIAS}}` dias, ao vivo, e você sai com uma campanha montada pra rodar na sua própria base
+> São 3 dias, ao vivo, e você sai com uma campanha montada pra rodar na sua própria base
 > de clientes — não com um caderno de anotações.
 >
 > É específico pra ótica. Não é aula de varejo genérico adaptada com a palavra "óculos".
 >
-> E se não servir pra você, o que você perdeu foram `{{DIAS}}` dias. Não uma mentoria.
+> E se não servir pra você, o que você perdeu foram 3 dias. Não uma mentoria.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`. Ao vivo e gratuito.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro. Ao vivo e gratuito.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 
-**Headlines:** Se você desconfia, você tem razão · Você arrisca `{{DIAS}}` dias, não uma mentoria · Específico pra ótica, não varejo genérico
+**Headlines:** Se você desconfia, você tem razão · Você arrisca 3 dias, não uma mentoria · Específico pra ótica, não varejo genérico
 **Criativo:** Cindy em plano fechado, falando à câmera, sem corte e sem legenda estilizada. A peça
 é conversa — produção alta contradiz o texto.
 
@@ -251,7 +252,7 @@ o número do nome do evento sem prometer nada a ninguém.*
 >
 > O que elas tinham era ordem. O que fazer primeiro, o que fazer depois.
 >
-> É essa ordem que eu vou abrir em `{{DIAS}}` dias ao vivo.
+> É essa ordem que eu vou abrir em 3 dias ao vivo.
 >
 > Se você quer ver como funciona antes de decidir qualquer coisa…
 >
@@ -284,7 +285,7 @@ explicá-la — quem sente, para.*
 >
 > Enquanto elas não existem, todo mês recomeça do zero. E o cansaço vira a única coisa que acumula.
 >
-> Eu vou abrir `{{DIAS}}` dias ao vivo pra mostrar como sair disso.
+> Eu vou abrir 3 dias ao vivo pra mostrar como sair disso.
 >
 > Se você quer entender o que está travando antes de decidir qualquer coisa…
 >
@@ -314,7 +315,7 @@ cinco dias transforma a pergunta em diagnóstico imediato.*
 > O que separa uma coisa da outra não é trabalhar menos — é ter estrutura. Posicionamento, captação
 > e conversão funcionando sem depender de você estar presente.
 >
-> É isso que eu vou montar ao vivo em `{{DIAS}}` dias.
+> É isso que eu vou montar ao vivo em 3 dias.
 >
 > Se você quer uma loja que funcione sem te consumir…
 >
@@ -345,7 +346,7 @@ plano fechado, sem cortes.
 > Ótica que cresce não é a que tem dona mais dedicada. É a que tem estrutura: posicionamento,
 > captação e conversão que continuam funcionando quando você não está.
 >
-> Eu vou abrir `{{DIAS}}` dias ao vivo pra montar isso na prática.
+> Eu vou abrir 3 dias ao vivo pra montar isso na prática.
 >
 > 👉 Clique no botão e entre no grupo VIP.
 
@@ -368,14 +369,14 @@ conteúdo e não saiu do lugar — que é exatamente quem está no retargeting.*
 >
 > O problema não é você. É que informação solta não vira ação. Ordem vira.
 >
-> Por isso esses `{{DIAS}}` dias não são uma sequência de aulas.
+> Por isso esses 3 dias não são uma sequência de aulas.
 >
 > Cada dia termina com uma coisa feita, não com um tópico explicado. No fim, você tem uma campanha
 > rodando na sua base — não um resumo do que deveria fazer.
 >
 > Você não sai com anotação. Sai com campanha.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 >
@@ -406,9 +407,9 @@ o formato real do evento. Se as lives forem expositivas, esta peça mente e quei
 > Ótica não é varejo genérico. Tem grau, tem adaptação, tem laboratório, tem cliente que some entre
 > o orçamento e a montagem.
 >
-> Esses `{{DIAS}}` dias são só sobre ótica. Nada adaptado, nada traduzido de outro mercado.
+> Esses 3 dias são só sobre ótica. Nada adaptado, nada traduzido de outro mercado.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`. Ao vivo e gratuito.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro. Ao vivo e gratuito.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 

@@ -14,8 +14,7 @@
 > (`docs/materiais-cindy/swipe-criativos.md`), que mudou duas decisões estruturais: a arquitetura
 > das peças e a regra sobre números.
 >
-> **Variáveis ainda abertas:** `{{DATA}}` (dias do evento) e `{{DIAS}}` (4 ou 5 — a peça de abril
-> foi de 4, a página atual diz 5). Nada além disso depende de decisão.
+> **Data fechada (04/09):** 22, 23 e 24 de setembro, 3 dias. Aplicada em todas as peças.
 >
 > **Fontes:** `docs/materiais-cindy/swipe-criativos.md` (como se escreve) ·
 > `docs/crm/sales-coach/conhecimento/icp-dono-de-otica.md` (o que é verdade — 15 lives, ~45 donos,
@@ -99,7 +98,7 @@ retorno, à falta de caixa e à cicatriz de mentoria.
 > É por aí que a gente começa: a primeira venda não vem de cliente novo — vem da base que já é sua.
 > Depois dela é que entram posicionamento, captação e conversão, cada coisa no lugar.
 >
-> No Desafio Ótica +100K, dia `{{DATA}}`, eu mostro essa campanha inteira, passo a passo, do jeito
+> No Desafio Ótica +100K, dias 22, 23 e 24 de setembro, eu mostro essa campanha inteira, passo a passo, do jeito
 > que dá pra rodar na sua loja essa semana.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
@@ -140,11 +139,11 @@ fechada — mais forte, se houver autorização da cliente.
 > É falta de um plano claro de crescimento — posicionamento, captação e conversão na ordem certa,
 > em vez de mexer de um lado, mexer do outro, e olhar pra rua vazia.
 >
-> Durante `{{DIAS}}` dias, ao vivo, eu vou montar esse plano junto com você.
+> Durante 3 dias, ao vivo, eu vou montar esse plano junto com você.
 >
 > Começando pela campanha que dá resultado na primeira semana, com a base que você já tem.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 >
@@ -155,7 +154,7 @@ fechada — mais forte, se houver autorização da cliente.
 **Headlines**
 1. Mesmo faturamento do ano passado?
 2. O problema não é o mercado
-3. `{{DIAS}}` dias pra sair do mesmo número
+3. 3 dias pra sair do mesmo número
 
 **Description:** Plano de crescimento da sua ótica, ao vivo e do zero.
 **Imagem:** fundo limpo, a frase *"a gente faturou a mesma coisa que ano passado"* entre aspas,
@@ -185,7 +184,7 @@ grande, tipografia da marca. Sem foto — o silêncio visual carrega a frase.
 >
 > E isso tem conserto. Não é bicho de sete cabeças.
 >
-> No Desafio Ótica +100K, dia `{{DATA}}`, eu mostro o caminho da conversa que faz o cliente voltar
+> No Desafio Ótica +100K, dias 22, 23 e 24 de setembro, eu mostro o caminho da conversa que faz o cliente voltar
 > a responder — e comprar.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
@@ -224,14 +223,14 @@ R$ 100 mil aparecem como patamar que outras óticas já atingiram, nunca como pr
 >
 > Não por sorte. Porque mudaram o jeito de operar.
 >
-> Eu vou abrir `{{DIAS}}` dias ao vivo pra mostrar como esse modelo funciona por dentro.
+> Eu vou abrir 3 dias ao vivo pra mostrar como esse modelo funciona por dentro.
 >
 > Sem teoria. Sem papo de coach. Sem promessa milagrosa.
 >
 > Só o sistema que está criando uma nova geração de donos de ótica — começando pelo primeiro passo,
 > que dá resultado antes do fim da semana.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro.
 >
 > 👉 Clique no botão e entre no grupo VIP. A metodologia inteira vai ser aberta só lá dentro.
 
@@ -271,7 +270,7 @@ cinquenta óticas ali no calçadão"* [ICP §2.6]
 > Passa por posicionamento: a razão pela qual alguém atravessa a rua pra comprar com você mesmo
 > custando um pouco mais.
 >
-> No Desafio Ótica +100K, dias `{{DATA}}`, eu mostro como construir isso na prática.
+> No Desafio Ótica +100K, dias 22, 23 e 24 de setembro, eu mostro como construir isso na prática.
 >
 > Sem promoção. Sem queimar margem.
 >
@@ -307,7 +306,7 @@ terreno**, e o ICP registra que o dono raciocina em preço de venda, nunca em ma
 >
 > A maioria não faz essa conta porque nunca parou pra olhar margem. Só olha preço de venda.
 >
-> No Desafio Ótica +100K, dias `{{DATA}}`, essa é uma das primeiras coisas que a gente arruma.
+> No Desafio Ótica +100K, dias 22, 23 e 24 de setembro, essa é uma das primeiras coisas que a gente arruma.
 >
 > 👉 Clique no botão e entre no grupo VIP.
 
@@ -342,11 +341,11 @@ não estou tendo tempo com meus filhos"* [ICP §2.4, §2.9]
 > Só que enquanto não existe estrutura por trás — posicionamento, captação e conversão funcionando
 > sozinhos — tudo volta pra você.
 >
-> Durante `{{DIAS}}` dias, ao vivo, eu vou montar essa estrutura junto com você.
+> Durante 3 dias, ao vivo, eu vou montar essa estrutura junto com você.
 >
 > Pra loja rodar sem depender de você estar no balcão o dia inteiro.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 >
@@ -378,18 +377,18 @@ ensino isso"* [ICP §4.1]
 >
 > A diferença não está na promessa. Está no que você leva embora no primeiro dia.
 >
-> Nesses `{{DIAS}}` dias você não vai sair com um caderno de teoria.
+> Nesses 3 dias você não vai sair com um caderno de teoria.
 >
 > Vai sair com uma campanha montada pra rodar na sua base — a mesma que deu nove mil reais em menos
 > de dez dias pra uma ótica de Curitiba, sem um real a mais em anúncio.
 >
-> Se não funcionar pra você, você perdeu `{{DIAS}}` dias. Não uma mentoria.
+> Se não funcionar pra você, você perdeu 3 dias. Não uma mentoria.
 >
-> Desafio Ótica +100K. Dias `{{DATA}}`. Ao vivo e gratuito.
+> Desafio Ótica +100K. Dias 22, 23 e 24 de setembro. Ao vivo e gratuito.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 
-**Headlines:** 1) Se você já se queimou com mentoria · 2) Sem teoria — uma campanha pronta · 3) Você arrisca `{{DIAS}}` dias, não uma mentoria
+**Headlines:** 1) Se você já se queimou com mentoria · 2) Sem teoria — uma campanha pronta · 3) Você arrisca 3 dias, não uma mentoria
 **Description:** Ao vivo e gratuito, para donos de ótica.
 **Imagem:** Cindy falando à câmera, plano fechado, sem corte. A peça é confissão — produção alta
 estraga.
@@ -419,7 +418,7 @@ hoje não quer funcionar"* · *"não tô conseguindo patrocinar pelo Meta"* [ICP
 >
 > É a parte mais simples do negócio. E quase ninguém tem.
 >
-> No Desafio Ótica +100K, dias `{{DATA}}`, é por aí que a gente começa.
+> No Desafio Ótica +100K, dias 22, 23 e 24 de setembro, é por aí que a gente começa.
 >
 > 👉 Clique no botão e entre no grupo VIP.
 
@@ -451,7 +450,7 @@ hoje não quer funcionar"* · *"não tô conseguindo patrocinar pelo Meta"* [ICP
 >
 > Tinham ordem: o que fazer primeiro, o que fazer depois.
 >
-> Nos dias `{{DATA}}`, eu abro esse passo a passo no Desafio Ótica +100K.
+> Nos dias 22, 23 e 24 de setembro, eu abro esse passo a passo no Desafio Ótica +100K.
 >
 > 👉 Clique no botão e entre no grupo VIP. A metodologia inteira vai ser aberta só lá.
 
@@ -506,8 +505,8 @@ As outras seis entram como rotação quando a frequência subir e o CPL começar
 
 ## Pendências que não são de copy
 
-- **`{{DATA}}`** — os dias do evento. Trava C1, C2, C3 e C4.
-- **`{{DIAS}}`** — 4 ou 5 dias. A peça de abril foi de 4; a página atual diz 5.
+- **22, 23 e 24 de setembro** — os dias do evento. Trava C1, C2, C3 e C4.
+- **3** — 4 ou 5 dias. A peça de abril foi de 4; a página atual diz 5.
 - **Headline da página** — ainda promete "dobrar o seu faturamento", que é promessa direta ao
   leitor. Contradiz a regra que estes quatro criativos seguem, e o clique vem deles.
 

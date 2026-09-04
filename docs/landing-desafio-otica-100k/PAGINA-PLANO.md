@@ -82,21 +82,52 @@ Escassez fabricada aumenta resistência em quem decide em dupla — e o público
 
 ---
 
-## 5. Decisões travadas — precisam do Vitor antes de qualquer código
+## 5. Decisões
 
-1. **Destino do CTA.** Hoje o botão vai direto para o link do grupo de WhatsApp. Isso maximiza
-   entrada, mas **o contato não entra no CRM** — a ARVEX fica sem a lista e o comercial sem base
-   de trabalho. A alternativa é um passo de captura (nome + WhatsApp) antes do redirecionamento:
-   perde alguns pontos de conversão, ganha a lista. **É a decisão que mais muda a página.**
-2. **Data e formato.** `{{DATA}}` e `{{DIAS}}` (4 ou 5) — travam a página e os 13 criativos.
-3. **A headline.** A atual promete *"dobrar o seu faturamento"*. Nenhum dos 13 criativos faz
-   promessa direta ao leitor — quem clica não vai encontrar a mesma história. Recomendo trocar por
-   headline de mecanismo. **Isso é ad scent, não preferência estética.**
-4. **Prova nomeável.** Quais casos podem ir ao ar com cidade e número (Fran/Curitiba, Kesia,
-   Rafaela). Precisa de autorização e de número confirmado.
-5. **Pixel Meta.** O `PIXEL_ID` está como placeholder desde sempre. Sem ele não há retargeting —
-   e o retargeting é onde as peças M5 e M2 trabalham.
-6. **Variante B.** Manter `index-b.html` só se houver teste A/B com volume para ler. Senão, sai.
+### Fechadas em 04/09
+
+**1. Destino do CTA: direto para o grupo de WhatsApp.** Sem passo de captura antes.
+Decisão do Vitor, com a consequência conhecida e aceita: **o contato não entra no CRM** — a lista
+vive dentro do grupo, e o comercial trabalha a partir de lá. Efeito prático no build: nenhum
+formulário, nenhuma validação, nenhum backend. A página fica mais simples e mais rápida, o que
+joga a favor da conversão.
+*Se depois quiserem a lista no CRM, o caminho de menor atrito é coletar dentro do grupo (mensagem
+de boas-vindas), não voltar a pôr formulário na página.*
+
+**2. Data e formato: 22, 23 e 24 de setembro — terça, quarta e quinta. 3 dias.**
+Não 4 (como a peça de abril) nem 5 (como a página atual dizia). Já aplicado nas 13 peças e neste
+plano. **A página ainda diz 5 dias** — corrigir no build.
+*Contexto de calendário: o Dia do Cliente é 15/09, uma semana antes. A live do dia 04/09 aquece,
+o Dia do Cliente entrega a primeira vitória, e o desafio entra na sequência.*
+
+**3. Headline: provisória, a definir com a Cindy.** O Vitor não fechou a promessa ainda. Fica uma
+headline de mecanismo no ar, marcada como provisória, e a definitiva entra depois. A única regra
+que não muda: **não pode ser promessa de faturamento feita diretamente ao leitor**, porque nenhum
+dos 13 criativos faz isso e a ruptura apareceria como entrada baixa no grupo.
+
+> **Headline provisória**
+> Em 3 dias, a campanha que faz os seus clientes voltarem a comprar. Sem gastar mais em anúncio.
+>
+> **Subhead:** Ao vivo, 22, 23 e 24 de setembro. Gratuito, para donos de ótica.
+>
+> *Por que essa:* carrega benefício (clientes voltando), mecanismo (a campanha na base) e o alívio
+> de esforço (sem gastar mais), com número tangível — os critérios da heurística A6. E continua
+> exatamente a frase que os criativos M1, M4 e M6 começam.
+>
+> **Alternativas para a conversa com a Cindy:**
+> - *Sua base de clientes já tem o faturamento que você está procurando na rua.*
+> - *3 dias para montar a campanha que a sua ótica nunca fez.*
+> - *O que as óticas que passaram de 100 mil fizeram primeiro — ao vivo, em 3 dias.*
+
+### Ainda abertas
+
+**4. Prova nomeável.** Quais casos podem ir ao ar com cidade e número (Fran/Curitiba, Kesia,
+Rafaela). Precisa de autorização e de número confirmado. **Bloqueia o bloco 3 da página.**
+
+**5. Pixel Meta.** O `PIXEL_ID` está como placeholder desde sempre. Sem ele não há retargeting —
+e é lá que M5, M2 e M10 trabalham. **Bloqueia a subida de tráfego, não o build.**
+
+**6. Variante B.** Manter `index-b.html` só se houver teste A/B com volume para ler. Senão, sai.
 
 ---
 
@@ -107,7 +138,7 @@ Escassez fabricada aumenta resistência em quem decide em dupla — e o público
 | **Ad scent quebrado** (anúncio promete mecanismo, página promete faturamento) | CTR bom e entrada baixa — o pior cenário, porque parece problema de mídia | Decisão 3, resolvida antes de escrever |
 | Primeira dobra estourando no mobile | Perda direta na maior fonte de tráfego | A2: validar em viewport de celular antes de entregar |
 | Página bonita e vazia | Retrabalho e verba queimada | A7: julgar por conversão. Simplificar é a resposta padrão |
-| Sem captura de contato | Lista fica só no WhatsApp, comercial trabalha às cegas | Decisão 1 |
+| Lista vive só no grupo de WhatsApp | Comercial sem base no CRM; quem sai do grupo some | Aceito na decisão 1. Mitigar coletando dentro do grupo, não na página |
 | Sem Pixel | Retargeting impossível, 3 das 13 peças ficam sem público | Decisão 5, antes de subir tráfego |
 
 ---
