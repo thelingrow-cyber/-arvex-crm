@@ -100,24 +100,29 @@ plano. **A página ainda diz 5 dias** — corrigir no build.
 *Contexto de calendário: o Dia do Cliente é 15/09, uma semana antes. A live do dia 04/09 aquece,
 o Dia do Cliente entrega a primeira vitória, e o desafio entra na sequência.*
 
-**3. Headline: provisória, a definir com a Cindy.** O Vitor não fechou a promessa ainda. Fica uma
-headline de mecanismo no ar, marcada como provisória, e a definitiva entra depois. A única regra
-que não muda: **não pode ser promessa de faturamento feita diretamente ao leitor**, porque nenhum
-dos 13 criativos faz isso e a ruptura apareceria como entrada baixa no grupo.
+**3. Headline: fechada pelo Vitor em 04/09.**
 
-> **Headline provisória**
-> Em 3 dias, a campanha que faz os seus clientes voltarem a comprar. Sem gastar mais em anúncio.
+> ### Crie em 3 dias comigo a estratégia que vai colocar a sua loja na rota dos +100K por mês.
 >
-> **Subhead:** Ao vivo, 22, 23 e 24 de setembro. Gratuito, para donos de ótica.
->
-> *Por que essa:* carrega benefício (clientes voltando), mecanismo (a campanha na base) e o alívio
-> de esforço (sem gastar mais), com número tangível — os critérios da heurística A6. E continua
-> exatamente a frase que os criativos M1, M4 e M6 começam.
->
-> **Alternativas para a conversa com a Cindy:**
-> - *Sua base de clientes já tem o faturamento que você está procurando na rua.*
-> - *3 dias para montar a campanha que a sua ótica nunca fez.*
-> - *O que as óticas que passaram de 100 mil fizeram primeiro — ao vivo, em 3 dias.*
+> **Ênfase visual em duas partes** (padrão das headlines anteriores): `3 dias` e `+100K por mês`.
+> **Eyebrow:** Ao vivo · 22, 23 e 24 de setembro
+> **Subhead:** Entre no Grupo VIP e garanta acesso à oferta especial do desafio.
+
+*Por que ela funciona:* obedece o molde das três headlines que já rodaram — **duração + verbo de
+construção + ativo nomeado + resultado** (*"Crie em 3 dias a estratégia que vai levar a sua loja ao
+recorde de faturamento em maio"* · *"3 dias criando a campanha de Maio mais lucrativa da sua ótica"*).
+O "comigo" vem da variante B (*"Descubra em 5 dias, comigo…"*) e faz o trabalho que o ICP pede:
+quem tira o medo de "é tudo online" é a autoridade presente, não o método.
+
+E resolve a tensão que vinha travando essa decisão: **"na rota dos +100K" promete a direção, não o
+resultado.** Ancora o nome do evento sem prometer faturamento a ela — não há o que a entrega
+desminta, e não reativa a cicatriz de mentoria.
+
+**Nota de calibragem, para não repetir o erro:** as páginas anteriores da Cindy sempre prometeram
+resultado direto ("recorde de faturamento", "mais lucrativa", "dobrar"), e isso não é erro — é a
+função da página. No anúncio, promessa direta queima, porque o público está no scroll e já se
+queimou antes. Na página, ela já clicou e quer saber do evento: a promessa é o que faz entrar no
+grupo. O que precisa bater entre anúncio e página é o **mecanismo**, não o nível de promessa.
 
 ### Ainda abertas
 
@@ -135,7 +140,7 @@ e é lá que M5, M2 e M10 trabalham. **Bloqueia a subida de tráfego, não o bui
 
 | Risco | Impacto | Mitigação |
 |---|---|---|
-| **Ad scent quebrado** (anúncio promete mecanismo, página promete faturamento) | CTR bom e entrada baixa — o pior cenário, porque parece problema de mídia | Decisão 3, resolvida antes de escrever |
+| Ad scent quebrado (anúncio e página contando histórias diferentes) | CTR bom e entrada baixa — o pior cenário, porque parece problema de mídia | Resolvido na decisão 3: a headline promete a ROTA aos +100K, que é a direção que os criativos sustentam |
 | Primeira dobra estourando no mobile | Perda direta na maior fonte de tráfego | A2: validar em viewport de celular antes de entregar |
 | Página bonita e vazia | Retrabalho e verba queimada | A7: julgar por conversão. Simplificar é a resposta padrão |
 | Lista vive só no grupo de WhatsApp | Comercial sem base no CRM; quem sai do grupo some | Aceito na decisão 1. Mitigar coletando dentro do grupo, não na página |
