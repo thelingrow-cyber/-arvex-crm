@@ -17,16 +17,18 @@ whatever app the user is dictating into.
 
 from __future__ import annotations
 
+import ctypes
+import ctypes.wintypes
 import math
 import queue
 import random
+import sys
 import threading
 import time
 import tkinter as tk
 from typing import Optional
 
-SIZE = 190
-CENTER = SIZE / 2
+BASE_SIZE = 190  # logical size at 96 DPI; multiplied by the real DPI scale at runtime
 TRANSPARENT_KEY = "#050505"  # magic color-keyed as "invisible" (Windows only)
 
 CORE_COLOR = "#8b7dff"       # violet, idle/quiet
@@ -37,6 +39,51 @@ GLOW_OUTER = "#241f4d"
 N_POINTS = 28
 BASE_RADIUS = 22
 LEVEL_GAIN = 9.0  # heuristic RMS -> [0,1] scaling for typical mic input
+
+
+def _enable_dpi_awareness() -> None:
+    """Tell Windows this process draws in real pixels.
+
+    Without it a scaled display (this machine runs 125%) hands Tk logical
+    coordinates while the compositor multiplies the window's position back
+    up -- the orb drifted right and off the bottom edge of the screen.
+    Must run before the first Tk window exists. No-op off Windows.
+    """
+    if sys.platform != "win32":
+        return
+    try:
+        ctypes.windll.shcore.SetProcessDpiAwareness(1)  # PROCESS_SYSTEM_DPI_AWARE
+    except Exception:
+        try:
+            ctypes.windll.user32.SetProcessDPIAware()  # pre-8.1 fallback
+        except Exception:
+            pass
+
+
+def _work_area() -> Optional[tuple[int, int, int, int]]:
+    """Desktop rect excluding the taskbar, in real pixels: (l, t, r, b)."""
+    if sys.platform != "win32":
+        return None
+    try:
+        rect = ctypes.wintypes.RECT()
+        # SPI_GETWORKAREA = 0x0030
+        if not ctypes.windll.user32.SystemParametersInfoW(0x0030, 0, ctypes.byref(rect), 0):
+            return None
+        return rect.left, rect.top, rect.right, rect.bottom
+    except Exception:
+        return None
+
+
+def _dpi_scale() -> float:
+    if sys.platform != "win32":
+        return 1.0
+    try:
+        dc = ctypes.windll.user32.GetDC(0)
+        dpi = ctypes.windll.gdi32.GetDeviceCaps(dc, 88)  # LOGPIXELSX
+        ctypes.windll.user32.ReleaseDC(0, dc)
+        return max(1.0, dpi / 96.0)
+    except Exception:
+        return 1.0
 
 
 def _hex_to_rgb(h: str) -> tuple[int, int, int]:
@@ -58,7 +105,18 @@ class Overlay:
     """Call start() once at boot, then show()/hide()/set_level() freely from
     the hotkey loop's thread. No-op safe to call before start() finishes."""
 
-    def __init__(self) -> None:
+    def __init__(self, config: Optional[dict] = None) -> None:
+        config = config or {}
+        # "bottom" (default), "top" or "center" of the work area.
+        self._position = str(config.get("overlay_position", "bottom")).lower()
+        # Gap from the work-area edge, in logical px (scaled with the display).
+        self._margin = int(config.get("overlay_margin", 140))
+        # Extra size multiplier on top of the DPI scale, if the orb still
+        # reads too small/large for the user's screen.
+        self._zoom = float(config.get("overlay_zoom", 1.0))
+        self._size = BASE_SIZE
+        self._center = BASE_SIZE / 2
+        self._radius = BASE_RADIUS
         self._cmd_q: "queue.Queue[str]" = queue.Queue()
         self._ready = threading.Event()
         self._lock = threading.Lock()
@@ -100,6 +158,7 @@ class Overlay:
     # -- Tk thread from here down --
 
     def _run(self) -> None:
+        _enable_dpi_awareness()
         root = tk.Tk()
         self._root = root
         root.overrideredirect(True)
@@ -113,14 +172,36 @@ class Overlay:
         except tk.TclError:
             pass
 
-        sw = root.winfo_screenwidth()
-        sh = root.winfo_screenheight()
-        x = (sw - SIZE) // 2
-        y = sh - SIZE - 90
-        root.geometry(f"{SIZE}x{SIZE}+{x}+{y}")
+        scale = _dpi_scale() * self._zoom
+        self._size = int(BASE_SIZE * scale)
+        self._center = self._size / 2
+        self._radius = BASE_RADIUS * scale
+
+        # Work area (taskbar excluded) when Windows gives it to us; the raw
+        # screen otherwise. Both are real pixels now that we're DPI-aware.
+        area = _work_area()
+        if area is None:
+            left, top = 0, 0
+            right, bottom = root.winfo_screenwidth(), root.winfo_screenheight()
+        else:
+            left, top, right, bottom = area
+
+        margin = int(self._margin * scale)
+        x = left + (right - left - self._size) // 2
+        if self._position == "top":
+            y = top + margin
+        elif self._position == "center":
+            y = top + (bottom - top - self._size) // 2
+        else:  # "bottom"
+            y = bottom - self._size - margin
+        # Never let it hang off an edge, however odd the margin/screen combo.
+        x = max(left, min(x, right - self._size))
+        y = max(top, min(y, bottom - self._size))
+
+        root.geometry(f"{self._size}x{self._size}+{x}+{y}")
         root.configure(bg=TRANSPARENT_KEY)
 
-        canvas = tk.Canvas(root, width=SIZE, height=SIZE, bg=TRANSPARENT_KEY, highlightthickness=0)
+        canvas = tk.Canvas(root, width=self._size, height=self._size, bg=TRANSPARENT_KEY, highlightthickness=0)
         canvas.pack()
         self._canvas = canvas
         self._setup_blobs()
@@ -136,13 +217,17 @@ class Overlay:
         radius: float,
         wobble_amp: float,
         phases: list[float],
-        cx: float = CENTER,
-        cy: float = CENTER,
+        cx: Optional[float] = None,
+        cy: Optional[float] = None,
     ) -> list[float]:
         """3 sine harmonics per point, each point's phase drawn once from a
         fixed random offset (not a function of i) -- breaks the radial
         symmetry a pure i*const phase step would produce, so the outline
         reads as an amorphous blob instead of a spinning gear/flower."""
+        if cx is None:
+            cx = self._center
+        if cy is None:
+            cy = self._center
         pts: list[float] = []
         for i in range(N_POINTS):
             ang = 2 * math.pi * i / N_POINTS
@@ -163,9 +248,10 @@ class Overlay:
         self._phase_core = [random.uniform(0, 2 * math.pi) for _ in range(N_POINTS)]
         self._phase_mid = [random.uniform(0, 2 * math.pi) for _ in range(N_POINTS)]
         self._phase_outer = [random.uniform(0, 2 * math.pi) for _ in range(N_POINTS)]
-        outer_pts = self._blob_points(0.0, BASE_RADIUS * 2.1, 4, self._phase_outer)
-        mid_pts = self._blob_points(0.0, BASE_RADIUS * 1.55, 4, self._phase_mid)
-        core_pts = self._blob_points(0.0, BASE_RADIUS, 4, self._phase_core)
+        w = 4 * (self._radius / BASE_RADIUS)
+        outer_pts = self._blob_points(0.0, self._radius * 2.1, w, self._phase_outer)
+        mid_pts = self._blob_points(0.0, self._radius * 1.55, w, self._phase_mid)
+        core_pts = self._blob_points(0.0, self._radius, w, self._phase_core)
         self._outer_id = c.create_polygon(*outer_pts, fill=GLOW_OUTER, outline="", smooth=True, splinesteps=24)
         self._mid_id = c.create_polygon(*mid_pts, fill=GLOW_MID, outline="", smooth=True, splinesteps=24)
         self._core_id = c.create_polygon(*core_pts, fill=CORE_COLOR, outline="", smooth=True, splinesteps=24)
@@ -201,11 +287,12 @@ class Overlay:
         energy = 0.15 + 0.85 * level
 
         # gentle overall drift so the blob feels afloat rather than pinned dead-center
-        cx = CENTER + 3 * math.sin(t * 0.27)
-        cy = CENTER + 2.5 * math.cos(t * 0.19)
+        k = self._radius / BASE_RADIUS  # DPI/zoom factor, so motion scales with size
+        cx = self._center + 3 * k * math.sin(t * 0.27)
+        cy = self._center + 2.5 * k * math.cos(t * 0.19)
 
-        core_r = BASE_RADIUS * (1 + 0.12 * breathing) + 14 * level
-        core_wobble = 3 + 10 * energy
+        core_r = self._radius * (1 + 0.12 * breathing) + 14 * k * level
+        core_wobble = (3 + 10 * energy) * k
         c.coords(self._core_id, *self._blob_points(t * 1.6, core_r, core_wobble, self._phase_core, cx, cy))
 
         mid_r = core_r * 1.55
@@ -221,7 +308,12 @@ class Overlay:
 if __name__ == "__main__":
     # Manual test: python overlay.py — shows the orb with a simulated
     # rising/falling level for ~8s, no mic/hotkey involved.
-    ov = Overlay()
+    try:
+        from config import load_config
+        cfg = load_config()
+    except Exception:
+        cfg = {}
+    ov = Overlay(cfg)
     ov.start()
     ov.show()
     t0 = time.time()

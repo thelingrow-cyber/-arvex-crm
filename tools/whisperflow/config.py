@@ -27,6 +27,12 @@ DEFAULT_CONFIG = {
     "beeps": True,
     "debug_save_wav": False,
     "overlay": True,
+    # Where the listening orb sits: "bottom" | "top" | "center" of the
+    # work area, how far from that edge (logical px), and an extra size
+    # multiplier on top of the display's own DPI scale.
+    "overlay_position": "bottom",
+    "overlay_margin": 140,
+    "overlay_zoom": 1.0,
     "polish_enabled": False,
     # Seeded from real failures observed 2026-07-11 (S6): "Wispr Flow" was
     # twice misheard ("imposter flow", "ESP flow") -- these are the tool's
