@@ -342,7 +342,7 @@ def main() -> int:
     overlay: Optional[Overlay] = None
     if config.get("overlay", True):
         try:
-            overlay = Overlay()
+            overlay = Overlay(config)
             overlay.start()
         except Exception:
             # Cosmetic feature -- a Tk/display failure must not take the

@@ -7,6 +7,9 @@
   "beeps": true,
   "debug_save_wav": false,
   "overlay": true,
+  "overlay_position": "bottom",
+  "overlay_margin": 140,
+  "overlay_zoom": 1.0,
   "polish_enabled": false,
   "custom_vocabulary": ["Wispr Flow", "WhisperFlow", "ARVEX"]
 }
