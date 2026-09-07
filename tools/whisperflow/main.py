@@ -44,6 +44,7 @@ import polish as polish_mod
 import recorder as recorder_mod
 from overlay import Overlay
 from refiner import RefineWorker
+from remote_transcriber import RemoteTranscriber
 from transcriber import Transcriber
 
 INSTANCE_LOCK_PORT = 52700
@@ -325,16 +326,37 @@ def main() -> int:
         return 1
     logger.info("modelo carregado em %.2fs (1x no boot -- AD-1)", time.time() - t0)
 
+    # engine=groq: transcreve na API hospedada (large-v3-turbo: mais preciso
+    # E mais rapido que o `base` local nesta CPU) e cai automaticamente pro
+    # modelo local, que continua carregado, se a rede/chave falhar.
+    if str(config.get("engine", "local")).lower() == "groq":
+        transcriber = RemoteTranscriber(
+            local=transcriber,
+            model=config.get("remote_model", "whisper-large-v3-turbo"),
+            language=config["language"],
+            prompt=transcriber.initial_prompt,
+            logger=logger,
+        )
+        logger.info("motor remoto ativo (%s) com fallback local", config.get("remote_model", "whisper-large-v3-turbo"))
+
     history_mod.init_db()  # ADR-16: idempotent, safe to call every boot.
 
-    refiner = RefineWorker(
-        language=config["language"],
-        custom_vocabulary=config.get("custom_vocabulary"),
-        polish_enabled=config.get("polish_enabled", False),
-        logger=logger,
-    )
-    refiner.start()
-    logger.info("worker de refino assincrono iniciado (modelo small, lazy-load no 1o job)")
+    # O refino assincrono existe para melhorar o texto do `base` depois do
+    # fato (ADR-14). Com o motor remoto (large-v3) isso se inverte: o `small`
+    # local produziria texto PIOR que o ja colado, carregando um segundo
+    # modelo numa maquina de 5.9 GB de RAM. Entao com engine=groq ele nao sobe.
+    refiner: Optional[RefineWorker] = None
+    if str(config.get("engine", "local")).lower() == "groq":
+        logger.info("refino assincrono desligado (motor remoto ja entrega qualidade superior ao small local)")
+    else:
+        refiner = RefineWorker(
+            language=config["language"],
+            custom_vocabulary=config.get("custom_vocabulary"),
+            polish_enabled=config.get("polish_enabled", False),
+            logger=logger,
+        )
+        refiner.start()
+        logger.info("worker de refino assincrono iniciado (modelo small, lazy-load no 1o job)")
 
     tracker = HeldKeysTracker()
     tracker.start()

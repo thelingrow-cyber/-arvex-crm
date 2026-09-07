@@ -28,7 +28,12 @@ import urllib.error
 import urllib.request
 
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
-MODEL = "llama-3.3-70b-versatile"
+# 2026-09-07: llama-3.3-70b-versatile foi descontinuado na Groq e todo
+# polimento vinha voltando 404 -- silenciosamente, porque o chamador
+# degrada pro texto cru. Substituido por um modelo vivo e medido
+# (~1.0s no mesmo teste). Se este tambem sair do ar, o sintoma sera o
+# mesmo: "polimento indisponivel" no log a cada ditado.
+MODEL = "openai/gpt-oss-120b"
 TIMEOUT_SECONDS = 5.0
 
 SYSTEM_PROMPT = (
