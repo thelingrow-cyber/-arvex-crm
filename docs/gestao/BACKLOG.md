@@ -2,7 +2,7 @@
 
 **Fonte única.** Toda atividade de qualquer projeto entra aqui. A semana (`docs/semanas/`) é uma *seleção* deste arquivo, nunca uma lista paralela.
 **Painel visual:** `docs/gestao/painel.html`
-**Última atualização:** 2026-08-03 · **56 atividades**
+**Última atualização:** 2026-09-07 · **56 atividades** · *fechamento de 5 semanas (03/08 → 07/09) aplicado*
 
 ---
 
@@ -44,19 +44,19 @@ As 56 atividades não são 56 coisas — são **5 máquinas repetidas** em frent
 ### Trilha 1 — Lançamento na loja *(caminho crítico, nesta ordem)*
 
 - [ ] **LG-09** Aplicar migration 008 no SQL Editor do Supabase — 👤 · P · M4
-- [ ] **LG-12** Decidir: completar 600 frases **ou** ajustar a promessa — 👤 · P · *decide o que a ficha da loja promete; vem antes de LG-14*
+- [ ] **LG-12** Decidir: completar 600 frases **ou** ajustar a promessa — 👤 · P · ⚠️ **trava a ficha da loja, que já está escrita e esperando só isto** (`app-store-ficha-2026-08.md`, 12/08: *"contagem de frases travada enquanto LG-12 estiver aberta"*)
 - [ ] **LG-10** Contrato de apps pagos Apple (pessoa jurídica + DSA/UE + banco + W-8BEN) — 👤 · M · ⚠️ **maior espera externa; sem ele o app não cobra — comece por aqui**
 - [ ] **LG-11** Terminar RevenueCat e entregar a chave `appl_…` + segredo do webhook — 👤 · M · ↳ LG-10
 - [ ] **LG-13** QA manual do fluxo no Expo Go — 👤 · M · ↳ LG-09
-- [ ] **LG-14** Aprovar ficha da loja e screenshots — 👤 · P · ↳ LG-12
+- [ ] **LG-14** Aprovar ficha da loja e screenshots — 👤 · P · ↳ LG-12 · *insumo pronto: ficha escrita 12/08 (título, subtítulo, keywords, descrição) + deck de screenshots 17/08 — falta só ler e aprovar*
 
 ### Trilha 2 — Demanda *(encher antes de publicar)*
 
-- [ ] **LG-15** Montar landing de waitlist — 🤖 · M · M2 · ⚠️ *possível duplicata de LG-04*
-- [ ] **LG-04** Página de captura e venda — 🤖 · M · M2 · *confirmar se é a mesma coisa que LG-15 ou a página pós-lançamento*
+- [x] **LG-15** Montar landing de waitlist — 🤖 · M · M2 · *07/09: `lingrow-landing/waitlist.html` existe desde 03/08 — duplicata com LG-04 resolvida abaixo. Confirmar se está publicada em domínio*
+- [ ] **LG-04** Página de venda pós-lançamento — 🤖 · M · M2 · *07/09: ambiguidade resolvida — LG-15 é a waitlist (feita); LG-04 é a página que recebe tráfego depois de o app estar na loja*
 - [ ] **LG-16** Gravar 4 vídeos do build-in-public — 👤 · M · M1
 - [ ] **LG-17** Entrar em 15-20 comunidades ajudando — 👤 · M · M3 · *canal mais barato e mais lento — comece cedo*
-- [ ] **LG-01** Linha editorial — formatos de conteúdo — 🤖 · M · M1
+- [>] **LG-01** Linha editorial — formatos de conteúdo — 🤖 · M · M1 · *07/09: lote 01 de carrosséis de Instagram produzido em 07/08 (`docs/marketing/instagram-lote-01/`) — formato existe na prática, falta o documento*
 - [ ] **LG-02** Criar roteiros — 🤖 · M · M1 · ↳ LG-01
 - [ ] **LG-03** Postar — 👤 · P · M1 · recorrente
 - [ ] **LG-07** Abordar 10 influencers — 👤 · M · M3 · ↳ LG-15
@@ -120,12 +120,14 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 - [ ] **CD-09** Fechar os 3 gates (mídia · prompt da Carol · `agente_pausado`) — 🤝 · M · M3
 - [ ] **CD-02** Agente de IA de atendimento — 🤖 · G · M3 · ↳ CD-09
 - [ ] **CD-04** Módulo financeiro — 🤖 · G · M3 · *2ª da fila · Proposta C aprovada*
-- [ ] **CD-03** Sistema de IA do closer — 🤖 · G · M3 · *3ª da fila · o mais sofisticado, o menos urgente*
+- [>] **CD-03** Sistema de IA do closer — 🤖 · G · M3 · *07/09: **saiu da fila e foi construído** (05-13/08) — cérebro `sales_knowledge`, rubrica ancorada, framework CLOSER/SPIN/DEF, histórico por closer, 10/10 calls analisadas. Falta `stats_closer()` e ligar o plugin do Meet*
 
 ### Trilha 3 — Lançamento
 
-- [ ] **CD-05** Escrever copy criativo do lançamento — 🤖 · M · M2 · *precisa da data*
-- [ ] **CD-06** Criar página do lançamento — 🤖 · M · M2 · ↳ CD-05
+- [x] **CD-12** Nomear o evento — 👤 · P · M5 · *02/09: **Desafio Ótica +100K**, 22-24/09, 3 dias*
+
+- [x] **CD-05** Escrever copy criativo do lançamento — 🤖 · M · M2 · *07/09: data fechada (22-24/09) e **13 criativos prontos** sem variável aberta + Ad Grid 3 avatares × 6 hooks + plano de mídia (R$ 50/dia, 4 ad sets)*
+- [>] **CD-06** Criar página do lançamento — 🤖 · M · M2 · ↳ CD-05 · *07/09: **página construída** (5 blocos do CRO, copy, clique instrumentado, variante B em teste). Bloqueios 1 (link VIP) e 3 (Pixel) resolvidos hoje. **Falta: teste em mobile real + publicar + BLOQUEIO 2 (Cindy autorizar as 3 provas nomeadas)***
 
 ---
 
@@ -134,7 +136,7 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 ### Trilha 1 — Base *(destrava a produção)*
 
 - [x] **MP-04** Refinar posicionamento — 👤 · M · M5 · *13/08: conflito 25/07 (nichar) × 13/07 (horizontal) resolvido — marca horizontal, vertical vive no registro OBRA. Ver `docs/ecossistema/linha-editorial-e-calendario.md` §01*
-- [ ] **MP-05** Criar o Projeto do carrossel no Claude — 👤 · **P (15 min)** · M1 · *prompt e tool prontos, parados esperando só isso* · ⚠️ **bloqueia o bloco de produção de MP-02/MP-03**
+- [ ] **MP-05** Criar o Projeto do carrossel no Claude — 👤 · **P (15 min)** · M1 · *prompt e tool prontos, parados esperando só isso* · ⚠️ **bloqueia MP-02/MP-03 — parado há 25 dias (desde 13/08). O relógio da revisão binária de 11/11 já consome 28% do prazo sem uma única publicação***
 
 ### Trilha 2 — Produção
 
@@ -183,6 +185,26 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 
 ---
 
+## 🔒 Fechamento 03/08 → 07/09 (5 semanas)
+
+Ritual ficou 5 semanas sem `fechar`. Este é o registro factual, sem suavizar.
+
+**O que saiu:** CD-05 (13 criativos + Ad Grid + plano de mídia) · CD-12 (nome do evento) · CD-03 (o Sales Coach inteiro — era o *3º da fila, o menos urgente*) · CD-06 (página construída, falta publicar) · MP-01/MP-04 (linha editorial, 13/08) · LG-15 (waitlist) · ficha da loja e screenshots do Lingrow (12-17/08) · WhisperFlow e pipeline v2 do CRM (fora do backlog).
+
+**O que não saiu, e por quê:**
+
+| Frente | Não saiu | Causa |
+|---|---|---|
+| 🔵 Lingrow | LG-09, LG-10, LG-11, LG-12, LG-13, LG-14 — **o caminho crítico inteiro** | A frente parou em 17/08. Nenhuma decisão nem burocracia avançou em 5 semanas |
+| 🟡 Marca pessoal | MP-05 (15 min), MP-02, MP-03 — **nada foi publicado** | A base fechou em 13/08 e a produção nunca começou |
+| 🟣 Viziom · 🔴 Oferta | tudo, inclusive OF-08 (Letícia) e OF-01 (o 1º dominó) | Zero atividade em 35 dias |
+
+**O teto de 5 👤 não foi estourado — foi ignorado.** Não houve semana declarada. Uma frente (Cindy) consumiu ~40 dos ~45 commits do período. Isso não é falta de execução: é ausência de seleção. O `fechar` é justamente a metade que impede isso, e ela não rodou.
+
+**Itens atravessando 3+ semanas → candidatos a congelar:** `VZ-07` (migração XG, gate de cliente pagante nunca atingido) · `VZ-06` · `LG-06` (escopo indefinido desde sempre) · `OF-08` (Letícia: **69 dias** desde a call de 30/06 — a janela histórica máxima é 13; isto não é mais lead, é decisão de enterrar).
+
+---
+
 ## 📊 Leitura do backlog
 
 | | Itens |
@@ -196,4 +218,6 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 
 **34 dos 56 passam por você.** Com teto de 5 itens 👤 por semana, são **≈7 semanas de calendário** só na sua parte. As 12 atividades novas trouxeram 10 suas e 2 minhas — lançar app é assim: contrato, banco, fiscal e aprovação de loja não terceirizam.
 
-**Os 3 dominós:** `OF-01` destrava 4 · `VZ-02` destrava 2 · `MP-04` destrava 2. Uma hora cada.
+**Os 3 dominós (revisados 07/09):** `MP-04` ✅ caiu em 13/08 · `LG-12` destrava a ficha da loja inteira (10 minutos) · `OF-01` destrava 4 · `VZ-02` destrava 2.
+
+**O gargalo que o período provou:** o que é 🤖 anda sozinho e rápido; o que é 👤 e externo (contrato Apple, migration, decisão de escopo) não anda nunca sem estar declarado numa semana. Lançar app na loja é quase tudo 👤 — por isso o Lingrow ficou 5 semanas em zero enquanto a Cindy avançou 40 commits.
