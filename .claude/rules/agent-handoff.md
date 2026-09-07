@@ -13,3 +13,13 @@ Ao trocar de agente (`@agent` ou `/AIOX:agents:*` com outro agente ativo), compa
 
 `.aiox/handoffs/handoff-{from}-to-{to}-{timestamp}.yaml` (runtime, gitignored).
 Template completo: `.aiox-core/development/templates/agent-handoff-tmpl.yaml`
+
+## Handoff entre ferramentas e Cloud
+
+O storage acima atende trocas de agente na mesma máquina. Como `.aiox/handoffs/`
+é ignorado pelo Git, ele NÃO serve para Codex ↔ Claude Cloud.
+
+Para troca de ferramenta, atualizar também `docs/sessions/CURRENT.md`, que é
+versionado. Ele deve guardar apenas o contexto operacional necessário para
+retomar: objetivo, estado, decisões, arquivos/commits, validação, bloqueios e
+próxima ação. Não copiar transcript integral nem qualquer segredo.
