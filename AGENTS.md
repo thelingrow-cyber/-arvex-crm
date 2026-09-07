@@ -42,6 +42,14 @@ Este arquivo define as instrucoes do projeto para o Codex CLI.
 <!-- AIOX-MANAGED-END: commands -->
 
 <!-- AIOX-MANAGED-START: shortcuts -->
+## Contexto compartilhado Codex ↔ Claude
+
+- Ao iniciar trabalho neste repositório, leia `docs/sessions/README.md` e `docs/sessions/CURRENT.md` antes de agir.
+- Ao concluir um bloco relevante, antes de compactar contexto ou ao trocar de ferramenta, atualize `docs/sessions/CURRENT.md` com: objetivo, estado atual, decisões, arquivos/commits, validação, bloqueios e próximo passo.
+- Trate `.aiox/handoffs/` como contexto local e efêmero entre agentes. Ele é ignorado pelo Git e não chega ao Cloud.
+- O arquivo `docs/sessions/CURRENT.md` é o handoff versionado entre Codex e Claude. Não inclua segredos, tokens, dados pessoais ou transcrições integrais de conversa.
+- Não afirme que o Cloud recebeu uma mudança local até o commit correspondente existir no remoto.
+
 ## Agent Shortcuts
 
 Preferencia de ativacao no Codex CLI:

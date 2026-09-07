@@ -66,6 +66,14 @@ Toggle: `core-config.yaml → boundary.frameworkProtection` (default: true). Aut
 - Dev: `npm run dev` · `npm test` · `npm run lint` · `npm run build`
 - Debug: `export AIOX_DEBUG=true` · logs em `.aiox/logs/agent.log` · trace: `npm run trace -- workflow-name`
 
+## Contexto compartilhado Codex ↔ Claude
+
+- No começo da sessão, leia `docs/sessions/README.md` e `docs/sessions/CURRENT.md` antes de agir.
+- Antes de encerrar, compactar contexto ou trocar para Codex, atualize esse arquivo com objetivo, estado atual, decisões, arquivos/commits, validação, bloqueios e próximo passo.
+- `.aiox/handoffs/` é local e efêmero; como está no `.gitignore`, não atravessa para o Cloud.
+- `docs/sessions/CURRENT.md` é o ponto de retomada versionado entre ferramentas. Nunca grave nele segredos, tokens, dados pessoais ou a conversa completa.
+- Mudança local só está disponível ao Claude Cloud depois que o commit correspondente chega ao remoto.
+
 ## Diretrizes Claude Code
 
 - Tools nativas sempre (Grep/Glob/Read/Write/Edit — nunca grep/find/cat via bash); batch de tool calls independentes em paralelo; preferir editar arquivo existente a criar novo.
