@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tools/handoff/check-current.cjs",
+    "handoff:check": "node tools/handoff/check-current.cjs"
   },
   "keywords": [],
   "author": "",
