@@ -21,6 +21,11 @@ APP_NAME = "WhisperFlow"
 DEFAULT_CONFIG = {
     "hotkey": "ctrl+windows",
     "model": "base",
+    # "local" (faster-whisper nesta maquina) ou "groq" (whisper-large-v3
+    # hospedado: mais preciso e, nesta CPU, mais rapido -- mas o audio sai
+    # da maquina e exige GROQ_API_KEY no ambiente). Fallback local sempre.
+    "engine": "local",
+    "remote_model": "whisper-large-v3-turbo",
     "language": "pt",
     "max_seconds": 120,
     "paste_mode": "clipboard",

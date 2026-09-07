@@ -1,6 +1,8 @@
 {
   "hotkey": "ctrl+windows",
   "model": "base",
+  "engine": "local",
+  "remote_model": "whisper-large-v3-turbo",
   "language": "pt",
   "max_seconds": 120,
   "paste_mode": "clipboard",
