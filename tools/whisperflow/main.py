@@ -43,6 +43,7 @@ import paster
 import polish as polish_mod
 import recorder as recorder_mod
 from overlay import Overlay
+from overlay_layered import Overlay as LayeredOverlay
 from refiner import RefineWorker
 from remote_transcriber import RemoteTranscriber
 from transcriber import Transcriber
@@ -430,11 +431,23 @@ def main() -> int:
     tracker = HeldKeysTracker()
     tracker.start()
 
-    overlay: Optional[Overlay] = None
+    overlay = None
     if config.get("overlay", True):
+        # Preferred: the layered window (real per-pixel alpha, so the halo
+        # fades into the desktop instead of ending in a dark ring). Falls
+        # back to the Tk color-key version if anything about the Win32 path
+        # fails -- older Windows, no compositor, unexpected ctypes error.
         try:
-            overlay = Overlay(config)
+            overlay = LayeredOverlay(config)
             overlay.start()
+            logger.info("overlay em camadas ativo (alpha real por pixel)")
+        except Exception as exc:
+            logger.warning("overlay em camadas indisponivel (%s) -- usando o overlay Tk", exc)
+            overlay = None
+        try:
+            if overlay is None:
+                overlay = Overlay(config)
+                overlay.start()
         except Exception:
             # Cosmetic feature -- a Tk/display failure must not take the
             # daemon down (AD-10 spirit), just run without the visual.
