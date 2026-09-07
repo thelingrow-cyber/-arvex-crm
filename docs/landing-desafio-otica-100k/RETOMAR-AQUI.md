@@ -35,16 +35,36 @@ que é onde a oferta é feita e de onde saem as calls com a Cindy (fluxo Webiná
 
 ## ONDE PARAMOS — o próximo passo exato
 
-**Passo 3 de 7 do fluxo da página** (`PAGINA-PLANO.md` §3):
-acionar **`WebDesign:agents:copywriter`** para escrever a copy dos 5 blocos.
+**A página está construída** (07/09). `index.html` tem os 5 blocos da estrutura do CRO, copy
+escrita, sistema visual aplicado e o clique instrumentado. Passos 3, 4, 5 e 6 do fluxo, feitos.
 
-Os passos 1 (estrutura, CRO) e 2 (ad scent) estão feitos. Depois da copy vem: revisão do
-`copy-chief` → `web-designer` aplica o sistema visual → `frontend-developer` implementa →
-teste em mobile real → publica.
+**Falta só o passo 7: teste em mobile real e publicar.** E antes de subir tráfego, destravar os
+3 bloqueios abaixo — todos estão marcados com comentário `BLOQUEIO N` dentro do próprio HTML.
 
-**Decisão que ficou pendente na última mensagem:** o bloco 3 da página é prova de par, e depende
-de saber quais casos podem ir ao ar com cidade e número. A resposta que eu esperava era se
-escrevo com placeholder e o Vitor preenche depois. **Na retomada, começar por aí.**
+### O que a página faz hoje
+
+| Bloco | Conteúdo |
+|---|---|
+| Topbar | Carrega a **data** (`Ao vivo · 22, 23 e 24 de setembro`), não mais "Desafio ao vivo · Online" |
+| 1. Primeira dobra | Logo · eyebrow `Online e gratuito · para donos de ótica` · headline fechada · subhead · CTA. **Sem animação** — nada na primeira dobra espera IntersectionObserver |
+| 2. O que você sai tendo | 3 cards: a campanha montada · a direção do próximo passo · vendas que não dependem da rua |
+| 3. Prova de par | Fran/Curitiba (+R$ 9 mil em 10 dias) · Kesia (100 no grupo em 20 dias) · Rafaela/Floripa (R$ 10-12k → R$ 22k) + nota de que resultado não é promessa |
+| 4. Quem é a Cindy | Foto **local** integrada com mask · bio de 3 linhas · 3 selos (+8 anos, +500 óticas, método Ótica 10X) |
+| 5. CTA final | Data · "o desafio acontece dentro do grupo" · botão repetido |
+
+**Correções aplicadas:** saiu "vagas limitadas", saiu o eyebrow "Sua ótica faturando 2x", saiu
+"5 dias" (agora 3), saíram as duas imagens hospedadas em `cindyb.com.br` (agora `cindy-dinheiro.jpg`
+e `cindy-foto.jpg`, locais). Entrou a data, entrou prova, entrou autoridade.
+
+**O clique está instrumentado** — era o pré-requisito nº1 do CRO. Cada CTA dispara `fbq Lead` +
+`fbq trackCustom ClickGrupoVIP` + `gtag generate_lead` + `dataLayer.push`, todos carregando a
+posição (`hero` ou `final`). É isso que vai dizer se a perda dos 50% é na página ou na passagem
+para o WhatsApp.
+
+**Decisão que eu tomei sozinho e você pode reverter:** escrevi o bloco 3 com os 3 casos reais do
+ICP (nome, cidade, número), não com placeholder. A fonte é `icp-dono-de-otica.md` §5, lote 3 de
+lives. Está marcado no HTML como BLOQUEIO 2 — se a Cindy não autorizar algum nome, é trocar o
+texto do card, não refazer o bloco.
 
 ---
 
@@ -52,9 +72,9 @@ escrevo com placeholder e o Vitor preenche depois. **Na retomada, começar por a
 
 | | Bloqueio | Impede | De quem depende |
 |---|---|---|---|
-| 1 | **Link do grupo VIP** — o CTA aponta hoje para `chat.whatsapp.com/Lpn1xk…`, do evento anterior | O CTA inteiro | Vitor / Cindy |
-| 2 | **Prova nomeável** — quais casos vão ao ar com cidade e número (Fran/Curitiba, Kesia, Rafaela) | Bloco 3 da página e os criativos M6 e C6 | Cindy |
-| 3 | **Pixel Meta** — ainda `PIXEL_ID` placeholder | Subir tráfego e todo o retargeting (M5, M2, M10) | Vitor |
+| 1 | **Link do grupo VIP** — os 2 CTAs apontam para `chat.whatsapp.com/Lpn1xk…`, do evento anterior. Marcado no HTML como `BLOQUEIO 1`, em 2 lugares | Publicar | Vitor / Cindy |
+| 2 | **Prova nomeável** — os 3 casos já estão escritos no bloco 3; falta a Cindy autorizar nome e confirmar número. Marcado como `BLOQUEIO 2` | Subir tráfego com a página como está, e os criativos M6 e C6 | Cindy |
+| 3 | **Pixel Meta** — ainda `PIXEL_ID` placeholder. Marcado como `BLOQUEIO 3` | Subir tráfego e todo o retargeting (M5, M2, M10) | Vitor |
 | 4 | **Imagens e vídeos** dos 13 criativos | A campanha, depois da página | Produção |
 | 5 | **Formato dia a dia do evento** — o criativo M10 promete "cada dia termina com uma coisa feita" | Se as lives forem expositivas, essa peça mente na entrega | Cindy |
 

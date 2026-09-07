@@ -1,7 +1,8 @@
 # Plano — Página de captura do Desafio Ótica +100K (CD-06)
 
-> **Status:** estrutura fechada pelo CRO em 04/09. Pronto para copy e build.
-> Falta antes de subir tráfego: link do grupo VIP, prova nomeável e Pixel.
+> **Status:** **construída em 07/09** — os 5 blocos estão no ar em `index.html`, com copy, sistema
+> visual e clique instrumentado. Falta teste em mobile real e publicação.
+> Falta antes de subir tráfego: link do grupo VIP, autorização da prova nomeável e Pixel.
 > **Story/atividade:** CD-06 · ↳ CD-05 (criativos, prontos) · ↳ CD-12 (nome, fechado)
 
 ---
