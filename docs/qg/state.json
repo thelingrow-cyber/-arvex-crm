@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-27T19:09:25-03:00",
+  "generated_at": "2026-08-10T13:14:08-03:00",
   "branch": "master",
-  "head": "cef6cfe",
+  "head": "eecb5e2",
   "squads": [
     {
       "id": "branding",
@@ -991,6 +991,14 @@
       "has_command": true
     },
     {
+      "id": "raul-seixas",
+      "files": 4,
+      "complete": true,
+      "depth": "primária",
+      "source_docs": 11,
+      "has_command": true
+    },
+    {
       "id": "simon-sinek",
       "files": 4,
       "complete": true,
@@ -1023,64 +1031,64 @@
   ],
   "activity": [
     {
-      "sha": "cef6cfe",
-      "date": "2026-07-27",
-      "subject": "fix(crm): sync_out lida com endereçamento @lid do WhatsApp [VIZIOM]"
+      "sha": "eecb5e2",
+      "date": "2026-08-08",
+      "subject": "feat(coach): rubrica ancorada + pior dimensao + mensagem pronta pro lead (analyze-meeting)"
     },
     {
-      "sha": "81b79e9",
-      "date": "2026-07-27",
-      "subject": "feat(crm): sync de mensagens enviadas pelo celular (fromMe) — dry-run [VIZIOM]"
+      "sha": "c5ef936",
+      "date": "2026-08-07",
+      "subject": "fix(coach): restaura curadoria do cerebro (migration 014) apos alarme falso do medidor"
     },
     {
-      "sha": "62f7c58",
-      "date": "2026-07-27",
-      "subject": "fix(security): revoga grants de anon em agente_sdr_historico e sdr_midias [A-1]"
+      "sha": "3ea9006",
+      "date": "2026-08-07",
+      "subject": "docs(coach): README e APLICADAS refletindo desfecho real (013) e normalizacao (012)"
     },
     {
-      "sha": "b41f2d8",
-      "date": "2026-07-27",
-      "subject": "feat(crm): atendimento auto-esconde/mostra conversas via polling de conexão [VIZIOM]"
+      "sha": "445d9ab",
+      "date": "2026-08-07",
+      "subject": "refactor(coach): faxina de organizacao — pasta unica, migrations numeradas e mapa vivo"
     },
     {
-      "sha": "fae8964",
-      "date": "2026-07-26",
-      "subject": "docs(aiox): cascata de agentes para aprimoramento da estrutura de squads"
+      "sha": "60f1cee",
+      "date": "2026-08-07",
+      "subject": "docs(coach): auditoria de ponta a ponta do agente — notas por camada, comparativo Gong/Attention/Fireflies e padrao AIOX, plano P0-P2"
     },
     {
-      "sha": "2733151",
-      "date": "2026-07-26",
-      "subject": "feat(crm): atendimento pronto p/ equipe — não-lida, busca, lead on-demand [VIZIOM]"
+      "sha": "4fb50b0",
+      "date": "2026-08-07",
+      "subject": "feat(coach): historico do closer — deixa de analisar call avulsa e passa a acompanhar a pessoa"
     },
     {
-      "sha": "a70c104",
-      "date": "2026-07-26",
-      "subject": "fix(squads): conecta os clones órfãos aos agentes que deveriam consultá-los"
+      "sha": "863b870",
+      "date": "2026-08-07",
+      "subject": "feat(coach): mecanica de tratamento de objecao (loop ACQ) adaptada ao nosso ICP"
     },
     {
-      "sha": "cae4569",
-      "date": "2026-07-26",
-      "subject": "docs(clones): plano de upgrade #1 — Eugene Schwartz, mapa de fontes primárias"
+      "sha": "79f3100",
+      "date": "2026-08-07",
+      "subject": "feat(coach): framework CLOSER (Hormozi) no cerebro + teto final de 28k"
     },
     {
-      "sha": "ec59ae2",
-      "date": "2026-07-25",
-      "subject": "docs(roundtable): primeira mesa real — estratégia de conteúdo para vender Implementação de IA"
+      "sha": "be2aeda",
+      "date": "2026-08-07",
+      "subject": "feat(coach): SPIN + DEF entram no cerebro; 4 blocos consolidados para caber"
     },
     {
-      "sha": "52ebdc1",
-      "date": "2026-07-25",
-      "subject": "fix(aiox): roundtable — formato de task, registro no master e honestidade do modo solo"
+      "sha": "01a332c",
+      "date": "2026-08-06",
+      "subject": "feat(coach): metodo DEF destilado (revisao externa Vendas Pro x closer do Ladeira)"
     },
     {
-      "sha": "66f4e8c",
-      "date": "2026-07-25",
-      "subject": "feat(aiox): roundtable — mecanismo de deliberação multi-clone (Onda 3, P0)"
+      "sha": "f6e47c5",
+      "date": "2026-08-06",
+      "subject": "feat(coach): roteiro de call ARVEX v0 — esqueleto derivado das 6 calls reais"
     },
     {
-      "sha": "dd3de1b",
-      "date": "2026-07-25",
-      "subject": "feat(aiox): fundação da startup team — 7 squads novos + 8 clones + QA gate"
+      "sha": "e0aea26",
+      "date": "2026-08-05",
+      "subject": "feat(coach): transcricao da call Aline Coelho (fonte do caso-02) + adendo"
     }
   ],
   "state": {
@@ -1091,9 +1099,11 @@
   "totals": {
     "squads": 8,
     "agents": 35,
-    "clones": 10,
+    "clones": 11,
     "links": 15,
-    "orphan_clones": [],
+    "orphan_clones": [
+      "raul-seixas"
+    ],
     "consultive_clones": 8,
     "agents_with_sources": 35,
     "agents_without_clone": 26,

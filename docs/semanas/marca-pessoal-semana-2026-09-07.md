@@ -2,8 +2,7 @@
 
 **Owner:** Vitor · **Papel na semana:** 🎯 **caminho crítico** — revisto em 07/09
 **Por que mudou:** a saída da Cindy no fim de setembro corta a única fonte de caixa. Em 20 dias é preciso ter uma oferta definida e um canal de lead, ou outubro abre com R$ 0. Ver `docs/gestao/METAS-90-DIAS.md`
-**Estado:** base fechada em 13/08 (categoria, verbo, grade, banco de 28 pautas). **Zero publicações desde então.**
-**Semana anterior:** `marca-pessoal-semana-2026-08-03.md` — nada saiu.
+**Estado:** base pronta — categoria, verbo, banco de 28 pautas. **Meta do trimestre: 1.000 vídeos, 11/dia.**
 
 > Seleção do `docs/gestao/BACKLOG.md`. Nada aqui é item novo.
 
@@ -22,8 +21,8 @@ Está tudo pronto e parado esperando só isto:
 | Knowledge (4 arquivos) | `docs/carrossel-marca-pessoal/knowledge/` |
 | Tool de PNG 1080×1350 | `index.html` |
 
-**Parado há 25 dias.** É o item de menor esforço e maior destravamento do backlog inteiro — bloqueia
-MP-02 (roteiros) e MP-03 (gravar), ou seja, a frente toda.
+É o item de menor esforço e maior destravamento do backlog — abre MP-02 (roteiros) e MP-03 (gravar),
+que é a produção inteira.
 
 - [ ] Criar o Projeto, colar as instruções, subir o Knowledge
 
@@ -55,29 +54,27 @@ canal que funcione antes disso.**
 
 ---
 
-## ⏳ O relógio que está correndo
+## 📐 O que a cota de 11/dia exige
 
-A linha editorial fechou em 13/08 com um guarda-corpo assinado (§07): **revisão binária em 11/11/2026**.
+1.000 vídeos em 90 dias só existe em **regime de lote**: uma sessão longa produzindo 30-40 peças,
+não gravação diária avulsa. O que precisa estar de pé para o lote rodar:
 
-> *"o conteúdo horizontal gerou alguma conversa com comprador real?"* — **sim** mantém e aumenta; **não** obriga a nichar o registro OBRA numa vertical.
+| Peça | Estado |
+|---|---|
+| Banco de pautas (28) | ✅ pronto |
+| Roteiro com hook por pauta | 🤖 eu produzo (MP-02) |
+| Projeto do carrossel | 👤 MP-05, 15 min |
+| Bloco de gravação em lote | 👤 a agendar — é o gargalo real da meta |
 
-**A meta agora é 1.000 vídeos em 90 dias — 11,1 por dia.** Começar em 01/10 sobe a cota para
-**15,2/dia**: cada semana parada acrescenta ~1 vídeo/dia à cota, para sempre. Este é o argumento
-aritmético do MP-05 de 15 minutos.
-
-**Já se passaram 25 dos 90 dias — 28% do prazo — com zero publicações.** Se seguir assim, 11/11 chega
-sem evidência nenhuma, e a decisão "marca horizontal" cai por não ter sido testada, não por estar
-errada. Isso é literalmente o *Modo 1 de Munger* que o próprio documento se propôs a evitar.
-
-**O que se mede** (§07): DMs iniciadas por perfil de ICP · conversas que viraram call · semanas com a
-grade cumprida. **Não** se mede seguidores, curtidas ou alcance.
+**O que se mede:** DMs iniciadas por perfil de ICP · conversas que viraram call · vídeos publicados.
+**Não** se mede curtidas nem alcance.
 
 ---
 
 ## 🧊 Fora desta semana
 
-**MP-03 (gravar vídeos)** — é 👤 e M, e o teto desta semana está tomado pelo Lingrow. Entra na semana
-seguinte, com MP-05 e MP-02 já feitos: aí é só gravar, não é montar processo.
+**MP-03 (gravar em lote)** — entra assim que MP-05 e MP-02 estiverem prontos: aí a sessão é só gravar,
+não montar processo. É o item que decide se a cota de 11/dia é real.
 
 ---
 

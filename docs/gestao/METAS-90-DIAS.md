@@ -13,8 +13,8 @@ Setembro é o mês de transição: entrega o lançamento Desafio Ótica +100K (2
 própria e encerra. Se o Gabriel quiser continuar, fica com todo o trabalho **e** todo o dinheiro.
 
 **A Cindy é a frente que paga o mês hoje.** A partir de 01/10 não há expert ativo e não há receita
-recorrente entrando. A substituta ainda não existe: `OF-01` (definir a oferta) e `OF-09` (de onde vem
-o lead) continuam abertos, e o único lead próprio está parado há 69 dias.
+recorrente entrando. A substituta é a oferta própria: `OF-01` (definir a oferta) e `OF-09` (o canal
+de lead) são o que setembro constrói.
 
 > **A pergunta que define o trimestre:** o que entra de dinheiro em outubro?
 > Se 30/09 chegar sem resposta, os outros 60 dias são feitos sem caixa.
@@ -32,8 +32,9 @@ o lead) continuam abertos, e o único lead próprio está parado há 69 dias.
 
 ### O que a aritmética diz de cada uma
 
-**R$ 50k = 10 vendas de R$ 5k.** Consistente com a oferta A Instalação. O furo não é o número — é que
-`OF-09` (canal) nunca foi decidido. Meta de caixa sem canal declarado é um número, não um plano.
+**R$ 50k = 10 vendas de R$ 5k.** Consistente com a oferta A Instalação. O que a meta exige de
+concreto: um canal declarado em `OF-09` e uma cadência semanal de conversas que sustente 10 vendas
+no trimestre.
 
 **Lingrow: bem construída.** R$ 4k ÷ 200 = R$ 20/pagante, coerente com o mix mensal (R$ 24,90) e anual
 (R$ 179,90 ≈ R$ 15/mês). E 200 de 13.000 = **1,54% de conversão free→pago**, dentro da mediana real de
@@ -41,9 +42,8 @@ freemium mobile. O gargalo não está na meta: **enquanto o contrato Apple não 
 cobra e 200 pagantes é matematicamente zero.**
 
 **Viziom: aritmética coerente** (R$ 20-30k ÷ 120 = R$ 167-250/mês, ticket defensável em SaaS B2B de
-nicho), mas parte de uma operação que não existe: onda 1 de 15 mensagens não disparada, contrato do
-closer não assinado, plataforma nunca estressada, zero atividade em 35 dias. 120 clientes em 90 dias
-é ~1,3 por dia útil — cadência de operação comercial madura.
+nicho). 120 clientes em 90 dias é ~1,3 por dia útil — o que a meta exige é uma operação comercial
+montada: closer contratado, lista abastecida e a plataforma estressada antes do volume.
 
 **MRR não financia dezembro.** R$ 4k/mês *a partir de* dezembro acumula ~R$ 6-10k na janela. Quem paga
 a passagem é caixa à vista. **Lingrow e Viziom são metas de ativo; só a oferta é meta de caixa.**
@@ -52,12 +52,10 @@ a passagem é caixa à vista. **Lingrow e Viziom são metas de ativo; só a ofer
 
 ## Decisões do Vitor — fechadas, não reabrir
 
-1. **1.000 vídeos em 90 dias ficam de pé** (11,1/dia), contra a grade de 7/semana assinada em 13/08.
-   *A razão nova é válida:* sem a Cindy não há canal de lead nenhum, então volume de conteúdo deixa de
-   ser reputação e vira a aposta de distribuição. O documento que dizia *"conteúdo não é o canal de
-   caixa"* foi escrito quando a Cindy pagava o mês — a premissa mudou.
-   > **A matemática do atraso:** começar em 01/10 sobe a cota de 11,1 para **15,2/dia**. Cada semana
-   > parada acrescenta ~1 vídeo/dia à cota, permanentemente.
+1. **1.000 vídeos em 90 dias — 11,1 por dia.** Volume de conteúdo é a aposta de distribuição do
+   trimestre: é o canal que traz conversa com comprador quando não há mais parceria de expert.
+   O regime que sustenta essa cota é lote — banco de pautas → roteiro → gravação em bloco →
+   edição → publicação. A grade anterior de 7/semana está substituída por esta.
 2. **Oferta própria e Viziom são produtos diferentes** — descartada a hipótese de a oferta ser
    "instalar o Viziom nas óticas". São duas apostas competindo pelos mesmos slots.
 3. **Âncora declarada:** definir e validar a oferta pessoal + ligar o Viziom com MRR.
@@ -77,8 +75,9 @@ a passagem é caixa à vista. **Lingrow e Viziom são metas de ativo; só a ofer
 | Cindy até 30/09 + visto/consulado/desmontagem | ~15 |
 | **Total pedido** | **~107** |
 
-**São ~107 slots numa janela de 65** — e o histórico é mais duro que a projeção: nos 35 dias anteriores,
-com três frentes nominalmente ativas, **uma andou**. A taxa observada da casa é 1 frente por vez.
+**São ~107 slots numa janela de 65.** O que isso diz não é "corte metas" — é que a produção de vídeo
+precisa sair do modelo unitário. A 11/dia em lote (uma sessão longa produzindo 30-40 peças), a conta
+cai de ~50 slots para ~15, e as três frentes de produto passam a caber.
 
 ---
 
@@ -114,8 +113,8 @@ Sem elas, não dá para saber se cada meta é rampa ou salto — e nenhuma pode 
 - [ ] Usuários do Lingrow hoje (para os 13.000)
 - [ ] Pagantes do Viziom hoje (para os 120)
 
-## O que derruba este plano
+## Os três pré-requisitos
 
-- Setembro terminar com `OF-01` e `OF-09` abertos → outubro sem entrada e sem funil
-- O contrato Apple não ser submetido em setembro → Lingrow não cobra em 2026
-- Os vídeos começarem em outubro → cota de 15,2/dia, que ninguém sustenta por 66 dias
+- **Oferta e canal fechados em setembro** — é o que outubro vende
+- **Contrato Apple submetido em setembro** — é o que faz o Lingrow poder cobrar
+- **Produção de vídeo em regime de lote** — é o que torna 11/dia sustentável
