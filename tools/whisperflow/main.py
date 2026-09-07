@@ -122,7 +122,8 @@ def _save_debug_wav(audio, config: dict, logger) -> None:
 
 
 def _transcribe_and_paste(
-    audio, transcriber: Transcriber, config: dict, logger, refiner: Optional[RefineWorker] = None
+    audio, transcriber: Transcriber, config: dict, logger,
+    refiner: Optional[RefineWorker] = None, overlay: Optional[Overlay] = None,
 ) -> str:
     """S2+S3: soltar tecla -> transcrever -> log do texto + latencia medida
     -> colar no cursor (AD-5). Texto vazio/silencio (AD-7) nao cola nada.
@@ -133,6 +134,8 @@ def _transcribe_and_paste(
     depois -- nunca recola, nunca notifica (decisao fechada)."""
     if len(audio) == 0:
         logger.info("buffer vazio, nada para transcrever")
+        if overlay is not None:
+            overlay.hide()
         return ""
     try:
         t0 = time.time()
@@ -146,9 +149,13 @@ def _transcribe_and_paste(
         # AD-10: a transcription failure must not take the daemon down.
         logger.exception("erro ao transcrever")
         feedback.beep_error(config.get("beeps", True))
+        if overlay is not None:
+            overlay.hide()
         return ""
 
     if not raw_text:
+        if overlay is not None:
+            overlay.hide()
         return ""  # AD-7: silence/no speech -> neutral no-op, nothing pasted
 
     text = raw_text
@@ -182,6 +189,9 @@ def _transcribe_and_paste(
         # AD-10: a paste failure must not take the daemon down either.
         logger.exception("erro ao colar no cursor")
         feedback.beep_error(config.get("beeps", True))
+
+    if overlay is not None:
+        overlay.done()  # bloom + fade: o texto saiu
 
     return text
 
@@ -247,11 +257,14 @@ def run_hotkey_loop(
     def finish(reason: str, beep) -> None:
         audio = rec.stop()
         beep(beeps_enabled)
+        # Nao esconde aqui: o overlay passa a "pensando" e so fecha (bloom)
+        # quando o texto e colado -- a transcricao leva ~1s e sumir agora
+        # deixaria o usuario sem sinal de que a ferramenta ainda trabalha.
         if overlay is not None:
-            overlay.hide()
+            overlay.thinking()
         logger.info("gravacao finalizada (%s, %d amostras)", reason, len(audio))
         _save_debug_wav(audio, config, logger)
-        _transcribe_and_paste(audio, transcriber, config, logger, refiner)
+        _transcribe_and_paste(audio, transcriber, config, logger, refiner, overlay)
 
     if mode == "toggle":
         how = "apertar para iniciar, apertar de novo para parar"
