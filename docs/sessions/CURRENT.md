@@ -43,6 +43,7 @@ mantendo baixa fricção, boa transcrição e feedback visual profissional.
 
 ## Commits relevantes
 
+- `6ff131a` — cria a ponte versionada de contexto Codex ↔ Claude.
 - `f1ccd63` — overlay respeita DPI e ganha posição/tamanho configuráveis.
 - `f6ada23` — motor Groq large-v3 com fallback local e polimento corrigido.
 - `7a6f52c` — modo toggle e parada automática por silêncio.
@@ -67,7 +68,8 @@ mantendo baixa fricção, boa transcrição e feedback visual profissional.
 
 ## Próximo passo recomendado
 
-Implementar aviso de saúde para falhas consecutivas do motor remoto/polimento.
+Publicar o commit do handoff pelo fluxo `@devops`, após os gates. Em seguida,
+implementar aviso de saúde para falhas consecutivas do motor remoto/polimento.
 Depois, adicionar polimento contextual conforme o aplicativo em foco (IA,
 WhatsApp, e-mail ou editor), com comportamento configurável e fallback neutro.
 

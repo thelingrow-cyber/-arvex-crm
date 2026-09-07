@@ -19,6 +19,8 @@ separando corretamente conversa, contexto local e estado publicado no Git.
 - [x] O protocolo local `.aiox/handoffs/` continua preservado e sua limitação
   para Cloud fica documentada.
 - [x] O handoff não contém segredos nem transcript integral.
+- [x] Existe um check CLI sem dependências externas para validar estrutura,
+  referências e padrões de segredo do handoff.
 - [x] Mudanças validadas e preparadas em conjunto sem incluir alterações não relacionadas.
 - [ ] Commit publicado por `@devops` para ficar acessível ao Claude Cloud.
 
@@ -30,6 +32,8 @@ separando corretamente conversa, contexto local e estado publicado no Git.
 - [x] `docs/sessions/CURRENT.md`
 - [x] `docs/sessions/README.md`
 - [x] `docs/stories/cross-assistant-handoff.story.md`
+- [x] `tools/handoff/check-current.cjs`
+- [x] `package.json` — scripts `test` e `handoff:check` (somente este hunk).
 
 ## Validação planejada
 
@@ -43,4 +47,6 @@ separando corretamente conversa, contexto local e estado publicado no Git.
 - Seções obrigatórias do `CURRENT.md` presentes.
 - Nenhum padrão de segredo encontrado nos arquivos da entrega.
 - `git diff --check` passou.
+- `npm test` executa o check real do handoff, substituindo o placeholder que
+  sempre falhava.
 - Alterações preexistentes fora da story não foram incluídas.
