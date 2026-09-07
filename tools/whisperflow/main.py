@@ -194,83 +194,135 @@ def run_hotkey_loop(
     overlay: Optional[Overlay] = None,
     refiner: Optional[RefineWorker] = None,
 ) -> None:
-    """Push-to-talk main loop (AD-7):
-    - hold >= 300ms: beep start -> record -> (release) beep stop -> transcribe -> log
-    - tap  < 300ms: discarded silently, no beep
-    - held >= max_seconds: auto-stops itself, beep double (stuck-key protection) -> transcribe -> log
-    - mic unavailable at press time: beep triple, daemon keeps listening
+    """Main loop, in one of two activation modes (config `activation_mode`).
 
-    When `overlay` is set, it's shown (with a live waveform driven by the
-    recorder's RMS level) for the duration of the hold and hidden as soon as
-    recording stops, for any reason (normal release, cap, tap-discard).
+    "hold" (default, AD-7 as originally shipped) -- push-to-talk:
+    - hold >= 300ms: beep start -> record -> (release) beep stop -> transcribe
+    - tap  < 300ms: discarded silently, no beep
+    - held >= max_seconds: auto-stops (stuck-key protection) -> transcribe
+
+    "toggle" -- hands-off: one tap starts, another tap stops, so a long
+    dictation doesn't mean holding two keys down the whole time. Combined
+    with `auto_stop_silence_ms`, the second tap becomes optional: once
+    you've actually spoken, N ms of silence ends the take by itself. The
+    silence timer only ARMS after speech is detected, so thinking for a
+    few seconds before starting never cuts you off.
+
+    Both modes share: mic failure beeps triple and keeps the daemon alive,
+    the max_seconds cap, and the overlay (shown while recording, hidden the
+    moment recording stops for any reason).
     """
     required = parse_hotkey(config["hotkey"])
     max_seconds = config["max_seconds"]
     beeps_enabled = config["beeps"]
+    mode = str(config.get("activation_mode", "hold")).lower()
+    silence_ms = int(config.get("auto_stop_silence_ms", 0))
+    # RMS above this counts as speech. Normal speech sits around 0.05-0.2,
+    # room tone well under 0.01 (recorder.get_level's own docstring).
+    speech_level = float(config.get("speech_level", 0.015))
 
     rec = recorder_mod.Recorder(max_seconds=max_seconds)
-    held = False
+    recording = False
     press_time: Optional[float] = None
-    capped_already_stopped = False
+    was_down = False
+    speech_seen = False
+    quiet_since: Optional[float] = None
 
-    logger.info("ouvindo hotkey '%s' (segurar para gravar)...", "+".join(sorted(required)))
+    def start_recording() -> bool:
+        nonlocal speech_seen, quiet_since
+        try:
+            rec.start()
+        except recorder_mod.MicUnavailableError as exc:
+            logger.error("microfone indisponivel: %s", exc)
+            feedback.beep_error(beeps_enabled)
+            return False
+        speech_seen = False
+        quiet_since = None
+        feedback.beep_start(beeps_enabled)
+        logger.info("gravacao iniciada")
+        if overlay is not None:
+            overlay.show()
+        return True
+
+    def finish(reason: str, beep) -> None:
+        audio = rec.stop()
+        beep(beeps_enabled)
+        if overlay is not None:
+            overlay.hide()
+        logger.info("gravacao finalizada (%s, %d amostras)", reason, len(audio))
+        _save_debug_wav(audio, config, logger)
+        _transcribe_and_paste(audio, transcriber, config, logger, refiner)
+
+    if mode == "toggle":
+        how = "apertar para iniciar, apertar de novo para parar"
+        if silence_ms > 0:
+            how += f" (ou {silence_ms}ms de silencio)"
+    else:
+        how = "segurar para gravar"
+    logger.info("ouvindo hotkey '%s' (%s)...", "+".join(sorted(required)), how)
 
     while True:
         try:
             down = tracker.combo_down(required)
+            edge_down = down and not was_down
+            edge_up = was_down and not down
+            was_down = down
 
-            if down and not held:
-                held = True
-                press_time = time.time()
-                capped_already_stopped = False
-                try:
-                    rec.start()
-                    feedback.beep_start(beeps_enabled)
-                    logger.info("gravacao iniciada")
-                    if overlay is not None:
-                        overlay.show()
-                except recorder_mod.MicUnavailableError as exc:
-                    logger.error("microfone indisponivel: %s", exc)
-                    feedback.beep_error(beeps_enabled)
-                    held = False  # allow retry on next press attempt
+            if mode == "toggle":
+                if edge_down:
+                    if not recording:
+                        recording = start_recording()
+                        press_time = time.time()
+                    else:
+                        recording = False
+                        finish("toggle", feedback.beep_stop)
 
-            elif down and held and not capped_already_stopped:
-                if overlay is not None:
-                    overlay.set_level(rec.get_level())
-                if rec.is_capped():
-                    audio = rec.stop()
-                    capped_already_stopped = True
-                    feedback.beep_cap(beeps_enabled)
+                elif recording:
+                    level = rec.get_level()
                     if overlay is not None:
-                        overlay.hide()
-                    logger.info(
-                        "gravacao parou sozinha (cap %ss atingido), %d amostras",
-                        max_seconds, len(audio),
-                    )
-                    _save_debug_wav(audio, config, logger)
-                    _transcribe_and_paste(audio, transcriber, config, logger, refiner)
+                        overlay.set_level(level)
 
-            elif not down and held:
-                held = False
-                hold_duration = (time.time() - press_time) if press_time else 0.0
-                if capped_already_stopped:
-                    pass  # already stopped+beeped+hidden when the cap was hit
-                elif hold_duration < TAP_THRESHOLD_SECONDS:
-                    rec.stop()  # discard silently, no beep (AD-7)
+                    if rec.is_capped():
+                        recording = False
+                        finish(f"cap {max_seconds}s atingido", feedback.beep_cap)
+                    elif silence_ms > 0:
+                        # Arm only after real speech, then require an
+                        # uninterrupted stretch of quiet -- any blip of speech
+                        # resets the countdown, so natural pauses mid-sentence
+                        # don't end the take.
+                        if level >= speech_level:
+                            speech_seen = True
+                            quiet_since = None
+                        elif speech_seen:
+                            now = time.time()
+                            if quiet_since is None:
+                                quiet_since = now
+                            elif (now - quiet_since) * 1000 >= silence_ms:
+                                recording = False
+                                finish(f"{silence_ms}ms de silencio", feedback.beep_stop)
+
+            else:  # "hold" -- original push-to-talk
+                if edge_down:
+                    recording = start_recording()
+                    press_time = time.time()
+
+                elif down and recording:
                     if overlay is not None:
-                        overlay.hide()
-                    logger.info("tap descartado (%.3fs < %.1fs)", hold_duration, TAP_THRESHOLD_SECONDS)
-                else:
-                    audio = rec.stop()
-                    feedback.beep_stop(beeps_enabled)
-                    if overlay is not None:
-                        overlay.hide()
-                    logger.info(
-                        "gravacao finalizada (%.2fs seguradas, %d amostras)",
-                        hold_duration, len(audio),
-                    )
-                    _save_debug_wav(audio, config, logger)
-                    _transcribe_and_paste(audio, transcriber, config, logger, refiner)
+                        overlay.set_level(rec.get_level())
+                    if rec.is_capped():
+                        recording = False
+                        finish(f"cap {max_seconds}s atingido", feedback.beep_cap)
+
+                elif edge_up and recording:
+                    recording = False
+                    hold_duration = (time.time() - press_time) if press_time else 0.0
+                    if hold_duration < TAP_THRESHOLD_SECONDS:
+                        rec.stop()  # discard silently, no beep (AD-7)
+                        if overlay is not None:
+                            overlay.hide()
+                        logger.info("tap descartado (%.3fs < %.1fs)", hold_duration, TAP_THRESHOLD_SECONDS)
+                    else:
+                        finish(f"{hold_duration:.2f}s seguradas", feedback.beep_stop)
 
             time.sleep(0.02)
         except Exception:
@@ -279,7 +331,11 @@ def run_hotkey_loop(
             feedback.beep_error(beeps_enabled)
             if overlay is not None:
                 overlay.hide()
-            held = False
+            try:
+                rec.stop()
+            except Exception:
+                pass
+            recording = False
             time.sleep(0.5)
 
 

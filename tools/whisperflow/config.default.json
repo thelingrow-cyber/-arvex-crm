@@ -1,5 +1,8 @@
 {
   "hotkey": "ctrl+windows",
+  "activation_mode": "hold",
+  "auto_stop_silence_ms": 0,
+  "speech_level": 0.015,
   "model": "base",
   "engine": "local",
   "remote_model": "whisper-large-v3-turbo",
