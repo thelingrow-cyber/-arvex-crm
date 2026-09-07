@@ -486,15 +486,17 @@ class Overlay:
         )
         # rn -> (color, alpha). The tail reaching 0 alpha is the whole point:
         # the halo dissolves into the desktop instead of ending at an edge.
+        # The bright heart used to sit inside rn<0.18 -- a pinprick. Widened
+        # so the lit core is the thing you see and the halo frames it.
         stops = [
             (0.00, CORE_LIGHT, 1.00),
-            (0.18, tuple((CORE_LIGHT[i] + hot[i]) / 2 for i in range(3)), 1.00),
-            (0.46, hot, 1.00),
-            (0.72, tuple((hot[i] + GLOW_MID[i]) / 2 for i in range(3)), 0.92),
-            (1.00, GLOW_MID, 0.70),
-            (1.30, tuple((GLOW_MID[i] + GLOW_DEEP[i]) / 2 for i in range(3)), 0.42),
-            (1.62, GLOW_DEEP, 0.16),
-            (2.00, GLOW_DEEP, 0.00),
+            (0.34, tuple((CORE_LIGHT[i] + hot[i]) / 2 for i in range(3)), 1.00),
+            (0.66, hot, 1.00),
+            (0.88, tuple((hot[i] + GLOW_MID[i]) / 2 for i in range(3)), 0.92),
+            (1.10, GLOW_MID, 0.68),
+            (1.40, tuple((GLOW_MID[i] + GLOW_DEEP[i]) / 2 for i in range(3)), 0.40),
+            (1.70, GLOW_DEEP, 0.15),
+            (2.05, GLOW_DEEP, 0.00),
         ]
         # Build the profile ONCE per frame as a 512-entry lookup table, then
         # index it per pixel. Running np.interp over every pixel instead cost
