@@ -1,18 +1,34 @@
-"""overlay.py — floating "listening" indicator: an organic pulsing orb with
-a soft glow halo, reacting live to mic RMS level.
+"""overlay.py — floating voice indicator: a layered, breathing orb that
+reacts live to mic RMS and narrates the whole dictation, not just the
+recording part.
 
-Runs its own Tk root + mainloop on a dedicated thread (Tk is not meant to
-share a thread with the hotkey polling loop). Cross-thread communication is
-one-way (main loop -> overlay) via a thread-safe Queue for show/hide, and a
-lock-guarded float for the live audio level (purely cosmetic, no
-correctness requirement — last-write-wins is fine).
+Three states, driven from the hotkey loop:
 
-No rectangular card: the window background is color-keyed transparent
-(Windows-only Tk feature, `-transparentcolor`) so only the orb/glow blobs
-are visible, floating directly over the desktop. Borderless, always-on-top,
-bottom-center of the primary screen. Never calls focus/deiconify tricks
-beyond withdraw/deiconify, so it shouldn't steal keyboard focus from
-whatever app the user is dictating into.
+    listening -> the orb reacts to your voice (attack fast, release slow)
+    thinking  -> you stopped talking; two counter-rotating arcs orbit a
+                 calm, contracted core while the transcription lands
+    done      -> a brief bloom: the core flares near-white, expands, and
+                 the whole window fades out
+
+The "thinking" state earns its keep: the transcription round-trip is ~1s
+of dead air where the old overlay simply vanished, leaving no sign the
+tool was still working.
+
+Rendering notes (Tk has neither blur nor per-item alpha):
+- The glow is faked with N concentric polygons interpolated from the outer
+  halo color to the core color. Measured on the target machine: 14 layers
+  x 28 points redraw at ~426fps, so 60fps costs a fraction of one core.
+- Per-item "opacity" is a color lerp toward the background key color.
+  Window-wide fades DO use real alpha -- `-alpha` and `-transparentcolor`
+  coexist fine on Windows (verified 2026-09-07).
+- The window background is color-keyed transparent, so only the blobs are
+  visible, floating directly over the desktop. Borderless, always-on-top,
+  never steals keyboard focus from whatever you're dictating into.
+
+Runs its own Tk root + mainloop on a dedicated thread. Cross-thread
+communication is one-way (main loop -> overlay) via a thread-safe Queue
+for state changes, and a lock-guarded float for the live audio level
+(purely cosmetic — last-write-wins is fine).
 """
 
 from __future__ import annotations
@@ -31,14 +47,35 @@ from typing import Optional
 BASE_SIZE = 190  # logical size at 96 DPI; multiplied by the real DPI scale at runtime
 TRANSPARENT_KEY = "#050505"  # magic color-keyed as "invisible" (Windows only)
 
-CORE_COLOR = "#8b7dff"       # violet, idle/quiet
-CORE_COLOR_HOT = "#22d3ee"   # cyan, blended in as level rises
+# Same violet -> cyan language as before, extended with a deep halo for the
+# outer falloff and a near-white specular for the core's hot peak.
+GLOW_EDGE = "#161230"       # outermost, nearly background
 GLOW_MID = "#4c3f99"
-GLOW_OUTER = "#241f4d"
+CORE_COLOR = "#8b7dff"      # violet, idle/quiet
+CORE_COLOR_HOT = "#22d3ee"  # cyan, blended in as level rises
+CORE_LIGHT = "#eafaff"      # near-white heart: what keeps the core from
+                            # reading as one flat plastic disc
+ARC_COLOR = "#9ff0ff"
 
 N_POINTS = 28
+N_LAYERS = 30               # concentric polygons faking a radial gradient
 BASE_RADIUS = 22
-LEVEL_GAIN = 9.0  # heuristic RMS -> [0,1] scaling for typical mic input
+LEVEL_GAIN = 9.0            # heuristic RMS -> [0,1] scaling for typical mic input
+FRAME_MS = 16               # ~60fps
+
+# Asymmetric smoothing: snap up on speech, ease down on silence. This is
+# what makes the orb feel alive rather than laggy -- a symmetric filter
+# either dulls the onset or jitters on the tail.
+ATTACK = 0.55
+RELEASE = 0.09
+
+FADE_IN_S = 0.18
+DONE_S = 0.42
+
+STATE_HIDDEN = "hidden"
+STATE_LISTENING = "listening"
+STATE_THINKING = "thinking"
+STATE_DONE = "done"
 
 
 def _enable_dpi_awareness() -> None:
@@ -101,9 +138,16 @@ def _lerp_color(c1: str, c2: str, t: float) -> str:
     return f"#{r:02x}{g:02x}{b:02x}"
 
 
+def _ease_out(t: float) -> float:
+    """Cubic ease-out: fast start, gentle settle."""
+    t = max(0.0, min(1.0, t))
+    return 1 - (1 - t) ** 3
+
+
 class Overlay:
-    """Call start() once at boot, then show()/hide()/set_level() freely from
-    the hotkey loop's thread. No-op safe to call before start() finishes."""
+    """Call start() once at boot, then show()/set_level()/thinking()/done()
+    /hide() freely from the hotkey loop's thread. No-op safe to call before
+    start() finishes."""
 
     def __init__(self, config: Optional[dict] = None) -> None:
         config = config or {}
@@ -121,31 +165,39 @@ class Overlay:
         self._ready = threading.Event()
         self._lock = threading.Lock()
         self._level = 0.0
-        self._level_smooth = 0.0  # eased copy of _level, so motion breathes instead of jittering per mic frame
+        self._level_smooth = 0.0
         self._t0 = time.time()
+        self._state = STATE_HIDDEN
+        self._state_t0 = time.time()
         self._root: Optional[tk.Tk] = None
         self._canvas: Optional[tk.Canvas] = None
-        self._outer_id: Optional[int] = None
-        self._mid_id: Optional[int] = None
-        self._core_id: Optional[int] = None
-        # per-point random phase offsets (one array per layer) so the wobble
-        # isn't a perfectly symmetric function of point index -- set in
-        # _setup_blobs(), on the Tk thread, once per show() lifecycle isn't
-        # needed since these don't depend on size/level, just randomness.
-        self._phase_core: list[float] = []
-        self._phase_mid: list[float] = []
-        self._phase_outer: list[float] = []
+        self._layer_ids: list[int] = []
+        self._arc_ids: list[int] = []
+        # Per-point random phase offsets, one array per layer, so the wobble
+        # isn't a symmetric function of point index -- that's what makes the
+        # outline read as an amorphous blob instead of a spinning gear.
+        self._phases: list[list[float]] = []
         self._thread = threading.Thread(target=self._run, daemon=True)
+
+    # -- public API (any thread) --
 
     def start(self) -> None:
         self._thread.start()
         self._ready.wait(timeout=3)
 
     def show(self) -> None:
-        self._cmd_q.put("show")
+        self._cmd_q.put(STATE_LISTENING)
+
+    def thinking(self) -> None:
+        """Recording stopped; transcription is in flight."""
+        self._cmd_q.put(STATE_THINKING)
+
+    def done(self) -> None:
+        """Text is on its way to the cursor -- bloom, then fade out."""
+        self._cmd_q.put(STATE_DONE)
 
     def hide(self) -> None:
-        self._cmd_q.put("hide")
+        self._cmd_q.put(STATE_HIDDEN)
 
     def set_level(self, level: float) -> None:
         with self._lock:
@@ -204,12 +256,42 @@ class Overlay:
         canvas = tk.Canvas(root, width=self._size, height=self._size, bg=TRANSPARENT_KEY, highlightthickness=0)
         canvas.pack()
         self._canvas = canvas
-        self._setup_blobs()
+        self._setup_items()
 
         root.withdraw()
         self._ready.set()
         self._poll()
         root.mainloop()
+
+    def _setup_items(self) -> None:
+        c = self._canvas
+        assert c is not None
+        # One shared phase field, nudged slightly per layer. Independent
+        # phases per layer made each shell ripple its own way, which is what
+        # separates them visually and reads as banding; near-concentric
+        # shells let the color ramp read as a gradient instead.
+        base = [random.uniform(0, 2 * math.pi) for _ in range(N_POINTS)]
+        drift = [random.uniform(-0.18, 0.18) for _ in range(N_POINTS)]
+        self._phases = [
+            [base[i] + drift[i] * (layer / (N_LAYERS - 1)) for i in range(N_POINTS)]
+            for layer in range(N_LAYERS)
+        ]
+        # Outermost first so the core paints on top.
+        self._layer_ids = []
+        for _ in range(N_LAYERS):
+            self._layer_ids.append(
+                c.create_polygon(
+                    *([self._center, self._center] * N_POINTS),
+                    fill=GLOW_EDGE, outline="", smooth=True, splinesteps=20,
+                )
+            )
+        # Two thin arcs, only visible while thinking.
+        self._arc_ids = [
+            c.create_arc(0, 0, 1, 1, start=0, extent=88, style=tk.ARC,
+                         outline=TRANSPARENT_KEY, width=max(2, int(self._radius * 0.13))),
+            c.create_arc(0, 0, 1, 1, start=180, extent=52, style=tk.ARC,
+                         outline=TRANSPARENT_KEY, width=max(2, int(self._radius * 0.09))),
+        ]
 
     def _blob_points(
         self,
@@ -242,72 +324,141 @@ class Overlay:
             pts.append(cy + r * math.sin(ang))
         return pts
 
-    def _setup_blobs(self) -> None:
-        c = self._canvas
-        assert c is not None
-        self._phase_core = [random.uniform(0, 2 * math.pi) for _ in range(N_POINTS)]
-        self._phase_mid = [random.uniform(0, 2 * math.pi) for _ in range(N_POINTS)]
-        self._phase_outer = [random.uniform(0, 2 * math.pi) for _ in range(N_POINTS)]
-        w = 4 * (self._radius / BASE_RADIUS)
-        outer_pts = self._blob_points(0.0, self._radius * 2.1, w, self._phase_outer)
-        mid_pts = self._blob_points(0.0, self._radius * 1.55, w, self._phase_mid)
-        core_pts = self._blob_points(0.0, self._radius, w, self._phase_core)
-        self._outer_id = c.create_polygon(*outer_pts, fill=GLOW_OUTER, outline="", smooth=True, splinesteps=24)
-        self._mid_id = c.create_polygon(*mid_pts, fill=GLOW_MID, outline="", smooth=True, splinesteps=24)
-        self._core_id = c.create_polygon(*core_pts, fill=CORE_COLOR, outline="", smooth=True, splinesteps=24)
+    def _set_state(self, state: str) -> None:
+        root = self._root
+        assert root is not None
+        if state == self._state:
+            return
+        self._state = state
+        self._state_t0 = time.time()
+        if state == STATE_HIDDEN:
+            root.withdraw()
+            self._level_smooth = 0.0
+            return
+        if state == STATE_LISTENING:
+            self._t0 = time.time()  # restart idle breathing each appearance
+            self._level_smooth = 0.0
+            try:
+                root.wm_attributes("-alpha", 0.0)
+            except tk.TclError:
+                pass
+            root.deiconify()
 
     def _poll(self) -> None:
         root = self._root
         assert root is not None
         try:
             while True:
-                cmd = self._cmd_q.get_nowait()
-                if cmd == "show":
-                    self._t0 = time.time()  # restart the idle-breathing phase each time it appears
-                    root.deiconify()
-                elif cmd == "hide":
-                    root.withdraw()
+                self._set_state(self._cmd_q.get_nowait())
         except queue.Empty:
             pass
         self._animate()
-        root.after(33, self._poll)
+        root.after(FRAME_MS, self._poll)
 
     def _animate(self) -> None:
         root, c = self._root, self._canvas
         assert root is not None and c is not None
-        if root.state() == "withdrawn":
+        if self._state == STATE_HIDDEN:
             return
 
-        raw_level = max(0.0, min(1.0, self._get_level() * LEVEL_GAIN))
-        self._level_smooth += (raw_level - self._level_smooth) * 0.2  # eases out raw mic-frame jitter
-        level = self._level_smooth
+        now = time.time()
+        since_state = now - self._state_t0
+        t = now - self._t0
+        k = self._radius / BASE_RADIUS  # DPI/zoom factor, so motion scales with size
 
-        t = time.time() - self._t0
+        # ---- per-state envelope: level, size, alpha ----
+        if self._state == STATE_LISTENING:
+            raw = max(0.0, min(1.0, self._get_level() * LEVEL_GAIN))
+            ease = ATTACK if raw > self._level_smooth else RELEASE
+            self._level_smooth += (raw - self._level_smooth) * ease
+            level = self._level_smooth
+            alpha = _ease_out(since_state / FADE_IN_S) if since_state < FADE_IN_S else 1.0
+            # Entry pop: 0.72 -> 1.0 on the same easing as the fade.
+            grow = 0.72 + 0.28 * alpha
+
+        elif self._state == STATE_THINKING:
+            # Calm down: contract, drop the audio reactivity, breathe slowly.
+            self._level_smooth += (0.22 - self._level_smooth) * 0.08
+            level = self._level_smooth
+            grow = 0.80 + 0.05 * math.sin(t * 3.2)
+            alpha = 1.0
+
+        else:  # STATE_DONE -- bloom outward and fade
+            p = min(1.0, since_state / DONE_S)
+            level = 1.0
+            grow = 1.0 + 0.55 * _ease_out(p)
+            alpha = max(0.0, 1.0 - _ease_out(p))
+            if p >= 1.0:
+                self._set_state(STATE_HIDDEN)
+                return
+
+        try:
+            root.wm_attributes("-alpha", alpha)
+        except tk.TclError:
+            pass
+
         breathing = 0.5 + 0.5 * math.sin(t * 1.4)  # idle life even at level=0
         energy = 0.15 + 0.85 * level
 
-        # gentle overall drift so the blob feels afloat rather than pinned dead-center
-        k = self._radius / BASE_RADIUS  # DPI/zoom factor, so motion scales with size
+        # Gentle drift so the blob feels afloat rather than pinned dead-center.
         cx = self._center + 3 * k * math.sin(t * 0.27)
         cy = self._center + 2.5 * k * math.cos(t * 0.19)
 
-        core_r = self._radius * (1 + 0.12 * breathing) + 14 * k * level
-        core_wobble = (3 + 10 * energy) * k
-        c.coords(self._core_id, *self._blob_points(t * 1.6, core_r, core_wobble, self._phase_core, cx, cy))
+        core_r = (self._radius * (1 + 0.12 * breathing) + 14 * k * level) * grow
+        wobble = (3 + 10 * energy) * k
 
-        mid_r = core_r * 1.55
-        c.coords(self._mid_id, *self._blob_points(t * 1.1, mid_r, core_wobble * 0.8, self._phase_mid, cx, cy))
+        # ---- layered glow: outermost (dim, wide) to core (bright, tight) ----
+        # Radius falls off faster than color so the halo reads as light
+        # spreading, not as a stack of concentric rings.
+        hot = _lerp_color(CORE_COLOR, CORE_COLOR_HOT, level)
+        for i, pid in enumerate(self._layer_ids):
+            f = i / (N_LAYERS - 1)          # 0 = outermost, 1 = innermost
+            # Every shell is a FILLED blob, not a ring, so the innermost one
+            # paints the whole middle -- which is why the color has to be
+            # keyed to the shell's radius, not to its index. Radii run from
+            # the halo edge down to a small bright heart, in tight eased
+            # steps so neighbouring shells overlap and fake the blur.
+            rr = 2.05 - 1.95 * (f ** 0.85)   # 2.05 -> 0.10, in core radii
+            layer_r = core_r * rr
+            if rr > 1.0:                      # outer halo
+                fill = _lerp_color(GLOW_EDGE, GLOW_MID, (2.05 - rr) / 1.05)
+            elif rr > 0.45:                   # body: violet -> hot
+                fill = _lerp_color(GLOW_MID, hot, (1.0 - rr) / 0.55)
+            else:                             # heart: a small bright point
+                fill = _lerp_color(hot, CORE_LIGHT, 0.78 * (1.0 - rr / 0.45) ** 1.2)
+            # The innermost shells drift up-left a touch: an off-center
+            # highlight reads as volume, where a centered disc read as an eye.
+            lift = core_r * 0.13 * max(0.0, 0.9 - rr) / 0.8
+            speed = 0.9 + 0.25 * f
+            # Amplitude has to scale with the shell's own radius. A fixed
+            # wobble is a small ripple on the wide halo but a huge deformation
+            # on the tiny inner shells -- their peaks then poke through each
+            # other and the orb reads as a star burst instead of a soft core.
+            amp = wobble * min(1.0, rr) * 0.85
+            c.coords(pid, *self._blob_points(t * speed, layer_r, amp,
+                                             self._phases[i], cx - lift * 0.9, cy - lift))
+            c.itemconfig(pid, fill=fill)
 
-        outer_r = core_r * 2.1
-        c.coords(self._outer_id, *self._blob_points(t * 0.8, outer_r, core_wobble * 0.6, self._phase_outer, cx, cy))
-
-        c.itemconfig(self._core_id, fill=_lerp_color(CORE_COLOR, CORE_COLOR_HOT, level))
-        c.itemconfig(self._mid_id, fill=_lerp_color(GLOW_MID, CORE_COLOR_HOT, level * 0.5))
+        # ---- orbiting arcs: the "working on it" signature ----
+        if self._state == STATE_THINKING:
+            for j, aid in enumerate(self._arc_ids):
+                # Outside the halo (which stops at ~2.05 * core_r), otherwise
+                # the arcs drown in it.
+                orbit = core_r * (2.02 + 0.34 * j)
+                spin = t * (150 if j == 0 else -95)
+                c.coords(aid, cx - orbit, cy - orbit, cx + orbit, cy + orbit)
+                # Fade in over the first 200ms so the arcs don't pop.
+                strength = min(1.0, since_state / 0.2) * (1.0 if j == 0 else 0.55)
+                c.itemconfig(aid, start=spin % 360,
+                             outline=_lerp_color(TRANSPARENT_KEY, ARC_COLOR, strength))
+        else:
+            for aid in self._arc_ids:
+                c.itemconfig(aid, outline=TRANSPARENT_KEY)
 
 
 if __name__ == "__main__":
-    # Manual test: python overlay.py — shows the orb with a simulated
-    # rising/falling level for ~8s, no mic/hotkey involved.
+    # Manual test: python overlay.py — plays the full arc (listening with a
+    # simulated voice, thinking, done) with no mic/hotkey involved.
     try:
         from config import load_config
         cfg = load_config()
@@ -317,9 +468,12 @@ if __name__ == "__main__":
     ov.start()
     ov.show()
     t0 = time.time()
-    while time.time() - t0 < 8:
+    while time.time() - t0 < 5:
         t = time.time() - t0
-        ov.set_level(0.04 + 0.05 * (1 + math.sin(t * 2)))
-        time.sleep(0.03)
-    ov.hide()
-    time.sleep(0.5)
+        speaking = (t % 1.6) < 1.0   # bursts of "speech" with pauses between
+        ov.set_level(0.02 + (0.10 * (1 + math.sin(t * 9)) if speaking else 0.0))
+        time.sleep(0.02)
+    ov.thinking()
+    time.sleep(1.4)
+    ov.done()
+    time.sleep(0.8)
