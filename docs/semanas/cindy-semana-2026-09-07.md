@@ -1,12 +1,22 @@
 # 📋 SEMANA CINDY — 08/09 a 14/09/2026
 
-**Owner:** Vitor · **Papel na semana:** **manutenção** — o Lingrow assumiu o caminho crítico (decisão de 07/09)
+**Owner:** Vitor · **Papel na semana:** **última entrega** — o Vitor sai da parceria no fim de setembro (decidido 07/09)
+**Papel revisto:** manutenção — o Lingrow assumiu o caminho crítico (decisão de 07/09)
 **Estado:** Desafio Ótica +100K em **22-24/09 — faltam 15 dias**. Página construída, criativos prontos.
 **Semana anterior:** não houve semana declarada; a frente consumiu ~40 dos ~45 commits de 35 dias.
 
 > Seleção do `docs/gestao/BACKLOG.md`. Nada aqui é item novo.
 
 ---
+
+## 🔚 Esta é a última entrega
+
+O lançamento de 22-24/09 é o encerramento da parceria. Isso **não rebaixa** a frente — ao contrário:
+é a última receita entrando antes de outubro, e é o que compra o tempo para a oferta própria nascer.
+Entregar bem aqui é uma decisão de caixa, não de lealdade.
+
+Se o Gabriel continuar depois, fica com todo o trabalho e todo o dinheiro. O que precisa sair daqui
+íntegro é o **encerramento**: página no ar, campanha rodando, evento entregue.
 
 ## ⚠️ A consequência da decisão desta semana
 

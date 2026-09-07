@@ -1,7 +1,9 @@
 # 🗓️ AGENDA DA SEMANA — 08/09 a 14/09/2026
 
 **Montada em:** 07/09/2026 (domingo) · **Fonte:** `docs/gestao/BACKLOG.md`
-**Decisão do Vitor nesta sessão:** 🔵 **Lingrow assume o caminho crítico.** Cindy em manutenção, marca pessoal com um item de 15 min.
+**⚠️ REVISTA em 07/09**, depois de o Vitor informar que **sai da parceria com a Cindy no fim de setembro** (~20 dias).
+**Decisão anterior nesta sessão:** *"Lingrow assume o caminho crítico"* — **superada pelo dado novo**, não por mudança de ideia.
+**Caminho crítico agora:** 🟡 **a oferta própria.** O Lingrow não cobra em 2026 e não paga dezembro; a oferta é o que substitui o caixa da Cindy a partir de 01/10. Ver `docs/gestao/METAS-90-DIAS.md`.
 **Precedida por:** fechamento de 5 semanas (03/08 → 07/09) — registrado no backlog.
 
 ---
@@ -10,20 +12,20 @@
 
 | | Contagem |
 |---|---|
-| Itens 👤 selecionados | **6** — LG-10 · LG-12 · LG-14 · LG-09 · CD-06(publicar) · MP-05 |
+| Itens 👤 selecionados | **5** — OF-01 · OF-09 · MP-05 · LG-10 · CD-06(publicar) |
 | Teto declarado | 5 |
 | Itens G/XG em execução | **0** — nenhum build entra nesta semana |
 | Itens 🤖 (1 aprovação cada) | 6 |
 
-**A regra foi excedida em 1, conscientemente.** O peso real é de **4 itens**: LG-12 (10 min) e MP-05
-(15 min) somam 25 minutos entre os dois — são decisões engatilhadas, não trabalho. O teto existe
-porque o gargalo é presença e decisão; 25 minutos não competem com um contrato Apple.
+**O teto foi respeitado.** LG-12, LG-14 e LG-09 saíram para outubro — não por serem difíceis, mas
+porque setembro tem 20 dias e uma obrigação maior: existir uma oferta antes de o caixa da Cindy acabar.
 
 **Regras de priorização aplicadas, nesta ordem:**
-1. **Desbloqueador** → LG-10 (única espera externa do caminho crítico) e LG-12 (10 min segurando a ficha inteira)
-2. **Dinheiro com prazo** → publicar a página da Cindy (evento em 15 dias)
-3. **Parado há semanas com custo ridículo** → MP-05 (15 min, 25 dias de atraso)
-4. **Um build de cada vez** → nenhum. Semana de publicação e decisão, não de construção.
+1. **Dinheiro que ainda não existe** → OF-01 + OF-09. Em 01/10 não há mais receita entrando; a oferta é a substituta e ainda não está definida
+2. **Dinheiro com prazo** → publicar a página da Cindy (evento em 15 dias, última receita da parceria)
+3. **Desbloqueador com relógio externo** → LG-10: um slot, e a Apple passa a correr sozinha
+4. **Custo ridículo, dívida crescente** → MP-05 (15 min): cada semana parada sobe a cota de vídeos de 11,1 para ~15/dia
+5. **Um build de cada vez** → nenhum. Semana de decisão e publicação.
 
 ---
 
@@ -31,13 +33,13 @@ porque o gargalo é presença e decisão; 25 minutos não competem com um contra
 
 ### Segunda 08/09 — *o dia que define a semana*
 - 🔵 **LG-10 — submeter o contrato Apple.** Primeira coisa, antes do e-mail. É a única espera externa; começar tarde não se recupera depois
-- 🔵 **LG-12 — decidir 600 frases ou ajustar a promessa** (10 min, na sequência)
 - 🟡 **MP-05 — criar o Projeto do carrossel** (15 min, em qualquer intervalo)
+- 🟡 Eu entrego o material consolidado de **OF-01** para você decidir na terça
 
-### Terça 09/09
-- 🔵 **LG-14 — ler e aprovar a ficha da loja + screenshots**, e colar no App Store Connect
+### Terça 09/09 — *o dia da oferta*
+- 🟡 **OF-01 — fechar a oferta em uma página**: escopo, entrega, prazo, preço. Bloco protegido, sem interrupção
 - 🟢 **Cindy — teste da página em mobile real**
-- 🟢 Falar com a Cindy: **autorizar as 3 provas nomeadas** (BLOQUEIO 2)
+- 🟢 Falar com a Cindy: **autorizar as 3 provas nomeadas** (BLOQUEIO 2) + horário das lives e se fica gravado
 
 ### Quarta 10/09 — *prazo do lançamento*
 - 🟢 **Publicar a página e subir a campanha** — 4 ad sets, 6 peças, R$ 50/dia
@@ -45,8 +47,8 @@ porque o gargalo é presença e decisão; 25 minutos não competem com um contra
 - 🟢 Calls (CD-01)
 
 ### Quinta 11/09
-- 🔵 **LG-09 — aplicar a migration 008 no Supabase** (~1h)
-- Aprovar o que eu entreguei até aqui (LG-01, LG-02, MP-02, CD-08)
+- 🟡 **OF-09 — declarar o canal de lead de outubro** e a meta numérica semanal dele
+- Aprovar o que eu entreguei até aqui (MP-02, material de OF-01, CD-08)
 
 ### Sexta 12/09
 - 🟢 Ler os primeiros sinais da campanha (ainda **não** decidir nada — faltam dias de leitura)
@@ -60,33 +62,34 @@ porque o gargalo é presença e decisão; 25 minutos não competem com um contra
 
 ## 🎯 As 3 entregas que definem se a semana valeu
 
-1. 🔵 **Contrato Apple submetido** — destrava a monetização inteira do Lingrow
-2. 🔵 **Ficha nova da loja publicada** — 5 meses de recência perdida, e não depende da Apple
-3. 🟢 **Página do Desafio no ar com tráfego rodando até quarta** — sem isso não há evento em 22/09
+1. 🟡 **A oferta fechada em uma página** (OF-01) — é o que outubro vai vender
+2. 🟢 **Página do Desafio no ar com tráfego rodando até quarta** — última receita da parceria
+3. 🔵 **Contrato Apple submetido** (LG-10) — um slot que faz a Apple trabalhar por você
 
-*A 4ª, se der:* o primeiro carrossel da marca pessoal publicado.
+*A 4ª, se der:* o canal de lead declarado (OF-09) e o primeiro carrossel publicado.
 
 ---
 
 ## ✂️ Ordem de corte, se a semana atrasar
 
-1. **MP-02 / o carrossel publicado** — MP-05 (15 min) fica, o resto cai
-2. **LG-09** — empurra LG-13 para a semana seguinte junto
+1. **OF-09** — pode escorregar uma semana se OF-01 tomar mais tempo; a ordem certa é oferta antes de canal
+2. **MP-02 / o carrossel publicado** — MP-05 (15 min) fica, o resto cai
 3. **LG-01 / LG-02 / LG-05** — os 🤖 do Lingrow
 
-**Não se corta, em hipótese nenhuma:** LG-10 (espera externa) e a publicação da página da Cindy (prazo duro de 15 dias).
+**Não se corta, em hipótese nenhuma:** LG-10 (espera externa), a publicação da página da Cindy (prazo duro) e OF-01 (sem ela, outubro não tem o que vender).
 
 ---
 
-## 🚨 A dispersão, dita uma vez
+## 🚨 O risco desta semana, dito uma vez
 
-Quatro frentes existem; **três estão ativas nesta semana** — e é uma a mais do que o ideal. A defesa
-aqui é que Cindy e marca pessoal entram com escopo fechado e mínimo: publicar o que já existe e criar
-um Projeto de 15 minutos. Nenhuma das duas abre trabalho novo.
+Não é dispersão — é **sequência**. A Cindy tem data e grita; a oferta não tem data e sussurra. Em
+agosto isso já aconteceu uma vez: a frente com prazo levou o mês inteiro e as outras ficaram em zero.
 
-O risco real não é esta semana — é **repetir agosto**: uma frente com data (Cindy) puxando o dia
-inteiro e o caminho crítico do Lingrow ficando em zero por mais 5 semanas. O antídoto é a segunda-feira:
-se LG-10 não for submetido no dia 08, a semana já falhou, independente do que mais saia.
+A diferença é que agora o custo é datado: **em 01/10 a receita da Cindy acaba.** Se setembro terminar
+com o lançamento entregue e a oferta em aberto, você entra em outubro sem caixa, sem funil e sem
+produto para vender — com 1.000 vídeos de meta e nenhuma conversa marcada.
+
+O antídoto é a terça-feira: **um bloco protegido para OF-01**, do tamanho que for preciso.
 
 ---
 
@@ -96,3 +99,4 @@ se LG-10 não for submetido no dia 08, a semana já falhou, independente do que 
 - `docs/semanas/cindy-semana-2026-09-07.md`
 - `docs/semanas/marca-pessoal-semana-2026-09-07.md`
 - `docs/gestao/BACKLOG.md` §Fechamento 03/08 → 07/09
+- `docs/gestao/METAS-90-DIAS.md` — as metas do trimestre e as duas fases
