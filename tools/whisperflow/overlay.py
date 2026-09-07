@@ -49,7 +49,9 @@ TRANSPARENT_KEY = "#050505"  # magic color-keyed as "invisible" (Windows only)
 
 # Same violet -> cyan language as before, extended with a deep halo for the
 # outer falloff and a near-white specular for the core's hot peak.
-GLOW_EDGE = "#161230"       # outermost, nearly background
+GLOW_EDGE = "#0a0a18"       # outermost: a hair above the key color, so the
+                            # halo dissolves into nothing instead of ending
+                            # in a dark ring over light backgrounds
 GLOW_MID = "#4c3f99"
 CORE_COLOR = "#8b7dff"      # violet, idle/quiet
 CORE_COLOR_HOT = "#22d3ee"  # cyan, blended in as level rises
@@ -287,10 +289,10 @@ class Overlay:
             )
         # Two thin arcs, only visible while thinking.
         self._arc_ids = [
-            c.create_arc(0, 0, 1, 1, start=0, extent=88, style=tk.ARC,
-                         outline=TRANSPARENT_KEY, width=max(2, int(self._radius * 0.13))),
-            c.create_arc(0, 0, 1, 1, start=180, extent=52, style=tk.ARC,
-                         outline=TRANSPARENT_KEY, width=max(2, int(self._radius * 0.09))),
+            c.create_arc(0, 0, 1, 1, start=0, extent=88, style=tk.ARC, state="hidden",
+                         outline=ARC_COLOR, width=max(2, int(self._radius * 0.13))),
+            c.create_arc(0, 0, 1, 1, start=180, extent=52, style=tk.ARC, state="hidden",
+                         outline=ARC_COLOR, width=max(2, int(self._radius * 0.09))),
         ]
 
     def _blob_points(
@@ -418,10 +420,10 @@ class Overlay:
             # keyed to the shell's radius, not to its index. Radii run from
             # the halo edge down to a small bright heart, in tight eased
             # steps so neighbouring shells overlap and fake the blur.
-            rr = 2.05 - 1.95 * (f ** 0.85)   # 2.05 -> 0.10, in core radii
+            rr = 1.85 - 1.75 * (f ** 0.85)   # 1.85 -> 0.10, in core radii
             layer_r = core_r * rr
             if rr > 1.0:                      # outer halo
-                fill = _lerp_color(GLOW_EDGE, GLOW_MID, (2.05 - rr) / 1.05)
+                fill = _lerp_color(GLOW_EDGE, GLOW_MID, (1.85 - rr) / 0.85)
             elif rr > 0.45:                   # body: violet -> hot
                 fill = _lerp_color(GLOW_MID, hot, (1.0 - rr) / 0.55)
             else:                             # heart: a small bright point
@@ -444,16 +446,20 @@ class Overlay:
             for j, aid in enumerate(self._arc_ids):
                 # Outside the halo (which stops at ~2.05 * core_r), otherwise
                 # the arcs drown in it.
-                orbit = core_r * (2.02 + 0.34 * j)
+                orbit = core_r * (2.00 + 0.34 * j)
                 spin = t * (150 if j == 0 else -95)
                 c.coords(aid, cx - orbit, cy - orbit, cx + orbit, cy + orbit)
-                # Fade in over the first 200ms so the arcs don't pop.
+                # Fade in over the first 200ms so the arcs don't pop. The fade
+                # ramps from the halo color, never from TRANSPARENT_KEY: any
+                # item painted in the key color is CUT OUT of the window, so
+                # that ramp used to slice two transparent gashes through the
+                # halo on its way in.
                 strength = min(1.0, since_state / 0.2) * (1.0 if j == 0 else 0.55)
-                c.itemconfig(aid, start=spin % 360,
-                             outline=_lerp_color(TRANSPARENT_KEY, ARC_COLOR, strength))
+                c.itemconfig(aid, start=spin % 360, state="normal",
+                             outline=_lerp_color(GLOW_MID, ARC_COLOR, strength))
         else:
             for aid in self._arc_ids:
-                c.itemconfig(aid, outline=TRANSPARENT_KEY)
+                c.itemconfig(aid, state="hidden")
 
 
 if __name__ == "__main__":
