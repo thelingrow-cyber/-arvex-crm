@@ -1,6 +1,6 @@
 # Story — Handoff Codex ↔ Claude
 
-> Status: **Ready for Review**
+> Status: **Done**
 > Data: 2026-09-07
 > Origem: pedido do Vitor para continuar no Codex após atingir o limite do
 > Claude e permitir retomada posterior sem perder o contexto operacional.
@@ -22,7 +22,8 @@ separando corretamente conversa, contexto local e estado publicado no Git.
 - [x] Existe um check CLI sem dependências externas para validar estrutura,
   referências e padrões de segredo do handoff.
 - [x] Mudanças validadas e preparadas em conjunto sem incluir alterações não relacionadas.
-- [ ] Commit publicado por `@devops` para ficar acessível ao Claude Cloud.
+- [x] Commits publicados por `@devops` na branch remota
+  `codex/whisperflow-handoff`, sem publicar os commits paralelos da `master`.
 
 ## File List
 
@@ -50,3 +51,6 @@ separando corretamente conversa, contexto local e estado publicado no Git.
 - `npm test` executa o check real do handoff, substituindo o placeholder que
   sempre falhava.
 - Alterações preexistentes fora da story não foram incluídas.
+- Branch isolada validada: Python compilou, teste de ativação passou 3/3 e o
+  working tree permaneceu limpo.
+- Branch remota criada com sucesso em 07/09/2026.

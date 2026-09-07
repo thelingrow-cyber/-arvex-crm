@@ -11,6 +11,7 @@ mantendo baixa fricção, boa transcrição e feedback visual profissional.
 
 ## Estado atual
 
+- Branch publicada para retomada no Cloud: `codex/whisperflow-handoff`.
 - Código: `tools/whisperflow/`.
 - Ativação local: um toque em `Ctrl+Win` inicia; novo toque encerra; após fala,
   1,5 segundo de silêncio também encerra automaticamente.
@@ -62,18 +63,20 @@ mantendo baixa fricção, boa transcrição e feedback visual profissional.
 - O áudio sai da máquina quando o motor Groq está ativo.
 - Falhas do motor remoto e do polimento ainda degradam silenciosamente; falta
   um indicador de saúde após falhas consecutivas.
-- Commits locais não ficam disponíveis ao Claude Cloud até `@devops` publicar.
+- O Claude Cloud precisa abrir a branch `codex/whisperflow-handoff`; a `master`
+  remota não recebeu este conjunto porque a `master` local tinha outros 20
+  commits paralelos que não foram incluídos sem revisão.
 - Há alterações não relacionadas já existentes no working tree; não misturar
   `docs/qg/*`, `package*.json`, `.agents/`, `.codex/` ou `output/` neste trabalho.
 
 ## Próximo passo recomendado
 
-Publicar o commit do handoff pelo fluxo `@devops`, após os gates. Em seguida,
-implementar aviso de saúde para falhas consecutivas do motor remoto/polimento.
+Implementar aviso de saúde para falhas consecutivas do motor remoto/polimento.
 Depois, adicionar polimento contextual conforme o aplicativo em foco (IA,
 WhatsApp, e-mail ou editor), com comportamento configurável e fallback neutro.
 
 ## Como retomar
 
-Peça ao agente: **“Leia `docs/sessions/CURRENT.md`, confira o Git e continue do
-próximo passo sem reabrir decisões já registradas.”**
+No Claude Cloud, selecione a branch `codex/whisperflow-handoff` e peça ao agente:
+**“Leia `docs/sessions/README.md` e `docs/sessions/CURRENT.md`, confira o Git e
+continue do próximo passo sem reabrir decisões já registradas.”**
