@@ -20,6 +20,14 @@ APP_NAME = "WhisperFlow"
 
 DEFAULT_CONFIG = {
     "hotkey": "ctrl+windows",
+    # "hold" = push-to-talk classico (segurar). "toggle" = aperta pra
+    # comecar, aperta pra parar -- e com auto_stop_silence_ms > 0 o
+    # segundo aperto vira opcional: N ms de silencio encerram sozinhos
+    # (o cronometro so arma DEPOIS que voce falou). speech_level e o RMS
+    # acima do qual conta como fala (fala normal ~0.05-0.2).
+    "activation_mode": "hold",
+    "auto_stop_silence_ms": 0,
+    "speech_level": 0.015,
     "model": "base",
     # "local" (faster-whisper nesta maquina) ou "groq" (whisper-large-v3
     # hospedado: mais preciso e, nesta CPU, mais rapido -- mas o audio sai
