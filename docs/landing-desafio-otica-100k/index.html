@@ -111,14 +111,6 @@ a{text-decoration:none;color:inherit}
 .footer p{color:var(--muted);font-size:12px;line-height:1.8}
 .footer .brand{color:var(--text);font-weight:800;letter-spacing:1.5px}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
-.reveal.in{opacity:1;transform:none}
-.reveal[data-delay="1"]{transition-delay:.07s}
-.reveal[data-delay="2"]{transition-delay:.14s}
-.reveal[data-delay="3"]{transition-delay:.21s}
-.reveal[data-delay="4"]{transition-delay:.28s}
-.reveal[data-delay="5"]{transition-delay:.35s}
-
 /* ===================== DESKTOP (≥820px) ===================== */
 @media(min-width:820px){
   .hero-content{padding:38px 22px 8px;max-width:740px}
@@ -129,40 +121,40 @@ a{text-decoration:none;color:inherit}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
 
-<!-- TRACKING (preencher IDs antes de publicar) -->
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','PIXEL_ID');fbq('track','PageView');</script>
+<!-- TRACKING: o Pixel 904293195276149 ja e injetado no site inteiro pelo plugin
+     PixelYourSite, que tambem dispara o PageView. Nao inicializar de novo aqui —
+     dois inits duplicam evento. O clique no CTA usa o fbq que o plugin define. -->
 
 <div class="topbar"><span class="dot"></span> Ao vivo · 22, 23 e 24 de setembro</div>
 
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-content">
-    <div class="evlogo reveal">
+    <div class="evlogo">
       <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
       <span class="k">O Desafio</span>
       <span class="n">ÓTICA <b>+100K</b></span>
     </div>
 
-    <p class="eyebrow reveal" data-delay="1">Online e gratuito · para donos de ótica</p>
+    <p class="eyebrow">Online e gratuito · para donos de ótica</p>
 
-    <h1 class="reveal" data-delay="2">Crie em <em>3 dias</em> comigo a estratégia que vai colocar a sua loja na rota dos <em>+100K por mês</em>.</h1>
+    <h1>Crie em <em>3 dias</em> comigo a estratégia que vai colocar a sua loja na rota dos <em>+100K por mês</em>.</h1>
 
-    <p class="subhead reveal" data-delay="2">Entre no Grupo VIP e garanta acesso à <b>oferta especial</b> do desafio.</p>
+    <p class="subhead">Entre no Grupo VIP e garanta acesso à <b>oferta especial</b> do desafio.</p>
 
-    <div class="reveal" data-delay="3">
+    <div>
       <!-- Grupo VIP do Desafio Ótica +100K (link limpo, sem os parametros de tracking do IG) -->
       <a href="https://chat.whatsapp.com/HvCkrHesa3C8KDopm8j2Md" target="_blank" rel="noopener" class="cta" data-cta>Entrar no grupo VIP</a>
       <span class="cta-micro"><b>✦</b> É no grupo que o desafio acontece · gratuito</span>
     </div>
   </div>
 
-  <div class="hero-figure reveal" data-delay="5" aria-hidden="true">
+  <div class="hero-figure" aria-hidden="true">
     <img class="fig" src="https://cindyb.com.br/wp-content/uploads/2026/06/cindy-dinheiro.jpg" alt="Cindy Batista" width="740" height="500" fetchpriority="high">
   </div>
 </header>
@@ -174,15 +166,16 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){
-  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-},{threshold:.16,rootMargin:'0px 0px -6% 0px'});
-document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
-
+/* Instrumentacao do clique — usa o fbq que o PixelYourSite ja carregou no site. */
 (function(){document.querySelectorAll('[data-cta]').forEach(function(b){
   b.addEventListener('click',function(){
-    if(typeof fbq==='function')fbq('track','Lead',{content_name:'Otica 100K'});
-    if(typeof gtag==='function')gtag('event','generate_lead',{event_label:'Otica 100K'});});});})();
+    if(typeof fbq==='function'){
+      fbq('track','Lead',{content_name:'Otica 100K'});
+      fbq('trackCustom','ClickGrupoVIP',{pagina:'captura-100k'});
+    }
+    if(typeof gtag==='function')gtag('event','generate_lead',{event_label:'Otica 100K'});
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'click_grupo_vip'});});});})();
 </script>
 </body>
 </html>
