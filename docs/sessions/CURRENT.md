@@ -6,77 +6,106 @@
 
 ## Objetivo ativo
 
-Aprimorar o WhisperFlow, ferramenta global de ditado em português para Windows,
-mantendo baixa fricção, boa transcrição e feedback visual profissional.
+Finalizar e validar as páginas de captura A e B do **Desafio Ótica +100K** da
+Cindy Batista, priorizando a A curta que está rodando e preparando a B longa
+para teste com tráfego frio.
 
 ## Estado atual
 
-- Branch publicada para retomada no Cloud: `codex/whisperflow-handoff`.
-- Código: `tools/whisperflow/`.
-- Ativação local: um toque em `Ctrl+Win` inicia; novo toque encerra; após fala,
-  1,5 segundo de silêncio também encerra automaticamente.
-- Transcrição principal: Groq `whisper-large-v3-turbo`, com fallback local no
-  modelo `base` quando rede ou API estiver indisponível.
-- Polimento: Groq `openai/gpt-oss-120b`.
-- Overlay: janela em camadas do Windows com alpha real por pixel; estados de
-  escuta, processamento e conclusão; fallback para Tk se o caminho Win32 falhar.
-- Configuração da máquina: `%LOCALAPPDATA%\WhisperFlow\config.json`.
-- Daemon e configuração são locais ao Windows; o Cloud só recebe código e docs.
+- Branch local: `master`, HEAD `09a962e`.
+- A curta: `docs/landing-desafio-otica-100k/index.html`.
+- B longa: `docs/landing-desafio-otica-100k/index-b.html`.
+- A publicada: `https://cindyb.com.br/desafio-otica-100k/`.
+- A publicada ainda mostra a subheadline e a microcopy anteriores. A versão
+  local removeu a microcopy e reforçou que somente o grupo recebe a oferta.
+- B ainda não está publicada em `/desafio-otica-100k-b/` (404 em 08/09/2026).
+- O link correto do Grupo VIP está nos dois arquivos:
+  `https://chat.whatsapp.com/HvCkrHesa3C8KDopm8j2Md`.
 
-## Evidência de uso real
+## O que o Claude alterou após o refinamento da A (`9373847`)
 
-- Em 07/09/2026, um ditado de 13 segundos foi transcrito em aproximadamente
-  1,08 segundo, corretamente, onde o motor local anterior errava frases curtas.
-- O log fica em `%LOCALAPPDATA%\WhisperFlow\logs\whisperflow.log`.
-- O histórico fica em `%LOCALAPPDATA%\WhisperFlow\history.db`.
+### Página A
 
-## Decisões
+- Limpou o hero: removeu a microcopy abaixo do CTA.
+- Subheadline local atual: “Entre no Grupo VIP. Só quem estiver no grupo recebe
+  o acesso à oferta especial do desafio.”
+- A estrutura de uma dobra, estética e foto da Cindy foram preservadas.
 
-1. Priorizar `large-v3-turbo` remoto nesta máquina: Ryzen 5 3500U, 5,9 GB de
-   RAM e sem CUDA tornam modelos locais maiores lentos.
-2. Manter fallback local carregado para o ditado continuar sem rede.
-3. Não subir o refinador `small` quando o motor remoto estiver ativo: ele gasta
-   memória e gera resultado inferior ao texto já colado.
-4. Usar alpha real do Windows no overlay; transparência por cor-chave do Tk
-   criava borda escura e rasgos transparentes.
-5. Troca entre Codex e Claude usa este arquivo mais Git; chats não sincronizam
-   entre fornecedores.
+### Página B
+
+- Reescreveu a B para voltar a ser página de captura, mantendo uma única ação:
+  entrada no Grupo VIP.
+- Hero alinhado à A, seguido de agenda dos três dias, provas reais, bloco “Como
+  funciona”, autoridade da Cindy e CTA final.
+- Entrega principal nomeada como **Plano de Fim de Ano**.
+- Agenda atual:
+  - Dia 1: “Para de brigar por preço”.
+  - Dia 2: “A campanha que a sua base já está esperando”.
+  - Dia 3: “O modelo que permite faturar mais sem depender da sua presença o
+    tempo todo”.
+- Provas usadas:
+  - Michaella: +R$ 30 mil com os conteúdos do desafio.
+  - Galeria de Óculos: 16k → 63k.
+  - Duas lojas: R$ 143.323 e R$ 134.906, ambas em recorde; imagem embutida em
+    base64 para funcionar no WordPress sem upload adicional.
+- Bio oficial aplicada: 10 anos no ramo óptico, 3 óticas próprias e mais de
+  10.000 pares de lentes vendidos.
+
+## Decisões preservadas
+
+1. A curta é a página principal para rodar agora.
+2. B é uma variante longa para teste com público frio; não substituir a A sem
+   validação.
+3. Não usar contador ou “vagas limitadas” sem escassez real.
+4. Manter CTA direto para o Grupo VIP, sem formulário intermediário.
+5. Preservar a foto da Cindy; integração visual é feita por CSS.
+6. O Pixel Meta `904293195276149` já é injetado pelo PixelYourSite. Não criar
+   outro `fbq('init')` no HTML.
 
 ## Commits relevantes
 
-- `6ff131a` — cria a ponte versionada de contexto Codex ↔ Claude.
-- `f1ccd63` — overlay respeita DPI e ganha posição/tamanho configuráveis.
-- `f6ada23` — motor Groq large-v3 com fallback local e polimento corrigido.
-- `7a6f52c` — modo toggle e parada automática por silêncio.
-- `d4c7fb8` — overlay em três estados.
-- `30df1c9` — alpha real por pixel em janela Win32.
-- `15b82fa` — núcleo visual maior após teste do Vitor.
+- `9373847` — refinamento estético da página A.
+- `a2a70e5` — B recebe provas com print da landing de vendas.
+- `a0acfb7` — reescrita da copy pós-primeira dobra da B.
+- `1be7d2d` — B volta a ser captura, com prova no hero e entrega nomeada.
+- `512938a` — prova de teto de R$ 143 mil entra na B.
+- `3972865` — terceira prova embutida em base64.
+- `a9cf5b4` — limpeza do hero nas páginas A e B.
+- `e07a94c` — entrega passa a ser Plano de Fim de Ano.
+- `bf6f621` — título da agenda ajustado ao blueprint.
+- `d80db1c` — bio oficial da Cindy.
+- `09a962e` — headline da campanha vira título do Dia 3.
 
-## Validação
+## Validação observada
 
-- `tools/whisperflow/test_activation.py`: 3/3 cenários passaram.
-- Daemon confirmou no log: motor remoto, overlay em camadas e hotkey ativos.
-- Overlay foi inspecionado em fundo claro e escuro para verificar halo e arcos.
+- Em 08/09/2026, a A publicada abriu com foto e link correto do Grupo VIP.
+- A publicada ainda não recebeu a última limpeza de copy existente no arquivo
+  local.
+- `/desafio-otica-100k-b/` retornou página não encontrada.
+- As alterações recentes da B estão commitadas localmente; não há prova de que
+  foram enviadas ao remoto ou ao WordPress.
 
 ## Bloqueios e riscos
 
-- O áudio sai da máquina quando o motor Groq está ativo.
-- Falhas do motor remoto e do polimento ainda degradam silenciosamente; falta
-  um indicador de saúde após falhas consecutivas.
-- O Claude Cloud precisa abrir a branch `codex/whisperflow-handoff`; a `master`
-  remota não recebeu este conjunto porque a `master` local tinha outros 20
-  commits paralelos que não foram incluídos sem revisão.
-- Há alterações não relacionadas já existentes no working tree; não misturar
-  `docs/qg/*`, `package*.json`, `.agents/`, `.codex/` ou `output/` neste trabalho.
+- Confirmar com a Cindy se as lives serão realmente às 19h e se duram cerca de
+  duas horas.
+- Confirmar a ordem dos pilares/temas por dia.
+- Confirmar autorização e identificação da terceira prova de resultado.
+- A B ainda contém link de política de privacidade sem destino real.
+- `master` local está 47 commits à frente de `origin/master`; não afirmar que o
+  Cloud ou remoto recebeu essas mudanças.
+- Existem alterações não relacionadas no working tree; não misturar
+  `docs/ecossistema/*`, `package*.json`, `.agents/`, `.codex/`, `docs/research/`
+  ou `output/` neste trabalho.
 
 ## Próximo passo recomendado
 
-Implementar aviso de saúde para falhas consecutivas do motor remoto/polimento.
-Depois, adicionar polimento contextual conforme o aplicativo em foco (IA,
-WhatsApp, e-mail ou editor), com comportamento configurável e fallback neutro.
+Revisar visualmente a B atual em mobile e desktop, corrigir apenas falhas reais
+e validar com o Vitor. Depois, publicar a B em uma URL separada e decidir a
+divisão de tráfego entre A e B. Se a prioridade imediata for a A, atualizar o
+código no WordPress com a versão local e limpar o LiteSpeed Cache.
 
 ## Como retomar
 
-No Claude Cloud, selecione a branch `codex/whisperflow-handoff` e peça ao agente:
-**“Leia `docs/sessions/README.md` e `docs/sessions/CURRENT.md`, confira o Git e
-continue do próximo passo sem reabrir decisões já registradas.”**
+> Leia `docs/sessions/README.md` e `docs/sessions/CURRENT.md`, confira o Git e
+> continue da próxima ação sem reabrir decisões já registradas.
