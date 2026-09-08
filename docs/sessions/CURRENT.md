@@ -12,7 +12,7 @@ para teste com tráfego frio.
 
 ## Estado atual
 
-- Branch local: `master`, HEAD `09a962e`.
+- Branch local: `master`.
 - A curta: `docs/landing-desafio-otica-100k/index.html`.
 - B longa: `docs/landing-desafio-otica-100k/index-b.html`.
 - A publicada: `https://cindyb.com.br/desafio-otica-100k/`.
@@ -33,6 +33,10 @@ para teste com tráfego frio.
 
 ### Página B
 
+- Todos os três CTAs usam o mesmo link do Grupo VIP da página A.
+- A abertura da seção de provas agora é “Resultados de quem aplicou” +
+  “Óticas como a sua batendo recordes no caixa”.
+- O parágrafo explicativo abaixo das provas foi removido a pedido do Vitor.
 - Reescreveu a B para voltar a ser página de captura, mantendo uma única ação:
   entrada no Grupo VIP.
 - Hero alinhado à A, seguido de agenda dos três dias, provas reais, bloco “Como
