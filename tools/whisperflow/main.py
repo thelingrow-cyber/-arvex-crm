@@ -228,6 +228,11 @@ def run_hotkey_loop(
     beeps_enabled = config["beeps"]
     mode = str(config.get("activation_mode", "hold")).lower()
     silence_ms = int(config.get("auto_stop_silence_ms", 0))
+    # Escape hatch for a take that never begins: the silence timer only arms
+    # AFTER speech, so pressing by accident (or giving up before saying
+    # anything) used to leave it recording until the max_seconds cap, with the
+    # orb stuck on screen. This closes it and throws the silence away.
+    no_speech_ms = int(config.get("no_speech_timeout_ms", 8000))
     # RMS above this counts as speech. Normal speech sits around 0.05-0.2,
     # room tone well under 0.01 (recorder.get_level's own docstring).
     speech_level = float(config.get("speech_level", 0.015))
@@ -254,6 +259,12 @@ def run_hotkey_loop(
         if overlay is not None:
             overlay.show()
         return True
+
+    def discard(reason: str) -> None:
+        rec.stop()
+        if overlay is not None:
+            overlay.hide()
+        logger.info("gravacao descartada (%s)", reason)
 
     def finish(reason: str, beep) -> None:
         audio = rec.stop()
@@ -296,24 +307,31 @@ def run_hotkey_loop(
                     if overlay is not None:
                         overlay.set_level(level)
 
+                    if level >= speech_level:
+                        speech_seen = True
+                        quiet_since = None
+
                     if rec.is_capped():
                         recording = False
                         finish(f"cap {max_seconds}s atingido", feedback.beep_cap)
-                    elif silence_ms > 0:
-                        # Arm only after real speech, then require an
-                        # uninterrupted stretch of quiet -- any blip of speech
-                        # resets the countdown, so natural pauses mid-sentence
-                        # don't end the take.
-                        if level >= speech_level:
-                            speech_seen = True
-                            quiet_since = None
-                        elif speech_seen:
-                            now = time.time()
-                            if quiet_since is None:
-                                quiet_since = now
-                            elif (now - quiet_since) * 1000 >= silence_ms:
-                                recording = False
-                                finish(f"{silence_ms}ms de silencio", feedback.beep_stop)
+                    elif (
+                        not speech_seen
+                        and no_speech_ms > 0
+                        and press_time is not None
+                        and (time.time() - press_time) * 1000 >= no_speech_ms
+                    ):
+                        recording = False
+                        discard(f"nenhuma fala em {no_speech_ms}ms")
+                    elif silence_ms > 0 and speech_seen and level < speech_level:
+                        # Armed only after real speech, and any blip of speech
+                        # resets it (above), so a natural pause mid-sentence
+                        # doesn't end the take.
+                        now = time.time()
+                        if quiet_since is None:
+                            quiet_since = now
+                        elif (now - quiet_since) * 1000 >= silence_ms:
+                            recording = False
+                            finish(f"{silence_ms}ms de silencio", feedback.beep_stop)
 
             else:  # "hold" -- original push-to-talk
                 if edge_down:

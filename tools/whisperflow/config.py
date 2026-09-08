@@ -27,6 +27,8 @@ DEFAULT_CONFIG = {
     # acima do qual conta como fala (fala normal ~0.05-0.2).
     "activation_mode": "hold",
     "auto_stop_silence_ms": 0,
+    # Fecha uma tomada que nunca comecou (apertou e nao falou).
+    "no_speech_timeout_ms": 8000,
     "speech_level": 0.015,
     "model": "base",
     # "local" (faster-whisper nesta maquina) ou "groq" (whisper-large-v3

@@ -141,6 +141,53 @@ def test_auto_stop_after_silence_but_only_once_speech_happened():
     print("OK  auto-stop: arma so depois da fala, ignora pausa curta")
 
 
+def test_press_without_speaking_closes_itself():
+    """O caso do Vitor: aperta, nao fala nada, e a orb ficava presa ate o cap
+    de 120s porque o cronometro de silencio so arma DEPOIS da primeira fala."""
+    rec, tracker = FakeRecorder(), FakeTracker()
+    finished = _run(
+        {**BASE, "activation_mode": "toggle", "auto_stop_silence_ms": 300,
+         "speech_level": 0.015, "no_speech_timeout_ms": 600},
+        tracker, rec,
+    )
+    time.sleep(0.1)
+
+    tracker.tap()
+    assert rec.running, "1o tap deveria iniciar"
+
+    rec.level = 0.001  # silencio total: nunca falou
+    time.sleep(0.35)
+    assert rec.running, "nao pode fechar antes do timeout"
+
+    time.sleep(0.55)
+    assert not rec.running, "deveria ter fechado sozinho sem nenhuma fala"
+    assert not finished, "silencio nao pode ser transcrito nem colado"
+    print("OK  aperta e nao fala: fecha sozinho e descarta")
+
+
+def test_speaking_prevents_the_no_speech_timeout():
+    """A trava nao pode roubar o tempo de quem so demorou a comecar."""
+    rec, tracker = FakeRecorder(), FakeTracker()
+    finished = _run(
+        {**BASE, "activation_mode": "toggle", "auto_stop_silence_ms": 400,
+         "speech_level": 0.015, "no_speech_timeout_ms": 1000},
+        tracker, rec,
+    )
+    time.sleep(0.1)
+
+    tracker.tap()         # o proprio tap ja consome ~160ms do relogio
+    rec.level = 0.001
+    time.sleep(0.45)      # pensando, ainda dentro do timeout
+    rec.level = 0.09      # comecou a falar: a trava tem que desarmar
+    time.sleep(0.65)      # ja passou dos 1000ms desde o tap
+    assert rec.running, "falar tem que desarmar o timeout de 'nunca falou'"
+    rec.level = 0.001
+    time.sleep(0.75)
+    assert not rec.running
+    assert len(finished) == 1, "esta tomada tem conteudo: deve ser transcrita"
+    print("OK  demorou a comecar mas falou: a tomada vale")
+
+
 def test_hold_mode_still_discards_taps():
     rec, tracker = FakeRecorder(), FakeTracker()
     finished = _run({**BASE, "activation_mode": "hold"}, tracker, rec)
@@ -164,5 +211,8 @@ def test_hold_mode_still_discards_taps():
 if __name__ == "__main__":
     test_toggle_starts_and_stops_on_two_taps()
     test_auto_stop_after_silence_but_only_once_speech_happened()
+    test_press_without_speaking_closes_itself()
+    test_speaking_prevents_the_no_speech_timeout()
     test_hold_mode_still_discards_taps()
-    print("\n3/3 passaram")
+    print("")
+    print("5/5 passaram")
