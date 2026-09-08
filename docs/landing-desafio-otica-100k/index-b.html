@@ -151,10 +151,18 @@ a{text-decoration:none;color:inherit}
 .fact p{font-size:clamp(13.5px,3.6vw,15px);color:var(--muted);line-height:1.6;margin:0}
 .fact p b{color:var(--text);font-weight:700}
 
-/* print de prova */
-.shot{margin:14px auto 0;max-width:420px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--bg-3)}
-.shot img{width:100%;height:auto}
-.shot figcaption{font-size:12px;color:var(--muted);padding:9px 12px;line-height:1.5;text-align:center}
+
+/* cards de prova com print (herdados da landing de vendas — ja publicados) */
+.pcards{display:flex;flex-direction:column;gap:14px}
+.pcard{margin:0;background:var(--bg-3);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column}
+.pcard>img{width:100%;height:auto;display:block;background:#E9E7E2}
+.pcard figcaption{padding:14px 16px 16px}
+.pres{font-size:clamp(19px,5vw,23px);font-weight:900;letter-spacing:-.4px;margin:0 0 7px;
+  background:linear-gradient(135deg,#B8902F,#8A6A1E);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text}
+.pquote{font-size:clamp(13px,3.5vw,14.5px);color:var(--muted);line-height:1.55;margin:0 0 8px;font-style:italic}
+.pname{font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--gold-dk);margin:0}
 
 /* bloco 4 — quem é a Cindy */
 .who-grid{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
@@ -201,6 +209,8 @@ a{text-decoration:none;color:inherit}
   .gain{flex:1}
   .facts{flex-direction:row}
   .fact{flex:1}
+  .pcards{flex-direction:row}
+  .pcard{flex:1}
   .who-grid{flex-direction:row;text-align:left;gap:26px;align-items:center}
   .who-photo{max-width:270px;flex-shrink:0}
   .who-bio{margin-left:0}
@@ -277,35 +287,43 @@ a{text-decoration:none;color:inherit}
   </div>
 </section>
 
-<!-- ============ BLOCO 3 — PROVA DE PAR ============
-     BLOQUEIO 2 — os tres casos vem das lives (icp-dono-de-otica.md §5, lote 3).
-     Confirmar com a Cindy nome, cidade e numero antes de subir trafego. -->
+<!-- ============ BLOCO 3 — PROVA DE PAR (com print) ============
+     As tres provas vem da landing de vendas (docs/landing-cindy-vendas), ja
+     publicadas em cindyb.com.br com nome, numero e print — autorizacao ja
+     resolvida. Substituem os casos Fran/Kesia/Rafaela, que eram so texto e
+     dependiam de autorizacao da Cindy.
+     ATENCAO: proof-michaella.png tem ~500KB. Vale converter as tres p/ WebP. -->
 <section class="section">
   <div class="wrap">
     <p class="klabel reveal">Óticas do mesmo porte que a sua</p>
     <h2 class="stitle reveal">Não é caso de gigante. É <em>ótica de bairro</em>.</h2>
-    <div class="proofs">
-      <div class="proof reveal" data-delay="1">
-        <p class="who">Fran · Curitiba · 8 anos de loja</p>
-        <p class="num">+R$ 9 mil em menos de 10 dias, na primeira campanha feita só com os clientes da própria base.</p>
-        <p class="say">“A gente já pagou em menos de dez dias.”</p>
-      </div>
-      <div class="proof reveal" data-delay="2">
-        <p class="who">Kesia · 10 anos de loja</p>
-        <p class="num">100 pessoas no grupo em 20 dias.</p>
-        <p class="say">“Em quatro dias vendemos o que vendemos em quinze, vinte dias.”</p>
-      </div>
-      <div class="proof reveal" data-delay="3">
-        <p class="who">Rafaela · Florianópolis</p>
-        <p class="num">De R$ 10-12 mil para R$ 22 mil por mês, trocando o anúncio de “promoção” por um anúncio com direcionamento.</p>
-        <p class="say">Mesma loja, mesma cidade, mesmo tamanho de equipe.</p>
-      </div>
+    <div class="pcards">
+      <figure class="pcard reveal" data-delay="1">
+        <img src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png" alt="Mensagem da Michaella: aumentamos mais de 30 mil no nosso faturamento só com os conteúdos do desafio" loading="lazy">
+        <figcaption>
+          <p class="pres">+R$ 30.000</p>
+          <p class="pquote">“Aumentamos mais de 30 mil no nosso faturamento só com os conteúdos do desafio.”</p>
+          <p class="pname">Michaella</p>
+        </figcaption>
+      </figure>
+      <figure class="pcard reveal" data-delay="2">
+        <img src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-galeria.jpg" alt="Mensagem da Galeria de Óculos: saímos de 16 mil para 63 mil em outubro" loading="lazy">
+        <figcaption>
+          <p class="pres">16k → 63k</p>
+          <p class="pquote">“O mês de outubro foi o melhor mês da nossa ótica. Saímos de 16k pra 63k.”</p>
+          <p class="pname">Galeria de Óculos</p>
+        </figcaption>
+      </figure>
+      <figure class="pcard reveal" data-delay="3">
+        <img src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-prycia.jpg" alt="Mensagem da Prycia: somente no dia da inauguração, 15 mil" loading="lazy">
+        <figcaption>
+          <p class="pres">R$ 15.000</p>
+          <p class="pquote">“Somente no dia da inauguração: 15 mil. Trabalhamos muito bem o digital.”</p>
+          <p class="pname">Prycia</p>
+        </figcaption>
+      </figure>
     </div>
-    <figure class="shot reveal">
-      <img src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png" alt="Mensagem de uma mentorada: aumentamos mais de 30 mil no nosso faturamento só com os conteúdos do desafio" loading="lazy">
-      <figcaption>Mensagem de uma participante de uma edição anterior do desafio.</figcaption>
-    </figure>
-    <p class="proof-note">Resultados de mentoradas da Cindy. Nenhum deles é promessa: dependem da loja, da base de clientes e da execução de cada uma.</p>
+    <p class="proof-note">Prints reais de mentoradas da Cindy. Nenhum deles é promessa: o resultado depende da loja, da base de clientes e da execução de cada uma.</p>
   </div>
 </section>
 
