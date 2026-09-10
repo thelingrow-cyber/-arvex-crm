@@ -9,12 +9,32 @@
 O posicionamento da marca pessoal é a iniciativa principal. A landing da Cindy
 continua ativa, mas não deve apagar nem rebaixar esse contexto:
 
-1. Refinar o posicionamento da marca pessoal do Vitor, retomando a sessão do
-   Claude de 08/09/2026 e o refinamento posterior feito no Codex. O problema
-   atual é encontrar uma propriedade intelectual e uma categoria próprias,
-   com força semelhante a “Volume Content” ou “Marca Creator”, capazes de
-   organizar posicionamento, conteúdo, oferta e entrega. Nenhum nome está
-   aprovado ainda.
+1. Posicionamento da marca pessoal. **Estado atualizado em 09-10/09/2026 — a
+   categoria NÃO está mais em aberto.** O Vitor cravou a v1 em 09/09:
+   **Negócios AI Native**, com a regra território-sim / oferta-não (usar em
+   marca e conteúdo, nunca no nome da oferta nem na primeira frase de uma call
+   de venda). E a decisão que veio junto: **não tentar POSSUIR o termo** —
+   Rodrigo Lopes / Higher Mind já o planta no BR com credencial de enterprise;
+   "AI-Native" é vocabulário de indústria, não termo cunhado. **A propriedade
+   intelectual é o VERBO — FAZER —, não o adjetivo.**
+
+   Documentos vigentes, nesta ordem:
+   [`../ecossistema/posicionamento-v1-negocio-nativo.md`](../ecossistema/posicionamento-v1-negocio-nativo.md)
+   (a v1 em uso) ·
+   [`../ecossistema/oferta-v1-catalogo-instalacao.md`](../ecossistema/oferta-v1-catalogo-instalacao.md)
+   (o que se vende) ·
+   [`../ecossistema/DOSSIE-POSICIONAMENTO-2026-09.md`](../ecossistema/DOSSIE-POSICIONAMENTO-2026-09.md)
+   (o raciocínio completo — **§14 traz a recuperação dos transcripts feita em
+   10/09**, com a fissura social, o diagnóstico do mecanismo observável, as 8
+   contradições vivas e as 9 pendências nunca fechadas) ·
+   [`../research/2026-09-09-implementacao-ia-br-eua.md`](../research/2026-09-09-implementacao-ia-br-eua.md)
+   (o mapa BR × EUA).
+
+   ⚠️ O texto das seções seguintes deste arquivo é anterior a essa virada e
+   descreve a categoria como indefinida. **Vale o que está acima.** Também
+   seguem desatualizados `brand-book-marca-pessoal.md` e
+   `mapa-posicionamento-marca.md` (alterações locais não commitadas, ainda em
+   "O Futuro Instalado").
 2. Finalizar e validar as páginas de captura A e B do **Desafio Ótica +100K**
    da Cindy Batista, priorizando a A curta que está rodando e preparando a B
    longa para teste com tráfego frio.

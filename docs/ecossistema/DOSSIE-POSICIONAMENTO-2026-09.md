@@ -546,3 +546,201 @@ voto vencido conhecido.
 
 *Curadoria produzida em 2026-09-09 a partir da transcrição do Codex (`01a07dac`) e do transcript
 local do Claude (`0fc73a9c`). Hipóteses de agente permanecem marcadas como hipóteses.*
+
+---
+
+# 14 — Recuperação dos transcripts (2026-09-10)
+
+> 👑 Orion · varredura dos transcripts brutos (`20f49704`, `0fc73a9c`, `f753d595`) + benchmark completo
+> e documento original de junho. **Tudo abaixo estava só em conversa** — nenhum documento carregava.
+> Mesma regra do resto do dossiê: DECISÃO do Vitor · [hipótese] de agente · ABERTO.
+
+## 14.1 — A fala que explica a v1
+
+Depois do diagnóstico duro da clone Tay ("não anuncie categoria antes de ter dois cases com número"):
+
+> **"Você fugiu completamente do que a gente estava pensando. (...) Porque eu quero começar por algum
+> ponto. Se estiver errado, a gente vai ajustar. Mas eu não vou começar descartando isso só porque
+> tem que começar."** — Vitor, 09/09
+
+A v1 nasce da recusa ao "ainda não". O conceito é dele, não de agente:
+
+> **"Existem negócios creators, que a Tay Dantas muito bem colocou. Ela fez uma leitura do que já
+> estava acontecendo; não criou, apenas nomeou um movimento... Não acho que ninguém tenha nomeado,
+> por exemplo, negócios autônomos... Não se trata apenas de implementar a IA, mas de mudar a
+> arquitetura completa da empresa para funcionar com a IA."**
+
+Outras falas decisivas: *"esquece a porra da Letícia (...) construir um founder led growth de verdade
+e não só infoprodutor, vendedor de mentoria e curso"* · *"não leve em conta só o que eu já fiz aqui,
+mas tudo que posso e tenho capacidade de fazer"* · *"não dá pra ficar falando sobre funcionários, já
+tem muita gente falando isso"* · **"Está 11, porra, mudei. É mais agora."** (origem da regra
+metas-são-lei) · *"Não — são produtos diferentes"* (matando a fusão oferta × Viziom).
+
+## 14.2 — 🔥 A fissura social (parecer Tay, rodada 2)
+
+> **"O empresário foi convencido de que precisava de IA para não ficar para trás. Ele pagou. E
+> continua para trás."**
+
+Não é dor técnica — é **vergonha silenciosa**. Ele comprou de gente grande, então a conclusão íntima
+é *"o problema sou eu"*, e por isso ele **não fala em voz alta**. Nenhum concorrente endereça.
+
+> **A frase que abre a fissura: "Você não comprou errado. Você comprou a peça que vem antes."**
+> Absolve, explica e vende — nessa ordem.
+
+⚠️ **Regra inegociável que vem junto: nunca bater em quem vendeu para ele.** Bater na promessa da
+ferramenta, nunca no vendedor. Atacar G4/Alan/Finch pelo nome é dizer ao comprador que ele foi otário.
+
+## 14.3 — O diagnóstico alternativo dos 6 nomes
+
+O §02 diz que caíram por virem antes da prova. Com as bios lado a lado, o padrão é outro e mais
+acionável: **os players que funcionam têm um mecanismo OBSERVÁVEL, não uma categoria abstrata.**
+
+| Player | O que é observável |
+|---|---|
+| Afonso Molina | Volume Content = **métrica diária** (seguidores/dia) |
+| Davi Valadares | Live Semanal = **evento + horário** (TERÇA 12h) |
+| Elias Maman | Marketing da Atenção = **tese que gruda** |
+
+> **Não faltou nome bonito. Faltou algo que o cliente veja acontecendo.**
+
+Candidato nascido daí e nunca respondido pelo Vitor: **"eu instalo um sistema por semana"** —
+frequência + evento + resultado. A prova deixa de depender de cliente e vira o próprio build.
+
+⚠️ **"O Teste dos 30 Dias" está morto como mecanismo público:** Vinicius Troncoso (Legacy Sales
+Company) já é dono do número — *"crio sua marca pessoal, faço sua oferta irresistível e implemento
+seu comercial em menos de 30 dias"*, ICP a partir de R$100k/mês. Única brecha: IA não é protagonista
+na oferta dele.
+
+## 14.4 — O organograma: o que o AIOX realmente é
+
+Os 8 squads (comercial 5 · marketing 6 · webdesign 10 · branding 3 · finanças 3 · research 3 ·
+C-level 3 · security 2) **não são coleção de ferramentas — são o organograma funcional de uma
+empresa inteira.** E o diferencial estrutural é o **`squad-creator`**:
+
+> **"Eles vendem o catálogo. Você vende a fábrica."**
+
+Confirmação externa: o **Cohort Advanced** do Alan vende *"nove agentes especializados — um time de
+R$1,6M+/ano na sua máquina"*. É um organograma de IA de nove funções vendido como curso.
+
+⚠️ **A verdade dura junto:** 35 agentes de squad **não são 35 funcionários instaláveis**. Agente com
+fonte + ferramenta é instalável; persona com método é consultor. **Vendáveis hoje: 3** — Atendimento
+(Carol ✅), Pré-venda (SDR arquitetado, falta ligar), Gestão de call (Sales Coach ✅).
+
+## 14.5 — A brecha dita por terceiro
+
+Crítica pública ao G4 OS, publicada pelo mercado: **"Inadequado para empresas precisando de IA
+executora."** E Rafael Milagre (Viver de IA) **é mentor do G4** — Viver de IA Pro está dentro do
+pacote G4. É um bloco, não dois players.
+
+## 14.6 — Convergência dos cinco clientes
+
+Hormozi chegou a **5 × R$12k** pela equação de valor. A economia do operador solo americano chegou a
+**5 × US$5.000/mês, ~85% de margem** (retainer US$2-5k, ~US$6k de custo com 1 VA) por caminho
+independente. Duas fontes que não se leram, mesmo número.
+
+## 14.7 — O gate de validação, invertido
+
+> **Publicar é o teste, não o que vem depois do teste.**
+
+| Liberado agora | Travado até haver sinal |
+|---|---|
+| conteúdo, legenda, DM, fechamento de vídeo, fala | domínio, bio definitiva, nome de produto pago, registro |
+
+**Critério de sinal, datado:** em 30 posts, alguém que não é o Vitor devolver a palavra — comentário,
+DM ou print.
+
+## 14.8 — BR × EUA já são duas ofertas (aritmética, não preferência)
+
+A oferta BR é **projeto de 45-60 dias** — acaba, não produz MRR. A meta EUA é **US$4k de MRR**.
+
+| Viaja | Não viaja |
+|---|---|
+| o mecanismo · a competência · os ativos (Carol, CRM, playbooks) · a estrutura de entrega | posicionamento e linguagem · ICP · preço e âncoras · prova social · canal |
+
+> *"Mesmo mecanismo, embalagens diferentes — você não recomeça do zero lá, você reembala."*
+
+**Dois itens que não estão em nenhum plano:** como **receber** em USD (entidade, Stripe/Wise, fiscal)
+e a distinção **vender em USD ≠ trabalhar nos EUA**.
+
+## 14.9 — Contradições vivas (levantadas, nunca resolvidas)
+
+1. **Categoria × sintaxe já ocupada.** "Negócios AI Native" repete a construção de **"Negócios
+   Creators"** (Tay) e vizinha **"IA Aplicada a Negócios"** (Alan) — descrita no benchmark como *"a
+   categoria mais nítida e vazia de todos os players nacionais"*.
+2. **Setup + mensalidade abandona o eixo declarado.** O documento de junho crava *"não ensino o
+   caminho, percorro junto e fico com parte do resultado"* e *"resultado compartilhado, não produto
+   barato"*. O benchmark alerta: risco nº2 = **"virar agência disfarçada — perder o equity como
+   diferenciador"**. A troca é defensável (caixa em 90 dias), mas **nunca foi declarada como troca**.
+3. **Volume.** O benchmark manda começar com **3/semana** e prova com Iman (113 posts, 24.778
+   seguidores/post) que *"frequência não é o driver — relevância é"*. A grade executável de 13/08
+   (7/semana) precisa ser reescrita no volume novo — não há contradição de meta (11/dia substitui
+   7/semana pela regra vigente), há artefato desatualizado.
+4. **"SDR de IA" e "atendente" genéricos estão nas categorias saturadas de 2026.** O que não está
+   saturado é *um agente vertical para um comprador que já paga uma pessoa para fazer aquilo*. **O
+   catálogo v1 nunca foi reescrito com essa correção.**
+5. **Âncora dupla do trimestre** — "oferta pessoal validada" **e** "Viziom com MRR", com a Cindy
+   saindo. Duas âncoras é dispersão pela porta dos fundos. Não escolhido.
+6. **Caminho crítico ambíguo:** 08/09 o Vitor escolheu *Lingrow*; 09/09 o agente inverteu para *a
+   oferta* e foi repreendido pelo método — sem confirmar qual vale.
+7. **Arquitetura de marca:** a "constelação" de junho (3 rostos + ARVEX institucional) nunca foi
+   morta, e contradiz o modelo Hermano (uma marca pessoal + operação nichada).
+8. **Lingrow:** "13 mil usuários" (ditado) × "3.000 usuários / 200 pagantes" (plano). O plano prevalece.
+
+## 14.10 — Pendências criadas e nunca fechadas
+
+| # | O quê | Origem |
+|---|---|---|
+| 1 | **"Leak Map"** no lugar de "Raio-X" — nomeia o vazamento e ancora preço no achado | ThinkFraction |
+| 2 | Renomear o Raio-X para **"por que a sua IA não entrou em produção"** — *"o melhor gancho comercial da sessão"* | Tay |
+| 3 | **"E como eu sei que com você é diferente?"** — a pergunta do primeiro cliente | Tay |
+| 4 | Escrever **"um dia comum dentro de um Negócio Nativo"** em 10 linhas (cada linha = 1 vídeo) | Tay |
+| 5 | **Capacidade em paralelo: 1, 3 ou 10?** — *"sem esse número, tudo é ficção"* | Tay |
+| 6 | Prints de vertical comercial e de gente com plataforma de IA parada (evidência primária do ICP) | pedido, não enviados |
+| 7 | **Mapear 10-15 players de 20-100k com PI forte** — dos 15 mapeados, só Davi (38,8k) está na faixa | buraco declarado |
+| 8 | **Quanto custa o mês do Vitor** — sem burn rate, não se sabe qual meta é obrigatória | placar |
+| 9 | **A mesa de clones aprovada nunca rodou** | 09/09 |
+
+## 14.11 — Correções factuais
+
+- **Theo Braga: 343k**, não 246k (o número menor, de fonte secundária, circulou em 3 documentos).
+- **O benchmark analisa 12 players: 8 nacionais** (Elias, Tay, Theo, Luana, Tallis, **Alfredo Soares**,
+  Alan, Finch) **+ 4 internacionais** (Hormozi, Iman Gadzhi, Daniel Dalen, Gary Vee). Afonso, Concer,
+  Érico e Areb entraram só no mapa depois. **Alfredo Soares tem a análise de linguagem mais rica do
+  documento e sumiu de todos os registros posteriores.**
+- **Os dois gates de junho caíram e ninguém registrou:** R1 era *"Carol vive desligada no Railway —
+  não vender IA sem stack rodando"*. Hoje Carol está no ar, CRM em produção, Sales Coach rodou.
+- **Os dados brutos do Codex nunca existiram no repo** — só o destilado. O IG bloqueia leitura pelo
+  Claude; fonte primária de perfil é pelo Codex.
+
+## 14.12 — Material acionável parado desde junho
+
+**Os dois inimigos que sumiram:** *"A estrutura ausente — o mercado que celebra seguidores sem
+perguntar o que está sendo construído com eles"* · *"O pensamento pequeno num momento grande — quem
+usa IA para escrever email mais rápido enquanto outros usam para construir sistemas inteiros"*.
+Regra: atacar o comportamento, **nunca citar nome de player**.
+
+**Protocolo das frases:** 1 frase central/semana · tensão abre, visão fecha, execução vira CTA no
+lugar de "salva esse vídeo" · **"nunca explicar a frase — deixar ela existir sozinha"**.
+
+**Funil:** sem landing, sem formulário — **DM direto**. *"Quem assiste 3-5 vídeos seus já sabe quem
+você é."* Meta declarada: **DM→cliente, 3 a 5 em cada 10.**
+
+**Founder Story em 3 atos** (2019 vi e não fui → o freio → a virada aos 26): *"publica uma vez,
+referencia para sempre"*. **12 temas de YouTube já roteirizados**, 8-12 cortes cada.
+
+**Copy descartada com critério, reciclável:** *"O futuro já está instalado em algum lugar. Só ainda
+não é no seu negócio."* (serve como abertura, não como assinatura) · *"Enquanto discutem o futuro,
+alguém instala o seu concorrente."* (converte, mas é urgência e quebra o arquétipo).
+
+**A definição mais limpa da categoria** está em `sistema-de-roteiro.md`, no gancho G1 *Arbitragem
+temporal*: **"Isso já é rotina em [lá]. Aqui, quase ninguém faz"** — *"a definição da categoria:
+traduzir o futuro que já existe"*.
+
+**A tese em que a falta de audiência vira argumento:** *"Uma pessoa com os sistemas certos hoje faz
+o que exigia um time de dez."* — você não precisa de case de cliente, **você é o case**. Nunca
+testada numa call.
+
+---
+
+*Recuperado em 2026-09-10 a partir de `20f49704` (25 turnos humanos), `0fc73a9c`, `f753d595`,
+`benchmark-marca-pessoal-completo.md` e `posicionamento-marca-pessoal-ORIGINAL.md`.*
