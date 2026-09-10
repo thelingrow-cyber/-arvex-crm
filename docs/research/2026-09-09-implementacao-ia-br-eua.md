@@ -201,6 +201,92 @@ Duas arbitragens reais, e a segunda é a mais forte:
 
 ---
 
+## 04c — A oferta existe nos EUA? Sim — e é pequena, nova e feita por uma pessoa
+
+### ThinkFraction — o espelho mais próximo encontrado
+
+Site oficial [22], lido em 09/09/2026. **É praticamente o desenho que o Vitor está buscando.**
+
+| Elemento | Como eles escrevem |
+|---|---|
+| **Posicionamento** | *"AI Advisory + Deployment Studio — Practical AI for Owner-Operated Businesses"* |
+| **Promessa** | *"The boring work still gets done. Your team stops doing it."* |
+| **Enquadramento** | resolvem *"workflow problems, not headcount problems"* |
+| **ICP declarado** | *"You run a 5–20 person owner-operated business. You're the owner or the COO."* |
+| **Entrega** | implementação integrada aos sistemas existentes · automação entre ferramentas · **"AI agents (digital employees) — one agent owning one task"** · base de conhecimento ("second brain") · **Claude Skills** para procedimentos repetíveis · custom builds |
+| **Funil** | **Leak Map** (conversa de 30-60 min) → **Build** (*"one price, one delivery date"*, 2-6 semanas) → **Retainer** mensal de monitoramento |
+| **Precificação** | *"Pricing is proportional to the findings from the leak map"* |
+| **Diferencial declarado** | quem faz o deploy monitora o que implementou; não é assistente de propósito geral — foca em trabalho *"structured, repetitive, and measurable"* |
+
+**Três coisas para roubar imediatamente:**
+
+1. 🎯 **"Leak Map"** é melhor que "Raio-X" ou "auditoria". Nomeia o **vazamento**, não a atividade. E amarra preço a achado: *o preço é proporcional ao que o mapa encontrou* — o cliente aceita porque a conta é dele.
+2. 🎯 **"Workflow problems, not headcount problems"** resolve de vez o dilema do "funcionário de IA": entrega a função sem prometer demitir ninguém. Mantém a linha vermelha intacta.
+3. 🎯 **"One agent owning one task"** — escopo estreito declarado na vitrine. É a heurística do Vitor (fonte + ferramenta + escopo estreito) virada em argumento de venda.
+
+**Re-Solved Digital** [23] opera modelo parecido: *build, host and run* de agentes gerenciados para PME, com **uma taxa de setup + uma assinatura mensal**, API e hospedagem inclusas.
+
+### O que isso prova, e o que não prova
+
+✅ **Prova que o modelo funciona e que uma pessoa consegue rodar.** ThinkFraction é essencialmente um operador só com deployment studio.
+✅ **Prova que existe vocabulário pronto** para descer o frame enterprise para PME.
+❌ **Não prova que está consolidado** — são players pequenos e novos, não categoria formada.
+❌ **E prova que a barreira de entrada é baixa** — qualquer pessoa técnica monta isso. O moat não é a ideia.
+
+### Preços do lado serviço (EUA, 2026) [15][24]
+
+| Formato | Faixa |
+|---|---|
+| Audit / estratégia | US$ 5.000 – 15.000 |
+| Build de um workflow | US$ 3.000 – 15.000 |
+| **Retainer de operação gerenciada** | **US$ 500 – 5.000+/mês** |
+| Modelo com licença | US$ 20k setup + US$ 2k/mês |
+
+### ⚠️ E os preços do lado plataforma — o alerta que muda a estratégia
+
+| Plataforma | Preço |
+|---|---|
+| Lindy | **US$ 49,99/mês** |
+| Relevance AI | Pro US$ 29 · Team US$ 349/mês |
+| Artisan (Ava, AI SDR) | US$ 600/mês (anual) — na prática US$ 1.000-2.500/mês |
+
+> **A ferramenta virou commodity barata.** Nunca vender software nem competir em preço de plataforma —
+> o valor está na instalação, na integração e na operação. Quem vende "um agente" compete com
+> US$ 49/mês.
+
+### A janela, com número
+
+**Gartner (2026 CIO Survey):** apenas **17%** das organizações têm agentes de IA em produção hoje;
+**mais de 60% esperam ter em dois anos** [25].
+
+> **Isso é a janela quantificada** — e o argumento honesto de urgência, sem inventar escassez.
+
+---
+
+## 04d — O que está fora do radar: a próxima onda já tem nome
+
+Três termos que ainda não apareceram em nenhum documento do repositório e definem 2026-2027:
+
+**1. Multi-agent orchestration.** O padrão está saindo de agente único para **times de agentes
+especializados em paralelo** — um planeja, um busca contexto, um executa, um avalia antes de
+aprovar ou escalar [26][27].
+
+**2. Context engineering.** Substituiu prompt engineering como a disciplina técnica crítica, sob uma
+constatação decisiva: **"falhas de agente são, principalmente, falhas de contexto — não falhas de
+modelo"** [28].
+
+**3. Agent harness.** O nome dado à infraestrutura de software que coordena agentes — execução de
+ferramenta, memória e persistência de estado entre sessões [27].
+
+> 🎯 **O AIOX é um agent harness com orquestração multi-agente, e ele já roda.** 8 squads, 35
+> agentes, workflows, handoff compactado, boundaries L1-L4, memória versionada. O Vitor construiu a
+> onda seguinte antes de ela ter nome no mercado brasileiro — e não sabia que ela tinha nome.
+>
+> E a frase de [28] é a formulação técnica exata da tese: **se a falha é de contexto e não de
+> modelo, então trocar de ferramenta não resolve — só redesenhar o fluxo resolve.**
+
+---
+
 ## 05 — Preço: o Vitor está subprecificado
 
 Faixas praticadas no mercado americano em 2026:
@@ -256,3 +342,10 @@ entrar na empresa** [4]. Se a ferramenta com mentoria custa isso, serviço feito
 [19] "The rise of the AI-Native agency: from execution to architecture" — Adapt Worldwide · https://www.adaptworldwide.com/2026/02/24/the-rise-of-the-ai-native-agency-from-execution-to-architecture/
 [20] "The great rebuild: Architecting an AI-native tech organization" — Deloitte Tech Trends 2026 · https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/ai-future-it-function.html
 [21] "AI Business Transformation | The 2026 Strategy for Growth" · https://aifirstartup.com/ai-business-transformation-guide/
+[22] ThinkFraction — site oficial · https://www.thinkfraction.xyz/ (acesso 09/09/2026)
+[23] Re-Solved Digital — AI Automation Services, Managed Self-Hosted AI Agents · https://re-solved.digital/
+[24] "AI Automation Agencies: 2026 Guide" — The JADA Squad · https://www.jadasquad.com/blog/ai-automation-agencies
+[25] "Top AI Workforce Platforms for IT Leaders in 2026" (cita Gartner 2026 CIO Survey) — Atomicwork · https://www.atomicwork.com/itsm/best-ai-workforce-platforms
+[26] "AI agent trends for 2026: 7 shifts to watch" — Salesmate · https://www.salesmate.io/blog/future-of-ai-agents/
+[27] "Top 15 Agentic AI Trends to Watch in 2026" — Firecrawl · https://www.firecrawl.dev/blog/agentic-ai-trends
+[28] "Context Engineering: A Practical Guide for AI Agents (2026)" — Sourcegraph · https://sourcegraph.com/blog/context-engineering
