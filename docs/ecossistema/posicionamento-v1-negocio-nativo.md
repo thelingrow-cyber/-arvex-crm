@@ -124,6 +124,44 @@ Qualificação em três perguntas:
 2. Quem responde, e em quanto tempo?
 3. Quanto vale um cliente fechado?
 
+### Os dois compradores que se parecem e não são o mesmo
+
+| | **A · Dor operacional** | **B · Ansiedade de desatualização** |
+|---|---|---|
+| Como ele fala | "estou perdendo lead", "só eu resolvo", "não dou conta do WhatsApp" | "preciso me atualizar em IA", "estou ficando para trás" |
+| Consciência (Schwartz) | **Problem-Aware da dor** | Unaware da dor · Product-Aware da IA |
+| O que ele compra | **sistema instalado** | curso, formação, plataforma |
+| Como mede | dinheiro | sensação de estar em dia |
+| Quem já atende | ninguém com rosto | Viver de IA (146k, 2.500 empresas), Alan Nicolas (15 mil formados) |
+
+🎯 **O comprador da v1 é o A. O B é audiência, não cliente.**
+
+Motivo estrutural, não preferência: a dor do B é *não saber*, e a solução para não saber é
+**aprender** — ou seja, o produto certo para ele é educação. Vender para o B empurra direto para
+formação e mentoria, exatamente o que o Vitor decidiu **não** ser. E é o território onde a disputa
+é contra quem tem 146 mil seguidores e caixa.
+
+**O B ainda vale — como topo de funil.** O trabalho do conteúdo é mover B → A: fazer o profissional
+inseguro perceber que o problema não é falta de conhecimento sobre IA, é a operação que trava nele.
+Quem faz essa travessia vira comprador. Quem não faz, segue, curte e nunca compra — e tudo bem.
+
+### O filtro de corte (aplicar antes de gastar uma call)
+
+| Critério | Passa | Não passa |
+|---|---|---|
+| Volume de lead | entra lead toda semana | prospecção 100% manual, sem fluxo |
+| Receita existente | já vende, quer destravar | quer começar do zero |
+| Ticket do cliente final | comporta setup + mensalidade | serviço barato, volume baixo |
+| Quem opera | há alguém além do dono (ou deveria haver) | profissional solo que atende sozinho |
+
+**Aplicado aos exemplos levantados:**
+- **Clínica de harmonização (HOF)** — ✅ passa em tudo. Ticket alto, lead caro do Instagram, agenda,
+  no-show, decisão no WhatsApp. É o melhor recorte disponível hoje.
+- **Ótica** — ✅ passa na dor e no dado, ⛔ **bloqueada por contrato**. Ver §08 do dossiê.
+- **Psicólogo individual** — ⛔ não passa. Operação pequena, atende sozinho, ticket não comporta.
+  *Clínica* de psicologia com vários profissionais e secretária — aí sim, é outro negócio.
+- **"Empresário em geral"** — ⛔ é demografia, não recorte. Al Ries já matou em julho.
+
 **Por que situação e não vertical:** ótica está bloqueada por contrato, e escolher vertical sem ponte
 de acesso já falhou duas vezes. **A vertical se define depois dos 5 primeiros clientes**, por
 evidência de onde eles vieram — e aí vira "a referência em X".

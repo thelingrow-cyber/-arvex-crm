@@ -89,6 +89,41 @@ Decisões explícitas do Vitor nesta sessão. Não são hipóteses de agente.
 | **Hermano** (`@eu.hermano`) | founder-led growth | **+20MM vendendo serviços** | 54,5k |
 | **LAKS** (`@lakscompany`) | assessoria #1 p/ corretoras | 350 corretoras, 7 anos | 40,2k |
 
+### Plataformas e players institucionais (sem rosto)
+
+| Player | Categoria declarada | Prova exibida | Modelo | Audiência |
+|---|---|---|---|---|
+| **Viver de IA** (`@viverdeia.ai`) | *"A Plataforma das Empresas que Crescem com IA"* | **+2.500 empresas aceleradas** | plataforma + **Soluções Plug and Play** + Formações | **146 mil · 682 posts** |
+| **Letalk** | automação comercial de WhatsApp | +4.000 equipes | plataforma | — |
+| Zenvia · Take Blip · RD Station · BotConversa · Kommo · DataCrazy | automação/CRM com IA | — | plataforma | dominam a busca de intenção comercial |
+
+**Leitura do Viver de IA (print de 09/09/2026 — fonte primária):**
+
+- **Valida o mercado sem custo para nós.** 146k seguidores e 2.500 empresas declaradas provam que
+  dono de empresa **já paga** para resolver isso. O problema de posicionamento nunca foi falta de
+  demanda — é lotação da mensagem.
+- 🎯 **Eles ocupam o lado oposto da v1, e carimbam isso no próprio perfil.** A categoria deles é
+  *"empresas que CRESCEM COM IA"* — IA plugada numa empresa que continua a mesma. E o destaque
+  fixado se chama literalmente **"Soluções Plug and Play"**. É o inimigo da v1 se autodeclarando.
+- **Conteúdo é educacional de topo** ("Os 8 termos de IA que todo dono de empresa vai ter que
+  dominar", "Quando utilizar IA no processo de vendas", notícia da Tesla). Educam o mercado sobre
+  a ferramenta — trabalho caro, que só quem tem audiência sustenta. Confirma Schwartz: eles falam
+  com quem está *Unaware*; a v1 fala com quem está *Problem-Aware* da dor operacional.
+- **Não têm rosto.** Marca institucional, 3 seguindo, destaque genérico de "Quem somos". Moat
+  emocional inteiro na mesa — é exatamente o buraco que a varredura de 08/09 identificou
+  ("automação comercial não tem rosto humano no BR").
+- ⚠️ **Onde eles são fortes de verdade:** escala, capital e prova numérica (2.500 empresas × nossa
+  prova pública zero). **Não disputar volume de conteúdo educativo com eles** — perde-se por
+  audiência e por caixa.
+- ✅ **Por que isso reforça a v1:** o modelo econômico deles é produto que escala, e produto que
+  escala **precisa** ser plug and play — não pode redesenhar a operação de cada cliente. A força é
+  a fraqueza (Lei do Oposto). Eles não conseguem responder "isso não muda a arquitetura" sem
+  contradizer o próprio produto.
+
+> **Uso na comunicação:** bater no **comportamento** ("solução plug and play que não muda a
+> operação"), nunca na empresa pelo nome. Nomear concorrente dá palco a quem tem 146k contra os
+> nossos zero.
+
 ### Fonte secundária
 
 Thiago Finch (3,4M · Bilhon, Clickmax, Ticto — *"em 2026 vendem a estrutura, não o código"*) ·
