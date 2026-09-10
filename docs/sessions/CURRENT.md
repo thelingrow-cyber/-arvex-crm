@@ -6,9 +6,143 @@
 
 ## Objetivo ativo
 
-Finalizar e validar as páginas de captura A e B do **Desafio Ótica +100K** da
-Cindy Batista, priorizando a A curta que está rodando e preparando a B longa
-para teste com tráfego frio.
+O posicionamento da marca pessoal é a iniciativa principal. A landing da Cindy
+continua ativa, mas não deve apagar nem rebaixar esse contexto:
+
+1. Refinar o posicionamento da marca pessoal do Vitor, retomando a sessão do
+   Claude de 08/09/2026 e o refinamento posterior feito no Codex. O problema
+   atual é encontrar uma propriedade intelectual e uma categoria próprias,
+   com força semelhante a “Volume Content” ou “Marca Creator”, capazes de
+   organizar posicionamento, conteúdo, oferta e entrega. Nenhum nome está
+   aprovado ainda.
+2. Finalizar e validar as páginas de captura A e B do **Desafio Ótica +100K**
+   da Cindy Batista, priorizando a A curta que está rodando e preparando a B
+   longa para teste com tráfego frio.
+
+Resumo completo e mais recente da iniciativa principal:
+[`../ecossistema/contexto-atual-posicionamento-vitor.md`](../ecossistema/contexto-atual-posicionamento-vitor.md).
+
+Transcrição integral das mensagens visíveis e todas as imagens enviadas na
+sessão:
+[`../ecossistema/sessoes/2026-09-08-marca-posicionamento-transcricao-completa.md`](../ecossistema/sessoes/2026-09-08-marca-posicionamento-transcricao-completa.md).
+
+## Contexto recuperado — posicionamento da marca pessoal
+
+- Sessão local do Claude recuperada em 08/09/2026:
+  `0fc73a9c-a20c-41bd-a9a4-f2bf6527cbee.jsonl`.
+- A pesquisa competitiva separou os territórios assim: Alan Nicolas = IA e
+  agentes; Thiago Finch = infraestrutura; Thiago Concer = vendas com time
+  humano; marketing, lançamentos, copy e posicionamento já possuem players
+  fortes. A brecha encontrada foi **operação/automação comercial com rosto
+  humano**, hoje ocupada principalmente por plataformas.
+- Recomendação produzida naquela sessão: preservar o verbo **INSTALAR** e
+  estreitar o objeto de “O Futuro Instalado” para **A Operação Instalada**;
+  frase proposta: **“Operação não se contrata. Se instala.”**; IA funciona
+  como mecanismo da entrega, não como categoria pública.
+- ICP funcional proposto: negócio que já recebe demanda e cujo atendimento,
+  qualificação, follow-up e venda ainda travam no dono. Filtro de diagnóstico:
+  entra lead hoje? quem responde? quanto vale um cliente fechado?
+- Dono de ótica apareceu como hipótese de beachhead por acesso e sinergia com
+  o Viziom. Isso **não está aprovado como ICP da oferta pessoal**: o Vitor
+  decidiu depois que oferta própria e Viziom são produtos diferentes.
+- A meta atual é **1.000 vídeos em 90 dias**. Qualquer comparação com a grade
+  anterior está superada. No plano atual, marca pessoal é distribuição e a
+  oferta própria é monetização/autonomia.
+- Estado documental: `brand-book-marca-pessoal.md` e
+  `mapa-posicionamento-marca.md` contêm alterações locais não commitadas da
+  sessão do Claude; `docs/research/` também está não rastreado. Não interpretar
+  essas alterações como aprovação do Vitor.
+- Pergunta aberta para retomada: a marca deve possuir a categoria ampla
+  **A Operação Instalada**, o recorte mais comercial **máquina comercial que
+  roda sem o dono**, ou outra posição encontrada após validar ICP e oferta?
+
+## Refinamento posterior — plano de 90 dias, oferta e categoria
+
+### Norte e metas atuais
+
+- Tese do plano: **“Não construir uma vida para escapar para os EUA. Construir
+  uma vida que possa ser levada para os EUA.”** A tradução operacional é
+  construir uma máquina que não dependa de onde o Vitor está.
+- Marca pessoal + oferta própria em 90 dias: **1.000 vídeos, 10.000 seguidores,
+  R$ 50 mil em vendas e uma oferta forte/validada**. Marca pessoal funciona
+  como distribuição; oferta própria, como monetização e autonomia. O resultado
+  econômico principal é R$ 50 mil.
+- Lingrow: **3.000 usuários e 200 pagantes**.
+- Viziom: **120 pagantes e referência de R$ 20 mil–30 mil de MRR**.
+- EUA: **viajar em dezembro, validar uma oferta em USD e chegar a US$ 4 mil de
+  MRR**. A preparação inclui passagem, hospedagem, cidade-base, orçamento,
+  contatos e networking. A passagem pode precisar ser comprada no fim de
+  setembro. Brasil e EUA podem exigir ofertas diferentes; a direção sugerida é
+  validar e aprimorar primeiro a oferta brasileira e pesquisar o mercado
+  americano antes de assumir que a mesma promessa será exportada.
+- Cindy permanece como obrigação operacional/fonte de caixa e fica fora do
+  placar estratégico principal.
+- Essas são as metas vigentes. Não comparar com cadências ou versões antigas do
+  plano e não avaliar o presente pelo que não foi executado anteriormente.
+
+### Direção da marca e da oferta
+
+- A marca pessoal tende a ser mais ampla, ligada a negócios, construção de
+  empresas, SaaS, IA e à atuação do Vitor como operador/fundador. Nos primeiros
+  90 dias, a aquisição pode usar conteúdo mais concentrado no ICP e na oferta.
+- O Vitor é a lente e a prova da marca; não é, por si só, o nicho comercial.
+- Hipótese de comprador: profissional ou especialista que precisa produzir
+  conteúdo para vender mais sua clínica, consultoria ou mentoria e ainda não
+  integrou posicionamento, oferta, conteúdo, funil e comercial.
+- A entrega inicialmente imaginada reúne posicionamento, construção da oferta,
+  máquina de conteúdo, funis, processo comercial e IA. Apresentar cada elemento
+  como serviço separado faz a proposta parecer genérica e ampla demais.
+- A oferta precisa ser comprimida por uma tese, uma categoria e um mecanismo
+  proprietário. O comprador deve desejar a transformação nomeada; os vários
+  componentes ficam como infraestrutura da entrega.
+
+### Players analisados a partir de perfis enviados pelo Vitor
+
+- **Tay Dantas / Vinci Society:** consultoria e agência que promete construir
+  marcas “sexy e ricas”; território percebido de **marcas creators / crescimento
+  liderado por marca**. O aprendizado central é separar o modelo de entrega
+  (consultoria + agência) da transformação desejada que aparece na vitrine.
+- **Theo Braga / Inquietos:** posicionamento baseado em identidade, ambição,
+  ecossistema, networking e status empresarial. “Inquietos” funciona como
+  identidade coletiva forte, embora a oferta imediata não fique explícita.
+- **Davi Valadares:** promessa mais comercialmente específica do grupo: fechar
+  contratos de serviços e mentorias usando uma **Live Semanal Estruturada**.
+  Demonstra a força de combinar comprador, resultado, mecanismo e frequência.
+- **Luana Carolina:** comunicação, conteúdo e modelos de stories que engajam e
+  vendem. A força percebida está em personalidade e distribuição; a categoria é
+  ampla e depende menos de um mecanismo exclusivo.
+- **Afonso Molina:** promete crescimento de seguidores para empreendedores e
+  especialistas e nomeia o método **Volume Content**. É a principal referência
+  do Vitor para propriedade intelectual baseada em mecanismo.
+- **Elias Maman:** possui a categoria **Marketing da Atenção** e a tese “o mais
+  conhecido vence o melhor, até que o melhor se torne o mais conhecido”. É
+  referência de categoria ampla sustentada por uma crença memorável.
+- **Vinícius Troncoso**, analisado antes: território de operador solo com IA,
+  Claude, automação e alta margem. Há sobreposição semântica em instalação,
+  máquina e operação sem time; a diferenciação discutida para Vitor é construir
+  sistemas empresariais que reduzem dependência do dono, em vez de ensinar um
+  indivíduo a operar sozinho.
+
+### Hipóteses atuais — ainda não aprovadas
+
+- **“Operação de Autoridade”** foi proposta como categoria, mas **não pegou para
+  o Vitor**: descreve a engrenagem interna e não gera desejo ou identidade com a
+  força de “Marca Creator” e “Volume Content”. Não continuar tratando esse nome
+  como favorito.
+- O paralelo estrutural que fez mais sentido depois foi: criar uma consultoria
+  e agência que constrói um tipo desejável de empresa, enquanto posicionamento,
+  conteúdo, oferta, funis, comercial e IA ficam nos bastidores da entrega.
+- **“Empresa de Autoridade”** surgiu como nome provisório para aquilo que o
+  cliente se torna: um negócio no qual a autoridade do fundador gera conteúdo,
+  demanda e vendas.
+- **“Crescimento por Autoridade”** surgiu como nome provisório para o mecanismo
+  ou disciplina usada para construir essa empresa.
+- Formulação exploratória: “Consultoria e agência de Crescimento por Autoridade.
+  Transformamos especialistas em empresas que geram demanda e vendas através
+  da autoridade do fundador.” Isso é somente material de trabalho.
+- O Vitor sente que ainda falta encontrar a ideia com força própria. A próxima
+  conversa deve explorar alternativas de propriedade intelectual antes de
+  escrever bio, oferta final ou arquitetura de serviços.
 
 ## Estado atual
 
@@ -101,6 +235,35 @@ para teste com tráfego frio.
 - Existem alterações não relacionadas no working tree; não misturar
   `docs/ecossistema/*`, `package*.json`, `.agents/`, `.codex/`, `docs/research/`
   ou `output/` neste trabalho.
+
+## Trabalho paralelo — automação de lembrete de call (CRM), 2026-09-10
+
+Pedido da Thalita (closer). Decisões do Vitor: lembrete vai para o **lead**, em
+**dois disparos** (manhã do dia + 1h antes de cada call), com **texto fixo com
+variáveis** — não passa pela Carol (que segue `ativo=false` e sem número).
+
+Feito e verificado em produção:
+
+- `docs/crm/setup-lembrete-call-v1.sql` **aplicado**: `call_em_ts()` (converte
+  `leads.data_call`, que é TEXT, para timestamptz em horário de Brasília),
+  `lembretes_config`, `lembretes_call` (índice único = anti-duplicação),
+  view `calls_agendadas`, RLS.
+- Edge function `lembrete-call` **deployada** e testada em dry-run nos dois
+  caminhos (HTTP 200; manhã pegou as 3 calls do dia, 1h pegou exatamente 1).
+- `pg_cron` e `pg_net` **habilitados** no projeto.
+- Nasce **desligado**: `lembretes_config.ativo = false`.
+
+Falta (só o Vitor pode fazer — envolve a service_role key):
+
+1. Rodar `docs/crm/setup-lembrete-call-v1-cron.sql` no SQL Editor do Supabase,
+   colando a chave no lugar do placeholder (Vault + os dois jobs de cron).
+2. Aprovar o texto das duas mensagens.
+3. `update lembretes_config set ativo = true where id = 1;`
+
+Achados de funil que apareceram no caminho (não corrigidos, decisão do Vitor):
+12 leads presos em `status='call'` com data já vencida, e cadastros duplicados
+da mesma pessoa (dois "Orleany Santos", "Eduarda"/"Eduarda Rodrigues"). A
+function já deduplica por telefone no envio, mas a sujeira do funil continua.
 
 ## Próximo passo recomendado
 
