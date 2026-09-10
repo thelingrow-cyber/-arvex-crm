@@ -123,6 +123,84 @@ compra "meu lead parou de morrer".
 
 ---
 
+## 04b — Para onde os EUA estão indo (aprofundamento)
+
+### O dado que sustenta a tese inteira: o gap de execução
+
+| Métrica | Valor |
+|---|---|
+| Pilotos de IA generativa que **falham em entregar impacto mensurável** | **95%** [16][17] |
+| Empresas que **adotaram** IA × empresas com IA **em produção** | **79% × 11%** [17] |
+| Startups de agentes de IA que **fecharam em 2025** | **+3.800** [17] |
+
+**A causa nomeada:** o abismo entre piloto e produção é feito de *"problemas que não aparecem na
+demo — acesso a dado, fronteira de segurança, tratamento de erro, revisão de compliance e
+integração com os sistemas que já existem"* [17]. O termo que circula para isso é
+**post-deployment value gap** [16].
+
+> 🎯 **Isto é o inimigo do Vitor, quantificado e com fonte.** Não é opinião de posicionamento: o
+> mercado inteiro comprou IA e não conseguiu colocar em produção.
+
+### O modelo que está ganhando: Forward Deployed Engineer (FDE)
+
+O engenheiro que **se embute no cliente** e faz a coisa funcionar no contexto real — full-stack +
+arquitetura + consultoria, entregando resultado, não código [16][18].
+
+- Rodam FDE como função estruturada: **OpenAI, Palantir, Databricks, AWS** (US$ 1 bi investido) [16].
+- **OpenAI Frontier Alliance:** FDEs da OpenAI emparelhados com **BCG, McKinsey, Accenture e
+  Capgemini** [16].
+- **Top 3 cargo técnico que mais cresce** em IA corporativa (relatório KORE1 2026) [16].
+- A leitura de fundo: *"a linha entre empresa de SaaS e empresa de serviços está borrando — produto
+  e implantação viraram inseparáveis"* [16].
+
+> **É exatamente o que o Vitor faz.** O cargo mais quente do mundo em IA é "a pessoa que entra e faz
+> funcionar" — e no Brasil isso não existe como oferta para PME.
+
+### Agências mudando de executoras para arquitetas
+
+*"The rise of the AI-Native agency: from execution to architecture"* — agências precisam sair de
+"rodar campanhas" para "desenhar o sistema que faz elas ganharem"; de **mãos** para **cérebro**,
+deixando a execução para a IA [19].
+
+E a formulação de PME que mais se aproxima do que o Vitor descreveu:
+> *"A transformação acontece quando você se compromete a reconstruir partes específicas da sua
+> operação em torno da IA, do zero"* — workflows AI-native, onde a IA **não é um add-on, é a camada
+> operacional**, reescrevendo o trabalho no nível do fluxo, do dado e da decisão [20][21].
+
+### O que está morrendo (e atinge o catálogo v1)
+
+Categorias declaradas **saturadas** em 2026 [17]:
+- **agente de SDR de propósito geral** ⚠️
+- chatbot de suporte de baixo toque ⚠️
+- assistente de código · agente RAG-only de documento · RPA horizontal
+- automação de browser · "AI coworker" genérico · construtor no-code de agente
+
+**O padrão vencedor declarado:** *"um agente vertical para um comprador que já paga uma pessoa para
+fazer aquele trabalho"* [17]. Exemplos citados: revisão de contrato para escritório pequeno de
+advocacia; agendamento e cobrança para clínica independente (médica, odontológica, saúde mental);
+triagem de sinistro; procurement de peças; exceção de frete.
+
+> ⚠️ **Consequência direta para o catálogo:** "SDR de IA" e "atendente" **genéricos** estão na lista
+> dos saturados. O que não está saturado é a **versão vertical** da mesma peça, vendida para quem
+> já paga alguém para fazer aquilo. A peça é a mesma; o que muda é o recorte e a linguagem.
+
+### Onde de fato dá para inovar
+
+O frame **AI-native existe lá, mas só no andar de cima** — Deloitte, Cognizant, WAIC, grandes
+integradores, agências de enterprise. **Não existe como oferta para PME em lugar nenhum**, e não
+existe no Brasil de forma alguma.
+
+Duas arbitragens reais, e a segunda é a mais forte:
+
+1. **Descer o frame:** trazer "The Great Rebuild" / grafting × native do enterprise para a PME
+   brasileira, traduzido. PME não compra "redesenho do modelo operacional" — compra "meu lead parou
+   de morrer".
+2. **Descer o modelo FDE:** o forward deployed engineer é caro porque é engenheiro sênior embutido —
+   por isso só existe para grande empresa. **Uma pessoa com sistemas prontos + IA torna isso viável
+   para PME.** Um FDE de uma pessoa só, para negócio pequeno, não existe nem lá nem cá.
+
+---
+
 ## 05 — Preço: o Vitor está subprecificado
 
 Faixas praticadas no mercado americano em 2026:
@@ -172,3 +250,9 @@ entrar na empresa** [4]. Se a ferramenta com mentoria custa isso, serviço feito
 [13] "AI Implementation Cost: 2026 Founder's Pricing Guide" — Dan Cumberland Labs · https://dancumberlandlabs.com/blog/ai-implementation-cost/
 [14] "AI Automation Agency Pricing: What to Charge in 2026" — Taskip · https://taskip.net/ai-automation-agency-pricing/
 [15] "AI Agency Services Pricing: Strategies for 2026" — Digital Applied · https://www.digitalapplied.com/blog/ai-agency-services-pricing-strategies-2026
+[16] "What is a Forward Deployed Engineer: The AI Role OpenAI, Anthropic, and Google Are Hiring in 2026" — MarkTechPost · https://www.marktechpost.com/2026/05/20/what-is-a-forward-deployed-engineer-the-ai-role-openai-anthropic-and-google-are-hiring-in-2026/
+[17] "Is the AI Agency Market Saturated? What Reddit Thinks (2026)" — Ciela AI · https://ciela.ai/blogs/is-ai-agency-market-saturated-reddit
+[18] "2026: The Year Forward Deployed Engineering Becomes Table Stakes for SaaS" · https://magneticgrowth.substack.com/p/2026-the-year-of-the-forward-deployed
+[19] "The rise of the AI-Native agency: from execution to architecture" — Adapt Worldwide · https://www.adaptworldwide.com/2026/02/24/the-rise-of-the-ai-native-agency-from-execution-to-architecture/
+[20] "The great rebuild: Architecting an AI-native tech organization" — Deloitte Tech Trends 2026 · https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/ai-future-it-function.html
+[21] "AI Business Transformation | The 2026 Strategy for Growth" · https://aifirstartup.com/ai-business-transformation-guide/
