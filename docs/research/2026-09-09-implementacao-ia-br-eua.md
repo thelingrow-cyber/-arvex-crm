@@ -287,6 +287,106 @@ ferramenta, memória e persistência de estado entre sessões [27].
 
 ---
 
+## 04e — Brasil × EUA: a inversão que muda a tese
+
+> ⚠️ **Correção de leitura.** As seções 04-04d assumiam que o Brasil estava *atrasado em adoção* e
+> que a arbitragem seria descer o frame americano. **Os dados dizem outra coisa, e ela é melhor.**
+
+### O Brasil adota MAIS que os EUA
+
+| Métrica | Brasil | EUA | Mundo |
+|---|---|---|---|
+| Empresas com **agentes de IA em produção** | **76%** | 67% | 62% [29][30] |
+| Empresas usando IA de alguma forma | **95%** (entre líderes do ranking EY) | — | — [31] |
+
+O Brasil aparece **à frente de EUA, Japão e Alemanha** no ranking global de adoção [30][32].
+
+### E executa muito pior
+
+| Métrica | Valor |
+|---|---|
+| Organizações BR que **interromperam ou reverteram** implementações de IA | **80%** [29][30] |
+| Rollbacks BR causados por **vazamento de dado/informação pessoal** | **39%** (EUA: 24%) [29][30] |
+| Empresas BR que chegaram ao **estágio avançado** | **15%** (adoção total: 50%) [33] |
+| **PMEs** brasileiras usando IA **de forma estruturada** | **22%** [34] |
+| PMEs da **América Latina** que **não viram nenhuma criação de valor** com IA | **60%** [34] |
+| PMEs BR com IA em tarefas financeiras × global | **24% × 47%** — 23 pontos de defasagem [34] |
+
+**As três barreiras mais citadas** [35]:
+1. **46% — escassez de habilidades em IA**
+2. 36% — barreiras técnicas relacionadas a **dados**
+3. 35% — capacidade interna insuficiente da força de trabalho
+
+O Fórum Econômico Mundial aponta **falta de talento técnico como a maior restrição da América
+Latina** [35].
+
+### O que isso reconfigura
+
+🎯 **A arbitragem não é de frame. É de execução.**
+
+O Brasil não precisa ser convencido a comprar IA — **já comprou, e mais que os americanos.**
+O que falta aqui não é vontade, é **quem saiba fazer funcionar**. A barreira nº 1 declarada (46%,
+escassez de habilidade) é literalmente a descrição da oferta.
+
+E o gap de execução é **maior aqui do que lá**:
+
+| | EUA | Brasil |
+|---|---|---|
+| Adoção | 67% | **76%** |
+| Rollback / reversão | — | **80%** |
+| Pilotos que falham | 95% [16] | (sem dado BR equivalente, mas 80% de rollback aponta na mesma direção) |
+| PME vendo valor | — | **60% da LatAm não viu nenhum** |
+
+> **O mercado brasileiro comprou mais IA que o americano e voltou atrás mais vezes.** Não há
+> mercado melhor no mundo para quem entra e faz funcionar.
+
+### A dor brasileira específica: dado e segurança
+
+**39% dos rollbacks brasileiros foram por vazamento de dado ou informação pessoal — contra 24% nos
+EUA** [29][30]. Isso é uma dor local que o mercado americano não tem na mesma intensidade, e que
+nenhum dos três gigantes brasileiros endereça na vitrine.
+
+**E é um ativo direto do Vitor:** squad de security com `audit-rls`, auditoria de RLS já executada
+no arvex-crm, boundaries e permissionamento por role. **Instalar com segurança e isolamento de dado
+é diferencial concreto, brasileiro e verificável** — não é discurso.
+
+---
+
+## 04f — Como é o mercado de serviços lá, em números
+
+### Tamanho e direção
+
+- Mercado global de **AI consulting services**: **US$ 11,9 bi** (2026) → US$ 73,9 bi (2034), CAGR
+  25,6% — com estimativas variando até US$ 30,2 bi em 2026 conforme a casa [36][37].
+- **Gasto empresarial com IA deve dobrar em 2026** — de ~0,8% para ~1,7% da receita [37].
+- Incumbentes estão **comprando boutiques verticais** (saúde, finanças) para se defender de
+  competidores mid-market ágeis [36] → **boutique vertical tem valor de saída, não só de operação.**
+
+### A economia do operador solo (EUA)
+
+- Retainer praticado por cliente: **US$ 2.000 – 5.000/mês** [38].
+- Modelo declarado: **5 clientes × US$ 5.000 = US$ 40.000/mês**, com ~US$ 6.000 de custo (1 VA) →
+  **~85% de margem** [39].
+- Trajetória típica: solo até US$ 10k/mês → contrata → US$ 50-100k/mês [39].
+
+### Os nichos que estão pegando lá
+
+Verticais citadas como mais rentáveis para agência de automação em 2026 [38]:
+
+| Vertical | Por que funciona |
+|---|---|
+| **Home services** (telhado, HVAC, encanamento, paisagismo) | ticket alto por job, desespero por lead |
+| **Clínicas médicas e odontológicas** | consulta valiosa, necessidade de recall e gestão de review |
+| **Corretor de imóveis e de crédito** | lead caro, necessidade de CRM e nutrição |
+| **Escritórios de advocacia** (dano pessoal, família) | cliente de alto valor, qualificação e follow-up |
+| **Concessionárias e oficinas** | recompra alta, gestão de reputação |
+
+> 🎯 **Três dessas cinco existem em volume no Brasil e têm exatamente a mesma dor** — clínica,
+> imobiliária/crédito e advocacia. **Harmonização (HOF) é a versão brasileira, de ticket ainda mais
+> alto, de "clínica médica e odontológica"** — a vertical nº 2 da lista americana.
+
+---
+
 ## 05 — Preço: o Vitor está subprecificado
 
 Faixas praticadas no mercado americano em 2026:
@@ -349,3 +449,14 @@ entrar na empresa** [4]. Se a ferramenta com mentoria custa isso, serviço feito
 [26] "AI agent trends for 2026: 7 shifts to watch" — Salesmate · https://www.salesmate.io/blog/future-of-ai-agents/
 [27] "Top 15 Agentic AI Trends to Watch in 2026" — Firecrawl · https://www.firecrawl.dev/blog/agentic-ai-trends
 [28] "Context Engineering: A Practical Guide for AI Agents (2026)" — Sourcegraph · https://sourcegraph.com/blog/context-engineering
+[29] "Brasil supera EUA na adocao de agentes de IA pelas empresas" - Olhar Digital · https://olhardigital.com.br/2026/08/14/inteligencia-artificial/brasil-supera-eua-na-adocao-de-agentes-de-ia-pelas-empresas/
+[30] "Brasil lidera corrida da IA: 76% das empresas ja operam agentes em producao" - Portal Information Management · https://docmanagement.com.br/08/19/2026/brasil-lidera-corrida-da-ia-76-das-empresas-ja-operam-agentes-em-producao-e-66-ampliarao-investimentos/
+[31] "Com 95% ja usando IA, Brasil esta entre lideres de ranking de adocao" - EY Brasil · https://www.ey.com/pt_br/newsroom/2026/05/ia-brasil-esta-entre-lideres-ranking-adocao-tecnologia
+[32] "Estudo coloca Brasil a frente dos EUA na adocao de agentes de IA" - TI INSIDE · https://tiinside.com.br/13/08/2026/estudo-coloca-brasil-a-frente-dos-eua-na-adocao-de-agentes-de-ia/
+[33] "Adocao de IA nas empresas brasileiras sobe para 50%, mas so 15% chegaram ao estagio avancado" - Exame · https://exame.com/tecnologia/adocao-de-ia-nas-empresas-brasileiras-sobe-para-50-mas-mas-so-15-chegaram-ao-estagio-avancado/
+[34] "Apenas 22% das PMEs utilizam IA de forma estruturada no Brasil" - SEGS · https://www.segs.com.br/seguros/445867-apenas-22-das-pmes-utilizam-ia-de-forma-estruturada-no-brasil
+[35] "Inteligencia artificial no Brasil: 7 barreiras para a plena adocao" - Zendesk · https://www.zendesk.com.br/blog/ai/inteligencia-artificial-no-brasil/
+[36] "AI Consulting Services Market Size, Share | Growth 2026-2034" - Fortune Business Insights · https://www.fortunebusinessinsights.com/ai-consulting-services-market-111179
+[37] "AI Consulting Market Size: What the Data Says in 2026" - Softobiz · https://softobiz.com/blogs/ai-consulting-market-size-what-the-data-says-in-2026/
+[38] "12 Most Profitable AI Automation Agency Use Cases in 2026 (With Revenue Data)" - Arvani Media · https://www.arvani-media.com/blog/12-most-profitable-ai-automation-agency-use-cases-in-2026-with-revenue-data
+[39] "AI Agency to $100K/Month: The Scaling Playbook from Solo to Team" - AI Business · https://aibusiness.vc/solo/ai-agency-owner-100k
