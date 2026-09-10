@@ -35,6 +35,9 @@ Como este documento está estruturado
 ## PARTE 7: Próximos 90 dias — o que fazer, o que não fazer, as métricas que importam
 
 
+## PARTE 8 *(adendo 2026-09-10)*: O território de IA para empresas — os 5 que vendem acesso, a faixa alcançável (20-100k), as agências que fazem sem rosto, o espelho internacional e a checagem de premissa do modelo "agência de IA"
+
+
 ### APÊNDICE: Frases autorais coletadas, comentários reais de ICP, modelo de ecossistema consolidado
 "A maioria analisa o que alguém posta. Este documento analisa qual jogo cada player está jogando — e onde está o jogo que ninguém ainda começou."
 
@@ -1378,3 +1381,187 @@ Benchmark de Marca Pessoal — Documento Confidencial
 12 players | 18 dimensões | Nacional + Internacional | Análise ao vivo com acesso direto aos perfis
 
 
+
+
+---
+
+# PARTE 8 — AMPLIAÇÃO DE 2026-09: O TERRITÓRIO DE IA PARA EMPRESAS
+
+> Adendo incremental. **Não substitui as Partes 1-7** (12 players × 18 dimensões, jul/2026) — cobre o
+> que faltava: a concorrência de **categoria** (quem vende implementação de IA), a **faixa alcançável**
+> (20-100k seguidores, onde o Vitor estará em 90 dias) e as **agências que entregam sem rosto**.
+> Fontes primárias: páginas oficiais lidas em 09-10/09/2026 + `../research/2026-09-09-implementacao-ia-br-eua.md`.
+> Números de terceiros são declarações públicas, não auditadas.
+
+---
+
+## 8.1 — Os cinco que vendem IA para empresas no Brasil
+
+| Player | O que vende | **O verbo da vitrine** | **Quem executa** | Preço | Prova exibida |
+|---|---|---|---|---|---|
+| **Academia Lendár[IA]** (Alan Nicolas) · 266k | cohort + comunidade + oferta "Agência IA" | *"construímos com você"* | **o aluno** | ~R$30k (não confirmado em fonte primária) | 15 mil formados, 40+ países, R$200M+ de faturamento coletivo declarado, 97% de renovação |
+| **Viver de IA** (Rafael Milagre) · 146k | plataforma: 158 soluções + Builder + formações + mentoria | *"do discurso para a operação"* · **"plug and play"** | **ambíguo na própria página** | **R$3.500/mês** (anual) | 521 cases, 1.200-2.500 empresas, WEG e o próprio G4 como clientes |
+| **G4 Implementação de IA** | G4 OS + sprint presencial 3 dias + mentoria | *"aconselha 24/7"* | **o empresário** | est. R$5-15k | R$509M de receita própria creditada ao G4 OS |
+| **ARKOM** (Thiago Finch) | plataforma + apps + universidade + mentoria em grupo | 🔴 **"plataforma que instala"** | **o cliente, com suporte** — implementação personalizada é *contratação separada* | **R$2.157 / R$3.153 / R$5.157 por mês** | R$21 mil fechados em 24h (1 cliente); projeção de R$50M ARR em 18 meses |
+| **Higher Mind** (Rodrigo Lopes) | *"AI-Native Transformation Playbook"* gratuito → consultoria | *"playbook"* | **o líder do cliente** | — | ⚠️ **case exibido é fictício** ("Distribuidora Horizonte") |
+
+### 🎯 O padrão, e é o achado central desta parte
+
+> **Construir, plugar, aconselhar, acompanhar, instalar.** A palavra **FAZER** não aparece em
+> nenhuma das cinco vitrines.
+
+**O caso ARKOM merece registro à parte, porque é o gap promessa-entrega documentado na própria página
+de vendas:** a headline diz *"Plataforma que instala os melhores sistemas de inteligência artificial
+na sua empresa"* — e a estrutura de planos entrega universidade, apps, comunidade e mentoria em
+grupo, com a nota de que implementação técnica personalizada é contratação separada.
+
+**Consequência para o posicionamento:** o verbo "instalar" está **ocupado na vitrine** por quem tem
+3,4M de audiência. Não disputar a palavra. Disputar o que ela promete e não entrega.
+
+### O que eles não podem fazer (Lei do Oposto)
+
+O modelo econômico dos cinco é **escala**: assinatura, plataforma, mentoria em grupo, turma. Entrar na
+empresa de cada cliente não escala com esse desenho — quebra a margem. **Eles não conseguem responder
+"isso não muda a arquitetura da sua operação" sem contradizer o próprio produto e desmentir a própria
+base de clientes.**
+
+### O tamanho da fila que eles criaram
+
+15 mil formados pelo Alan + 1.200-2.500 empresas no Viver de IA + a turma do G4 + a base do ARKOM,
+cruzados com **80% de rollback no Brasil** e **60% das PMEs latinas sem ver valor nenhum**:
+**dezenas de milhares de empresas pagaram por acesso e não chegaram à produção.**
+
+> **Eles não são concorrentes de entrega. São concorrentes de orçamento e de atenção — e
+> fornecedores da matéria-prima.**
+
+---
+
+## 8.2 — A faixa alcançável (20-100k): onde o Vitor estará em 90 dias
+
+Buraco declarado no mapa de julho: *"15 players mapeados, apenas dois na faixa alcançável."* Quatro
+entradas novas, e o padrão que elas revelam é mais útil que qualquer um deles isolado.
+
+| Player | Seguidores / posts | **Seg./post** | O que vende | Categoria própria? |
+|---|---|---|---|---|
+| **Davi Valadares** | 38,8k / 74 | **524** | fechar contratos via **Live Semanal Estruturada** | ✅ mecanismo nomeado, com dia e hora |
+| **Pedro Escudero** (Grupo Escuderia) | 47,2k / 1.447 | **33** | *"faço sua marca pessoal gerar demanda qualificada através de conteúdo orgânico e processos comerciais"* | ❌ — destaques "Alunos", "Desafio", CTA "Faça parte" = **formação e comunidade** |
+| **Hermano** (`@eu.hermano`) | 54,5k / 985 | 55 | mentoria para agências · bio: *"+20MM vendendo serviços"* | ❌ mas **arquitetura exemplar** (§8.4) |
+| **Vinicius Troncoso** (Legacy Sales) | 49,2k | — | *"crio sua marca pessoal, faço sua oferta irresistível e implemento seu comercial em **menos de 30 dias**"* · ICP a partir de R$100k/mês | ✅ **dono do número "30 dias"** |
+
+### As três leituras que importam
+
+**1. Na faixa alcançável, todo mundo vende formação ou comunidade.** Ninguém entrega. E há razão
+estrutural: entregar não escala sem time, e sem time a formação é a única saída. **O Vitor tem a
+saída que eles não têm — os sistemas já construídos.**
+
+**2. Seguidores por post é o indicador de posição, não de esforço.** Pedro Escudero precisou de
+**1.447 posts** para 47,2k (33/post). Iman Gadzhi tem **24.778/post** com 113 posts; Finch, 11.671.
+**Volume alto com taxa baixa é a assinatura de quem compete dentro de território lotado** — paga-se
+em volume o que não se tem em posição. Confirma o eixo 4 das Partes 1-7: *volume extremo OU raridade
+extrema; o meio morre.*
+
+**3. Troncoso mata o "Teste dos 30 Dias" como mecanismo público.** Ele já é dono do número, com ICP
+declarado maior. Única brecha registrada: IA não é protagonista na oferta dele.
+
+**4. Estética a recusar:** o feed do Pedro Escudero — Lamborghini, dinheiro emoldurado, destaque "A
+vida é boa" — é o oposto do arquétipo Arquiteto, e é exatamente a estética de que o comprador
+queimado por promessa de IA já desconfia.
+
+---
+
+## 8.3 — Quem faz de verdade e não aparece (BR)
+
+| Agência | O que entrega | Público | O que falta em **todas** |
+|---|---|---|---|
+| **Intelecta** | *"Agentes IA, IA Privada e Automações sob medida"* — done-for-you, projeto do zero, suporte contínuo. Diferencial declarado: **"IA Privada Segura e Blindada"** | PME e grande porte | rosto · categoria nomeada · preço público · linguagem de dono |
+| **AlphaCorp AI** (RJ) | engenharia de IA: agentes, RAG, automação em produção | técnico | idem |
+| **Ateliware** · **NeuralMind** · **Kunumi** · **Cortex** · **Comunica.In** | soluções sob medida, PLN, IA preditiva, comunicação corporativa | enterprise / vertical | idem |
+
+**A Intelecta é a mais próxima do que o Vitor faria** — e o diferencial dela ("IA Privada Segura e
+Blindada") endereça os **39% de rollbacks brasileiros causados por vazamento de dado** (EUA: 24%).
+Esse é um flanco brasileiro que nenhum dos cinco players com rosto toca, e que o Vitor já cobre com
+squad de security, `audit-rls` executado e RLS por role em produção.
+
+> 🎯 **O mapa que fecha: quem aparece não faz, quem faz não aparece.** A posição está livre porque
+> exige duas competências que raramente moram na mesma pessoa.
+
+---
+
+## 8.4 — O modelo de arquitetura: Hermano / LAKS
+
+| | `@eu.hermano` | `@lakscompany` |
+|---|---|---|
+| Seguidores | 54,5k · 985 posts | 40,2k · 461 posts |
+| Bio | *"Empresário, mentor e vendedor · +20MM vendendo serviços de tráfego e processo comercial"* | *"**Assessoria #1 para corretoras de seguros e planos de saúde** · +350 corretoras · 7 anos"* |
+| CTA | "clique para escalar sua agência" | "clique para agendar uma reunião" |
+
+**Três marcas em camadas:** LAKS é a operação **nichada** · SkillSales monetiza o know-how · Hermano
+é o rosto amplo que liga as duas.
+
+> **A linha inteira entre founder-led growth e guru: de quem é o número que aparece na bio.**
+> Ele exibe o faturamento da própria empresa, não resultado de aluno.
+
+**E a distinção que decide a arquitetura do Vitor:** a Vinci (Tay) é institucional **ampla** porque
+vende construção de marca, que serve a qualquer setor. A LAKS é institucional **vertical** porque
+vende operação, que é específica por setor. **O Vitor vende operação. Logo, o institucional dele é
+vertical — e o amplo é a marca pessoal.**
+
+---
+
+## 8.5 — O espelho internacional
+
+| Player | Modelo | Leitura |
+|---|---|---|
+| **ThinkFraction** (Drew Mehta, EUA — uma pessoa) | *"AI Advisory + Deployment Studio — Practical AI for Owner-Operated Businesses"* · ICP: *"5-20 person owner-operated business"* · funil **Leak Map (30-60 min) → Build (one price, one delivery date, 2-6 semanas) → Retainer** · preço proporcional ao que o Leak Map encontrou | **prova que uma pessoa roda o modelo.** Três coisas a roubar: o nome **"Leak Map"** (nomeia o vazamento, não a atividade) · *"workflow problems, not headcount problems"* · *"one agent owning one task"* |
+| **Re-Solved Digital** | *build, host and run* de agentes gerenciados para PME: taxa de setup + assinatura mensal | mesmo modelo, confirma o formato |
+| **Dev shops** (LeewayHertz, HatchWorks, Markovate, Uvik, BlueLabel) | PoC US$8-25k · **workflow único US$35-70k** · multi-workflow US$70-150k+ | outro mercado — time sênior, cliente mid-market. **A arbitragem interna do Vitor: entrega de agência, custo de operador** |
+| **Plataformas** (Lindy US$49,99/mês · Relevance US$29-349 · Artisan US$600/mês) | software self-service | ⚠️ **a ferramenta virou commodity barata.** Quem vende "um agente" compete com US$49/mês. **Nunca vender software** |
+
+---
+
+## 8.6 — O estado do modelo "agência de IA" (a checagem de premissa)
+
+Feita em 10/09/2026, a pedido do Vitor, porque ele ouviu que "não dá resultado". **Ele ouviu certo — e
+a causa é o que decide tudo.**
+
+**O que está morrendo, com fonte:**
+- **Gartner: 40%+ dos projetos agentic serão cancelados até o fim de 2027** — custo, valor incerto, controles de risco
+- 95% dos pilotos não recuperam investimento em 6 meses; 80% das empresas não veem impacto financeiro
+- +3.800 startups de agentes fecharam em 2025
+- *"O que era um nicho de talvez cinquenta firmas sérias virou um mercado de milhares — muitas sendo agências digitais repaginadas, vendedores de automação ou lojas de SEO rebatizadas"*
+- Termo que o mercado criou: **"agent washing"** — rebatizar chatbot como agente
+- **Categorias declaradas saturadas:** agente de SDR de propósito geral · chatbot de suporte de baixo toque · RPA horizontal · "AI coworker" genérico · construtor no-code de agente
+
+**A causa nomeada, e ela é o posicionamento inteiro:**
+> *"A maioria dos projetos falha não porque o modelo está errado, mas porque **o sistema ao redor —
+> o encanamento de dados, o fluxo de trabalho humano, a governança — nunca foi construído**."*
+
+**O que sobrevive:**
+- *"As agências que sobreviveram são negócios reais agora: modelos proprietários, processos próprios, relações defensáveis"*
+- *"As que sobrevivem lideram pelo **workflow design**"*
+- A pergunta de due diligence que o mercado aprendeu a fazer: **"o que você colocou em produção, e como está indo agora?"**
+- **O separador de ROI: especificidade.** *"Quem pega um processo de alto volume e bem definido e automatiza a fundo supera quem faz implantação ampla e rasa."*
+
+**E a demanda, com número:**
+- PME gasta em média **US$18 mil/ano** em IA; **62% planejam aumentar em 2026**
+- *"Ferramenta visível é só 50-60% do gasto real — integração, treinamento e retrabalho somam 40-60% em cima"* → **quase metade do orçamento de IA de uma PME já é implementação**
+- **68% dos projetos estouram o orçamento**, em média 42%
+- *"Para PMEs de 10 a 150 funcionários, o **modelo de engajamento com agência** oferece a melhor razão entre tempo-até-valor e custo total"*
+- Formato que emergiu: *"uma primeira capacidade funcionando em **10 dias úteis** — um trabalhador de IA definido, escopado, fazendo um trabalho real dentro do stack existente"*
+- ROI dos que dão certo: **1,7x a 10x por dólar**; 8-12h semanais liberadas por agente; **positivo em 60-90 dias**
+
+> **Veredito da checagem:** o modelo que está morrendo é *"compro um curso, monto uma agência de
+> automação, vendo chatbot"*. O que está crescendo é escopo estreito, dentro do sistema existente,
+> feito por quem já colocou coisa em produção. **A diferença não é a ideia — é ter construído antes
+> de vender.**
+
+⚠️ **Ressalva honesta:** os números de gasto são americanos. Não há dado equivalente de ticket de
+implementação para PME no Brasil. **O preço tem que ser testado em conversa, não deduzido de
+benchmark de fora.**
+
+---
+
+*Parte 8 — 2026-09-10. Ampliação a pedido do Vitor, consolidando a varredura competitiva de 08-10/09.
+As dimensões 1-18 das Partes 1-7 não foram reaplicadas a estes players: eles entraram por
+**território e modelo de entrega**, não por análise de marca pessoal. Reaplicar quando algum deles
+virar concorrente direto de atenção.*

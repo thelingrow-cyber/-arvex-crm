@@ -2,6 +2,28 @@
 
 > Gerado por Fable (2026-07-07), a partir do cruzamento entre `benchmark-marca-pessoal-completo.md` (12 players × 18 dimensões) e pesquisa de mercado ao vivo. Publicado originalmente como artifact; consolidado neste arquivo em 2026-07-07 a pedido do Vitor, para não depender só de memória.
 
+---
+
+> ## ⚠️ Status em 2026-09-10 — leia antes
+>
+> Este documento é o mapa de **julho** e segue válido no que descreve: os 12 players de marca pessoal,
+> os 5 eixos que separam grandes de médios, e o método. **Mas o tabuleiro mudou** e duas coisas aqui
+> estão superadas:
+>
+> 1. **O quadrante não está mais vazio.** Alan Nicolas tomou a palavra *futuro* e a diferenciação
+>    operador × professor; a Bilhon (Finch) passou a se descrever como quem constrói *"a infraestrutura
+>    sobre a qual milhares de empresários brasileiros vão operar"*. Ver §Ampliação de 08/09 abaixo.
+> 2. **A faixa que importa não estava mapeada.** Dos players deste documento, quase nenhum está na
+>    faixa de 20-100k seguidores — que é onde o Vitor estará em 90 dias, e onde o jogo é outro.
+>
+> **Onde está o estado atual:**
+> · Território de IA, faixa alcançável, agências que entregam e checagem do modelo →
+>   [`benchmark-marca-pessoal-completo.md` **PARTE 8**](benchmark-marca-pessoal-completo.md)
+> · Posicionamento, categoria e arquitetura de marca vigentes →
+>   [`brand-book-marca-pessoal.md` **v2**](brand-book-marca-pessoal.md)
+
+---
+
 ## Veredito
 
 O quadrante "constrói o jogo futuro **e** é a prova" está praticamente vazio no Brasil. Alan Nicolas para na metade do caminho (fica em "IA aplicada", não chega a equity). Finch está migrando pra lá — virando holding, passando a vender "estrutura" em vez de conteúdo — mas ainda não fechou o quadrante.
@@ -28,6 +50,65 @@ O Vitor é posicionado no quadrante **OPERA + JOGO FUTURO**, isolado — nenhum 
 | Execução digital de massa | Luana Carolina |
 | Substância sem nome | Theo Braga |
 | Mentalidade de massa | Pablo Marçal (migrando pra política) |
+
+### Ampliação do mapa — varredura de 08/09/2026
+
+> Adendo incremental (não substitui a tabela acima). Seis players que faltavam ao mapa original,
+> levantados na varredura de território. Detalhamento e fontes:
+> [`../research/2026-09-08-territorio-instalador-de-ia.md`](../research/2026-09-08-territorio-instalador-de-ia.md)
+
+| Território (a palavra que ele possui) | Player | Observação |
+|---|---|---|
+| **Lançamento** | Érico Rocha | Dono histórico da categoria no BR; trouxe a Product Launch Formula do Jeff Walker. Território consolidado, não disputável [1] |
+| **Venda no story / conversão orgânica** | Leandro Ladeira | Copy, quebra de objeção, venda ao vivo. Tese pública para 2026: *"o ano da especificidade — nada genérico"* [2] |
+| **Posicionamento de influenciador** | Vinicius Areb | Estrategista de posicionamento para experts e influenciadores (ex: Elainne Ourives). Nicho estreito, adjacente à Tay [3] |
+| **Vendas (time humano)** | Thiago Concer | "Maior especialista em vendas do BR"; Sales Clube; +150 mil vendedores treinados; 1,7M de alcance/mês. **Já entrou em IA** (produto "mentor-IA") [4] |
+| **Alta performance / mentoria de negócio** | Joel Jota | Nº 1 do ranking Favikon de influenciadores de negócios BR 2026 [5] |
+| **Copy / dropshipping / venda online** | Moisés Leal | +3M de seguidores, +1 bilhão de views [5] |
+
+**Onde os territórios se tocam (e por que isso importa para a marca do Vitor):**
+
+- **Concer possui "vendas", mas vende gente.** Treina vendedor humano de alta performance. É o vizinho
+  mais próximo do território "máquina comercial" — e é vizinho, não ocupante: a posição oposta à
+  dele (o sistema que roda **sem** o vendedor e sem o dono) segue vaga, e ele não pode ocupá-la sem
+  contradizer 150 mil alunos.
+- **Finch possui "estrutura", mas vende software.** Alan possui "IA", mas vende formação.
+- **A palavra OPERAÇÃO não tem dono.** Alfredo chega perto por "execução", mas ancorado em varejo
+  e linguagem autoral, não em sistema.
+
+### A vaga estrutural encontrada em 08/09
+
+No território **automação comercial no Brasil** (IA no WhatsApp + CRM + atendimento), quem ocupa a
+mente do mercado são **plataformas, não pessoas**: Zenvia, Take Blip, RD Station Conversas, Twilio,
+Chat Inteligente, SocialHub [6][7].
+
+**Não existe rosto humano dono dessa categoria no BR.** Existe categoria de produto sem categoria de
+autoridade — e é exatamente o par que o benchmark aponta como o que separa os grandes dos médios
+(categoria nomeada **sobre** substância real).
+
+⚠️ **Contraponto honesto, para não superestimar a brecha:** território sem rosto pode significar
+espaço vago *ou* que o comprador desse serviço não escolhe por marca pessoal — ele escolhe por
+indicação e por demonstração. Isso não invalida a posição; muda o canal. É consistente com o dado da
+Letícia (o único lead da oferta própria veio de indicação, não de conteúdo) e com a decisão de 13/08
+de que conteúdo não é, hoje, o canal de caixa.
+
+### Territórios a NÃO disputar
+
+Registro explícito, porque a pergunta "e se eu for mais pelo marketing?" volta com frequência.
+
+**Marketing é o território mais lotado do Brasil.** Atenção (Elias, 1,4M), lançamento (Érico),
+conversão orgânica (Ladeira), execução de massa (Luana, 1,7M), copy e venda online (Moisés Leal, 3M),
+posicionamento de expert (Vinicius Areb, Tay Dantas). Entrar aí é aceitar ser o nº 15 de uma escada
+com sete degraus ocupados por gente com 10 a 100× a audiência atual — violação direta da **Lei da
+Escada** (a estratégia depende do degrau que se ocupa) e da **Lei da Exclusividade** (a palavra já
+tem dono).
+
+**Fontes da ampliação:** [1] ericorocha.com.br · [2] Podcast do Ladeira (Spotify/iVoox, eps. 322-393) ·
+[3] Revista Cenarium / A Crítica · [4] thiagoconcer.com.br/sobre e /mentor-ia ·
+[5] Favikon, "Top 20 Business Influencers in Brazil 2026" · [6] chatinteligente.com.br ·
+[7] socialhub.pro. **Limitação:** o Instagram bloqueia leitura automatizada — nenhuma bio, contagem
+de seguidores ou métrica de perfil desta seção foi lida direto da plataforma; tudo vem de fonte
+secundária e pode estar defasado.
 
 ## 5 eixos discriminantes
 
