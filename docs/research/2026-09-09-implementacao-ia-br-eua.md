@@ -54,6 +54,117 @@ com você"*. Formação em escala.
 
 ---
 
+## 01b — Dissecação: o que cada um entrega, item por item
+
+> Levantado em 09/09/2026 nas páginas oficiais e em análises de terceiros. Números são declarações
+> públicas dos próprios players.
+
+### Academia Lendár[IA] — Alan Nicolas [40]
+
+| Produto | O que é |
+|---|---|
+| **Comunidade Lendár[IA]** | always-on: networking curado, mentorias ao vivo, oportunidades |
+| **Cohort Fundamentals** | **4 semanas, 8 encontros ao vivo** — sai com o *"primeiro squad de IA funcional"*, construído do zero, **zero código** |
+| **Cohort Advanced** | infraestrutura proprietária + **"nove agentes especializados"**, vendidos como *"um time de R$ 1,6M+/ano — **na sua máquina, sob seu comando**"* |
+
+**Números exibidos:** 15 mil alunos ativos · 40+ países · **R$ 200M+ de faturamento coletivo** ·
+4,9/5 em 2,1 mil avaliações · **97% de renovação**.
+
+🔎 **Repare na frase:** *"na sua máquina, sob seu comando"*. **O aluno constrói e o aluno opera.**
+E o Cohort Advanced é, conceitualmente, um organograma de IA de nove funções — vendido como curso.
+
+### Viver de IA — Rafael Milagre [41][42]
+
+| Componente | Números |
+|---|---|
+| **Soluções prontas** | **158** |
+| **Cases de implementação** | **521** |
+| Ferramenta proprietária | **"Builder"** — ajuda o cliente a desenvolver a própria solução |
+| Formações, mentorias ao vivo, comunidade | inclusos |
+| **Empresas atendidas** | 1.000-1.200 (WEG e **o próprio G4** entre os clientes) |
+| **Ticket médio** | **R$ 3.500/mês**, assinatura anual |
+| Projeção de faturamento | **R$ 100 milhões em 2026** |
+
+🔎 **Vitrine:** *"soluções plug & play"*. **A empresa pluga.**
+
+### G4 Implementação de IA — o pacote completo [2]
+
+| # | Item | Duração |
+|---|---|---|
+| 1 | Call de diagnóstico com plano de aplicação | pontual |
+| 2 | **Sprint de IA presencial** — 3 vagas por empresa | **3 dias** |
+| 3 | **G4 OS** | **3 meses** |
+| 4 | **Viver de IA Pro** | 12 meses |
+| 5 | Playbooks por setor | — |
+| 6 | Mentoria | **20h/mês** + 12h via Viver de IA |
+| 7 | 1:1 on demand | conforme necessidade |
+| 8 | Bônus por ordem de inscrição | primeiros 50-100 |
+
+**Preço não divulgado** — estimativa de terceiros: **R$ 5.000-15.000** [2].
+
+🔎 **O que o G4 OS é tecnicamente:** *"um assistente de IA treinado com conteúdo do G4"* que recebe
+dados da empresa e *"gera diagnósticos baseados nos frameworks do G4"* — um *"conselheiro de negócios
+24/7"*. A própria análise classifica como **"wrapper proprietário"** sobre modelos existentes [2].
+
+⚠️ **A crítica publicada, e ela é a brecha inteira em oito palavras:**
+> *"Inadequado para empresas precisando de **IA executora** ou maior autonomia técnica."* [2]
+
+Outras ressalvas levantadas: acesso ao OS por apenas 3 meses · sprint de 3 dias *"rápido demais para
+implementação real"* · lock-in no ecossistema G4 · os R$ 509 mi não vieram só de IA [2].
+
+### ARKOM — Thiago Finch [4]
+
+Apps + capacitações + mentorias + acompanhamento + comunidade + playbooks prontos.
+**R$ 2.157/mês** (3 usuários) · **R$ 3.153/mês** (12 usuários + 6h/semana de mentoria em grupo) ·
+**R$ 5.157/mês** (ilimitado + 2h de mentoria privada).
+
+🔎 **Vitrine:** *"apps, capacitações, mentorias e **acompanhamento**"*. **Acompanha — não faz.**
+
+---
+
+### O padrão, e a palavra que falta nos quatro
+
+| Player | O que vende | O verbo da vitrine | Quem executa |
+|---|---|---|---|
+| Academia Lendár[IA] | cohort + comunidade | *"você constrói"* | o aluno |
+| Viver de IA | 158 soluções + Builder | *"plug and play"* | a empresa |
+| G4 Implementação | sprint + OS + mentoria | *"aconselha 24/7"* | o empresário |
+| ARKOM | apps + mentoria | *"acompanhamento"* | o empresário |
+
+> 🎯 **Os quatro vendem ACESSO. Nenhum vende ENTREGA.**
+> Construir, plugar, aconselhar, acompanhar. **A palavra que não aparece em nenhuma vitrine é FAZER.**
+
+### Duas consequências numéricas
+
+**1. O tamanho da fila.** 15 mil alunos do Alan + ~1.200 empresas do Viver de IA + a turma do G4
+Implementação + a base do ARKOM. Cruzando com os **80% de rollback** e os **60% de PMEs latinas que
+não viram valor** [29][34]: **dezenas de milhares de empresas pagaram por acesso e não chegaram à
+produção.**
+
+**2. O piso de preço já está estabelecido — e é alto.**
+
+| Player | Preço mensal | O que entrega por isso |
+|---|---|---|
+| Viver de IA | **R$ 3.500/mês** | acesso a 158 soluções que a empresa pluga sozinha |
+| ARKOM | **R$ 2.157 – 5.157/mês** | apps + mentoria em grupo |
+
+> **O mercado brasileiro já paga R$ 2-5 mil/mês por acesso sem entrega.**
+> A faixa de retainer de R$ 1.500-3.000 do catálogo v1 está **abaixo do que se paga por menos**.
+> Retainer de **R$ 3.000-5.000/mês com operação feita** é defensável de imediato — e a âncora é
+> pública, não é achismo.
+
+### E o que a busca NÃO encontrou
+
+Busca dirigida por **agência brasileira done-for-you** de agentes de IA (com preço, setup e
+mensalidade) **não retornou nenhum player posicionado** [43]. Retornou notícia de mercado, guias e
+uma dev house (AlphaCorp AI) que constrói sistemas em produção — mas **nenhuma marca ocupando
+"eu entro e faço" para PME.**
+
+*(Ausência em busca não é prova de inexistência — mas é o sinal mais forte disponível de que a
+posição não está tomada na mente nem no índice.)*
+
+---
+
 ## 02 — O que os três têm em comum, e é a brecha
 
 | | G4 | ARKOM | Academia Lendár[IA] |
@@ -460,3 +571,7 @@ entrar na empresa** [4]. Se a ferramenta com mentoria custa isso, serviço feito
 [37] "AI Consulting Market Size: What the Data Says in 2026" - Softobiz · https://softobiz.com/blogs/ai-consulting-market-size-what-the-data-says-in-2026/
 [38] "12 Most Profitable AI Automation Agency Use Cases in 2026 (With Revenue Data)" - Arvani Media · https://www.arvani-media.com/blog/12-most-profitable-ai-automation-agency-use-cases-in-2026-with-revenue-data
 [39] "AI Agency to $100K/Month: The Scaling Playbook from Solo to Team" - AI Business · https://aibusiness.vc/solo/ai-agency-owner-100k
+[40] Academia Lendar[IA] - site oficial · https://www.academialendaria.ai/ (acesso 09/09/2026)
+[41] "O que voce pode aprender com a startup Viver de IA, que projeta faturar R$ 100 milhoes em 2026" - InfoMoney · https://www.infomoney.com.br/colunistas/terapia-de-ideias/o-que-voce-pode-aprender-com-a-startup-viver-de-ia-que-projeta-faturar-r-100-milhoes-em-2026/
+[42] Viver de IA - site oficial · https://viverdeia.ai/
+[43] Busca dirigida por agencia BR done-for-you de agentes de IA (09/09/2026) - sem player posicionado nos resultados
