@@ -49,7 +49,41 @@ Inimigos secundários (usar como variação de conteúdo, nunca substituir o pri
 
 ## 04 — A categoria
 
-**Negócio Nativo** *(alternativa em teste: Empresa Nativa)*
+**Negócios AI Native** — escolhido pelo Vitor em 09/09/2026.
+*(variantes: Negócio Nativo · Empresa Nativa — usar quando a conversa exigir português puro)*
+
+### ⚖️ Onde usar e onde não usar — a decisão que acompanha o nome
+
+| Camada | Usa "AI Native"? |
+|---|---|
+| Marca e território de conteúdo | ✅ **sim** |
+| Categoria falada em público | ✅ sim, sempre com a linha de definição colada |
+| **Nome da oferta** | ❌ **não** |
+| **Primeira frase de uma call de venda** | ❌ **não** — entra pela dor |
+
+**A razão é de classificação, não de gosto.** No Brasil de 2026 a palavra "IA" carrega desejo e
+cansaço ao mesmo tempo: **80% das organizações já interromperam ou reverteram uma implementação**
+(ver `../research/2026-09-09-implementacao-ia-br-eua.md` §04e). Para parte do comprador, "IA" no
+letreiro **ativa a memória de um fracasso caro** e coloca o Vitor na mesma prateleira do Alan, do
+G4, do Viver de IA e do ARKOM — que é exatamente a prateleira da qual ele precisa se separar.
+
+Na venda, a entrada é a dor (*"quantos leads entraram essa semana e quantos foram respondidos em
+menos de uma hora?"*). A categoria aparece **depois**, para explicar o que o cliente acabou de
+sentir — nunca antes, como mais uma promessa.
+
+### Por que este nome, e não os seis anteriores
+
+- **Não pede performance.** Os seis anteriores exigiam que o Vitor *virasse* alguém — o instalador,
+  o operador de autoridade. Este descreve a terça-feira dele. **Nome que não precisa ser vestido é
+  nome que sobrevive a 1.000 vídeos** — e o gargalo real nunca foi estratégia, foi publicar.
+- **Carrega a distinção inteira:** *native* = desenhado assim desde a origem, não adaptado depois.
+- **Tem lastro internacional verificável** (Deloitte Tech Trends 2026, "The Great Rebuild").
+- **O exemplar existe:** o próprio AIOX — 8 squads, 35 agentes, agent harness com orquestração
+  multi-agente, rodando todo dia.
+
+⚠️ **O risco a vigiar:** virar identidade antes de virar prova — o padrão que derrubou os seis
+anteriores. **É o nome do território, não o cargo dele.** O Vitor não é "o cara do AI Native"; é o
+cara que constrói, e o que ele constrói se chama assim.
 
 **Por que "nativo" e não outra palavra:**
 - carrega exatamente a distinção que sustenta tudo — **desenhado assim desde a origem, não adaptado
@@ -236,6 +270,9 @@ Modelo Hermano/LAKS: **vertical é do negócio, nunca da identidade.**
 | Data | O que mudou | Por qual evidência |
 |---|---|---|
 | 2026-09-09 | v1 escrita e posta em uso | decisão do Vitor: começar por um ponto e ajustar no caminho |
+| 2026-09-09 | Nome fechado em **Negócios AI Native**, com a regra território-sim/oferta-não | escolha do Vitor + dado dos 80% de rollback: "IA" no letreiro classifica ele junto com quem o comprador já tentou |
+| 2026-09-09 | Território de conteúdo confirmado: **negócios + IA** | é o único assunto onde a falta de audiência não é objeção — a prova é o sistema rodando, não o nº de seguidores |
+| 2026-09-09 | Retainer sobe de R$1,5-3k para **R$3-5k/mês** | âncora pública: Viver de IA cobra R$3.500/mês e ARKOM R$2.157-5.157/mês **por acesso sem entrega** |
 
 ---
 
