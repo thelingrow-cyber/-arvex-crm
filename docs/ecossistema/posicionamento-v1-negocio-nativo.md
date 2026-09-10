@@ -85,6 +85,32 @@ sentir — nunca antes, como mais uma promessa.
 anteriores. **É o nome do território, não o cargo dele.** O Vitor não é "o cara do AI Native"; é o
 cara que constrói, e o que ele constrói se chama assim.
 
+### 🚧 Ajuste de 09/09 (noite): usar sim, possuir não
+
+Descoberto no mesmo dia: **Rodrigo Lopes / Higher Mind** já roda no BR o *"AI-Native Transformation
+Playbook"* — com ~30 anos de software, Docket (R$150M+ levantados) e organização de ~300 pessoas no
+currículo (ver `../research/2026-09-09-implementacao-ia-br-eua.md` §01b).
+
+**Consequência:** não investir em ser dono do termo.
+
+| Tipo de termo | Exemplo | Quem possui |
+|---|---|---|
+| Cunhado por uma marca | "Marca Creator" · "Volume Content" | **a marca possui** |
+| Vocabulário de indústria | "transformação digital" · **"AI-Native"** | **ninguém — todos usam** |
+
+"AI-Native" é do segundo tipo (Deloitte, Cognizant, WAIC, agências americanas, agora Higher Mind).
+Disputar posse é gastar munição contra quem tem currículo maior.
+
+> **A propriedade intelectual do Vitor é o VERBO, não o adjetivo.**
+> AI Native descreve o território. **O que é dele é FAZER** — num mercado onde Alan, Viver de IA,
+> G4, ARKOM e Higher Mind, todos, entregam acesso, playbook ou aula, e deixam a execução com o
+> cliente.
+
+**E não há colisão de comprador:** o ICP declarado do Higher Mind é *"sponsors de transformação em
+tecnologia, operação, inovação — líderes com acesso ao dono do fluxo, dados e áreas de risco"* —
+empresa grande com governança. O ICP da v1 é o dono de PME que responde WhatsApp. Andares
+diferentes, linguagens diferentes, canais diferentes.
+
 **Por que "nativo" e não outra palavra:**
 - carrega exatamente a distinção que sustenta tudo — **desenhado assim desde a origem, não adaptado
   depois**. Nenhuma outra palavra faz esse trabalho;
@@ -273,6 +299,7 @@ Modelo Hermano/LAKS: **vertical é do negócio, nunca da identidade.**
 | 2026-09-09 | Nome fechado em **Negócios AI Native**, com a regra território-sim/oferta-não | escolha do Vitor + dado dos 80% de rollback: "IA" no letreiro classifica ele junto com quem o comprador já tentou |
 | 2026-09-09 | Território de conteúdo confirmado: **negócios + IA** | é o único assunto onde a falta de audiência não é objeção — a prova é o sistema rodando, não o nº de seguidores |
 | 2026-09-09 | Retainer sobe de R$1,5-3k para **R$3-5k/mês** | âncora pública: Viver de IA cobra R$3.500/mês e ARKOM R$2.157-5.157/mês **por acesso sem entrega** |
+| 2026-09-09 | **AI Native vira descritor, não propriedade** — a PI passa a ser o verbo FAZER | Rodrigo Lopes/Higher Mind já planta o termo no BR com credencial de enterprise; "AI-Native" é vocabulário de indústria, não termo cunhado |
 
 ---
 

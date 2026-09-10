@@ -122,6 +122,67 @@ Apps + capacitações + mentorias + acompanhamento + comunidade + playbooks pron
 
 ---
 
+### Rodrigo Lopes / Higher Mind — o primeiro a plantar "AI-Native" no BR [44][45]
+
+Encontrado pelo Vitor em 09/09/2026. **É o player mais relevante para a decisão de nome.**
+
+| Elemento | O que é |
+|---|---|
+| **Quem** | Rodrigo Lopes — Founder & Strategic Advisor @ **Docket** |
+| **Credencial exibida** | **~30 anos em software** · Docket levantou **R$ 150M+** · operou organização de **~300 pessoas** |
+| **Marca** | **Higher Mind** |
+| **Oferta** | **"AI-Native Transformation Playbook"** — **gratuito**: Guia Executivo + Case File 90 (editável) + exemplo preenchido |
+| **Promessa literal** | *"Um sistema prático para escolher um fluxo real, redesenhar o trabalho e chegar ao dia 90 com evidência suficiente para escalar, corrigir ou encerrar."* |
+| **Posicionamento** | transformação por **evidência controlada**, não adoção de ferramentas · *"Tecnologia é meio. Resultado é fim."* |
+| **ICP declarado** | *"Sponsors de transformação em tecnologia, operação, inovação. Líderes com acesso ao dono do fluxo, dados e áreas de risco."* |
+| **Prova exibida** | **caso fictício** (Distribuidora Horizonte): 19,4h → 8,1h; custo unitário R$ 41 → R$ 29 |
+| **Canal** | YouTube orgânico (UTM `ai_native_playbook`) |
+
+### O que isso muda, e o que não muda
+
+**1. ⚠️ O termo "AI Native" já está sendo plantado no Brasil** — e por alguém com credencial de
+enterprise muito superior. Pela **Lei da Exclusividade**, duas marcas não possuem a mesma palavra.
+
+**2. ✅ Mas não é colisão frontal — são andares diferentes do mercado.**
+
+| | Rodrigo / Higher Mind | Vitor |
+|---|---|---|
+| ICP | *sponsor de transformação*, governança, áreas de risco → **empresa grande** | dono de PME, comercial travado no WhatsApp |
+| Linguagem | fluxo, evidência controlada, custo unitário | lead que morre, base parada |
+| Credencial | 30 anos, R$150M, 300 pessoas | construiu a operação inteira sozinho |
+| Entrega | **playbook — o cliente executa** | *(a definir: entra e faz)* |
+
+**3. 🎯 E ele repete o padrão brasileiro: ENSINA.** Playbook gratuito → o líder executa. Igual a
+Alan, Viver de IA, G4 e ARKOM. **Cinco players agora, e a palavra FAZER continua vaga no Brasil.**
+
+**4. 🔎 A prova dele é um caso fictício.** Com 30 anos de carreira e R$150M de track record, o case
+exibido é inventado. Sinal claro: **ele também está no começo desta oferta**, sem case público de
+AI-Native. A vantagem dele é currículo, não resultado demonstrado na categoria.
+
+**5. ✅ Validação de fundo:** um operador desse porte apostando no frame confirma que o movimento
+está descendo ao BR agora. O Vitor não está delirando — está no timing.
+
+### Consequência para a decisão de nome
+
+> **Não tentar POSSUIR "AI Native". Usar como descritor de território, nunca como propriedade
+> intelectual.**
+
+A distinção que importa:
+
+| Tipo de termo | Exemplo | Quem possui |
+|---|---|---|
+| **Cunhado por uma marca** | "Marca Creator" (Tay) · "Volume Content" (Afonso) | **a marca possui** |
+| **Vocabulário de indústria** | "transformação digital" · **"AI-Native"** | **ninguém possui — todos usam** |
+
+"AI-Native" é do segundo tipo: já circula em Deloitte, Cognizant, WAIC, agências americanas e agora
+Higher Mind. Disputar posse é gastar munição contra quem tem 30 anos de carreira.
+
+**A propriedade intelectual do Vitor tem que ser o VERBO, não o adjetivo.** E a diferença contra os
+cinco já está escrita: **eles ensinam, ele faz. Eles falam com sponsor de transformação, ele fala
+com o dono que atende WhatsApp.**
+
+---
+
 ### O padrão, e a palavra que falta nos quatro
 
 | Player | O que vende | O verbo da vitrine | Quem executa |
@@ -575,3 +636,5 @@ entrar na empresa** [4]. Se a ferramenta com mentoria custa isso, serviço feito
 [41] "O que voce pode aprender com a startup Viver de IA, que projeta faturar R$ 100 milhoes em 2026" - InfoMoney · https://www.infomoney.com.br/colunistas/terapia-de-ideias/o-que-voce-pode-aprender-com-a-startup-viver-de-ia-que-projeta-faturar-r-100-milhoes-em-2026/
 [42] Viver de IA - site oficial · https://viverdeia.ai/
 [43] Busca dirigida por agencia BR done-for-you de agentes de IA (09/09/2026) - sem player posicionado nos resultados
+[44] Higher Mind - "AI-Native Transformation Playbook" (landing) · https://lp.highermindaxiom.com.br/ (acesso 09/09/2026)
+[45] Rodrigo Lopes - LinkedIn (Founder and Strategic Advisor @ Docket) · https://br.linkedin.com/in/lopesprodrigo/en
