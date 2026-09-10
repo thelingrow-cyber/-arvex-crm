@@ -559,6 +559,76 @@ Verticais citadas como mais rentáveis para agência de automação em 2026 [38]
 
 ---
 
+## 04g — As agências: quem existe lá e quem existe aqui
+
+### EUA / global — o mercado de agência é maduro e caro
+
+Nomes que aparecem nos rankings de 2026 [46][47][48]: **Uvik Software** (Londres, 5,0 no Clutch em
+22 reviews) · **LeewayHertz** (San Francisco) · **HatchWorks AI** (Atlanta) · **Markovate**
+(Toronto) · **Azumo** · **Vstorm** · **Bitcot** · **Kanerika** · **DestiLabs** · **BlueLabel**
+(referência em RAG sob medida) · **NextAutomation**.
+
+**Preço praticado por essas agências** [47]:
+
+| Escopo | Faixa |
+|---|---|
+| PoC | **US$ 8.000 – 25.000** |
+| **Workflow único** | **US$ 35.000 – 70.000** |
+| Multi-workflow | US$ 70.000 – 150.000+ |
+
+⚠️ **Isso é outro mercado, e a distinção importa:** são **dev shops de engenharia**, com time sênior
+e cliente mid-market/enterprise. É diferente do operador solo (ThinkFraction, Re-Solved), que fica
+em US$ 3-15k + retainer.
+
+> **O Vitor está estruturalmente no grupo do operador solo, com capacidade que se aproxima do grupo
+> das dev shops.** Essa é a arbitragem interna dele — entrega de agência, custo de operador.
+
+### Brasil — existe, mas é agência técnica sem rosto
+
+Levantamento de 2026 [49][50]:
+
+| Agência | O que entrega | Público |
+|---|---|---|
+| **Intelecta** | *"Agentes IA, IA Privada e Automações sob medida"* · done-for-you, projeto do zero, suporte contínuo | **PME e grande porte** |
+| **AlphaCorp AI** (RJ) | engenharia de IA — agentes, RAG, automação em produção (RustyRAG, <200ms) | técnico |
+| **Ateliware** | soluções digitais sob medida com IA · BR, Europa, EUA | diversos |
+| **NeuralMind** | deep learning, PLN, automação de documentos | jurídico e financeiro |
+| **Kunumi** | IA para saúde, educação, diagnóstico | saúde/educação |
+| **Cortex Intelligence** | inteligência de mercado, IA preditiva | marketing e vendas |
+| **Comunica.In** | agentes de IA para comunicação corporativa | enterprise |
+| Take Blip · Botmaker · Moveo.AI | plataformas de conversational AI (WhatsApp) | produto |
+
+🔎 **A Intelecta é a mais próxima do que o Vitor faria** — done-for-you real, PME incluída, e o
+diferencial declarado é **"IA Privada Segura e Blindada"**, que endereça justamente os 39% de
+rollback por vazamento de dado (§04e).
+
+**Mas repare no que falta em todas elas:** nenhuma tem **rosto**, **categoria nomeada**, **preço
+público** ou **linguagem de dono de negócio**. É comunicação de TI para comprador de TI — site
+institucional, "fale com um especialista", jargão de projeto.
+
+---
+
+### 🎯 O mapa que fecha: o mercado brasileiro está partido em dois
+
+| Grupo | Tem rosto e audiência | **Faz de verdade** |
+|---|---|---|
+| Alan · Viver de IA · G4 · ARKOM | ✅ | ❌ vendem acesso |
+| Higher Mind (Rodrigo Lopes) | ✅ credencial | ❌ playbook |
+| Intelecta · AlphaCorp · Ateliware · NeuralMind | ❌ | ✅ |
+| Take Blip · Botmaker · Moveo | ❌ | ❌ produto |
+| **Vitor** | **(construindo)** | ✅ |
+
+> **Quem aparece não faz. Quem faz não aparece.**
+>
+> Não é que a posição esteja livre por sorte — ela está livre porque **exige duas competências que
+> raramente moram na mesma pessoa**: construir sistema em produção e construir audiência.
+> O Vitor tem a primeira comprovada e está construindo a segunda. **Essa é a vaga.**
+
+E é a confirmação, agora com nomes, do que a varredura de 08/09 já tinha apontado: *automação
+comercial não tem rosto humano no Brasil.*
+
+---
+
 ## 05 — Preço: o Vitor está subprecificado
 
 Faixas praticadas no mercado americano em 2026:
@@ -638,3 +708,8 @@ entrar na empresa** [4]. Se a ferramenta com mentoria custa isso, serviço feito
 [43] Busca dirigida por agencia BR done-for-you de agentes de IA (09/09/2026) - sem player posicionado nos resultados
 [44] Higher Mind - "AI-Native Transformation Playbook" (landing) · https://lp.highermindaxiom.com.br/ (acesso 09/09/2026)
 [45] Rodrigo Lopes - LinkedIn (Founder and Strategic Advisor @ Docket) · https://br.linkedin.com/in/lopesprodrigo/en
+[46] "Best AI Automation Agencies in 2026 (Ranked)" - DestiLabs · https://www.destilabs.com/blog/best-ai-automation-agencies-2026
+[47] "The 10 Best AI Automation Agencies in 2026" - NextAutomation · https://nextautomation.us/blog/best-ai-agencies-2026
+[48] "Best AI Automation Agencies in 2026: An Honest Global Shortlist" - 41 Labs · https://41labs.ai/blog/best-ai-automation-agencies
+[49] "As 10 Melhores Agencias de Inteligencia Artificial do Brasil" - Intelecta · https://intelecta.digital/melhores-agencias-inteligencia-artificial-brasil/
+[50] "7 startups brasileiras de inteligencia artificial que estao crescendo em 2026" - AlphaCorp · https://alphacorp.ai/pt-br/blog/7-startups-brasileiras-de-inteligencia-artificial-que-estao-crescendo-em-2026
