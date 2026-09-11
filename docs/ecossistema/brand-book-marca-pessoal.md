@@ -506,7 +506,7 @@ pular a Etapa 3 (ir de serviço a equity sem ativo próprio é repetir a ARVEX).
 
 ---
 
-## 17 — O desdobramento: do posicionamento até segunda-feira
+## 16 — O desdobramento: do posicionamento até segunda-feira
 
 > **Para que serve esta seção:** posicionamento que não desce para execução é ensaio. Aqui está a
 > cascata inteira — o que já está decidido, o que está aberto, e **o que trava o quê**.
@@ -580,7 +580,7 @@ Em cada uma das cinco, anotar — e nada além disso:
 
 ---
 
-## 16 — Log de versões
+## 17 — Log de versões
 
 | Data | O que mudou | Por qual evidência |
 |---|---|---|

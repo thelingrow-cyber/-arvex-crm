@@ -9,7 +9,7 @@
 
 | Documento | O que responde |
 |---|---|
-| **[`brand-book-marca-pessoal.md`](brand-book-marca-pessoal.md)** *(v2)* | **Tudo que está decidido.** Categoria, tese, inimigo, fissura, transformação, mecanismo, oferta, linha vermelha, ICP, arquitetura de marca, bio, linha editorial, etapas, guarda-corpos, critérios de falsificação e **o desdobramento** (§17) |
+| **[`brand-book-marca-pessoal.md`](brand-book-marca-pessoal.md)** *(v2)* | **Tudo que está decidido.** Categoria, tese, inimigo, fissura, transformação, mecanismo, oferta, linha vermelha, ICP, arquitetura de marca, bio, linha editorial, etapas, guarda-corpos, critérios de falsificação e **o desdobramento** (§16) |
 
 **Se você só puder ler um arquivo, leia esse.** Ele é autossuficiente.
 
@@ -53,4 +53,4 @@
 
 1. **Documento novo de posicionamento não se cria — o mestre se atualiza.** Foi a proliferação que quebrou o contexto três vezes.
 2. **Antes de propor nome, categoria ou frase nova:** ler o cemitério (brand book §04). São 6 nomes e 6 palavras já descartados, cada um com a razão registrada.
-3. **Nada aqui vira verde por análise.** O que está 🔴 no §17 só fecha em campo.
+3. **Nada aqui vira verde por análise.** O que está 🔴 no §16 só fecha em campo.
