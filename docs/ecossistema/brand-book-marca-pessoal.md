@@ -342,19 +342,40 @@ LAKS é estreita, e o Hermano é o rosto amplo que liga tudo.
 
 ## 11 — Frases-arsenal
 
-**Bio pessoal — FECHADA em 2026-09-11:**
-> Construindo Negócios AI Native
-> Assessoria e implementação que constrói os negócios
-> autônomos e lucrativos da nova economia
-> Instalo um sistema por semana. Chama no direct 👇
+**Bio pessoal — FECHADA e PUBLICADA em 2026-09-11:**
+> Co-owner @arvexcompany
+> Construindo negócios AI Native:
+> Empresas autônomas e lucrativas por arquitetura
+> Aplique para o Diagnóstico da sua 👇
+> *(+ link `wa.me` com mensagem pré-preenchida no campo Website)*
 
-**As três linhas fazem três trabalhos, e nenhuma é decorativa:**
+**As quatro linhas fazem quatro trabalhos, e nenhuma é decorativa:**
 
 | Linha | Função | Por que está aí |
 |---|---|---|
-| 1 | **território** | a categoria, no gerúndio — que é honesto enquanto a prova não existe |
-| 2 | **promessa** | o que o negócio **vira**. Par de status + dinheiro, no molde de *"marcas sexy e ricas"* |
-| 3 | **prova** | a única linha **verificável** — e é o que separa isto de *"DOBRE SUA RECEITA COM IA"* |
+| 1 | **lastro** | a empresa, não um rótulo. *(Saiu "Entrepreneur" — genérico, e comia a única linha que aparece sem clicar em "mais".)* |
+| 2 | **território** | a categoria, no gerúndio — honesto enquanto a prova não existe |
+| 3 | **definição + diferencial** | cumpre a regra do §04 (a categoria nunca aparece sem definição colada). **"Por arquitetura" é o diferencial e é só dele** — nenhum concorrente pode usar |
+| 4 | **porta de entrada** | "Aplique" é honesto porque **existe critério de corte real** (§09), não escassez fabricada |
+
+**Por que não tem mais "Consultoria que constrói":** ele não tem consultoria, tem ele. A palavra
+sugeria estrutura e time, e o comprador é justamente quem já foi queimado por promessa maior que a
+entrega. **A bio evolui com a prova:**
+
+| Quando | Linha 2 vira |
+|---|---|
+| hoje | Construindo negócios AI Native |
+| com 3 clientes entregues | Consultoria que constrói negócios AI Native |
+| com a empresa nomeada e um número | Founder @[empresa] · [o número] |
+
+⚠️ **A condição que faz o "Aplique" funcionar:** aplicar o critério de verdade. Ao receber a mensagem,
+fazer as três perguntas antes de marcar — entram leads e por onde · quem responde e em quanto tempo ·
+quanto vale um cliente fechado. **O filtro e a pesquisa de campo são a mesma ação.** Aceitar todo
+mundo transforma "Aplique" em teatro, e o cara percebe na primeira call.
+
+**O que a bio tem e nenhum concorrente mapeado tem:** um **diferencial** embutido. Tay, Léo Soares,
+Squad, Pedro Escudero e Bernardo Precht dizem *o que fazem* ou *para quem*. "Por arquitetura" diz
+**como** — e o "como" é a tese inteira em duas palavras.
 
 ⚠️ **A regra que essa bio obedece, e é fácil de violar sem perceber:** *bio vende o céu, proposta vende
 a etapa.* A promessa aspiracional (autônomos e lucrativos) é **institucional** e está correta aqui.
