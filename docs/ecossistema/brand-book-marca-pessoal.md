@@ -181,10 +181,18 @@ não conta ponto).
 |---|---|---|
 | Alan Nicolas · Viver de IA · G4 Implementação · ARKOM | ✅ | ❌ vendem acesso |
 | Higher Mind (Rodrigo Lopes) | ✅ credencial | ❌ playbook |
+| **Squad.com / Inner AI** (R$30M, valuation R$500M) | ⚠️ **avatar 3D + porta-voz, não founder** | ❌ self-service |
 | Pedro Escudero · Davi Valadares *(faixa alcançável)* | ✅ | ❌ formação e comunidade |
 | Intelecta · AlphaCorp · Ateliware · NeuralMind | ❌ | ✅ |
 | Take Blip · Botmaker · Moveo | ❌ | ❌ produto |
 | **Vitor** | **(construindo)** | ✅ |
+
+> ⚠️ **O Squad é o caso que mais ensina.** Eles preencheram o espaço visual do "sem rosto" com
+> **personagens** — Waz, Fin, Maky — e o vídeo com uma porta-voz. **Personagem não gera confiança de
+> founder.** O moat emocional é a única coisa que R$30 milhões não compram rápido, e segue vago.
+> Regras que isso impõe: **não personificar agentes em público** (é decisão de produto, e produto
+> compete a R$2.000/mês) e **não disputar estética** — eles são renderizados; a resposta é ser real:
+> tela, log, sistema rodando com cliente de verdade.
 
 > **Quem aparece não faz. Quem faz não aparece.** A vaga está livre porque exige duas competências
 > que raramente moram na mesma pessoa. Ele tem a primeira comprovada e está construindo a segunda.
@@ -210,7 +218,12 @@ custo do talento não permite; aqui ninguém tem os sistemas prontos.
 
 | Não são concorrentes de entrega | São |
 |---|---|
-| Alan · Viver de IA · G4 · ARKOM | **concorrentes de orçamento** (o mesmo R$3-5k/mês) · **de atenção** · e **fornecedores da matéria-prima**: educam o mercado, cobram, e produzem os frustrados |
+| Alan · Viver de IA · G4 · ARKOM · **Squad** | **concorrentes de orçamento** (o mesmo R$2-5k/mês) · **de atenção** · e **fornecedores da matéria-prima**: educam o mercado, cobram, e produzem os frustrados |
+
+**Nível de consciência — por que não há colisão de atenção:** o conteúdo deles é topo (FAQ, "o que é
+IA agêntica", *"seu próximo cliente talvez nunca abra o Google"*) e fala com quem está **Unaware**.
+A marca do Vitor fala com quem **já comprou e falhou**. Não é preciso disputar audiência com eles —
+é preciso estar onde eles deixam o cliente cair.
 
 Eles **não podem** virar done-for-you: o modelo econômico deles é escala. Entrar na empresa não
 escala com esse desenho. **Lei do Oposto — a força é a fraqueza.**

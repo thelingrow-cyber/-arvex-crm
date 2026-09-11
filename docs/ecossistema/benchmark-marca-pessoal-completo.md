@@ -35,7 +35,7 @@ Como este documento está estruturado
 ## PARTE 7: Próximos 90 dias — o que fazer, o que não fazer, as métricas que importam
 
 
-## PARTE 8 *(adendo 2026-09-10)*: O território de IA para empresas — os 5 que vendem acesso, a faixa alcançável (20-100k), as agências que fazem sem rosto, o espelho internacional e a checagem de premissa do modelo "agência de IA"
+## PARTE 8 *(adendo 2026-09-10, ampliado em 11/09)*: O território de IA para empresas — os 6 que vendem acesso (incl. Squad.com/Inner AI), a faixa alcançável (20-100k), as agências que fazem sem rosto, o espelho internacional e a checagem de premissa do modelo "agência de IA"
 
 
 ### APÊNDICE: Frases autorais coletadas, comentários reais de ICP, modelo de ecossistema consolidado
@@ -1395,7 +1395,7 @@ Benchmark de Marca Pessoal — Documento Confidencial
 
 ---
 
-## 8.1 — Os cinco que vendem IA para empresas no Brasil
+## 8.1 — Os seis que vendem IA para empresas no Brasil
 
 | Player | O que vende | **O verbo da vitrine** | **Quem executa** | Preço | Prova exibida |
 |---|---|---|---|---|---|
@@ -1404,6 +1404,7 @@ Benchmark de Marca Pessoal — Documento Confidencial
 | **G4 Implementação de IA** | G4 OS + sprint presencial 3 dias + mentoria | *"aconselha 24/7"* | **o empresário** | est. R$5-15k | R$509M de receita própria creditada ao G4 OS |
 | **ARKOM** (Thiago Finch) | plataforma + apps + universidade + mentoria em grupo | 🔴 **"plataforma que instala"** | **o cliente, com suporte** — implementação personalizada é *contratação separada* | **R$2.157 / R$3.153 / R$5.157 por mês** | R$21 mil fechados em 24h (1 cliente); projeção de R$50M ARR em 18 meses |
 | **Higher Mind** (Rodrigo Lopes) | *"AI-Native Transformation Playbook"* gratuito → consultoria | *"playbook"* | **o líder do cliente** | — | ⚠️ **case exibido é fictício** ("Distribuidora Horizonte") |
+| **Squad.com** (Inner AI) · IG 52,3k | plataforma: time de agentes personificados (Waz, Fin, Maky, Opy) + onboarding guiado + mentoria | *"seu time de IA que **vende, atende e organiza**"* | **o cliente, self-service** — sem intervenção hands-on | **R$2.000 / R$3.500 / R$6.000+ por mês** | ROI 3,7x (IDC/Microsoft) e 88% (NVIDIA) — **dados de terceiros**; cases próprios pequenos (Brigadayros, Brasil Grãos) |
 
 ### 🎯 O padrão, e é o achado central desta parte
 
@@ -1433,6 +1434,80 @@ cruzados com **80% de rollback no Brasil** e **60% das PMEs latinas sem ver valo
 
 > **Eles não são concorrentes de entrega. São concorrentes de orçamento e de atenção — e
 > fornecedores da matéria-prima.**
+
+---
+
+## 8.1b — Squad.com / Inner AI: o player mais bem capitalizado do mapa
+
+*Registrado em 2026-09-11. Página oficial + perfil `@squadcom_br` (print) + imprensa.*
+
+**Quem é:** produto da **Inner AI**, que levantou **R$30 milhões** em rodada seed (Canary + OneVC) e
+atingiu **valuation de R$500 milhões**. Parte do investimento foi direcionada ao lançamento do Squad.
+
+**O que vende:** um time de agentes personificados, cada um com nome e função —
+**Waz** (WhatsApp: resposta automática, organização de conversa, follow-up) · **Fin** (financeiro:
+emissão de cobrança, fluxo de caixa) · **Maky** (marketing: cria post, responde comentário, sugere
+campanha) · **Opy** e outros. Operações de WhatsApp e Instagram pela **API oficial da Meta**, anunciada
+como diferencial de segurança e estabilidade.
+
+**Movimento mais agressivo:** **loja física na Avenida Paulista** (abril/2026), "a primeira loja de IA
+do Brasil", configurando *"times digitais"* presencialmente para PMEs. É o passo mais próximo de
+done-for-you que apareceu no mapa inteiro.
+
+### Por que importa mais que os outros cinco
+
+**1. O frame do organograma agora tem dono com capital.** *"Seu time de IA que vende, atende e
+organiza seu negócio"* é, em uma linha, a mesma leitura que o AIOX materializa com 8 squads. **"Eu
+instalo o time de IA da sua empresa" deixou de ser posição livre como pitch de vitrine.**
+
+**2. A palavra "squad" está ocupada no Brasil.** Uso interno é irrelevante; **uso público colide** com
+uma marca de R$500M de valuation.
+
+**3. Eles personificaram os agentes.** É decisão de **produto** — e é o que coloca a coisa na
+prateleira de R$2.000/mês. **Não copiar:** nomear agentes em público é aceitar competir por preço com
+plataforma capitalizada.
+
+### O que eles não fecham — e segue sendo a vaga
+
+| | Squad | A posição livre |
+|---|---|---|
+| Quem implementa | **o cliente**, self-service com suporte | quem entra e faz |
+| Escopo | agentes genéricos dentro da plataforma deles | integração no sistema que a empresa **já tem** |
+| Rosto | **avatar 3D + porta-voz** | **founder** |
+| Prova | dados de terceiros (IDC, NVIDIA) | *(de ninguém ainda)* |
+
+> 🎯 **A brecha do "sem rosto" foi preenchida com personagem, não com fundador.** Ninguém olha o Waz e
+> pensa *"essa pessoa construiu isso e sabe o que está fazendo"*. **O moat emocional de founder-led
+> growth é a única coisa que R$30 milhões não compram rápido — e continua vago.**
+
+E a prova continua ausente no mercado inteiro: mesmo com capital, os cases próprios são pequenos e as
+métricas exibidas são de relatórios de terceiros — o mesmo padrão do Higher Mind com case fictício.
+**Quem entregar o primeiro case com nome e número sai na frente, e isso não se compra.**
+
+### Leituras táticas
+
+- **Métrica de perfil enganosa:** 52,3k seguidores com **34 publicações** = ~1.538 seg./post. Isso é
+  mídia paga em perfil novo, não posição conquistada (Davi: 524; Pedro Escudero: 33). **Não usar como
+  régua.**
+- **Universo de marca bem construído** (personagens 3D, "ESQUADRÃO", arte coerente) — e caro.
+  Pela Lei do Oposto, não disputar estética: **eles são renderizados, a resposta é ser real** — tela,
+  log, sistema rodando com cliente de verdade.
+- **Nível de consciência do conteúdo deles é topo** ("FAQ Squad", *"seu próximo cliente talvez nunca
+  abra o Google"*): falam com **Unaware**. Não colidem com quem fala com **Product-Aware desiludido**.
+- **Bio deles usa três verbos de dono** (vende, atende, organiza) onde a maioria usa adjetivo. O
+  princípio é roubável; a estrutura, não — é bio de produto listando funcionalidade.
+- ⚠️ **API oficial da Meta como argumento de venda.** Verificar como a Carol está conectada: se não for
+  pela oficial, é flanco que comprador informado levanta.
+
+### O efeito líquido
+
+**Aumenta o mercado e encurta a janela.** Com R$30M e loja na Paulista, eles vão educar e frustrar
+mais gente, mais rápido — plataforma self-service a R$2-3,5k/mês num país com 80% de rollback é uma
+**fábrica de ICP financiada por VC**. Mas a distância entre "plataforma" e "entra e faz" está
+diminuindo, e a loja física prova isso.
+
+> **Gartner: 17% das organizações têm agente em produção hoje; 60%+ esperam ter em dois anos.**
+> A vaga existe agora. Não é garantido que exista em 2028.
 
 ---
 
