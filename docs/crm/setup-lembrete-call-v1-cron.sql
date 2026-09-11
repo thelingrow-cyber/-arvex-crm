@@ -86,7 +86,7 @@ comment on function public.disparar_lembrete_call(text) is
 --      09:00 de Brasília  →  12:00 UTC
 --
 --    · manhã : uma vez por dia, varre todas as calls do dia
---    · 1h    : a cada 10 min, das 07h às 21h de Brasília (10-23 UTC). Fora
+--    · 1h    : a cada 5 min, das 07h às 21h de Brasília (10-23 UTC). Fora
 --              dessa faixa não há call, e a própria function tem janela de
 --              silêncio como segunda trava.
 -- ─────────────────────────────────────────────────────────────────────────────
@@ -105,7 +105,7 @@ select cron.schedule(
 
 select cron.schedule(
   'lembrete-call-1h',
-  '*/10 10-23 * * *',                 -- a cada 10 min, 07h–20h50 de Brasília
+  '*/5 10-23 * * *',                  -- a cada 5 min, 07h–20h55 de Brasília
   $$select public.disparar_lembrete_call('1h')$$
 );
 

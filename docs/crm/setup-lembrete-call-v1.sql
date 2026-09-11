@@ -91,6 +91,32 @@ values (
 on conflict (id) do nothing;
 
 -- ─────────────────────────────────────────────────────────────────────────────
+-- 2b. IMAGEM DE PROVA (2026-09-11) — o disparo da manhã leva um print de
+--     resultado de mentorado junto. URL vazia = texto puro, como antes.
+--     A edge function troca sendText por sendMedia quando isto está preenchido,
+--     com o texto virando legenda: uma mensagem só, não duas.
+-- ─────────────────────────────────────────────────────────────────────────────
+alter table lembretes_config
+  add column if not exists imagem_manha_url text;
+
+comment on column lembretes_config.imagem_manha_url is
+  'URL pública da imagem de prova enviada junto do lembrete da manhã (legenda = texto_manha). NULL/vazio = envio de texto puro.';
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- 2c. TEXTOS VIGENTES — aprovados pelo Vitor em 2026-09-11, substituem a
+--     proposta acima (o insert não sobrescreve linha existente, por isso o
+--     update explícito). O segundo disparo passou de 60 para 30 min de
+--     antecedência; o tipo continua gravado como '1h' por compatibilidade.
+-- ─────────────────────────────────────────────────────────────────────────────
+update lembretes_config set
+  texto_manha = E'Bom dia, {nome}!\n\nPassando aqui para te lembrar da nossa reunião hoje às {hora}. Por aqui já estamos preparando tudo para o nosso bate-papo!\n\nNos vemos às {hora}!',
+  texto_1h    = E'Olá, {nome}!\n\nEm 30 min já envio o link da nossa reunião, ok?',
+  antecedencia_min = 30,
+  janela_min       = 5,    -- cron a cada 5 min: a mensagem cai entre 25 e 35 min antes
+  updated_at  = now()
+where id = 1;
+
+-- ─────────────────────────────────────────────────────────────────────────────
 -- 3. LOG DE ENVIOS — é também o mecanismo anti-duplicação
 -- ─────────────────────────────────────────────────────────────────────────────
 create table if not exists lembretes_call (

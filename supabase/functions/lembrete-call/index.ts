@@ -2,7 +2,10 @@
 //
 // Pedido da Thalita (closer) · 2026-09-10
 //
-// Dois disparos por call: 9h do dia (todas as calls do dia) e 1h antes de cada uma.
+// Dois disparos por call: 9h do dia (todas as calls do dia) e um aviso de véspera
+// próxima, cuja antecedência vem de `lembretes_config.antecedencia_min` (30 min
+// desde 2026-09-11). O tipo continua gravado como '1h' por compatibilidade com o
+// índice único e o histórico — é um rótulo, não o valor da antecedência.
 // Texto FIXO com variáveis, vindo de `lembretes_config` — não passa pela Carol.
 //
 // Quem chama: pg_cron via pg_net (ver docs/crm/setup-lembrete-call-v1-cron.sql).
@@ -71,6 +74,9 @@ function montarTexto(modelo: string, lead: Record<string, unknown>, callEm: Date
     .replaceAll("{resp}", String(lead.resp || "").split(/\s+/)[0] || "")
     // sem nome, "Oi {nome}, bom dia" viraria "Oi , bom dia"
     .replace(/ +([,!?.])/g, "$1")
+    // "Bom dia, {nome}!" sem nome vira "Bom dia,!" — a vírgula fica pendurada
+    // na pontuação final. Vale para qualquer vocativo escrito na config.
+    .replace(/,\s*([!?.])/g, "$1")
     .replace(/^([^\S\n]*)([,!?.])\s*/gm, "$1")
     .replace(/[^\S\n]{2,}/g, " ")
     .trim();
@@ -176,6 +182,12 @@ Deno.serve(async (req) => {
     // 4) descarta o que já foi enviado (o índice único é a garantia final, mas
     //    filtrar antes evita chamar o Evolution à toa)
     const modelo = tipo === "manha" ? cfg.texto_manha : cfg.texto_1h;
+    // Imagem de prova social: só no disparo da manhã e só se houver URL na config.
+    // Vazia = comportamento antigo (texto puro), então configurar depois não exige
+    // redeploy nem quebra nada agora.
+    const imagemManha = tipo === "manha"
+      ? String(cfg.imagem_manha_url || "").trim()
+      : "";
     const EVO_URL = (Deno.env.get("EVOLUTION_API_URL") || "").replace(/\/$/, "");
     const EVO_KEY = Deno.env.get("EVOLUTION_API_KEY") || "";
     const EVO_INST = Deno.env.get("EVOLUTION_INSTANCE") || "arvex-agente-sdr";
@@ -201,7 +213,7 @@ Deno.serve(async (req) => {
       }
 
       if (dryRun) {
-        resultado.push({ lead: c.nome, tel, status: "simulado", texto });
+        resultado.push({ lead: c.nome, tel, status: "simulado", texto, imagem: imagemManha || null });
         continue;
       }
 
@@ -210,10 +222,24 @@ Deno.serve(async (req) => {
       let detalhe: string | null = null;
       let waId: string | null = null;
       try {
-        const r = await fetch(`${EVO_URL}/message/sendText/${EVO_INST}`, {
+        // Com imagem de prova configurada, o disparo da manhã vai como mídia e o
+        // texto vira legenda — uma mensagem só, não duas. Sem URL configurada,
+        // cai no envio de texto puro de sempre.
+        const rota = imagemManha ? "sendMedia" : "sendText";
+        const payload = imagemManha
+          ? {
+              number: tel,
+              mediatype: "image",
+              media: imagemManha,
+              caption: texto,
+              fileName: "prova.jpg"
+            }
+          : { number: tel, text: texto };
+
+        const r = await fetch(`${EVO_URL}/message/${rota}/${EVO_INST}`, {
           method: "POST",
           headers: { apikey: EVO_KEY, "Content-Type": "application/json" },
-          body: JSON.stringify({ number: tel, text: texto })
+          body: JSON.stringify(payload)
         });
         const d = await r.json().catch(() => ({}));
         if (!r.ok) {
