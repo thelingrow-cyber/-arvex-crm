@@ -1,6 +1,18 @@
 # Posicionamento v1 — Negócio Nativo
 
-> **Status: V1 EM USO.** Não é hipótese esperando aprovação — é o ponto de partida escolhido pelo
+> ## 🟡 SUPERADO em 2026-09-11 — documento histórico
+>
+> O conteúdo desta v1 foi absorvido e ampliado pelo [`brand-book-marca-pessoal.md`](brand-book-marca-pessoal.md) **v2**,
+> que é o documento mestre. **Em caso de conflito, o brand book vence.**
+>
+> O que mudou desde aqui: a bio foi fechada · o preço subiu de faixa · a camada de dado deixou de ser
+> "peça 4" e virou **a espinha** · o ICP ganhou dois caminhos de entrada · entrou a fissura social ·
+> e o mecanismo observável foi declarado como lacuna aberta.
+>
+> **Este arquivo fica pelo §12 (log de ajustes)** — é o registro de como a v1 nasceu e do que a
+> derrubaria. Ver também o índice da pasta: [`README.md`](README.md).
+
+> **Status original: V1 EM USO.** Não é hipótese esperando aprovação — é o ponto de partida escolhido pelo
 > Vitor em 2026-09-09 para começar a rodar. Ajusta com evidência de campo, não com nova deliberação.
 > Origem: o conceito é dele — nomear o movimento de rearquitetura de empresas em torno de IA, no
 > molde do que a Tay Dantas fez com "negócio creator".

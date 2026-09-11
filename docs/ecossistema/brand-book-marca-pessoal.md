@@ -506,6 +506,80 @@ pular a Etapa 3 (ir de serviço a equity sem ativo próprio é repetir a ARVEX).
 
 ---
 
+## 17 — O desdobramento: do posicionamento até segunda-feira
+
+> **Para que serve esta seção:** posicionamento que não desce para execução é ensaio. Aqui está a
+> cascata inteira — o que já está decidido, o que está aberto, e **o que trava o quê**.
+> Status: ✅ fechado · 🟡 parcial · 🔴 aberto.
+
+### A cascata
+
+| # | Camada | Status | O que existe | O que falta |
+|---|---|:---:|---|---|
+| 1 | **Tese e categoria** | ✅ | Negócios AI Native, regra território-sim/oferta-não, tese "não adicionar, ser" | — *(regra de encerramento: 30 posts)* |
+| 2 | **Inimigo e fissura** | ✅ | o agente que impressiona na demo; *"ele pagou e continua para trás"*; a frase que absolve | — |
+| 3 | **Mecanismo observável** | 🔴 | nada | **a peça que falta.** "Um sistema por semana" foi rejeitado pelo Vitor |
+| 4 | **ICP** | 🟡 | por situação, com filtro de 4 cortes e 2 caminhos de entrada | a **vertical** — HOF sem ponte confirmada, ótica sem cláusula lida |
+| 5 | **Oferta** | 🟡 | escada (Raio-X → base → atendente → CRM → SDR), garantia, linha vermelha | **o preço** — 3 faixas vivas, nenhuma testada |
+| 6 | **Identidade e marca** | ✅ | arquétipo, universo, estética real-vs-renderizado, escada do medo, Hero Brand | — |
+| 7 | **Bio e perfil** | 🟡 | **bio fechada** (§11) | **link no CTA** · destaque "O que eu construí" · despinar os slots |
+| 8 | **Canal** | ✅ | rede, indicação e demonstração. Conteúdo **credencia**, não vende | — |
+| 9 | **Conteúdo** | 🟡 | registros VISÃO/OBRA, formatos, ganchos, protocolo das frases, founder story | grade **desatualizada no volume** (escrita para 7/sem) |
+| 10 | **Proposta comercial** | 🔴 | nada escrito | documento de proposta com escopo, prazo, preço e garantia |
+| 11 | **Entrega** | 🔴 | os sistemas existem; **o processo de instalar não** | o manual — documentar **durante** a 1ª instalação |
+| 12 | **Capacidade** | 🔴 | trava arbitrária de 3 simultâneas | o número real — cronometrar a 1ª e a 2ª |
+
+### O que trava o quê
+
+```
+                 5 CONVERSAS COM COMPRADOR
+                           │
+         ┌─────────────────┼─────────────────┐
+         ▼                 ▼                 ▼
+    PREÇO (5)         VERTICAL (4)      LINGUAGEM (4,9)
+         │                 │                 │
+         ▼                 ▼                 ▼
+    PROPOSTA (10)   INSTITUCIONAL      CONTEÚDO DE
+                    VERTICAL            AQUISIÇÃO
+         │
+         ▼
+    1ª INSTALAÇÃO ──► MANUAL (11) ──► CAPACIDADE REAL (12)
+                                             │
+                                             ▼
+                                      MODELO ESCALÁVEL
+```
+
+**Leitura da cadeia:** cinco pendências vermelhas ou amarelas dependem de **uma única ação**, e ela
+não é de gabinete. Nenhuma delas fecha com mais análise.
+
+**As duas exceções — coisas que dependem só dele e não de conversa:**
+- o **mecanismo observável** (3) — decisão de identidade, não de campo
+- o **link, os destaques e os pins** (7) — 36 minutos de execução
+
+### A ordem
+
+| Fase | O quê | Critério de saída |
+|---|---|---|
+| **Agora (36 min)** | link no CTA · destaque "O que eu construí" · despinar os slots | o perfil para de contradizer a bio |
+| **Esta semana** | **5 conversas**, 3 anotações em cada | 3 ou mais reconhecem o problema sem indução |
+| **Depois das 5** | fechar preço · escrever a proposta · definir a vertical por evidência | proposta enviável |
+| **Com o 1º cliente** | instalar **documentando** · cronometrar | manual existe |
+| **Com a 2ª instalação** | comparar o custo com a 1ª | **o teste que decide se é negócio ou emprego** |
+| **Com 3 cases** | institucional vertical · bio sobe para "Consultoria que constrói" | prova pública existe |
+
+### As três perguntas que transformam conversa em dado
+
+Em cada uma das cinco, anotar — e nada além disso:
+
+1. **Que palavra ele usou** para o que quer *(fecha a promessa, §04 da plataforma de marca)*
+2. **Reagiu ao contraste plugar × redesenhar com "é exatamente isso"?** *(valida a tese)*
+3. **Quanto vale um cliente fechado para ele** *(fecha o preço — e é esse número, não benchmark americano)*
+
+> **O filtro do "Aplique" e a pesquisa de campo são a mesma ação.** As três perguntas qualificam o
+> lead e fecham o posicionamento ao mesmo tempo.
+
+---
+
 ## 16 — Log de versões
 
 | Data | O que mudou | Por qual evidência |
