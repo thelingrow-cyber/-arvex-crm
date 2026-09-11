@@ -342,10 +342,27 @@ LAKS é estreita, e o Hermano é o rosto amplo que liga tudo.
 
 ## 11 — Frases-arsenal
 
-**Bio pessoal (vigente):**
+**Bio pessoal — FECHADA em 2026-09-11:**
 > Construindo Negócios AI Native
-> Assessoria e implementação que constrói negócios autônomos e lucrativos
+> Assessoria e implementação que constrói os negócios
+> autônomos e lucrativos da nova economia
 > Instalo um sistema por semana. Chama no direct 👇
+
+**As três linhas fazem três trabalhos, e nenhuma é decorativa:**
+
+| Linha | Função | Por que está aí |
+|---|---|---|
+| 1 | **território** | a categoria, no gerúndio — que é honesto enquanto a prova não existe |
+| 2 | **promessa** | o que o negócio **vira**. Par de status + dinheiro, no molde de *"marcas sexy e ricas"* |
+| 3 | **prova** | a única linha **verificável** — e é o que separa isto de *"DOBRE SUA RECEITA COM IA"* |
+
+⚠️ **A regra que essa bio obedece, e é fácil de violar sem perceber:** *bio vende o céu, proposta vende
+a etapa.* A promessa aspiracional (autônomos e lucrativos) é **institucional** e está correta aqui.
+A linha vermelha do §08 vale para **proposta, contrato e call** — nunca inverter, porque linguagem
+operacional na bio trava o teto e linguagem institucional na proposta soa consultoria vaga.
+
+**O que vigiar em campo:** se alguém pedir esclarecimento sobre "autônomos" (risco de leitura MEI /
+trabalhador autônomo), a substituta pronta é *"que rodam sem depender do dono"*. Troca de dez segundos.
 
 **Tese institucional (a melhor formulação da sessão, do próprio Vitor):**
 > **"Sua empresa não tem que adicionar IA. Tem que ser AI Native."**
@@ -477,6 +494,15 @@ pular a Etapa 3 (ir de serviço a equity sem ativo próprio é repetir a ARVEX).
 | 2026-09-09 | **Negócios AI Native** entra em uso, com a regra território-sim/oferta-não | decisão do Vitor + os 80% de rollback |
 | 2026-09-09 | AI Native vira descritor, não propriedade; a PI passa a ser o verbo FAZER | Higher Mind já planta o termo no BR |
 | 2026-09-10 | **v2 — consolidação.** Entram: fissura social, mecanismo observável como lacuna declarada, FDE, mapa com 5 grupos, arquitetura de marca vertical, 2 guarda-corpos novos, 6 critérios de falsificação | recuperação dos transcripts (dossiê §14) + mesa de 6 clones + pesquisa de mercado BR/EUA |
+| 2026-09-11 | **Categoria CONFIRMADA em Negócios AI Native, pela sétima e última deliberação.** Seis alternativas novas geradas e nenhuma superou a atual | o espaço de nomes está varrido: 6 nomes reprovados + 6 palavras descartadas com razão. **O diagnóstico: o que falta não é nome, é mecanismo** — "Volume Content" e "Live Semanal" não vencem pelo nome, vencem pela coisa visível colada neles |
+| 2026-09-11 | **Bio pessoal fechada** (§11), com a promessa aspiracional de volta | correção do Vitor: a bio precisa de promessa, como a da Tay. *Bio vende o céu, proposta vende a etapa* — eu havia colapsado as duas camadas |
+| 2026-09-11 | **A tese é ampla; a entrega é sequencial.** A camada de dado deixa de ser "peça 4" e passa a ser **a espinha** — é ela que faz as áreas conversarem | correção do Vitor: os documentos haviam estreitado tudo para comercial/WhatsApp. A diferença contra as plataformas não é *qual área* — é **arquitetura única × ferramentas isoladas por área** |
+| 2026-09-11 | **ICP corrigido:** "quem comprou IA e não implementou" é **subconjunto mais achável**, não o ICP | correção do Vitor. O ICP decidido segue sendo por situação. São **dois caminhos de entrada**: quem nunca tentou entra pela dor; quem já tentou entra pela redefinição |
+
+> **Regra de encerramento do nome, para não haver oitava rodada:** publicar **30 posts** com ele. Se
+> ninguém de fora devolver o termo — comentário, DM ou print —, aí se troca, **com dado e não com
+> sensação**. Plano B mencionado pelo Vitor: *"Negócios self-driving"* — ver o cemitério no §04 antes
+> de adotar: colisão de busca com carro autônomo, o mesmo defeito que derrubou "O Próximo Jogo".
 
 ---
 
