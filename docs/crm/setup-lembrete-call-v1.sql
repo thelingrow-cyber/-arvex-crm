@@ -109,7 +109,7 @@ comment on column lembretes_config.imagem_manha_url is
 --     antecedência; o tipo continua gravado como '1h' por compatibilidade.
 -- ─────────────────────────────────────────────────────────────────────────────
 update lembretes_config set
-  texto_manha = E'Bom dia, {nome}!\n\nPassando aqui para te lembrar da nossa reunião hoje às {hora}. Por aqui já estamos preparando tudo para o nosso bate-papo!\n\nNos vemos às {hora}!',
+  texto_manha = E'Bom dia, {nome}!\n\nPassando aqui para te lembrar da nossa reunião hoje às {hora}. Por aqui já estamos preparando tudo para o nosso bate-papo!\n\nEnquanto isso, olha esse resultado do nosso mentorado que aplicou toda a estrutura da nossa metodologia 👇\n\nNos vemos hoje às {hora}!',
   texto_1h    = E'Olá, {nome}!\n\nEm 30 min já envio o link da nossa reunião, ok?',
   antecedencia_min = 30,
   janela_min       = 5,    -- cron a cada 5 min: a mensagem cai entre 25 e 35 min antes
