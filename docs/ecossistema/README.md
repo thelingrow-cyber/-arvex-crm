@@ -25,7 +25,8 @@
 | [`../research/2026-09-09-implementacao-ia-br-eua.md`](../research/2026-09-09-implementacao-ia-br-eua.md) | **o mercado** — números BR × EUA, FDE, preços, o que está saturado |
 | [`../roundtables/2026-09-10-territorio-ai-native-ocupavel.md`](../roundtables/2026-09-10-territorio-ai-native-ocupavel.md) | **o julgamento** — 6 clones sobre se a posição é ocupável, com os dissensos preservados |
 | [`linha-editorial-e-calendario.md`](linha-editorial-e-calendario.md) | grade de conteúdo ⚠️ *volume desatualizado — foi escrita para 7/semana* |
-| [`sistema-de-roteiro.md`](sistema-de-roteiro.md) | ganchos, famílias de roteiro, a regra de tradução |
+| [`sistema-de-conteudo.md`](sistema-de-conteudo.md) | **a máquina** — rede de pesquisa, escala por fase, formatos por custo, operação da semana, o que automatizar |
+| [`sistema-de-roteiro.md`](sistema-de-roteiro.md) | **o motor** — 10 famílias de gancho, 7 esqueletos de formato, filtro antes de gravar |
 
 ---
 
