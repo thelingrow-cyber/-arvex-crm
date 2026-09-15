@@ -47,6 +47,15 @@ receber duas vezes seguidas.
 poder, dá pra remarcar?"), ninguém trata. Sem F2 resolvido, essa resposta fica parada até
 alguém abrir o CRM.
 
+**F6 — A escalada estava escrita, mas não existia.** `agente_sdr.escalar_ativo` já é
+`true` e `escalar_instrucoes` manda a Carol "parar de responder" e chamar um humano —
+só que ela nunca teve como fazer isso. Agora tem: ela termina a fala com o marcador
+`[ESCALAR]`, que é removido antes de chegar ao lead, pausa o agente e avisa o time.
+
+**F7 — Ninguém é avisado.** `notificar_ativo = true`, mas `notificar_contato` está
+**nulo**. Mesmo com a escalada funcionando, o aviso não tem para onde ir. Precisa do
+número do Gabriel (ou da Thalita) na config.
+
 ## 3. Desenho enxuto (o que estas iterações constroem)
 
 Um único ponto de entrada, quatro travas antes de qualquer mensagem sair:

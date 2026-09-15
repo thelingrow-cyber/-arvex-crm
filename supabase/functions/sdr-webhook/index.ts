@@ -238,10 +238,19 @@ Deno.serve(async (req) => {
         continue;
       }
 
+      // A escalada já estava escrita na config (`escalar_instrucoes`, com
+      // `escalar_ativo = true`), mas o prompt manda "pare de responder" sem dar
+      // à Carol nenhum jeito de fazer isso. O marcador abaixo é esse jeito: ela
+      // o escreve, a function o remove do texto e pausa o agente de verdade.
+      const escalarLigado = agente.escalar_ativo === true && !!agente.escalar_instrucoes;
       const system = [
         agente.instrucoes || "",
         agente.conhecimento ? "\n\n# CONHECIMENTO\n\n" + agente.conhecimento : "",
         agente.qualificacao ? "\n\n# QUALIFICAÇÃO\n\n" + agente.qualificacao : "",
+        escalarLigado ? "\n\n# QUANDO PASSAR PARA UM HUMANO\n\n" + agente.escalar_instrucoes : "",
+        escalarLigado
+          ? "\n\nAo escalar, escreva sua última fala normalmente e termine a mensagem com o marcador [ESCALAR] numa linha só dele. O marcador é interno: ele é removido antes de a mensagem chegar ao lead, avisa o time e faz você sair da conversa. Nunca use o marcador fora de uma escalada de verdade."
+          : "",
         lead?.nome ? `\n\n# ESTE LEAD\n\nNome no CRM: ${lead.nome}. Status atual: ${lead.status || "novo"}.` : ""
       ].join("");
 
@@ -274,6 +283,18 @@ Deno.serve(async (req) => {
       }
       if (!resposta) {
         resultado.push({ tel, status: "resposta_vazia" });
+        continue;
+      }
+
+      // Escalada: tira o marcador do texto que vai para o lead e guarda a
+      // decisão para depois do envio — a última fala dela sai normalmente, e só
+      // então o agente se retira.
+      const escalou = escalarLigado && /\[ESCALAR\]/i.test(resposta);
+      if (escalou) resposta = resposta.replace(/\[ESCALAR\]/gi, "").trim();
+      if (!resposta) {
+        resultado.push({ tel, status: "escalada_sem_texto" });
+        // Sem texto sobrando, ainda assim o humano precisa assumir.
+        await sb.from("leads").update({ agente_pausado: true }).eq("tel", tel).then(() => {}, () => {});
         continue;
       }
 
@@ -318,6 +339,32 @@ Deno.serve(async (req) => {
         p_tel: tel, p_nome: nome, p_texto: baloes.join("\n\n"),
         p_autor: "agente", p_por: agente.nome || "Carol"
       }).then(() => {}, () => {});
+
+      // ── 9) escalada: o agente sai e o time é avisado ────────────────────────
+      if (escalou) {
+        await sb.from("leads").update({ agente_pausado: true }).eq("tel", tel).then(() => {}, () => {});
+        const aviso = String(agente.notificar_contato || "").replace(/\D/g, "");
+        if (agente.notificar_ativo === true && aviso) {
+          const resumo = [
+            `🔔 ${agente.nome || "Carol"} passou um lead para vocês`,
+            `Lead: ${lead?.nome || nome} (${tel})`,
+            `Status no CRM: ${lead?.status || "sem status"}`,
+            `Última mensagem do lead: ${msgs[msgs.length - 1]?.content?.slice(0, 200) || ""}`
+          ].join("\n");
+          await fetch(`${EVO_URL}/message/sendText/${EVO_INST}`, {
+            method: "POST",
+            headers: { apikey: EVO_KEY, "Content-Type": "application/json" },
+            body: JSON.stringify({ number: aviso, text: resumo })
+          }).then(() => {}, () => {});
+        }
+        await sb.rpc("registrar_evento_lead", {
+          p_tel: tel, p_nome: nome,
+          p_texto: "Agente escalou para humano e saiu da conversa.",
+          p_autor: "sistema", p_por: agente.nome || "Carol"
+        }).then(() => {}, () => {});
+        resultado.push({ tel, status: "escalado_para_humano", baloes: enviados, avisado: !!aviso });
+        continue;
+      }
 
       resultado.push({ tel, status: "respondido", baloes: enviados });
     }
