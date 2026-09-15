@@ -102,9 +102,21 @@ documento.
 4. Apontar o webhook do Evolution para a nova function (precisa da API key do Evolution).
 5. Ligar cada coisa (`lembretes_config.ativo`, `agente_sdr.ativo`) depois de testar no próprio número.
 
-## 5. Pergunta aberta que a revisão não resolve sozinha
+## 5. A decisão que só o Vitor pode tomar: n8n ou CRM
 
-A arquitetura de julho (`AGENTE-SDR-PIPELINE-ARCHITECTURE.md`) coloca o cérebro da Carol em
-workflows n8n que **nunca foram publicados** (drafts). A decisão registrada depois foi trazer o
-SDR para dentro do CRM. Este plano segue o caminho do CRM (edge function), porque é o que já
-tem infraestrutura viva aqui — mas se a intenção ainda era n8n, o trabalho muda de lugar.
+Existem **duas implementações do mesmo cérebro**, e elas disputam a mesma tomada.
+
+- **No n8n** (`h8Ka2arQgTvl92oD`, julho): construída, testada com Claude de verdade — a Carol
+  chegou a gerar resposta boa e a qualificar sozinha — mas segue como **DRAFT, nunca publicada**.
+- **No CRM** (`supabase/functions/sdr-webhook`, esta revisão): construída agora, com handoff
+  pelo celular, escalada real e as quatro travas. Nunca deployada.
+
+**O conflito é físico, não filosófico:** a instância `arvex-agente-sdr` do Evolution tem **um**
+webhook de `MESSAGES_UPSERT`, hoje apontado para a ponte F1 no n8n
+(`back.viziom.io/webhook/agente-sdr-arvex-inbound-<sufixo secreto>`). Apontar para a edge
+function **desliga a ponte n8n** — não dá para as duas receberem a mesma mensagem.
+
+Os dois caminhos funcionam. O do CRM tem menos peças (sem VPS, sem publish de draft, sem duas
+instâncias de n8n para confundir) e é onde está a infraestrutura que você mantém. O do n8n já
+teve a conversa rodando ponta a ponta uma vez. **Escolher um e desligar o outro é o próximo
+passo — manter os dois meio construídos é o pior dos mundos.**
