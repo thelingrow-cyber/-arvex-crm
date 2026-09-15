@@ -103,6 +103,19 @@ comment on column lembretes_config.imagem_manha_url is
   'URL pública da imagem de prova enviada junto do lembrete da manhã (legenda = texto_manha). NULL/vazio = envio de texto puro.';
 
 -- ─────────────────────────────────────────────────────────────────────────────
+-- 2d. NÃO ATROPELAR O HUMANO (2026-09-15)
+--     A closer já manda esse aviso na mão. Se alguém do time falou com o lead
+--     nos últimos N minutos, o lembrete automático é pulado — senão o lead
+--     recebe duas mensagens quase iguais com minutos de diferença.
+--     0 desliga a checagem.
+-- ─────────────────────────────────────────────────────────────────────────────
+alter table lembretes_config
+  add column if not exists pular_se_humano_falou_min int not null default 90;
+
+comment on column lembretes_config.pular_se_humano_falou_min is
+  'Minutos de silêncio exigidos desde a última mensagem enviada pelo time àquele lead. Dentro da janela, o lembrete é pulado. 0 desliga.';
+
+-- ─────────────────────────────────────────────────────────────────────────────
 -- 2c. TEXTOS VIGENTES — aprovados pelo Vitor em 2026-09-11, substituem a
 --     proposta acima (o insert não sobrescreve linha existente, por isso o
 --     update explícito). O segundo disparo passou de 60 para 30 min de

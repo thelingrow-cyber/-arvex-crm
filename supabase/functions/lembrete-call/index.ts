@@ -212,6 +212,32 @@ Deno.serve(async (req) => {
         continue;
       }
 
+      // A closer já manda esse aviso na mão — o histórico tem ela escrevendo
+      // "Oi Lohany! Em 30 min já envio o link da nossa chamada". Se alguém do
+      // time falou com o lead agora há pouco, o lembrete automático vira a
+      // segunda mensagem igual em minutos. Silêncio é melhor que redundância.
+      const silencioMin = Number(cfg.pular_se_humano_falou_min ?? 0);
+      if (silencioMin > 0) {
+        const { data: ultimas } = await sb
+          .from("agente_sdr_historico")
+          .select("message")
+          .eq("session_id", tel)
+          .order("id", { ascending: false })
+          .limit(5);
+        const corte = agora.getTime() - silencioMin * 60000;
+        const humanoFalou = (ultimas || []).some((m: any) => {
+          const k = m?.message?.additional_kwargs || {};
+          // só conta fala NOSSA (type 'ai'), e não a do próprio lembrete
+          return m?.message?.type === "ai" &&
+            k.operator !== "lembrete-call" &&
+            Number(k.ts || 0) > corte;
+        });
+        if (humanoFalou) {
+          resultado.push({ lead: c.nome, tel, status: "pulado_humano_falou_agora" });
+          continue;
+        }
+      }
+
       if (dryRun) {
         resultado.push({ lead: c.nome, tel, status: "simulado", texto, imagem: imagemManha || null });
         continue;
