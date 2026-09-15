@@ -47,3 +47,6 @@ tmp-listas/
 
 .tmp-icp/
 .tmp-material/
+
+# skills de terceiros (restaurar com: npx skills experimental_install)
+.claude/skills/
