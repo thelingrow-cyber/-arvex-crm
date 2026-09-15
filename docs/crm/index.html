@@ -1216,7 +1216,10 @@
     <div id="view-coach" class="view">
       <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
         <div><h1>Reuniões</h1><p>Análise das suas reuniões</p></div>
-        <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn-cancel admin-only" onclick="openCerebro()" style="white-space:nowrap;display:none" title="O que o coach sabe antes de analisar uma call">Cérebro do coach</button>
+          <button class="btn-save" onclick="openNewMeeting()" style="white-space:nowrap">+ Nova reunião</button>
+        </div>
       </div>
       <div id="coach-demo-banner" class="coach-banner" style="display:none">Modo demonstração — dados fictícios</div>
       <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
@@ -1224,6 +1227,7 @@
         <select id="coach-filter-resultado" onchange="renderCoach()" style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer">
           <option value="">Todos os resultados</option><option value="ganhou">Ganhou</option><option value="perdeu">Perdeu</option><option value="aberto">Em aberto</option>
         </select>
+        <select id="coach-filter-closer" class="admin-only" onchange="renderCoachCards()" style="display:none;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;outline:none;cursor:pointer" title="Cada closer tem o próprio espaço; aqui você acompanha o time"></select>
       </div>
       <div class="coach-grid" id="coach-list"></div>
     </div>
@@ -1408,6 +1412,57 @@
       <div id="cm-error" style="display:none;color:var(--red);font-size:12px"></div>
     </div>
     <div class="modal-footer"><button class="btn-cancel" onclick="closeNewMeeting()">Cancelar</button><button class="btn-save" onclick="saveMeeting()">Analisar reunião</button></div>
+  </div>
+</div>
+
+<!-- MODAL CÉREBRO — o que o coach sabe antes de analisar (sales_knowledge) -->
+<div class="modal-overlay" id="modal-cerebro">
+  <div class="modal" style="max-width:720px">
+    <div class="modal-header">
+      <div class="modal-title">Cérebro do coach</div>
+      <button class="modal-close" onclick="fecharCerebro()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--muted);margin:0 0 14px">
+        Isto entra no prompt de toda análise: quem é o comprador, o que a casa vende, método e objeções.
+        Cole material bruto (trecho de livro, script de aula, SOP) e o sistema destila em critério aplicável a uma call.
+        <strong>Material cru nunca vai para o prompt</strong> — só o destilado.
+      </p>
+
+      <div class="form-group"><label>Material bruto</label>
+        <textarea id="kb-texto" placeholder="Cole aqui o trecho do livro, o script do vídeo, o SOP…" style="min-height:120px"></textarea></div>
+      <div class="form-row">
+        <div class="form-group"><label>Tipo</label>
+          <select id="kb-tipo">
+            <option value="metodo">Método / como conduzir</option>
+            <option value="icp">ICP / quem é o comprador</option>
+            <option value="oferta">Oferta / o que vendemos</option>
+            <option value="objecao">Objeções</option>
+            <option value="caso">Caso real</option>
+            <option value="produto">Produto</option>
+          </select></div>
+        <div class="form-group"><label>Fonte</label><input type="text" id="kb-fonte" placeholder="Ex: livro $100M Offers, aula 03 da Cindy" /></div>
+      </div>
+      <div id="kb-erro" style="display:none;color:var(--red);font-size:12px;margin-bottom:8px"></div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px">
+        <button class="btn-save" id="kb-btn-destilar" onclick="kbDestilar()">Destilar</button>
+        <span style="font-size:11px;color:var(--text-3)">a IA transforma em bloco operável antes de salvar</span>
+      </div>
+
+      <div id="kb-preview" style="display:none;margin:12px 0;padding:12px;background:var(--navy2);border:1px solid var(--border);border-radius:8px">
+        <div class="coach-meter-label" style="margin-bottom:6px">Destilado — revise antes de salvar</div>
+        <input type="text" id="kb-prev-titulo" style="margin-bottom:8px" />
+        <textarea id="kb-prev-conteudo" style="min-height:150px"></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+          <button class="btn-save" onclick="kbSalvar()">Salvar no cérebro</button>
+          <button class="btn-cancel" onclick="kbDescartar()">Descartar</button>
+          <span id="kb-prev-meta" style="font-size:11px;color:var(--text-3);margin-left:auto"></span>
+        </div>
+      </div>
+
+      <div class="coach-meter-label" style="margin:18px 0 8px">No cérebro agora <span id="kb-uso" style="color:var(--text-3);font-weight:400"></span></div>
+      <div id="kb-lista"></div>
+    </div>
   </div>
 </div>
 
@@ -2148,17 +2203,43 @@ function renderCoach() {
   if (COACH_DEMO && coachMeetings.length) { renderCoachCards() } else { loadCoach().then(renderCoachCards) }
   coachSubscribe()
 }
+// Cada closer tem o próprio espaço: o admin abre em "Minhas calls" e troca para
+// acompanhar o time. Sem isso, quem é admin via as calls de todo mundo misturadas
+// com as suas — e o próprio painel deixava de ser dele.
+function coachPopularClosers() {
+  const sel = document.getElementById('coach-filter-closer')
+  if (!sel || currentRole !== 'admin') return
+  const vistos = new Map()
+  coachMeetings.forEach(m => { if (m.closer_id && !vistos.has(m.closer_id)) vistos.set(m.closer_id, m.closer_nome || 'sem nome') })
+  const atual = sel.value || (currentUser ? currentUser.id : '')
+  const outros = [...vistos.entries()].filter(([id]) => !currentUser || id !== currentUser.id)
+  sel.innerHTML =
+    `<option value="${currentUser ? esc(currentUser.id) : ''}">Minhas calls</option>` +
+    outros.map(([id, nome]) => `<option value="${esc(id)}">${esc(nome)}</option>`).join('') +
+    `<option value="__todos">Time inteiro</option>`
+  sel.value = atual
+}
+
 function renderCoachCards() {
   const grid = document.getElementById('coach-list'); if (!grid) return
+  coachPopularClosers()
   const q  = (document.getElementById('coach-search')?.value || '').toLowerCase()
   const fr = document.getElementById('coach-filter-resultado')?.value || ''
-  const list = coachMeetings.filter(m => (!q || (m.cliente_nome||'').toLowerCase().includes(q)) && (!fr || m.resultado === fr))
-  if (!list.length) { grid.innerHTML = `<div class="coach-empty">${icon('grad',{size:32})}<h3>Nenhuma reunião ainda</h3><p>Suba a transcrição da sua primeira call e receba a análise.</p></div>`; return }
+  const fc = (currentRole === 'admin' && !COACH_DEMO) ? (document.getElementById('coach-filter-closer')?.value || '') : ''
+  const list = coachMeetings.filter(m =>
+    (!q || (m.cliente_nome||'').toLowerCase().includes(q)) &&
+    (!fr || m.resultado === fr) &&
+    (!fc || fc === '__todos' || m.closer_id === fc))
+  if (!list.length) {
+    const doTime = fc && fc !== '__todos' && currentUser && fc !== currentUser.id
+    grid.innerHTML = `<div class="coach-empty">${icon('grad',{size:32})}<h3>Nenhuma reunião ${doTime ? 'deste closer' : 'ainda'}</h3><p>${doTime ? 'Esse closer ainda não subiu nenhuma call.' : 'Suba a transcrição da sua primeira call e receba a análise.'}</p></div>`
+    return
+  }
   grid.innerHTML = list.map(m => `
     <div class="coach-card" ${m.status==='done'?`onclick="openMeeting('${m.id}')"`:''}>
       <div class="coach-card-top">
         <div class="coach-card-title">${esc(m.cliente_nome||'—')}${m.produto?` · ${esc(m.produto)}`:''}</div>
-        <div class="coach-result">${resultadoDot(m.resultado)}</div>
+        <div class="coach-result">${resultadoDot(m.resultado)}${(!m.resultado || m.resultado === 'aberto') && diasDesde(m.data_reuniao) >= DIAS_COBRANCA_DESFECHO ? ` <span class="at-badge pausado" title="Marque o desfecho: é o que faz o coach aprender com o resultado real">desfecho? ${diasDesde(m.data_reuniao)}d</span>` : ''}</div>
       </div>
       <div class="coach-card-meta">${esc(m.data_reuniao||'')} · Closer: ${esc(m.closer_nome||'—')}</div>
       <div class="coach-card-bottom">
@@ -2264,8 +2345,13 @@ function openMeeting(id) {
   const m = coachMeetings.find(x => x.id === id); if (!m) return
   document.getElementById('cd-title').textContent = m.cliente_nome || 'Reunião'
   const sc = m.scores || {}
-  const meters = COACH_DIMS.map(([k,label]) => { const v = sc[k]; const pct = v!=null?v*10:0; return `<div class="coach-meter"><span class="coach-meter-label">${label}</span><span class="coach-meter-bar"><span class="coach-meter-fill" style="width:${pct}%"></span></span><span class="coach-meter-val tnum">${v!=null?Number(v).toFixed(1):'—'}</span></div>` }).join('')
   const ins = m.insights || {}
+  // A pior dimensão é onde a call se perdeu — destacá-la evita que a média
+  // (que diluí o que decide a venda) vire o veredito.
+  const pior = ins.pior_dimensao || (Object.keys(sc).length
+    ? Object.keys(sc).reduce((a, b) => (sc[a] ?? 99) <= (sc[b] ?? 99) ? a : b) : null)
+  const meters = COACH_DIMS.map(([k,label]) => { const v = sc[k]; const pct = v!=null?v*10:0; const eh = k === pior
+    return `<div class="coach-meter"${eh?' style="background:rgba(239,68,68,.08);border-radius:6px;padding:2px 6px;margin:0 -6px"':''}><span class="coach-meter-label"${eh?' style="color:var(--red);font-weight:700"':''}>${label}${eh?' ·  onde se perdeu':''}</span><span class="coach-meter-bar"><span class="coach-meter-fill" style="width:${pct}%${eh?';background:var(--red)':''}"></span></span><span class="coach-meter-val tnum"${eh?' style="color:var(--red)"':''}>${v!=null?Number(v).toFixed(1):'—'}</span></div>` }).join('')
   const blocks = [['check','Acertos',ins.acertos],['x','Erros',ins.erros],['help','O que faltou',ins.faltou],['bulb','Sugestões',ins.sugestoes]].map(([ic,t,arr]) => `<div class="coach-insight"><h4>${icon(ic)} ${t}</h4><ul>${((arr||[]).map(x => `<li>• ${esc(x)}</li>`).join(''))||'<li style="color:var(--text-3)">—</li>'}</ul></div>`).join('')
   const isOwner = COACH_DEMO || (currentUser && m.closer_id === currentUser.id) || currentRole === 'admin'
   const editSel = isOwner ? `<select onchange="editResultado('${m.id}',this.value)" style="width:auto"><option value="ganhou"${m.resultado==='ganhou'?' selected':''}>Ganhou</option><option value="perdeu"${m.resultado==='perdeu'?' selected':''}>Perdeu</option><option value="aberto"${m.resultado==='aberto'?' selected':''}>Em aberto</option></select>` : ''
@@ -2274,8 +2360,20 @@ function openMeeting(id) {
   const extras = [['Dor dominante',ins.dor_dominante],['Erro estratégico',ins.erro_estrategico]].filter(x=>x[1]).map(x=>`<div class="coach-extra"><span class="coach-meter-label">${x[0]}</span><p>${esc(x[1])}</p></div>`).join('')
   const obj = (ins.objecao && ins.objecao.explicacao) ? `<div class="coach-extra"><span class="coach-meter-label">Objeção · ${esc(ins.objecao.tipo||'')}</span><p>${esc(ins.objecao.explicacao)}</p></div>` : ''
   const missao = ins.missao ? `<div class="coach-missao">${icon('target',{size:18})}<div><div class="coach-meter-label" style="margin-bottom:4px">Missão da próxima call</div>${esc(ins.missao)}</div></div>` : ''
+  // A análise olhava só para trás. Esta é a parte que vira ação HOJE: mensagem
+  // pronta para o lead desta call, com botão copiar.
+  const acaoLead = ins.proxima_acao_lead ? `
+    <div class="coach-diretor" style="border-color:var(--green);background:rgba(34,197,94,.06)">
+      ${icon('send',{size:18})}
+      <div style="flex:1">
+        <div class="coach-meter-label" style="margin-bottom:4px;color:var(--green)">Manda isso pra ${esc((m.cliente_nome||'o lead').split(' ')[0])} hoje</div>
+        <div id="cd-acao-txt" style="white-space:pre-wrap">${esc(ins.proxima_acao_lead)}</div>
+        <button class="btn-card-action" style="margin-top:8px" onclick="copiarAcaoLead(this)">Copiar mensagem</button>
+      </div>
+    </div>` : ''
   document.getElementById('cd-body').innerHTML = `
     ${diretor}
+    ${acaoLead}
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
       <div><div class="coach-card-meta" style="font-size:12px">${esc(m.produto||'')} · ${esc(m.data_reuniao||'')} · Closer: ${esc(m.closer_nome||'—')}</div>
         <div class="coach-result" style="margin-top:6px">${resultadoDot(m.resultado)}${m.ticket?` · R$ ${Number(m.ticket).toLocaleString('pt-BR')}`:''}</div></div>
@@ -2285,6 +2383,7 @@ function openMeeting(id) {
     ${extras}${obj}
     ${blocks}
     ${missao}
+    ${desfechoBloco(m)}
     <div style="display:flex;gap:10px;margin-top:14px;align-items:center">${editSel}<button class="btn-cancel" onclick="reanalisar('${m.id}')">Reanalisar</button>${isOwner ? `<button class="btn-cancel" style="color:var(--red);margin-left:auto" onclick="deleteMeetingConfirm('${m.id}')">${icon('trash',{size:13})} Excluir</button>` : ''}</div>
     <div class="coach-chat">
       <div class="coach-meter-label">Converse sobre esta call</div>
@@ -2296,6 +2395,136 @@ function openMeeting(id) {
   ccInit(m)
 }
 function closeMeeting() { document.getElementById('modal-coach-detail').classList.remove('open') }
+function copiarAcaoLead(btn) {
+  const el = document.getElementById('cd-acao-txt'); if (!el) return
+  const txt = el.innerText || el.textContent || ''
+  const ok = () => { const t = btn.textContent; btn.textContent = 'Copiado ✓'; setTimeout(() => btn.textContent = t, 1800) }
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(txt).then(ok).catch(() => {})
+  else { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok() } catch (_) {} ta.remove() }
+}
+
+// ── CÉREBRO DO COACH (sales_knowledge) ────────────────────────────────────
+// O que o coach sabe ANTES de olhar a call: comprador, oferta, método, objeções.
+// Entra no system prompt de analyze-meeting e coach-chat. Só admin gerencia (RLS).
+// KB_LIMITE espelha o corte da Edge Function: o que passar disso não é enviado.
+const KB_LIMITE = 28000
+const KB_TIPOS = { icp:'ICP', metodo:'Método', oferta:'Oferta', objecao:'Objeções', caso:'Caso', produto:'Produto' }
+let kbBlocos = []
+let kbPendente = null
+
+async function openCerebro() { abrirModal('modal-cerebro'); kbDescartar(); await loadCerebro() }
+function fecharCerebro() { document.getElementById('modal-cerebro').classList.remove('open') }
+
+async function loadCerebro() {
+  const el = document.getElementById('kb-lista')
+  if (el) el.innerHTML = '<div style="color:var(--text-3);font-size:12px">Carregando…</div>'
+  const { data, error } = await sb.from('sales_knowledge')
+    .select('id,tipo,titulo,conteudo,fonte,peso,ativo').order('peso', { ascending:false }).limit(200)
+  kbBlocos = error ? [] : (data || [])
+  if (error) { if (el) el.innerHTML = `<div style="color:var(--red);font-size:12px">${esc(error.message)}</div>`; return }
+  renderCerebro()
+}
+
+function renderCerebro() {
+  const usados = kbBlocos.filter(b => b.ativo).reduce((s, b) => s + (b.conteudo || '').length, 0)
+  const cor = usados > KB_LIMITE ? 'var(--red)' : usados > KB_LIMITE * 0.8 ? 'var(--orange)' : 'var(--text-3)'
+  const uso = document.getElementById('kb-uso')
+  if (uso) uso.innerHTML = `<span style="color:${cor}">· ${usados.toLocaleString('pt-BR')} de ${KB_LIMITE.toLocaleString('pt-BR')} caracteres em uso` +
+    `${usados > KB_LIMITE ? ' — o excedente NÃO é enviado; desative algum bloco' : ''}</span>`
+
+  const el = document.getElementById('kb-lista')
+  if (!el) return
+  if (!kbBlocos.length) { el.innerHTML = '<div style="color:var(--text-3);font-size:12px">Nenhum bloco ainda.</div>'; return }
+  el.innerHTML = kbBlocos.map(b => `
+    <div style="border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;background:var(--navy2);${b.ativo ? '' : 'opacity:.5'}">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <span class="at-badge">${esc(KB_TIPOS[b.tipo] || b.tipo)}</span>
+        <strong style="font-size:13px">${esc(b.titulo)}</strong>
+        <span style="font-size:11px;color:var(--text-3)">peso ${b.peso} · ${(b.conteudo || '').length} chars</span>
+        <label class="sw" style="margin-left:auto" title="${b.ativo ? 'Ativo no prompt' : 'Fora do prompt'}">
+          <input type="checkbox" ${b.ativo ? 'checked' : ''} onchange="kbToggle('${b.id}', this.checked)"><span></span></label>
+        <button class="btn-card-action btn-card-del" onclick="kbDelete('${b.id}')">Excluir</button>
+      </div>
+      ${b.fonte ? `<div style="font-size:11px;color:var(--text-3);margin-top:4px">fonte: ${esc(b.fonte)}</div>` : ''}
+      <details style="margin-top:6px"><summary style="cursor:pointer;font-size:11px;color:var(--muted)">ver conteúdo</summary>
+        <pre style="white-space:pre-wrap;font-family:Inter,sans-serif;font-size:12px;color:var(--muted);margin:8px 0 0">${esc(b.conteudo)}</pre></details>
+    </div>`).join('')
+}
+
+function kbErro(msg) {
+  const e = document.getElementById('kb-erro')
+  if (!e) return
+  e.textContent = msg || ''
+  e.style.display = msg ? '' : 'none'
+}
+
+async function kbDestilar() {
+  const texto = (document.getElementById('kb-texto').value || '').trim()
+  if (texto.length < 200) return kbErro('Cole pelo menos 200 caracteres de material.')
+  kbErro('')
+  const btn = document.getElementById('kb-btn-destilar')
+  btn.disabled = true; btn.textContent = 'Destilando…'
+  try {
+    const { data, error } = await sb.functions.invoke('distill-knowledge', {
+      body: {
+        texto,
+        tipo: document.getElementById('kb-tipo').value,
+        fonte: (document.getElementById('kb-fonte').value || '').trim(),
+      },
+    })
+    if (error || !data || data.error) throw new Error((data && data.error) || (error && error.message) || 'falha ao destilar')
+    kbPendente = data.bloco
+    document.getElementById('kb-prev-titulo').value = kbPendente.titulo || ''
+    document.getElementById('kb-prev-conteudo').value = kbPendente.conteudo || ''
+    document.getElementById('kb-prev-meta').textContent =
+      `${(kbPendente.conteudo || '').length} chars · tipo ${kbPendente.tipo} · peso ${kbPendente.peso}`
+    document.getElementById('kb-preview').style.display = ''
+  } catch (e) {
+    kbErro(String(e.message || e))
+  } finally {
+    btn.disabled = false; btn.textContent = 'Destilar'
+  }
+}
+
+async function kbSalvar() {
+  if (!kbPendente) return
+  const titulo = (document.getElementById('kb-prev-titulo').value || '').trim()
+  const conteudo = (document.getElementById('kb-prev-conteudo').value || '').trim()
+  if (!titulo || !conteudo) return kbErro('Título e conteúdo são obrigatórios.')
+  const { error } = await sb.from('sales_knowledge').insert({
+    tipo: kbPendente.tipo, titulo, conteudo,
+    fonte: kbPendente.fonte || (document.getElementById('kb-fonte').value || '').trim() || null,
+    tags: kbPendente.tags || [], peso: kbPendente.peso || 3, ativo: true,
+  })
+  if (error) return kbErro(error.message)
+  document.getElementById('kb-texto').value = ''
+  kbDescartar()
+  await loadCerebro()
+}
+
+function kbDescartar() {
+  kbPendente = null
+  const p = document.getElementById('kb-preview')
+  if (p) p.style.display = 'none'
+  kbErro('')
+}
+
+async function kbToggle(id, ativo) {
+  const { error } = await sb.from('sales_knowledge').update({ ativo, updated_at: new Date().toISOString() }).eq('id', id)
+  if (error) return kbErro(error.message)
+  const b = kbBlocos.find(x => x.id === id)
+  if (b) b.ativo = ativo
+  renderCerebro()
+}
+
+function kbDelete(id) {
+  const b = kbBlocos.find(x => x.id === id)
+  confirmarAcao(`Excluir o bloco "${b ? b.titulo : ''}" do cérebro?`, async () => {
+    const { error } = await sb.from('sales_knowledge').delete().eq('id', id)
+    if (error) return kbErro(error.message)
+    await loadCerebro()
+  })
+}
 
 // ── Chat da reunião (camada 4) ──
 let ccMeeting = null
@@ -2334,10 +2563,58 @@ async function ccSend(preset) {
   }
   ccRender()
 }
+// ── DESFECHO ───────────────────────────────────────────────────────────────
+// O coach analisa a call e nunca descobre se acertou. Marcar o desfecho (com
+// DATA e, na perda, o MOTIVO) é o que fecha esse loop: permite comparar a nota
+// dada com o que aconteceu de verdade e medir o ciclo de fechamento.
+// Motivos de perda da CALL. Conversa com MOTIVOS_PERDA do pipeline (linha ~3729), mas aqui
+// os motivos são os que apareceram nas calls reais analisadas — preço, decisor e timing.
+const MOTIVOS_PERDA_CALL = [['preco','Preço / não cabia'],['decisor','Decisor não comprou'],['timing','Momento errado'],['concorrente','Foi com concorrente'],['sumiu','Sumiu / não respondeu'],['outro','Outro']]
+const DIAS_COBRANCA_DESFECHO = 14
+
 function editResultado(id, val) {
   const m = coachMeetings.find(x => x.id === id); if (m) m.resultado = val
-  if (!COACH_DEMO) sb.from('meetings').update({ resultado: val }).eq('id', id)
+  const patch = { resultado: val }
+  if (val === 'aberto') { patch.desfecho_em = null; patch.motivo_perda = null; patch.desfecho_origem = null }
+  else {
+    patch.desfecho_em = (m && m.desfecho_em) || new Date().toISOString().slice(0, 10)
+    patch.desfecho_origem = 'manual'
+    if (val === 'ganhou') patch.motivo_perda = null
+    if (m) { m.desfecho_em = patch.desfecho_em; m.desfecho_origem = 'manual' }
+  }
+  if (!COACH_DEMO) sb.from('meetings').update(patch).eq('id', id)
+  openMeeting(id)   // redesenha o bloco de desfecho (mostra data / motivo)
   renderCoachCards()
+}
+function editDesfechoCampo(id, campo, val) {
+  const m = coachMeetings.find(x => x.id === id); if (m) m[campo] = val || null
+  if (!COACH_DEMO) sb.from('meetings').update({ [campo]: val || null }).eq('id', id)
+  renderCoachCards()
+}
+// Dias entre a reunião e hoje — usado para cobrar desfecho de call parada em aberto.
+function diasDesde(d) {
+  if (!d) return null
+  const t = new Date(d + 'T12:00:00').getTime()
+  return isNaN(t) ? null : Math.floor((Date.now() - t) / 86400000)
+}
+function desfechoBloco(m) {
+  const em = (m.desfecho_em || '').slice(0, 10)
+  const dias = diasDesde(m.data_reuniao)
+  if (m.resultado === 'aberto' || !m.resultado) {
+    return dias != null && dias >= DIAS_COBRANCA_DESFECHO
+      ? `<div class="coach-extra" style="border-color:var(--orange)"><span class="coach-meter-label" style="color:var(--orange)">Desfecho pendente</span><p>Essa call foi há ${dias} dias e continua "em aberto". O que aconteceu? Marcar o desfecho é o que permite o coach aprender com o resultado real.</p></div>`
+      : ''
+  }
+  const ciclo = (em && m.data_reuniao) ? diasDesde(m.data_reuniao) - diasDesde(em) : null
+  const motivo = m.resultado === 'perdeu'
+    ? `<select onchange="editDesfechoCampo('${m.id}','motivo_perda',this.value)" style="width:auto"><option value="">Por quê?</option>${MOTIVOS_PERDA_CALL.map(([v,l]) => `<option value="${v}"${m.motivo_perda===v?' selected':''}>${l}</option>`).join('')}</select>` : ''
+  return `<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px">
+      <span class="coach-meter-label">Desfecho em</span>
+      <input type="date" value="${esc(em)}" onchange="editDesfechoCampo('${m.id}','desfecho_em',this.value)" style="width:auto" />
+      ${motivo}
+      ${ciclo != null && ciclo >= 0 ? `<span style="font-size:11px;color:var(--text-3)">${ciclo === 0 ? 'fechou no mesmo dia' : ciclo + ' dia(s) até decidir'}</span>` : ''}
+      ${m.desfecho_origem === 'auto' ? '<span class="at-badge ativo">registrado pela venda</span>' : ''}
+    </div>`
 }
 function reanalisar(id) {
   if (COACH_DEMO) { closeMeeting(); return }
@@ -5951,6 +6228,7 @@ const MODAL_CLOSERS = {
   'modal-detail':        closeDetail,
   'modal-coach-new':     closeNewMeeting,
   'modal-coach-detail':  closeMeeting,
+  'modal-cerebro':       fecharCerebro,
   'modal-negociacao':    fecharModalNegociacao,
   'modal-transition':    cancelTransition,   // cancelar = card volta pra coluna de origem
   'modal-confirm':       fecharConfirm,
