@@ -11,3 +11,10 @@ roteiro reescrito com a tese "imposto da descoberta". Edição só com ffmpeg, r
   iPhone Duo: captura do evento da Apple de 09/09/2026 via Yahoo Finance (uso editorial).
 - **Fato do card:** Bloomberg, 22/04/2019 — "Samsung Delays Launch of Galaxy Fold After Screen Failures".
 - **Trilha:** `fallen-asper-565.mp3` (Mixkit) a 0,30, ducking suave (ratio 3) — mais audível que no Garfield v1.
+
+## v2 (16/09) — após feedback
+- **Fotos cheias, sem fundo branco:** cards 840×560 em (120,70), imagem em *cover* (preenche o card). Trocadas:
+  iPod → `Used-iPod-Classic_47211_(7002031577).jpg` (CC BY 2.0);
+  iPhone 2007 → `Apple_iPhone_2G_8GB_(11).jpg` (CC BY-SA 3.0); Apple Watch → `Tech-Savvy_Apple_Watch_(Unsplash).jpg` (CC0).
+- **Removido** o card "IMPOSTO DA DESCOBERTA".
+- **Trilha** baixada de 0,30 para 0,16.
