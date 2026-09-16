@@ -59,6 +59,9 @@ banco-roteiros/
 | **Aforismo** | frase que vive sozinha e circula — testar guardar para o último segundo | ref-elias-dragon-ball-dopamina |
 | **Citação + caso-ponte** | frase de autoridade só vira convicção quando um caso conhecido a prova | ref-bitterbuilds-garfield-jornal |
 | **Frase-espelho** | o fecho reescreve a abertura como conclusão — ciclo fechado | ref-bitterbuilds-garfield-jornal |
+| **Notícia como cabide** | o fato do dia "prova" a tese de sempre, na mesma frase | ref-mila-iphone-status |
+| **"Não compram X, compram Y"** | reframe do que está sendo comprado de verdade | ref-mila-iphone-status |
+| **CTA para o acervo** | manda assistir mais vídeos, não pede venda nem DM | ref-mila-iphone-status |
 | **Evidência antes do rótulo** | a prova aparece antes de ser nomeada | vs-2026-09-14-meio-que-funciona |
 | **Confissão do narrador** | "e eu continuo usando" — o narrador ao lado, não acima | vs-2026-09-14-meio-que-funciona |
 | **Expectativa quebrada** | usa o formato da trend e o vira contra ela | vs-2026-09-14-tutorial-que-quebra |
@@ -87,4 +90,5 @@ banco-roteiros/
 | [vs-2026-09-14-dor-lead-espera](proprios/vs-2026-09-14-dor-lead-espera.md) | próprio | Intervalo | G8 | roteiro — sem métrica |
 | vs-2026-09-16-reel-DdVPMZnIQRT | próprio | ? | ? | ⬜ falta transcrição + números |
 | [ref-bitterbuilds-garfield-jornal](referencias/ref-bitterbuilds-garfield-jornal.md) | referência 🇺🇸 | molde d'**A FRASE** | citação | dissecada · traduzida |
+| [ref-mila-iphone-status](referencias/ref-mila-iphone-status.md) | referência 🇺🇸 | molde do **Jornal** | G2 + notícia | dissecada · ⚠️ lição dos comentários |
 | [ref-elias-dragon-ball-dopamina](referencias/ref-elias-dragon-ball-dopamina.md) | referência | — | G2 · contraste geracional | dissecada · ⚠️ colisão de frase |
