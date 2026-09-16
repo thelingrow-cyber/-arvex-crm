@@ -81,10 +81,24 @@ o rosto nunca sai.
 4. **A voz da autoridade é a da própria autoridade** — ele não repete a citação, deixa o clipe falar
 
 ⚠️ **O nome do empreendedor não aparece no vídeo** — nem na legenda, nem no card.
-**Hipótese (não confirmada):** o comentário de @anuroop_kumar no post (38 curtidas) diz que é
-**Mark Pincus, fundador da Zynga** (FarmVille, Words with Friends), e liga a frase à estratégia dele de
-distribuir jogos dentro do Facebook. Duas buscas na web não acharam a entrevista original. Não usar o
-nome em público até achar a fonte.
+✅ **Fonte confirmada: Mark Pincus, fundador da Zynga, no Lenny's Podcast** (publicado 14/06/2026 —
+uma semana antes do post do bitterbuilds). Pista veio do comentário de @anuroop_kumar; confirmada pela
+legenda do episódio: https://youtu.be/7eh9C3TUotc **aos 51:25**.
+
+**O contexto real da frase** (legenda do episódio, 50:53–51:37):
+> *"I believe this could be and should be a mass market activity. I believe adults want to give
+> themselves permission to play, but I got to make it so accessible, so cheap in terms of what it asks
+> for them. Free. […] Three clicks and you're in. […] You're going to trip over it. It's a breadcrumb
+> somewhere. You're not going to — like I say, we don't go to the comic book store, but if the comics
+> were in the newspaper, we'd read them. So I believed there was a latent demand. And in fact, today,
+> gaming is a $280 billion industry."*
+
+**Leitura:** o Pincus fala de **demanda latente e atrito** — o jogo tem que estar no caminho de quem
+nunca iria procurá-lo (FarmVille dentro do Facebook). **O Garfield é invenção do bitterbuilds**, não do
+Pincus. Para o seu roteiro isso é ainda melhor: *"ninguém vai procurar, mas tropeça se estiver no
+caminho"* é exatamente o lead que chega sozinho e precisa ser atendido na hora.
+
+**Crédito correto em legenda:** *Mark Pincus, fundador da Zynga — Lenny's Podcast, jun/2026*.
 
 **Clipe recortado:** `Downloads/garfield-citacao-clipe-recortado.mp4` — 3,5s, 864×540, com áudio.
 Vem com a legenda em inglês **queimada na imagem** e resolução baixa (ampliado 2× de um card de ~430px).
