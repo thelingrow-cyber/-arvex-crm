@@ -62,6 +62,10 @@ banco-roteiros/
 | **Notícia como cabide** | o fato do dia "prova" a tese de sempre, na mesma frase | ref-mila-iphone-status |
 | **"Não compram X, compram Y"** | reframe do que está sendo comprado de verdade | ref-mila-iphone-status |
 | **CTA para o acervo** | manda assistir mais vídeos, não pede venda nem DM | ref-mila-iphone-status |
+| **Texto-título fixo ≠ gancho falado** | frase escrita fica o vídeo inteiro; a fala abre com outro gancho — dois ganchos em paralelo | ref-luana-custo-de-reversao · ref-luana-oportunidade-obrigacao |
+| **Conteúdo de marcar alguém** | o vídeo fala de uma pessoa que o espectador conhece → compartilhamento | ref-luana-oportunidade-obrigacao |
+| **Par de palavras opostas** | o conceito cabe em duas palavras (oportunidade × obrigação) e fecha o vídeo | ref-luana-oportunidade-obrigacao |
+| **Ferramenta nomeada + passo a passo** | nome memorável + aplicação de caneta e papel → salvamento | ref-luana-custo-de-reversao |
 | **Evidência antes do rótulo** | a prova aparece antes de ser nomeada | vs-2026-09-14-meio-que-funciona |
 | **Confissão do narrador** | "e eu continuo usando" — o narrador ao lado, não acima | vs-2026-09-14-meio-que-funciona |
 | **Expectativa quebrada** | usa o formato da trend e o vira contra ela | vs-2026-09-14-tutorial-que-quebra |
@@ -81,6 +85,8 @@ banco-roteiros/
 | [ref-luana-informante-influenciador](referencias/ref-luana-informante-influenciador.md) | referência | regra do Jornal | G2 | dissecada |
 | [ref-luana-desdobrar](referencias/ref-luana-desdobrar.md) | referência | regra do Método | G2 | dissecada |
 | [ref-luana-seu-obvio](referencias/ref-luana-seu-obvio.md) | referência | encaixa na big idea | G2 | dissecada · padrão da autora |
+| [ref-luana-custo-de-reversao](referencias/ref-luana-custo-de-reversao.md) | referência · 24,2k ❤ · 500 ↗ | molde do **Método** | padrão dos ricos | dissecada |
+| [ref-luana-oportunidade-obrigacao](referencias/ref-luana-oportunidade-obrigacao.md) | referência · 33k ❤ · 1.885 ↗ | molde de **compartilhamento** | G8 | dissecada |
 | [vs-2026-09-14-meio-que-funciona](proprios/vs-2026-09-14-meio-que-funciona.md) | próprio | Intervalo · *Meio que funciona* | demonstração | roteiro — sem métrica |
 | [vs-2026-09-14-tutorial-que-quebra](proprios/vs-2026-09-14-tutorial-que-quebra.md) | próprio | Intervalo | expectativa quebrada | roteiro — sem métrica |
 | [vs-2026-09-14-fissura-noticia](proprios/vs-2026-09-14-fissura-noticia.md) | próprio | Jornal | G7 + G9 | roteiro — sem métrica |
