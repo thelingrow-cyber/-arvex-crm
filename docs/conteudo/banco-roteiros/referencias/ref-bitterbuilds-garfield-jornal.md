@@ -98,6 +98,9 @@ nunca iria procurá-lo (FarmVille dentro do Facebook). **O Garfield é invençã
 Pincus. Para o seu roteiro isso é ainda melhor: *"ninguém vai procurar, mas tropeça se estiver no
 caminho"* é exatamente o lead que chega sozinho e precisa ser atendido na hora.
 
+**Trecho limpo para a inserção 1** (do episódio original, 51:25,0–51:29,5, 1280×720, sem legenda queimada):
+`Downloads/pincus-citacao-com-audio.mp4` e `Downloads/pincus-citacao-sem-audio.mp4` — 4,46s, só a frase.
+
 **Crédito correto em legenda:** *Mark Pincus, fundador da Zynga — Lenny's Podcast, jun/2026*.
 
 **Clipe recortado:** `Downloads/garfield-citacao-clipe-recortado.mp4` — 3,5s, 864×540, com áudio.
