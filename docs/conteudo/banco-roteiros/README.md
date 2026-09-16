@@ -57,6 +57,8 @@ banco-roteiros/
 | **Memória pessoal com detalhe** | lugar e hora específicos tornam a lembrança crível | ref-elias-dragon-ball-dopamina |
 | **Escalada de urgência** | cada degrau (20 anos → 5 anos → pais) aumenta a gravidade | ref-elias-dragon-ball-dopamina |
 | **Aforismo** | frase que vive sozinha e circula — testar guardar para o último segundo | ref-elias-dragon-ball-dopamina |
+| **Citação + caso-ponte** | frase de autoridade só vira convicção quando um caso conhecido a prova | ref-bitterbuilds-garfield-jornal |
+| **Frase-espelho** | o fecho reescreve a abertura como conclusão — ciclo fechado | ref-bitterbuilds-garfield-jornal |
 | **Evidência antes do rótulo** | a prova aparece antes de ser nomeada | vs-2026-09-14-meio-que-funciona |
 | **Confissão do narrador** | "e eu continuo usando" — o narrador ao lado, não acima | vs-2026-09-14-meio-que-funciona |
 | **Expectativa quebrada** | usa o formato da trend e o vira contra ela | vs-2026-09-14-tutorial-que-quebra |
@@ -84,4 +86,5 @@ banco-roteiros/
 | [vs-2026-09-14-obra-sales-coach](proprios/vs-2026-09-14-obra-sales-coach.md) | próprio | Documentário | G4 | roteiro — sem métrica |
 | [vs-2026-09-14-dor-lead-espera](proprios/vs-2026-09-14-dor-lead-espera.md) | próprio | Intervalo | G8 | roteiro — sem métrica |
 | vs-2026-09-16-reel-DdVPMZnIQRT | próprio | ? | ? | ⬜ falta transcrição + números |
+| [ref-bitterbuilds-garfield-jornal](referencias/ref-bitterbuilds-garfield-jornal.md) | referência 🇺🇸 | molde d'**A FRASE** | citação | dissecada · traduzida |
 | [ref-elias-dragon-ball-dopamina](referencias/ref-elias-dragon-ball-dopamina.md) | referência | — | G2 · contraste geracional | dissecada · ⚠️ colisão de frase |
