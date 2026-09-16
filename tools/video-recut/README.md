@@ -28,6 +28,20 @@ copy tools\video-recut\videos\_modelo\build.cjs tools\video-recut\videos\2026-10
 
 Para achar o `-Inicio`/`-Fim` (tirar take errado): rode o prep sem eles, leia a transcrição e rode de novo com o corte.
 
+## Vários takes + áudio separado (montagem, sem `prep.ps1`)
+
+Quando o áudio é uma narração à parte e os takes são B-roll (ex.: `videos/2026-09-boas-vindas/`):
+
+1. **Áudio:** cortar repetições com `atrim`+`concat` (crossfade de 0,2 s), `loudnorm=I=-16`.
+   Trilha grátis gerada aqui: 4 acordes de `sine` (2 sines por nota, desafinadas ~0,35 Hz), `volume=0.14`,
+   `acrossfade` entre acordes, `lowpass=2600`+`aecho`, loop com `-stream_loop`. Mixar com **ducking**:
+   `sidechaincompress=threshold=0.04:ratio=6:attack=15:release=420` (voz na chain) + `alimiter`.
+2. **Transcrever o áudio já editado** (Groq, igual ao prep) → `agrupar.cjs` → `legenda.json`.
+3. **Takes:** `ffmpeg -ss X -i take.MOV -t D -an -vf "fps=30,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,<cor>"`
+   com GOP 30, um arquivo por corte; depois `-f concat` + `-map 1:a` do áudio final → `public/input-video.mp4`.
+   ⚠️ A lista do concat precisa ser **UTF-8 sem BOM** (`[IO.File]::WriteAllText`) — `Out-File -Encoding ascii` quebra caminho com acento.
+4. Seguir daí igual: `build.cjs` → `render.ps1`.
+
 ## Peças disponíveis (`lib.cjs`)
 
 | Função | O que faz |
@@ -39,6 +53,8 @@ Para achar o `-Inicio`/`-Fim` (tirar take errado): rode o prep sem eles, leia a 
 | `insertCirculo({start, end, kicker, blocos, rodape, selo, faceX, faceY})` | Tela navy, pessoa num círculo com anel dourado, blocos virando em 3D (datas/números curtos) |
 | `insertCrescimento({start, end, kicker, selo, seloAt})` | Gráfico de barras douradas + linha desenhada + selo com brilho |
 | `legenda(groups)` | Legenda Inter 900 com contorno, palavra falada em dourado com "pulo" |
+| `legendaDinamica(groups, {destaques})` | Cada palavra entra quando é falada; 4 entradas alternadas (pop / giro 3D / deslize / impacto), linha inclinada, palavras de `destaques` maiores com brilho e sublinhado dourado |
+| `flash(times)` | Flash curto de luz no corte (impacto sem SFX) |
 
 Estilo em `estilo.css` (sistema visual Cindy: Inter 900, navy `#14172E`, dourado `#C9963F/#DDB870`, CTA `#25D366`).
 Para outro cliente/marca: trocar as cores em `:root` e nos gradientes.

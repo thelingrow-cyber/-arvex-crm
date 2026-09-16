@@ -181,6 +181,69 @@ function criar({ dur, fps = 30 }) {
     });
   }
 
+  // ── Legenda dinâmica: cada palavra entra no tempo falado, com variação de entrada por grupo ──
+  // groups = [[["palavra", início], ...], ...] · destaques = palavras que ganham dourado fixo + sublinhado
+  function legendaDinamica(groups, { destaques = [] } = {}) {
+    const norm = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9-]/g, "").toUpperCase();
+    const chave = new Set(destaques.map(norm));
+    // 4 entradas diferentes, alternadas por grupo — cada palavra aparece quando é falada
+    const entradas = [
+      { de: "{ scale: 0.45, opacity: 0, y: 30 }", para: "{ scale: 1, opacity: 1, y: 0, duration: 0.3, ease: 'back.out(3.2)' }" },
+      { de: "{ opacity: 0, y: 64, rotationX: -80, transformPerspective: 800 }", para: "{ opacity: 1, y: 0, rotationX: 0, duration: 0.34, ease: 'expo.out' }" },
+      { de: "{ opacity: 0, x: -52, skewX: 16 }", para: "{ opacity: 1, x: 0, skewX: 0, duration: 0.3, ease: 'power3.out' }" },
+      { de: "{ scale: 1.75, opacity: 0 }", para: "{ scale: 1, opacity: 1, duration: 0.26, ease: 'power3.out' }" },
+    ];
+    groups.forEach((g, gi) => {
+      const start = Math.max(0, g[0][1] - 0.18);
+      const nextStart = gi + 1 < groups.length ? groups[gi + 1][0][1] - 0.18 : DUR;
+      const lastWord = g[g.length - 1][1];
+      let end = Math.min(nextStart, Math.max(lastWord + 0.85, start + 0.7));
+      if (gi === groups.length - 1) end = DUR;
+      const id = `cap-${String(gi).padStart(2, "0")}`;
+      const e = entradas[gi % entradas.length];
+      const tilt = gi % 3 === 1 ? -1.4 : gi % 3 === 2 ? 1.4 : 0;
+      layers += `    <div class="cap clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="3"><div class="cap-line" id="${id}-line">${g
+        .map((w, wi) => {
+          const key = chave.has(norm(w[0]));
+          return `<span class="w${key ? " key" : ""}" id="${id}-w${wi}">${w[0]}${key ? `<i class="ul" id="${id}-u${wi}"></i>` : ""}</span>`;
+        })
+        .join(" ")}</div></div>\n`;
+      add(`// ${id}`);
+      add(`tl.set('#${id}-line', { rotation: ${tilt} }, ${q(start)});`);
+      hide(`#${id} .w`, "{ opacity: 0 }", start);
+      hide(`#${id} .ul`, "{ scaleX: 0 }", start);
+      g.forEach((w, wi) => {
+        const t = w[1];
+        const off = wi + 1 < g.length ? g[wi + 1][1] : end;
+        const key = chave.has(norm(w[0]));
+        add(`tl.fromTo('#${id}-w${wi}', ${e.de}, { ...${e.para}, immediateRender: false }, ${q(t)});`);
+        if (key) {
+          // palavra-chave: pulo maior, tremida curta e sublinhado dourado que desenha
+          add(`tl.fromTo('#${id}-w${wi}', { scale: 1.34 }, { scale: 1, duration: 0.42, ease: 'elastic.out(1, 0.55)', immediateRender: false }, ${q(t + 0.02)});`);
+          add(`tl.fromTo('#${id}-w${wi}', { rotation: -3.5 }, { rotation: 0, duration: 0.34, ease: 'power2.out', immediateRender: false }, ${q(t + 0.02)});`);
+          add(`tl.fromTo('#${id}-u${wi}', { scaleX: 0 }, { scaleX: 1, duration: 0.34, ease: 'expo.out', immediateRender: false }, ${q(t + 0.1)});`);
+        } else {
+          // palavra comum: fica dourada enquanto é falada e volta ao branco
+          add(`tl.set('#${id}-w${wi}', { color: '#F1D594' }, ${q(t)});`);
+          add(`tl.fromTo('#${id}-w${wi}', { scale: 1.16 }, { scale: 1, duration: 0.26, ease: 'power2.out', immediateRender: false }, ${q(t)});`);
+          add(`tl.set('#${id}-w${wi}', { color: '#FFFFFF' }, ${q(off)});`);
+        }
+      });
+      if (gi < groups.length - 1) {
+        add(`tl.to('#${id}-line', { opacity: 0, y: -22, scale: 0.94, duration: 0.16, ease: 'power2.in' }, ${q(end - 0.16)});`);
+      }
+    });
+  }
+
+  // ── Flash curto no corte (impacto sem SFX) ──
+  function flash(times, { cor = "rgba(255,243,209,0.5)", dur = 0.22 } = {}) {
+    times.forEach((t, i) => {
+      const id = `fl-${i}`;
+      layers += `    <div class="flash clip" id="${id}" data-start="${q(Math.max(0, t - 0.06))}" data-duration="${q(dur + 0.12)}" data-track-index="6" style="background:${cor}"></div>\n`;
+      add(`tl.fromTo('#${id}', { opacity: 0.85 }, { opacity: 0, duration: ${dur}, ease: 'power2.out', immediateRender: false }, ${q(t)});`);
+    });
+  }
+
   function salvar(outFile) {
     const css = fs.readFileSync(path.join(__dirname, "estilo.css"), "utf8");
     const html = `<!doctype html>
@@ -216,7 +279,7 @@ ${js}
     console.log("composição gerada:", outFile);
   }
 
-  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, legenda, salvar };
+  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, legenda, legendaDinamica, flash, salvar };
 }
 
 module.exports = { criar };

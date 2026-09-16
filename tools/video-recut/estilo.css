@@ -74,3 +74,9 @@
   .cap-line { text-align: center; font-weight: 900; font-size: 68px; line-height: 1.1; letter-spacing: -1px; word-spacing: 8px; text-transform: uppercase; color: #FFFFFF;
     -webkit-text-stroke: 10px #0A0A0F; paint-order: stroke fill; text-shadow: 0 6px 18px rgba(0, 0, 0, 0.55); }
   .cap-line .w { display: inline-block; margin: 0 0.07em; color: #FFFFFF; }
+  /* legenda dinâmica: palavra-chave em dourado, maior, com sublinhado que desenha */
+  .cap-line .w.key { position: relative; color: #F1D594; font-size: 1.14em;
+    text-shadow: 0 0 26px rgba(241,213,148,0.55), 0 6px 18px rgba(0,0,0,0.6); }
+  .cap-line .w.key .ul { position: absolute; left: 0; right: 0; bottom: -0.12em; height: 9px; border-radius: 6px;
+    background: linear-gradient(90deg, #C9963F, #F1D594); transform-origin: left center; -webkit-text-stroke: 0; }
+  .flash { position: absolute; inset: 0; z-index: 11; pointer-events: none; mix-blend-mode: screen; }
