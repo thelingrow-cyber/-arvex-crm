@@ -59,6 +59,30 @@ arquivo: Downloads/bitterbuilds-DZ3BNS9Jd6q.mp4
 | 00:24–00:31 | **Tese** | estar onde a atenção mora + marca para alavancar | a regra, dita inteira |
 | 00:31–00:37 | **Frase-espelho** | ninguém vai à loja / ninguém pula o que está na mão | fecha repetindo a abertura com outra forma |
 
+## Decupagem visual
+*Medida quadro a quadro (2 fps + luminância a cada 0,1s). 720×1280, 30fps.*
+
+![As duas inserções: clipe da autoridade (3,5s e 5,3s) e caneca + camiseta (17,5s)](assets/bitterbuilds-garfield-insercoes.jpg)
+
+**Base o vídeo inteiro:** selfie na mão, ambiente doméstico claro, camiseta preta lisa, gesticulação
+constante, **microfone de lapela com espuma na mão** (aparece como objeto de cena). Legenda branca,
+bold, 1-2 linhas, **no meio da tela, sobre o peito** — nunca no rodapé. **Sem B-roll em tela cheia:**
+o rosto nunca sai.
+
+| Tempo | Inserção | Posição | O que mostra | Sincronia |
+|---|---|---|---|---|
+| **2,4 – 5,9s** | 🎬 **clipe do empreendedor** (picture-in-picture) | card retangular ~45% da largura, terço inferior, sobre o peito | o próprio empreendedor falando a frase: homem grisalho, camiseta preta, quadro branco atrás | **a citação é dita por ele no clipe** — a boca dele se mexe e a do bitterbuilds fica fechada em 5,3s. Legenda da frase **sobre o card** |
+| **16,9 – 18,5s** | 🖼️ **2 fotos de produto** lado a lado | mesma zona, sobre o peito | caneca do Garfield *"I hate Mondays"* + camiseta do Garfield | entra exatamente em *"selling t-shirts and mugs"*, sai em *"Gen Z entrepreneurs"* |
+
+**Regra das inserções dele:**
+1. **Só duas**, e cada uma prova **uma afirmação**: quem disse · de onde veio o dinheiro
+2. **Duração = a frase que ela prova** (3,5s e 1,6s) — nem um segundo a mais
+3. **Card pequeno, rosto sempre visível** — a inserção é evidência, não troca de cena
+4. **A voz da autoridade é a da própria autoridade** — ele não repete a citação, deixa o clipe falar
+
+⚠️ **O nome do empreendedor não aparece no vídeo** — nem na legenda, nem no card. Não identificado
+aqui. Descobrir a fonte antes de reutilizar o clipe.
+
 ## Mecânicas
 1. **Citação de autoridade** — é **exatamente o formato A FRASE** que você propôs (frase de livro/pessoa + sua leitura). Prova em 37s que funciona
 2. **Autoridade sem nome** — "um empreendedor lendário". Dá o peso sem permitir checagem. ⚠️ ver abaixo
@@ -89,18 +113,36 @@ arquivo: Downloads/bitterbuilds-DZ3BNS9Jd6q.mp4
 **O ângulo que é seu:** ele diz *esteja onde a atenção mora*. Você completa com a parte que ninguém
 diz: **a atenção chega — e morre na porta**.
 
-```
-[0s]   "O cartunista do Garfield disse uma vez que deu a tirinha de graça pros jornais
-        e ganhou dinheiro com caneca."   ← ⚠️ só com fonte verificada; senão use a frase sem autor
-[5s]   "Todo empreendedor entendeu a primeira metade: aparecer onde as pessoas estão."
-[10s]  "Hoje sua empresa está no Instagram, no Google, no anúncio. O Garfield está no jornal."
-[18s]  "Só que ninguém lembra da segunda metade: a caneca tem que estar na prateleira
-        quando o cara chega na loja."
-[24s]  "Lead que chama no WhatsApp às 22h e recebe resposta às 10h da manhã
-        é o cara que leu a tirinha e encontrou a loja fechada."
-[31s]  "Aparecer no jornal todo mundo já aprendeu. O dinheiro está em ter a loja aberta
-        quando ele chega."
-```
+### Roteiro com as inserções — mesma gramática visual da referência
+
+*Base igual à dele: selfie, fundo claro, camiseta lisa escura, legenda branca bold sobre o peito,
+rosto sempre visível. Duas inserções como ele + uma terceira que é a sua prova.*
+
+| Tempo | Fala | Inserção | Posição e duração |
+|---|---|---|---|
+| 0 – 2s | *"Alguns dias atrás eu ouvi uma frase que mudou como eu vejo empresa."* | — | — |
+| **2 – 6s** | *[a frase na voz de quem disse]* | 🎬 **INSERÇÃO 1 · clipe da autoridade** falando a frase, com legenda em PT **sobre o card** | PiP, terço inferior, ~45% da largura · **só enquanto a frase dura** |
+| 6 – 10s | *"Ele estava falando de quadrinho. O Garfield saía de graça em todo jornal."* | — | — |
+| **10 – 12s** | *"E o dinheiro veio da caneca e da camiseta."* | 🖼️ **INSERÇÃO 2 · caneca + camiseta do Garfield** lado a lado | mesma zona · **entra na palavra "caneca", sai no fim da frase** (~1,6s) |
+| 12 – 17s | *"Todo empreendedor aprendeu essa metade: aparecer onde as pessoas estão. Instagram, Google, anúncio."* | — | — |
+| 17 – 21s | *"Só que ninguém fala da outra metade: a loja tem que estar aberta quando o cara chega."* | — | — |
+| **21 – 26s** | *"O lead chama no WhatsApp às 22h. Recebe resposta às 10h da manhã."* | 📱 **INSERÇÃO 3 · print real de WhatsApp** com o horário da mensagem e o da resposta **destacados** | mesma zona · **entra em "22h"**, o destaque do "10h" acende na fala · ~4s |
+| 26 – 30s | *"Ele leu a tirinha. E encontrou a loja fechada."* | — | — |
+| 30 – 35s | *"Aparecer no jornal todo mundo já aprendeu. O dinheiro está em ter a loja aberta quando ele chega."* | — | — |
+
+**As três inserções provam três coisas diferentes:** quem disse (autoridade) · de onde veio o dinheiro
+(caso) · **que isso acontece na empresa real** (a sua prova — a que a referência não tem).
+
+### Como conseguir cada inserção
+
+| Inserção | Onde | ⚠️ Antes de publicar |
+|---|---|---|
+| **1 · clipe da autoridade** | trecho de entrevista/podcast de quem disse a frase, 3-4s | **identificar quem é** (não aparece no vídeo dele) e usar só um trecho curto, com o nome na legenda. Sem fonte → corta a inserção e diz *"li essa frase e não achei o autor"* |
+| **2 · caneca + camiseta** | foto de produto licenciado do Garfield | é marca registrada: usar como **referência editorial**, sem sugerir parceria |
+| **3 · print do WhatsApp** | **conversa real** de uma operação que você atende, com o horário visível | **apagar nome, foto e número do lead**. Nunca montar print falso — é a regra do Arquiteto: tela real ou nada |
+
+**Variação se não achar o clipe:** a frase aparece como **card de texto** no mesmo lugar e tempo
+(branco sobre preto, aspas grandes), e você fala a frase. Perde a voz da autoridade, mantém o ritmo.
 Mantém: citação + caso-ponte + releitura + espelho em ~35s.
 Troca: "apareça nas redes" (tese de creator) por **"a atenção chega e morre na porta"** (tese de operação).
 Liga direto ao `vs-2026-09-14-dor-lead-espera` — pode ser o mesmo tema em dois formatos.
