@@ -49,6 +49,9 @@ banco-roteiros/
 | **Ruptura de registro** | quebra abrupta de tom ("meu bem, acorda") no pico da tensão | ref-luana-conselho-dos-ricos |
 | **Fato + como agir** | informar não influencia; influencia quem diz o que fazer com o fato | ref-luana-informante-influenciador |
 | **Contraexemplo encenado** | objeção dita na voz do público ("Ai Luana, mas…") | ref-luana-informante-influenciador · ref-luana-desdobrar |
+| **Definição corrigida** | não discute o comportamento — corrige a palavra que o sustenta ("não é óbvio, se tornou óbvio") | ref-luana-seu-obvio |
+| **Responsabilidade moral no fecho** | liga a inação do espectador à dor de outra pessoa | ref-luana-seu-obvio |
+| **Absolvição** | "não é culpa sua, faltou X" — abre a porta da oferta sem vender | 3 de 4 da Luana · vs-2026-09-14-fissura-noticia |
 | **Evidência antes do rótulo** | a prova aparece antes de ser nomeada | vs-2026-09-14-meio-que-funciona |
 | **Confissão do narrador** | "e eu continuo usando" — o narrador ao lado, não acima | vs-2026-09-14-meio-que-funciona |
 | **Expectativa quebrada** | usa o formato da trend e o vira contra ela | vs-2026-09-14-tutorial-que-quebra |
@@ -67,6 +70,7 @@ banco-roteiros/
 | [ref-luana-conselho-dos-ricos](referencias/ref-luana-conselho-dos-ricos.md) | referência | — | G11? segredo | dissecada |
 | [ref-luana-informante-influenciador](referencias/ref-luana-informante-influenciador.md) | referência | regra do Jornal | G2 | dissecada |
 | [ref-luana-desdobrar](referencias/ref-luana-desdobrar.md) | referência | regra do Método | G2 | dissecada |
+| [ref-luana-seu-obvio](referencias/ref-luana-seu-obvio.md) | referência | encaixa na big idea | G2 | dissecada · padrão da autora |
 | [vs-2026-09-14-meio-que-funciona](proprios/vs-2026-09-14-meio-que-funciona.md) | próprio | Intervalo · *Meio que funciona* | demonstração | roteiro — sem métrica |
 | [vs-2026-09-14-tutorial-que-quebra](proprios/vs-2026-09-14-tutorial-que-quebra.md) | próprio | Intervalo | expectativa quebrada | roteiro — sem métrica |
 | [vs-2026-09-14-fissura-noticia](proprios/vs-2026-09-14-fissura-noticia.md) | próprio | Jornal | G7 + G9 | roteiro — sem métrica |

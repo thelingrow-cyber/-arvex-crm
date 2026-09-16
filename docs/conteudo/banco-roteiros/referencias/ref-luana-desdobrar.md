@@ -3,7 +3,7 @@ id: ref-luana-desdobrar
 tipo: referencia
 autor: Luana Carolina (@luanacarolina.s)
 link:          # pendente — áudio em Downloads/Documentos/audio_20260428_0136.txt
-duracao: ~75
+duracao: 92
 formato: talking head
 funil: topo
 gancho: G2 · negação do consenso
@@ -25,14 +25,16 @@ veredito: testar
 > Ai Luana, mas eu acho que não sou inteligente para explorar tanto a fundo um só tema. Será que não? Talvez você só não tenha tido acesso aos frameworks certos. Você já domina o assunto, só ainda não foi colocado à prova para desdobrar esse conteúdo.
 
 ## Arquitetura
-| Fase | O que acontece | Função |
-|---|---|---|
-| **Contraste de identidade** | interessante × sem graça | ninguém quer ser o segundo — autoexame imediato |
-| **Transposição** | "na criação de conteúdo não é diferente" | leva a regra de vida para o tema dela |
-| **Escolha** | "o que você prefere?" | o espectador decide sozinho — não é mandado |
-| **Consequência** | retorno × galho em galho | dinheiro e seguidor como prova |
-| **Objeção encenada** | "não sou inteligente para isso" | antecipa a desculpa |
-| **Absolvição + gancho de produto** | "faltou o framework certo" | a porta para o que ela vende, sem vender |
+| Tempo | Fase | O que acontece | Função |
+|---|---|---|---|
+| 00:00–00:35 | **Contraste de identidade** | interessante × sem graça | ninguém quer ser o segundo — autoexame imediato |
+| 00:35–00:57 | **Transposição** | "na criação de conteúdo não é diferente" | leva a regra de vida para o tema dela |
+| 00:57–01:15 | **Escolha** | "o que você prefere?" | o espectador decide sozinho — não é mandado |
+| 01:15–01:31 | **Consequência** | retorno × galho em galho | dinheiro e seguidor como prova |
+| 01:31–01:37 | **Objeção encenada** | "não sou inteligente para isso" | antecipa a desculpa |
+| 01:37–01:52 | **Absolvição + gancho de produto** | "faltou o framework certo" | a porta para o que ela vende, sem vender |
+
+*Nota: 35s de abertura antes de chegar ao tema — longo para o formato. Ela sustenta com o contraste de identidade.*
 
 ## Mecânicas
 - **Contraste de identidade** — abre com dois tipos de pessoa; o espectador se classifica
