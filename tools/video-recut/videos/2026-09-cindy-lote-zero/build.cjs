@@ -72,9 +72,9 @@ card(map(44.32), map(47.70), 'SÓ PARA OS 20 PRIMEIROS', 'BÔNUS ESPECIAL');
 // congelamento: escurece, flash, "LOTE ZERO" abre o espaçamento, "AMANHÃ · 8H" entra
 ev += `Dialogue: 4,${ts(F)},${ts(T)},P,,0,0,0,,{\\an7\\pos(0,0)\\1c&H000000&\\1a&HFF&\\t(0,500,\\1a&H70&)\\p1}${rect(1080, 1920)}{\\p0}\n`;
 flash(F, true);
-ev += `Dialogue: 8,${ts(F + 0.12)},${ts(T)},G,,0,0,0,,{\\an5\\pos(540,860)\\fsp40\\alpha&HFF&\\t(0,260,\\alpha&H00&)\\t(0,${Math.round(FRZ * 1000)},0.4,\\fsp8)}LOTE ZERO\n`;
+ev += `Dialogue: 8,${ts(F + 0.12)},${ts(T)},G,,0,0,0,,{\\an5\\pos(540,1240)\\fsp40\\alpha&HFF&\\t(0,260,\\alpha&H00&)\\t(0,${Math.round(FRZ * 1000)},0.4,\\fsp8)}LOTE ZERO\n`;
 ev += `Dialogue: 8,${ts(F + 0.5)},${ts(T)},C,,0,0,0,,{\\an5\\move(540,1390,540,1365,0,300)\\alpha&HFF&\\t(0,300,\\alpha&H00&)}AMANHÃ · 8H\n`;
-ev += `Dialogue: 8,${ts(F + 0.95)},${ts(T)},K,,0,0,0,,{\\an5\\pos(540,1080)\\alpha&HFF&\\t(0,300,\\alpha&H00&)}VAGAS LIMITADAS\n`;
+ev += `Dialogue: 8,${ts(F + 0.95)},${ts(T)},K,,0,0,0,,{\\an5\\pos(540,1460)\\alpha&HFF&\\t(0,300,\\alpha&H00&)}VAGAS LIMITADAS\n`;
 
 const head = ['[Script Info]', 'ScriptType: v4.00+', 'PlayResX: 1080', 'PlayResY: 1920', 'WrapStyle: 2', 'ScaledBorderAndShadow: yes', '',
   '[V4+ Styles]',
