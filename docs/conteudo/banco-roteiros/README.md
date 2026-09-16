@@ -87,6 +87,9 @@ banco-roteiros/
 | [ref-luana-seu-obvio](referencias/ref-luana-seu-obvio.md) | referência | encaixa na big idea | G2 | dissecada · padrão da autora |
 | [ref-luana-custo-de-reversao](referencias/ref-luana-custo-de-reversao.md) | referência · 24,2k ❤ · 500 ↗ | molde do **Método** | padrão dos ricos | dissecada |
 | [ref-luana-oportunidade-obrigacao](referencias/ref-luana-oportunidade-obrigacao.md) | referência · 33k ❤ · 1.885 ↗ | molde de **compartilhamento** | G8 | dissecada |
+| [ref-luana-repertorio-vantagem](referencias/ref-luana-repertorio-vantagem.md) | referência · 4,5k ❤ · 130 ↗ · **normal** | contraste | G2 | dissecada |
+
+> **Cruzamento entre fichas:** [`../DOSSIE-ROTEIROS.md`](../DOSSIE-ROTEIROS.md)
 | [vs-2026-09-14-meio-que-funciona](proprios/vs-2026-09-14-meio-que-funciona.md) | próprio | Intervalo · *Meio que funciona* | demonstração | roteiro — sem métrica |
 | [vs-2026-09-14-tutorial-que-quebra](proprios/vs-2026-09-14-tutorial-que-quebra.md) | próprio | Intervalo | expectativa quebrada | roteiro — sem métrica |
 | [vs-2026-09-14-fissura-noticia](proprios/vs-2026-09-14-fissura-noticia.md) | próprio | Jornal | G7 + G9 | roteiro — sem métrica |
