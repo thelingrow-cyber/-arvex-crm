@@ -80,8 +80,17 @@ o rosto nunca sai.
 3. **Card pequeno, rosto sempre visível** — a inserção é evidência, não troca de cena
 4. **A voz da autoridade é a da própria autoridade** — ele não repete a citação, deixa o clipe falar
 
-⚠️ **O nome do empreendedor não aparece no vídeo** — nem na legenda, nem no card. Não identificado
-aqui. Descobrir a fonte antes de reutilizar o clipe.
+⚠️ **O nome do empreendedor não aparece no vídeo** — nem na legenda, nem no card.
+**Hipótese (não confirmada):** o comentário de @anuroop_kumar no post (38 curtidas) diz que é
+**Mark Pincus, fundador da Zynga** (FarmVille, Words with Friends), e liga a frase à estratégia dele de
+distribuir jogos dentro do Facebook. Duas buscas na web não acharam a entrevista original. Não usar o
+nome em público até achar a fonte.
+
+**Clipe recortado:** `Downloads/garfield-citacao-clipe-recortado.mp4` — 3,5s, 864×540, com áudio.
+Vem com a legenda em inglês **queimada na imagem** e resolução baixa (ampliado 2× de um card de ~430px).
+Serve para teste e rascunho; para publicar, usar o trecho da entrevista original.
+
+**Números do post (16/09):** 24,8 mil curtidas · 88 comentários · 709 no terceiro contador · publicado em 21/06.
 
 ## Mecânicas
 1. **Citação de autoridade** — é **exatamente o formato A FRASE** que você propôs (frase de livro/pessoa + sua leitura). Prova em 37s que funciona
