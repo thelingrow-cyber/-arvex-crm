@@ -16,6 +16,7 @@ Só viral = o dossiê conclui que tudo funciona. **A diferença entre os dois gr
 |---|---|---|---|---|
 | **Luana Carolina** | conteúdo de criador, 1,7M, ganchos de tensão | 2 com número (+3 sem número) | **1** | 🟡 faltam 2-3 normais |
 | **Elias Maman** | categoria plantada, 1,4M | 4 com número (+1 sem) | **4** | 🟢 comparação completa |
+| **Tay Dantas** | modelo de marca do Vitor (universo, Hero Brand) | 7 existenciais | 9 negócio/comportamento | 🟢 lote de 16 |
 | **bitterbuilds** (EUA) | molde d'A FRASE | 1 (24,8k) | 0 | 🔴 |
 | **Mila Sokolskiy** (EUA) | molde do Jornal | 0 | 1 (456) | 🔴 |
 | Érico Rocha · Leandro Ladeira · Theo Braga · Vinicius Arêb | lista de 08/09 | — | — | ⬜ |
@@ -121,10 +122,40 @@ A produção **não explica** a diferença de 25× (57k × 2k). O que explica:
 **Em comum nos virais dos dois:** alvo concreto (alguém que você conhece / seus pais / quem gosta de carne) ·
 tensão ou revelação · **nenhum é curto** — todos passam de 2 minutos.
 
-## 4 · Cruzamento entre players (completo)
+## 4 · Tay Dantas — 16 reels ([lote](banco-roteiros/referencias/ref-tay-lote-2026-09.md))
+
+**O dado mais importante do dossiê até agora:** o que viraliza na Tay **não é o que ela vende**.
+- **Existencial/comportamento humano** (presença, burrice coletiva, ódio, desistência, morte): 39k–391k, compartilhamento 8–14%
+- **Negócio e marketing** (BMW, Benchimol, quantidade × qualidade, geração rica): 13k–25k ou curtidas ocultas, compartilhamento 1–2%
+- **Mediana ≈ 55k × ≈ 15k.** O "filosófico paga o alcance, o método cobra a conta" agora tem número
+
+**Assinatura dela:** gancho = **diagnóstico coletivo em "a gente"** (*"a gente tá ficando tão burro"*) · fecho = **pergunta devolvida**
+(*"se você demorou pra responder, essa é a sua resposta"*) · **40–99s** · CTA de agência só nos piores.
+**Mesmo molde, ângulo decide:** "hábito das pessoas criativas" — sentar estranho (identificação + humor) 48k × banho 14k × teimosia (lista de famosos) 17k.
+
+---
+
+## 5 · O que os três players concordam (n = 29 vídeos com número)
+
+| Regra | Luana | Elias | Tay |
+|---|---|---|---|
+| **Carga emocional > produção** — tema sem ameaça, indignação ou identidade não é salvo por estúdio | ✅ | ✅ (25× de diferença com a mesma produção) | ✅ (negócio no fundo) |
+| **Alvo concreto** — alguém que você conhece, a sua geração, o que você vai comer | ✅ | ✅ | ✅ ("a gente") |
+| **Compartilhamento vem de "a quem mandar"**, não de alcance | ✅ | ✅ | ✅ |
+| **Número/dado sozinho não segura** — precisa de personagem ou identidade | ✅ | ✅ | ✅ (teimosia = lista de famosos) |
+| **Última frase vira print** | ✅ | ⚠️ gasta no meio | ✅ |
+| **Duração** | 2–2,5 min | ~3 min | **40–99 s** |
+
+**A duração não é regra** — os três viralizam em durações opostas. O que é regra é a carga do tema e o alvo.
+
+**⚠️ A implicação estratégica para o Vitor** (os três concordam): **conteúdo sobre negócio/IA, por si só, é o que tem
+menor alcance.** O alcance vem do tema humano (geração, atenção, dinheiro, medo, identidade) com **ponte** para o
+negócio — o cavalo de Troia do Elias, o existencial da Tay. O vídeo do comprador (Elias geração 40+) é para lead, não para alcance.
+
+## 6 · Cruzamento entre players (completo)
 *⬜ Abre quando houver pelo menos 2 players com virais e normais.*
 
-## 5 · A máquina
+## 7 · A máquina
 *⬜ Esqueletos por programa da grade, checklist de roteiro, regras de marca — sai do cruzamento, não antes.*
 
 **Rascunho do checklist (a validar com o cruzamento):**
