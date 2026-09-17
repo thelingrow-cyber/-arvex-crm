@@ -15,7 +15,7 @@ Só viral = o dossiê conclui que tudo funciona. **A diferença entre os dois gr
 | Player | Por quê está aqui | Virais | Normais | Status |
 |---|---|---|---|---|
 | **Luana Carolina** | conteúdo de criador, 1,7M, ganchos de tensão | 2 com número (+3 sem número) | **1** | 🟡 faltam 2-3 normais |
-| **Elias Maman** | categoria plantada, 1,4M | 3 com número (+1 sem) | 0 | 🟡 faltam 2-3 normais |
+| **Elias Maman** | categoria plantada, 1,4M | 4 com número (+1 sem) | 0 | 🟡 faltam 2-3 normais |
 | **bitterbuilds** (EUA) | molde d'A FRASE | 1 (24,8k) | 0 | 🔴 |
 | **Mila Sokolskiy** (EUA) | molde do Jornal | 0 | 1 (456) | 🔴 |
 | Érico Rocha · Leandro Ladeira · Theo Braga · Vinicius Arêb | lista de 08/09 | — | — | ⬜ |
@@ -49,20 +49,21 @@ performar mal, as hipóteses 1–4 caem.
 
 ---
 
-## 2 · Elias Maman — padrão de fábrica (3 com número, 1 sem)
+## 2 · Elias Maman — padrão de fábrica (4 com número, 1 sem)
 
 | Vídeo | Duração | ❤ | 💬 | ↗ | Grupo |
 |---|---|---|---|---|---|
 | [Carne cultivada](banco-roteiros/referencias/ref-elias-carne-cultivada.md) | 2:58 | 57.100 | **3.805** | **6.280** | viral |
+| [Virginia na Globo](banco-roteiros/referencias/ref-elias-virginia-globo.md) | 2:59 | 55.700 | **4.809** | 1.753 | viral |
 | [Geração celibato](banco-roteiros/referencias/ref-elias-geracao-celibato.md) | 2:58 | 55.600 | 1.626 | 2.621 | viral |
 | [Al Goldstein](banco-roteiros/referencias/ref-elias-al-goldstein.md) | 2:57 | 38.800 | 2.109 | 4.658 | viral |
 | [Dragon Ball × dopamina](banco-roteiros/referencias/ref-elias-dragon-ball-dopamina.md) | 2:06 | — | — | — | sem número |
 
 **É o oposto da Luana em produção e o mesmo em duração.** Luana: take único, zero edição. Elias: estúdio com
 luz de cinema, B-roll de arquivo em tela cheia, legenda amarela palavra a palavra, ação na mão (cozinhando).
-**Os três têm ~2:58** — duração padronizada, é fórmula de produção.
+**Os quatro têm ~2:58** — duração padronizada, é fórmula de produção.
 
-**A fórmula (idêntica nos três):**
+**A fórmula (idêntica nos quatro):**
 1. **Gancho de revelação** — "eu investiguei" · "o que os pobres vão comer em 2030" · "os pesquisadores descobriram"
 2. **Pedido de salvar ou compartilhar nos primeiros 20s**, com motivo ("se você gosta de carne…")
 3. **Assunto fora do nicho dele** — pornografia, carne, sexo da geração Z. **Nenhum fala de marketing no começo**
@@ -78,6 +79,8 @@ luz de cinema, B-roll de arquivo em tela cheia, legenda amarela palavra a palavr
 *categoria plantada no meio* levada ao limite — e a razão dos compartilhamentos altíssimos: quem compartilha
 está mandando um vídeo sobre carne ou geração Z, não sobre marketing.
 
+**Comentário × compartilhamento:** Virginia (celebridade, polêmica) tem o **recorde de comentários** e o **menor índice de compartilhamento (3%)**; carne e Al Goldstein (tem *a quem mandar*) passam de 11%. Discussão vem de polêmica; compartilhamento vem de alvo.
+
 **Falta:** 2–3 **normais** do Elias para saber se a fórmula falha quando o assunto de fora é fraco.
 
 ---
@@ -92,7 +95,7 @@ está mandando um vídeo sobre carne ou geração Z, não sobre marketing.
 | Gancho escrito | texto fixo ≠ fala | legenda da fala |
 | Pedido de share | não pede | **pede duas vezes, com alvo** |
 | CTA | nenhum | palavra-chave → lead |
-| Compartilhamento/curtida | 6% e 2% | 11%, 5% e 12% |
+| Compartilhamento/curtida | 6% e 2% | 11%, 5%, 12% e 3% |
 
 **Em comum nos virais dos dois:** alvo concreto (alguém que você conhece / seus pais / quem gosta de carne) ·
 tensão ou revelação · **nenhum é curto** — todos passam de 2 minutos.
