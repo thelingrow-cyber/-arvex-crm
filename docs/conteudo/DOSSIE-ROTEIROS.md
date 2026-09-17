@@ -129,6 +129,8 @@ tensão ou revelação · **nenhum é curto** — todos passam de 2 minutos.
 - **Negócio e marketing** (BMW, Benchimol, quantidade × qualidade, geração rica): 13k–25k ou curtidas ocultas, compartilhamento 1–2%
 - **Mediana ≈ 55k × ≈ 15k.** O "filosófico paga o alcance, o método cobra a conta" agora tem número
 
+**Visão geral do perfil (views da grade, 20 reels):** fixados = 1 oferta (4,2 mi) + 2 virais de alcance (8,8 mi e 1,8 mi) · mediana recente ≈ 170 mil views · os 3 piores são os únicos de marketing/branding puro (65–86 mil) · legenda do post = pergunta curta. Detalhe em [`.claude/clones/tay-dantas/sources/perfil-instagram-2026-09.md`](../../.claude/clones/tay-dantas/sources/perfil-instagram-2026-09.md).
+
 **Assinatura dela:** gancho = **diagnóstico coletivo em "a gente"** (*"a gente tá ficando tão burro"*) · fecho = **pergunta devolvida**
 (*"se você demorou pra responder, essa é a sua resposta"*) · **40–99s** · CTA de agência só nos piores.
 **Mesmo molde, ângulo decide:** "hábito das pessoas criativas" — sentar estranho (identificação + humor) 48k × banho 14k × teimosia (lista de famosos) 17k.
