@@ -59,6 +59,7 @@ performar mal, as hipóteses 1–4 caem.
 | [Al Goldstein](banco-roteiros/referencias/ref-elias-al-goldstein.md) | 2:57 | 38.800 | 2.109 | 4.658 | viral |
 | [Geração Z troca álcool por telas](banco-roteiros/referencias/ref-elias-geracao-z-alcool.md) | 2:59 | 11.100 | 40 | — | **normal** (post mais antigo) |
 | [Carne do Bill Gates](banco-roteiros/referencias/ref-elias-carne-bill-gates.md) | 2:30 | 12.900 | 1.012 | 1.891 | **normal** (tema repetido) |
+| [Geração 40+ e profundidade](banco-roteiros/referencias/ref-elias-geracao-40-profundidade.md) | 2:58 | 7.563 | **679** | 483 | normal em alcance · **fala com o comprador** |
 | [Três livros](banco-roteiros/referencias/ref-elias-tres-livros.md) | 2:55 | 3.015 | 269 | 91 | **normal** |
 | [Messi na Copa](banco-roteiros/referencias/ref-elias-messi-copa.md) | 2:57 | 2.041 | 150 | 66 | **normal** |
 | [Dragon Ball × dopamina](banco-roteiros/referencias/ref-elias-dragon-ball-dopamina.md) | 2:06 | — | — | — | sem número |
@@ -100,6 +101,7 @@ A produção **não explica** a diferença de 25× (57k × 2k). O que explica:
 1. **Carga emocional > produção.** Tema sem ameaça, indignação ou dinheiro não é salvo por estúdio nem por CTA
 2. **Número abre, não segura** — 3 dos 4 normais abrem em dado; 0 dos 4 virais
 3. **Não repita o tema** que já viralizou — a segunda carne fez 4× menos
+5. **Dois tipos de vídeo, duas métricas.** O único vídeo que abre falando com o comprador (geração 40+) tem 7× menos curtidas que os virais e a **maior taxa de comentário do lote (9%)** — é onde o CTA "diagnóstico" encontra o ICP. Cavalo de Troia traz massa; vídeo do comprador traz lead
 4. **Compartilhamento acompanha o tema, não o alcance** — a carne repetida manteve 14,6% de share mesmo com 4× menos curtidas
 
 ---
