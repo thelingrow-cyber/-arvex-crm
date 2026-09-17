@@ -15,7 +15,7 @@ Só viral = o dossiê conclui que tudo funciona. **A diferença entre os dois gr
 | Player | Por quê está aqui | Virais | Normais | Status |
 |---|---|---|---|---|
 | **Luana Carolina** | conteúdo de criador, 1,7M, ganchos de tensão | 2 com número (+3 sem número) | **1** | 🟡 faltam 2-3 normais |
-| **Elias Maman** | categoria plantada, 1,4M | 4 com número (+1 sem) | 0 | 🟡 faltam 2-3 normais |
+| **Elias Maman** | categoria plantada, 1,4M | 4 com número (+1 sem) | **1** | 🟡 faltam 1-2 normais |
 | **bitterbuilds** (EUA) | molde d'A FRASE | 1 (24,8k) | 0 | 🔴 |
 | **Mila Sokolskiy** (EUA) | molde do Jornal | 0 | 1 (456) | 🔴 |
 | Érico Rocha · Leandro Ladeira · Theo Braga · Vinicius Arêb | lista de 08/09 | — | — | ⬜ |
@@ -57,6 +57,7 @@ performar mal, as hipóteses 1–4 caem.
 | [Virginia na Globo](banco-roteiros/referencias/ref-elias-virginia-globo.md) | 2:59 | 55.700 | **4.809** | 1.753 | viral |
 | [Geração celibato](banco-roteiros/referencias/ref-elias-geracao-celibato.md) | 2:58 | 55.600 | 1.626 | 2.621 | viral |
 | [Al Goldstein](banco-roteiros/referencias/ref-elias-al-goldstein.md) | 2:57 | 38.800 | 2.109 | 4.658 | viral |
+| [Geração Z troca álcool por telas](banco-roteiros/referencias/ref-elias-geracao-z-alcool.md) | 2:59 | 11.100 | 40 | — | **normal** (post mais antigo) |
 | [Dragon Ball × dopamina](banco-roteiros/referencias/ref-elias-dragon-ball-dopamina.md) | 2:06 | — | — | — | sem número |
 
 **É o oposto da Luana em produção e o mesmo em duração.** Luana: take único, zero edição. Elias: estúdio com
@@ -81,7 +82,11 @@ está mandando um vídeo sobre carne ou geração Z, não sobre marketing.
 
 **Comentário × compartilhamento:** Virginia (celebridade, polêmica) tem o **recorde de comentários** e o **menor índice de compartilhamento (3%)**; carne e Al Goldstein (tem *a quem mandar*) passam de 11%. Discussão vem de polêmica; compartilhamento vem de alvo.
 
-**Falta:** 2–3 **normais** do Elias para saber se a fórmula falha quando o assunto de fora é fraco.
+**Primeiro normal (11,1k ❤, 40 💬) — mesma fórmula, resultado 5× menor.** O que muda: gancho é **número de indústria** (830 bi), não **pessoa ou caso**; os primeiros 35s são uma lista de dados sem personagem; o tema **repete** o do geração celibato; o alvo do share é amplo ("pais e jovens"). ⚠️ Post mais antigo — parte da diferença pode ser tamanho da conta.
+
+**Lição provisória: número abre, não segura. Fato com nome próprio > estatística.**
+
+**Falta:** 1–2 normais **recentes** do Elias, para tirar o efeito do tamanho da conta.
 
 ---
 
