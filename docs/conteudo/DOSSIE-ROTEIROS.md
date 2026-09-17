@@ -15,7 +15,7 @@ Só viral = o dossiê conclui que tudo funciona. **A diferença entre os dois gr
 | Player | Por quê está aqui | Virais | Normais | Status |
 |---|---|---|---|---|
 | **Luana Carolina** | conteúdo de criador, 1,7M, ganchos de tensão | 2 com número (+3 sem número) | **1** | 🟡 faltam 2-3 normais |
-| **Elias Maman** | categoria plantada, 1,4M | 4 com número (+1 sem) | **1** | 🟡 faltam 1-2 normais |
+| **Elias Maman** | categoria plantada, 1,4M | 4 com número (+1 sem) | **4** | 🟢 comparação completa |
 | **bitterbuilds** (EUA) | molde d'A FRASE | 1 (24,8k) | 0 | 🔴 |
 | **Mila Sokolskiy** (EUA) | molde do Jornal | 0 | 1 (456) | 🔴 |
 | Érico Rocha · Leandro Ladeira · Theo Braga · Vinicius Arêb | lista de 08/09 | — | — | ⬜ |
@@ -58,6 +58,9 @@ performar mal, as hipóteses 1–4 caem.
 | [Geração celibato](banco-roteiros/referencias/ref-elias-geracao-celibato.md) | 2:58 | 55.600 | 1.626 | 2.621 | viral |
 | [Al Goldstein](banco-roteiros/referencias/ref-elias-al-goldstein.md) | 2:57 | 38.800 | 2.109 | 4.658 | viral |
 | [Geração Z troca álcool por telas](banco-roteiros/referencias/ref-elias-geracao-z-alcool.md) | 2:59 | 11.100 | 40 | — | **normal** (post mais antigo) |
+| [Carne do Bill Gates](banco-roteiros/referencias/ref-elias-carne-bill-gates.md) | 2:30 | 12.900 | 1.012 | 1.891 | **normal** (tema repetido) |
+| [Três livros](banco-roteiros/referencias/ref-elias-tres-livros.md) | 2:55 | 3.015 | 269 | 91 | **normal** |
+| [Messi na Copa](banco-roteiros/referencias/ref-elias-messi-copa.md) | 2:57 | 2.041 | 150 | 66 | **normal** |
 | [Dragon Ball × dopamina](banco-roteiros/referencias/ref-elias-dragon-ball-dopamina.md) | 2:06 | — | — | — | sem número |
 
 **É o oposto da Luana em produção e o mesmo em duração.** Luana: take único, zero edição. Elias: estúdio com
@@ -82,11 +85,22 @@ está mandando um vídeo sobre carne ou geração Z, não sobre marketing.
 
 **Comentário × compartilhamento:** Virginia (celebridade, polêmica) tem o **recorde de comentários** e o **menor índice de compartilhamento (3%)**; carne e Al Goldstein (tem *a quem mandar*) passam de 11%. Discussão vem de polêmica; compartilhamento vem de alvo.
 
-**Primeiro normal (11,1k ❤, 40 💬) — mesma fórmula, resultado 5× menor.** O que muda: gancho é **número de indústria** (830 bi), não **pessoa ou caso**; os primeiros 35s são uma lista de dados sem personagem; o tema **repete** o do geração celibato; o alvo do share é amplo ("pais e jovens"). ⚠️ Post mais antigo — parte da diferença pode ser tamanho da conta.
+**Virais × normais — a mesma fórmula de produção nos 8** (estúdio, ~3min, salve/compartilhe, ponte, CTA).
+A produção **não explica** a diferença de 25× (57k × 2k). O que explica:
 
-**Lição provisória: número abre, não segura. Fato com nome próprio > estatística.**
+| | Virais (38–57k) | Normais (2–13k) |
+|---|---|---|
+| **Carga do tema** | **moral ou ameaça**: fé × pornografia, o que *você* vai comer, sexo da sua geração, celebridade e dinheiro "que deveria te incomodar" | **curiosidade ou conselho**: km do Messi, lista de livros, história de investimento, estatística de álcool |
+| **Abertura** | pergunta ou revelação sobre **o espectador ou um vilão** | **número ou terceiro** (830 bi, Bill Gates 2016, km percorridos, "3 livros") |
+| **Novidade do tema** | primeira vez | carne e geração Z **repetidos** caem 4× |
 
-**Falta:** 1–2 normais **recentes** do Elias, para tirar o efeito do tamanho da conta.
+⚠️ Os normais Messi e livros são **da mesma época** dos virais (IDs `Dax…`/`Day…` entre `DaE…` e `Db0…`) — **tamanho da conta não explica**. Só o álcool é mais antigo.
+
+**Regras que saem do Elias:**
+1. **Carga emocional > produção.** Tema sem ameaça, indignação ou dinheiro não é salvo por estúdio nem por CTA
+2. **Número abre, não segura** — 3 dos 4 normais abrem em dado; 0 dos 4 virais
+3. **Não repita o tema** que já viralizou — a segunda carne fez 4× menos
+4. **Compartilhamento acompanha o tema, não o alcance** — a carne repetida manteve 14,6% de share mesmo com 4× menos curtidas
 
 ---
 
