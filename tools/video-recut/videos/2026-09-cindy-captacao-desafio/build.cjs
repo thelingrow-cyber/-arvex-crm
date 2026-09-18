@@ -8,11 +8,22 @@ const NOME = path.basename(__dirname);
 const work = path.join(__dirname, "../../work", NOME);
 const DUR = JSON.parse(fs.readFileSync(path.join(work, "meta.json"), "utf8")).duracao;
 
-// SFX: whoosh nas entradas de motion, hit nos impactos, riser antes do título
-const WHOOSH = [2.5, 8.02, 15.3, 17.35, 22.87, 24.55, 26.62, 29.4, 36.95, 38.75, 42.4];
-const HIT = [7.01, 13.06, 25.95, 28.84, 39.51];
-const RISER = [23.1, 24.55];
+// SFX (biblioteca do HyperFrames, assets/sfx) — [arquivo, tempo, volume]
+const SFX_DIR = path.join(__dirname, "../../assets/sfx");
+const SFX = [
+  ...[0.05, 8.02, 13.42, 29.4, 36.95, 38.6, 42.4].map((t) => ["whoosh-short.mp3", t - 0.2, 0.28]),   // cards
+  ...[2.5, 17.35, 26.62].map((t) => ["whoosh.mp3", t - 0.15, 0.4]),                                // inserts
+  ["impact-bass-1.mp3", 7.01, 0.55], ["impact-bass-1.mp3", 25.95, 0.7], ["impact-bass-2.mp3", 39.51, 0.5],
+  ["sparkle.mp3", 26.2, 0.3], ["sparkle.mp3", 22.25, 0.22], ["sparkle.mp3", 39.7, 0.22],
+  ...[19.24, 20.52, 22.2, 26.72, 27.1, 27.5].map((t) => ["pop.mp3", t - 0.03, 0.22]),
+  ...[8.17, 9.99, 30.92, 31.78, 35.32].map((t) => ["click-soft.mp3", t - 0.02, 0.3]),
+  ["whoosh-short.mp3", 37.9, 0.25],                                                                // risco
+];
+const RISER = { arq: "riser.mp3", fimEm: 24.55, dur: 2.2, vol: 0.35 }; // últimos 2,2 s do riser terminam no título
+// trilha: Mixkit "Driving Ambition" (Ahjay Stelino, Mixkit Free License) — pico da faixa (33 s) cai no título
+const MUSICA = { arq: path.join(__dirname, "../../assets/musica/mixkit-32.mp3"), inicio: 8.45, vol: 0.32 };
 const MUDO = [12.05, 13.4]; // trilha some no "cansativo"
+const RESPIRO = [23.7, 24.55]; // trilha recua sob o riser e volta cheia no título
 
 if (process.argv.includes("--mix")) { mix(); return; }
 
@@ -35,6 +46,7 @@ V.camera([
 ]);
 V.shake([13.06, 36.55, 39.51]);
 V.filtro(12.09, 13.42);
+V.corteSuave([1.36, 8.1, 9.27, 13.42, 15.34, 22.87, 29.4, 31.78, 35.32, 36.95, 38.63, 39.51, 42.41]);
 
 // ── gancho → ciclo do mês que volta a zero ──
 V.cardTitulo("c0", 0.05, 2.45, { kicker: "TODO MÊS É ASSIM", titulo: "NA SUA", gold: "ÓTICA?", tituloAt: 1.7, goldAt: 2.14 });
@@ -74,31 +86,21 @@ V.salvar(process.argv[2] || path.join(work, "public/index.html"));
 // ── trilha gerada (sem direitos) + SFX, mixados sobre o render ──
 function mix() {
   const ff = (args) => execFileSync("ffmpeg", ["-v", "error", "-y", ...args], { cwd: work, stdio: "inherit" });
-  const T = DUR.toFixed(2);
-  // pad Am–F–C–G (2 s por acorde, fade curto na troca) + kick 120 bpm entrando aos poucos
-  const pad = "st(0,floor(mod(t,8)/2));st(1,if(eq(ld(0),0),110,if(eq(ld(0),1),87.31,if(eq(ld(0),2),130.81,98))));st(2,if(eq(ld(0),0),1.2,1.26));" +
-    "st(3,min(1,mod(t,2)*10)*min(1,(2-mod(t,2))*10));" +
-    "ld(3)*(0.22*sin(2*PI*ld(1)*t)+0.16*sin(2*PI*ld(1)*1.5*t)+0.12*sin(2*PI*ld(1)*ld(2)*2*t)+0.07*sin(2*PI*ld(1)*2.004*t)+0.05*sin(2*PI*ld(1)*3*t))";
-  const kick = "st(4,mod(t,0.5));0.55*sin(2*PI*(48*ld(4)+2.2*(1-exp(-38*ld(4)))))*exp(-8*ld(4))*clip((t-2.4)/6,0.25,1)";
-  const hat = "st(5,mod(t+0.25,0.5));(random(0)*2-1)*exp(-60*ld(5))*0.35*clip((t-7.5)/4,0,1)";
-  const mudo = `(1-between(t,${MUDO[0]},${MUDO[1]}))`;
-  ff(["-f", "lavfi", "-i", `aevalsrc=exprs='(${pad})+(${kick})':s=48000:d=${T}`, "-f", "lavfi", "-i", `aevalsrc=exprs='${hat}':s=48000:d=${T}`,
-    "-filter_complex", `[0:a]lowpass=f=3000,aecho=0.8:0.4:70:0.2[p];[1:a]highpass=f=7000[h];[p][h]amix=inputs=2:normalize=0,volume='${mudo}':eval=frame,afade=t=in:d=0.6,afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2,pan=stereo|c0=c0|c1=c0[o]`,
-    "-map", "[o]", "musica.wav"]);
-  // whoosh (ruído com envelope e varredura) · hit (grave + estalo) · riser
-  ff(["-f", "lavfi", "-i", "anoisesrc=color=pink:d=0.55:r=48000", "-af", "highpass=f=500,lowpass=f=7000,volume='sin(PI*pow(t/0.55,0.6))*1.6':eval=frame,pan=stereo|c0=c0|c1=c0", "whoosh.wav"]);
-  ff(["-f", "lavfi", "-i", "aevalsrc=exprs='sin(2*PI*(46*t+30*(1-exp(-20*t))))*exp(-5*t)+0.4*(random(0)*2-1)*exp(-80*t)':s=48000:d=0.9", "-af", "pan=stereo|c0=c0|c1=c0", "hit.wav"]);
-  const rd = RISER[1] - RISER[0];
-  ff(["-f", "lavfi", "-i", `anoisesrc=color=white:d=${rd.toFixed(2)}:r=48000`, "-af", `bandpass=f=2500:width_type=o:w=2,volume='pow(t/${rd.toFixed(2)},2.5)*0.9':eval=frame,pan=stereo|c0=c0|c1=c0`, "riser.wav"]);
-
-  const ins = ["-i", "output.mp4", "-i", "musica.wav"];
-  let fc = "[0:a]asplit[vk][vsc];[1:a]volume=0.5[mu];[mu][vsc]sidechaincompress=threshold=0.04:ratio=5:attack=15:release=400[md];";
+  const riserDur = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", path.join(SFX_DIR, RISER.arq)]).toString());
+  const env = `(1-0.97*between(t,${MUDO[0]},${MUDO[1]}))*(1-0.55*between(t,${RESPIRO[0]},${RESPIRO[1]}))`;
+  const ins = ["-i", "output.mp4", "-ss", String(MUSICA.inicio), "-i", MUSICA.arq];
+  let fc = "[0:a]asplit[vk][vsc];" +
+    `[1:a]atrim=0:${DUR},asetpts=PTS-STARTPTS,aresample=48000,volume=${MUSICA.vol},volume='${env}':eval=frame,afade=t=in:d=0.8,afade=t=out:st=${(DUR - 1.6).toFixed(2)}:d=1.6[mu];` +
+    "[mu][vsc]sidechaincompress=threshold=0.035:ratio=4:attack=20:release=450[md];";
   const fx = [];
-  const addFx = (file, t, vol, k) => { ins.push("-i", file); const i = ins.filter((x) => x === "-i").length - 1; fc += `[${i}:a]volume=${vol},adelay=${Math.round(t * 1000)}|${Math.round(t * 1000)}[${k}];`; fx.push(`[${k}]`); };
-  WHOOSH.forEach((t, i) => addFx("whoosh.wav", Math.max(0, t - 0.3), 0.35, `w${i}`));
-  HIT.forEach((t, i) => addFx("hit.wav", t, 0.55, `h${i}`));
-  addFx("riser.wav", RISER[0], 0.3, "r0");
-  fc += `[vk][md]${fx.join("")}amix=inputs=${2 + fx.length}:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.93[a]`;
+  const addFx = (file, t, vol, extra = "") => {
+    ins.push("-i", path.join(SFX_DIR, file));
+    const i = ins.filter((x) => x === "-i").length - 1, ms = Math.max(0, Math.round(t * 1000)), k = `f${i}`;
+    fc += `[${i}:a]aresample=48000,${extra}volume=${vol},adelay=${ms}|${ms}[${k}];`; fx.push(`[${k}]`);
+  };
+  SFX.forEach(([f, t, v]) => addFx(f, t, v));
+  addFx(RISER.arq, RISER.fimEm - RISER.dur, RISER.vol, `atrim=${(riserDur - RISER.dur).toFixed(2)},asetpts=PTS-STARTPTS,afade=t=in:d=0.6,`);
+  fc += `[vk][md]${fx.join("")}amix=inputs=${2 + fx.length}:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.9[a]`;
   fs.writeFileSync(path.join(work, "mix-filtro.txt"), fc);
   const saida = path.join(process.env.USERPROFILE, "Downloads", `${NOME}.mp4`);
   ff([...ins, "-filter_complex_script", "mix-filtro.txt", "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", saida]);

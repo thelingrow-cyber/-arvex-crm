@@ -33,19 +33,22 @@ function criar({ dur, fps = 30 }) {
   // ── card no topo (y 130px). inner = HTML; extra(start) = animações internas ──
   function card(id, start, end, inner, extra = () => {}) {
     layers += `    <div class="card-host clip" id="host-${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="2">
-      <div class="panel" id="${id}-panel"><div class="sheen" id="${id}-sheen"></div>${inner}</div>
+      <div class="scrim" id="${id}-scrim"></div><div class="panel" id="${id}-panel"><i class="kline" id="${id}-kline"></i>${inner}</div>
     </div>\n`;
     const panel = `#${id}-panel`;
     add(`// ${id}`);
-    add(`tl.fromTo('${panel}', { clipPath: 'inset(0% 50% 0% 50% round 30px)', y: -18 }, { clipPath: 'inset(0% 0% 0% 0% round 30px)', y: 0, duration: 0.6, ease: 'expo.out' }, ${q(start)});`);
-    // entrada 3D (tomba de cima) + respiração leve enquanto está na tela
-    add(`tl.fromTo('${panel}', { rotationX: -38, scale: 0.9, transformPerspective: 1100, transformOrigin: '50% 0%' }, { rotationX: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' }, ${q(start)});`);
+    // tipografia sobre degradê (sem caixa): entra com desfoque, fio dourado desenha, deriva leve na tela
+    add(`tl.fromTo('#${id}-scrim', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' }, ${q(start)});`);
+    add(`tl.fromTo('${panel}', { opacity: 0, y: 26, filter: 'blur(14px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, ease: 'power3.out' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-kline', { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: 'expo.out' }, ${q(start + 0.05)});`);
     const vive = end - start - 1.2;
-    if (vive > 1.2) add(`tl.to('${panel}', { y: -7, rotation: 0.35, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: ${Math.floor(vive / 0.9) - 1} }, ${q(start + 0.75)});`);
+    if (vive > 1.2) add(`tl.to('${panel}', { y: -6, duration: ${vive.toFixed(2)}, ease: 'sine.inOut' }, ${q(start + 0.7)});`);
     maskIn(`${panel} .kicker .mi`, start + 0.12, 0, start);
-    sheen(`#${id}-sheen`, start + 0.45);
     extra(start);
-    if (end < DUR) add(`tl.to('${panel}', { clipPath: 'inset(0% 50% 0% 50% round 30px)', opacity: 0, y: -40, rotationX: 30, duration: 0.38, ease: 'power3.in' }, ${q(end - 0.38)});`);
+    if (end < DUR) {
+      add(`tl.to('${panel}', { opacity: 0, y: -24, filter: 'blur(12px)', duration: 0.35, ease: 'power2.in' }, ${q(end - 0.35)});`);
+      add(`tl.to('#${id}-scrim', { opacity: 0, duration: 0.35, ease: 'power2.in' }, ${q(end - 0.35)});`);
+    }
   }
 
   // card padrão kicker + título (goldText opcional com brilho em goldAt)
@@ -107,13 +110,10 @@ function criar({ dur, fps = 30 }) {
     </div>\n`;
     const clipAt = `at ${faceX}px ${faceY}px`;
     add(`// insert círculo`);
-    add(`tl.set('#video-wrap', { zIndex: 3, transformOrigin: '${faceX}px ${faceY}px' }, ${q(start)});`);
+    circuloAbre(id, start, end, { faceX, faceY });
     maskIn(`#${id} .ins-kicker .mi`, start + 0.35, 0, start);
     hide(`#${id} .d`, "{ rotationX: -95, opacity: 0 }", start);
     hide(`#${id}-ring, #${id}-ring2`, "{ scale: 0.7, opacity: 0 }", start);
-    add(`tl.fromTo('#${id}-bg', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'expo.inOut' }, ${q(start)});`);
-    add(`tl.fromTo('#video-wrap', { clipPath: 'circle(2300px ${clipAt})', scale: 1 }, { clipPath: 'circle(320px ${clipAt})', scale: 0.78, duration: 0.8, ease: 'expo.inOut' }, ${q(start)});`);
-    add(`tl.fromTo('#${id}-grid', { backgroundPosition: '0px 0px' }, { backgroundPosition: '0px -120px', duration: ${(end - start).toFixed(2)}, ease: 'none' }, ${q(start)});`);
     add(`tl.fromTo(['#${id}-ring', '#${id}-ring2'], { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: 'expo.out', stagger: 0.08, immediateRender: false }, ${q(start + 0.45)});`);
     add(`tl.fromTo('#${id}-ring2', { rotation: 0 }, { rotation: 120, duration: ${(end - start - 0.5).toFixed(2)}, ease: 'none', immediateRender: false }, ${q(start + 0.5)});`);
     blocos.forEach(([, t], i) =>
@@ -124,9 +124,6 @@ function criar({ dur, fps = 30 }) {
       add(`tl.fromTo('#${id}-live', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2.6)', immediateRender: false }, ${q(seloAt)});`);
       add(`tl.fromTo('#${id}-dot', { opacity: 1 }, { opacity: 0.2, duration: 0.25, ease: 'sine.inOut', yoyo: true, repeat: 1, immediateRender: false }, ${q(seloAt + 0.2)});`);
     }
-    add(`tl.to('#video-wrap', { clipPath: 'circle(2300px ${clipAt})', scale: 1, duration: 0.7, ease: 'expo.inOut' }, ${q(end - 0.7)});`);
-    add(`tl.to('#${id} > *:not(.ins-bg)', { opacity: 0, duration: 0.3, ease: 'power2.in' }, ${q(end - 0.7)});`);
-    add(`tl.set('#video-wrap', { zIndex: 1 }, ${q(end)});`);
   }
 
   // ── INSERT: gráfico de crescimento com selo ──
@@ -243,8 +240,9 @@ function criar({ dur, fps = 30 }) {
   function flash(times, { cor = "rgba(255,243,209,0.5)", dur = 0.22 } = {}) {
     times.forEach((t, i) => {
       const id = `fl-${i}`;
-      layers += `    <div class="flash clip" id="${id}" data-start="${q(Math.max(0, t - 0.06))}" data-duration="${q(dur + 0.12)}" data-track-index="6" style="background:${cor}"></div>\n`;
-      add(`tl.fromTo('#${id}', { opacity: 0.85 }, { opacity: 0, duration: ${dur}, ease: 'power2.out', immediateRender: false }, ${q(t)});`);
+      layers += `    <div class="flash clip" id="${id}" data-start="${q(Math.max(0, t - 0.06))}" data-duration="${q(dur + 0.5)}" data-track-index="6"></div>\n`;
+      add(`tl.fromTo('#${id}', { opacity: 0, xPercent: -18 }, { opacity: 0.9, xPercent: 0, duration: 0.14, ease: 'power2.out', immediateRender: false }, ${q(t - 0.06)});`);
+      add(`tl.to('#${id}', { opacity: 0, xPercent: 16, duration: ${(dur + 0.2).toFixed(2)}, ease: 'power2.in' }, ${q(t + 0.08)});`);
     });
   }
 
@@ -258,6 +256,20 @@ function criar({ dur, fps = 30 }) {
     });
   }
 
+  // ── Fundo desfocado (o próprio vídeo, pré-renderizado) entra atrás dos inserts ──
+  let usaDesfoque = false;
+  function desfoque(ini, fim) {
+    if (!usaDesfoque) { usaDesfoque = true; add(`tl.set('#blur-wrap', { opacity: 0 }, 0);`); }
+    add(`tl.to('#blur-wrap', { opacity: 1, duration: 0.6, ease: 'power2.out' }, ${q(ini)});`);
+    add(`tl.to('#blur-wrap', { opacity: 0, duration: 0.6, ease: 'power2.in' }, ${q(fim - 0.6)});`);
+  }
+
+  // ── Corte com desfoque de movimento: o quadro chega borrado e claro e assenta em 0,22 s ──
+  function corteSuave(times) {
+    add(`tl.set('#video-wrap', { filter: 'blur(0px) brightness(1)' }, 0);`);
+    times.forEach((t) => add(`tl.fromTo('#video-wrap', { filter: 'blur(9px) brightness(1.12)' }, { filter: 'blur(0px) brightness(1)', duration: 0.22, ease: 'power2.out', immediateRender: false }, ${q(t)});`));
+  }
+
   // ── Filtro no vídeo por um trecho (ex.: dessaturar no "cansativo") ──
   function filtro(ini, fim, { de = "grayscale(0) brightness(1) contrast(1)", para = "grayscale(0.9) brightness(0.72) contrast(1.12)" } = {}) {
     add(`tl.set('#video-zoom', { filter: '${de}' }, 0);`);
@@ -269,11 +281,12 @@ function criar({ dur, fps = 30 }) {
   function circuloAbre(id, start, end, { faceX, faceY, raio = 320, escala = 0.78 }) {
     const clipAt = `at ${faceX}px ${faceY}px`;
     add(`tl.set('#video-wrap', { zIndex: 3, transformOrigin: '${faceX}px ${faceY}px' }, ${q(start)});`);
-    add(`tl.fromTo('#${id}-bg', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'expo.inOut' }, ${q(start)});`);
-    add(`tl.fromTo('#video-wrap', { clipPath: 'circle(2300px ${clipAt})', scale: 1 }, { clipPath: 'circle(${raio}px ${clipAt})', scale: ${escala}, duration: 0.8, ease: 'expo.inOut' }, ${q(start)});`);
-    add(`tl.fromTo('#${id}-grid', { backgroundPosition: '0px 0px' }, { backgroundPosition: '0px -120px', duration: ${(end - start).toFixed(2)}, ease: 'none' }, ${q(start)});`);
-    add(`tl.to('#video-wrap', { clipPath: 'circle(2300px ${clipAt})', scale: 1, duration: 0.7, ease: 'expo.inOut' }, ${q(end - 0.7)});`);
-    add(`tl.to('#${id} > *:not(.ins-bg)', { opacity: 0, duration: 0.3, ease: 'power2.in' }, ${q(end - 0.7)});`);
+    desfoque(start, end);
+    add(`tl.fromTo('#${id}-bg', { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.out' }, ${q(start)});`);
+    add(`tl.fromTo('#video-wrap', { clipPath: 'circle(1400px ${clipAt})', scale: 1 }, { clipPath: 'circle(${raio}px ${clipAt})', scale: ${escala}, duration: 0.9, ease: 'power3.inOut' }, ${q(start)});`);
+    add(`tl.to('#video-wrap', { clipPath: 'circle(1400px ${clipAt})', scale: 1, duration: 0.7, ease: 'power3.inOut' }, ${q(end - 0.7)});`);
+    add(`tl.to('#${id} > *:not(.ins-bg)', { opacity: 0, y: -16, filter: 'blur(8px)', duration: 0.35, ease: 'power2.in' }, ${q(end - 0.7)});`);
+    add(`tl.to('#${id}-bg', { opacity: 0, duration: 0.5, ease: 'power2.in' }, ${q(end - 0.55)});`);
     add(`tl.set('#video-wrap', { zIndex: 1 }, ${q(end)});`);
   }
 
@@ -289,8 +302,8 @@ function criar({ dur, fps = 30 }) {
     layers += `    <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="4">
       <div class="ins-bg" id="${id}-bg"><div class="grid" id="${id}-grid"></div><div class="glow"></div><div class="alarm" id="${id}-alarm"></div></div>
       <svg class="ciclo-svg" id="${id}-svg" width="1080" height="1920" viewBox="0 0 1080 1920">${ticks}
-        <circle cx="${faceX}" cy="${faceY}" r="${R}" fill="none" stroke="rgba(245,245,240,0.14)" stroke-width="18"/>
-        <circle id="${id}-arc" cx="${faceX}" cy="${faceY}" r="${R}" fill="none" stroke="#DDB870" stroke-width="18" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" transform="rotate(-90 ${faceX} ${faceY})"/></svg>
+        <circle cx="${faceX}" cy="${faceY}" r="${R}" fill="none" stroke="rgba(245,245,240,0.12)" stroke-width="10"/>
+        <circle id="${id}-arc" cx="${faceX}" cy="${faceY}" r="${R}" fill="none" stroke="#DDB870" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" transform="rotate(-90 ${faceX} ${faceY})"/></svg>
       <div class="ins-kicker">${M(kicker)}</div>
       <div class="ciclo-num" id="${id}-num" style="top:${faceY + R + 52}px"><span class="lab" id="${id}-lab">DIA</span><span class="n" id="${id}-n">1</span></div>
       ${rodape ? `<div class="ins-mes red" style="top:${faceY + R + 225}px">${M(rodape)}</div>` : ""}
@@ -313,8 +326,8 @@ function criar({ dur, fps = 30 }) {
     add(`tl.set('#${id}-n', { color: '#FFFFFF' }, ${q(start)}); tl.set('#${id}-n', { textContent: '0', color: '#FF4B4B' }, ${q(zeroAt)});`);
     add(`tl.set('#${id}-lab', { textContent: 'DIA' }, ${q(start)}); tl.set('#${id}-lab', { textContent: 'DE VOLTA AO' }, ${q(zeroAt)});`);
     add(`tl.fromTo('#${id}-num', { scale: 1.9 }, { scale: 1, duration: 0.6, ease: 'elastic.out(1, 0.45)', immediateRender: false }, ${q(zeroAt)});`);
-    add(`tl.fromTo('#${id}-alarm', { opacity: 0 }, { opacity: 0.85, duration: 0.08, ease: 'none', immediateRender: false }, ${q(zeroAt)}); tl.to('#${id}-alarm', { opacity: 0.35, duration: 0.5, ease: 'power2.out' }, ${q(zeroAt + 0.08)});`);
-    shake([zeroAt], { forca: 22, alvo: `#${id}-svg` });
+    add(`tl.fromTo('#${id}-alarm', { opacity: 0 }, { opacity: 0.6, duration: 0.1, ease: 'none', immediateRender: false }, ${q(zeroAt)}); tl.to('#${id}-alarm', { opacity: 0.22, duration: 0.5, ease: 'power2.out' }, ${q(zeroAt + 0.08)});`);
+    shake([zeroAt], { forca: 12, alvo: `#${id}-svg` });
     if (rodape) maskIn(`#${id} .ins-mes .mi`, zeroAt + 0.08, 0, start);
   }
 
@@ -334,14 +347,14 @@ function criar({ dur, fps = 30 }) {
     hide(`#${id} .et`, "{ opacity: 0, y: 70, rotationY: -60 }", start);
     hide(`#${id} .lit`, "{ opacity: 0 }", start);
     hide(`#${id} .con b`, "{ scaleX: 0 }", start);
-    hide(`#${id} .tx`, "{ color: '#F5F5F0' }", start);
+    hide(`#${id} .tx`, "{ color: 'rgba(245,245,240,0.5)' }", start);
     add(`tl.fromTo('#${id}-ring', { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: 'expo.out', immediateRender: false }, ${q(start + 0.45)});`);
     add(`tl.fromTo('#${id} .et', { opacity: 0, y: 70, rotationY: -60 }, { opacity: 1, y: 0, rotationY: 0, transformPerspective: 900, duration: 0.6, ease: 'expo.out', stagger: 0.1, immediateRender: false }, ${q(start + 0.55)});`);
     etapas.forEach(([, t], i) => {
       if (i) add(`tl.fromTo('#${id}-c${i}', { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: 'power2.inOut', immediateRender: false }, ${q(t - 0.3)});`);
       add(`tl.fromTo('#${id}-l${i}', { opacity: 0 }, { opacity: 1, duration: 0.18, ease: 'none', immediateRender: false }, ${q(t)});`);
-      add(`tl.set('#${id}-t${i}', { color: '#0A0A0F' }, ${q(t)});`);
-      add(`tl.fromTo('#${id}-e${i}', { scale: 1.22 }, { scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.5)', immediateRender: false }, ${q(t)});`);
+      add(`tl.set('#${id}-t${i}', { color: '#FFF3D1' }, ${q(t)});`);
+      add(`tl.fromTo('#${id}-e${i}', { scale: 1.08 }, { scale: 1, duration: 0.6, ease: 'power3.out', immediateRender: false }, ${q(t)});`);
       add(`tl.fromTo('#${id}-s${i}', { xPercent: -200 }, { xPercent: 700, duration: 0.7, ease: 'power2.inOut', immediateRender: false }, ${q(t + 0.1)});`);
     });
     add(`tl.to('#${id} .et', { y: -10, duration: 0.25, ease: 'power2.out', yoyo: true, repeat: 1, stagger: 0.07 }, ${q(etapas[etapas.length - 1][1] + 0.45)});`);
@@ -362,7 +375,8 @@ function criar({ dur, fps = 30 }) {
       </div>
     </div>\n`;
     add(`// insert título`);
-    add(`tl.fromTo('#${id}-bg', { clipPath: 'circle(0% at 50% 45%)' }, { clipPath: 'circle(150% at 50% 45%)', duration: 0.55, ease: 'power4.inOut' }, ${q(start)});`);
+    desfoque(start, end);
+    add(`tl.fromTo('#${id}-bg', { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.out' }, ${q(start)});`);
     add(`tl.fromTo('#${id}-rays', { rotation: 0 }, { rotation: 50, duration: ${(end - start).toFixed(2)}, ease: 'none' }, ${q(start)});`);
     add(`tl.fromTo('#${id}-wrap', { scale: 1 }, { scale: 1.07, duration: ${(end - start - 0.35).toFixed(2)}, ease: 'none' }, ${q(start)});`);
     if (kicker) maskIn(`#${id} .tt-k .mi`, start + 0.2, 0, start);
@@ -370,17 +384,17 @@ function criar({ dur, fps = 30 }) {
     hide(`#${id} .bd`, "{ opacity: 0 }", start);
     linhas.forEach(([, t], i) => {
       const last = i === n - 1;
-      add(`tl.fromTo('#${id}-l${i}', { opacity: 0, scale: ${last ? 3.2 : 2.3}, y: -30 }, { opacity: 1, scale: 1, y: 0, duration: ${last ? 0.5 : 0.36}, ease: '${last ? "back.out(1.7)" : "expo.out"}', immediateRender: false }, ${q(t - 0.04)});`);
+      add(`tl.fromTo('#${id}-l${i}', { opacity: 0, scale: ${last ? 1.5 : 1.25}, filter: 'blur(22px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: ${last ? 0.7 : 0.5}, ease: 'expo.out', immediateRender: false }, ${q(t - 0.04)});`);
       if (last) {
         shimmer(`#${id}-x${i}`, t + 0.3);
-        shake([t + 0.05], { forca: 20, alvo: `#${id}-x${i}` });
+        shake([t + 0.08], { forca: 8, alvo: `#${id}-x${i}` });
         for (let k = 0; k < 16; k++) {
           const a = (k / 16) * 2 * Math.PI, d = 330 + (k % 3) * 80;
           add(`tl.fromTo('#${id}-p${k}', { x: 0, y: 0, opacity: 1, scale: 1 }, { x: ${(Math.cos(a) * d).toFixed(0)}, y: ${(Math.sin(a) * d * 0.7).toFixed(0)}, opacity: 0, scale: 0.3, duration: 0.8, ease: 'expo.out', immediateRender: false }, ${q(t + 0.02)});`);
         }
       }
     });
-    add(`tl.to('#${id}-wrap', { scale: 2.6, opacity: 0, duration: 0.35, ease: 'power3.in' }, ${q(end - 0.35)});`);
+    add(`tl.to('#${id}-wrap', { scale: 1.8, opacity: 0, filter: 'blur(16px)', duration: 0.4, ease: 'power3.in' }, ${q(end - 0.4)});`);
     add(`tl.to('#${id}-bg', { opacity: 0, duration: 0.3, ease: 'power2.in' }, ${q(end - 0.3)});`);
   }
 
@@ -418,7 +432,7 @@ ${css}
     <div id="video-wrap"><div id="video-zoom">
       <video id="bg-video" src="input-video.mp4" muted playsinline data-start="0" data-duration="${DUR}" data-track-index="1"></video>
     </div></div>
-    <audio id="source-audio" src="input-video.mp4" data-start="0" data-duration="${DUR}" data-track-index="10" data-volume="1"></audio>
+${usaDesfoque ? `    <div id="blur-wrap"><video id="blur-video" src="input-blur.mp4" muted playsinline data-start="0" data-duration="${DUR}" data-track-index="11"></video></div>\n` : ""}    <audio id="source-audio" src="input-video.mp4" data-start="0" data-duration="${DUR}" data-track-index="10" data-volume="1"></audio>
 ${layers}
     <script src="vendor/gsap.min.js"></script>
     <script>
@@ -434,11 +448,15 @@ ${js}
 </html>
 `;
     fs.mkdirSync(path.dirname(outFile), { recursive: true });
+    const blur = path.join(path.dirname(outFile), "input-blur.mp4");
+    if (usaDesfoque && !fs.existsSync(blur))
+      require("child_process").execFileSync("ffmpeg", ["-v", "error", "-y", "-i", path.join(path.dirname(outFile), "input-video.mp4"), "-an", "-vf",
+        "scale=270:480,gblur=sigma=9,eq=brightness=-0.06:saturation=1.15,scale=1080:1920:flags=bicubic,setsar=1", "-r", "30", "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-g", "30", "-keyint_min", "30", "-pix_fmt", "yuv420p", blur], { stdio: "inherit" });
     fs.writeFileSync(outFile, html, "utf8");
     console.log("composição gerada:", outFile);
   }
 
-  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, cardContraste, shake, filtro, legenda, legendaDinamica, flash, salvar };
+  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, cardContraste, shake, filtro, corteSuave, legenda, legendaDinamica, flash, salvar };
 }
 
 module.exports = { criar };
