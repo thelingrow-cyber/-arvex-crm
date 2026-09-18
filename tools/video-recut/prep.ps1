@@ -1,4 +1,4 @@
-# video-recut / prep — corta, trata a cor, transcreve (Groq) e gera a legenda.
+﻿# video-recut / prep — corta, trata a cor, transcreve (Groq) e gera a legenda.
 # uso: .\tools\video-recut\prep.ps1 -Video "C:\...\IMG_1234.MOV" -Nome "2026-09-meu-video" [-Inicio 16.1] [-Fim 59.2] [-SemCor]
 param(
   [Parameter(Mandatory)] [string]$Video,

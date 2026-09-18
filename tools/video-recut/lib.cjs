@@ -38,10 +38,14 @@ function criar({ dur, fps = 30 }) {
     const panel = `#${id}-panel`;
     add(`// ${id}`);
     add(`tl.fromTo('${panel}', { clipPath: 'inset(0% 50% 0% 50% round 30px)', y: -18 }, { clipPath: 'inset(0% 0% 0% 0% round 30px)', y: 0, duration: 0.6, ease: 'expo.out' }, ${q(start)});`);
+    // entrada 3D (tomba de cima) + respiração leve enquanto está na tela
+    add(`tl.fromTo('${panel}', { rotationX: -38, scale: 0.9, transformPerspective: 1100, transformOrigin: '50% 0%' }, { rotationX: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' }, ${q(start)});`);
+    const vive = end - start - 1.2;
+    if (vive > 1.2) add(`tl.to('${panel}', { y: -7, rotation: 0.35, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: ${Math.floor(vive / 0.9) - 1} }, ${q(start + 0.75)});`);
     maskIn(`${panel} .kicker .mi`, start + 0.12, 0, start);
     sheen(`#${id}-sheen`, start + 0.45);
     extra(start);
-    if (end < DUR) add(`tl.to('${panel}', { clipPath: 'inset(0% 50% 0% 50% round 30px)', opacity: 0, duration: 0.38, ease: 'power3.in' }, ${q(end - 0.38)});`);
+    if (end < DUR) add(`tl.to('${panel}', { clipPath: 'inset(0% 50% 0% 50% round 30px)', opacity: 0, y: -40, rotationX: 30, duration: 0.38, ease: 'power3.in' }, ${q(end - 0.38)});`);
   }
 
   // card padrão kicker + título (goldText opcional com brilho em goldAt)
@@ -244,6 +248,161 @@ function criar({ dur, fps = 30 }) {
     });
   }
 
+  // ── Tremida de câmera (impacto). alvo padrão = vídeo; em insert passar o seletor do insert ──
+  function shake(times, { forca = 16, alvo = "#video-zoom" } = {}) {
+    times.forEach((t) => {
+      const f = forca;
+      const kf = [[-f, f * 0.6, -0.9], [f * 0.8, -f * 0.5, 0.7], [-f * 0.5, f * 0.35, -0.4], [f * 0.25, -f * 0.15, 0.2], [0, 0, 0]]
+        .map(([x, y, r]) => `{ x: ${x.toFixed(1)}, y: ${y.toFixed(1)}, rotation: ${r}, duration: 0.06 }`).join(", ");
+      add(`tl.to('${alvo}', { keyframes: [${kf}], ease: 'none' }, ${q(t)});`);
+    });
+  }
+
+  // ── Filtro no vídeo por um trecho (ex.: dessaturar no "cansativo") ──
+  function filtro(ini, fim, { de = "grayscale(0) brightness(1) contrast(1)", para = "grayscale(0.9) brightness(0.72) contrast(1.12)" } = {}) {
+    add(`tl.set('#video-zoom', { filter: '${de}' }, 0);`);
+    add(`tl.to('#video-zoom', { filter: '${para}', duration: 0.3, ease: 'power2.out' }, ${q(ini)});`);
+    add(`tl.to('#video-zoom', { filter: '${de}', duration: 0.25, ease: 'power2.in' }, ${q(fim - 0.25)});`);
+  }
+
+  // abre a tela navy e encolhe a pessoa num círculo no rosto (base dos inserts de círculo)
+  function circuloAbre(id, start, end, { faceX, faceY, raio = 320, escala = 0.78 }) {
+    const clipAt = `at ${faceX}px ${faceY}px`;
+    add(`tl.set('#video-wrap', { zIndex: 3, transformOrigin: '${faceX}px ${faceY}px' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-bg', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'expo.inOut' }, ${q(start)});`);
+    add(`tl.fromTo('#video-wrap', { clipPath: 'circle(2300px ${clipAt})', scale: 1 }, { clipPath: 'circle(${raio}px ${clipAt})', scale: ${escala}, duration: 0.8, ease: 'expo.inOut' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-grid', { backgroundPosition: '0px 0px' }, { backgroundPosition: '0px -120px', duration: ${(end - start).toFixed(2)}, ease: 'none' }, ${q(start)});`);
+    add(`tl.to('#video-wrap', { clipPath: 'circle(2300px ${clipAt})', scale: 1, duration: 0.7, ease: 'expo.inOut' }, ${q(end - 0.7)});`);
+    add(`tl.to('#${id} > *:not(.ins-bg)', { opacity: 0, duration: 0.3, ease: 'power2.in' }, ${q(end - 0.7)});`);
+    add(`tl.set('#video-wrap', { zIndex: 1 }, ${q(end)});`);
+  }
+
+  // ── INSERT: ciclo do mês — anel enche com contador DIA 1→N e volta a zero (vermelho + alarme) ──
+  function insertCiclo({ start, end, kicker, ate = 30, zeroAt, rodape, faceX = 540, faceY = 560 }) {
+    const id = "ins-ciclo";
+    const R = 292, C = 2 * Math.PI * R;
+    const ticks = Array.from({ length: ate }, (_, i) => {
+      const a = (i / ate) * 2 * Math.PI - Math.PI / 2;
+      const p = (r) => `${(faceX + r * Math.cos(a)).toFixed(1)},${(faceY + r * Math.sin(a)).toFixed(1)}`;
+      return `<polyline points="${p(R + 22)} ${p(R + 38)}" stroke="rgba(241,213,148,0.45)" stroke-width="4" stroke-linecap="round"/>`;
+    }).join("");
+    layers += `    <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="4">
+      <div class="ins-bg" id="${id}-bg"><div class="grid" id="${id}-grid"></div><div class="glow"></div><div class="alarm" id="${id}-alarm"></div></div>
+      <svg class="ciclo-svg" id="${id}-svg" width="1080" height="1920" viewBox="0 0 1080 1920">${ticks}
+        <circle cx="${faceX}" cy="${faceY}" r="${R}" fill="none" stroke="rgba(245,245,240,0.14)" stroke-width="18"/>
+        <circle id="${id}-arc" cx="${faceX}" cy="${faceY}" r="${R}" fill="none" stroke="#DDB870" stroke-width="18" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" transform="rotate(-90 ${faceX} ${faceY})"/></svg>
+      <div class="ins-kicker">${M(kicker)}</div>
+      <div class="ciclo-num" id="${id}-num" style="top:${faceY + R + 52}px"><span class="lab" id="${id}-lab">DIA</span><span class="n" id="${id}-n">1</span></div>
+      ${rodape ? `<div class="ins-mes red" style="top:${faceY + R + 225}px">${M(rodape)}</div>` : ""}
+    </div>\n`;
+    add(`// insert ciclo`);
+    circuloAbre(id, start, end, { faceX, faceY });
+    maskIn(`#${id} .ins-kicker .mi`, start + 0.35, 0, start);
+    hide(`#${id}-num`, "{ opacity: 0, y: 40 }", start);
+    hide(`#${id}-alarm`, "{ opacity: 0 }", start);
+    add(`tl.fromTo('#${id}-num', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out', immediateRender: false }, ${q(start + 0.45)});`);
+    const a0 = start + 0.6, a1 = zeroAt - 0.12;
+    add(`tl.fromTo('#${id}-arc', { strokeDashoffset: ${C.toFixed(1)} }, { strokeDashoffset: ${(C * 0.015).toFixed(1)}, duration: ${(a1 - a0).toFixed(2)}, ease: 'power1.in', immediateRender: false }, ${q(a0)});`);
+    for (let k = 1; k <= ate; k++) {
+      const t = a0 + ((k - 1) / (ate - 1)) ** 0.8 * (a1 - a0);
+      add(`tl.set('#${id}-n', { textContent: '${k}' }, ${q(t)});`);
+    }
+    // volta a zero
+    add(`tl.set('#${id}-arc', { stroke: '#DDB870' }, ${q(start)}); tl.set('#${id}-arc', { stroke: '#FF3B3B' }, ${q(zeroAt - 0.06)});`);
+    add(`tl.to('#${id}-arc', { strokeDashoffset: ${C.toFixed(1)}, duration: 0.32, ease: 'expo.out' }, ${q(zeroAt - 0.06)});`);
+    add(`tl.set('#${id}-n', { color: '#FFFFFF' }, ${q(start)}); tl.set('#${id}-n', { textContent: '0', color: '#FF4B4B' }, ${q(zeroAt)});`);
+    add(`tl.set('#${id}-lab', { textContent: 'DIA' }, ${q(start)}); tl.set('#${id}-lab', { textContent: 'DE VOLTA AO' }, ${q(zeroAt)});`);
+    add(`tl.fromTo('#${id}-num', { scale: 1.9 }, { scale: 1, duration: 0.6, ease: 'elastic.out(1, 0.45)', immediateRender: false }, ${q(zeroAt)});`);
+    add(`tl.fromTo('#${id}-alarm', { opacity: 0 }, { opacity: 0.85, duration: 0.08, ease: 'none', immediateRender: false }, ${q(zeroAt)}); tl.to('#${id}-alarm', { opacity: 0.35, duration: 0.5, ease: 'power2.out' }, ${q(zeroAt + 0.08)});`);
+    shake([zeroAt], { forca: 22, alvo: `#${id}-svg` });
+    if (rodape) maskIn(`#${id} .ins-mes .mi`, zeroAt + 0.08, 0, start);
+  }
+
+  // ── INSERT: etapas em fila (ex.: ATRAIR → DESEJO → VENDAS); pessoa em círculo menor no topo ──
+  function insertEtapas({ start, end, kicker, etapas, faceX = 540, faceY = 560 }) {
+    const id = "ins-etapas";
+    layers += `    <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="4">
+      <div class="ins-bg" id="${id}-bg"><div class="grid" id="${id}-grid"></div><div class="glow"></div></div>
+      <div class="ring" id="${id}-ring" style="left:${faceX - 222}px;top:${faceY - 222}px;width:444px;height:444px"></div>
+      <div class="ins-kicker">${M(kicker)}</div>
+      <div class="etapas">${etapas.map(([t], i) => `${i ? `<div class="con"><b id="${id}-c${i}"></b></div>` : ""}<div class="et" id="${id}-e${i}"><i class="lit" id="${id}-l${i}"></i><span class="num">0${i + 1}</span><span class="tx" id="${id}-t${i}">${t}</span><i class="et-sheen" id="${id}-s${i}"></i></div>`).join("")}</div>
+    </div>\n`;
+    add(`// insert etapas`);
+    circuloAbre(id, start, end, { faceX, faceY, raio: 300, escala: 0.66 });
+    maskIn(`#${id} .ins-kicker .mi`, start + 0.35, 0, start);
+    hide(`#${id}-ring`, "{ scale: 0.6, opacity: 0 }", start);
+    hide(`#${id} .et`, "{ opacity: 0, y: 70, rotationY: -60 }", start);
+    hide(`#${id} .lit`, "{ opacity: 0 }", start);
+    hide(`#${id} .con b`, "{ scaleX: 0 }", start);
+    hide(`#${id} .tx`, "{ color: '#F5F5F0' }", start);
+    add(`tl.fromTo('#${id}-ring', { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: 'expo.out', immediateRender: false }, ${q(start + 0.45)});`);
+    add(`tl.fromTo('#${id} .et', { opacity: 0, y: 70, rotationY: -60 }, { opacity: 1, y: 0, rotationY: 0, transformPerspective: 900, duration: 0.6, ease: 'expo.out', stagger: 0.1, immediateRender: false }, ${q(start + 0.55)});`);
+    etapas.forEach(([, t], i) => {
+      if (i) add(`tl.fromTo('#${id}-c${i}', { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: 'power2.inOut', immediateRender: false }, ${q(t - 0.3)});`);
+      add(`tl.fromTo('#${id}-l${i}', { opacity: 0 }, { opacity: 1, duration: 0.18, ease: 'none', immediateRender: false }, ${q(t)});`);
+      add(`tl.set('#${id}-t${i}', { color: '#0A0A0F' }, ${q(t)});`);
+      add(`tl.fromTo('#${id}-e${i}', { scale: 1.22 }, { scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.5)', immediateRender: false }, ${q(t)});`);
+      add(`tl.fromTo('#${id}-s${i}', { xPercent: -200 }, { xPercent: 700, duration: 0.7, ease: 'power2.inOut', immediateRender: false }, ${q(t + 0.1)});`);
+    });
+    add(`tl.to('#${id} .et', { y: -10, duration: 0.25, ease: 'power2.out', yoyo: true, repeat: 1, stagger: 0.07 }, ${q(etapas[etapas.length - 1][1] + 0.45)});`);
+  }
+
+  // ── INSERT: título em tela cheia (nome do evento) — linhas batem uma a uma, última dourada com estouro ──
+  function insertTitulo({ start, end, kicker, linhas }) {
+    const id = "ins-titulo";
+    const n = linhas.length;
+    const dots = Array.from({ length: 16 }, (_, i) => `<i class="bd" id="${id}-p${i}"></i>`).join("");
+    layers += `    <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="5">
+      <div class="ins-bg" id="${id}-bg"><div class="rays" id="${id}-rays"></div><div class="glow tt"></div>
+        <div class="tt-wrap" id="${id}-wrap">
+          ${kicker ? `<div class="tt-k">${M(kicker)}</div>` : ""}
+          ${linhas.map(([t], i) => `<div class="tt-l${i === n - 1 ? " last" : ""}" id="${id}-l${i}"><span class="${i === n - 1 ? "gold-fill" : ""}" id="${id}-x${i}">${t}</span></div>`).join("")}
+          <div class="burst" id="${id}-burst">${dots}</div>
+        </div>
+      </div>
+    </div>\n`;
+    add(`// insert título`);
+    add(`tl.fromTo('#${id}-bg', { clipPath: 'circle(0% at 50% 45%)' }, { clipPath: 'circle(150% at 50% 45%)', duration: 0.55, ease: 'power4.inOut' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-rays', { rotation: 0 }, { rotation: 50, duration: ${(end - start).toFixed(2)}, ease: 'none' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-wrap', { scale: 1 }, { scale: 1.07, duration: ${(end - start - 0.35).toFixed(2)}, ease: 'none' }, ${q(start)});`);
+    if (kicker) maskIn(`#${id} .tt-k .mi`, start + 0.2, 0, start);
+    hide(`#${id} .tt-l`, "{ opacity: 0 }", start);
+    hide(`#${id} .bd`, "{ opacity: 0 }", start);
+    linhas.forEach(([, t], i) => {
+      const last = i === n - 1;
+      add(`tl.fromTo('#${id}-l${i}', { opacity: 0, scale: ${last ? 3.2 : 2.3}, y: -30 }, { opacity: 1, scale: 1, y: 0, duration: ${last ? 0.5 : 0.36}, ease: '${last ? "back.out(1.7)" : "expo.out"}', immediateRender: false }, ${q(t - 0.04)});`);
+      if (last) {
+        shimmer(`#${id}-x${i}`, t + 0.3);
+        shake([t + 0.05], { forca: 20, alvo: `#${id}-x${i}` });
+        for (let k = 0; k < 16; k++) {
+          const a = (k / 16) * 2 * Math.PI, d = 330 + (k % 3) * 80;
+          add(`tl.fromTo('#${id}-p${k}', { x: 0, y: 0, opacity: 1, scale: 1 }, { x: ${(Math.cos(a) * d).toFixed(0)}, y: ${(Math.sin(a) * d * 0.7).toFixed(0)}, opacity: 0, scale: 0.3, duration: 0.8, ease: 'expo.out', immediateRender: false }, ${q(t + 0.02)});`);
+        }
+      }
+    });
+    add(`tl.to('#${id}-wrap', { scale: 2.6, opacity: 0, duration: 0.35, ease: 'power3.in' }, ${q(end - 0.35)});`);
+    add(`tl.to('#${id}-bg', { opacity: 0, duration: 0.3, ease: 'power2.in' }, ${q(end - 0.3)});`);
+  }
+
+  // ── card de contraste: "NÃO É SOBRE X" (risca) → vira em 3D → "É SOBRE Y" dourado ──
+  function cardContraste(id, start, end, { k1, t1, t1At, riscoAt, virarAt, k2, t2, t2At }) {
+    card(id, start, end,
+      `<div class="flip"><div class="face" id="${id}-a"><div class="kicker">${M(k1)}</div><div class="title"><span class="riscavel" id="${id}-t1">${M(t1)}<i class="risco" id="${id}-risco"></i></span></div></div>
+      <div class="face" id="${id}-b"><div class="kicker">${k2}</div><div class="title"><span class="gold-fill" id="${id}-t2">${t2}</span></div></div></div>`,
+      (s) => {
+        maskIn(`#${id}-t1 .mi`, t1At ?? s + 0.2, 0, s);
+        hide(`#${id}-risco`, "{ scaleX: 0, rotation: -3 }", s);
+        hide(`#${id}-b`, "{ rotationX: 90, opacity: 0 }", s);
+        hide(`#${id}-a`, "{ rotationX: 0, opacity: 1 }", s);
+        add(`tl.fromTo('#${id}-risco', { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: 'expo.out', immediateRender: false }, ${q(riscoAt)});`);
+        add(`tl.to('#${id}-t1', { opacity: 0.55, duration: 0.2 }, ${q(riscoAt)});`);
+        add(`tl.to('#${id}-a', { rotationX: -90, opacity: 0, transformPerspective: 700, transformOrigin: '50% 0%', duration: 0.28, ease: 'power2.in' }, ${q(virarAt)});`);
+        add(`tl.fromTo('#${id}-b', { rotationX: 90, opacity: 0 }, { rotationX: 0, opacity: 1, transformPerspective: 700, transformOrigin: '50% 100%', duration: 0.5, ease: 'back.out(1.6)', immediateRender: false }, ${q(virarAt + 0.2)});`);
+        shimmer(`#${id}-t2`, t2At);
+        add(`tl.fromTo('#${id}-t2', { scale: 1.3 }, { scale: 1, duration: 0.45, ease: 'elastic.out(1, 0.5)', immediateRender: false }, ${q(t2At)});`);
+      });
+  }
+
   function salvar(outFile) {
     const css = fs.readFileSync(path.join(__dirname, "estilo.css"), "utf8");
     const html = `<!doctype html>
@@ -279,7 +438,7 @@ ${js}
     console.log("composição gerada:", outFile);
   }
 
-  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, legenda, legendaDinamica, flash, salvar };
+  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, cardContraste, shake, filtro, legenda, legendaDinamica, flash, salvar };
 }
 
 module.exports = { criar };

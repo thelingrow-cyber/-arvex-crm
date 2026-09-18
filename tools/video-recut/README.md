@@ -55,6 +55,16 @@ Quando o áudio é uma narração à parte e os takes são B-roll (ex.: `videos/
 | `legenda(groups)` | Legenda Inter 900 com contorno, palavra falada em dourado com "pulo" |
 | `legendaDinamica(groups, {destaques})` | Cada palavra entra quando é falada; 4 entradas alternadas (pop / giro 3D / deslize / impacto), linha inclinada, palavras de `destaques` maiores com brilho e sublinhado dourado |
 | `flash(times)` | Flash curto de luz no corte (impacto sem SFX) |
+| `insertCiclo({start, end, kicker, ate, zeroAt, rodape})` | Pessoa no círculo, anel enche com contador DIA 1→N e volta a zero (vermelho, alarme, tremida) |
+| `insertEtapas({start, end, kicker, etapas:[[texto, t]]})` | Círculo menor no rosto + 3 etapas em fila que acendem em dourado no tempo falado |
+| `insertTitulo({start, end, kicker, linhas:[[texto, t]]})` | Título em tela cheia com raios girando; linhas batem uma a uma, última dourada com estouro de partículas e zoom-through na saída |
+| `cardContraste(id, ini, fim, {k1, t1, riscoAt, virarAt, k2, t2, t2At})` | "NÃO É SOBRE X" risca em vermelho → vira em 3D → "É SOBRE Y" dourado |
+| `shake(times, {forca, alvo})` · `filtro(ini, fim)` | Tremida de câmera no impacto · dessaturar/escurecer o vídeo num trecho |
+
+Cards (todos) entram tombando em 3D e "respiram" enquanto estão na tela (desde 2026-09-18).
+**Jump cut + trilha/SFX:** ver `videos/2026-09-cindy-captacao-desafio/` — `cortar.cjs` (pausas via `silencedetect`, porque o Groq estica o fim das palavras)
+e `build.cjs --mix` (trilha Am–F–C–G + kick gerada, whoosh/hit/riser, ducking) roda depois do render.
+⚠️ No PowerShell 5.1, os `.ps1` precisam estar em UTF-8 **com BOM** (sem BOM os acentos quebram o parse).
 
 Estilo em `estilo.css` (sistema visual Cindy: Inter 900, navy `#14172E`, dourado `#C9963F/#DDB870`, CTA `#25D366`).
 Para outro cliente/marca: trocar as cores em `:root` e nos gradientes.

@@ -1,4 +1,4 @@
-# video-recut / render — gera a composição, faz lint + prévias ou render final.
+﻿# video-recut / render — gera a composição, faz lint + prévias ou render final.
 # uso:
 #   .\tools\video-recut\render.ps1 -Nome "2026-09-meu-video" -Previa -Em "3.9,8.9,13.6"   # só frames (segundos, rápido)
 #   .\tools\video-recut\render.ps1 -Nome "2026-09-meu-video"                              # render final (~8 min / 43s)
