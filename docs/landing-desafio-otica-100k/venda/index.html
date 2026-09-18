@@ -167,37 +167,19 @@
       background:rgba(255,255,255,0.6); border-radius:100px; filter:blur(2px);
     }
 
-    /* Provas flutuantes */
-    .float-proofs { display:none; }
-    @media (min-width:901px) {
-      .float-proofs {
-        display:block; position:absolute;
-        top:0; left:0; right:0; bottom:0;
-        pointer-events:none; z-index:10;
-      }
-      .float-proof {
-        position:absolute;
-        background:var(--glass); backdrop-filter:blur(20px);
-        border:1px solid var(--border); border-radius:14px;
-        overflow:hidden; width:200px;
-        box-shadow:0 12px 40px rgba(0,0,0,0.6);
-      }
-      .float-proof:nth-child(1) { top:24px; left:12px; animation:gentle-float 5s ease-in-out 0s infinite; }
-      .float-proof:nth-child(2) { top:45%; right:12px; animation:gentle-float 5s ease-in-out 1.6s infinite; }
-      .float-proof:nth-child(3) { bottom:24px; left:60px; animation:gentle-float 5s ease-in-out 3.2s infinite; }
-      /* texto do hero começa depois dos cards da esquerda (260px) */
-      .hero-content { padding-left:max(48px, calc(276px - (100vw - 1200px) / 2)); }
-      @keyframes gentle-float {
-        0%  { transform:translateY(0); }
-        50% { transform:translateY(-8px); }
-        100%{ transform:translateY(0); }
-      }
+    /* Provas — grade fixa dentro de "O cenário" */
+    .float-proofs { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
+    .float-proof {
+      background:var(--glass); backdrop-filter:blur(20px);
+      border:1px solid var(--border); border-radius:14px;
+      overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);
     }
-    .float-proof-img { width:100%; height:140px; object-fit:cover; object-position:top; display:block; }
+    @media (max-width:900px) { .float-proofs { grid-template-columns:1fr; max-width:420px; margin-left:auto; margin-right:auto; } }
+    .float-proof-img { width:100%; height:260px; object-fit:cover; object-position:top; display:block; }
     .float-proof-footer { padding:10px 14px; display:flex; align-items:center; gap:8px; }
     .float-proof-dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); flex-shrink:0; }
-    .float-proof-name { font-size:11px; font-weight:700; color:var(--gold-lt); }
-    .float-proof-result { font-size:11px; color:var(--muted); }
+    .float-proof-name { font-size:13px; font-weight:700; color:var(--gold-lt); }
+    .float-proof-result { font-size:13px; color:var(--muted); }
 
     /* ── SEÇÃO BASE ── */
     .section { padding: 80px 0; }
@@ -695,7 +677,6 @@
       .pricing-layout { grid-template-columns:1fr; }
       .pricing-anchor { display:none; }
       .pricing-players { display:none; }
-      .float-proofs { display:none !important; }
 
       /* URGÊNCIA */
       .urgency-bar { padding:14px 20px; flex-direction:column; gap:10px; text-align:center; }
@@ -728,20 +709,6 @@
 <section class="hero">
   <img class="hero-photo" src="https://cindyb.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-09-at-13.16.49.jpeg" alt="Cindy Batista" />
   <div class="hero-overlay"></div>
-  <div class="float-proofs">
-    <div class="float-proof">
-      <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png" alt="Michaella" />
-      <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Michaella</div><div class="float-proof-result">+R$30k no faturamento</div></div></div>
-    </div>
-    <div class="float-proof">
-      <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-galeria.jpg" alt="Galeria de Óculos" />
-      <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Galeria de Óculos</div><div class="float-proof-result">De 16k → 63k em outubro</div></div></div>
-    </div>
-    <div class="float-proof">
-      <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-prycia.jpg" alt="Prycia" />
-      <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Prycia</div><div class="float-proof-result">15k só na inauguração</div></div></div>
-    </div>
-  </div>
   <div class="hero-content">
     <div class="hero-badge">✦ Desafio Ótica +100K · 22, 23 e 24 de Setembro</div>
     <h1 class="hero-headline">Crie em 3 dias comigo a estratégia que vai colocar a sua loja na <em>rota dos +100K</em> por mês.</h1>
@@ -766,6 +733,20 @@
       <div class="why-card reveal"><p class="why-card-num">02 — Estratégia</p><h3 class="why-card-title">Oferta certa, na hora certa</h3><p class="why-card-desc">Monte suas campanhas e saiba exatamente o que ofertar pra conduzir o cliente até a compra.</p></div>
       <div class="why-card reveal"><p class="why-card-num">03 — Execução</p><h3 class="why-card-title">Ação dentro e fora da loja</h3><p class="why-card-desc">Sem achismo, sem depender de agência. O que fazer no digital e dentro da ótica pra gerar movimento.</p></div>
     </div>
+      <div class="float-proofs">
+        <div class="float-proof">
+          <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-michaella.png" alt="Michaella" />
+          <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Michaella</div><div class="float-proof-result">+R$30k no faturamento</div></div></div>
+        </div>
+        <div class="float-proof">
+          <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-galeria.jpg" alt="Galeria de Óculos" />
+          <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Galeria de Óculos</div><div class="float-proof-result">De 16k → 63k em outubro</div></div></div>
+        </div>
+        <div class="float-proof">
+          <img class="float-proof-img" src="https://cindyb.com.br/wp-content/uploads/2026/05/proof-prycia.jpg" alt="Prycia" />
+          <div class="float-proof-footer"><div class="float-proof-dot"></div><div><div class="float-proof-name">Prycia</div><div class="float-proof-result">15k só na inauguração</div></div></div>
+        </div>
+      </div>
   </div>
 </section>
 
