@@ -21,7 +21,7 @@ const SFX = [
 ];
 const RISER = { arq: "riser.mp3", fimEm: 24.55, dur: 2.2, vol: 0.35 }; // últimos 2,2 s do riser terminam no título
 // trilha: Mixkit "Driving Ambition" (Ahjay Stelino, Mixkit Free License) — pico da faixa (33 s) cai no título
-const MUSICA = { arq: path.join(__dirname, "../../assets/musica/mixkit-32.mp3"), inicio: 8.45, vol: 0.32 };
+const MUSICA = { arq: path.join(__dirname, "../../assets/musica/mixkit-32.mp3"), inicio: 8.45, vol: 0.11 };
 const MUDO = [12.05, 13.4]; // trilha some no "cansativo"
 const RESPIRO = [23.7, 24.55]; // trilha recua sob o riser e volta cheia no título
 
@@ -91,7 +91,7 @@ function mix() {
   const ins = ["-i", "output.mp4", "-ss", String(MUSICA.inicio), "-i", MUSICA.arq];
   let fc = "[0:a]asplit[vk][vsc];" +
     `[1:a]atrim=0:${DUR},asetpts=PTS-STARTPTS,aresample=48000,volume=${MUSICA.vol},volume='${env}':eval=frame,afade=t=in:d=0.8,afade=t=out:st=${(DUR - 1.6).toFixed(2)}:d=1.6[mu];` +
-    "[mu][vsc]sidechaincompress=threshold=0.035:ratio=4:attack=20:release=450[md];";
+    "[mu][vsc]sidechaincompress=threshold=0.02:ratio=8:attack=15:release=500[md];";
   const fx = [];
   const addFx = (file, t, vol, extra = "") => {
     ins.push("-i", path.join(SFX_DIR, file));
