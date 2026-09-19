@@ -86,6 +86,37 @@ Para outro cliente/marca: trocar as cores em `:root` e nos gradientes.
 - **Prints/fotos de baixa qualidade não entram como insert** — preferir motion criado.
 - **`embedded-captions` (legenda atrás da pessoa) é inviável aqui** — gera GBs de frames e horas de CPU (Ryzen 3500U, 6 GB RAM).
 
+## Modo camadas — fundo atrás da pessoa (sem HyperFrames)
+
+Aprovado e postado em 2026-09-19 (`videos/2026-09-plano-vs-prova/`, referência @bitterbuilds). Edição "limpa":
+talking-head + **faixa de cenas rolando de lado atrás da pessoa, 50% transparente** + B-roll literal em tela cheia +
+card pequeno com foto + legenda branca simples. Python + ffmpeg + PIL; recorte com torchvision (pesos oficiais do PyTorch).
+
+```powershell
+# 1. criar videos\<nome>\camadas.json (copiar o do plano-vs-prova e trocar arquivos/tempos)
+# 2. rodar tudo (transcrever → recorte → fundo → card → legenda → compor → previa)
+python tools\video-recut\camadas\camadas.py 2026-10-meu-video
+# refazer só uma parte (transcrição e recorte ficam em cache em work\<nome>\)
+python tools\video-recut\camadas\camadas.py 2026-10-meu-video legenda compor previa
+```
+
+| Chave do `camadas.json` | O que faz |
+|---|---|
+| `principal`, `saida`, `pasta` | vídeo falado; saída e busca de arquivos em `pasta` (padrão Downloads), depois `videos\<nome>\` e `work\<nome>\` |
+| `cor` | filtro ffmpeg no vídeo principal (padrão aprovado = menos luz: `curves` descendo realces) |
+| `transcricao.prompt/remover/trocar` | vocabulário p/ o Whisper; palavras a tirar ou trocar na legenda |
+| `fundo.inicio/fim/opacidade/cenas` | janela do fundo (s), transparência e as cenas `[arquivo, início, duração do loop]` |
+| `apoio` | cenas em tela cheia `[arquivo, início no arquivo, entra em, duração, filtro extra]` |
+| `card` | foto + nome, entra/sai (s), `y`, `escala` — pequeno, NUNCA tela cheia (pedido do Vitor) |
+| `musica` | `null` = sem trilha (padrão: o Vitor põe a música no app) |
+
+**Custos e pegadinhas (todas já resolvidas no código):**
+- Recorte ≈ **1 quadro/s** → só o trecho do fundo é recortado (~9 s de vídeo = ~5 min). Borda do cabelo sai suave; com o fundo semitransparente não aparece.
+- **RAM 6 GB:** o blend em `gbrp` do vídeo inteiro foi morto por falta de memória → só o trecho do fundo passa por ele, com `-threads 2`. Fechar Chrome/ChatGPT antes.
+- **`blend` com `T` retorna NaN** nesta build do ffmpeg → a transparência usa `N/30`.
+- RobustVideoMatting (`torch.hub`) recorta melhor, mas executa código baixado → bloqueado pelo classificador. Não tentar de novo.
+- Fundo some quando entra a cena de apoio seguinte: na volta à tela grande fica só a pessoa (pedido do Vitor).
+
 ## Economia de tokens (para o agente)
 
 Não reler as SKILL.md do HyperFrames (este README cobre o necessário). Não fazer versão "simples" antes: ir direto no nível
