@@ -64,7 +64,7 @@ function criar({ dur, fps = 30 }) {
     const all = extra ? [...itens, extra] : itens;
     card(id, start, end,
       `<div class="row-top"><div class="kicker">${M(kicker)}</div><div class="count" id="${id}-count">01/${String(n).padStart(2, "0")}</div></div>
-      <div class="slot">${all.map(([t], i) => `<div class="item${i === n ? " gold" : ""}" id="${id}-i${i}">${t}</div>`).join("")}</div>
+      <div class="slot">${all.map(([t], i) => `<div class="item${i === n ? " gold" : ""}" id="${id}-i${i}" data-layout-allow-occlusion>${t}</div>`).join("")}</div>
       <div class="bar">${itens.map((_, i) => `<i><b id="${id}-b${i}"></b></i>`).join("")}</div>`,
       () => {
         hide(`#${id}-panel .item`, "{ yPercent: 120 }", start);
@@ -360,6 +360,40 @@ function criar({ dur, fps = 30 }) {
     add(`tl.to('#${id} .et', { y: -10, duration: 0.25, ease: 'power2.out', yoyo: true, repeat: 1, stagger: 0.07 }, ${q(etapas[etapas.length - 1][1] + 0.45)});`);
   }
 
+  // ── INSERT: provas passando num trilho (prints reais em moldura de vidro; foco ao passar pelo centro) ──
+  // provas = [[arquivo, nome, resultado, tCentro], …] · arquivos ficam em public/
+  function insertProvas({ start, end, kicker, provas, largura = 620, gap = 80 }) {
+    const id = "ins-provas";
+    const passo = largura + gap;
+    layers += `    <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="5">
+      <div class="ins-bg" id="${id}-bg"></div>
+      <div class="ins-kicker">${M(kicker)}</div>
+      <div class="provas-rail" id="${id}-rail" style="padding-left:${(1080 - largura) / 2}px; gap:${gap}px">
+        ${provas.map(([arq, nome, res], i) => `<div class="prova" id="${id}-p${i}" style="width:${largura}px">
+          <img src="${arq}" alt="${nome}" />
+          <div class="tag"><i class="dot"></i><div class="txt"><b>${nome}</b><span>${res}</span></div></div>
+        </div>`).join("")}
+      </div>
+    </div>\n`;
+    add(`// insert provas`);
+    desfoque(start, end);
+    add(`tl.fromTo('#${id}-bg', { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.out' }, ${q(start)});`);
+    maskIn(`#${id} .ins-kicker .mi`, start + 0.2, 0, start);
+    // trilho: desliza de card em card, sempre parando com um no centro
+    add(`tl.set('#${id}-rail', { x: ${passo * 0.55} }, ${q(start)});`);
+    provas.forEach(([, , , t], i) => {
+      add(`tl.to('#${id}-rail', { x: ${-passo * i}, duration: 0.7, ease: 'power2.inOut' }, ${q(t - 0.5)});`);
+      // foco: entra nítido e grande no centro, sai desfocado e menor
+      add(`tl.set('#${id}-p${i}', { scale: 0.84, opacity: 0.4, filter: 'blur(5px)' }, ${q(start)});`);
+      add(`tl.fromTo('#${id}-p${i}', { scale: 0.84, opacity: 0.4, filter: 'blur(5px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power3.out', immediateRender: false }, ${q(t - 0.35)});`);
+      if (i < provas.length - 1) add(`tl.to('#${id}-p${i}', { scale: 0.86, opacity: 0.35, filter: 'blur(5px)', duration: 0.5, ease: 'power2.in' }, ${q(provas[i + 1][3] - 0.5)});`);
+      sheen(`#${id}-p${i} .prova-sheen`, t + 0.1);
+    });
+    add(`tl.to('#${id}-rail', { x: ${-passo * (provas.length - 1) - 140}, duration: 0.5, ease: 'power2.in' }, ${q(end - 0.5)});`);
+    add(`tl.to('#${id} > *:not(.ins-bg)', { opacity: 0, filter: 'blur(10px)', duration: 0.4, ease: 'power2.in' }, ${q(end - 0.45)});`);
+    add(`tl.to('#${id}-bg', { opacity: 0, duration: 0.45, ease: 'power2.in' }, ${q(end - 0.45)});`);
+  }
+
   // ── INSERT: título em tela cheia (nome do evento) — linhas batem uma a uma, última dourada com estouro ──
   function insertTitulo({ start, end, kicker, linhas }) {
     const id = "ins-titulo";
@@ -369,7 +403,7 @@ function criar({ dur, fps = 30 }) {
       <div class="ins-bg" id="${id}-bg"><div class="rays" id="${id}-rays"></div><div class="glow tt"></div>
         <div class="tt-wrap" id="${id}-wrap">
           ${kicker ? `<div class="tt-k">${M(kicker)}</div>` : ""}
-          ${linhas.map(([t], i) => `<div class="tt-l${i === n - 1 ? " last" : ""}" id="${id}-l${i}"><span class="${i === n - 1 ? "gold-fill" : ""}" id="${id}-x${i}">${t}</span></div>`).join("")}
+          ${linhas.map(([t], i) => `<div class="tt-l${i === n - 1 ? " last" : ""}" id="${id}-l${i}" data-layout-allow-overlap><span class="${i === n - 1 ? "gold-fill" : ""}" id="${id}-x${i}" data-layout-allow-overlap>${t}</span></div>`).join("")}
           <div class="burst" id="${id}-burst">${dots}</div>
         </div>
       </div>
@@ -456,7 +490,7 @@ ${js}
     console.log("composição gerada:", outFile);
   }
 
-  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, cardContraste, shake, filtro, corteSuave, legenda, legendaDinamica, flash, salvar };
+  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, insertProvas, cardContraste, shake, filtro, corteSuave, legenda, legendaDinamica, flash, salvar };
 }
 
 module.exports = { criar };
