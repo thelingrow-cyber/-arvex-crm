@@ -79,6 +79,16 @@
       .cta { width: 100%; padding: 17px 24px; font-size: 17px; }
       .cta-block { padding: 28px 0 46px; }
     }
+    .veil { position: absolute; inset: 0; cursor: pointer; }
+    .big-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 92px; height: 92px; border: 0; border-radius: 50%;
+      background: linear-gradient(180deg, rgba(241,213,148,0.98), rgba(201,150,63,0.98)); box-shadow: 0 16px 44px rgba(0,0,0,0.5), 0 0 0 10px rgba(241,213,148,0.14);
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform .18s ease, opacity .25s ease; }
+    .big-play:hover { transform: translate(-50%,-50%) scale(1.06); }
+    .big-play i { width: 0; height: 0; margin-left: 7px; border-left: 30px solid #0A0A0F; border-top: 19px solid transparent; border-bottom: 19px solid transparent; }
+    .big-play.hide { opacity: 0; pointer-events: none; }
+    .player .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: rgba(255,255,255,0.14); }
+    .player .bar b { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-3)); }
+    @media (max-width: 700px) { .big-play { width: 74px; height: 74px; } .big-play i { border-left-width: 24px; border-top-width: 15px; border-bottom-width: 15px; } }
   </style>
 </head>
 <body>
@@ -106,10 +116,11 @@
   <section class="player-wrap">
     <div class="container">
       <div class="player">
-        <!-- VIDEO: troque KNeKzXjt_u8 pelo ID do vídeo do YouTube -->
-        <iframe src="https://www.youtube.com/embed/KNeKzXjt_u8?rel=0&modestbranding=1"
-          title="Aula 1 — Desafio Ótica +100K" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- VIDEO: id do YouTube em data-video (player sem barra de tempo — ver script no fim) -->
+        <div id="yt-player" data-video="KNeKzXjt_u8"></div>
+        <div class="veil" id="veil"></div>
+        <button class="big-play" id="big-play" aria-label="Dar play na aula"><i></i></button>
+        <div class="bar"><b id="bar-fill"></b></div>
       </div>
       <p class="player-note">Assista com fone e <b>caneta na mão</b> — o que vem na aula 2 parte daqui.</p>
     </div>
@@ -118,5 +129,44 @@
   <footer>© Desafio Ótica +100K · Todos os direitos reservados</footer>
 </div>
 
+<script>
+// Player do YouTube sem barra de tempo: play/pause no nosso overlay e trava de avanço (voltar é permitido).
+(function () {
+  var el = document.getElementById("yt-player"), veil = document.getElementById("veil"),
+      btn = document.getElementById("big-play"), fill = document.getElementById("bar-fill"),
+      player = null, maxT = 0, timer = null;
+  var tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+  window.onYouTubeIframeAPIReady = function () {
+    player = new YT.Player(el, {
+      videoId: el.dataset.video,
+      playerVars: { controls: 0, disablekb: 1, rel: 0, modestbranding: 1, playsinline: 1, fs: 0, iv_load_policy: 3 },
+      events: {
+        onStateChange: function (e) {
+          if (e.data === YT.PlayerState.PLAYING) { btn.classList.add("hide"); vigiar(true); }
+          else { if (e.data !== YT.PlayerState.BUFFERING) btn.classList.remove("hide"); if (e.data === YT.PlayerState.ENDED) vigiar(false); }
+        }
+      }
+    });
+  };
+  function vigiar(liga) {
+    clearInterval(timer);
+    if (!liga) return;
+    timer = setInterval(function () {
+      if (!player || !player.getCurrentTime) return;
+      var t = player.getCurrentTime(), d = player.getDuration() || 0;
+      if (t > maxT + 1.5) player.seekTo(maxT, true); else if (t > maxT) maxT = t;   // não deixa pular pra frente
+      if (d) fill.style.width = Math.min(100, (maxT / d) * 100) + "%";
+    }, 400);
+  }
+  function alterna() {
+    if (!player || !player.getPlayerState) return;
+    if (player.getPlayerState() === YT.PlayerState.PLAYING) player.pauseVideo(); else player.playVideo();
+  }
+  veil.addEventListener("click", alterna);
+  btn.addEventListener("click", alterna);
+})();
+</script>
 </body>
 </html>
