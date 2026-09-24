@@ -92,6 +92,13 @@
     #r100k .big-play.hide { opacity: 0; pointer-events: none; }
     #r100k .player .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: rgba(255,255,255,0.14); }
     #r100k .player .bar b { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-3)); }
+    #r100k .fs-btn { position: absolute; right: 12px; bottom: 16px; width: 44px; height: 44px; border: 0; border-radius: 10px;
+      background: rgba(10,10,15,0.62); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .18s ease; }
+    #r100k .fs-btn:hover { background: rgba(10,10,15,0.85); }
+    #r100k .fs-btn svg { width: 22px; height: 22px; fill: none; stroke: var(--gold-3); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    #r100k .player:fullscreen { width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; border: 0; }
+    #r100k .player:-webkit-full-screen { width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; border: 0; }
+    #r100k .player.tela-cheia { position: fixed; inset: 0; z-index: 9999; width: 100vw; height: 100vh; height: 100dvh; aspect-ratio: auto; border-radius: 0; border: 0; }
     @media (max-width: 700px) { #r100k .big-play { width: 74px; height: 74px; } #r100k .big-play i { border-left-width: 24px; border-top-width: 15px; border-bottom-width: 15px; } }
   
 </style>
@@ -123,6 +130,7 @@
         <div id="yt-player" data-video="2ZB3HTDRHSM"></div>
         <div class="veil" id="veil"></div>
         <button class="big-play" id="big-play" aria-label="Dar play na aula"><i></i></button>
+        <button class="fs-btn" id="fs-btn" aria-label="Tela cheia"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
         <div class="bar"><b id="bar-fill"></b></div>
       </div>
       <p class="player-note">Assista com fone e <b>caneta na mão</b> — o que vem na aula 3 parte daqui.</p>
@@ -172,6 +180,22 @@
   }
   veil.addEventListener("click", alterna);
   btn.addEventListener("click", alterna);
+
+  // Tela cheia no container (o botão nativo do YouTube some junto com a barra). iPhone não tem fullscreen de elemento → tela cheia via CSS.
+  var box = el.parentNode, fsBtn = document.getElementById("fs-btn");
+  function emFs() { return document.fullscreenElement || document.webkitFullscreenElement || box.classList.contains("tela-cheia"); }
+  fsBtn.addEventListener("click", function () {
+    if (emFs()) {
+      if (box.classList.contains("tela-cheia")) { box.classList.remove("tela-cheia"); document.body.style.overflow = ""; }
+      else (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      return;
+    }
+    var req = box.requestFullscreen || box.webkitRequestFullscreen;
+    if (req) {
+      var r = req.call(box);
+      if (r && r.then) r.then(function () { if (screen.orientation && screen.orientation.lock) screen.orientation.lock("landscape").catch(function () {}); }).catch(function () { box.classList.add("tela-cheia"); document.body.style.overflow = "hidden"; });
+    } else { box.classList.add("tela-cheia"); document.body.style.overflow = "hidden"; }
+  });
 })();
 
 })();
