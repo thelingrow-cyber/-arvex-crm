@@ -1,0 +1,19 @@
+{
+  "_sobre": "\"Quase\" — take único, estilo @bitterbuilds: sem corte de cena, corte seco nas respirações, legenda branca simples, sem trilha e sem CTA (peça de alcance). Nenhuma inserção nos primeiros 12s para não competir com o gancho. Tempos do JSON são do vídeo ORIGINAL; o corte remapeia sozinho.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "941652CC-CEF3-48EB-9CE4-435A878152A9.mp4",
+  "saida": "2026-09-quase.mp4",
+  "duracao": 41.7,
+  "cor": ",curves=all='0/0 0.5/0.49 1/0.96',eq=contrast=1.05:saturation=1.04",
+  "cortar": { "ruido": -30, "min": 0.30, "folga": 0.08 },
+  "transcricao": {
+    "prompt": "Desiste cara, a IA já faz tudo. GPS, frentista, mapa. Homem de Ferro. Passageiro na própria empresa.",
+    "trocar": { "atletista": "frentista" }
+  },
+  "legenda": { "y": 1250, "tamanho": 46 },
+  "cards": [
+    { "foto": "gps.png", "entra": 13.0, "sai": 18.9, "x": 70, "y": 1300, "largura": 520, "altura": 325, "borda": 0, "escala": 1.0, "giro": 0, "desliza": 40 },
+    { "foto": "editor.png", "entra": 26.2, "sai": 30.7, "x": 70, "y": 1300, "largura": 520, "altura": 325, "borda": 0, "escala": 1.0, "giro": 0, "desliza": 40 }
+  ],
+  "musica": { "arquivo": "mixkit-32.mp3", "volume": 0.06 }
+}

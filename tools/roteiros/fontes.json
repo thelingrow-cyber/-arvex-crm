@@ -1,0 +1,122 @@
+{
+  "_sobre": "A FONTE do banco de pautas. Faz o papel que os livros fazem no método do Hulisses, com uma diferença: aqui nada é resumo de terceiro — é artefato que existe no repositório, dor com palavra real de cliente ou inimigo declarado na pesquisa. Editar este arquivo é como comprar mais livros: cada linha nova multiplica o banco por 9.",
+
+  "artefatos": [
+    {
+      "id": "editor",
+      "nome": "editor de vídeo próprio",
+      "o_que_e": "pipeline que corta no silêncio, legenda, recorta a pessoa do fundo e monta cards — sem editor humano",
+      "tensao": "ferramenta de agência × script que eu escrevi em dias",
+      "prova": "o próprio Reels publicado foi editado por ele",
+      "onde": "tools/video-recut/camadas/",
+      "dor": "d-sozinho"
+    },
+    {
+      "id": "crm",
+      "nome": "CRM da operação",
+      "o_que_e": "funil, reuniões, financeiro e atendimento num sistema próprio em vez de assinatura",
+      "tensao": "comprar software × construir o seu",
+      "prova": "tela do funil real rodando",
+      "onde": "docs/crm/",
+      "dor": "d-cabeca"
+    },
+    {
+      "id": "sdr",
+      "nome": "agente de atendimento no WhatsApp",
+      "o_que_e": "IA que responde e qualifica dentro do CRM",
+      "tensao": "contratar mais gente × instalar o atendimento",
+      "prova": "conversa real na tela",
+      "onde": "docs/crm/",
+      "dor": "d-equipe"
+    },
+    {
+      "id": "coach",
+      "nome": "análise automática das calls de venda",
+      "o_que_e": "todas as calls transcritas e pontuadas por etapa, achando onde a venda morre",
+      "tensao": "achismo sobre o comercial × nota por etapa",
+      "prova": "o diagnóstico: o fundo da tabela é sempre a mesma etapa",
+      "onde": "sales coach",
+      "dor": "d-equipe"
+    },
+    {
+      "id": "ditado",
+      "nome": "ditado por voz próprio",
+      "o_que_e": "transcrição local com atalho global, no lugar de assinatura mensal",
+      "tensao": "pagar todo mês × rodar na sua máquina de graça",
+      "prova": "está rodando enquanto eu falo",
+      "onde": "docs/ferramentas-proprias/",
+      "dor": "d-tempo"
+    },
+    {
+      "id": "transcritor",
+      "nome": "transcritor de reunião",
+      "o_que_e": "plugin que grava e separa quem falou o quê na call",
+      "tensao": "ninguém lembra do que foi combinado × a reunião vira texto",
+      "prova": "a transcrição da call de ontem",
+      "onde": "plugin Meet",
+      "dor": "d-cabeca"
+    },
+    {
+      "id": "banco",
+      "nome": "banco de roteiros medido",
+      "o_que_e": "65 vídeos de concorrentes dissecados com curtida e comentário, virando regra do que funciona",
+      "tensao": "postar no achismo × abrir a planilha antes de gravar",
+      "prova": "a tabela: mesmo criador, mesma semana, 108 mil × 5 mil",
+      "onde": "docs/conteudo/banco-roteiros/",
+      "dor": "d-travado"
+    },
+    {
+      "id": "pauteiro",
+      "nome": "colheita de notícia da manhã",
+      "o_que_e": "script que varre a imprensa, filtra e entrega o fato do dia já pontuado",
+      "tensao": "não ter o que postar × ter a pauta antes do café",
+      "prova": "a lista de hoje na tela",
+      "onde": "tools/roteiros/noticias.py",
+      "dor": "d-travado"
+    },
+    {
+      "id": "squad",
+      "nome": "time de agentes de conteúdo",
+      "o_que_e": "quatro agentes com ferramenta de verdade: pauta, roteiro, análise e edição",
+      "tensao": "persona de IA que não produz nada × agente com ferramenta na mão",
+      "prova": "o roteiro deste vídeo saiu daqui",
+      "onde": "squads/conteudo/",
+      "dor": "d-sozinho"
+    },
+    {
+      "id": "landing",
+      "nome": "páginas de captura e venda",
+      "o_que_e": "landing no ar em horas, sem agência e sem construtor pago",
+      "tensao": "orçamento de agência × página no ar hoje",
+      "prova": "o link abrindo",
+      "onde": "docs/landing-*/",
+      "dor": "d-tempo"
+    },
+    {
+      "id": "voz",
+      "nome": "extração da própria voz",
+      "o_que_e": "transcrever os próprios vídeos e transformar em regra de escrita, para a IA não escrever no lugar dele",
+      "tensao": "texto de IA genérico × o seu jeito virando especificação",
+      "prova": "a lista de palavras que eu nunca falo",
+      "onde": "squads/conteudo/voz.md",
+      "dor": "d-travado"
+    }
+  ],
+
+  "dores": [
+    { "id": "d-travado",  "nome": "tem tudo e não sai do lugar", "palavra": "travada · perdida · não sei por onde começar", "evidencia": "call real" },
+    { "id": "d-papel",    "nome": "comprou e não saiu do papel",  "palavra": "já fiz duas vezes e não virou dinheiro",       "evidencia": "call real" },
+    { "id": "d-sozinho",  "nome": "está fazendo sozinho",          "palavra": "sozinha",                                     "evidencia": "call real" },
+    { "id": "d-cabeca",   "nome": "o negócio roda na cabeça dele", "palavra": "roda na minha cabeça e numa planilha",        "evidencia": "pesquisa" },
+    { "id": "d-equipe",   "nome": "a equipe não converte",         "palavra": "minha equipe não está preparada",             "evidencia": "call real" },
+    { "id": "d-tempo",    "nome": "faz o que não sabe fazer",      "palavra": "não é o que eu gosto de fazer, mas tenho que fazer", "evidencia": "pesquisa" },
+    { "id": "d-certeza",  "nome": "não tem certeza que funciona pra ele", "palavra": "preciso pensar",                      "evidencia": "call real" },
+    { "id": "d-crescer",  "nome": "adia a estrutura esperando volume", "palavra": "quero crescer mais primeiro",             "evidencia": "call real" }
+  ],
+
+  "inimigos": [
+    { "id": "i-presenca", "nome": "a dependência de presença",        "frase": "Negócio que depende de você não é negócio, é emprego." },
+    { "id": "i-pequeno",  "nome": "pensamento pequeno em momento grande", "frase": "A maioria está aprendendo IA. Poucos estão operando com ela." },
+    { "id": "i-ensino",   "nome": "o ensino que não vira resultado",  "frase": "Você não precisa de mais uma aula. Precisa de uma coisa instalada." }
+  ]
+}

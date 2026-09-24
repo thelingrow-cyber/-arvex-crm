@@ -1,0 +1,22 @@
+{
+  "_sobre": "CAFEIA — Opus 5.5. Abre com card de manchete, selo do formato quando ele diz o nome, e inserções em FOTO (domínio público/CC0) alternando com o card de número. Corte seco agressivo.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "46227D65-8EF7-4352-9B37-F449410E8E25.mp4",
+  "saida": "2026-09-cafeia-opus55.mp4",
+  "duracao": 51.66,
+  "cor": ",curves=all='0/0 0.5/0.49 1/0.96',eq=contrast=1.05:saturation=1.05",
+  "cortar": { "ruido": -28, "min": 0.22, "folga": 0.05 },
+  "transcricao": {
+    "prompt": "CAFEIA. Anthropic, Claude Opus 5.5, modelo de linguagem, 40% mais barato, 30% mais rápido, piso novo.",
+    "trocar": { "Cofia": "COFFEE IA", "cofia": "COFFEE IA", "Cofeia": "COFFEE IA", "Antropic": "Anthropic" }
+  },
+  "legenda": { "y": 1250, "tamanho": 46 },
+  "cards": [
+    { "foto": "o-manchete.png",  "entra": 0.2,  "sai": 3.8,  "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "cafeia-selo.mov", "entra": 6.1,  "sai": 8.5,  "y": 250, "borda": 0, "giro": 0, "desliza": -40 },
+    { "foto": "p-serv2.jpg",     "entra": 8.7,  "sai": 10.6, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "o-40.png",        "entra": 10.9, "sai": 16.2, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "p-time1.jpg",     "entra": 28.6, "sai": 32.1, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 }
+  ],
+  "musica": null
+}

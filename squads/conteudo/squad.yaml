@@ -1,0 +1,58 @@
+name: conteudo
+title: CONTEÚDO Squad
+description: A máquina de conteúdo da marca pessoal — pauta do dia, roteiro gravável, análise de referências e edição automatizada. Cada agente tem ferramenta executável, não só persona.
+version: "1.0.0"
+icon: "🎬"
+namespace: Conteudo
+scope: project
+created_at: "2026-09-23"
+author: thelingrow-cyber
+
+agents:
+  - pauteiro
+  - roteirista
+  - analista-referencias
+  - editor-video
+
+stats:
+  agents_count: 4
+  tasks_count: 4   # tasks que EXISTEM em tasks/ — não declarar o que não foi escrito
+  workflow_steps: 4
+
+# O fluxo: pauta -> roteiro -> (Vitor grava) -> edição.
+# O analista roda em paralelo e alimenta a base que o roteirista consulta.
+workflow:
+  - pauteiro: colhe e filtra as pautas do dia (tool: tools/roteiros/noticias.py + checagem na fonte primária)
+  - roteirista: escreve o roteiro gravável no formato do dia (base: ESTUDO-GANCHOS + banco-roteiros + voz)
+  - editor-video: monta camadas.json e renderiza (tool: tools/video-recut/camadas/camadas.py)
+  - analista-referencias: disseca players novos e atualiza a base (tool: tools/roteiros/colher.py + navegador)
+
+base_compartilhada:
+  - squads/conteudo/voz.md                           # como o Vitor fala — extraído dos takes dele, não inventado
+  - squads/conteudo/cliente.md                       # para quem o roteiro fala, com nível de evidência por afirmação
+  - docs/conteudo/banco-pautas/BANCO.md              # 119 pautas: fonte própria × 9 famílias medidas
+  - docs/conteudo/banco-pautas/GANCHOS-PRONTOS.md    # 15 ganchos já escritos, prontos para gravar
+  - docs/conteudo/ESTUDO-GANCHOS.md                  # 9 famílias que funcionam, 5 que afundam — com número
+  - docs/conteudo/DOSSIE-ROTEIROS.md                 # cruzamento por player
+  - docs/conteudo/banco-roteiros/                    # ~65 fichas + players fechados
+  - docs/ecossistema/linha-editorial-e-calendario.md # a grade e a função de cada dia
+  - docs/ecossistema/sistema-de-roteiro.md           # famílias G1-G10 e os 5 filtros
+
+resolvidas:
+  - voz.md                    # 2026-09-23 — extraído da transcrição literal de 5 takes do Vitor
+  - cliente.md                # 2026-09-23 — call real da Letícia + pesquisa; com nível de evidência por afirmação
+
+pendencias:
+  - vocabulario real          # cliente.md tem UM lead como fonte 🟢. Faltam DMs, calls gravadas e comentários
+  - oferta vigente            # existem 2 documentos de oferta; falta o Vitor dizer qual manda
+  - posicionamento vigente    # 3 versões no repositório, algumas se contradizem
+  - beachhead                 # 02-icp.md fecha em Empresário, mas o acesso não se concretizou — confirmar ICP C
+
+fontes_proibidas:
+  # Não é preferência, é limite. Não usar como fonte de vocabulário, exemplo ou pauta.
+  - material de mentoria de terceiros (lives, aulas, transcrição de aluno de outra marca)
+  - qualquer coisa que identifique cliente de terceiro
+
+distribution:
+  level: local
+  path: ./squads/conteudo/

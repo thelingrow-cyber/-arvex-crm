@@ -1,0 +1,24 @@
+{
+  "_sobre": "Mate todas as ideias — take único no parque. Corte seco nas respirações, cards de imagem abaixo do rosto, motion cinético no fecho, legenda branca padrão, trilha baixa. O título queimado do original fica como veio (tentativa de cobrir com caixa verde foi reprovada em 2026-09-20). Tempos do JSON são os do vídeo ORIGINAL; o corte remapeia sozinho.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "AE229026-B7B9-4366-87A0-A1C4096D052B.mp4",
+  "saida": "2026-09-mate-as-ideias.mp4",
+  "duracao": 36.13,
+  "cor": ",curves=all='0/0 0.5/0.48 1/0.94',eq=contrast=1.06:saturation=1.08",
+  "cortar": { "ruido": -25, "min": 0.28, "folga": 0.08 },
+  "transcricao": { "prompt": "Mate todas as ideias. Proteger a ideia. Túmulo. Cenário ideal." },
+  "legenda": { "y": 1250, "tamanho": 46 },
+  "cards": [
+    { "foto": "cadeado.jpg", "entra": 0.6, "sai": 4.1, "x": 70, "y": 1300, "largura": 520, "altura": 325, "borda": 0, "escala": 1.0, "giro": 0, "desliza": 40 },
+    { "foto": "lampada.jpg", "entra": 4.25, "sai": 8.4, "x": 70, "y": 1300, "largura": 520, "altura": 325, "borda": 0, "escala": 1.0, "giro": 0, "desliza": 40 },
+    { "foto": "tumulo.png", "entra": 28.9, "sai": 31.9, "x": 70, "y": 1300, "largura": 520, "altura": 325, "borda": 0, "escala": 1.0, "giro": 0, "desliza": 40 }
+  ],
+  "motions": [
+    {
+      "tipo": "cinetico", "texto": "MATE TODAS AS IDEIAS", "sub": "UMA VAI SOBREVIVER",
+      "entra": 32.0, "sai": 36.1, "y": 400, "tamanho": 104, "tamanho_sub": 30,
+      "largura": 900, "passo": 0.12, "destaque": "#25D366"
+    }
+  ],
+  "musica": { "arquivo": "mixkit-31.mp3", "volume": 0.07 }
+}

@@ -48,5 +48,9 @@ tmp-listas/
 .tmp-icp/
 .tmp-material/
 
+# Biblioteca — arquivos dos livros (material de terceiro, com direito autoral).
+# NUNCA versionar. Só as fichas de leitura em docs/conteudo/biblioteca/ vão pro repo.
+.biblioteca/
+
 # skills de terceiros (restaurar com: npx skills experimental_install)
 .claude/skills/

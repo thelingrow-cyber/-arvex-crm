@@ -19,7 +19,10 @@ Só viral = o dossiê conclui que tudo funciona. **A diferença entre os dois gr
 | **Tay Dantas** | modelo de marca do Vitor (universo, Hero Brand) | 7 existenciais | 9 negócio/comportamento | 🟢 lote de 16 |
 | **bitterbuilds** (EUA) | molde d'A FRASE | 1 (24,8k) | 0 | 🔴 |
 | **Mila Sokolskiy** (EUA) | molde do Jornal | 0 | 1 (456) | 🔴 |
-| Érico Rocha · Leandro Ladeira · Theo Braga · Vinicius Arêb | lista de 08/09 | — | — | ⬜ |
+| **Vinicius Areb** | marca pessoal com produção zero, 2-3 min | 2 do pico (109k e 10,6k ❤) | 7 da fase atual + varredura dos 15 Reels | ✅ **PLAYER FECHADO** — ver §5 |
+| **Alex Hormozi** | clipes de 30-45s, 1 ideia, sem CTA; volume por recorte de conteúdo longo | 3 dissecados + grade de 16 medida | idem | 🟢 ver §6 |
+| **Allie K. Miller** · **Michael Smoak** · **Post Run High** | gringos: IA aplicada ao trabalho (fonte de pauta) e formato | 3 fichas | — | 🟡 |
+| Érico Rocha · Leandro Ladeira · Theo Braga | lista de 08/09 | — | — | ⬜ |
 | 1–2 gringos de negócio com IA | território de arbitragem | — | — | ⬜ |
 
 ---
@@ -166,3 +169,188 @@ negócio — o cavalo de Troia do Elias, o existencial da Tay. O vídeo do compr
 - [ ] A entrega tem nome (par de palavras, ferramenta, conceito)?
 - [ ] A última frase funciona sozinha, como print?
 - [ ] O texto fixo na tela é um segundo gancho, não a legenda?
+
+---
+
+## 5 · Vinicius Areb — o padrão mais claro do dossiê (4 vídeos, mesma produção)
+
+Colhido em 2026-09-21. **Nenhum dos quatro tem corte, trilha, legenda ou B-roll.** Todos são take único de 2 a 3 minutos.
+Produção, portanto, **não é a variável** — o que separa 109 mil de 1 mil está no roteiro.
+
+| Vídeo | Duração | ❤ | 💬 | Tema | Mecanismo com nome? | CTA |
+|---|---|---|---|---|---|---|
+| [Mais um dia normal (sorte)](banco-roteiros/referencias/ref-viniciusareb-mais-dia-normal-negocios-marketingdigital.md) | 2:54 | **109.257** | 2.799 | identidade | sim — sistema reticular ativador | **nenhum** |
+| [Disciplina × desejo](banco-roteiros/referencias/ref-viniciusareb-faz-sentido-desenvolvimentopessoal-empreendedorismo-fisicaquantica.md) | 2:04 | **10.614** | 219 | identidade | sim — dopamina antecipatória | **nenhum** |
+| [Hábitos milionários](banco-roteiros/referencias/ref-viniciusareb-vale-pena-ver-100-vezes.md) | 2:42 | 2.540 | 86 | comportamento | não | "quer a parte 5?" |
+| [Instagram de alta frequência](banco-roteiros/referencias/ref-viniciusareb-penultima-carta-com-alguns-dos.md) | 2:08 | 1.101 | **525** | profissional | não | palavra-chave "007" |
+
+### O que separa os dois grandes dos dois pequenos (n=4)
+
+1. **Mecanismo com nome.** Os dois de maior alcance explicam *por que* funciona com um termo técnico
+   (sistema reticular ativador · dopamina antecipatória). Os dois menores só descrevem comportamento.
+   **É o divisor mais nítido da amostra.**
+2. **Reframe que tira a culpa.** "Sua falta de disciplina é falta de estratégia" · "a vida dos sortudos era igual,
+   o filtro é que era outro". Quem assiste é aliviado, não acusado — e fica.
+3. **Objeção antecipada.** No de 109k ele levanta a crítica do cético ("isso é papo de autoajuda?") e responde.
+   Mantém quem ia sair.
+4. **Ferramenta nomeada e de custo zero.** "Caderno das evidências", 3 anotações por dia, 66 dias. É o trecho salvável.
+5. **Tema universal × tema profissional.** Identidade alcança; "como crescer no Instagram" captura.
+
+### O achado que vale para a operação: alcance e captura são peças diferentes
+
+- Os **dois vídeos sem CTA** são os de maior alcance.
+- O vídeo com **palavra-chave na DM** tem **metade das curtidas do 3º colocado e 6× mais comentários** (525).
+- Ou seja: **CTA troca alcance por captura.** Não existe peça que faça os dois bem.
+  Consequência prática para a grade: separar por função, nunca pedir DM na peça de alcance.
+
+### O que é estilo (não copiar como causa)
+
+Take único, cenário bonito, gesticulação, duração de 2-3 min e hashtags de nicho aparecem **nos quatro**,
+inclusive nos fracos. Logo, não explicam o resultado.
+
+### O que entra no sistema do Vitor
+
+- **Mecanismo com nome** é a mecânica mais transferível — e no território dele não é neurociência, é número de operação
+  (janela de fechamento, taxa de resposta, custo por lead) ou o mecanismo real da tecnologia.
+- **Reframe da culpa:** *"sua empresa não está atrasada em IA por falta de conhecimento, está por falta de decisão"*.
+- **Objeção antecipada:** *"isso é papo de quem vende curso de IA?"* — responder antes que pensem.
+- **Título fixo no topo** durante todo o vídeo longo (mecânica do vídeo da dupla): quem cai no meio se localiza.
+- **Auto-pergunta** no meio para reiniciar a atenção — aparece em 3 dos 4.
+- **Não copiar:** território de fé/leis do universo, estudo citado sem fonte, e a tese "você é o seu nicho"
+  como licença para falar de tudo (o caixa dele vem de fora do Instagram; o do Vitor, não).
+### Correção da hipótese (6º vídeo, colhido em 2026-09-21)
+
+[Calendário ao contrário / "meu mês tem 60 dias"](banco-roteiros/referencias/ref-viniciusareb-isso-poderoso-demais-empreendedorismo-marketingdigital.md)
+— 2:13 · **1.704 ❤** · 27 💬 · sem CTA. **Tem conceito com nome próprio e mesmo assim performou baixo.**
+
+Logo, "dar nome" não é a causa. A formulação correta, com n=5 do mesmo criador:
+
+> Viraliza quem **explica a falha de QUEM ASSISTE com um mecanismo de fora** e só então entrega a ferramenta.
+> Quando o nome é do **método do próprio criador**, o vídeo vira relato — e relato não viraliza.
+
+| | Virais (109k · 10,6k) | Este (1,7k) |
+|---|---|---|
+| O que é nomeado | mecanismo externo da falha (sistema reticular · dopamina antecipatória) | o método dele (planos bimestrais) |
+| De quem é o problema | do espectador | do criador |
+| Exemplo | universal | "minha meta de 10 milhões" — afasta quem fatura 200 mil |
+| Reframe da culpa · objeção antecipada | sim · sim | não · não |
+
+**Dois erros de execução que valem como regra negativa:**
+1. **"Parece meio óbvio, né?"** — desqualificar a própria entrega no meio do vídeo.
+2. **Interromper o argumento para comentar cenário/luz** (aos 57s e 82s), justamente onde a retenção cai.
+### Varredura do perfil inteiro (2026-09-21, via navegador logado)
+
+Aba de Reels do @viniciusareb: **15 peças** (perfil com 22 posts e 249 mil seguidores). Visualizações lidas na grade,
+curtidas/comentários via `yt-dlp`. Arquivo bruto: `tools/roteiros/work/` (efêmero).
+
+| Views | ❤ | 💬 | ❤/views | Tema (legenda) |
+|---|---|---|---|---|
+| 226.000 | 4.451 | 109 | **2,0%** | "Haha ❤️ Alguém mais?" |
+| 123.000 | 2.553 | 86 | **2,1%** | Hábitos milionários (com o amigo) |
+| 67.900 | 2.351 | 71 | 3,5% | As leis do dinheiro (série) |
+| 53.300 | 1.521 | 30 | 2,9% | "Conteúdo poderoso que mudou minha vida" |
+| 33.500 | 2.843 | 84 | **8,5%** | "Pra animar a noite" |
+| 31.800 | 1.077 | 80 | 3,4% | Vlog — palestra (parte 1) |
+| 29.300 | 2.011 | 30 | **6,9%** | "Uma das crenças mais poderosas que criei" |
+| 28.300 | 1.689 | 34 | 6,0% | "Bora fazer o acordo?" |
+| 28.100 | 1.899 | 27 | 6,8% | "Lembra disso ❤️" |
+| 26.000 | 1.561 | 45 | 6,0% | "Faz sentido aí?" |
+| 24.800 | 1.183 | 59 | 4,8% | "Essa série vai ser muito poderosa" |
+| 21.100 | 1.105 | **99** | 5,2% | "Olha isso" — **0,47% de comentário/view, 10× a média** |
+| 19.600 | 932 | 5 | 4,8% | "Eu vejo o seu futuro" |
+| 15.900 | 1.004 | 17 | 6,3% | "Café sem açúcar para os empreendedores" |
+| 14.600 | 923 | 49 | 6,3% | "Faz sentido aí?" |
+
+**Leituras:**
+1. **Alcance e taxa de curtida andam ao contrário** (2% nos dois maiores × 6–8,5% nos menores). Parte é natural — peça
+   que estoura vai para público frio. Serve como régua: 6%+ = falou com quem já segue; 2% = empurrão de algoritmo.
+2. **Comentário separa melhor que curtida.** 99 comentários em 21 mil views (0,47%) contra 109 em 226 mil (0,048%).
+3. ⚠️ **A fase atual é a prova negativa.** O vídeo de 109 mil ❤ ("sorte") **não está na grade** — foi arquivado.
+   Nenhum dos 15 atuais passa de 4.451 ❤. Mesma cara, mesma produção, temas mais leves (vlog, série, bastidor) e
+   **alcance ~20× menor**. O próprio criador deixou de usar o que o fez estourar: mecanismo com nome, reframe da culpa
+   e objeção antecipada.
+
+**Consequência para o sistema do Vitor:** copiar a *fase atual* dele seria copiar o que parou de funcionar.
+O que vale é o pico — e o pico está descrito no §5 acima.
+### §5.4 — As três funções (o achado que vira decisão de grade)
+
+Dissecados os extremos da grade atual (2026-09-21). Cada um entrega **uma coisa diferente** — e nenhum entrega as três:
+
+| Função | Peça do perfil | Números | O que faz a peça ser assim |
+|---|---|---|---|
+| **Alcance** | ["Haha ❤️ Alguém mais?"](https://www.instagram.com/reel/Dde41w4zCby/) · hábitos milionários | 226k e 123k views · **2,0–2,1% ❤** | tema universal ou leve, sem CTA, sem exigir atenção. Vai para público frio |
+| **Ressonância** | ["Pra animar a noite"](banco-roteiros/referencias/ref-viniciusareb-pra-animar-noite.md) | 33,5k views · **8,5% ❤** | **13 segundos, uma única fala, não ensina nada.** É vínculo com quem já segue (loop curto infla a taxa — ressalva) |
+| **Conversa** | ["Olha isso"](banco-roteiros/referencias/ref-viniciusareb-olha-isso-empreendedorismo-fisicaquantica-marketingdigital.md) | 21,1k views · **99 💬 (0,47%, 10× a média)** | **lacuna que o público preenche** ("se você lembra do versículo, diz aí") + metáfora que divide + 20s tratando a objeção |
+| Alcance médio | [Leis do dinheiro](banco-roteiros/referencias/ref-viniciusareb-leis-dinheiro-isso-uma-serie.md) | 67,9k · 3,5% | fórmula do pico **diluída**: tem conceito batizado, mas o problema narrado é do criador |
+
+**A regra que sai daqui:** peça de alcance, peça de ressonância e peça de conversa são **projetos diferentes**.
+Esperar que um vídeo faça os três é o erro que faz a pessoa achar que "o algoritmo mudou".
+
+**Tradução para a grade do Vitor** (`ecossistema/linha-editorial-e-calendario.md`):
+
+| Dia | Registro | Função a perseguir | Consequência prática |
+|---|---|---|---|
+| Seg — `CAFEIA` | 🔭 VISÃO | **alcance** | tema de fora (notícia), sem CTA de DM |
+| Ter — diário de obra · Qui — caso com número | 🔨 OBRA | **ressonância** | fala com quem já segue; pode ser curto e pessoal |
+| Peça semanal de conversa | 🔭 VISÃO | **conversa** | lacuna real: *"qual é a pergunta que mais chega no seu WhatsApp?"* — o dono sabe mais que ele |
+
+**Pendência:** o Reel de 226 mil views não baixou (`yt-dlp` falhou, possível carrossel/bloqueio). A leitura dele está
+inferida pela legenda, não pela transcrição.
+---
+
+## 6 · Alex Hormozi — a conta madura (grade de 16 Reels medida em 2026-09-21)
+
+Perfil: **4.441 posts · 4,9 mi seguidores**. Ele **não grava para o Instagram**: grava longo (podcast, aula) e
+recorta — as transcrições longas estão em `docs/clone-hormozi-pesquisa/`. Formato curto: 29-46s, **uma ideia só**,
+take único, sem legenda na tela, sem trilha, **sem CTA**, e a **legenda carrega a tese inteira**.
+
+| Views | ❤ | 💬 | ❤/views | Tema |
+|---|---|---|---|---|
+| 2,5 mi* | 118.652 | 958 | 4,75% | ser milionário aos 20 e o que veio depois |
+| 1,2 mi* | 23.250 | 516 | 1,94% | ciclos de sucesso no negócio |
+| 1,0 mi* | 13.051 | 99 | 1,31% | oportunidade |
+| **869 mil** | 17.124 | 174 | 1,97% | **ser julgado por fazer o que os outros não fariam** |
+| **789 mil** | 17.952 | **397** | 2,28% | **deixar o sonho dos pais morrer pelo seu** |
+| 528 mil | 10.812 | 107 | 2,05% | vencer 99% sem ser mais inteligente |
+| 493 mil | 9.312 | 89 | 1,89% | 4 formas de mudar comportamento |
+| 401 mil | 10.230 | 61 | 2,55% | a estrada do sucesso e a do fracasso são a mesma |
+| 379 mil | 8.068 | 89 | 2,13% | [juventude × vida adulta](banco-roteiros/referencias/ref-hormozi-the-goal-youth-optionality-the.md) |
+| 378 mil | 7.923 | 110 | 2,10% | verdade desconfortável |
+| 337 mil | 5.020 | 52 | 1,49% | time que confia |
+| 331 mil | 5.702 | **234** | 1,72% | **peça com CTA** ("comenta SEND IT") |
+| 260 mil | 3.572 | 64 | 1,37% | afiliados, em resumo |
+| 258 mil | 3.123 | 38 | 1,21% | adiar o pedido |
+| 233 mil | 5.359 | 46 | 2,30% | sucesso como resposta |
+| 198 mil | 2.405 | 61 | 1,21% | **resposta a outro influenciador** |
+
+*fixados no topo do perfil — acumulam curtidas com o tempo, não são comparáveis.
+
+**Achados (n=13 recentes, mesma produção e mesmo autor — só o tema varia):**
+1. **Identidade e conflito social ganham de tática.** Julgamento alheio (869 mil) e conflito com os pais
+   (789 mil, 397 💬 — maior engajamento da faixa) no topo; "afiliados" e "adie o pedido" no fundo (1,2%).
+2. **CTA troca alcance por conversa** — a única peça com palavra-chave tem 234 💬 e taxa de curtida abaixo da média.
+3. **Responder a outro criador é o pior negócio** (198 mil, 1,21%): interessa à fofoca do nicho, não ao público.
+4. **Meta-conteúdo também afunda** (ver ficha do filtro de consumo, 1.599 ❤ no perfil menor de clipes).
+
+### O padrão que agora atravessa DOIS criadores de nichos diferentes
+
+| | Vinicius Areb (marca pessoal) | Hormozi (negócios) |
+|---|---|---|
+| Topo | identidade: sorte, disciplina | identidade: julgamento, pais, dinheiro aos 20 |
+| Fundo | profissional: "como crescer no Instagram" | tática: afiliados, pedido, time |
+| CTA | menos alcance, mais comentário | idem |
+
+> **Regra do dossiê (confirmada entre criadores):** tema de identidade alcança; tema técnico converte.
+> São peças diferentes e devem ocupar dias diferentes da grade.
+
+### Consequência para a grade do Vitor
+
+A grade atual é majoritariamente **técnica** (diário de obra, caso com número) — ou seja, peças de ressonância e
+conversão, não de alcance. Falta a peça de **identidade dentro do território dele**, que não é autoajuda:
+
+- "As pessoas vão te julgar por automatizar o atendimento. Deixa."
+- "A empresa que seu pai construiu não precisa ser a empresa que você vai tocar."
+- "Você não está atrasado em IA. Você está esperando alguém te dar permissão."
+
+**O modelo operacional dele é a resposta para o gargalo de gravação do Vitor:** gravar longo uma vez
+(conversa, aula, call) e recortar em dezenas de clipes de 30-45s, cada um com uma ideia e sem CTA.

@@ -1,0 +1,253 @@
+{
+  "_sobre": "Os livros do método (Hulisses Dias): a fonte externa que faz o papel de 'capítulo' na combinatória. Cada capítulo aqui é REAL e foi conferido em fonte pública — nenhum foi inventado. Onde o sumário veio incompleto, está marcado em `completo: false` e só entram os capítulos confirmados.",
+
+  "_regra_de_uso": "O título do capítulo é o GATILHO da pauta, não o conteúdo do vídeo. O roteiro nunca diz 'o livro X ensina Y' nem resume o capítulo — ele usa a tensão do título como porta e responde com artefato próprio. Citar o livro é permitido (autor + título + ano, como prova de terceiro). Reproduzir trecho, não.",
+
+  "livros": [
+    {
+      "id": "emyth",
+      "titulo": "The E-Myth Revisited",
+      "autor": "Michael E. Gerber",
+      "ano": 1995,
+      "territorio": "o negócio que não roda sem o dono",
+      "dor": "d-cabeca",
+      "completo": true,
+      "fonte_toc": "sumário público conferido em busca (arquivo do livro e página de varejo)",
+      "capitulos": [
+        "O Mito do Empreendedor",
+        "O Empreendedor, o Gerente e o Técnico",
+        "Infância: a fase do Técnico",
+        "Adolescência: conseguindo alguma ajuda",
+        "Além da zona de conforto",
+        "Maturidade e a perspectiva empreendedora",
+        "A revolução da chave na mão",
+        "O protótipo da franquia",
+        "Trabalhar SOBRE o seu negócio, não DENTRO dele",
+        "O processo de desenvolvimento do negócio",
+        "Seu programa de desenvolvimento do negócio",
+        "Seu objetivo primário",
+        "Seu objetivo estratégico",
+        "Sua estratégia organizacional",
+        "Sua estratégia de gestão",
+        "Sua estratégia de pessoas",
+        "Sua estratégia de marketing",
+        "Sua estratégia de sistemas"
+      ]
+    },
+    {
+      "id": "offers",
+      "titulo": "$100M Offers",
+      "autor": "Alex Hormozi",
+      "ano": 2021,
+      "territorio": "oferta e preço",
+      "dor": "d-certeza",
+      "completo": true,
+      "lido": true,
+      "ficha": "docs/clone-hormozi-pesquisa/resumos/livro-100m-offers.md",
+      "fonte_toc": "LIDO — PDF da edição PT-BR, lido na pesquisa do clone. A estrutura real tem 5 seções (a listagem pública que eu tinha achado parava na IV e escondia a seção de execução).",
+      "secoes": [
+        "I — Fundamentos: por que oferta importa e o que é uma Grand Slam Offer",
+        "II — Preços: multidão faminta e cobrar caro",
+        "III — Valor: equação de valor, criar a oferta, trim & stack",
+        "IV — Aprimorar: escassez, urgência, bônus, garantias, nomenclatura",
+        "V — Execução: seus primeiros 100 mil"
+      ],
+      "frameworks_reais": [
+        "Grand Slam Offer (categoria de um)",
+        "Starving Crowd: mercado faminto > oferta > persuasão",
+        "Equação de Valor = (resultado dos sonhos × probabilidade percebida) ÷ (atraso de tempo × esforço)",
+        "Criação em 5 passos + Trim & Stack",
+        "Os 5 realçadores",
+        "Os 4 tipos de garantia",
+        "Nomenclatura MAGIC"
+      ],
+      "capitulos": [
+        "Como chegamos aqui",
+        "Ofertas Grand Slam",
+        "Preço: o problema da commodity",
+        "Preço: achar o mercado certo — uma multidão faminta",
+        "Preço: cobre o que vale",
+        "Valor: a equação do valor",
+        "Boa vontade de graça",
+        "Valor: o processo de pensamento",
+        "Criando sua oferta — problemas e soluções",
+        "Criando sua oferta — cortar e empilhar",
+        "Turbinando a oferta: escassez, urgência, bônus, garantia e nome",
+        "Turbinando a oferta: escassez",
+        "Turbinando a oferta: urgência"
+      ]
+    },
+    {
+      "id": "awesome",
+      "titulo": "Obviously Awesome",
+      "autor": "April Dunford",
+      "ano": 2019,
+      "territorio": "posicionamento",
+      "dor": "d-travado",
+      "completo": true,
+      "fonte_toc": "Parte I (2 capítulos) + processo de 10 passos, conferido em resumos públicos e na página da autora",
+      "capitulos": [
+        "Posicionamento como contexto",
+        "Os cinco (mais um) componentes de um posicionamento eficaz",
+        "Entenda os clientes que amam o seu produto",
+        "Monte um time de posicionamento",
+        "Alinhe o vocabulário e largue a bagagem do posicionamento antigo",
+        "Liste suas verdadeiras alternativas competitivas",
+        "Isole seus atributos únicos",
+        "Mapeie os atributos para temas de valor",
+        "Determine quem se importa muito",
+        "Ache um mercado de referência que ponha suas forças no centro",
+        "Adicione uma tendência por cima (com cuidado)",
+        "Registre o posicionamento para que possa ser compartilhado"
+      ]
+    },
+    {
+      "id": "traction",
+      "titulo": "Traction: Get a Grip on Your Business",
+      "autor": "Gino Wickman",
+      "ano": 2007,
+      "territorio": "sistema operacional do negócio",
+      "dor": "d-cabeca",
+      "completo": true,
+      "fonte_toc": "estrutura confirmada: capítulo de mentalidade + 6 componentes-chave + implementação",
+      "capitulos": [
+        "Soltando o cipó",
+        "Componente Visão",
+        "Componente Pessoas",
+        "Componente Dados",
+        "Componente Problemas",
+        "Componente Processo",
+        "Componente Tração",
+        "Como começar a implementar"
+      ],
+      "bonus": {
+        "nome": "as 5 frustrações recorrentes do dono",
+        "itens": ["falta de controle", "problemas com pessoas", "problemas de lucro",
+                  "teto de crescimento", "sensação de que nada funciona"]
+      }
+    },
+    {
+      "id": "voss",
+      "titulo": "Never Split the Difference",
+      "autor": "Chris Voss",
+      "ano": 2016,
+      "territorio": "negociação e objeção",
+      "dor": "d-certeza",
+      "completo": false,
+      "fonte_toc": "9 capítulos confirmados; uma fonte cita 10 no total",
+      "mais_vendido_br": true,
+      "capitulos": [
+        "As novas regras",
+        "Seja um espelho",
+        "Não sinta a dor do outro — rotule ela",
+        "Cuidado com o 'sim' — domine o 'não'",
+        "Ative as duas palavras que transformam qualquer negociação",
+        "Dobre a realidade do outro",
+        "Crie a ilusão de controle",
+        "Garanta a execução",
+        "Negocie duro"
+      ]
+    },
+    {
+      "id": "ageai",
+      "titulo": "Competing in the Age of AI",
+      "autor": "Marco Iansiti e Karim Lakhani",
+      "ano": 2020,
+      "territorio": "operação reconstruída em volta da IA",
+      "dor": "d-cabeca",
+      "completo": false,
+      "fonte_toc": "6 capítulos confirmados (HBR/varejo); a listagem pública indica que há mais",
+      "eixo_do_vitor": true,
+      "capitulos": [
+        "A era da IA",
+        "Repensando a empresa",
+        "A fábrica de IA",
+        "Rearquitetando a empresa",
+        "Virando uma empresa de IA",
+        "Estratégia para uma nova era"
+      ]
+    },
+    {
+      "id": "cointel",
+      "titulo": "Co-Intelligence: Living and Working with AI",
+      "autor": "Ethan Mollick",
+      "ano": 2024,
+      "territorio": "trabalhar junto com a IA, não terceirizar pra ela",
+      "dor": "d-tempo",
+      "completo": true,
+      "fonte_toc": "introdução + 9 capítulos + epílogo, conferido na editora e em resumos públicos",
+      "mais_vendido_br": "edição brasileira 'Cointeligência' aparece entre os mais vendidos de IA/negócios (Amazon BR, set/2026), 4,6★",
+      "eixo_do_vitor": true,
+      "capitulos": [
+        "Criando mentes alienígenas",
+        "Alinhando o alienígena",
+        "Quatro regras para a co-inteligência",
+        "IA como pessoa",
+        "IA como criativo",
+        "IA como colega de trabalho",
+        "IA como tutor",
+        "IA como treinador",
+        "IA como nosso futuro"
+      ],
+      "bonus": {
+        "nome": "as 4 regras da co-inteligência (cap. 3)",
+        "itens": ["sempre convide a IA para a mesa", "seja o humano no circuito",
+                  "trate a IA como uma pessoa — mas diga que tipo de pessoa ela é",
+                  "a quarta regra não foi confirmada em fonte pública"]
+      }
+    },
+    {
+      "id": "cialdini",
+      "titulo": "As armas da persuasão",
+      "autor": "Robert Cialdini",
+      "ano": 1984,
+      "territorio": "por que as pessoas dizem sim",
+      "dor": "d-certeza",
+      "completo": true,
+      "mais_vendido_br": "aparece entre os mais vendidos de Desenvolvimento de Negócios e Empreendedorismo (Amazon BR, set/2026)",
+      "fonte_toc": "8 capítulos; os 6 princípios ocupam os capítulos 2 a 7 — confirmado na editora e em resenhas",
+      "capitulos": [
+        "As armas da influência",
+        "Reciprocidade",
+        "Compromisso e coerência",
+        "Aprovação social",
+        "Afeição",
+        "Autoridade",
+        "Escassez",
+        "Influência instantânea"
+      ]
+    },
+    {
+      "id": "horowitz",
+      "titulo": "O lado difícil das situações difíceis",
+      "autor": "Ben Horowitz",
+      "ano": 2014,
+      "territorio": "decidir quando não existe resposta pronta",
+      "dor": "d-certeza",
+      "completo": false,
+      "mais_vendido_br": "citado entre os mais vendidos de Empreendedorismo (Amazon BR, set/2026)",
+      "fonte_toc": "5 capítulos confirmados publicamente; o livro tem mais",
+      "capitulos": [
+        "De comunista a investidor de risco",
+        "Vou sobreviver",
+        "Mais uma vez, agora com sentimento",
+        "Quando tudo dá errado",
+        "Cuide das pessoas, dos produtos e dos lucros — nesta ordem"
+      ]
+    },
+    {
+      "id": "btsell",
+      "titulo": "Built to Sell",
+      "autor": "John Warrillow",
+      "ano": 2011,
+      "territorio": "negócio que sobrevive sem o dono",
+      "dor": "d-cabeca",
+      "completo": false,
+      "fonte_toc": "apenas prefácio e capítulos 1-2 confirmados publicamente; o resto não foi localizado em fonte confiável",
+      "capitulos": [
+        "Uma empresa no caos",
+        "Um negócio que não vale nada"
+      ]
+    }
+  ]
+}

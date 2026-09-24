@@ -1,0 +1,92 @@
+{
+  "_sobre": "Água do mar — padrão da referência do Jett (235.875 ❤): card pequeno no terço superior e legenda logo ABAIXO do card. 6 cards: abertura e fecho em FOTO REAL (Wikimedia Commons, licença CC0), os quatro do meio em ilustração própria (gerar-artes.py). Nenhuma arte de terceiro copiada.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "CB890153-E90F-4258-AC64-340DCE41B57E.mp4",
+  "saida": "2026-09-agua-do-mar.mp4",
+  "duracao": 29.0,
+  "cor": ",curves=all='0/0.03 0.35/0.42 0.7/0.76 1/0.98',eq=contrast=1.06:saturation=1.06",
+  "cortar": {
+    "ruido": -28,
+    "min": 0.22,
+    "folga": 0.05
+  },
+  "transcricao": {
+    "prompt": "Água do mar, sal, liberdade, características autênticas, crenças impopulares, repelir, atrair, prisioneiro, multidão.",
+    "trocar": {
+      "tua personalidade": "tua personalidade"
+    }
+  },
+  "legenda": {
+    "y": 640,
+    "tamanho": 54
+  },
+  "cards": [
+    {
+      "foto": "c-mar.png",
+      "entra": 0.2,
+      "sai": 4.7,
+      "y": 230,
+      "largura": 660,
+      "altura": 371,
+      "borda": 0,
+      "giro": 0,
+      "desliza": -30
+    },
+    {
+      "foto": "c-tracos.png",
+      "entra": 5.9,
+      "sai": 10.74,
+      "y": 230,
+      "largura": 660,
+      "altura": 371,
+      "borda": 0,
+      "giro": 0,
+      "desliza": -30
+    },
+    {
+      "foto": "c-repele.png",
+      "entra": 10.94,
+      "sai": 15.42,
+      "y": 230,
+      "largura": 660,
+      "altura": 371,
+      "borda": 0,
+      "giro": 0,
+      "desliza": -30
+    },
+    {
+      "foto": "c-atrai.png",
+      "entra": 15.62,
+      "sai": 20.04,
+      "y": 230,
+      "largura": 660,
+      "altura": 371,
+      "borda": 0,
+      "giro": 0,
+      "desliza": -30
+    },
+    {
+      "foto": "c-liberdade.png",
+      "entra": 20.58,
+      "sai": 26.24,
+      "y": 230,
+      "largura": 660,
+      "altura": 371,
+      "borda": 0,
+      "giro": 0,
+      "desliza": -30
+    },
+    {
+      "foto": "c-multidao.png",
+      "entra": 26.44,
+      "sai": 28.63,
+      "y": 230,
+      "largura": 660,
+      "altura": 371,
+      "borda": 0,
+      "giro": 0,
+      "desliza": -30
+    }
+  ],
+  "musica": null
+}

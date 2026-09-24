@@ -1,0 +1,28 @@
+{
+  "_sobre": "CAFEIA McKinsey — take único, estilo @realrobertgutierrez: card no topo acima da cabeça trocando a cada poucos segundos + legenda branca embaixo, corte seco, sem trilha. REGRA: card com fonte citada só onde a fala confere com o relatório (80% e o ~1/3 do software); nos demais, card tipográfico marcado como LEITURA PRÓPRIA, com as palavras do próprio Vitor. Trechos com número divergente (30%, os 6%, os 14%) correm sem card.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "30E2A4EC-52B3-4B84-A07F-80F781A43041.mp4",
+  "saida": "2026-09-cafeia-mckinsey.mp4",
+  "duracao": 88.53,
+  "cor": ",curves=all='0/0 0.5/0.49 1/0.96',eq=contrast=1.05:saturation=1.04",
+  "cortar": { "ruido": -30, "min": 0.30, "folga": 0.08 },
+  "transcricao": { "prompt": "McKinsey, relatório State of AI 2026, EBIT, agentes de IA, software, produtividade." },
+  "legenda": { "y": 1250, "tamanho": 46 },
+  "_padrao_card": "y 170 · 760x430 · sem borda · desce de cima",
+  "cards": [
+    { "foto": "capa-relatorio.png", "entra": 0.2,  "sai": 3.4,  "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "scroll.mov",          "entra": 3.6,  "sai": 8.5,  "y": 170, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-achados.png",       "entra": 8.7,  "sai": 11.6, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "capa.png",            "entra": 12.0, "sai": 15.6, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "lupa.mov",            "entra": 17.5, "sai": 22.1, "y": 170, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-produtividade.png", "entra": 24.5, "sai": 27.2, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-achado1.png",       "entra": 27.4, "sai": 28.9, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-integrar.png",      "entra": 34.8, "sai": 42.0, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "software.png",        "entra": 46.0, "sai": 51.7, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-achado3.png",       "entra": 51.9, "sai": 53.4, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-corte.png",         "entra": 62.4, "sai": 66.8, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-hype.png",          "entra": 68.3, "sai": 71.2, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-mesa.png",          "entra": 71.4, "sai": 77.5, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 },
+    { "foto": "f-reconstruir.png",   "entra": 79.3, "sai": 84.0, "y": 170, "largura": 900, "altura": 510, "borda": 0, "giro": 0, "desliza": -50 }
+  ], "musica": null
+}
