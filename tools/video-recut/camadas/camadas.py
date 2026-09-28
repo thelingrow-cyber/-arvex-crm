@@ -69,6 +69,19 @@ class Projeto:
                 t = fim
             if self.dur - t > 0.25:
                 manter.append((max(0, t - folga), self.dur))
+            # "tirar": trechos do ORIGINAL a remover à mão (tentativa repetida, tropeço, gaguejo).
+            # Subtrai cada faixa do que o detector de silêncio decidiu manter.
+            for ta, tb in cfg.get("tirar", []):
+                novos = []
+                for a, b in manter:
+                    if tb <= a or ta >= b:
+                        novos.append((a, b))
+                        continue
+                    if a < ta:
+                        novos.append((a, ta))
+                    if b > tb:
+                        novos.append((tb, b))
+                manter = [(a, b) for a, b in novos if b - a > 0.12]
             fc = []
             for i, (a, b) in enumerate(manter):
                 fc.append(f"[0:v]trim={a}:{b},setpts=PTS-STARTPTS[v{i}];[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS[a{i}]")
@@ -235,6 +248,150 @@ class Projeto:
             d.text((1080 / 2, y0 + py + i * lh + lh / 2), l, font=fonte, fill=k.get("cor", "#FFFFFF"), anchor="mm")
         img.save(self.w("titulo.png"))
 
+    def _pasta(self, d, x, y, lado, simbolo):
+        """Ícone de pasta desenhado (não é emoji do sistema), com um símbolo dentro."""
+        c1, c2 = (74, 148, 226), (108, 176, 240)
+        aba_h = lado * 0.17
+        d.rounded_rectangle([x, y + aba_h * 0.5, x + lado * 0.52, y + aba_h * 1.6], lado * 0.06, fill=c1)
+        d.rounded_rectangle([x, y + aba_h, x + lado, y + lado * 0.86], lado * 0.10, fill=c2)
+        cx, cy, s = x + lado * 0.5, y + lado * 0.53, lado * 0.30
+        if simbolo == "laptop":
+            d.rounded_rectangle([cx - s, cy - s * 0.66, cx + s, cy + s * 0.4], s * 0.12, fill=(28, 32, 40))
+            d.rounded_rectangle([cx - s * 1.22, cy + s * 0.4, cx + s * 1.22, cy + s * 0.66], s * 0.1,
+                                fill=(210, 214, 220))
+        elif simbolo == "pessoa":
+            d.ellipse([cx - s * 0.46, cy - s * 0.86, cx + s * 0.46, cy + s * 0.06], fill=(246, 214, 176))
+            d.rounded_rectangle([cx - s * 0.74, cy + s * 0.16, cx + s * 0.74, cy + s * 0.96], s * 0.34,
+                                fill=(70, 96, 128))
+        elif simbolo == "dinheiro":
+            d.ellipse([cx - s, cy - s, cx + s, cy + s], fill=(232, 196, 92))
+            d.ellipse([cx - s * 0.78, cy - s * 0.78, cx + s * 0.78, cy + s * 0.78], outline=(150, 118, 40),
+                      width=max(2, int(s * 0.1)))
+            f = ImageFont.truetype(FONTE, int(s * 1.25))
+            d.text((cx, cy), "$", font=f, fill=(120, 92, 26), anchor="mm")
+        elif simbolo == "microfone":
+            d.rounded_rectangle([cx - s * 0.34, cy - s * 0.92, cx + s * 0.34, cy + s * 0.18], s * 0.34,
+                                fill=(44, 48, 56))
+            d.arc([cx - s * 0.66, cy - s * 0.42, cx + s * 0.66, cy + s * 0.56], 0, 180,
+                  fill=(44, 48, 56), width=max(3, int(s * 0.14)))
+            d.line([(cx, cy + s * 0.56), (cx, cy + s * 0.94)], fill=(44, 48, 56), width=max(3, int(s * 0.14)))
+
+    def blocos(self):
+        """Padrão da referência do AI with Remy: NÃO existe título fixo na tela.
+
+        Cada arquivo vira um bloco — cabeçalho com ícone de pasta + nome, e uma sub-lista
+        numerada que se preenche conforme a fala. Ao acabar o bloco, ele é substituído pelo
+        próximo. A densidade mora na sub-lista, não numa lista única que cresce.
+
+        camadas.json:
+          "blocos": {
+            "x": 56, "y_nome": 150, "y_lista": 330, "tempos": "corte",
+            "itens": [{"nome": "company.md", "simbolo": "laptop", "de": 4.1, "ate": 9.4,
+                       "campos": [{"texto": "o que você faz", "em": 4.8}, ...]}]
+          }
+        """
+        k = self.c.get("blocos")
+        if not k:
+            return
+        cru = k.get("tempos") == "corte"          # tempos já na linha do tempo cortada
+        T = (lambda v: v) if cru else self.t
+        f_nome = ImageFont.truetype(k.get("fonte", FONTE), k.get("tamanho_nome", 62))
+        f_item = ImageFont.truetype(k.get("fonte_item", r"C:\Windows\Fonts\segoeui.ttf"),
+                                    k.get("tamanho_item", 38))
+        x = k.get("x", 56)
+        y_nome, y_lista, lh = k.get("y_nome", 150), k.get("y_lista", 330), k.get("linha", 58)
+        lado = k.get("icone", 96)
+
+        estados, n = [], 0
+        ab = k.get("abertura")
+        if ab:
+            # Abertura igual à referência: cada linha do gancho tem a SUA pílula branca
+            # (não é uma caixa só), legenda branca embaixo trocando com a fala, e as pastas
+            # se empilhando uma de cada vez no meio do quadro.
+            f_cx = ImageFont.truetype(k.get("fonte_caixa", r"C:\Windows\Fonts\seguisb.ttf"),
+                                      ab.get("tamanho_caixa", 58))
+            f_lg = ImageFont.truetype(k.get("fonte_abertura", r"C:\Windows\Fonts\seguisb.ttf"),
+                                      ab.get("tamanho", 52))
+            legs, pilhas = ab["legendas"], ab.get("pastas", [])
+            for j, leg in enumerate(legs):
+                img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+                sombra = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                ds, d = ImageDraw.Draw(sombra), ImageDraw.Draw(img)
+                y = ab.get("y_caixa", 286)
+                lh = int(f_cx.size * 1.30)
+                for l in ab["caixa"].split("\n"):          # uma pílula por linha
+                    lw = d.textlength(l, font=f_cx)
+                    px, py = 26, 13
+                    x0, x1 = (1080 - lw) / 2 - px, (1080 + lw) / 2 + px
+                    ds.rounded_rectangle([x0, y + 7, x1, y + lh + 2 * py + 7], 14, fill=(0, 0, 0, 100))
+                    y += lh + 6
+                img = Image.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(13)), img)
+                d = ImageDraw.Draw(img)
+                y = ab.get("y_caixa", 286)
+                for l in ab["caixa"].split("\n"):
+                    lw = d.textlength(l, font=f_cx)
+                    px, py = 26, 13
+                    x0, x1 = (1080 - lw) / 2 - px, (1080 + lw) / 2 + px
+                    d.rounded_rectangle([x0, y, x1, y + lh + 2 * py], 14, fill="#FFFFFF")
+                    d.text((540, y + py + lh / 2), l, font=f_cx, fill="#15161A", anchor="mm")
+                    y += lh + 6
+                sombra = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                ds = ImageDraw.Draw(sombra)
+                g = ab.get("icone", 250)
+                for p in pilhas:                            # pastas empilhando
+                    if leg["em"] >= p["em"]:
+                        self._pasta(ImageDraw.Draw(img), p["x"], p["y"], g, p["simbolo"])
+                y_leg = ab.get("y_legenda", 1270)
+                ds.text((543, y_leg + 4), leg["texto"], font=f_lg, fill=(0, 0, 0, 220), anchor="mm")
+                img = Image.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(9)), img)
+                ImageDraw.Draw(img).text((540, y_leg), leg["texto"], font=f_lg,
+                                         fill="#FFFFFF", anchor="mm")
+                img.save(self.w(f"bl-ab{j}.png"))
+                ini = T(leg["em"])
+                fim = T(legs[j + 1]["em"]) if j + 1 < len(legs) else T(ab["ate"])
+                estados.append((self.w(f"bl-ab{j}.png"), ini, fim))
+
+        for b in k["itens"]:
+            campos = b["campos"]
+            for passo in range(len(campos) + 1):
+                img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+                sombra = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                ds, d = ImageDraw.Draw(sombra), ImageDraw.Draw(img)
+                self._pasta(d, x, y_nome, lado, b.get("simbolo", "laptop"))
+                ds.text((x + lado + 26 + 3, y_nome + lado * 0.5 + 4), b["nome"], font=f_nome,
+                        fill=(0, 0, 0, 205), anchor="lm")
+                d.text((x + lado + 26, y_nome + lado * 0.5), b["nome"], font=f_nome,
+                       fill=k.get("cor_nome", "#FFFFFF"), anchor="lm")
+                for i, c in enumerate(campos):     # números visíveis desde o início do bloco
+                    yy = y_lista + i * lh
+                    ds.text((x + 3, yy + 3), f"{i + 1}.", font=f_item, fill=(0, 0, 0, 200))
+                    d.text((x, yy), f"{i + 1}.", font=f_item, fill="#FFFFFF")
+                    if i < passo:
+                        ds.text((x + 58 + 3, yy + 3), c["texto"], font=f_item, fill=(0, 0, 0, 200))
+                        d.text((x + 58, yy), c["texto"], font=f_item, fill="#FFFFFF")
+                img = Image.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(7)), img)
+                img.save(self.w(f"bl{n}.png"))
+                ini = T(b["de"]) if passo == 0 else T(campos[passo - 1]["em"])
+                fim = T(campos[passo]["em"]) if passo < len(campos) else T(b["ate"])
+                estados.append((self.w(f"bl{n}.png"), ini, fim))
+                n += 1
+
+        vazio = self.w("bl-vazio.png")
+        Image.new("RGBA", (1080, 1920), (0, 0, 0, 0)).save(vazio)
+        linhas, t = [], 0.0
+        for cam, ini, fim in estados:
+            if ini > t + 0.04:                      # intervalo entre blocos: tela limpa
+                linhas += [f"file '{vazio}'".replace("\\", "/"), f"duration {round(ini - t, 3)}"]
+            if fim > ini:
+                linhas += [f"file '{cam}'".replace("\\", "/"), f"duration {round(fim - ini, 3)}"]
+                t = fim
+        linhas.append(f"file '{vazio}'".replace("\\", "/"))
+        cam_txt = self.w("blocos.txt")
+        open(cam_txt, "w", encoding="utf-8").write("\n".join(linhas) + "\n")
+        run(["-f", "concat", "-safe", "0", "-i", cam_txt, "-vf", "fps=30,format=rgba",
+             "-c:v", "qtrle", self.w("blocos.mov")])
+        print(f"  blocos: {len(k['itens'])} arquivos, {n} estados -> blocos.mov")
+
     def lista(self):
         """Lista numerada que se preenche, com título fixo no topo (padrão medido em 74 mil ❤).
 
@@ -294,7 +451,7 @@ class Projeto:
         # Um .mov unico em vez de N PNGs em loop: 13 entradas de tela cheia estouram a RAM
         # desta maquina. O concat por duracao da o mesmo resultado com uma entrada so.
         marcos = [self.t(k.get("entra", 0.15))] + [self.t(it["em"]) for it in itens]
-        fim = self.t(k.get("sai", self.dur))
+        fim = (self.t(k["sai"]) if "sai" in k else self.dur)
         linhas = []
         for passo in range(len(itens) + 1):
             ini = marcos[passo]
@@ -555,7 +712,11 @@ class Projeto:
             e, s, y = self.t(k["entra"]), self.t(k["sai"]), k.get("y", 1300)
             desliza = k.get("desliza", 60)   # de onde ele entra: +60 = sobe de baixo, -60 = desce de cima
             deslocar = f"setpts=PTS-STARTPTS+{e}/TB," if animado else ""
-            fc.append(f"[{n}:v]{deslocar}format=rgba,fade=t=in:st={e}:d=0.25:alpha=1,fade=t=out:st={s - 0.3}:d=0.3:alpha=1[pc{i}]")
+            # "surge": false = já está na tela no primeiro quadro em que entra (sem fade nem deslize)
+            entrada = f"fade=t=in:st={e}:d=0.25:alpha=1," if k.get("surge", True) else ""
+            if not k.get("surge", True):
+                desliza = 0
+            fc.append(f"[{n}:v]{deslocar}format=rgba,{entrada}fade=t=out:st={s - 0.3}:d=0.3:alpha=1[pc{i}]")
             fc.append(f"[{ultimo}][pc{i}]overlay=x={k.get('x', '(W-w)/2')}:y='{y}+{desliza}*max(0,1-(t-{e})/0.3)':"
                       f"enable='between(t,{e},{s})':eof_action=pass[oc{i}]")
             n, ultimo = n + 1, f"oc{i}"
@@ -566,10 +727,17 @@ class Projeto:
             fc.append(f"[{ultimo}][mt{i}]overlay=0:{m.get('y', 760)}:enable='between(t,{e},{s})':"
                       f"eof_action=pass:format=auto[om{i}]")
             n, ultimo = n + 1, f"om{i}"
+        k = self.c.get("blocos")
+        if k:
+            ins += ["-i", self.w("blocos.mov")]
+            fc.append(f"[{n}:v]format=rgba[bl]")
+            fc.append(f"[{ultimo}][bl]overlay=0:0:eof_action=pass[ob]")
+            n, ultimo = n + 1, "ob"
+
         k = self.c.get("lista")
         if k:
             ini = self.t(k.get("entra", 0.15))
-            fim = self.t(k.get("sai", self.dur))
+            fim = (self.t(k["sai"]) if "sai" in k else self.dur)
             ins += ["-i", self.w("lista.mov")]
             fc.append(f"[{n}:v]setpts=PTS-STARTPTS+{ini}/TB,format=rgba,"
                       f"fade=t=in:st={ini}:d=0.25:alpha=1[ls]")
@@ -580,7 +748,7 @@ class Projeto:
         k = self.c.get("titulo")
         if k:
             ins += ["-loop", "1", "-framerate", "30", "-t", str(self.dur), "-i", self.w("titulo.png")]
-            e, s = self.t(k.get("entra", 0.15)), self.t(k.get("sai", self.dur))
+            e, s = self.t(k.get("entra", 0.15)), (self.t(k["sai"]) if "sai" in k else self.dur)
             fc.append(f"[{n}:v]format=rgba,fade=t=in:st={e}:d=0.2:alpha=1,fade=t=out:st={max(e, s - 0.3)}:d=0.3:alpha=1[tt]")
             fc.append(f"[{ultimo}][tt]overlay=0:0:enable='between(t,{e},{s})'[ot]")
             n, ultimo = n + 1, "ot"
@@ -611,7 +779,7 @@ class Projeto:
 if __name__ == "__main__":
     p = Projeto(sys.argv[1])
     p.cortar()   # sempre primeiro: troca o vídeo principal e cria o mapa de tempos
-    etapas = sys.argv[2:] or ["transcrever", "recorte", "fundo", "cards", "lista", "titulo",
+    etapas = sys.argv[2:] or ["transcrever", "recorte", "fundo", "cards", "blocos", "lista", "titulo",
                               "legenda", "compor", "previa"]
     for e in etapas:
         print(f"[{e}]", flush=True)

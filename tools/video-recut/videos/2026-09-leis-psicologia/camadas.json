@@ -1,0 +1,49 @@
+{
+  "_sobre": "11 leis da psicologia humana — mesmo formato do 2026-09-leis-ia (ref. Mila Sokolskiy): título fixo no topo, lista numerada à esquerda preenchendo conforme a fala, e card de pesquisa em leis alternadas (2, 4, 6, 8, 10). Tempos = transcrição palavra a palavra do take (Groq).",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "166C15D5-13EA-4B33-8D54-1BA12C5F49D7.mp4",
+  "saida": "2026-09-leis-psicologia.mp4",
+  "duracao": 44.0,
+  "cor": ",curves=all='0/0.03 0.35/0.42 0.7/0.76 1/0.98',eq=contrast=1.06:saturation=1.05",
+  "cortar": {
+    "ruido": -28,
+    "min": 0.22,
+    "folga": 0.05
+  },
+  "transcricao": {
+    "prompt": "Onze leis da psicologia humana. Lei do Efeito, Lei de Yerkes-Dodson, Lei de Hick, Lei de Weber-Fechner, Lei de Parkinson, Lei do Menor Esforço, Efeito Zeigarnik, Lei do Pico-Fim, Efeito de Posição Serial, Efeito Pigmalião, Efeito Benjamin Franklin."
+  },
+  "legenda": null,
+  "lista": {
+    "titulo": "11 Leis da Psicologia Humana",
+    "titulo_y": 178,
+    "x": 52,
+    "y": 640,
+    "linha": 68,
+    "tamanho": 30,
+    "titulo_tamanho": 42,
+    "entra": 0.15,
+    "itens": [
+      {"texto": "Lei do Efeito", "em": 2.06},
+      {"texto": "Lei de Yerkes-Dodson", "em": 4.94},
+      {"texto": "Lei de Hick", "em": 9.78},
+      {"texto": "Lei de Weber-Fechner", "em": 12.28},
+      {"texto": "Lei de Parkinson", "em": 17.02},
+      {"texto": "Lei do Menor Esforço", "em": 19.78},
+      {"texto": "Efeito Zeigarnik", "em": 22.86},
+      {"texto": "Regra do Pico-Fim", "em": 26.6},
+      {"texto": "Posição Serial", "em": 30.5},
+      {"texto": "Efeito Pigmalião", "em": 34.46},
+      {"texto": "Efeito Benjamin Franklin", "em": 39.58}
+    ],
+    "raio": 6
+  },
+  "cards": [
+    {"foto": "c-yerkes.png", "entra": 5.0, "sai": 9.6, "y": 286, "largura": 480, "altura": 270, "borda": 0, "giro": 0, "desliza": -26},
+    {"foto": "c-weber.png", "entra": 12.35, "sai": 16.85, "y": 286, "largura": 480, "altura": 270, "borda": 0, "giro": 0, "desliza": -26},
+    {"foto": "c-zipf.png", "entra": 19.85, "sai": 22.7, "y": 286, "largura": 480, "altura": 270, "borda": 0, "giro": 0, "desliza": -26},
+    {"foto": "c-picofim.png", "entra": 26.65, "sai": 30.35, "y": 286, "largura": 480, "altura": 270, "borda": 0, "giro": 0, "desliza": -26},
+    {"foto": "c-pigmaliao.png", "entra": 34.55, "sai": 39.4, "y": 286, "largura": 480, "altura": 270, "borda": 0, "giro": 0, "desliza": -26}
+  ],
+  "musica": null
+}
