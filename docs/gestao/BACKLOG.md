@@ -2,7 +2,7 @@
 
 **Fonte única.** Toda atividade de qualquer projeto entra aqui. A semana (`docs/semanas/`) é uma *seleção* deste arquivo, nunca uma lista paralela.
 **Painel visual:** `docs/gestao/painel.html`
-**Última atualização:** 2026-09-07 · **56 atividades** · *fechamento de 5 semanas (03/08 → 07/09) aplicado*
+**Última atualização:** 2026-09-28 · **+9 atividades em 28/09** (MP-08..12, OF-10/11, LG-18..20) · *fechamento de 5 semanas (03/08 → 07/09) aplicado*
 
 ---
 
@@ -60,6 +60,9 @@ As 56 atividades não são 56 coisas — são **5 máquinas repetidas** em frent
 - [ ] **LG-02** Criar roteiros — 🤖 · M · M1 · ↳ LG-01
 - [ ] **LG-03** Postar — 👤 · P · M1 · recorrente
 - [ ] **LG-07** Abordar 10 influencers — 👤 · M · M3 · ↳ LG-15
+- [>] **LG-18** Criar roteiro do desafio do fundador — 🤖 · P · M1 · *existia só no CRM desde 18/08*
+- [>] **LG-19** Criar roteiro da Gabi — 🤖 · P · M1
+- [>] **LG-20** Criador de carrossel do Lingrow (reusar a tool 1080×1350 da marca pessoal) — 🤖 · M · M1
 - [ ] **LG-08** Definir a métrica que a semana move — 👤 · P · *waitlist? download? assinante?*
 
 ### Trilha 3 — Produto
@@ -141,8 +144,16 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 ### Trilha 2 — Produção
 
 - [x] **MP-01** Criar calendário de conteúdo — 🤖 · M · M1 · *13/08: grade semanal fixa 7/sem (5 VISÃO : 2 OBRA), piso de 3 na semana ruim, regime de lote e banco de 28 pautas em `docs/ecossistema/linha-editorial-e-calendario.md`*
-- [ ] **MP-02** Escrever roteiros — 🤖 · M · M1 · ↳ MP-01
-- [ ] **MP-03** Gravar vídeos — 👤 · M · M1 · *recorrente · o único gargalo que não terceiriza*
+- [>] **MP-02** Escrever roteiros — 🤖 · M · M1 · *28/09: 4 prontos em `docs/conteudo/banco-pautas/`*
+- [>] **MP-03** Gravar vídeos — 👤 · M · M1 · *recorrente · 28/09: 5 vídeos*
+- [>] **MP-08** Calendário de conteúdo v2 + formatos — 🤖 · M · M1
+- [>] **MP-09** Criar e otimizar o agente editor de vídeo — 🤖 · M · M1
+
+### Trilha 3 — Newsletter
+
+- [>] **MP-10** Pesquisar funil de newsletter — 🤖 · P · M5
+- [ ] **MP-11** Página de inscrição da newsletter — 🤖 · M · M2 · ↳ MP-10
+- [ ] **MP-12** Sequência de stories para cadastrar pessoas — 🤝 · P · M1 · ↳ MP-11
 
 ---
 
@@ -163,6 +174,8 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 ### Trilha 3 — Distribuir
 
 - [ ] **OF-06** Primeiros posts do perfil ARVEX (carrossel + vídeos com IA) — 🤖 · M · M1
+- [>] **OF-10** Roteiro do vídeo de conteúdo/posicionamento da ARVEX — 🤖 · P · M1
+- [ ] **OF-11** Editar o vídeo de posicionamento — 🤝 · M · M1 · ↳ OF-10
 - [ ] **OF-07** Sequência de stories 2×/semana com CTA "me chama para implementar" — 🤝 · P · M1 · recorrente
 
 ### Trilha 4 — Pipeline
