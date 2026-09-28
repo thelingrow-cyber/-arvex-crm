@@ -1,0 +1,40 @@
+{
+  "_sobre": "Três livros previram como você vai comprar (VISÃO). Legenda passando + capas reais com ano (cards .mov com alfa, gerados por gerar-artes.py) + B-roll Mixkit em tela cheia nas passagens de imagem (propaganda, carro, TV → futebol → influenciadora, celular, compra). Tempos = transcrição palavra a palavra do take original.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "444C0D97-3CD2-4844-99BA-A43E79B2A3E7.mp4",
+  "saida": "2026-09-tres-livros.mp4",
+  "duracao": 49.6,
+  "cor": ",curves=all='0/0.03 0.35/0.42 0.7/0.76 1/0.98',eq=contrast=1.06:saturation=1.05",
+  "cortar": {
+    "ruido": -28,
+    "min": 0.22,
+    "folga": 0.05
+  },
+  "transcricao": {
+    "prompt": "A propaganda que fez você comprar tudo o que você comprou até hoje vai parar de funcionar. Influencer, esquece. Bill Gates, A Estrada do Futuro. A Economia da Intenção. Yuval Harari. Meta.",
+    "trocar": {"colocou.": "colocou:"}
+  },
+  "legenda": {
+    "fonte": "C:\\Windows\\Fonts\\seguibl.ttf",
+    "tamanho": 70,
+    "y": 1470,
+    "cor": "#FFFFFF"
+  },
+  "apoio": [
+    ["b-advertising.mp4", 2.0, 0.25, 3.45, ",eq=brightness=-0.04"],
+    ["b-car-driving.mp4", 1.0, 24.2, 5.0, ""],
+    ["b-old-tv.mp4", 1.5, 29.9, 1.65, ""],
+    ["b-soccer.mp4", 2.0, 31.55, 1.05, ""],
+    ["b-influencer.mp4", 1.0, 32.6, 1.65, ""],
+    ["b-smartphone.mp4", 1.5, 35.7, 2.6, ""],
+    ["b-online-shopping.mp4", 1.5, 41.6, 2.6, ""]
+  ],
+  "cards": [
+    {"foto": "c-tres.mov", "entra": 5.1, "sai": 8.45, "y": 110, "desliza": 50},
+    {"foto": "c-livro1.mov", "entra": 8.5, "sai": 15.3, "y": 120, "desliza": 50},
+    {"foto": "c-livro2.mov", "entra": 15.38, "sai": 21.6, "y": 120, "desliza": 50},
+    {"foto": "c-livro3.mov", "entra": 21.7, "sai": 25.4, "y": 120, "desliza": 50},
+    {"foto": "c-meta.mov", "entra": 40.3, "sai": 44.1, "y": 200, "desliza": 50}
+  ],
+  "musica": null
+}
