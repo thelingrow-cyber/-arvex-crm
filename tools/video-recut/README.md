@@ -117,6 +117,34 @@ python tools\video-recut\camadas\camadas.py 2026-10-meu-video legenda compor pre
 - RobustVideoMatting (`torch.hub`) recorta melhor, mas executa código baixado → bloqueado pelo classificador. Não tentar de novo.
 - Fundo some quando entra a cena de apoio seguinte: na volta à tela grande fica só a pessoa (pedido do Vitor).
 
+## ⭐ Receita APROVADA — "tela dividida com imagens reais" (2026-09-28)
+
+Vídeo de referência: `videos/2026-09-tres-livros/` (VISÃO, 45 s). Vitor: *"ficou muito boa a edição — registrar para fazer mais dessas"*.
+Serve para qualquer VISÃO/CAFEIA que cita **pessoas, livros, marcas ou fatos reais**.
+
+**A gramática:**
+1. **Abertura = só o rosto** falando o gancho. Nada por cima nos primeiros ~5 s (pedido explícito).
+2. **Legenda fina:** `seguisb.ttf` (Segoe UI Semibold) 68 px, branca com sombra, `y 1470`, blocos de até 3 palavras. A Black (`seguibl`) ficou pesada.
+3. **Cards de livro/notícia** no alto (acima do boné, `y 110–200`), **sempre com o rosto na tela**:
+   capa REAL + etiqueta dourada com o ano no canto + faixa escura com título em PT e autor (`gerar-artes.py` do vídeo).
+   PNG com transparência → vira `.mov` qtrle (`ffmpeg -loop 1 … -c:v qtrle`) e entra em `cards` com `"foto": "x.mov"`.
+4. **Tela dividida** (`dividido` + `divisao` no camadas.json) quando a fala cita alguém/algo que tem imagem real:
+   vídeo real em cima (0–860 px), o Vitor embaixo (recorte do próprio take a partir de `origem_y: 640`),
+   **sem linha no meio** — faixa de 280 px, opacidade 0.9, curva cosseno: os dois escurecem e se fundem (igual ref. do Elias).
+5. **Ritmo:** trecho dividido de 1–5 s, casado com a palavra falada (ex.: "ator" → Bombril 1,65 s · "jogador" → Ronaldinho 1,05 s · "influenciador" → reportagem 1,65 s). Entre um e outro, volta ao rosto.
+6. **Sem música** (Vitor põe no app). Corte de silêncio ligado (`cortar`).
+
+**Onde buscar as imagens (nessa ordem):**
+- **Vídeo real:** `yt-dlp "ytsearch4:<busca>"` → baixar só o trecho: `--download-sections "*55-80" -f "bv*[height<=720]+ba/b"`.
+  Se vier **só áudio** (acontece), listar com `-F` e baixar o formato de vídeo inteiro (ex. `398`/`247`) e cortar local com ffmpeg.
+  Conferir sempre com folha de contato (8 quadros por clipe) antes de escolher o segundo exato.
+- **Capa de livro:** Wikipedia (`generator=images` da página do livro) → Open Library (`covers.openlibrary.org/b/id/<id>-L.jpg`).
+  Capa escaneada com adesivo/selo **não se remenda** (fica amador): trocar de fonte.
+- **Marca d'água de canal** no clipe: cortar a faixa com o 5º campo do `dividido` (ex.: `",crop=iw:ih*0.86:0:0"`).
+- Banco livre (Mixkit) foi **reprovado** para este formato: "coloca uns mais reais". Só usar se não existir imagem real.
+
+**Risco a lembrar ao Vitor:** imagem de terceiro (TV, comercial, jornal). Trechos de 1–5 s, sem o áudio original — risco baixo, não zero.
+
 ## Economia de tokens (para o agente)
 
 Não reler as SKILL.md do HyperFrames (este README cobre o necessário). Não fazer versão "simples" antes: ir direto no nível
