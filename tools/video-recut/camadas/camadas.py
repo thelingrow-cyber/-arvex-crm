@@ -676,6 +676,18 @@ class Projeto:
              "-filter_threads", "2", "-map", "[v]", "-t", str(self.trecho), "-c:v", "libx264", "-crf", "16",
              "-preset", "fast", "-threads", "2", self.w("trecho.mp4")])
 
+    def _faixa(self, alt, opac):
+        """Faixa que divide vídeo (em cima) e pessoa (embaixo): escura e semitransparente,
+        esfumada nas bordas, com um fio claro no meio."""
+        img = Image.new("RGBA", (1080, alt), (0, 0, 0, 0))
+        px = img.load()
+        for y in range(alt):
+            a = int(255 * opac * (1 - abs(y - alt / 2) / (alt / 2)) ** 0.8)
+            for x in range(1080):
+                px[x, y] = (8, 8, 12, a)
+        ImageDraw.Draw(img).line([0, alt // 2, 1080, alt // 2], fill=(255, 255, 255, 90), width=2)
+        img.save(self.w("faixa.png"))
+
     def compor(self):
         tem_fundo = bool(self.c.get("fundo"))
         if tem_fundo:
@@ -703,6 +715,25 @@ class Projeto:
             fc.append(f"[{n}:v]{V916}{extra},format=yuv420p,setpts=PTS-STARTPTS+{em}/TB[a{i}]")
             fc.append(f"[{ultimo}][a{i}]overlay=enable='between(t,{em},{em + dur - 0.02})':eof_action=pass[o{i}]")
             n, ultimo = n + 1, f"o{i}"
+        # dividido: vídeo em cima, a pessoa embaixo (deslocada para baixo), faixa semitransparente entre os dois
+        dv = self.c.get("divisao", {})
+        A, Y0, FX = dv.get("altura", 860), dv.get("origem_y", 680), dv.get("faixa", 90)
+        if self.c.get("dividido"):
+            self._faixa(FX, dv.get("opacidade", 0.55))
+        for i, (arq, ini, em, dur, extra) in enumerate(self.c.get("dividido", [])):
+            em = self.t(em)
+            fim = em + dur - 0.02
+            ins += ["-ss", str(ini), "-t", str(dur), "-i", self.arq(arq)]
+            ins += ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", self.w("faixa.png")]
+            fc.append(f"[{ultimo}]split[db{i}][ds{i}]")
+            fc.append(f"[ds{i}]crop=1080:{1920 - A}:0:{Y0}[dc{i}]")
+            fc.append(f"[db{i}][dc{i}]overlay=0:{A}:enable='between(t,{em},{fim})'[dm{i}]")
+            fc.append(f"[{n}:v]fps=30{extra},scale=1080:{A}:force_original_aspect_ratio=increase:flags=lanczos,"
+                      f"crop=1080:{A},setsar=1,format=yuv420p,setpts=PTS-STARTPTS+{em}/TB[dv{i}]")
+            fc.append(f"[dm{i}][dv{i}]overlay=0:0:enable='between(t,{em},{fim})':eof_action=pass[do{i}]")
+            fc.append(f"[{n + 1}:v]format=rgba,setpts=PTS-STARTPTS+{em}/TB[df{i}]")
+            fc.append(f"[do{i}][df{i}]overlay=0:{A - FX // 2}:enable='between(t,{em},{fim})':eof_action=pass[dx{i}]")
+            n, ultimo = n + 2, f"dx{i}"
         for i, k in enumerate(self.c.get("cards") or ([self.c["card"]] if self.c.get("card") else [])):
             animado = k["foto"].lower().endswith((".mov", ".mp4"))
             if animado:            # card já animado (rolagem, lupa): entra como vídeo

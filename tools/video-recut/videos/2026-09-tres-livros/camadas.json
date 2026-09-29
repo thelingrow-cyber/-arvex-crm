@@ -1,5 +1,5 @@
 {
-  "_sobre": "Três livros previram como você vai comprar (VISÃO). Legenda passando + capas reais com ano (cards .mov com alfa, gerados por gerar-artes.py) + B-roll Mixkit em tela cheia nas passagens de imagem (propaganda, carro, TV → futebol → influenciadora, celular, compra). Tempos = transcrição palavra a palavra do take original.",
+  "_sobre": "Três livros previram como você vai comprar (VISÃO). Abertura só com o rosto. Legenda Segoe Semibold. Imagens REAIS em tela dividida (vídeo em cima, Vitor embaixo, faixa semitransparente): Gates no Letterman 1995, Harari (Carnegie Council), Bombril 1997, Ronaldinho/Nike, reportagem ABC sobre influenciadores, demo OpenAI Instant Checkout, CBS sobre o Meta Muse. Capas reais em cards.",
   "pasta": "%USERPROFILE%\\Downloads",
   "principal": "444C0D97-3CD2-4844-99BA-A43E79B2A3E7.mp4",
   "saida": "2026-09-tres-livros.mp4",
@@ -12,29 +12,109 @@
   },
   "transcricao": {
     "prompt": "A propaganda que fez você comprar tudo o que você comprou até hoje vai parar de funcionar. Influencer, esquece. Bill Gates, A Estrada do Futuro. A Economia da Intenção. Yuval Harari. Meta.",
-    "trocar": {"colocou.": "colocou:"}
+    "trocar": {
+      "colocou.": "colocou:"
+    }
   },
   "legenda": {
-    "fonte": "C:\\Windows\\Fonts\\seguibl.ttf",
-    "tamanho": 70,
+    "fonte": "C:\\Windows\\Fonts\\seguisb.ttf",
+    "tamanho": 68,
     "y": 1470,
     "cor": "#FFFFFF"
   },
-  "apoio": [
-    ["b-advertising.mp4", 2.0, 0.25, 3.45, ",eq=brightness=-0.04"],
-    ["b-car-driving.mp4", 1.0, 24.2, 5.0, ""],
-    ["b-old-tv.mp4", 1.5, 29.9, 1.65, ""],
-    ["b-soccer.mp4", 2.0, 31.55, 1.05, ""],
-    ["b-influencer.mp4", 1.0, 32.6, 1.65, ""],
-    ["b-smartphone.mp4", 1.5, 35.7, 2.6, ""],
-    ["b-online-shopping.mp4", 1.5, 41.6, 2.6, ""]
-  ],
   "cards": [
-    {"foto": "c-tres.mov", "entra": 5.1, "sai": 8.45, "y": 110, "desliza": 50},
-    {"foto": "c-livro1.mov", "entra": 8.5, "sai": 15.3, "y": 120, "desliza": 50},
-    {"foto": "c-livro2.mov", "entra": 15.38, "sai": 21.6, "y": 120, "desliza": 50},
-    {"foto": "c-livro3.mov", "entra": 21.7, "sai": 25.4, "y": 120, "desliza": 50},
-    {"foto": "c-meta.mov", "entra": 40.3, "sai": 44.1, "y": 200, "desliza": 50}
+    {
+      "foto": "c-tres.mov",
+      "entra": 5.1,
+      "sai": 8.45,
+      "y": 110,
+      "desliza": 50
+    },
+    {
+      "foto": "c-livro1.mov",
+      "entra": 8.5,
+      "sai": 11.25,
+      "y": 120,
+      "desliza": 50
+    },
+    {
+      "foto": "c-livro2.mov",
+      "entra": 15.38,
+      "sai": 21.6,
+      "y": 120,
+      "desliza": 50
+    },
+    {
+      "foto": "c-livro3.mov",
+      "entra": 21.7,
+      "sai": 24.15,
+      "y": 120,
+      "desliza": 50
+    },
+    {
+      "foto": "c-meta.mov",
+      "entra": 39.7,
+      "sai": 41.55,
+      "y": 200,
+      "desliza": 50
+    }
   ],
-  "musica": null
+  "musica": null,
+  "divisao": {
+    "altura": 860,
+    "origem_y": 640,
+    "faixa": 90,
+    "opacidade": 0.55
+  },
+  "dividido": [
+    [
+      "r-gates.mp4",
+      17.0,
+      11.3,
+      4.0,
+      ""
+    ],
+    [
+      "r-harari.mp4",
+      17.0,
+      24.2,
+      5.0,
+      ""
+    ],
+    [
+      "r-bombril.mp4",
+      3.0,
+      29.9,
+      1.65,
+      ",crop=iw:ih*0.86:0:0"
+    ],
+    [
+      "r-futebol.mp4",
+      12.0,
+      31.55,
+      1.05,
+      ""
+    ],
+    [
+      "r-influencer.mp4",
+      2.0,
+      32.6,
+      1.65,
+      ""
+    ],
+    [
+      "r-openai.mp4",
+      5.0,
+      35.7,
+      3.5,
+      ""
+    ],
+    [
+      "r-muse.mp4",
+      27.0,
+      41.6,
+      2.8,
+      ""
+    ]
+  ]
 }
