@@ -83,6 +83,8 @@ def cenas():
         for p in partes:
             f.write(f"file '{p}'\n".replace("\\", "/"))
     run(["-f", "concat", "-safe", "0", "-i", lista, "-c", "copy", os.path.join(WORK, "imagem.mp4")])
+    for p in partes:          # disco apertado: as cenas soltas não servem mais
+        os.remove(p)
 
 
 def alt(x):
@@ -123,7 +125,7 @@ def legenda():
         for p, dur in seq:
             fh.write(f"file '{p}'\nduration {dur:.3f}\n".replace("\\", "/"))
         fh.write(f"file '{vazio}'\n".replace("\\", "/"))
-    run(["-f", "concat", "-safe", "0", "-i", lista, "-vf", "fps=30,format=rgba", "-c:v", "qtrle",
+    run(["-f", "concat", "-safe", "0", "-i", lista, "-vf", "fps=30,format=rgba", "-c:v", "png",
          os.path.join(WORK, "legenda.mov")])
 
 
