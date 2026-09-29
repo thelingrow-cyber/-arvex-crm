@@ -677,16 +677,14 @@ class Projeto:
              "-preset", "fast", "-threads", "2", self.w("trecho.mp4")])
 
     def _faixa(self, alt, opac):
-        """Faixa que divide vídeo (em cima) e pessoa (embaixo): escura e semitransparente,
-        esfumada nas bordas, com um fio claro no meio."""
-        img = Image.new("RGBA", (1080, alt), (0, 0, 0, 0))
-        px = img.load()
+        """Faixa que divide vídeo (em cima) e pessoa (embaixo): sem linha — os dois vídeos
+        escurecem suavemente até se fundirem no meio (curva cosseno)."""
+        import math
+        col = Image.new("RGBA", (1, alt), (0, 0, 0, 0))
         for y in range(alt):
-            a = int(255 * opac * (1 - abs(y - alt / 2) / (alt / 2)) ** 0.8)
-            for x in range(1080):
-                px[x, y] = (8, 8, 12, a)
-        ImageDraw.Draw(img).line([0, alt // 2, 1080, alt // 2], fill=(255, 255, 255, 90), width=2)
-        img.save(self.w("faixa.png"))
+            a = int(255 * opac * (0.5 + 0.5 * math.cos(math.pi * (y - alt / 2) / (alt / 2))))
+            col.putpixel((0, y), (6, 6, 9, a))
+        col.resize((1080, alt)).save(self.w("faixa.png"))
 
     def compor(self):
         tem_fundo = bool(self.c.get("fundo"))

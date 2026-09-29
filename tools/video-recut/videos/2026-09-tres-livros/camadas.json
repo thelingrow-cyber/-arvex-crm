@@ -63,8 +63,8 @@
   "divisao": {
     "altura": 860,
     "origem_y": 640,
-    "faixa": 90,
-    "opacidade": 0.55
+    "faixa": 280,
+    "opacidade": 0.9
   },
   "dividido": [
     [
