@@ -35,23 +35,13 @@ MESA = os.path.join(TAKES, "74C15A77-8FDB-4B26-AC84-FE7CB203E865.mp4")
 SACADA = os.path.join(TAKES, "E3202855-2C0F-41A4-B3BA-DC5D1B9B1DDD.mp4")
 ESTUDIO = os.path.join(TAKES, "C8D81249-B745-41EB-A3E8-86673BB24A85.mp4")
 
-# (take, início no take, entra na linha do tempo, sai)
-# Cortes AGRUPADOS POR LUGAR (como a ref: muitos cortes, mesmo espaço). A v5.0 alternava lugar a cada
-# frase (sacada→mesa→sacada→estúdio…) e ficou "vai e volta sem motivo" — avaliação de 2026-09-30.
+# (take, início no take, entra na linha do tempo, sai, velocidade)
+# SIMPLES (pedido do Vitor, 2026-09-30): cada take roda inteiro UMA vez, sem repetir trecho, e entra o
+# próximo. Sacada → estúdio → mesa. Velocidade só o necessário para o take cobrir o trecho.
 PLANOS = [
-    # sacada — abertura
-    (SACADA, 0.0, 0.00, 1.82),      # a galera gosta, foda-se
-    (SACADA, 1.9, 1.82, 4.54),      # se o que a galera gosta fosse bom
-    (SACADA, 3.9, 4.54, 5.64),      # não teríamos matado
-    # estúdio — os nomes
-    (ESTUDIO, 0.0, 5.64, 7.24),     # Sócrates · Jesus
-    (ESTUDIO, 1.6, 7.24, 8.76),     # Gandhi
-    (ESTUDIO, 3.1, 8.76, 10.40),    # Martin Luther King
-    (ESTUDIO, 4.2, 10.40, 12.96),   # todos os grandes foram mortos pela galera
-    # mesa — o fecho, digitando
-    (MESA, 0.0, 12.96, 15.70),      # então, foda-se o que a galera acha bom
-    (MESA, 6.0, 15.70, 17.45),      # quem tem que achar bom sou eu
-    (MESA, 12.0, 17.45, 20.00),     # fecho sem texto
+    (SACADA, 0.0, 0.00, 5.64, 0.887),     # 5,0 s de take → 5,64 s
+    (ESTUDIO, 0.0, 5.64, 12.96, 0.929),   # 6,8 s → 7,32 s
+    (MESA, 0.0, 12.96, 20.00, 1.0),       # 19 s de take; usa os primeiros 7 s
 ]
 
 NOMES = {"sócrates", "jesus", "gandhi", "martin", "luther", "king"}
@@ -65,14 +55,14 @@ def run(args):
 
 def imagem():
     partes = []
-    for i, (arq, ini, a, b) in enumerate(PLANOS):
+    for i, (arq, ini, a, b, vel) in enumerate(PLANOS):
         d = b - a
         out = os.path.join(WORK, f"p{i}.mp4")
         # push-in lento de 4% ao longo do plano (a imagem nunca fica parada)
         vf = ("scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,"
               f"scale=w='trunc(1080*(1+0.04*t/{d:.3f})/2)*2':h=-2:eval=frame:flags=bicubic,"
-              f"crop=1080:1920,setsar=1,fps={FPS},format=yuv420p")
-        run(["-ss", str(ini), "-t", f"{d + 0.2:.3f}", "-i", arq, "-an", "-vf", vf, "-t", f"{d:.3f}",
+              f"crop=1080:1920,setsar=1,setpts=PTS/{vel},fps={FPS},format=yuv420p")
+        run(["-ss", str(ini), "-t", f"{d * vel + 0.2:.3f}", "-i", arq, "-an", "-vf", vf, "-t", f"{d:.3f}",
              "-c:v", "libx264", "-crf", "17", "-preset", "fast", "-g", "30", out])
         partes.append(out)
     lista = os.path.join(WORK, "planos.txt")
@@ -175,7 +165,7 @@ F_GRITO = fonte(SERIF, 300)
 F_ACUM = fonte(SERIF_IT, 92)
 F_FINAL = fonte(SERIF, 250)
 Y = 980          # centro: nomes, grito e "SOU EU" (a imagem escurece junto)
-Y_BRANCO = 1560  # terço de baixo: legenda branca, onde os 3 takes são mais escuros (fora do rosto/camiseta)
+Y_BRANCO = 980   # legenda branca no MEIO (o terço de baixo foi reprovado); penumbra segura a leitura
 
 
 def ease(x):
