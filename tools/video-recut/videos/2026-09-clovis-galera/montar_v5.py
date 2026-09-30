@@ -35,18 +35,23 @@ MESA = os.path.join(TAKES, "74C15A77-8FDB-4B26-AC84-FE7CB203E865.mp4")
 SACADA = os.path.join(TAKES, "E3202855-2C0F-41A4-B3BA-DC5D1B9B1DDD.mp4")
 ESTUDIO = os.path.join(TAKES, "C8D81249-B745-41EB-A3E8-86673BB24A85.mp4")
 
-# (take, início no take, entra na linha do tempo, sai)  — troca a cada frase/batida
+# (take, início no take, entra na linha do tempo, sai)
+# Cortes AGRUPADOS POR LUGAR (como a ref: muitos cortes, mesmo espaço). A v5.0 alternava lugar a cada
+# frase (sacada→mesa→sacada→estúdio…) e ficou "vai e volta sem motivo" — avaliação de 2026-09-30.
 PLANOS = [
-    (SACADA, 0.0, 0.00, 1.82),
-    (MESA, 2.0, 1.82, 4.54),
-    (SACADA, 2.4, 4.54, 5.64),
+    # sacada — abertura
+    (SACADA, 0.0, 0.00, 1.82),      # a galera gosta, foda-se
+    (SACADA, 1.9, 1.82, 4.54),      # se o que a galera gosta fosse bom
+    (SACADA, 3.9, 4.54, 5.64),      # não teríamos matado
+    # estúdio — os nomes
     (ESTUDIO, 0.0, 5.64, 7.24),     # Sócrates · Jesus
-    (MESA, 7.0, 7.24, 8.76),        # Gandhi
-    (ESTUDIO, 2.0, 8.76, 10.40),    # Martin Luther King
-    (MESA, 10.0, 10.40, 12.96),     # todos os grandes foram mortos pela galera
-    (ESTUDIO, 3.8, 12.96, 15.70),   # então, foda-se o que a galera acha bom
-    (MESA, 14.0, 15.70, 17.45),     # quem tem que achar bom sou eu
-    (SACADA, 3.0, 17.45, 20.00),    # fecho sem texto
+    (ESTUDIO, 1.6, 7.24, 8.76),     # Gandhi
+    (ESTUDIO, 3.1, 8.76, 10.40),    # Martin Luther King
+    (ESTUDIO, 4.2, 10.40, 12.96),   # todos os grandes foram mortos pela galera
+    # mesa — o fecho, digitando
+    (MESA, 0.0, 12.96, 15.70),      # então, foda-se o que a galera acha bom
+    (MESA, 6.0, 15.70, 17.45),      # quem tem que achar bom sou eu
+    (MESA, 12.0, 17.45, 20.00),     # fecho sem texto
 ]
 
 NOMES = {"sócrates", "jesus", "gandhi", "martin", "luther", "king"}
@@ -153,12 +158,24 @@ def colar(frame, b, cy):
     frame.alpha_composite(b, (int(540 - b.width / 2), int(cy - b.height / 2)))
 
 
+def penumbra(frame, larg, alt, cy, alpha):
+    """Escurece de leve só a região atrás da legenda branca (sem borda visível): dá 'chão' para a
+    letra em fundo claro — camiseta branca, céu, parede do estúdio. Desfoque num canvas pequeno."""
+    m = 140
+    W, H = int(larg * 1.3) + 2 * m, int(alt * 1.5) + 2 * m
+    c = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(c).ellipse([m, m, W - m, H - m], fill=(0, 0, 0, int(95 * alpha)))
+    c = c.filter(ImageFilter.GaussianBlur(48))
+    frame.alpha_composite(c, (int(540 - W / 2), int(cy - H / 2)))
+
+
 F_PALAVRA = fonte(INTER, 88, 620)
 F_NOME = fonte(SERIF, 230)
 F_GRITO = fonte(SERIF, 300)
-F_ACUM = fonte(SERIF_IT, 104)
+F_ACUM = fonte(SERIF_IT, 92)
 F_FINAL = fonte(SERIF, 250)
-Y = 980
+Y = 980          # centro: nomes, grito e "SOU EU" (a imagem escurece junto)
+Y_BRANCO = 1560  # terço de baixo: legenda branca, onde os 3 takes são mais escuros (fora do rosto/camiseta)
 
 
 def ease(x):
@@ -181,16 +198,17 @@ def quadro(t, ev, flash_em, glitch):
     if acum:
         partes = [e[3] for e in acum]
         cores = [OURO if p.lower() == "bom" else CREME for p in partes]
-        ult = acum[-1]
-        e = ease((t - ult[0]) / 0.14)
         b = bloco(partes, F_ACUM, cores)
-        colar(frame, b, Y)
+        penumbra(frame, b.width, F_ACUM.size, Y_BRANCO, 1.0)
+        colar(frame, b, Y_BRANCO)
     for a, b_, est, txt in ativos:
         p = (t - a)
         if est == "palavra":
             # parada no lugar, só um fade de 2 quadros — sem crescer (era o que tremia)
             e = ease(p / 0.066)
-            colar(frame, bloco([txt], F_PALAVRA, [BRANCO], alpha=e), Y)
+            b = bloco([txt], F_PALAVRA, [BRANCO], alpha=e)
+            penumbra(frame, b.width, F_PALAVRA.size, Y_BRANCO, e)
+            colar(frame, b, Y_BRANCO)
         elif est in ("nome", "grito"):
             e = ease(p / 0.16)
             f = F_GRITO if est == "grito" else F_NOME
