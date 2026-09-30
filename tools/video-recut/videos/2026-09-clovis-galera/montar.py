@@ -35,10 +35,10 @@ ESTUDIO = os.path.join(TAKES, "C8D81249-B745-41EB-A3E8-86673BB24A85.mp4")
 # (arquivo, início no arquivo, duração no arquivo, velocidade) — sem recorte, sem filtro
 CENAS = [
     (SACADA, 0.0, 5.0, 0.887),     # abertura curta, como a ref
-    (MESA, 0.0, 15.1, 1.0),        # mesa: de "Sócrates" até "Algoritmo"
-    (ESTUDIO, 0.0, 6.8, 0.806),    # estúdio com o notebook (volta a pedido, 2026-09-30)
+    (ESTUDIO, 0.0, 6.8, 0.929),    # no meio: em pé segurando o notebook ("Sócrates" → "mortos pela galera")
+    (MESA, 0.0, 16.3, 1.0),        # por último: digitando ("Então, foda-se…" → fim)
 ]
-CORTES = [0.0, 5.64, 20.66, 29.1]  # trocas em "Sócrates" e "de uma vontade genérica"
+CORTES = [0.0, 5.64, 12.96, 29.1]  # trocas em "Sócrates" e "Então, foda-se o que a galera acha bom"
 
 # (texto, início, fim, estilo)   estilo: "frase" | "nome" (caixa-alta dourada) | "grito" (gigante dourado)
 LINHAS = [
