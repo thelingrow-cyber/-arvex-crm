@@ -1,12 +1,12 @@
 """Voz de fundo (Clóvis de Barros Filho, "a galera gosta") + takes do Vitor sem fala + legenda da marca.
 
 Formato: ref. Carlos Lehmann (DcWj_iKyyIX, 92k ❤) — só a ESTRUTURA (voz de fundo, takes sem fala,
-frase no meio da tela, palavra-chave em destaque). A IDENTIDADE é a da marca pessoal
-(docs/carrossel-marca-pessoal/knowledge/01-diretrizes-marca.md), para não parecer cópia:
-  - Inter (nunca serif): frase em SemiBold, palavra-chave em Black caixa-alta, tracking negativo
-  - off-white quente #F4F0E6; destaque único dourado #C9A24B (no lugar do vermelho da ref)
-  - imagem QUENTE ("atelier do futuro"), não fria/azulada como a ref
+frase no meio da tela, palavra-chave em destaque, 2 takes sem zoom). A IDENTIDADE é nossa:
+  - serifada Fraunces (a ref usa Instrument Serif); palavra-chave em ITÁLICO DOURADO (a ref: caixa-alta vermelha)
+  - off-white quente; dourado da marca
+  - imagem quente e escura ("atelier"), não fria/azulada como a ref
   - cada frase entra com fade + subida curta (sem pipocar)
+  - v1 (Inter) foi recusada: "as letras dele ficaram bem melhores" (2026-09-30)
 Crédito do áudio na legenda do post.
 
 uso:  python montar.py      →  Downloads/2026-09-clovis-galera.mp4
@@ -19,35 +19,34 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 WORK = os.path.join(AQUI, "..", "..", "work", "2026-09-clovis-galera")
 TAKES = os.path.join(AQUI, "takes")          # enviados em 2026-09-29 (WeTransfer)
 SAIDA = os.path.join(os.environ["USERPROFILE"], "Downloads", "2026-09-clovis-galera.mp4")
-INTER = os.path.join(AQUI, "Inter.ttf")      # variável (opsz, wght) — Google Fonts, OFL
+SERIF = os.path.join(AQUI, "Fraunces.ttf")             # variável (opsz, wght, SOFT, WONK) — Google Fonts, OFL
+SERIF_IT = os.path.join(AQUI, "Fraunces-Italic.ttf")
 os.makedirs(WORK, exist_ok=True)
 
 OFFWHITE = (244, 240, 230)
-OURO = (201, 162, 75)
+OURO = (214, 178, 102)   # dourado da marca, um tom mais claro para ler sobre imagem escura
 
 # grade quente de "atelier": pretos em carvão quente, realces contidos, pouca saturação, grão fino
-COR = ("curves=all='0/0.025 0.25/0.17 0.6/0.5 1/0.88',eq=saturation=0.74:contrast=1.07,"
+COR = ("curves=all='0/0.02 0.3/0.16 0.7/0.52 1/0.82',eq=saturation=0.7:contrast=1.08,"
        "colorbalance=rs=0.05:gs=0.015:bs=-0.035:rm=0.03:bm=-0.025:rh=0.015:bh=-0.03,"
-       "vignette=PI/4.6,noise=alls=4:allf=t")
+       "vignette=PI/4,noise=alls=4:allf=t")
 
 MESA = os.path.join(TAKES, "74C15A77-8FDB-4B26-AC84-FE7CB203E865.mp4")
 ESTUDIO = os.path.join(TAKES, "C8D81249-B745-41EB-A3E8-86673BB24A85.mp4")
 VARANDA = os.path.join(TAKES, "E3202855-2C0F-41A4-B3BA-DC5D1B9B1DDD.mp4")
 
 # (arquivo, início no arquivo, duração no arquivo, velocidade, recorte antes do 9:16)
+# Como a ref: só 2 takes, sem zoom. Troca na frase "de uma vontade genérica".
 CENAS = [
-    (VARANDA, 0.0, 5.0, 0.89, ""),                         # perfil na varanda
-    (MESA, 1.0, 4.8, 1.0, ""),                             # mesa, plano aberto
-    (ESTUDIO, 0.8, 5.4, 1.0, ""),                          # em pé no estúdio
-    (MESA, 6.0, 5.0, 1.0, "crop=660:1174:40:40,"),         # close no rosto (fone)
-    (MESA, 11.0, 8.1, 0.96, "crop=600:1066:480:660,"),     # detalhe: mão no teclado
+    (MESA, 0.0, 19.17, 0.928, ""),       # mesa, plano inteiro
+    (ESTUDIO, 0.0, 6.8, 0.806, ""),      # em pé no estúdio (câmera lenta leve)
 ]
-CORTES = [0.0, 5.64, 10.4, 15.7, 20.66, 29.1]
+CORTES = [0.0, 20.66, 29.1]
 
 # (texto, início, fim, destaque)
 LINHAS = [
     ("A galera gosta,", 0.00, 0.88, False),
-    ("foda-se", 0.88, 1.82, True),
+    ("Foda-se", 0.88, 1.82, True),
     ("Se o que a galera\ngosta fosse bom,", 1.82, 4.54, False),
     ("não teríamos matado", 4.54, 5.64, False),
     ("Sócrates", 5.64, 6.36, True),
@@ -59,15 +58,15 @@ LINHAS = [
     ("Então, foda-se o que\na galera acha bom.", 12.96, 15.70, False),
     ("Quem tem que achar\nbom sou eu.", 15.70, 17.36, False),
     ("Quando você é escravo\nde um número,", 17.36, 19.66, False),
-    ("algoritmo", 19.66, 20.66, True),
-    ("de uma vontade genérica,", 20.66, 22.40, False),
+    ("Algoritmo", 19.66, 20.66, True),
+    ("de uma vontade\ngenérica,", 20.66, 22.40, False),
     ("nossa…", 22.40, 23.08, False),
-    ("ela sempre te surpreende", 23.08, 24.88, False),
-    ("e você fica delirantemente", 24.88, 26.70, False),
+    ("ela sempre\nte surpreende", 23.08, 24.88, False),
+    ("e você fica\ndelirantemente", 24.88, 26.70, False),
     ("à mercê do que dá certo\ne do que dá errado.", 26.70, 29.10, False),
 ]
 
-Y_CENTRO = 1180      # abaixo do rosto em todos os takes (medido nas folhas de contato)
+Y_CENTRO = 1000      # meio da tela, como a ref; abaixo do rosto nos 2 takes
 FPS = 30
 
 
@@ -98,47 +97,48 @@ def cenas():
 
 
 # ------------------------------------------------------------------ tipografia
+# Identidade própria (2026-09-30, pedido do Vitor: "as letras da ref ficaram melhores — faça melhor"):
+# serifada Fraunces (não a Instrument Serif da ref); frase em regular suave; palavra-chave em
+# ITÁLICO DOURADO (a ref usa caixa-alta vermelha). Exceção consciente à regra "nunca serif" das
+# diretrizes do carrossel — vale para este formato de voz de fundo.
 
-def inter(tam, peso):
-    f = ImageFont.truetype(INTER, tam)
-    f.set_variation_by_axes([min(32, max(14, tam)), peso])   # opsz, wght
+def serif(tam, italico=False):
+    f = ImageFont.truetype(SERIF_IT if italico else SERIF, tam)
+    # opsz, wght, SOFT, WONK
+    f.set_variation_by_axes([144, 470, 100, 1] if italico else [72, 380, 50, 0])
     return f
-
-
-def largura(txt, f, trk):
-    return f.getlength(txt) + trk * (len(txt) - 1)
-
-
-def desenhar(d, x, y, txt, f, trk, cor):
-    """Tracking negativo mantendo o kerning: cada letra vai na posição do prefixo já kernado."""
-    for i, ch in enumerate(txt):
-        d.text((x + f.getlength(txt[:i]) + trk * i, y), ch, font=f, fill=cor)
 
 
 def quadro(txt, dest, alpha=1.0, subida=0):
     img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
     if dest:
-        txt, tam, peso, trk, cor = txt.upper(), 124, 900, -2, OURO
-        while largura(txt, inter(tam, peso), trk) > 940:
+        tam, cor = 168, OURO
+        while ImageDraw.Draw(img).textlength(txt, font=serif(tam, True)) > 960:
             tam -= 4
+        f = serif(tam, True)
     else:
-        tam, peso, trk, cor = 68, 600, -0.5, OFFWHITE
-    f = inter(tam, peso)
-    linhas = txt.split("\n")
-    lh = int(tam * (1.02 if dest else 1.2))
+        tam, cor = 88, OFFWHITE
+        f = serif(tam)
+    linhas = []
+    for ln in txt.split("\n"):             # não cabe em 960 px → quebra em duas linhas equilibradas
+        if not dest and ImageDraw.Draw(img).textlength(ln, font=f) > 960:
+            ps = ln.split()
+            k = min(range(1, len(ps)), key=lambda i: abs(len(" ".join(ps[:i])) - len(" ".join(ps[i:]))))
+            linhas += [" ".join(ps[:k]), " ".join(ps[k:])]
+        else:
+            linhas.append(ln)
+    lh = int(tam * 1.1)
     y0 = Y_CENTRO - (len(linhas) * lh) // 2 + subida
     sombra = Image.new("RGBA", img.size, (0, 0, 0, 0))
     ds, d = ImageDraw.Draw(sombra), ImageDraw.Draw(img)
-    # penumbra: escurece de leve a região do texto (sem caixa) — segura a leitura em fundo claro
-    lmax = max(largura(ln, f, trk) for ln in linhas)
-    ds.ellipse([540 - lmax * 0.75, y0 - lh * 0.9, 540 + lmax * 0.75, y0 + lh * (len(linhas) + 0.9)],
-               fill=(12, 9, 6, int(95 * alpha)))
-    a = int(255 * alpha)
+    lmax = max(d.textlength(ln, font=f) for ln in linhas)
+    ds.ellipse([540 - lmax * 0.72, y0 - lh * 0.8, 540 + lmax * 0.72, y0 + lh * (len(linhas) + 0.8)],
+               fill=(12, 9, 6, int(80 * alpha)))       # penumbra: sem caixa
     for k, ln in enumerate(linhas):
-        x, y = (1080 - largura(ln, f, trk)) / 2, y0 + k * lh
-        desenhar(ds, x, y + 3, ln, f, trk, (10, 8, 6, int(215 * alpha)))
-        desenhar(d, x, y, ln, f, trk, cor + (a,))
-    return Image.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(26)), img)
+        x, y = (1080 - d.textlength(ln, font=f)) / 2, y0 + k * lh
+        ds.text((x, y + 4), ln, font=f, fill=(8, 6, 4, int(215 * alpha)))
+        d.text((x, y), ln, font=f, fill=cor + (int(255 * alpha),))
+    return Image.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(22)), img)
 
 
 def legenda():
