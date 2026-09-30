@@ -124,10 +124,16 @@ def fonte(caminho, tam, peso=None):
     return f
 
 
-def bloco(txt_partes, f, cor_partes, escala=1.0, alpha=1.0):
+def escalar(b, s):
+    """Escala a IMAGEM já desenhada (sub-pixel, liso). Escalar a fonte dava degraus de tamanho
+    inteiro e, na Inter variável, fazia o peso cair para Regular no meio da animação (tremida)."""
+    if abs(s - 1.0) < 1e-3:
+        return b
+    return b.resize((max(1, round(b.width * s)), max(1, round(b.height * s))), Image.LANCZOS)
+
+
+def bloco(txt_partes, f, cor_partes, alpha=1.0):
     """Renderiza uma linha (lista de pedaços com cores) num canvas pequeno com sombra suave."""
-    if escala != 1.0:
-        f = f.font_variant(size=max(8, int(f.size * escala)))
     esp = f.getlength(" ")
     larg = sum(f.getlength(p) for p in txt_partes) + esp * (len(txt_partes) - 1)
     H = int(f.size * 1.6)
@@ -182,19 +188,20 @@ def quadro(t, ev, flash_em, glitch):
     for a, b_, est, txt in ativos:
         p = (t - a)
         if est == "palavra":
-            e = ease(p / 0.1)
-            colar(frame, bloco([txt], F_PALAVRA, [BRANCO], escala=0.9 + 0.1 * e, alpha=e), Y)
+            # parada no lugar, só um fade de 2 quadros — sem crescer (era o que tremia)
+            e = ease(p / 0.066)
+            colar(frame, bloco([txt], F_PALAVRA, [BRANCO], alpha=e), Y)
         elif est in ("nome", "grito"):
             e = ease(p / 0.16)
             f = F_GRITO if est == "grito" else F_NOME
             f_fit = f
             while f_fit.getlength(txt) > 980:
                 f_fit = f_fit.font_variant(size=f_fit.size - 6)
-            colar(frame, bloco([txt], f_fit, [OURO], escala=1.12 - 0.12 * e, alpha=e), Y)
+            colar(frame, escalar(bloco([txt], f_fit, [OURO], alpha=e), 1.08 - 0.08 * e), Y)
         elif est == "final":
             e = ease(p / 0.18)
             sai = ease((18.9 - t) / 0.4)
-            colar(frame, bloco([txt], F_FINAL, [OURO], escala=1.15 - 0.15 * e, alpha=min(e, sai)), Y)
+            colar(frame, escalar(bloco([txt], F_FINAL, [OURO], alpha=min(e, sai)), 1.1 - 0.1 * e), Y)
     # flash branco no "foram"
     if flash_em is not None and 0 <= t - flash_em < 0.2:
         a = int(215 * (1 - (t - flash_em) / 0.2))
