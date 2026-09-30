@@ -30,13 +30,15 @@ FPS = 30
 
 MESA = os.path.join(TAKES, "74C15A77-8FDB-4B26-AC84-FE7CB203E865.mp4")
 SACADA = os.path.join(TAKES, "E3202855-2C0F-41A4-B3BA-DC5D1B9B1DDD.mp4")
+ESTUDIO = os.path.join(TAKES, "C8D81249-B745-41EB-A3E8-86673BB24A85.mp4")
 
 # (arquivo, início no arquivo, duração no arquivo, velocidade) — sem recorte, sem filtro
 CENAS = [
     (SACADA, 0.0, 5.0, 0.887),     # abertura curta, como a ref
-    (MESA, 0.0, 19.17, 0.817),     # take longo até o fim (câmera levemente lenta)
+    (MESA, 0.0, 15.1, 1.0),        # mesa: de "Sócrates" até "Algoritmo"
+    (ESTUDIO, 0.0, 6.8, 0.806),    # estúdio com o notebook (volta a pedido, 2026-09-30)
 ]
-CORTES = [0.0, 5.64, 29.1]         # troca na frase "Sócrates"
+CORTES = [0.0, 5.64, 20.66, 29.1]  # trocas em "Sócrates" e "de uma vontade genérica"
 
 # (texto, início, fim, estilo)   estilo: "frase" | "nome" (caixa-alta dourada) | "grito" (gigante dourado)
 LINHAS = [
