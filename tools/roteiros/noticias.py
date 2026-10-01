@@ -59,7 +59,10 @@ FEEDS = [
 ]
 SUBREDDITS = ["artificial", "OpenAI", "ClaudeAI", "singularity", "smallbusiness"]
 X_BUSCAS = ['("AI agent" OR "AI employee") (business OR sales OR customers) min_faves:300 lang:en',
-            '("inteligência artificial" OR "IA") (empresa OR negócio) min_faves:100 lang:pt']
+            '("small business" OR "my agency" OR "my clients") AI min_faves:300 lang:en',
+            # "IA" sozinho casa com k-pop e games: no PT exige o termo completo + contexto de negócio
+            '("inteligência artificial" OR "agente de IA" OR "agentes de IA") '
+            '(empresa OR negócio OR vendas OR cliente OR emprego) min_faves:100 lang:pt']
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36"}
 E_IA = re.compile(r"\b(IA|AI|A\.I\.)\b|intelig[êe]ncia artificial|artificial intelligence|chatgpt|openai|"
@@ -204,11 +207,19 @@ def reddit_todos():
 def x_apify(horas):
     """Busca no X via Apify (tweet scraper). Só roda com APIFY_TOKEN; custo ~US$ 0,40 / 1.000 posts."""
     token = os.environ.get("APIFY_TOKEN")
+    if not token and sys.platform == "win32":
+        # setx grava no registro, mas processo já aberto não vê; lê direto de lá
+        try:
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as k:
+                token = winreg.QueryValueEx(k, "APIFY_TOKEN")[0]
+        except OSError:
+            token = None
     if not token:
         return None
     desde = (datetime.now(timezone.utc) - timedelta(hours=horas)).strftime("%Y-%m-%d")
     corpo = json.dumps({"searchTerms": [f"{b} since:{desde}" for b in X_BUSCAS],
-                        "sort": "Top", "maxItems": 40}).encode()
+                        "sort": "Top", "maxItems": 60}).encode()
     url = f"https://api.apify.com/v2/acts/apidojo~tweet-scraper/run-sync-get-dataset-items?token={token}"
     req = urllib.request.Request(url, data=corpo, headers={"Content-Type": "application/json", **UA})
     with urllib.request.urlopen(req, timeout=180) as r:
