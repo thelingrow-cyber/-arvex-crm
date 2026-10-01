@@ -59,3 +59,23 @@ data exata de hoje ("se você tá vendo isso quinta, 17/09, antes do meio-dia, �
 
 - **Experimento mental com negócio/IA:** premissa hipotética sobre clone, agente ou cópia da empresa → mecanismo em linguagem de computador → virada → pergunta sem resposta. Encaixa no 🎬 Curiosidade e no 🔭 Visão.
 - **Gancho de data:** hoje (01/10) faltam **85 dias pro Natal** — e coincide com o plano de 90 dias dele. Metas de ação para o negócio.
+
+---
+
+## Edição — o que se vê nas folhas de contato (24 quadros por vídeo)
+
+| | 4D (1,5 mi) | Realidade (959 mil) | Teletransporte (1,29 mi) |
+|---|---|---|---|
+| Quadros com imagem inserida | **~16 de 24** | **~15 de 24** | 0 de 24 |
+| Cortes | 2 em 80s | nenhum | nenhum |
+| Ritmo de fala | 159 palavras/min | 181 | 178 |
+
+**A assinatura: o cartão ilustrativo flutuante.** Uma imagem pequena (~¼ da largura), sobreposta ao take, que mostra **literalmente o substantivo que ele está dizendo naquele segundo**: "esfera" → bola 3D vermelha · "planolândia" → plano azul com elipse que cresce e encolhe · "ouvido" → orelha em fundo vermelho · "olhos" → olho · "tartaruga" → tartaruga · "matéria escura" → textura escura · "não captamos nada" → TV sem sinal · "início e fim da vida" → feto. Troca a cada 3–5s, muda de lugar (acima da cabeça, no peito, ao lado) e nunca cobre o rosto. Fundo branco ou foto recortada, sem moldura, sem texto.
+
+**O que NÃO tem:** corte seco, zoom, B-roll em tela cheia, trilha licenciada (áudio original nos 5 maiores), cor de destaque na legenda, emoji.
+
+**Constantes:** take único, câmera fixa frontal, plano médio, escritório com janela e cidade ao fundo, luz natural, laptop na frente, microfone de lapela à vista. Legenda serifada branca, pequena, 2–4 palavras, na linha do peito.
+
+**Leitura:** o teletransporte prova que o roteiro sozinho segura (1,29 mi sem nenhuma imagem). Os cartões não salvam roteiro ruim — eles **tornam visível o mecanismo** quando o assunto é abstrato (4D, percepção). Regra: cartão só quando a palavra é uma coisa que dá para desenhar.
+
+**Para o editor (`tools/video-recut/`):** a receita aprovada de 28/09 (imagens reais) já resolve a fonte das imagens; o que muda é a **forma** — cartão pequeno flutuante sincronizado à palavra (Groq já dá o tempo por palavra), em vez de tela dividida.
