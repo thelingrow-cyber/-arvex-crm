@@ -1,6 +1,6 @@
 # Roteiro — "O hábito dos fora da curva ficou barato"
 
-**Status:** FINAL para gravar · 2026-09-30 — construído com o Vitor em várias rodadas (gancho e fala dele; ângulo "privilégio de rico que ficou acessível"; revelação do hábito atrasada até depois da IA)
+**Status:** ✅ GRAVADO (confirmado pelo Vitor 01/10) · antes: FINAL para gravar · 2026-09-30 — construído com o Vitor em várias rodadas (gancho e fala dele; ângulo "privilégio de rico que ficou acessível"; revelação do hábito atrasada até depois da IA)
 **Duração:** ~55s · **Quadro:** 🔭 VISÃO · **Função:** meio de funil + compartilhamento · **Sem CTA**
 **Texto na tela:** nos primeiros segundos *o hábito dos fora da curva ficou barato*; na revelação, *isso precisa ser eu?*
 **⚠️ Data:** "ontem" vale só postando em 30/09/2026; depois, trocar por "essa semana".
