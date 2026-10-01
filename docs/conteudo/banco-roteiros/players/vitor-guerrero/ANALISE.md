@@ -79,3 +79,21 @@ data exata de hoje ("se você tá vendo isso quinta, 17/09, antes do meio-dia, �
 **Leitura:** o teletransporte prova que o roteiro sozinho segura (1,29 mi sem nenhuma imagem). Os cartões não salvam roteiro ruim — eles **tornam visível o mecanismo** quando o assunto é abstrato (4D, percepção). Regra: cartão só quando a palavra é uma coisa que dá para desenhar.
 
 **Para o editor (`tools/video-recut/`):** a receita aprovada de 28/09 (imagens reais) já resolve a fonte das imagens; o que muda é a **forma** — cartão pequeno flutuante sincronizado à palavra (Groq já dá o tempo por palavra), em vez de tela dividida.
+
+---
+
+## O caso "99 dias" — mesmo tema, regravado no mesmo dia, 4,5× mais
+
+Não é repost: ele **regravou** (mesma roupa, mesmo escritório à noite) e postou de novo 4 horas depois.
+
+| | V1 — 08h31 | V2 — 12h24 |
+|---|---|---|
+| Resultado | 118 mil views · 9,8 mil ❤ · 345 💬 | **538 mil views · 51 mil ❤ · 552 💬** |
+| Duração | 66s | **40s** |
+| Gancho | condição que exclui: "Se você tá vendo isso quinta, 17/09, **antes do meio-dia**, é pra você" | fato direto: "**Exatamente hoje**, quinta, 17 de setembro, **faltam 99 dias pro Natal**" |
+| Miolo | ensina as regras (meta de ação × resultado, academia, posts, pode falhar 9 dias) | **cortado** — "detalhes na legenda" |
+| Título fixo | nenhum | "**99 dias para o Natal**" no topo nos primeiros ~5s |
+| Imagens | 1 (DiCaprio apontando) no gancho | 2 lado a lado (Jobs com a maçã + DiCaprio) no gancho |
+| Fecho | cena do espelho no Natal + "vou fazer o meu" | cena do espelho + **mantra "99 dias, 4 metas, 90%"** + "segue pra acompanhar" |
+
+**Lição:** a V2 é só promessa + cena futura + mantra; a explicação foi para a legenda. Gancho em fato com data (vale o dia todo) bate gancho em condição (que exclui quem chega depois do meio-dia). Título escrito na tela nos 5 primeiros segundos.
