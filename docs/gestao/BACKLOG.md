@@ -2,7 +2,7 @@
 
 **Fonte única.** Toda atividade de qualquer projeto entra aqui. A semana (`docs/semanas/`) é uma *seleção* deste arquivo, nunca uma lista paralela.
 **Painel visual:** `docs/gestao/painel.html`
-**Última atualização:** 2026-09-28 · **+9 atividades em 28/09** (MP-08..12, OF-10/11, LG-18..20) · *fechamento de 5 semanas (03/08 → 07/09) aplicado*
+**Última atualização:** 2026-10-05 · **+4 atividades em 05/10** (MP-13, OF-12, LG-21, VZ-17) · *semana 28/09 sem `fechar` (2ª seguida)*
 
 ---
 
@@ -54,7 +54,7 @@ As 56 atividades não são 56 coisas — são **5 máquinas repetidas** em frent
 
 - [x] **LG-15** Montar landing de waitlist — 🤖 · M · M2 · *07/09: `lingrow-landing/waitlist.html` existe desde 03/08 — duplicata com LG-04 resolvida abaixo. Confirmar se está publicada em domínio*
 - [ ] **LG-04** Página de venda pós-lançamento — 🤖 · M · M2 · *07/09: ambiguidade resolvida — LG-15 é a waitlist (feita); LG-04 é a página que recebe tráfego depois de o app estar na loja*
-- [ ] **LG-16** Gravar 4 vídeos do build-in-public — 👤 · M · M1
+- [>] **LG-16** Gravar 4 vídeos do build-in-public — 👤 · M · M1
 - [ ] **LG-17** Entrar em 15-20 comunidades ajudando — 👤 · M · M3 · *canal mais barato e mais lento — comece cedo*
 - [>] **LG-01** Linha editorial — formatos de conteúdo — 🤖 · M · M1 · *07/09: lote 01 de carrosséis de Instagram produzido em 07/08 (`docs/marketing/instagram-lote-01/`) — formato existe na prática, falta o documento*
 - [ ] **LG-02** Criar roteiros — 🤖 · M · M1 · ↳ LG-01
@@ -63,6 +63,7 @@ As 56 atividades não são 56 coisas — são **5 máquinas repetidas** em frent
 - [>] **LG-18** Criar roteiro do desafio do fundador — 🤖 · P · M1 · *existia só no CRM desde 18/08*
 - [>] **LG-19** Criar roteiro da Gabi — 🤖 · P · M1
 - [>] **LG-20** Criador de carrossel do Lingrow (reusar a tool 1080×1350 da marca pessoal) — 🤖 · M · M1
+- [>] **LG-21** Editar os vídeos do Lingrow — 🤖 · M · M1 · ↳ LG-16
 - [ ] **LG-08** Definir a métrica que a semana move — 👤 · P · *waitlist? download? assinante?*
 
 ### Trilha 3 — Produto
@@ -96,9 +97,10 @@ As 56 atividades não são 56 coisas — são **5 máquinas repetidas** em frent
 
 ### Trilha 4 — Marca *(só depois do posicionamento)*
 
-- [ ] **VZ-02** Definir posicionamento e linhas de conteúdo — 🤝 · M · M5 · *destrava VZ-01 e VZ-03*
+- [>] **VZ-02** Definir posicionamento e linhas de conteúdo — 🤝 · M · M5 · *destrava VZ-01 e VZ-03*
 - [ ] **VZ-01** Criar calendário editorial — 🤖 · M · M1 · ↳ VZ-02
-- [ ] **VZ-03** Criar carrosséis e roteiros de Reels — 🤖 · M · M1 · ↳ VZ-02
+- [>] **VZ-03** Criar carrosséis e roteiros de Reels — 🤖 · M · M1 · ↳ VZ-02
+- [>] **VZ-17** Gravar o primeiro vídeo do Viziom — 👤 · P · M1 · ↳ VZ-02 · *VZ-13..16 existem só no CRM (Projetos) — ID pulado para não colidir*
 
 ### ⚠️ D-1 — "criar o CRM da operação"
 
@@ -148,12 +150,13 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 - [>] **MP-03** Gravar vídeos — 👤 · M · M1 · *recorrente · 28/09: 5 vídeos*
 - [>] **MP-08** Calendário de conteúdo v2 + formatos — 🤖 · M · M1
 - [>] **MP-09** Criar e otimizar o agente editor de vídeo — 🤖 · M · M1
+- [>] **MP-13** Editar os 5 vídeos do dia — 🤖 · M · M1 · ↳ MP-03 · recorrente · *custo de máquina: ~25 min por minuto de vídeo*
 
 ### Trilha 3 — Newsletter
 
 - [>] **MP-10** Pesquisar funil de newsletter — 🤖 · P · M5
-- [ ] **MP-11** Página de inscrição da newsletter — 🤖 · M · M2 · ↳ MP-10
-- [ ] **MP-12** Sequência de stories para cadastrar pessoas — 🤝 · P · M1 · ↳ MP-11
+- [>] **MP-11** Página de inscrição da newsletter — 🤖 · M · M2 · ↳ MP-10
+- [>] **MP-12** Sequência de stories para cadastrar pessoas — 🤝 · P · M1 · ↳ MP-11
 
 ---
 
@@ -173,9 +176,10 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 
 ### Trilha 3 — Distribuir
 
-- [ ] **OF-06** Primeiros posts do perfil ARVEX (carrossel + vídeos com IA) — 🤖 · M · M1
+- [>] **OF-06** Primeiros posts do perfil ARVEX (carrossel + vídeos com IA) — 🤖 · M · M1
 - [>] **OF-10** Roteiro do vídeo de conteúdo/posicionamento da ARVEX — 🤖 · P · M1
-- [ ] **OF-11** Editar o vídeo de posicionamento — 🤝 · M · M1 · ↳ OF-10
+- [>] **OF-12** Gravar o vídeo de posicionamento da ARVEX — 👤 · P · M1 · ↳ OF-10
+- [>] **OF-11** Editar o vídeo de posicionamento — 🤝 · M · M1 · ↳ OF-12
 - [ ] **OF-07** Sequência de stories 2×/semana com CTA "me chama para implementar" — 🤝 · P · M1 · recorrente
 
 ### Trilha 4 — Pipeline
