@@ -94,6 +94,7 @@ As 56 atividades não são 56 coisas — são **5 máquinas repetidas** em frent
 - [ ] **VZ-04** Criar o CRM da operação — 🤖 · G · M3 · ⚠️ **D-1** abaixo
 - [ ] **VZ-09** Rotacionar a API Key do Evolution — 🤖 · P · ⚠️ *vazou no chat em 14/07; essa infra sustenta o atendimento da Cindy*
 - [ ] **VZ-07** Iniciar migração do produto para estrutura própria — 🤖 · **XG** · M4 · ⚠️ **D-2** abaixo
+- [ ] **VZ-18** REA (`morluto/rea`): 1º uso = entender uma funcionalidade de concorrente do Viziom — 🤖 · P (1h, timebox) · M4 · ↳ VZ-02 · *06/10: repo checado (MIT, 7,9k★, ativo, sem telemetria). No Windows só vale análise JS/web; binário nativo é experimental. Entender ≠ copiar código. Começar sem `setup` (CLI via npx, zero config); registrar MCP é com @devops*
 
 ### Trilha 4 — Marca *(só depois do posicionamento)*
 
