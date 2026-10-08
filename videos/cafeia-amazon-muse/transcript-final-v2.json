@@ -1,0 +1,2026 @@
+{
+  "language": "pt",
+  "duration": 46.1013125,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 29.98,
+      "text": "A Amazon impediu a nova inteligência artificial da meta de comprar dentro do seu site e o motivo pode mudar a forma como seu negócio vende. Esse é o COFFEE IA. O Muse, um novo produto da meta, é um agente e literalmente um assistente pessoal, que pesquisa, compara, negocia e depois compra com a sua autorização. 10 dias do lançamento de aplicativo número 1 no Estados Unidos. Ele começou a usar a Amazon para escolher e comprar produtos pelos usuários. A Amazon bloqueou na hora. Porque se Muse escolhe o produto, a meta está controlando a decisão e a Amazon fica apenas com o stock e a entrega.",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.54,
+          "text": "A",
+          "probability": 0.191229447722435
+        },
+        {
+          "start": 0.54,
+          "end": 0.74,
+          "text": "Amazon",
+          "probability": 0.2663623094558716
+        },
+        {
+          "start": 0.74,
+          "end": 1.32,
+          "text": "impediu",
+          "probability": 0.35492953658103943
+        },
+        {
+          "start": 1.32,
+          "end": 1.42,
+          "text": "a",
+          "probability": 0.9316823482513428
+        },
+        {
+          "start": 1.42,
+          "end": 1.56,
+          "text": "nova",
+          "probability": 0.7446319460868835
+        },
+        {
+          "start": 1.56,
+          "end": 2.12,
+          "text": "inteligência",
+          "probability": 0.6656923890113831
+        },
+        {
+          "start": 2.12,
+          "end": 2.52,
+          "text": "artificial",
+          "probability": 0.6410045623779297
+        },
+        {
+          "start": 2.52,
+          "end": 2.68,
+          "text": "da",
+          "probability": 0.9835631847381592
+        },
+        {
+          "start": 2.68,
+          "end": 2.92,
+          "text": "meta",
+          "probability": 0.9608998894691467
+        },
+        {
+          "start": 2.92,
+          "end": 3.38,
+          "text": "de",
+          "probability": 0.8302708268165588
+        },
+        {
+          "start": 3.38,
+          "end": 3.64,
+          "text": "comprar",
+          "probability": 0.8917002081871033
+        },
+        {
+          "start": 3.64,
+          "end": 3.9,
+          "text": "dentro",
+          "probability": 0.9804461598396301
+        },
+        {
+          "start": 3.9,
+          "end": 4.04,
+          "text": "do",
+          "probability": 0.9389926195144653
+        },
+        {
+          "start": 4.04,
+          "end": 4.18,
+          "text": "seu",
+          "probability": 0.9711016416549683
+        },
+        {
+          "start": 4.18,
+          "end": 4.52,
+          "text": "site",
+          "probability": 0.99736088514328
+        },
+        {
+          "start": 4.52,
+          "end": 4.92,
+          "text": "e",
+          "probability": 0.5157787203788757
+        },
+        {
+          "start": 4.92,
+          "end": 4.96,
+          "text": "o",
+          "probability": 0.9641628265380859
+        },
+        {
+          "start": 4.96,
+          "end": 5.26,
+          "text": "motivo",
+          "probability": 0.9968687891960144
+        },
+        {
+          "start": 5.26,
+          "end": 5.98,
+          "text": "pode",
+          "probability": 0.9048764109611511
+        },
+        {
+          "start": 5.98,
+          "end": 6.22,
+          "text": "mudar",
+          "probability": 0.9945317506790161
+        },
+        {
+          "start": 6.22,
+          "end": 6.36,
+          "text": "a",
+          "probability": 0.19642415642738342
+        },
+        {
+          "start": 6.36,
+          "end": 6.5,
+          "text": "forma",
+          "probability": 0.8790433406829834
+        },
+        {
+          "start": 6.5,
+          "end": 6.68,
+          "text": "como",
+          "probability": 0.9779640436172485
+        },
+        {
+          "start": 6.68,
+          "end": 6.88,
+          "text": "seu",
+          "probability": 0.6854047179222107
+        },
+        {
+          "start": 6.88,
+          "end": 7.12,
+          "text": "negócio",
+          "probability": 0.972412645816803
+        },
+        {
+          "start": 7.12,
+          "end": 7.56,
+          "text": "vende.",
+          "probability": 0.7369289249181747
+        },
+        {
+          "start": 7.84,
+          "end": 7.98,
+          "text": "Esse",
+          "probability": 0.7839474081993103
+        },
+        {
+          "start": 7.98,
+          "end": 8.04,
+          "text": "é",
+          "probability": 0.9315629601478577
+        },
+        {
+          "start": 8.04,
+          "end": 8.12,
+          "text": "o",
+          "probability": 0.9843221306800842
+        },
+        {
+          "start": 8.12,
+          "end": 8.5,
+          "text": "COFFEE",
+          "probability": 0.07935431071867545
+        },
+        {
+          "start": 8.5,
+          "end": 8.56,
+          "text": "IA.",
+          "probability": 0.18073561415076256
+        },
+        {
+          "start": 8.68,
+          "end": 8.76,
+          "text": "O",
+          "probability": 0.8780995607376099
+        },
+        {
+          "start": 8.76,
+          "end": 9.04,
+          "text": "Muse,",
+          "probability": 0.2936629056930542
+        },
+        {
+          "start": 9.08,
+          "end": 9.16,
+          "text": "um",
+          "probability": 0.3862593173980713
+        },
+        {
+          "start": 9.16,
+          "end": 9.24,
+          "text": "novo",
+          "probability": 0.9586834907531738
+        },
+        {
+          "start": 9.24,
+          "end": 9.52,
+          "text": "produto",
+          "probability": 0.9916254878044128
+        },
+        {
+          "start": 9.52,
+          "end": 9.76,
+          "text": "da",
+          "probability": 0.9890668392181396
+        },
+        {
+          "start": 9.76,
+          "end": 9.96,
+          "text": "meta,",
+          "probability": 0.9747591018676758
+        },
+        {
+          "start": 10.16,
+          "end": 10.22,
+          "text": "é",
+          "probability": 0.9947026371955872
+        },
+        {
+          "start": 10.22,
+          "end": 10.32,
+          "text": "um",
+          "probability": 0.7688132524490356
+        },
+        {
+          "start": 10.32,
+          "end": 10.7,
+          "text": "agente",
+          "probability": 0.9283679723739624
+        },
+        {
+          "start": 10.7,
+          "end": 10.9,
+          "text": "e",
+          "probability": 0.7009159922599792
+        },
+        {
+          "start": 10.9,
+          "end": 11.34,
+          "text": "literalmente",
+          "probability": 0.9482899308204651
+        },
+        {
+          "start": 11.34,
+          "end": 11.54,
+          "text": "um",
+          "probability": 0.752373456954956
+        },
+        {
+          "start": 11.54,
+          "end": 11.88,
+          "text": "assistente",
+          "probability": 0.9380315542221069
+        },
+        {
+          "start": 11.88,
+          "end": 12.3,
+          "text": "pessoal,",
+          "probability": 0.9755048155784607
+        },
+        {
+          "start": 12.42,
+          "end": 12.48,
+          "text": "que",
+          "probability": 0.9516345262527466
+        },
+        {
+          "start": 12.48,
+          "end": 12.96,
+          "text": "pesquisa,",
+          "probability": 0.9843577742576599
+        },
+        {
+          "start": 13.22,
+          "end": 13.48,
+          "text": "compara,",
+          "probability": 0.870433121919632
+        },
+        {
+          "start": 13.88,
+          "end": 14.28,
+          "text": "negocia",
+          "probability": 0.9637645781040192
+        },
+        {
+          "start": 14.28,
+          "end": 14.48,
+          "text": "e",
+          "probability": 0.784205436706543
+        },
+        {
+          "start": 14.48,
+          "end": 14.66,
+          "text": "depois",
+          "probability": 0.9777476191520691
+        },
+        {
+          "start": 14.66,
+          "end": 15.08,
+          "text": "compra",
+          "probability": 0.9057727456092834
+        },
+        {
+          "start": 15.08,
+          "end": 16.06,
+          "text": "com",
+          "probability": 0.2728680372238159
+        },
+        {
+          "start": 16.06,
+          "end": 16.5,
+          "text": "a",
+          "probability": 0.7876011729240417
+        },
+        {
+          "start": 16.5,
+          "end": 16.58,
+          "text": "sua",
+          "probability": 0.856713056564331
+        },
+        {
+          "start": 16.58,
+          "end": 17.0,
+          "text": "autorização.",
+          "probability": 0.9790061414241791
+        },
+        {
+          "start": 17.36,
+          "end": 17.5,
+          "text": "10",
+          "probability": 0.3327194154262543
+        },
+        {
+          "start": 17.5,
+          "end": 17.7,
+          "text": "dias",
+          "probability": 0.8624245524406433
+        },
+        {
+          "start": 17.7,
+          "end": 17.8,
+          "text": "do",
+          "probability": 0.7360944747924805
+        },
+        {
+          "start": 17.8,
+          "end": 18.24,
+          "text": "lançamento",
+          "probability": 0.9970848560333252
+        },
+        {
+          "start": 18.24,
+          "end": 18.4,
+          "text": "de",
+          "probability": 0.7919694781303406
+        },
+        {
+          "start": 18.4,
+          "end": 18.82,
+          "text": "aplicativo",
+          "probability": 0.8011270761489868
+        },
+        {
+          "start": 18.82,
+          "end": 19.04,
+          "text": "número",
+          "probability": 0.7218964099884033
+        },
+        {
+          "start": 19.04,
+          "end": 19.24,
+          "text": "1",
+          "probability": 0.8154453039169312
+        },
+        {
+          "start": 19.24,
+          "end": 19.44,
+          "text": "no",
+          "probability": 0.5469580888748169
+        },
+        {
+          "start": 19.44,
+          "end": 19.54,
+          "text": "Estados",
+          "probability": 0.7636504769325256
+        },
+        {
+          "start": 19.54,
+          "end": 19.86,
+          "text": "Unidos.",
+          "probability": 0.9978098273277283
+        },
+        {
+          "start": 20.14,
+          "end": 20.28,
+          "text": "Ele",
+          "probability": 0.17205092310905457
+        },
+        {
+          "start": 20.28,
+          "end": 20.5,
+          "text": "começou",
+          "probability": 0.9681030511856079
+        },
+        {
+          "start": 20.5,
+          "end": 20.8,
+          "text": "a",
+          "probability": 0.9744429588317871
+        },
+        {
+          "start": 20.8,
+          "end": 20.8,
+          "text": "usar",
+          "probability": 0.9877344965934753
+        },
+        {
+          "start": 20.8,
+          "end": 20.94,
+          "text": "a",
+          "probability": 0.5279035568237305
+        },
+        {
+          "start": 20.94,
+          "end": 21.14,
+          "text": "Amazon",
+          "probability": 0.9826032519340515
+        },
+        {
+          "start": 21.14,
+          "end": 21.32,
+          "text": "para",
+          "probability": 0.5751523375511169
+        },
+        {
+          "start": 21.32,
+          "end": 21.66,
+          "text": "escolher",
+          "probability": 0.7186616659164429
+        },
+        {
+          "start": 21.66,
+          "end": 21.8,
+          "text": "e",
+          "probability": 0.7144582271575928
+        },
+        {
+          "start": 21.8,
+          "end": 22.04,
+          "text": "comprar",
+          "probability": 0.9942574501037598
+        },
+        {
+          "start": 22.04,
+          "end": 22.52,
+          "text": "produtos",
+          "probability": 0.9630107283592224
+        },
+        {
+          "start": 22.52,
+          "end": 22.68,
+          "text": "pelos",
+          "probability": 0.6251459121704102
+        },
+        {
+          "start": 22.68,
+          "end": 23.1,
+          "text": "usuários.",
+          "probability": 0.9449976086616516
+        },
+        {
+          "start": 23.4,
+          "end": 23.46,
+          "text": "A",
+          "probability": 0.5918254852294922
+        },
+        {
+          "start": 23.46,
+          "end": 23.68,
+          "text": "Amazon",
+          "probability": 0.9889734387397766
+        },
+        {
+          "start": 23.68,
+          "end": 24.04,
+          "text": "bloqueou",
+          "probability": 0.735655665397644
+        },
+        {
+          "start": 24.04,
+          "end": 24.18,
+          "text": "na",
+          "probability": 0.9899965524673462
+        },
+        {
+          "start": 24.18,
+          "end": 24.34,
+          "text": "hora.",
+          "probability": 0.9543014168739319
+        },
+        {
+          "start": 24.64,
+          "end": 24.8,
+          "text": "Porque",
+          "probability": 0.8669312596321106
+        },
+        {
+          "start": 24.8,
+          "end": 24.92,
+          "text": "se",
+          "probability": 0.9084138870239258
+        },
+        {
+          "start": 24.92,
+          "end": 25.1,
+          "text": "Muse",
+          "probability": 0.6564541459083557
+        },
+        {
+          "start": 25.1,
+          "end": 25.5,
+          "text": "escolhe",
+          "probability": 0.8743423819541931
+        },
+        {
+          "start": 25.5,
+          "end": 25.58,
+          "text": "o",
+          "probability": 0.9636892080307007
+        },
+        {
+          "start": 25.58,
+          "end": 25.86,
+          "text": "produto,",
+          "probability": 0.9967792630195618
+        },
+        {
+          "start": 26.28,
+          "end": 26.34,
+          "text": "a",
+          "probability": 0.9758992195129395
+        },
+        {
+          "start": 26.34,
+          "end": 26.48,
+          "text": "meta",
+          "probability": 0.9620782136917114
+        },
+        {
+          "start": 26.48,
+          "end": 26.82,
+          "text": "está",
+          "probability": 0.1148291602730751
+        },
+        {
+          "start": 26.82,
+          "end": 27.32,
+          "text": "controlando",
+          "probability": 0.7486039698123932
+        },
+        {
+          "start": 27.32,
+          "end": 27.44,
+          "text": "a",
+          "probability": 0.9602499604225159
+        },
+        {
+          "start": 27.44,
+          "end": 27.76,
+          "text": "decisão",
+          "probability": 0.99004927277565
+        },
+        {
+          "start": 27.76,
+          "end": 28.06,
+          "text": "e",
+          "probability": 0.5533312559127808
+        },
+        {
+          "start": 28.06,
+          "end": 28.12,
+          "text": "a",
+          "probability": 0.9538334012031555
+        },
+        {
+          "start": 28.12,
+          "end": 28.3,
+          "text": "Amazon",
+          "probability": 0.9280232191085815
+        },
+        {
+          "start": 28.3,
+          "end": 28.52,
+          "text": "fica",
+          "probability": 0.9727033376693726
+        },
+        {
+          "start": 28.52,
+          "end": 28.8,
+          "text": "apenas",
+          "probability": 0.9948520064353943
+        },
+        {
+          "start": 28.8,
+          "end": 28.98,
+          "text": "com",
+          "probability": 0.8650777339935303
+        },
+        {
+          "start": 28.98,
+          "end": 29.06,
+          "text": "o",
+          "probability": 0.5792279839515686
+        },
+        {
+          "start": 29.06,
+          "end": 29.26,
+          "text": "stock",
+          "probability": 0.7813001275062561
+        },
+        {
+          "start": 29.26,
+          "end": 29.56,
+          "text": "e",
+          "probability": 0.9255048036575317
+        },
+        {
+          "start": 29.56,
+          "end": 29.6,
+          "text": "a",
+          "probability": 0.9526435732841492
+        },
+        {
+          "start": 29.6,
+          "end": 29.98,
+          "text": "entrega.",
+          "probability": 0.6582332849502563
+        }
+      ]
+    },
+    {
+      "start": 29.98,
+      "end": 46.04,
+      "text": "E é aqui que chega no seu negócio. Hoje você organiza sua oferta para convencer as pessoas. Amanhã a preço, reputação, prazo, todas essas condições serão comparadas em segundo. Porque agora sua empresa não é mais precisa ser encontrada por uma pessoa. É precisa ser escolhida por uma máquina. Comenta aqui o que você acha desse novo cenário.",
+      "words": [
+        {
+          "start": 29.98,
+          "end": 30.38,
+          "text": "E",
+          "probability": 0.32585862278938293
+        },
+        {
+          "start": 30.38,
+          "end": 30.46,
+          "text": "é",
+          "probability": 0.739635169506073
+        },
+        {
+          "start": 30.46,
+          "end": 30.68,
+          "text": "aqui",
+          "probability": 0.6658235192298889
+        },
+        {
+          "start": 30.68,
+          "end": 30.82,
+          "text": "que",
+          "probability": 0.9821834564208984
+        },
+        {
+          "start": 30.82,
+          "end": 30.98,
+          "text": "chega",
+          "probability": 0.6203372478485107
+        },
+        {
+          "start": 30.98,
+          "end": 31.12,
+          "text": "no",
+          "probability": 0.870185911655426
+        },
+        {
+          "start": 31.12,
+          "end": 31.22,
+          "text": "seu",
+          "probability": 0.988183856010437
+        },
+        {
+          "start": 31.22,
+          "end": 31.46,
+          "text": "negócio.",
+          "probability": 0.9878000020980835
+        },
+        {
+          "start": 31.74,
+          "end": 31.86,
+          "text": "Hoje",
+          "probability": 0.9793524146080017
+        },
+        {
+          "start": 31.86,
+          "end": 32.04,
+          "text": "você",
+          "probability": 0.9550688862800598
+        },
+        {
+          "start": 32.04,
+          "end": 32.44,
+          "text": "organiza",
+          "probability": 0.9232513904571533
+        },
+        {
+          "start": 32.44,
+          "end": 32.56,
+          "text": "sua",
+          "probability": 0.6800694465637207
+        },
+        {
+          "start": 32.56,
+          "end": 32.76,
+          "text": "oferta",
+          "probability": 0.5644346177577972
+        },
+        {
+          "start": 32.76,
+          "end": 32.98,
+          "text": "para",
+          "probability": 0.5948075652122498
+        },
+        {
+          "start": 32.98,
+          "end": 33.46,
+          "text": "convencer",
+          "probability": 0.7581994831562042
+        },
+        {
+          "start": 33.46,
+          "end": 33.62,
+          "text": "as",
+          "probability": 0.91428142786026
+        },
+        {
+          "start": 33.62,
+          "end": 33.92,
+          "text": "pessoas.",
+          "probability": 0.9960646033287048
+        },
+        {
+          "start": 34.26,
+          "end": 34.62,
+          "text": "Amanhã",
+          "probability": 0.7169477045536041
+        },
+        {
+          "start": 34.62,
+          "end": 34.82,
+          "text": "a",
+          "probability": 0.2343069165945053
+        },
+        {
+          "start": 34.82,
+          "end": 35.1,
+          "text": "preço,",
+          "probability": 0.966362714767456
+        },
+        {
+          "start": 35.3,
+          "end": 35.88,
+          "text": "reputação,",
+          "probability": 0.8909125328063965
+        },
+        {
+          "start": 36.12,
+          "end": 36.44,
+          "text": "prazo,",
+          "probability": 0.8954362273216248
+        },
+        {
+          "start": 36.62,
+          "end": 36.8,
+          "text": "todas",
+          "probability": 0.8827671408653259
+        },
+        {
+          "start": 36.8,
+          "end": 37.02,
+          "text": "essas",
+          "probability": 0.917125940322876
+        },
+        {
+          "start": 37.02,
+          "end": 37.44,
+          "text": "condições",
+          "probability": 0.9953852295875549
+        },
+        {
+          "start": 37.44,
+          "end": 37.76,
+          "text": "serão",
+          "probability": 0.9804702997207642
+        },
+        {
+          "start": 37.76,
+          "end": 38.28,
+          "text": "comparadas",
+          "probability": 0.9918939471244812
+        },
+        {
+          "start": 38.28,
+          "end": 38.44,
+          "text": "em",
+          "probability": 0.9889601469039917
+        },
+        {
+          "start": 38.44,
+          "end": 38.78,
+          "text": "segundo.",
+          "probability": 0.9342568516731262
+        },
+        {
+          "start": 39.08,
+          "end": 39.18,
+          "text": "Porque",
+          "probability": 0.916408896446228
+        },
+        {
+          "start": 39.18,
+          "end": 39.36,
+          "text": "agora",
+          "probability": 0.9744807481765747
+        },
+        {
+          "start": 39.36,
+          "end": 39.52,
+          "text": "sua",
+          "probability": 0.276829332113266
+        },
+        {
+          "start": 39.52,
+          "end": 39.72,
+          "text": "empresa",
+          "probability": 0.9956861734390259
+        },
+        {
+          "start": 39.72,
+          "end": 39.92,
+          "text": "não",
+          "probability": 0.9931784868240356
+        },
+        {
+          "start": 39.92,
+          "end": 40.0,
+          "text": "é",
+          "probability": 0.6746371388435364
+        },
+        {
+          "start": 40.0,
+          "end": 40.16,
+          "text": "mais",
+          "probability": 0.9947358965873718
+        },
+        {
+          "start": 40.16,
+          "end": 40.52,
+          "text": "precisa",
+          "probability": 0.428699791431427
+        },
+        {
+          "start": 40.52,
+          "end": 40.72,
+          "text": "ser",
+          "probability": 0.9218557476997375
+        },
+        {
+          "start": 40.72,
+          "end": 41.06,
+          "text": "encontrada",
+          "probability": 0.9898694455623627
+        },
+        {
+          "start": 41.06,
+          "end": 41.28,
+          "text": "por",
+          "probability": 0.9737648367881775
+        },
+        {
+          "start": 41.28,
+          "end": 41.52,
+          "text": "uma",
+          "probability": 0.9878973960876465
+        },
+        {
+          "start": 41.52,
+          "end": 41.84,
+          "text": "pessoa.",
+          "probability": 0.9885927438735962
+        },
+        {
+          "start": 42.2,
+          "end": 42.28,
+          "text": "É",
+          "probability": 0.808986246585846
+        },
+        {
+          "start": 42.28,
+          "end": 42.52,
+          "text": "precisa",
+          "probability": 0.8365084528923035
+        },
+        {
+          "start": 42.52,
+          "end": 42.76,
+          "text": "ser",
+          "probability": 0.9665994048118591
+        },
+        {
+          "start": 42.76,
+          "end": 43.12,
+          "text": "escolhida",
+          "probability": 0.9725948373476664
+        },
+        {
+          "start": 43.12,
+          "end": 43.34,
+          "text": "por",
+          "probability": 0.989616870880127
+        },
+        {
+          "start": 43.34,
+          "end": 43.52,
+          "text": "uma",
+          "probability": 0.9955765008926392
+        },
+        {
+          "start": 43.52,
+          "end": 43.9,
+          "text": "máquina.",
+          "probability": 0.9963176250457764
+        },
+        {
+          "start": 44.16,
+          "end": 44.38,
+          "text": "Comenta",
+          "probability": 0.9205754399299622
+        },
+        {
+          "start": 44.38,
+          "end": 44.54,
+          "text": "aqui",
+          "probability": 0.9583020210266113
+        },
+        {
+          "start": 44.54,
+          "end": 44.68,
+          "text": "o",
+          "probability": 0.8282334804534912
+        },
+        {
+          "start": 44.68,
+          "end": 44.74,
+          "text": "que",
+          "probability": 0.9853901863098145
+        },
+        {
+          "start": 44.74,
+          "end": 44.98,
+          "text": "você",
+          "probability": 0.9605693817138672
+        },
+        {
+          "start": 44.98,
+          "end": 45.2,
+          "text": "acha",
+          "probability": 0.9807127714157104
+        },
+        {
+          "start": 45.2,
+          "end": 45.4,
+          "text": "desse",
+          "probability": 0.8973075747489929
+        },
+        {
+          "start": 45.4,
+          "end": 45.68,
+          "text": "novo",
+          "probability": 0.9479057788848877
+        },
+        {
+          "start": 45.68,
+          "end": 46.04,
+          "text": "cenário.",
+          "probability": 0.9887841045856476
+        }
+      ]
+    }
+  ],
+  "words": [
+    {
+      "start": 0.0,
+      "end": 0.54,
+      "text": "A",
+      "probability": 0.191229447722435
+    },
+    {
+      "start": 0.54,
+      "end": 0.74,
+      "text": "Amazon",
+      "probability": 0.2663623094558716
+    },
+    {
+      "start": 0.74,
+      "end": 1.32,
+      "text": "impediu",
+      "probability": 0.35492953658103943
+    },
+    {
+      "start": 1.32,
+      "end": 1.42,
+      "text": "a",
+      "probability": 0.9316823482513428
+    },
+    {
+      "start": 1.42,
+      "end": 1.56,
+      "text": "nova",
+      "probability": 0.7446319460868835
+    },
+    {
+      "start": 1.56,
+      "end": 2.12,
+      "text": "inteligência",
+      "probability": 0.6656923890113831
+    },
+    {
+      "start": 2.12,
+      "end": 2.52,
+      "text": "artificial",
+      "probability": 0.6410045623779297
+    },
+    {
+      "start": 2.52,
+      "end": 2.68,
+      "text": "da",
+      "probability": 0.9835631847381592
+    },
+    {
+      "start": 2.68,
+      "end": 2.92,
+      "text": "meta",
+      "probability": 0.9608998894691467
+    },
+    {
+      "start": 2.92,
+      "end": 3.38,
+      "text": "de",
+      "probability": 0.8302708268165588
+    },
+    {
+      "start": 3.38,
+      "end": 3.64,
+      "text": "comprar",
+      "probability": 0.8917002081871033
+    },
+    {
+      "start": 3.64,
+      "end": 3.9,
+      "text": "dentro",
+      "probability": 0.9804461598396301
+    },
+    {
+      "start": 3.9,
+      "end": 4.04,
+      "text": "do",
+      "probability": 0.9389926195144653
+    },
+    {
+      "start": 4.04,
+      "end": 4.18,
+      "text": "seu",
+      "probability": 0.9711016416549683
+    },
+    {
+      "start": 4.18,
+      "end": 4.52,
+      "text": "site",
+      "probability": 0.99736088514328
+    },
+    {
+      "start": 4.52,
+      "end": 4.92,
+      "text": "e",
+      "probability": 0.5157787203788757
+    },
+    {
+      "start": 4.92,
+      "end": 4.96,
+      "text": "o",
+      "probability": 0.9641628265380859
+    },
+    {
+      "start": 4.96,
+      "end": 5.26,
+      "text": "motivo",
+      "probability": 0.9968687891960144
+    },
+    {
+      "start": 5.26,
+      "end": 5.98,
+      "text": "pode",
+      "probability": 0.9048764109611511
+    },
+    {
+      "start": 5.98,
+      "end": 6.22,
+      "text": "mudar",
+      "probability": 0.9945317506790161
+    },
+    {
+      "start": 6.22,
+      "end": 6.36,
+      "text": "a",
+      "probability": 0.19642415642738342
+    },
+    {
+      "start": 6.36,
+      "end": 6.5,
+      "text": "forma",
+      "probability": 0.8790433406829834
+    },
+    {
+      "start": 6.5,
+      "end": 6.68,
+      "text": "como",
+      "probability": 0.9779640436172485
+    },
+    {
+      "start": 6.68,
+      "end": 6.88,
+      "text": "seu",
+      "probability": 0.6854047179222107
+    },
+    {
+      "start": 6.88,
+      "end": 7.12,
+      "text": "negócio",
+      "probability": 0.972412645816803
+    },
+    {
+      "start": 7.12,
+      "end": 7.56,
+      "text": "vende.",
+      "probability": 0.7369289249181747
+    },
+    {
+      "start": 7.84,
+      "end": 7.98,
+      "text": "Esse",
+      "probability": 0.7839474081993103
+    },
+    {
+      "start": 7.98,
+      "end": 8.04,
+      "text": "é",
+      "probability": 0.9315629601478577
+    },
+    {
+      "start": 8.04,
+      "end": 8.12,
+      "text": "o",
+      "probability": 0.9843221306800842
+    },
+    {
+      "start": 8.12,
+      "end": 8.5,
+      "text": "COFFEE",
+      "probability": 0.07935431071867545
+    },
+    {
+      "start": 8.5,
+      "end": 8.56,
+      "text": "IA.",
+      "probability": 0.18073561415076256
+    },
+    {
+      "start": 8.68,
+      "end": 8.76,
+      "text": "O",
+      "probability": 0.8780995607376099
+    },
+    {
+      "start": 8.76,
+      "end": 9.04,
+      "text": "Muse,",
+      "probability": 0.2936629056930542
+    },
+    {
+      "start": 9.08,
+      "end": 9.16,
+      "text": "um",
+      "probability": 0.3862593173980713
+    },
+    {
+      "start": 9.16,
+      "end": 9.24,
+      "text": "novo",
+      "probability": 0.9586834907531738
+    },
+    {
+      "start": 9.24,
+      "end": 9.52,
+      "text": "produto",
+      "probability": 0.9916254878044128
+    },
+    {
+      "start": 9.52,
+      "end": 9.76,
+      "text": "da",
+      "probability": 0.9890668392181396
+    },
+    {
+      "start": 9.76,
+      "end": 9.96,
+      "text": "meta,",
+      "probability": 0.9747591018676758
+    },
+    {
+      "start": 10.16,
+      "end": 10.22,
+      "text": "é",
+      "probability": 0.9947026371955872
+    },
+    {
+      "start": 10.22,
+      "end": 10.32,
+      "text": "um",
+      "probability": 0.7688132524490356
+    },
+    {
+      "start": 10.32,
+      "end": 10.7,
+      "text": "agente",
+      "probability": 0.9283679723739624
+    },
+    {
+      "start": 10.7,
+      "end": 10.9,
+      "text": "e",
+      "probability": 0.7009159922599792
+    },
+    {
+      "start": 10.9,
+      "end": 11.34,
+      "text": "literalmente",
+      "probability": 0.9482899308204651
+    },
+    {
+      "start": 11.34,
+      "end": 11.54,
+      "text": "um",
+      "probability": 0.752373456954956
+    },
+    {
+      "start": 11.54,
+      "end": 11.88,
+      "text": "assistente",
+      "probability": 0.9380315542221069
+    },
+    {
+      "start": 11.88,
+      "end": 12.3,
+      "text": "pessoal,",
+      "probability": 0.9755048155784607
+    },
+    {
+      "start": 12.42,
+      "end": 12.48,
+      "text": "que",
+      "probability": 0.9516345262527466
+    },
+    {
+      "start": 12.48,
+      "end": 12.96,
+      "text": "pesquisa,",
+      "probability": 0.9843577742576599
+    },
+    {
+      "start": 13.22,
+      "end": 13.48,
+      "text": "compara,",
+      "probability": 0.870433121919632
+    },
+    {
+      "start": 13.88,
+      "end": 14.28,
+      "text": "negocia",
+      "probability": 0.9637645781040192
+    },
+    {
+      "start": 14.28,
+      "end": 14.48,
+      "text": "e",
+      "probability": 0.784205436706543
+    },
+    {
+      "start": 14.48,
+      "end": 14.66,
+      "text": "depois",
+      "probability": 0.9777476191520691
+    },
+    {
+      "start": 14.66,
+      "end": 15.08,
+      "text": "compra",
+      "probability": 0.9057727456092834
+    },
+    {
+      "start": 15.08,
+      "end": 16.06,
+      "text": "com",
+      "probability": 0.2728680372238159
+    },
+    {
+      "start": 16.06,
+      "end": 16.5,
+      "text": "a",
+      "probability": 0.7876011729240417
+    },
+    {
+      "start": 16.5,
+      "end": 16.58,
+      "text": "sua",
+      "probability": 0.856713056564331
+    },
+    {
+      "start": 16.58,
+      "end": 17.0,
+      "text": "autorização.",
+      "probability": 0.9790061414241791
+    },
+    {
+      "start": 17.36,
+      "end": 17.5,
+      "text": "10",
+      "probability": 0.3327194154262543
+    },
+    {
+      "start": 17.5,
+      "end": 17.7,
+      "text": "dias",
+      "probability": 0.8624245524406433
+    },
+    {
+      "start": 17.7,
+      "end": 17.8,
+      "text": "do",
+      "probability": 0.7360944747924805
+    },
+    {
+      "start": 17.8,
+      "end": 18.24,
+      "text": "lançamento",
+      "probability": 0.9970848560333252
+    },
+    {
+      "start": 18.24,
+      "end": 18.4,
+      "text": "de",
+      "probability": 0.7919694781303406
+    },
+    {
+      "start": 18.4,
+      "end": 18.82,
+      "text": "aplicativo",
+      "probability": 0.8011270761489868
+    },
+    {
+      "start": 18.82,
+      "end": 19.04,
+      "text": "número",
+      "probability": 0.7218964099884033
+    },
+    {
+      "start": 19.04,
+      "end": 19.24,
+      "text": "1",
+      "probability": 0.8154453039169312
+    },
+    {
+      "start": 19.24,
+      "end": 19.44,
+      "text": "no",
+      "probability": 0.5469580888748169
+    },
+    {
+      "start": 19.44,
+      "end": 19.54,
+      "text": "Estados",
+      "probability": 0.7636504769325256
+    },
+    {
+      "start": 19.54,
+      "end": 19.86,
+      "text": "Unidos.",
+      "probability": 0.9978098273277283
+    },
+    {
+      "start": 20.14,
+      "end": 20.28,
+      "text": "Ele",
+      "probability": 0.17205092310905457
+    },
+    {
+      "start": 20.28,
+      "end": 20.5,
+      "text": "começou",
+      "probability": 0.9681030511856079
+    },
+    {
+      "start": 20.5,
+      "end": 20.8,
+      "text": "a",
+      "probability": 0.9744429588317871
+    },
+    {
+      "start": 20.8,
+      "end": 20.8,
+      "text": "usar",
+      "probability": 0.9877344965934753
+    },
+    {
+      "start": 20.8,
+      "end": 20.94,
+      "text": "a",
+      "probability": 0.5279035568237305
+    },
+    {
+      "start": 20.94,
+      "end": 21.14,
+      "text": "Amazon",
+      "probability": 0.9826032519340515
+    },
+    {
+      "start": 21.14,
+      "end": 21.32,
+      "text": "para",
+      "probability": 0.5751523375511169
+    },
+    {
+      "start": 21.32,
+      "end": 21.66,
+      "text": "escolher",
+      "probability": 0.7186616659164429
+    },
+    {
+      "start": 21.66,
+      "end": 21.8,
+      "text": "e",
+      "probability": 0.7144582271575928
+    },
+    {
+      "start": 21.8,
+      "end": 22.04,
+      "text": "comprar",
+      "probability": 0.9942574501037598
+    },
+    {
+      "start": 22.04,
+      "end": 22.52,
+      "text": "produtos",
+      "probability": 0.9630107283592224
+    },
+    {
+      "start": 22.52,
+      "end": 22.68,
+      "text": "pelos",
+      "probability": 0.6251459121704102
+    },
+    {
+      "start": 22.68,
+      "end": 23.1,
+      "text": "usuários.",
+      "probability": 0.9449976086616516
+    },
+    {
+      "start": 23.4,
+      "end": 23.46,
+      "text": "A",
+      "probability": 0.5918254852294922
+    },
+    {
+      "start": 23.46,
+      "end": 23.68,
+      "text": "Amazon",
+      "probability": 0.9889734387397766
+    },
+    {
+      "start": 23.68,
+      "end": 24.04,
+      "text": "bloqueou",
+      "probability": 0.735655665397644
+    },
+    {
+      "start": 24.04,
+      "end": 24.18,
+      "text": "na",
+      "probability": 0.9899965524673462
+    },
+    {
+      "start": 24.18,
+      "end": 24.34,
+      "text": "hora.",
+      "probability": 0.9543014168739319
+    },
+    {
+      "start": 24.64,
+      "end": 24.8,
+      "text": "Porque",
+      "probability": 0.8669312596321106
+    },
+    {
+      "start": 24.8,
+      "end": 24.92,
+      "text": "se",
+      "probability": 0.9084138870239258
+    },
+    {
+      "start": 24.92,
+      "end": 25.1,
+      "text": "Muse",
+      "probability": 0.6564541459083557
+    },
+    {
+      "start": 25.1,
+      "end": 25.5,
+      "text": "escolhe",
+      "probability": 0.8743423819541931
+    },
+    {
+      "start": 25.5,
+      "end": 25.58,
+      "text": "o",
+      "probability": 0.9636892080307007
+    },
+    {
+      "start": 25.58,
+      "end": 25.86,
+      "text": "produto,",
+      "probability": 0.9967792630195618
+    },
+    {
+      "start": 26.28,
+      "end": 26.34,
+      "text": "a",
+      "probability": 0.9758992195129395
+    },
+    {
+      "start": 26.34,
+      "end": 26.48,
+      "text": "meta",
+      "probability": 0.9620782136917114
+    },
+    {
+      "start": 26.48,
+      "end": 26.82,
+      "text": "está",
+      "probability": 0.1148291602730751
+    },
+    {
+      "start": 26.82,
+      "end": 27.32,
+      "text": "controlando",
+      "probability": 0.7486039698123932
+    },
+    {
+      "start": 27.32,
+      "end": 27.44,
+      "text": "a",
+      "probability": 0.9602499604225159
+    },
+    {
+      "start": 27.44,
+      "end": 27.76,
+      "text": "decisão",
+      "probability": 0.99004927277565
+    },
+    {
+      "start": 27.76,
+      "end": 28.06,
+      "text": "e",
+      "probability": 0.5533312559127808
+    },
+    {
+      "start": 28.06,
+      "end": 28.12,
+      "text": "a",
+      "probability": 0.9538334012031555
+    },
+    {
+      "start": 28.12,
+      "end": 28.3,
+      "text": "Amazon",
+      "probability": 0.9280232191085815
+    },
+    {
+      "start": 28.3,
+      "end": 28.52,
+      "text": "fica",
+      "probability": 0.9727033376693726
+    },
+    {
+      "start": 28.52,
+      "end": 28.8,
+      "text": "apenas",
+      "probability": 0.9948520064353943
+    },
+    {
+      "start": 28.8,
+      "end": 28.98,
+      "text": "com",
+      "probability": 0.8650777339935303
+    },
+    {
+      "start": 28.98,
+      "end": 29.06,
+      "text": "o",
+      "probability": 0.5792279839515686
+    },
+    {
+      "start": 29.06,
+      "end": 29.26,
+      "text": "stock",
+      "probability": 0.7813001275062561
+    },
+    {
+      "start": 29.26,
+      "end": 29.56,
+      "text": "e",
+      "probability": 0.9255048036575317
+    },
+    {
+      "start": 29.56,
+      "end": 29.6,
+      "text": "a",
+      "probability": 0.9526435732841492
+    },
+    {
+      "start": 29.6,
+      "end": 29.98,
+      "text": "entrega.",
+      "probability": 0.6582332849502563
+    },
+    {
+      "start": 29.98,
+      "end": 30.38,
+      "text": "E",
+      "probability": 0.32585862278938293
+    },
+    {
+      "start": 30.38,
+      "end": 30.46,
+      "text": "é",
+      "probability": 0.739635169506073
+    },
+    {
+      "start": 30.46,
+      "end": 30.68,
+      "text": "aqui",
+      "probability": 0.6658235192298889
+    },
+    {
+      "start": 30.68,
+      "end": 30.82,
+      "text": "que",
+      "probability": 0.9821834564208984
+    },
+    {
+      "start": 30.82,
+      "end": 30.98,
+      "text": "chega",
+      "probability": 0.6203372478485107
+    },
+    {
+      "start": 30.98,
+      "end": 31.12,
+      "text": "no",
+      "probability": 0.870185911655426
+    },
+    {
+      "start": 31.12,
+      "end": 31.22,
+      "text": "seu",
+      "probability": 0.988183856010437
+    },
+    {
+      "start": 31.22,
+      "end": 31.46,
+      "text": "negócio.",
+      "probability": 0.9878000020980835
+    },
+    {
+      "start": 31.74,
+      "end": 31.86,
+      "text": "Hoje",
+      "probability": 0.9793524146080017
+    },
+    {
+      "start": 31.86,
+      "end": 32.04,
+      "text": "você",
+      "probability": 0.9550688862800598
+    },
+    {
+      "start": 32.04,
+      "end": 32.44,
+      "text": "organiza",
+      "probability": 0.9232513904571533
+    },
+    {
+      "start": 32.44,
+      "end": 32.56,
+      "text": "sua",
+      "probability": 0.6800694465637207
+    },
+    {
+      "start": 32.56,
+      "end": 32.76,
+      "text": "oferta",
+      "probability": 0.5644346177577972
+    },
+    {
+      "start": 32.76,
+      "end": 32.98,
+      "text": "para",
+      "probability": 0.5948075652122498
+    },
+    {
+      "start": 32.98,
+      "end": 33.46,
+      "text": "convencer",
+      "probability": 0.7581994831562042
+    },
+    {
+      "start": 33.46,
+      "end": 33.62,
+      "text": "as",
+      "probability": 0.91428142786026
+    },
+    {
+      "start": 33.62,
+      "end": 33.92,
+      "text": "pessoas.",
+      "probability": 0.9960646033287048
+    },
+    {
+      "start": 34.26,
+      "end": 34.62,
+      "text": "Amanhã",
+      "probability": 0.7169477045536041
+    },
+    {
+      "start": 34.62,
+      "end": 34.82,
+      "text": "a",
+      "probability": 0.2343069165945053
+    },
+    {
+      "start": 34.82,
+      "end": 35.1,
+      "text": "preço,",
+      "probability": 0.966362714767456
+    },
+    {
+      "start": 35.3,
+      "end": 35.88,
+      "text": "reputação,",
+      "probability": 0.8909125328063965
+    },
+    {
+      "start": 36.12,
+      "end": 36.44,
+      "text": "prazo,",
+      "probability": 0.8954362273216248
+    },
+    {
+      "start": 36.62,
+      "end": 36.8,
+      "text": "todas",
+      "probability": 0.8827671408653259
+    },
+    {
+      "start": 36.8,
+      "end": 37.02,
+      "text": "essas",
+      "probability": 0.917125940322876
+    },
+    {
+      "start": 37.02,
+      "end": 37.44,
+      "text": "condições",
+      "probability": 0.9953852295875549
+    },
+    {
+      "start": 37.44,
+      "end": 37.76,
+      "text": "serão",
+      "probability": 0.9804702997207642
+    },
+    {
+      "start": 37.76,
+      "end": 38.28,
+      "text": "comparadas",
+      "probability": 0.9918939471244812
+    },
+    {
+      "start": 38.28,
+      "end": 38.44,
+      "text": "em",
+      "probability": 0.9889601469039917
+    },
+    {
+      "start": 38.44,
+      "end": 38.78,
+      "text": "segundo.",
+      "probability": 0.9342568516731262
+    },
+    {
+      "start": 39.08,
+      "end": 39.18,
+      "text": "Porque",
+      "probability": 0.916408896446228
+    },
+    {
+      "start": 39.18,
+      "end": 39.36,
+      "text": "agora",
+      "probability": 0.9744807481765747
+    },
+    {
+      "start": 39.36,
+      "end": 39.52,
+      "text": "sua",
+      "probability": 0.276829332113266
+    },
+    {
+      "start": 39.52,
+      "end": 39.72,
+      "text": "empresa",
+      "probability": 0.9956861734390259
+    },
+    {
+      "start": 39.72,
+      "end": 39.92,
+      "text": "não",
+      "probability": 0.9931784868240356
+    },
+    {
+      "start": 39.92,
+      "end": 40.0,
+      "text": "é",
+      "probability": 0.6746371388435364
+    },
+    {
+      "start": 40.0,
+      "end": 40.16,
+      "text": "mais",
+      "probability": 0.9947358965873718
+    },
+    {
+      "start": 40.16,
+      "end": 40.52,
+      "text": "precisa",
+      "probability": 0.428699791431427
+    },
+    {
+      "start": 40.52,
+      "end": 40.72,
+      "text": "ser",
+      "probability": 0.9218557476997375
+    },
+    {
+      "start": 40.72,
+      "end": 41.06,
+      "text": "encontrada",
+      "probability": 0.9898694455623627
+    },
+    {
+      "start": 41.06,
+      "end": 41.28,
+      "text": "por",
+      "probability": 0.9737648367881775
+    },
+    {
+      "start": 41.28,
+      "end": 41.52,
+      "text": "uma",
+      "probability": 0.9878973960876465
+    },
+    {
+      "start": 41.52,
+      "end": 41.84,
+      "text": "pessoa.",
+      "probability": 0.9885927438735962
+    },
+    {
+      "start": 42.2,
+      "end": 42.28,
+      "text": "É",
+      "probability": 0.808986246585846
+    },
+    {
+      "start": 42.28,
+      "end": 42.52,
+      "text": "precisa",
+      "probability": 0.8365084528923035
+    },
+    {
+      "start": 42.52,
+      "end": 42.76,
+      "text": "ser",
+      "probability": 0.9665994048118591
+    },
+    {
+      "start": 42.76,
+      "end": 43.12,
+      "text": "escolhida",
+      "probability": 0.9725948373476664
+    },
+    {
+      "start": 43.12,
+      "end": 43.34,
+      "text": "por",
+      "probability": 0.989616870880127
+    },
+    {
+      "start": 43.34,
+      "end": 43.52,
+      "text": "uma",
+      "probability": 0.9955765008926392
+    },
+    {
+      "start": 43.52,
+      "end": 43.9,
+      "text": "máquina.",
+      "probability": 0.9963176250457764
+    },
+    {
+      "start": 44.16,
+      "end": 44.38,
+      "text": "Comenta",
+      "probability": 0.9205754399299622
+    },
+    {
+      "start": 44.38,
+      "end": 44.54,
+      "text": "aqui",
+      "probability": 0.9583020210266113
+    },
+    {
+      "start": 44.54,
+      "end": 44.68,
+      "text": "o",
+      "probability": 0.8282334804534912
+    },
+    {
+      "start": 44.68,
+      "end": 44.74,
+      "text": "que",
+      "probability": 0.9853901863098145
+    },
+    {
+      "start": 44.74,
+      "end": 44.98,
+      "text": "você",
+      "probability": 0.9605693817138672
+    },
+    {
+      "start": 44.98,
+      "end": 45.2,
+      "text": "acha",
+      "probability": 0.9807127714157104
+    },
+    {
+      "start": 45.2,
+      "end": 45.4,
+      "text": "desse",
+      "probability": 0.8973075747489929
+    },
+    {
+      "start": 45.4,
+      "end": 45.68,
+      "text": "novo",
+      "probability": 0.9479057788848877
+    },
+    {
+      "start": 45.68,
+      "end": 46.04,
+      "text": "cenário.",
+      "probability": 0.9887841045856476
+    }
+  ]
+}

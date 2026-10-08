@@ -1,0 +1,42 @@
+OBJETIVO
+Aplicar à fotografia original a identidade “Documental Tecnológico Mineral” da ARVEX usando apenas
+correção cromática e acabamento fotográfico. O resultado precisa continuar sendo exatamente a mesma
+fotografia, com os mesmos pixels ocupando as mesmas posições.
+
+INSTRUÇÃO PRINCIPAL
+Faça somente color grading, curva tonal, split toning, contraste, granulação fina e vinheta óptica
+discreta. Desative geração, preenchimento generativo, reconstrução, retoque de conteúdo, melhoria de
+rosto, remoção de objetos, substituição de fundo e expansão generativa.
+
+INVARIANTES ABSOLUTOS
+- não alterar rostos, pele, cabelo, expressão, corpo, mãos ou roupas;
+- não alterar microfones, logos, telas, copos, mesa, cortina ou qualquer objeto;
+- não remover, adicionar, redesenhar ou reposicionar nada;
+- não alterar enquadramento, proporção, perspectiva, foco ou profundidade de campo;
+- não suavizar pele e não sintetizar textura;
+- preservar resolução e geometria da fotografia original.
+
+DIREÇÃO DE COR
+- reduzir seletivamente a saturação do verde promocional;
+- levar sombras verdes para grafite com um leve fundo petróleo mineral;
+- preservar a pele natural e levemente quente;
+- levar apenas os highlights para bronze/champagne envelhecido;
+- manter saturação global contida;
+- produzir sombras densas sem esmagar detalhes;
+- suavizar highlights sem aparência HDR;
+- usar marfim, carvão-petróleo e bronze como referência de equilíbrio.
+
+ACABAMENTO
+- grão fino, orgânico e uniforme, sem poeira ou riscos falsos;
+- vinheta muito discreta e contínua;
+- contraste editorial moderado;
+- textura original de pele, tecido, metal, vidro e cortina totalmente preservada.
+
+EVITAR
+preto e branco; sépia; verde neon; teal-and-orange; rosa; cyberpunk; filtro vintage evidente;
+light leak; bloom forte; HDR; clareza excessiva; pele plástica; fundo artificial; qualquer alteração
+semântica ou estrutural da imagem.
+
+SAÍDA
+Exportar uma nova versão, sem sobrescrever o original. Conferir em comparação sobreposta a 100% de
+opacidade que não houve deslocamento, substituição ou reconstrução de nenhum elemento.

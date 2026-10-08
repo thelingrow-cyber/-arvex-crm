@@ -76,3 +76,33 @@ compartilhamento é o que traz gente nova, não quem já segue.
 - **Peça de captura:** antes/depois ou truque, com palavra-chave — sabendo que troca alcance por DM.
 - **Peça de obra:** pode abrir em relato pessoal **desde que a tela prove** nos primeiros 15s; sem artefato, é o fundo da tabela.
 - **Nunca:** meta-conteúdo, resposta a outro criador, listicle técnico sem tensão antes.
+
+## Evidência nova — o entregável contamina a taxa de comentário
+
+Dois vídeos de Bruno Belissimo, publicados com dois dias de diferença e ambos com CTA por palavra-chave:
+
+| Entrega | Curtidas | Comentários | Comentário/curtida |
+|---|---:|---:|---:|
+| arquivo gratuito + prompts | 4.537 | 2.202 | **48,5%** |
+| candidatura para mentoria | 1.002 | 66 | **6,6%** |
+
+Com `n=2`, isto ainda não mede a força dos ganchos e não substitui visualizações. Mas corrige a leitura da métrica:
+**comentário em CTA mede também o valor imediato e a fricção do que vem depois.** Comparar peças de captura sem controlar o entregável atribui ao roteiro um efeito que pode vir da oferta.
+
+## Bruno Belissimo — primeira separação de função (n=5)
+
+| Função | Abertura | Curtidas | Comentários |
+|---|---|---:|---:|
+| alcance/visão | IA encurta problema matemático de 180 anos | **17.759** | 205 |
+| captura gratuita | demonstra falha visual + entrega sheet | 4.537 | **2.202** |
+| oferta | contradição dos líderes + candidatura para mentoria | 1.002 | 66 |
+| notícia técnica | "momento GPT da robótica" + benchmark | **441** | 12 |
+| conversa/polêmica | guerra silenciosa + Amazônia + dilema ambiental | 3.445 | **225** |
+
+Os quatro mantêm cenário, talking head, B-roll literal, legenda e duração longa. Logo, esses elementos são estilo.
+
+O quarto caso corrige a formulação anterior: **escala tecnológica não basta**. Navier–Stokes (17.759) e S1 (441) são notícias de ruptura sem palavra-chave na fala, mas diferem em 40×. A peça forte transforma a notícia em escala histórica e consequência para uma geração humana. A fraca permanece em produto, benchmark e previsão setorial. Ativo gratuito gera comentários; oferta direta fica abaixo. Hipótese provisória até medir visualizações e a grade.
+
+**Regra para o CAFEIA:** notícia só passa se responder uma decisão, uma identidade ou uma consequência humana do dono. Lançamento + números + "isso vai escalar" é boletim técnico, mesmo com boa edição.
+
+O quinto caso separa **conversa** de alcance: energia/Amazônia tem 6,5% de comentários por curtida sem isca, contra 1,2% no Navier–Stokes. Ameaça localizada e dilema moral convidam posição; escala histórica convida admiração. Para o CAFEIA, decidir antes de escrever se a peça quer ser compartilhada, discutida ou usada para captura.

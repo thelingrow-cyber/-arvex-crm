@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" style="font-family: Inter, Arial, Helvetica, sans-serif">
+    <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090D14"/><stop offset="1" stop-color="#111B2B"/>
+    </linearGradient>
+    <linearGradient id="indigoGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8793FF"/><stop offset="1" stop-color="#5B6CFF"/>
+    </linearGradient>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="17"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.035"/></feComponentTransfer>
+    </filter>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#8793FF" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+    <rect width="1080" height="1350" fill="#090D14"/>
+    
+    <rect x="0" y="0" width="1080" height="1350" fill="url(#bg)"/>
+    <text x="76" y="228" fill="#8793FF" font-size="24" font-weight="800" letter-spacing="3">A PREVISÃO</text>
+    <text x="76" y="305" fill="#F2F0E9" font-size="75" font-weight="900" letter-spacing="-3"><tspan x="76" dy="0">EM 2027, TER IA</tspan><tspan x="76" dy="82">NÃO SERÁ VANTAGEM.</tspan></text>
+    <text x="76" y="515" fill="#A7AFBC" font-size="30" font-weight="500"><tspan x="76" dy="0">Os mesmos modelos, agentes e ferramentas estarão</tspan><tspan x="76" dy="42">disponíveis para todos os seus concorrentes.</tspan></text>
+    <rect x="76" y="626" width="414" height="294" rx="8" fill="#141B26" stroke="#2A3445" stroke-width="2"/>
+    <text x="108" y="682" fill="#A7AFBC" font-size="19" font-weight="800" letter-spacing="2.5">ADICIONAR IA</text>
+    <g fill="none" stroke="#717A89" stroke-width="3" opacity=".65">
+      <rect x="113" y="737" width="88" height="88" rx="8"/><rect x="259" y="716" width="68" height="68" rx="7"/>
+      <rect x="368" y="772" width="88" height="88" rx="8"/><rect x="243" y="822" width="54" height="54" rx="6"/>
+    </g>
+    <line x1="221" y1="776" x2="250" y2="757" stroke="#717A89" stroke-dasharray="7 8"/>
+    <line x1="330" y1="755" x2="370" y2="801" stroke="#717A89" stroke-dasharray="7 8"/>
+    <text x="108" y="893" fill="#A7AFBC" font-size="22">peças soltas</text>
+    <rect x="514" y="626" width="490" height="294" rx="8" fill="#111B2B" stroke="#5B6CFF" stroke-width="3"/>
+    <text x="546" y="682" fill="#8793FF" font-size="19" font-weight="800" letter-spacing="2.5">REDESENHAR A EMPRESA</text>
+    <g fill="none" stroke="#8793FF" stroke-width="3">
+      <path d="M570 754h100v100H570Z"/><path d="M848 754h100v100H848Z"/>
+      <path d="M694 714h100v100H694Z"/><path d="M694 836h100v54H694Z"/>
+      <line x1="670" y1="804" x2="694" y2="764"/><line x1="794" y1="764" x2="848" y2="804"/><line x1="744" y1="814" x2="744" y2="836"/>
+    </g>
+    <rect x="724" y="774" width="40" height="40" rx="3" fill="#5B6CFF" transform="rotate(45 744 794)"/>
+    <text x="546" y="893" fill="#F2F0E9" font-size="22">um sistema em execução</text>
+    <text x="76" y="994" fill="#F2F0E9" font-size="29" font-weight="500"><tspan x="76" dy="0">A diferença estará entre empresas que apenas adicionam IA</tspan><tspan x="76" dy="39">ao que já existe e empresas redesenhadas para transformar</tspan><tspan x="76" dy="39">inteligência em execução.</tspan></text>
+    <text x="76" y="1106" fill="#A7AFBC" font-size="23" font-weight="800">E essa arquitetura começa por três movimentos. →</text>
+    <rect x="76" y="1124" width="928" height="102" rx="5" fill="#F2F0E9"/>
+    <text x="108" y="1156" fill="#090D14" font-size="29" font-weight="900">O modelo será acessível.</text>
+    <text x="108" y="1192" fill="#5B6CFF" font-size="29" font-weight="900">A arquitetura será a vantagem.</text>
+    
+    
+    <g transform="translate(76 54)">
+      <path d="M0 0h38v10H10v28H0Z" fill="#F2F0E9"/>
+      <path d="M58 58H20V48h28V20h10Z" fill="#F2F0E9"/>
+      <rect x="25" y="25" width="10" height="10" rx="1" fill="#5B6CFF" transform="rotate(45 30 30)"/>
+      <text x="78" y="43" fill="#F2F0E9" font-size="34" font-weight="900" letter-spacing="2">ARVEX</text>
+    </g>
+    <text x="1004" y="82" text-anchor="end" fill="#A7AFBC" font-size="20" font-weight="700" letter-spacing="2.6">PREVISÃO</text>
+    <line x1="76" y1="130" x2="1004" y2="130" stroke="#2A3445" stroke-width="2"/>
+    <line x1="76" y1="1264" x2="1004" y2="1264" stroke="#2A3445" stroke-width="2"/>
+    <text x="76" y="1308" fill="#A7AFBC" font-size="20" font-weight="700" letter-spacing="2.2">REGISTRO 01</text>
+    <text x="1004" y="1308" text-anchor="end" fill="#F2F0E9" font-size="20" font-weight="800" letter-spacing="2.2">02—07</text>
+    <rect width="1080" height="1350" filter="url(#grain)" opacity=".7"/>
+  </svg>

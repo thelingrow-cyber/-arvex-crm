@@ -1,0 +1,41 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Main,Segoe UI,62,&H00FFFFFF,&H00FFFFFF,&H00101618,&H80000000,-1,0,0,0,100,100,0,0,1,2.5,1,2,100,170,482,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 3,0:00:00.01,0:00:00.81,Main,,0,0,0,,{\fad(45,65)}vou fazer conteúdo,
+Dialogue: 3,0:00:00.85,0:00:01.85,Main,,0,0,0,,{\fad(45,65)}vou vender o {\c&H78CFED&}infoproduto.{\c&HFFFFFF&}
+Dialogue: 3,0:00:02.03,0:00:02.65,Main,,0,0,0,,{\fad(45,65)}Hoje {\c&H78CFED&}não.{\c&HFFFFFF&}
+Dialogue: 3,0:00:02.75,0:00:03.37,Main,,0,0,0,,{\fad(45,65)}Hoje eu acho que
+Dialogue: 3,0:00:03.37,0:00:04.83,Main,,0,0,0,,{\fad(45,65)}realmente vou {\c&H78CFED&}criar{\c&HFFFFFF&} um
+Dialogue: 3,0:00:04.83,0:00:07.03,Main,,0,0,0,,{\fad(45,65)\c&H201D17&\3c&HE7EEF0&\shad0}{\c&H376F93&}ecossistema{\c&H201D17&} dentro da minha
+Dialogue: 3,0:00:07.03,0:00:07.45,Main,,0,0,0,,{\fad(45,65)\c&H201D17&\3c&HE7EEF0&\shad0}{\c&H376F93&}marca,{\c&H201D17&}
+Dialogue: 3,0:00:07.59,0:00:08.45,Main,,0,0,0,,{\fad(45,65)\c&H201D17&\3c&HE7EEF0&\shad0}que é a minha
+Dialogue: 3,0:00:08.45,0:00:09.13,Main,,0,0,0,,{\fad(45,65)}{\c&H78CFED&}marca{\c&HFFFFFF&} pessoal.
+Dialogue: 3,0:00:09.19,0:00:09.79,Main,,0,0,0,,{\fad(45,65)}O Expert hoje {\c&H78CFED&}não{\c&HFFFFFF&}
+Dialogue: 3,0:00:09.79,0:00:10.29,Main,,0,0,0,,{\fad(45,65)}é só mais um
+Dialogue: 3,0:00:10.29,0:00:12.33,Main,,0,0,0,,{\fad(45,65)}{\c&H78CFED&}especialista{\c&HFFFFFF&} em algo específico.
+Dialogue: 3,0:00:12.33,0:00:13.03,Main,,0,0,0,,{\fad(45,65)}Ele é todo um
+Dialogue: 3,0:00:13.03,0:00:14.17,Main,,0,0,0,,{\fad(45,65)}{\c&H78CFED&}ecossistema{\c&HFFFFFF&} que pode ser
+Dialogue: 3,0:00:14.17,0:00:14.73,Main,,0,0,0,,{\fad(45,65)}explorado.
+Dialogue: 3,0:00:14.83,0:00:15.95,Main,,0,0,0,,{\fad(45,65)}Pode ser explorado hoje
+Dialogue: 3,0:00:15.95,0:00:16.83,Main,,0,0,0,,{\fad(45,65)}por {\c&H78CFED&}IA,{\c&HFFFFFF&}
+Dialogue: 3,0:00:17.13,0:00:18.43,Main,,0,0,0,,{\fad(45,65)}por você abraçar o
+Dialogue: 3,0:00:18.43,0:00:18.93,Main,,0,0,0,,{\fad(45,65)}lado {\c&H78CFED&}tech.{\c&HFFFFFF&}
+Dialogue: 3,0:00:19.21,0:00:19.97,Main,,0,0,0,,{\fad(45,65)}Você pode ser explorado
+Dialogue: 3,0:00:19.97,0:00:21.21,Main,,0,0,0,,{\fad(45,65)}por construir uma {\c&H78CFED&}marca,{\c&HFFFFFF&}
+Dialogue: 3,0:00:21.35,0:00:22.41,Main,,0,0,0,,{\fad(45,65)}construir {\c&H78CFED&}comunidade.{\c&HFFFFFF&}
+Dialogue: 3,0:00:22.57,0:00:23.21,Main,,0,0,0,,{\fad(45,65)}Então {\c&H78CFED&}não{\c&HFFFFFF&} é mais
+Dialogue: 3,0:00:23.21,0:00:24.41,Main,,0,0,0,,{\fad(45,65)\c&H201D17&\3c&HE7EEF0&\shad0}simplesmente um {\c&H376F93&}funil,{\c&H201D17&}
+Dialogue: 3,0:00:24.41,0:00:26.67,Main,,0,0,0,,{\fad(45,65)\c&H201D17&\3c&HE7EEF0&\shad0}uma {\c&H376F93&}estratégia{\c&H201D17&} que vai
+Dialogue: 3,0:00:26.71,0:00:28.39,Main,,0,0,0,,{\fad(45,65)}resolver toda a sua
+Dialogue: 3,0:00:28.39,0:00:28.95,Main,,0,0,0,,{\fad(45,65)}{\c&H78CFED&}expansão,{\c&HFFFFFF&}
+Dialogue: 3,0:00:28.95,0:00:29.57,Main,,0,0,0,,{\fad(45,65)}seu {\c&H78CFED&}crescimento.{\c&HFFFFFF&}

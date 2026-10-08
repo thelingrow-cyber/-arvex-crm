@@ -1,0 +1,66 @@
+{
+  "method": "Deterministic masked composition; no new image generation",
+  "basePath": "C:/Users/Vitor Simões/Downloads/exec-e90ea39a-46e8-48db-a7e2-5627c6713e25.png",
+  "donorPath": "C:\\Users\\Vitor Simões\\Desktop\\ARVEX\\output\\imagegen\\perfil-colorido-camisa-branca-2026-09-12-v9.png",
+  "finalPath": "C:\\Users\\Vitor Simões\\Desktop\\ARVEX\\output\\imagegen\\perfil-montagem-camisa-branca-2026-09-12-v11.png",
+  "width": 1254,
+  "height": 1254,
+  "protectedRegion": {
+    "left": 0,
+    "top": 0,
+    "width": 1254,
+    "height": 740
+  },
+  "changedPixelsInProtectedRegion": 0,
+  "changedPixelsTotal": 87656,
+  "changedPercentage": 5.574251708726652,
+  "changedBounds": {
+    "left": 356,
+    "top": 742,
+    "right": 656,
+    "bottom": 1253
+  },
+  "maskFeatherSigma": 2.2,
+  "metadata": {
+    "width": 1254,
+    "height": 1254,
+    "baseMetadata": {
+      "format": "png",
+      "mediaType": "image/png",
+      "width": 1254,
+      "height": 1254,
+      "space": "srgb",
+      "channels": 3,
+      "depth": "uchar",
+      "density": 72,
+      "isProgressive": false,
+      "isPalette": false,
+      "bitsPerSample": 8,
+      "hasProfile": false,
+      "hasAlpha": false,
+      "autoOrient": {
+        "width": 1254,
+        "height": 1254
+      }
+    },
+    "donorMetadata": {
+      "format": "png",
+      "mediaType": "image/png",
+      "width": 1254,
+      "height": 1254,
+      "space": "srgb",
+      "channels": 3,
+      "depth": "uchar",
+      "density": 72,
+      "isProgressive": false,
+      "isPalette": false,
+      "bitsPerSample": 8,
+      "hasProfile": false,
+      "hasAlpha": false,
+      "autoOrient": {
+        "width": 1254,
+        "height": 1254
+      }
+    }
+  }
+}

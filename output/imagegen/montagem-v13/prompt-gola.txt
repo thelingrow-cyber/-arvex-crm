@@ -1,0 +1,13 @@
+Mode: built-in image_gen for the garment donor; conventional masked composition for the final portrait.
+Target: montage v12. Clothing reference: t2.jpg.
+Selected donor: doadora-gola.png.
+Final composition: ../perfil-montagem-gola-alta-2026-09-12-v13.png.
+
+WARDROBE VARIATION for a later masked composite. Image 1 is the target square color portrait; image 2 is the desired clothing reference ONLY.
+
+Make the layering around the man's neck and chest in IMAGE 1 much closer to IMAGE 2:
+- Raise the light-gray inner stand collar slightly higher around the neck, especially at the front and right side. Soft upright medium-height collar, fitted and relaxed, sitting below the jaw without touching the chin. Zip the pullover farther up so only a small opening remains at the throat. Keep its light stone-gray/off-white tone, plain fine-knit cotton fabric, discreet narrow zipper.
+- Crucially, SHOW MUCH LESS OF THE LIGHT SWEATER ON THE CHEST. Bring the two front panels of the BLACK OUTER PUFFER JACKET closer together and zip it up to the upper chest. The light garment should be visible mainly as the higher collar and a small narrow inset immediately below it, like the layered neckline in image 2. Cover most of the currently exposed long light torso panel with the black jacket. This is a real change to the jacket's opening, not a tighter photograph crop.
+- Preserve the existing black jacket material, horizontal quilting, chest pocket zippers, shoulders and outer silhouette. The main jacket zipper and folds should connect convincingly with the raised closure. No logos, no big shiny pull tab, no dress-shirt points, no buttons, no rolled turtleneck.
+
+Keep the man's exact face, head angle, neck proportions, expression, hair, background, lighting, image size and square composition. The head must remain in precisely the same position for subsequent compositing. Use image 2 only for clothing layering, never its face, hair, pose or phone interface. Natural matte fabrics and coherent soft daylight. One square color photograph at the same dimensions as image 1.

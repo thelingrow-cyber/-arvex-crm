@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Símbolo ARVEX</title>
+  <desc id="desc">Um A geométrico estruturado ao redor de um núcleo dourado.</desc>
+  <g fill="none" stroke="#101216" stroke-width="58" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M106 390 226 112"/>
+    <path d="M274 112 406 390"/>
+    <path d="M166 294h68"/>
+    <path d="M278 294h68"/>
+  </g>
+  <rect x="232" y="270" width="48" height="48" rx="3" fill="#C8A96E" transform="rotate(45 256 294)"/>
+</svg>

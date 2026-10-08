@@ -1,0 +1,107 @@
+{
+  "source": "kiwify-2324-2411-original.mp4",
+  "originalStart": "00:23:24",
+  "originalEnd": "00:24:11",
+  "originalDuration": 47,
+  "editedDuration": 32.03333333333333,
+  "speechDuration": 29.633333333333333,
+  "tail": 2.4,
+  "output": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "cuts": [
+    {
+      "start": 1.1333333333333333,
+      "end": 10.266666666666667,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "offset": 0
+    },
+    {
+      "start": 11.3,
+      "end": 17.033333333333335,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "offset": 9.133333333333335
+    },
+    {
+      "start": 17.033333333333335,
+      "end": 24.666666666666668,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "offset": 14.866666666666669
+    },
+    {
+      "start": 24.933333333333334,
+      "end": 29,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "offset": 22.5
+    },
+    {
+      "start": 29.7,
+      "end": 32.766666666666666,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "offset": 26.566666666666666
+    }
+  ],
+  "inserts": [
+    {
+      "asset": "hook",
+      "start": 0,
+      "end": 2.8
+    },
+    {
+      "asset": "ecosystem",
+      "start": 5.15,
+      "end": 8.65
+    },
+    {
+      "asset": "tech",
+      "start": 16.1,
+      "end": 18.8
+    },
+    {
+      "asset": "funnel",
+      "start": 23.35,
+      "end": 25.85
+    },
+    {
+      "asset": "cta",
+      "start": 29.383333333333333,
+      "end": 32.03333333333333
+    }
+  ],
+  "notes": [
+    "Fonte preservada. Cópia horizontal exata separada.",
+    "Teste editorial encerra na frase sobre expansão e crescimento.",
+    "Removidos início repetido, frase intermediária redundante, hesitação e continuação da apresentadora.",
+    "Inserts inteiramente conceituais, desenhados localmente. Sem CRM, produtos pessoais ou alegações de resultados.",
+    "CTA somente escrito, sobre frame congelado visível. Sem síntese de voz ou simulação labial.",
+    "Legendas via ASR local com normalização ortográfica. Revisão auditiva humana ainda recomendada para aprovação final.",
+    "Reenquadramento limitado à resolução 1080p original; exportação 1080x1920 não recupera detalhe inexistente."
+  ]
+}

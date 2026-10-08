@@ -1,0 +1,26 @@
+Generation mode: built-in image_gen.
+Revision: use the user's original jacket photograph as the edit target, additional photos as supporting references. Remove earring; preserve authentic haircut and discreet smile; improve background and square crop.
+
+Use case: identity-preserve photo edit.
+Deliver ONE square color professional profile photograph by carefully editing the ORIGINAL photograph in Image 1 (rkrkkrf.jpg, the man wearing a black quilted jacket beside the river). The user wants exceptional photographic realism and rejected two newly synthesized portraits because they looked like AI. This time preserve the actual photographed man and edit the production around him. Do NOT redesign his face or substitute a stock-headshot lookalike.
+
+Reference roles:
+Image 1 rkrkkrf.jpg is the EDIT TARGET and absolute authority for the face, age, haircut, body proportions, posture, clothing and expression.
+Image 2 orkfd.jpg is the same photographed man and jacket in a lock-screen crop; use only to corroborate the subject, NEVER copy its gradient or screen UI.
+Image 3 rfrg.jpg shows his genuine smile and expression, supplemental reference only.
+Image 4 erered.jpg is a supplemental side view for his nose, lips and skin, not a cap/clothing reference.
+Image 5 erer.jpg is a supplemental reference for the actual irregular waves and strand direction in his dark hair; do not copy its different outfit, jewelry or background.
+The secondary references must clarify details, not morph or average the face in Image 1.
+
+Requested edits:
+1. Reframe Image 1 into a square head-and-upper-chest portrait. Retain the slight relaxed torso angle and almost frontal face, looking into the camera. Show the whole hairstyle with comfortable headroom, neck, shoulders and the upper part of his jacket including its collar and real zippers. Hair-to-chin about 53–57 percent of frame height; centered naturally and safe for a circular avatar.
+2. Replace the busy river/tourist background with a quietly photographic light warm-grey stone/plaster wall, slightly out of focus, with extremely subtle real surface and light variation. No studio gradient, vignette, dramatic background spotlight or decorative objects.
+3. KEEP the actual black lightly padded/quilted jacket from Image 1, including its shape, stitching, collar and zippers, with the charcoal knit underneath. Retain the natural fabric creases and weight. No suit, no invented shirt, no brand text.
+4. REMOVE the earring completely. Bare ears, no jewelry, no remaining metallic speck.
+5. Keep his real short-on-sides, lightly wavy-on-top dark haircut from Image 1. Restore only plausible detail supported by the references: small irregular waves, natural direction, fine loose hairs, real hairline and modest original volume. Do not add the oversized curly coiffure of generic AI portraits.
+6. Preserve the pleasant small closed-mouth smile already in Image 1, with its genuine mild asymmetry and relaxed eyes. It may be very subtly warmer, but do not reshape lips or cheeks and do not open the mouth or invent teeth.
+
+Preservation constraints: keep exactly the actual apparent facial proportions and features of Image 1: brows, dark eyes and eyelids, natural under-eye area, nose, full lips, cheek volume, jaw and ears. Keep his sparse moustache and short chin hair as in that photo, not the heavier beard of another reference. No face slimming, jaw sculpting, age change, symmetry correction, beauty makeup, skin smoothing or fictional pore/freckle texture.
+
+Photographic finish: preserve the flattering ordinary overcast daylight of Image 1, a modest exposure correction to make the face readable, realistic neutral-warm white balance, gentle honest contrast. Natural skin texture visible only at appropriate scale, no crunchy pore-detail filter, no HDR, no aggressive sharpening, no waxy skin and no artificial eye sparkle. Maintain some normal camera/lens softness. Fine realistic hair edges integrated with the background, without a cutout halo. Think a beautifully framed real photograph of this specific person, with minimal retouching, rather than a perfect synthesized executive headshot.
+No phone controls, clock, text, watermark, circle mask, border, extra people, hands or props. Output one finished square photograph.

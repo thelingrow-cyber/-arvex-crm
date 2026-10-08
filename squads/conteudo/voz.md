@@ -176,3 +176,15 @@ tique novo — vício de linguagem entra por repetição, não por decisão.
 # reconstruir a fala de um take
 $j = Get-Content tools\video-recut\work\<video>\words.json -Encoding utf8 -Raw | ConvertFrom-Json; $j.text
 ```
+
+---
+
+## Aprendido no take `2026-09-freio-da-ia` (24/09)
+
+O roteiro levou 4 versões. Na gravação ele **melhorou o texto sozinho**, e as frases dele ficaram melhores que as escritas:
+
+- **Abertura de notícia:** *"Uma fofoca rápida aqui do mundo de AI e negócios."* Dá nome ao formato sem soar como anúncio.
+- **Fecho:** *"Então é só um insight pra gente pensar aqui. Tempo no jogo, jogando, conta e conta muito."* O fecho dele é **humilde e repetido**, não é uma linha divisória sentenciosa.
+- **Regra de processo:** os 6 testes acima são **filtro** para cortar o que soa falso. Não são ingredientes obrigatórios. Pedágio, "ou melhor" e verbo 3× encaixados à força soaram plantados.
+- **Antes de escrever:** perguntar qual é a leitura dele da notícia em uma frase. A melhor estrutura veio quando ele ditou.
+- **A ponte notícia → dono precisa ser literalmente verdadeira.** Ele percebe o salto lógico ("não sei se a correlação está correta").

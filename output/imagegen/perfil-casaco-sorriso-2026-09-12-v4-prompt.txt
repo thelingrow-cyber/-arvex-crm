@@ -1,0 +1,18 @@
+Generation mode: built-in image_gen.
+Revision: edit v3 to add a smile supported by original smile photographs and replace the stone background with a softer light photographic backdrop. Preserve jacket, hair, likeness and absence of earrings.
+
+Edit Image 1, the square headshot of the man in the black quilted jacket. Make exactly TWO intentional changes: a genuinely happy natural smile, and a more attractive clean photographic background. Produce ONE finished square color profile portrait.
+
+References:
+Image 1 perfil-casaco-2026-09-12-v3.png: EDIT TARGET. Keep this person's identity, haircut, head orientation, camera viewpoint, shoulders, black jacket, charcoal knit, and composition.
+Image 2 rkrkkrf.jpg: ORIGINAL real photo of the same person in the same jacket, use as the authority for likeness and photographic naturalness so the face does not drift.
+Image 3 rfrg.jpg: his actual open smile, use as the smile/expression reference.
+Image 4 viii.jpg: his actual smiling face closer up, use for his precise lip shape, natural smile lines, cheek movement, teeth and visible orthodontic braces. It is a supporting expression reference only, not a reference for haircut or pose.
+
+Change 1 — Smile: replace the nearly closed-mouth half-smile in Image 1 with a clearly visible, relaxed authentic smile inspired by Images 3 and 4. The corners of his mouth lift naturally, a modest amount of upper teeth is visible, cheeks gently rise, eyes participate with subtle natural narrowing. Warm and spontaneous as though the photographer just made him smile; not a forced advertising grin. Keep the actual person's characteristic lips, mouth width and mild asymmetry. Because his genuine smile references show braces, preserve the real fine metallic braces naturally and unobtrusively; do not invent perfect white veneers or remove dental details. Preserve the shape of his face, nose and jaw, adapting only the ordinary muscle movement of smiling. Do not widen the face, enlarge eyes, beautify or age him.
+
+Change 2 — Background: completely replace the stone-block wall with a softly defocused elegant pale warm-grey/ivory interior backdrop. It should suggest real space and beautiful daylight: a matte warm off-white wall several feet behind him, a very subtle out-of-focus vertical architectural edge far at the side, restrained luminous cream and greige tones, no visible stone blocks or mortar lines. Clean, airy and quietly sophisticated, with photographic depth. No identifiable objects, furniture, lamps, signage, plants or people. No synthetic radial spotlight or gradient graphic. The background should make the dark jacket and hair clearly readable while keeping all attention on the face. Maintain plausible optical softness and natural light falloff.
+
+Invariants: same recognizable real man, actual short-on-sides softly wavy dark hair from Image 1, same sparse facial hair, same natural skin color and actual facial proportions, exact same black quilted jacket with its real stitching, collar and zipper design. Keep both ears bare: NO EARRINGS, NO JEWELRY. Preserve the comfortable full-hair margin and square avatar-safe head-and-upper-chest framing.
+Naturalness is crucial: retain ordinary photographic skin texture and small imperfections at realistic scale, subtle uneven skin tones, natural hair strands and lens softness. No beauty smoothing, no embossed pore pattern, no heavy clarity/HDR, no halos, no artificial catchlights, no porcelain skin, no hyper-perfect symmetry. Keep the soft flattering daylight on his face consistent with the original photograph. This must feel like the same person actually photographed smiling in a better location.
+No text, phone UI, watermark, borders, circle mask, montage or extra people.

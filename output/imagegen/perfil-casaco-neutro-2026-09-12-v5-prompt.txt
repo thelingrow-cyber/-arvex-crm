@@ -1,0 +1,12 @@
+Generation mode: built-in image_gen.
+Revision: user rejected the added smile as aging his appearance and asked for a serious expression. Selected result uses the original jacket photograph as identity authority and v4 as background/framing reference. An intermediate edit was rejected during visual QA for excessive synthetic skin texture.
+
+Create a faithful photo edit of IMAGE 1, the ORIGINAL photograph of the man in a black padded jacket by the river. Image 2 is ONLY a reference for the desired square crop and pale blurred background. Do NOT use Image 2 as a face or skin reference: it has generated facial details that the user rejected as making him older.
+
+Keep the actual man from Image 1: his exact facial proportions, actual apparent age, authentic short softly wavy hair, understated facial hair, original skin appearance, and same black jacket over charcoal knit. His mouth should be gently closed and relaxed with a NEUTRAL, slightly serious expression, without a smile, without frowning. Calm normal eyes and completely relaxed brows. Maintain the original face orientation and torso angle. Remove his small earring; bare ears.
+
+Reframe the original to a square head-and-upper-chest portrait with full hairstyle visible and suitable margins for a circular profile crop. Use the crop in Image 2 as a guide. Replace the busy original river background with the soft, light warm-grey/off-white defocused background shown in Image 2.
+
+Preserve the real photograph's soft daylight and unretouched appearance. Modest exposure correction only. Skin detail should match Image 1 and remain subtle: no invented wrinkles, no added age, NO drawn or etched lines, no stippled or embossed pore mesh, no painterly strokes, no sharpening filter, no rubbery smoothing. Jacket and sweater must retain ordinary photographic cloth texture, not generated line patterns. Treat the face as a real photo to preserve rather than a face to reimagine or enhance.
+
+The result must look like a modestly retouched original camera photograph, with a quiet neutral expression and clean background. One square color image, no text, no phone UI, no jewelry, no watermark.

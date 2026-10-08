@@ -1,0 +1,12 @@
+Generation mode: built-in image_gen.
+Reference: user-provided preferred color portrait exec-e90ea39a-46e8-48db-a7e2-5627c6713e25.png.
+Output: perfil-colorido-camisa-branca-2026-09-12-v8.png
+Visual review: color and earlier blurred background restored, white shirt applied, composition and expression close to supplied reference. Some synthesized skin/hair texture remains at full size; naturalness is not established as fully achieved.
+
+Make a restrained edit of this exact COLOR portrait. Keep the same man, exact facial proportions, expression, head angle, hair silhouette, warm natural skin color, soft light, square framing, black puffer jacket and the EXISTING softly blurred pale background.
+
+Replace the gray inner sweater with a white cotton button-up shirt, with a small relaxed collar and the top button open underneath the same jacket. The shirt has ordinary matte cotton, soft folds and natural shadows from the jacket and neck. No logos or tie.
+
+Correct only the over-rendered fine texture of the face and hair. The source contains an artificial scratch-like pattern in the skin and too many sharp, wiry curls. Gently remove that pattern and lower local microcontrast, restoring the soft, irregular skin texture of a normal camera photograph. Keep natural tonal variation and a few subtle real skin imperfections, without adding new pores, wrinkles, facial hairs or speckles. Hair should read as softly resolved natural dark waves, with strand detail only where light actually resolves it. Preserve hairstyle, facial hair placement and density. No beauty filter or plastic smoothness.
+
+Keep the facial anatomy exactly as supplied: eyes, brows, nose, lips, cheeks and jaw unchanged. Keep the closed relaxed mouth, no added smile, no earrings. Do not enhance sharpness, clarity, HDR or cinematic grading. Keep the background exactly as supplied, with the same blur and colors. The finish should look like a modestly retouched real color photo, with coherent softness across skin, clothing and hair. One square image.

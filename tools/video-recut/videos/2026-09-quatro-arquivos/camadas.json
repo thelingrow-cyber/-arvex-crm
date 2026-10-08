@@ -1,0 +1,188 @@
+{
+  "_sobre": "Os 4 arquivos de contexto — agora seguindo a edição REAL da referência (AI with Remy): sem título fixo na tela; cada arquivo vira um bloco com ícone de pasta + nome, e a sub-lista de 5 campos preenche e é substituída pela do próximo. Corte seco de respiração + corte manual das tentativas repetidas no fecho.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "15446E73-225C-4742-8272-468EDB8D658A.mp4",
+  "saida": "2026-09-quatro-arquivos.mp4",
+  "duracao": 45.86,
+  "cor": ",curves=all='0/0.03 0.35/0.42 0.7/0.76 1/0.98',eq=contrast=1.06:saturation=1.05",
+  "cortar": {
+    "ruido": -30,
+    "min": 0.2,
+    "folga": 0.04,
+    "_tirar": "fecho: tira as tentativas abandonadas E o pedido de compartilhar; fica só o 'salva esse vídeo'",
+    "tirar": [
+      [
+        35.3,
+        43.32
+      ]
+    ]
+  },
+  "transcricao": {
+    "prompt": "Quatro arquivos de contexto para IA: companhia, clientes, oferta e voz."
+  },
+  "legenda": null,
+  "blocos": {
+    "_tempos": "já na linha do tempo CORTADA (a transcrição sai do cortado.mp4)",
+    "tempos": "corte",
+    "x": 240,
+    "y_nome": 250,
+    "y_lista": 470,
+    "linha": 62,
+    "icone": 130,
+    "tamanho_nome": 78,
+    "tamanho_item": 38,
+    "itens": [
+      {
+        "nome": "company.md",
+        "simbolo": "laptop",
+        "de": 4.05,
+        "ate": 9.35,
+        "campos": [
+          {
+            "texto": "o que você faz",
+            "em": 4.8
+          },
+          {
+            "texto": "quem você ajuda",
+            "em": 5.64
+          },
+          {
+            "texto": "como você ajuda",
+            "em": 6.42
+          },
+          {
+            "texto": "de onde vem o dinheiro",
+            "em": 7.2
+          },
+          {
+            "texto": "o que te torna diferente",
+            "em": 8.22
+          }
+        ]
+      },
+      {
+        "nome": "customer.md",
+        "simbolo": "pessoa",
+        "de": 9.8,
+        "ate": 14.78,
+        "campos": [
+          {
+            "texto": "as dores dele",
+            "em": 10.46
+          },
+          {
+            "texto": "os medos",
+            "em": 11.4
+          },
+          {
+            "texto": "as objeções",
+            "em": 12.08
+          },
+          {
+            "texto": "as perguntas",
+            "em": 12.8
+          },
+          {
+            "texto": "a linguagem dele",
+            "em": 13.6
+          }
+        ]
+      },
+      {
+        "nome": "offer.md",
+        "simbolo": "dinheiro",
+        "de": 15.25,
+        "ate": 19.45,
+        "campos": [
+          {
+            "texto": "pacotes",
+            "em": 15.92
+          },
+          {
+            "texto": "entregáveis",
+            "em": 16.62
+          },
+          {
+            "texto": "preço",
+            "em": 17.2
+          },
+          {
+            "texto": "prova",
+            "em": 17.72
+          },
+          {
+            "texto": "promessa",
+            "em": 18.24
+          }
+        ]
+      },
+      {
+        "nome": "voice.md",
+        "simbolo": "microfone",
+        "de": 19.7,
+        "ate": 27.2,
+        "campos": [
+          {
+            "texto": "como você fala",
+            "em": 20.2
+          },
+          {
+            "texto": "tom de voz",
+            "em": 21.16
+          },
+          {
+            "texto": "as palavras que você usa",
+            "em": 21.72
+          },
+          {
+            "texto": "as palavras que você recusa",
+            "em": 22.96
+          },
+          {
+            "texto": "os exemplos reais",
+            "em": 24.98
+          }
+        ]
+      }
+    ],
+    "abertura": {
+      "caixa": "todo mundo que usa IA\nprecisa destes 4 arquivos",
+      "tamanho_caixa": 70,
+      "y_caixa": 250,
+      "legendas": [
+        {
+          "texto": "todo mundo",
+          "em": 0.0
+        },
+        {
+          "texto": "que usa IA",
+          "em": 1.7
+        },
+        {
+          "texto": "precisa destes 4 arquivos",
+          "em": 2.6
+        }
+      ],
+      "pastas": [
+        {
+          "simbolo": "laptop",
+          "x": 630,
+          "y": 660,
+          "em": 1.7
+        },
+        {
+          "simbolo": "pessoa",
+          "x": 700,
+          "y": 530,
+          "em": 2.6
+        }
+      ],
+      "icone": 250,
+      "y_legenda": 1270,
+      "tamanho": 52,
+      "ate": 3.95
+    }
+  },
+  "cards": [],
+  "musica": null
+}

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX — proposta de identidade v1</title>
+  <desc id="desc">Prancha com símbolo, wordmark, avatares e paleta da ARVEX.</desc>
+  <rect width="1920" height="1080" fill="#0B0D10"/>
+  <rect x="72" y="72" width="1776" height="936" rx="36" fill="#101216" stroke="#292C31" stroke-width="2"/>
+
+  <text x="130" y="148" fill="#8D929A" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">ARVEX · IDENTIDADE INSTITUCIONAL · PROPOSTA V1</text>
+
+  <g transform="translate(130 220) scale(1.12)">
+    <g fill="none" stroke="#F2F0EA" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M14 128 58 12"/>
+      <path d="M80 12 126 128"/>
+      <path d="M38 92h64"/>
+    </g>
+    <g fill="#F2F0EA" fill-rule="evenodd">
+      <path d="M160 140V0h58c38 0 61 20 61 51 0 23-13 40-35 47l39 42h-43l-34-38h-12v38Zm34-68h21c19 0 29-7 29-21 0-14-10-21-29-21h-21Z"/>
+      <path d="M310 0h38l34 103L416 0h38l-55 140h-34Z"/>
+      <path d="M480 0h114v30h-80v24h68v30h-68v26h80v30H480Z"/>
+      <path d="M620 0h40l32 48 32-48h40l-50 70 50 70h-40l-32-48-32 48h-40l50-70Z"/>
+    </g>
+    <rect x="680" y="58" width="24" height="24" rx="2" fill="#C8A96E" transform="rotate(45 692 70)"/>
+  </g>
+  <text x="133" y="446" fill="#C8A96E" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">ARQUITETURA AO REDOR DE UM NÚCLEO.</text>
+  <text x="133" y="488" fill="#B5B8BE" font-family="Segoe UI, Arial, sans-serif" font-size="22">O dourado marca o ponto onde estratégia e execução se encontram.</text>
+
+  <circle cx="1290" cy="330" r="218" fill="#F2F0EA"/>
+  <g transform="translate(1065 105) scale(.88)">
+    <g fill="none" stroke="#101216" stroke-width="58" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M106 390 226 112"/>
+      <path d="M274 112 406 390"/>
+      <path d="M166 294h68"/>
+      <path d="M278 294h68"/>
+    </g>
+    <rect x="232" y="270" width="48" height="48" rx="3" fill="#C8A96E" transform="rotate(45 256 294)"/>
+  </g>
+
+  <circle cx="1624" cy="330" r="218" fill="#0B0D10" stroke="#292C31" stroke-width="2"/>
+  <g transform="translate(1399 105) scale(.88)">
+    <g fill="none" stroke="#F2F0EA" stroke-width="58" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M106 390 226 112"/>
+      <path d="M274 112 406 390"/>
+      <path d="M166 294h68"/>
+      <path d="M278 294h68"/>
+    </g>
+    <rect x="232" y="270" width="48" height="48" rx="3" fill="#C8A96E" transform="rotate(45 256 294)"/>
+  </g>
+
+  <text x="1072" y="608" fill="#F2F0EA" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">AVATAR CLARO</text>
+  <text x="1406" y="608" fill="#F2F0EA" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">AVATAR ESCURO</text>
+
+  <text x="130" y="710" fill="#8D929A" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">SISTEMA DE COR</text>
+  <g transform="translate(130 758)">
+    <rect width="330" height="124" rx="18" fill="#0B0D10" stroke="#292C31"/>
+    <text x="28" y="54" fill="#F2F0EA" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">CARVÃO</text>
+    <text x="28" y="88" fill="#777C85" font-family="Segoe UI, Arial, sans-serif" font-size="18">#0B0D10</text>
+  </g>
+  <g transform="translate(484 758)">
+    <rect width="330" height="124" rx="18" fill="#F2F0EA"/>
+    <text x="28" y="54" fill="#101216" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">MARFIM</text>
+    <text x="28" y="88" fill="#6D7076" font-family="Segoe UI, Arial, sans-serif" font-size="18">#F2F0EA</text>
+  </g>
+  <g transform="translate(838 758)">
+    <rect width="330" height="124" rx="18" fill="#C8A96E"/>
+    <text x="28" y="54" fill="#17140D" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">NÚCLEO</text>
+    <text x="28" y="88" fill="#5C4C2D" font-family="Segoe UI, Arial, sans-serif" font-size="18">#C8A96E</text>
+  </g>
+
+  <text x="130" y="950" fill="#F2F0EA" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">NEGÓCIOS AI NATIVE, CONSTRUÍDOS POR ARQUITETURA.</text>
+  <text x="130" y="982" fill="#777C85" font-family="Segoe UI, Arial, sans-serif" font-size="16">Símbolo vetorial · alto contraste · sem iconografia literal de IA · gold apenas como sinal</text>
+</svg>

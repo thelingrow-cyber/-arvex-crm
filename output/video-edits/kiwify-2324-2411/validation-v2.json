@@ -1,0 +1,49 @@
+{
+  "file": "C:\\Users\\Vitor Simões\\Desktop\\ARVEX\\output\\video-edits\\kiwify-2324-2411\\kiwify-2324-2411-edit-v2.mp4",
+  "duration": "27.067000",
+  "size": "9028590",
+  "streams": [
+    {
+      "type": "video",
+      "codec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": "30/1",
+      "frames": "812",
+      "duration": "27.066992"
+    },
+    {
+      "type": "audio",
+      "codec": "aac",
+      "fps": "0/0",
+      "frames": "1267",
+      "duration": "27.066000",
+      "sampleRate": "48000"
+    }
+  ],
+  "decode": "pass",
+  "loudness": {
+    "input_i": "-16.00",
+    "input_tp": "-2.67",
+    "input_lra": "1.30",
+    "input_thresh": "-26.09",
+    "output_i": "-15.99",
+    "output_tp": "-2.44",
+    "output_lra": "1.40",
+    "output_thresh": "-26.09",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.01"
+  },
+  "visualFrames": [
+    15,
+    150,
+    186,
+    447,
+    489,
+    531,
+    675,
+    797
+  ],
+  "visualReview": "8 final frames inspected in session; face, captions, motion stages and direct ending checked",
+  "humanListeningReview": "pending; ASR wording and subjective music/voice balance need playback"
+}

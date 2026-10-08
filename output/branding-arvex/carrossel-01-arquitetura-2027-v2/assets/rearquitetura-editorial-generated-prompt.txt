@@ -1,0 +1,15 @@
+Use case: photorealistic-natural
+Asset type: supporting editorial image for an Instagram carousel about rearchitecting a company
+Primary request: premium editorial photograph that visualizes reorganizing a business operation
+into a coherent system.
+Scene: contemporary architecture studio at night; matte charcoal worktable; physical model made
+from modular ivory blocks, smoked acrylic planes and restrained brushed-brass connections; two
+human hands moving one module into place.
+Style: high-end documentary editorial photography, believable materials, natural imperfections,
+subtle film grain and no CGI appearance.
+Composition: vertical 4:5, close three-quarter view, strong diagonal and dark negative space.
+Palette: charcoal, warm ivory and restrained brass-gold.
+Constraints: no text, logos, screens, interface, robots, humanoids, circuit boards, holograms,
+blue neon, sci-fi clichés, floating objects or watermark.
+
+Generated with the built-in image generation tool on 2026-09-15.

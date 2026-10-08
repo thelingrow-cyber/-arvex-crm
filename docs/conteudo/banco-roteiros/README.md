@@ -101,3 +101,8 @@ banco-roteiros/
 | [ref-bitterbuilds-garfield-jornal](referencias/ref-bitterbuilds-garfield-jornal.md) | referência 🇺🇸 | molde d'**A FRASE** | citação | dissecada · traduzida |
 | [ref-mila-iphone-status](referencias/ref-mila-iphone-status.md) | referência 🇺🇸 | molde do **Jornal** | G2 + notícia | dissecada · ⚠️ lição dos comentários |
 | [ref-elias-dragon-ball-dopamina](referencias/ref-elias-dragon-ball-dopamina.md) | referência | — | G2 · contraste geracional | dissecada · ⚠️ colisão de frase |
+| [ref-brunobelissimo-disney-resolveu-isso-1937](referencias/ref-brunobelissimo-disney-resolveu-isso-1937-DdXM4m7jDSF.md) | referência 🇧🇷 | Método · captura | G6 + demonstração | dissecada · player provisório |
+| [ref-brunobelissimo-corrida-ia](referencias/ref-brunobelissimo-comenta-mentoria-pra-candidatar-DdSDX76gcrt.md) | referência 🇧🇷 | Jornal · captura | G2 + notícia | dissecada · checagem factual parcial |
+| [ref-brunobelissimo-navier-stokes](referencias/ref-brunobelissimo-singularidade-tem-forma-tornado-DdFLZ2CCnbM.md) | referência 🇧🇷 | Jornal/Visão · alcance | escala + revelação | dissecada · solução ainda em validação |
+| [ref-brunobelissimo-s1-robotica](referencias/ref-brunobelissimo-robo-nao-copiou-ovo-Dc7Bc0aES57.md) | referência 🇧🇷 | Jornal técnico | marco + benchmark | dissecada · fundo do lote |
+| [ref-brunobelissimo-energia-amazonia](referencias/ref-brunobelissimo-isso-acontecendo-aqui-enquanto-Dcw2VRWjgKz.md) | referência 🇧🇷 | Jornal · conversa | segredo + ameaça | dissecada · checagem factual parcial |

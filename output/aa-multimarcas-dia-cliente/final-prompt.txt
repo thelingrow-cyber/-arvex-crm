@@ -1,0 +1,9 @@
+Use case: precise-object-edit
+Asset type: Instagram Story background, true 9:16 portrait
+Input images: generated base photograph, plus the supplied Omega post as loose composition reference and AA Multimarcas logo as identity reference.
+Primary request: create a premium automotive showroom scene for Dia do Cliente, clearly more sophisticated and original than the reference.
+Scene: dark graphite showroom at dusk with controlled silver-white architectural lighting and subtle champagne highlights.
+Subject: unbranded metallic graphite car, black car key and blank matte-black leather strap on the hood.
+Composition: vehicle and key in the lower half, abundant negative space above for separately typeset copy.
+Constraints: no red, no text, no letters, no logos, no badges, no watermark, no UI, no recognizable manufacturer styling.
+Style: high-end photorealistic automotive campaign, realistic reflections, restrained depth of field, natural materials, no HDR excess.

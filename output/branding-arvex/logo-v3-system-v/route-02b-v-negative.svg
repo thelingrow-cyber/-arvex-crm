@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX — sistema com V em negativo</title>
+  <desc id="desc">Dois módulos estruturais interligados envolvendo um núcleo azul com um V recortado.</desc>
+  <rect width="512" height="512" rx="52" fill="#0B0D10"/>
+  <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+  <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+  <path d="M256 187 325 256 256 325 187 256Z" fill="#5B6CFF"/>
+  <path d="M220 225 256 291 292 225" fill="none" stroke="#0B0D10" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

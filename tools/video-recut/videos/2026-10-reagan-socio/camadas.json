@@ -1,0 +1,45 @@
+{
+  "_sobre": "Reagan — o sócio que não trabalha (eleição 04/10/2026). v2 (pedido do Vitor): sem tela dividida e sem Reagan/Congresso no início (a foto do Reagan já vem no take). Inserções em card flutuante no topo: painel do Impostômetro (Jovem Pan, tarja cortada) e foto oficial do Lula com X em 'demitir esse sócio' (Stuckert/PR, CC BY 2.0, crédito no card). Cards animados: dado da carga tributária (Tesouro, 32,4% do PIB em 2025) e urna com 22. Sem corte de silêncio (o take já veio editado). words.json montado à mão: o Whisper pulou 29,5–35,9 s e errou 'Ronald Reagan'.",
+  "pasta": "%USERPROFILE%\\Downloads",
+  "principal": "original.mp4",
+  "saida": "2026-10-reagan-socio.mp4",
+  "duracao": 36.4,
+  "cor": ",curves=all='0/0.03 0.35/0.42 0.7/0.76 1/0.98',eq=contrast=1.06:saturation=1.05",
+  "transcricao": {
+    "trocar": {
+      "são": "são:"
+    }
+  },
+  "legenda": null,
+  "cards": [
+    {
+      "foto": "c-impost.mov",
+      "entra": 20.0,
+      "sai": 23.4,
+      "y": 130,
+      "desliza": 50
+    },
+    {
+      "foto": "c-dado.mov",
+      "entra": 23.5,
+      "sai": 27.4,
+      "y": 130,
+      "desliza": 50
+    },
+    {
+      "foto": "c-lula.mov",
+      "entra": 28.3,
+      "sai": 30.8,
+      "y": 110,
+      "desliza": 50
+    },
+    {
+      "foto": "c-urna.mov",
+      "entra": 34.3,
+      "sai": 36.4,
+      "y": 150,
+      "desliza": 50
+    }
+  ],
+  "musica": null
+}

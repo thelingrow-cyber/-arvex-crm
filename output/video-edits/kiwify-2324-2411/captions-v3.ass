@@ -1,0 +1,30 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Main,Segoe UI,62,&H00FFFFFF,&H00FFFFFF,&H00101618,&H80000000,-1,0,0,0,100,100,0,0,1,2.5,1,2,100,170,482,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 3,0:00:00.06,0:00:00.63,Main,,0,0,0,,O {\c&H78CFED&}Expert{\c&HFFFFFF&} hoje não
+Dialogue: 3,0:00:00.63,0:00:01.11,Main,,0,0,0,,é só mais um
+Dialogue: 3,0:00:01.11,0:00:03.05,Main,,0,0,0,,{\c&H78CFED&}especialista{\c&HFFFFFF&} em algo específico.
+Dialogue: 3,0:00:03.06,0:00:03.73,Main,,0,0,0,,Ele é todo um
+Dialogue: 3,0:00:03.73,0:00:04.80,Main,,0,0,0,,{\c&H78CFED&}ecossistema{\c&HFFFFFF&} que pode ser
+Dialogue: 3,0:00:04.80,0:00:05.28,Main,,0,0,0,,explorado.
+Dialogue: 3,0:00:05.29,0:00:06.22,Main,,0,0,0,,hoje por {\c&H78CFED&}IA{\c&HFFFFFF&},
+Dialogue: 3,0:00:06.54,0:00:07.71,Main,,0,0,0,,por você abraçar o
+Dialogue: 3,0:00:07.71,0:00:08.12,Main,,0,0,0,,lado {\c&H78CFED&}tech{\c&HFFFFFF&}.
+Dialogue: 3,0:00:08.17,0:00:09.30,Main,,0,0,0,,por construir uma {\c&H78CFED&}marca{\c&HFFFFFF&},
+Dialogue: 3,0:00:09.48,0:00:10.43,Main,,0,0,0,,construir {\c&H78CFED&}comunidade{\c&HFFFFFF&}.
+Dialogue: 3,0:00:10.53,0:00:11.12,Main,,0,0,0,,Então {\c&H78CFED&}não{\c&HFFFFFF&} é mais
+Dialogue: 3,0:00:11.12,0:00:12.19,Main,,0,0,0,,simplesmente um {\c&H78CFED&}funil{\c&HFFFFFF&},
+Dialogue: 3,0:00:12.23,0:00:14.28,Main,,0,0,0,,uma estratég{\c&H78CFED&}ia{\c&HFFFFFF&} que vai
+Dialogue: 3,0:00:14.34,0:00:15.96,Main,,0,0,0,,resolver toda a sua
+Dialogue: 3,0:00:15.96,0:00:16.47,Main,,0,0,0,,{\c&H78CFED&}expansão{\c&HFFFFFF&},
+Dialogue: 3,0:00:16.50,0:00:17.05,Main,,0,0,0,,seu {\c&H78CFED&}crescimento{\c&HFFFFFF&}.

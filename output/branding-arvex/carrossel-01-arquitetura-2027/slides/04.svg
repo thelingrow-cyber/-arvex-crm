@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" style="font-family: Inter, Arial, Helvetica, sans-serif">
+    <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090D14"/><stop offset="1" stop-color="#111B2B"/>
+    </linearGradient>
+    <linearGradient id="indigoGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8793FF"/><stop offset="1" stop-color="#5B6CFF"/>
+    </linearGradient>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="17"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.035"/></feComponentTransfer>
+    </filter>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#8793FF" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+    <rect width="1080" height="1350" fill="#090D14"/>
+    
+    <rect width="1080" height="1350" fill="url(#bg)"/>
+    <rect width="1080" height="1350" fill="url(#grid)"/>
+    <text x="76" y="218" fill="#8793FF" font-size="24" font-weight="900" letter-spacing="3">2º MOVIMENTO</text>
+    <text x="76" y="302" fill="#F2F0E9" font-size="70" font-weight="900" letter-spacing="-3">REARQUITETAR</text>
+    <text x="76" y="374" fill="#F2F0E9" font-size="58" font-weight="900" letter-spacing="-2">COMO O TRABALHO ACONTECE.</text>
+    <text x="76" y="455" fill="#A7AFBC" font-size="29" font-weight="600">A pergunta não é “qual ferramenta de IA vamos comprar?”.</text>
+    <rect x="76" y="492" width="928" height="150" rx="8" fill="#F2F0E9"/>
+    <text x="110" y="552" fill="#090D14" font-size="40" font-weight="900" letter-spacing="-.8"><tspan x="110" dy="0">COMO ESTA EMPRESA DEVERIA OPERAR</tspan><tspan x="110" dy="48">SE FOSSE DESENHADA HOJE?</tspan></text>
+    <line x1="540" y1="688" x2="540" y2="955" stroke="#5B6CFF" stroke-width="4"/>
+    <line x1="246" y1="756" x2="540" y2="756" stroke="#5B6CFF" stroke-width="4"/>
+    <line x1="540" y1="862" x2="834" y2="862" stroke="#5B6CFF" stroke-width="4"/>
+    <circle cx="540" cy="756" r="9" fill="#5B6CFF"/><circle cx="540" cy="862" r="9" fill="#5B6CFF"/>
+    <g>
+    <rect x="76" y="690" width="360" height="130" rx="8" fill="#182131" stroke="#2A3445" stroke-width="2"/>
+    <text x="102" y="737" fill="#8793FF" font-size="25" font-weight="900" letter-spacing="1.8">PESSOAS</text>
+    <text x="102" y="774" fill="#A7AFBC" font-size="22" font-weight="600">julgamento • relação • exceção</text>
+  </g>
+    <g>
+    <rect x="644" y="796" width="360" height="130" rx="8" fill="#182131" stroke="#2A3445" stroke-width="2"/>
+    <text x="670" y="843" fill="#8793FF" font-size="25" font-weight="900" letter-spacing="1.8">SISTEMAS</text>
+    <text x="670" y="880" fill="#A7AFBC" font-size="22" font-weight="600">regras • contexto • dados</text>
+  </g>
+    <g>
+    <rect x="360" y="944" width="360" height="130" rx="8" fill="#5B6CFF" stroke="#8793FF" stroke-width="2"/>
+    <text x="386" y="991" fill="#F2F0E9" font-size="25" font-weight="900" letter-spacing="1.8">IA</text>
+    <text x="386" y="1026" fill="#F2F0E9" font-size="19" font-weight="600"><tspan x="386" dy="0">execução • monitoramento</tspan><tspan x="386" dy="27">encaminhamento</tspan></text>
+  </g>
+    <rect x="76" y="1100" width="928" height="126" rx="7" fill="#141B26" stroke="#2A3445" stroke-width="2"/>
+    <text x="108" y="1144" fill="#8793FF" font-size="24" font-weight="900">NEGÓCIO AI NATIVE</text>
+    <text x="108" y="1180" fill="#F2F0E9" font-size="22" font-weight="600"><tspan x="108" dy="0">Empresa desenhada para operar com IA no núcleo.</tspan><tspan x="108" dy="30">Não é instalar IA na empresa antiga. É redesenhar a parte que trava. →</tspan></text> 
+    
+    
+    <g transform="translate(76 54)">
+      <path d="M0 0h38v10H10v28H0Z" fill="#F2F0E9"/>
+      <path d="M58 58H20V48h28V20h10Z" fill="#F2F0E9"/>
+      <rect x="25" y="25" width="10" height="10" rx="1" fill="#5B6CFF" transform="rotate(45 30 30)"/>
+      <text x="78" y="43" fill="#F2F0E9" font-size="34" font-weight="900" letter-spacing="2">ARVEX</text>
+    </g>
+    <text x="1004" y="82" text-anchor="end" fill="#A7AFBC" font-size="20" font-weight="700" letter-spacing="2.6">REARQUITETURA</text>
+    <line x1="76" y1="130" x2="1004" y2="130" stroke="#2A3445" stroke-width="2"/>
+    <line x1="76" y1="1264" x2="1004" y2="1264" stroke="#2A3445" stroke-width="2"/>
+    <text x="76" y="1308" fill="#A7AFBC" font-size="20" font-weight="700" letter-spacing="2.2">REGISTRO 01</text>
+    <text x="1004" y="1308" text-anchor="end" fill="#F2F0E9" font-size="20" font-weight="800" letter-spacing="2.2">04—07</text>
+    <rect width="1080" height="1350" filter="url(#grain)" opacity=".7"/>
+  </svg>

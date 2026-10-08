@@ -1,0 +1,21 @@
+{
+  "method": "Conventional masked wardrobe composition with a protected face; no generated face pixels used",
+  "basePath": "C:/Users/Vitor Simões/Downloads/exec-e90ea39a-46e8-48db-a7e2-5627c6713e25.png",
+  "donorPath": "C:\\Users\\Vitor Simões\\Desktop\\ARVEX\\output\\imagegen\\montagem-v13\\doadora-gola.png",
+  "finalPath": "C:\\Users\\Vitor Simões\\Desktop\\ARVEX\\output\\imagegen\\perfil-montagem-gola-alta-2026-09-12-v13.png",
+  "width": 1254,
+  "height": 1254,
+  "protectedPixels": 793660,
+  "faceChangesVsBase": 0,
+  "faceChangesVsV12": 0,
+  "changedPixelsOutsideMask": 0,
+  "changedPixelsTotal": 570720,
+  "changedPercentage": 36.29343040070817,
+  "changedBounds": {
+    "left": 50,
+    "top": 600,
+    "right": 1253,
+    "bottom": 1253
+  },
+  "clothing": "Higher light-gray collar; black jacket closed farther up to show less sweater"
+}

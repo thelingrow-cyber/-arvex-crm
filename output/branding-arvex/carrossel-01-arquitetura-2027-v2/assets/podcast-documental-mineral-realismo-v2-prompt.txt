@@ -1,0 +1,43 @@
+Use case: identity-preserve + precise-object-edit
+Asset type: fotografia editorial institucional para capa de carrossel da ARVEX
+
+IMAGENS DE ENTRADA
+- Imagem 1: alvo absoluto da edição. É a composição, direção de arte e fotografia que devem permanecer.
+- Imagem 2: referência auxiliar somente para o símbolo autêntico da Kiwify nos microfones e para a
+  textura documental da fotografia original. Não copiar o fundo verde nem substituir a composição da
+  Imagem 1 pela Imagem 2.
+
+PEDIDO PRINCIPAL
+Mantenha a Imagem 1 praticamente idêntica. Faça somente um acabamento localizado de realismo
+fotográfico para reduzir discretamente a sensação de imagem gerada, sem perder sua estética forte:
+cortina grafite, faixas verticais de luz bronze, sombras profundas, pele quente, mesa preta e atmosfera
+editorial premium.
+
+REALISMO
+- preservar rigorosamente identidade, traços, idade, expressão, cabelo, corpo, mãos, pose e roupas;
+- recuperar microtextura natural de pele, poros discretos, fios individuais de cabelo e barba;
+- preservar trama real dos tecidos, espuma dos microfones, reflexos imperfeitos no metal, vidro e mesa;
+- reduzir apenas a suavidade plástica e a perfeição sintética das superfícies;
+- usar ruído óptico e grão fotográfico muito fino, como câmera real em baixa luz;
+- não fazer beauty retouch, não alterar anatomia e não aumentar dramaticamente a nitidez.
+
+EDIÇÃO LOCALIZADA DO MICROFONE
+No microfone preto principal à frente do homem de camisa branca, adicionar o pequeno símbolo
+verde-e-branco da Kiwify visto na Imagem 2. O símbolo deve ser pequeno, fiel à referência, impresso
+sobre a espuma, acompanhando sua curvatura, perspectiva, textura e iluminação. Não escrever o nome
+da marca e não redesenhar, trocar ou reposicionar o microfone. Se o segundo microfone principal tiver
+a mesma face visível na referência, repetir o mesmo pequeno símbolo de forma igualmente discreta.
+
+INVARIANTES ABSOLUTOS
+- manter exatamente a composição, enquadramento horizontal, perspectiva e proporção da Imagem 1;
+- manter os dois homens nas mesmas posições e com a mesma aparência;
+- manter cortina, luz bronze, tela escura, mesa, cadeiras, xícaras, copos, garrafa e microfones;
+- não adicionar, remover, substituir ou reposicionar nenhum objeto;
+- não mudar as cores da direção de arte;
+- não adicionar textos, logotipos soltos, marcas d’água ou elementos gráficos;
+- não aproximar, recortar ou expandir a cena.
+
+EVITAR
+rosto diferente; pele de cera; olhos alterados; dentes novos; cabelo redesenhado; mãos modificadas;
+microfone diferente; objetos inventados; fundo novo; estúdio futurista; verde neon; HDR; CGI; 3D;
+ilustração; fotografia excessivamente limpa; desfoque artificial; filtros vintage fortes; texto.

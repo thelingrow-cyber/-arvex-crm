@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" style="font-family: Inter, Arial, Helvetica, sans-serif">
+    <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090D14"/><stop offset="1" stop-color="#111B2B"/>
+    </linearGradient>
+    <linearGradient id="indigoGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8793FF"/><stop offset="1" stop-color="#5B6CFF"/>
+    </linearGradient>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="17"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.035"/></feComponentTransfer>
+    </filter>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#8793FF" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+    <rect width="1080" height="1350" fill="#090D14"/>
+    
+    <rect width="1080" height="1350" fill="url(#bg)"/>
+    <rect width="1080" height="1350" fill="url(#grid)"/>
+    <text x="76" y="218" fill="#8793FF" font-size="24" font-weight="900" letter-spacing="3">3º MOVIMENTO</text>
+    <text x="76" y="300" fill="#F2F0E9" font-size="75" font-weight="900" letter-spacing="-3"><tspan x="76" dy="0">IMPLEMENTAR UMA</tspan><tspan x="76" dy="78">PEÇA POR VEZ.</tspan></text>
+    <text x="76" y="496" fill="#A7AFBC" font-size="32" font-weight="600"><tspan x="76" dy="0">Não se reconstrói uma empresa inteira</tspan><tspan x="76" dy="43">em um projeto interminável.</tspan></text>
+    <line x1="76" y1="594" x2="1004" y2="594" stroke="#2A3445" stroke-width="2"/>
+    <path d="M166 756L354 694L540 756L726 694L914 756" fill="none" stroke="#5B6CFF" stroke-width="5" stroke-dasharray="4 12"/>
+    <g>
+    <path d="M74 654h134v22H96v112H74Z" fill="#F2F0E9"/>
+    <path d="M258 838H124v-22h112V704h22Z" fill="#F2F0E9"/>
+    <rect x="151" y="731" width="30" height="30" rx="2" fill="#5B6CFF" transform="rotate(45 166 746)"/>
+    <text x="166" y="884" text-anchor="middle" fill="#A7AFBC" font-size="20" font-weight="900" letter-spacing="2">01</text>
+    <text x="166" y="922" text-anchor="middle" fill="#F2F0E9" font-size="24" font-weight="900">Diagnosticar</text>
+  </g>
+    <g>
+    <path d="M260 592h134v22H282v112H260Z" fill="#F2F0E9"/>
+    <path d="M444 776H310v-22h112V642h22Z" fill="#F2F0E9"/>
+    <rect x="337" y="669" width="30" height="30" rx="2" fill="#5B6CFF" transform="rotate(45 352 684)"/>
+    <text x="352" y="822" text-anchor="middle" fill="#A7AFBC" font-size="20" font-weight="900" letter-spacing="2">02</text>
+    <text x="352" y="860" text-anchor="middle" fill="#F2F0E9" font-size="24" font-weight="900">Redesenhar</text>
+  </g>
+    <g>
+    <path d="M446 654h134v22H468v112H446Z" fill="#F2F0E9"/>
+    <path d="M630 838H496v-22h112V704h22Z" fill="#F2F0E9"/>
+    <rect x="523" y="731" width="30" height="30" rx="2" fill="#5B6CFF" transform="rotate(45 538 746)"/>
+    <text x="538" y="884" text-anchor="middle" fill="#A7AFBC" font-size="20" font-weight="900" letter-spacing="2">03</text>
+    <text x="538" y="922" text-anchor="middle" fill="#F2F0E9" font-size="24" font-weight="900">Instalar</text>
+  </g>
+    <g>
+    <path d="M632 592h134v22H654v112H632Z" fill="#F2F0E9"/>
+    <path d="M816 776H682v-22h112V642h22Z" fill="#F2F0E9"/>
+    <rect x="709" y="669" width="30" height="30" rx="2" fill="#5B6CFF" transform="rotate(45 724 684)"/>
+    <text x="724" y="822" text-anchor="middle" fill="#A7AFBC" font-size="20" font-weight="900" letter-spacing="2">04</text>
+    <text x="724" y="860" text-anchor="middle" fill="#F2F0E9" font-size="24" font-weight="900">Conectar</text>
+  </g>
+    <g>
+    <path d="M818 654h134v22H840v112H818Z" fill="#5B6CFF"/>
+    <path d="M1002 838H868v-22h112V704h22Z" fill="#5B6CFF"/>
+    <rect x="895" y="731" width="30" height="30" rx="2" fill="#F2F0E9" transform="rotate(45 910 746)"/>
+    <text x="910" y="884" text-anchor="middle" fill="#A7AFBC" font-size="20" font-weight="900" letter-spacing="2">05</text>
+    <text x="910" y="922" text-anchor="middle" fill="#F2F0E9" font-size="24" font-weight="900">Medir</text>
+  </g>
+    <text x="76" y="1015" fill="#A7AFBC" font-size="29" font-weight="600">Só então avance para a próxima peça.</text>
+    <rect x="76" y="1061" width="928" height="165" rx="8" fill="#F2F0E9"/>
+    <text x="112" y="1123" fill="#090D14" font-size="48" font-weight="900" letter-spacing="-1.5"><tspan x="112" dy="0">CADA PEÇA PRECISA</tspan><tspan x="112" dy="55">FUNCIONAR SOZINHA.</tspan></text>
+    <path d="M904 1120h70v70" fill="none" stroke="#5B6CFF" stroke-width="6"/>
+    
+    
+    <g transform="translate(76 54)">
+      <path d="M0 0h38v10H10v28H0Z" fill="#F2F0E9"/>
+      <path d="M58 58H20V48h28V20h10Z" fill="#F2F0E9"/>
+      <rect x="25" y="25" width="10" height="10" rx="1" fill="#5B6CFF" transform="rotate(45 30 30)"/>
+      <text x="78" y="43" fill="#F2F0E9" font-size="34" font-weight="900" letter-spacing="2">ARVEX</text>
+    </g>
+    <text x="1004" y="82" text-anchor="end" fill="#A7AFBC" font-size="20" font-weight="700" letter-spacing="2.6">IMPLEMENTAÇÃO</text>
+    <line x1="76" y1="130" x2="1004" y2="130" stroke="#2A3445" stroke-width="2"/>
+    <line x1="76" y1="1264" x2="1004" y2="1264" stroke="#2A3445" stroke-width="2"/>
+    <text x="76" y="1308" fill="#A7AFBC" font-size="20" font-weight="700" letter-spacing="2.2">REGISTRO 01</text>
+    <text x="1004" y="1308" text-anchor="end" fill="#F2F0E9" font-size="20" font-weight="800" letter-spacing="2.2">06—07</text>
+    <rect width="1080" height="1350" filter="url(#grain)" opacity=".7"/>
+  </svg>

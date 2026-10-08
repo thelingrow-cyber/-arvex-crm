@@ -1,0 +1,45 @@
+{
+  "duration": "21.067000",
+  "bytes": "24935416",
+  "streams": [
+    {
+      "type": "video",
+      "codec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "frames": "632",
+      "duration": "21.066992"
+    },
+    {
+      "type": "audio",
+      "codec": "aac",
+      "frames": "986",
+      "duration": "21.066000"
+    }
+  ],
+  "decode": "pass",
+  "loudness": {
+    "input_i": "-16.02",
+    "input_tp": "-3.28",
+    "input_lra": "0.70",
+    "input_thresh": "-26.08",
+    "output_i": "-16.01",
+    "output_tp": "-3.20",
+    "output_lra": "0.80",
+    "output_thresh": "-26.07",
+    "normalization_type": "dynamic",
+    "target_offset": "0.01"
+  },
+  "qaFrames": [
+    30,
+    171,
+    185,
+    260,
+    337,
+    407,
+    450,
+    609
+  ],
+  "visualReview": "pass: eight-frame contact sheet plus full-resolution Feastables product and funnel frames inspected; both authority examples identified, source English caption excluded, transitions and ending intact",
+  "humanListeningReview": "pending; ASR-derived word joins not confirmed by listening"
+}

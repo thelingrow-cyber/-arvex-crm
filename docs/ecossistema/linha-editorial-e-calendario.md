@@ -61,6 +61,8 @@ Isso reordena tudo. O caixa dos próximos 6 meses vem de **rede, indicação e o
 
 ## 03 — A grade semanal fixa
 
+> ⚠️ **SUBSTITUÍDA em 2026-09-28** pela grade diária de `docs/conteudo/CALENDARIO-EDITORIAL.md` (5 quadros todos os dias: CAFEIA ×2 · Curiosidade · Curto · Visão; 35/semana). Abaixo fica como histórico.
+
 Grade fixa existe para **matar a decisão diária** — decidir o que postar toda manhã é o que quebra a corrente na semana 6.
 
 | Dia | Registro | Formato | Matéria-prima |

@@ -22,6 +22,7 @@ Só viral = o dossiê conclui que tudo funciona. **A diferença entre os dois gr
 | **Vinicius Areb** | marca pessoal com produção zero, 2-3 min | 2 do pico (109k e 10,6k ❤) | 7 da fase atual + varredura dos 15 Reels | ✅ **PLAYER FECHADO** — ver §5 |
 | **Alex Hormozi** | clipes de 30-45s, 1 ideia, sem CTA; volume por recorte de conteúdo longo | 3 dissecados + grade de 16 medida | idem | 🟢 ver §6 |
 | **Allie K. Miller** · **Michael Smoak** · **Post Run High** | gringos: IA aplicada ao trabalho (fonte de pauta) e formato | 3 fichas | — | 🟡 |
+| **Bruno Belissimo** | BR: mídia ampla de IA → Máquina de Conteúdo para creators | 1 topo (17.759 ❤) + grade recente | 4 abaixo (4.537 · 3.445 · 1.002 · 441 ❤) | 🟡 posição fechada; falta views da grade |
 | Érico Rocha · Leandro Ladeira · Theo Braga | lista de 08/09 | — | — | ⬜ |
 | 1–2 gringos de negócio com IA | território de arbitragem | — | — | ⬜ |
 

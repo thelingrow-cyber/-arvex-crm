@@ -1,0 +1,204 @@
+{
+  "revision": "v5",
+  "duration": 21.066666666666666,
+  "cuts": [
+    {
+      "name": "opening",
+      "start": 1.1333333333333333,
+      "end": 6.8,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 155,
+      "duration": 5.166666666666667,
+      "rate": 1.096774193548387,
+      "offset": 0
+    },
+    {
+      "name": "brand",
+      "start": 7.466666666666667,
+      "end": 8.566666666666666,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "frames": 30,
+      "duration": 1,
+      "rate": 1.0999999999999996,
+      "offset": 5.166666666666667
+    },
+    {
+      "name": "expert",
+      "start": 11.3,
+      "end": 13.166666666666666,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 54,
+      "duration": 1.8,
+      "rate": 1.0370370370370363,
+      "offset": 6.166666666666667
+    },
+    {
+      "name": "ecosystem",
+      "start": 14.466666666666667,
+      "end": 16.866666666666667,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "frames": 68,
+      "duration": 2.2666666666666666,
+      "rate": 1.058823529411765,
+      "offset": 7.966666666666667
+    },
+    {
+      "name": "ia",
+      "start": 17.933333333333334,
+      "end": 18.966666666666665,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 28,
+      "duration": 0.9333333333333333,
+      "rate": 1.107142857142855,
+      "offset": 10.233333333333334
+    },
+    {
+      "name": "tech",
+      "start": 19.233333333333334,
+      "end": 21.1,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 51,
+      "duration": 1.7,
+      "rate": 1.0980392156862748,
+      "offset": 11.166666666666668
+    },
+    {
+      "name": "building",
+      "start": 22.133333333333333,
+      "end": 24.566666666666666,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "frames": 69,
+      "duration": 2.3,
+      "rate": 1.0579710144927539,
+      "offset": 12.866666666666667
+    },
+    {
+      "name": "funnel",
+      "start": 24.933333333333334,
+      "end": 28.133333333333333,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 89,
+      "duration": 2.966666666666667,
+      "rate": 1.0786516853932582,
+      "offset": 15.166666666666668
+    },
+    {
+      "name": "resolve",
+      "start": 29.666666666666668,
+      "end": 32.733333333333334,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "frames": 88,
+      "duration": 2.933333333333333,
+      "rate": 1.0454545454545454,
+      "offset": 18.133333333333333
+    }
+  ],
+  "inserts": [
+    {
+      "name": "ai-motion",
+      "start": 10.233333333333334,
+      "end": 12.866666666666667,
+      "sourceStart": 0,
+      "sourceEnd": 3,
+      "crop": null
+    },
+    {
+      "name": "guday-founder",
+      "start": 12.966666666666667,
+      "end": 14.616666666666667,
+      "sourceStart": 16.4,
+      "sourceEnd": 18.05,
+      "crop": null,
+      "sourcePage": "https://guday.com.br/pages/historia",
+      "attribution": "Video embedded in UMA MENSAGEM DA NOSSA FUNDADORA / Olá, eu sou a Manu Cit. Not a modeling shoot. Reuse rights unconfirmed; draft only."
+    },
+    {
+      "name": "funnel-motion",
+      "start": 15.986666666666668,
+      "end": 18.383333333333333,
+      "sourceStart": 0,
+      "sourceEnd": 2.5,
+      "crop": null
+    }
+  ],
+  "flashes": [
+    6.166666666666667,
+    10.233333333333334,
+    14.616666666666667
+  ],
+  "spoken": [
+    "vou fazer conteúdo, vou vender o infoproduto. Hoje não. Hoje eu acho que realmente vou criar um ecossistema",
+    "dentro da minha marca,",
+    "O Expert hoje não é só mais um especialista.",
+    "Ele é todo um ecossistema que pode ser explorado.",
+    "hoje por IA,",
+    "por você abraçar o lado tech.",
+    "por construir uma marca, construir comunidade.",
+    "Então não é mais simplesmente um funil, uma estratégia que vai",
+    "resolver toda a sua expansão, seu crescimento."
+  ],
+  "removed": [
+    "First dentro and adjacent pause: source 6.80–7.4667",
+    "em algo específico: source 13.1667–14.4667",
+    "IA pause: source 18.9667–19.2333",
+    "é and long pause after vai: source 28.1333–29.6667",
+    "Old AI stock footage and card",
+    "All added illustrative labels",
+    "CTA"
+  ],
+  "music": {
+    "title": "Fallen (Asper)",
+    "artist": "Eugenio Mininni",
+    "source": "https://mixkit.co/free-stock-music/mood/serious/",
+    "license": "Mixkit Stock Music Free License",
+    "catalogTags": "Atmospheres / Film Score / Mysterious / Documentary / Mystery",
+    "sourceOffset": 34
+  },
+  "grade": "contrast 1.06, saturation .98, subtle unsharp .20",
+  "humanListeningReview": "pending; source disfluencies identified by user; boundaries inferred from waveform and ASR"
+}

@@ -1,0 +1,47 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Main,Segoe UI,62,&H00FFFFFF,&H00FFFFFF,&H00101618,&H80000000,-1,0,0,0,100,100,0,0,1,2.5,1,2,100,170,482,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 3,0:00:00.01,0:00:00.74,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}vou fazer conteúdo,
+Dialogue: 3,0:00:00.77,0:00:01.68,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}vou vender o {\c&H78CFED&}infoproduto{\c&HFFFFFF&}.
+Dialogue: 3,0:00:01.84,0:00:02.41,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}Hoje {\c&H78CFED&}não{\c&HFFFFFF&}.
+Dialogue: 3,0:00:02.50,0:00:03.06,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}Hoje eu acho que
+Dialogue: 3,0:00:03.06,0:00:04.39,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}realmente vou criar um
+Dialogue: 3,0:00:04.39,0:00:04.59,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}{\c&H78CFED&}ecossistema{\c&HFFFFFF&} dentro da minha
+Dialogue: 3,0:00:04.59,0:00:06.39,Main,,0,0,0,,{\c&H201D17&\3c&HE7EEF0&\shad0}{\c&H376F93&}ecossistema{\c&H201D17&} dentro da minha
+Dialogue: 3,0:00:06.39,0:00:06.77,Main,,0,0,0,,{\c&H201D17&\3c&HE7EEF0&\shad0}{\c&H376F93&}marca{\c&H201D17&},
+Dialogue: 3,0:00:06.90,0:00:07.29,Main,,0,0,0,,{\c&H201D17&\3c&HE7EEF0&\shad0}que é a minha
+Dialogue: 3,0:00:07.29,0:00:07.68,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}que é a minha
+Dialogue: 3,0:00:07.68,0:00:08.30,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}{\c&H78CFED&}marca{\c&HFFFFFF&} pessoal.
+Dialogue: 3,0:00:08.35,0:00:08.92,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}O Expert hoje {\c&H78CFED&}não{\c&HFFFFFF&}
+Dialogue: 3,0:00:08.92,0:00:09.39,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}é só mais um
+Dialogue: 3,0:00:09.39,0:00:11.31,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}especialista em algo específico.
+Dialogue: 3,0:00:11.31,0:00:11.97,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}Ele é todo um
+Dialogue: 3,0:00:11.97,0:00:13.04,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}{\c&H78CFED&}ecossistema{\c&HFFFFFF&} que pode ser
+Dialogue: 3,0:00:13.04,0:00:13.57,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}explorado.
+Dialogue: 3,0:00:13.67,0:00:14.67,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}Pode ser explorado hoje
+Dialogue: 3,0:00:14.67,0:00:14.71,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}por {\c&H78CFED&}IA{\c&HFFFFFF&},
+Dialogue: 3,0:00:14.71,0:00:15.45,Main,,0,0,0,,{\c&H201D17&\3c&HE7EEF0&\shad0}por {\c&H376F93&}IA{\c&H201D17&},
+Dialogue: 3,0:00:15.72,0:00:16.71,Main,,0,0,0,,{\c&H201D17&\3c&HE7EEF0&\shad0}por você abraçar o
+Dialogue: 3,0:00:16.71,0:00:16.87,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}por você abraçar o
+Dialogue: 3,0:00:16.87,0:00:17.32,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}lado {\c&H78CFED&}tech{\c&HFFFFFF&}.
+Dialogue: 3,0:00:17.57,0:00:18.25,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}Você pode ser explorado
+Dialogue: 3,0:00:18.25,0:00:19.35,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}por construir uma {\c&H78CFED&}marca{\c&HFFFFFF&},
+Dialogue: 3,0:00:19.48,0:00:20.42,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}construir {\c&H78CFED&}comunidade{\c&HFFFFFF&}.
+Dialogue: 3,0:00:20.56,0:00:21.13,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}Então {\c&H78CFED&}não{\c&HFFFFFF&} é mais
+Dialogue: 3,0:00:21.13,0:00:21.21,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}simplesmente um {\c&H78CFED&}funil{\c&HFFFFFF&},
+Dialogue: 3,0:00:21.21,0:00:22.21,Main,,0,0,0,,{\c&H201D17&\3c&HE7EEF0&\shad0}simplesmente um {\c&H376F93&}funil{\c&H201D17&},
+Dialogue: 3,0:00:22.21,0:00:23.31,Main,,0,0,0,,{\c&H201D17&\3c&HE7EEF0&\shad0}uma estratégia que vai
+Dialogue: 3,0:00:23.31,0:00:24.23,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}uma estratégia que vai
+Dialogue: 3,0:00:24.27,0:00:25.88,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}resolver toda a sua
+Dialogue: 3,0:00:25.88,0:00:26.41,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}{\c&H78CFED&}expansão{\c&HFFFFFF&},
+Dialogue: 3,0:00:26.41,0:00:27.01,Main,,0,0,0,,{\c&HFFFFFF&\3c&H101618&\shad1}seu {\c&H78CFED&}crescimento{\c&HFFFFFF&}.

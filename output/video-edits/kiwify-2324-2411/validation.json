@@ -1,0 +1,11 @@
+{
+  "status": "first_test_ready_for_user_review",
+  "original": {"duration_seconds":47,"width":1920,"height":1080,"fps":30,"original_download_preserved":true},
+  "edited": {"duration_seconds":32.034,"width":1080,"height":1920,"fps":30,"frames":961,"size_bytes":9733704,"video_codec":"h264","audio_codec":"aac","audio_sample_rate":48000,"av_duration_difference_seconds":0.000984},
+  "decode_exit_code": 0,
+  "audio": {"integrated_lufs":-16.01,"true_peak_dbtp":-2.86,"human_listening_review":false},
+  "visual_review": {"sample_seconds":[0.5,5.8,10.8,16.8,20.5,24,28.5,31],"face_clear":true,"insert_text_readable":true,"cta_visible":true,"text_clipping_observed":false,"contact_sheet":"qa/contact-sheet.jpg"},
+  "caption_review": {"source":"local faster-whisper-small word timestamps","synchronization_method":"same source interval remapping as video and audio","uncertain_phrase":"Você pode ser explorado...","auditory_verification_pending":true},
+  "gates": {"node_syntax":"pass","git_diff_check_task_docs":"pass","lint":"missing existing npm script","typecheck":"missing existing npm script","build":"missing existing npm script","npm_test":"pre-existing CURRENT.md heading contract mismatch"},
+  "scope": {"personal_product_or_crm_inserts":false,"conceptual_inserts":3,"publication":false,"commit":false}
+}

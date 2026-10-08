@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" style="font-family: Inter, Arial, Helvetica, sans-serif">
+    <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090D14"/><stop offset="1" stop-color="#111B2B"/>
+    </linearGradient>
+    <linearGradient id="indigoGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8793FF"/><stop offset="1" stop-color="#5B6CFF"/>
+    </linearGradient>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="17"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.035"/></feComponentTransfer>
+    </filter>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#8793FF" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+    <rect width="1080" height="1350" fill="#E8E4DA"/>
+    
+    <text x="854" y="412" fill="none" stroke="#0A0E16" stroke-opacity=".08" stroke-width="4" font-size="430" font-weight="900">01</text>
+    <text x="76" y="222" fill="#5B6CFF" font-size="24" font-weight="900" letter-spacing="3">1º MOVIMENTO</text>
+    <text x="76" y="302" fill="#090D14" font-size="72" font-weight="900" letter-spacing="-3"><tspan x="76" dy="0">TORNAR A OPERAÇÃO</tspan><tspan x="76" dy="78">LEGÍVEL.</tspan></text>
+    <text x="76" y="466" fill="#586170" font-size="31" font-weight="600">Antes de automatizar, a empresa precisa saber:</text>
+    <g>
+    <rect x="76" y="520" width="438" height="202" rx="7" fill="#F2F0E9" stroke="#C7C1B4" stroke-width="2"/>
+    <rect x="76" y="520" width="74" height="202" rx="7" fill="#090D14"/>
+    <text x="113" y="584" text-anchor="middle" fill="#8793FF" font-size="33" font-weight="900">1</text>
+    <text x="176" y="590" fill="#090D14" font-size="31" font-weight="750"><tspan x="176" dy="0">Em que etapa o lead</tspan><tspan x="176" dy="42">deixa de avançar?</tspan></text>
+  </g>
+    <g>
+    <rect x="566" y="520" width="438" height="202" rx="7" fill="#F2F0E9" stroke="#C7C1B4" stroke-width="2"/>
+    <rect x="566" y="520" width="74" height="202" rx="7" fill="#090D14"/>
+    <text x="603" y="584" text-anchor="middle" fill="#8793FF" font-size="33" font-weight="900">2</text>
+    <text x="666" y="590" fill="#090D14" font-size="31" font-weight="750"><tspan x="666" dy="0">Qual tarefa se repete</tspan><tspan x="666" dy="42">todos os dias?</tspan></text>
+  </g>
+    <g>
+    <rect x="76" y="744" width="438" height="202" rx="7" fill="#F2F0E9" stroke="#C7C1B4" stroke-width="2"/>
+    <rect x="76" y="744" width="74" height="202" rx="7" fill="#090D14"/>
+    <text x="113" y="808" text-anchor="middle" fill="#8793FF" font-size="33" font-weight="900">3</text>
+    <text x="176" y="814" fill="#090D14" font-size="31" font-weight="750"><tspan x="176" dy="0">Qual decisão ainda</tspan><tspan x="176" dy="42">depende do dono?</tspan></text>
+  </g>
+    <g>
+    <rect x="566" y="744" width="438" height="202" rx="7" fill="#F2F0E9" stroke="#C7C1B4" stroke-width="2"/>
+    <rect x="566" y="744" width="74" height="202" rx="7" fill="#090D14"/>
+    <text x="603" y="808" text-anchor="middle" fill="#8793FF" font-size="33" font-weight="900">4</text>
+    <text x="666" y="814" fill="#090D14" font-size="31" font-weight="750"><tspan x="666" dy="0">Onde dados e contexto</tspan><tspan x="666" dy="42">se perdem?</tspan></text>
+  </g>
+    <rect x="76" y="990" width="928" height="214" rx="8" fill="#090D14"/>
+    <text x="112" y="1052" fill="#F2F0E9" font-size="38" font-weight="900" letter-spacing="-.8"><tspan x="112" dy="0">O gargalo certo revela a primeira peça</tspan><tspan x="112" dy="47">que precisa ser reconstruída.</tspan></text>
+    <line x1="112" y1="1168" x2="198" y2="1168" stroke="#5B6CFF" stroke-width="6"/>
+    <text x="222" y="1178" fill="#A7AFBC" font-size="26" font-weight="600">Sem diagnóstico, a IA executa o mesmo erro mais rápido. →</text>
+    
+    
+    <g transform="translate(76 54)">
+      <path d="M0 0h38v10H10v28H0Z" fill="#090D14"/>
+      <path d="M58 58H20V48h28V20h10Z" fill="#090D14"/>
+      <rect x="25" y="25" width="10" height="10" rx="1" fill="#5B6CFF" transform="rotate(45 30 30)"/>
+      <text x="78" y="43" fill="#090D14" font-size="34" font-weight="900" letter-spacing="2">ARVEX</text>
+    </g>
+    <text x="1004" y="82" text-anchor="end" fill="#586170" font-size="20" font-weight="700" letter-spacing="2.6">DIAGNÓSTICO</text>
+    <line x1="76" y1="130" x2="1004" y2="130" stroke="#C8C2B6" stroke-width="2"/>
+    <line x1="76" y1="1264" x2="1004" y2="1264" stroke="#C8C2B6" stroke-width="2"/>
+    <text x="76" y="1308" fill="#586170" font-size="20" font-weight="700" letter-spacing="2.2">REGISTRO 01</text>
+    <text x="1004" y="1308" text-anchor="end" fill="#090D14" font-size="20" font-weight="800" letter-spacing="2.2">03—07</text>
+    <rect width="1080" height="1350" filter="url(#grain)" opacity=".7"/>
+  </svg>

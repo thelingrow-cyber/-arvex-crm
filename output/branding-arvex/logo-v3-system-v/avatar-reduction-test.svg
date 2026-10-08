@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX — teste de redução dos símbolos</title>
+  <desc id="desc">Comparação das opções com V explícito e V em negativo em três tamanhos de avatar.</desc>
+  <rect width="1200" height="360" fill="#ECEAE4"/>
+  <text x="55" y="63" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="750">Teste de avatar</text>
+  <text x="55" y="97" fill="#5B5E66" font-family="Inter, Arial, sans-serif" font-size="17">O V direto continua identificável na menor escala; o V negativo vira uma assinatura descoberta de perto.</text>
+
+  <text x="55" y="169" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">V direto</text>
+  <g transform="translate(280 128) scale(.25)">
+    <rect width="512" height="512" rx="256" fill="#0B0D10"/>
+    <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+    <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+    <path d="M201 214 256 316 311 214" fill="none" stroke="#5B6CFF" stroke-width="42" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+  <g transform="translate(438 152) scale(.15625)">
+    <rect width="512" height="512" rx="256" fill="#0B0D10"/>
+    <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+    <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+    <path d="M201 214 256 316 311 214" fill="none" stroke="#5B6CFF" stroke-width="42" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+  <g transform="translate(548 168) scale(.09375)">
+    <rect width="512" height="512" rx="256" fill="#0B0D10"/>
+    <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+    <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+    <path d="M201 214 256 316 311 214" fill="none" stroke="#5B6CFF" stroke-width="42" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+
+  <text x="665" y="169" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">V negativo</text>
+  <g transform="translate(850 128) scale(.25)">
+    <rect width="512" height="512" rx="256" fill="#0B0D10"/>
+    <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+    <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+    <path d="M256 187 325 256 256 325 187 256Z" fill="#5B6CFF"/>
+    <path d="M220 225 256 291 292 225" fill="none" stroke="#0B0D10" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+  <g transform="translate(1008 152) scale(.15625)">
+    <rect width="512" height="512" rx="256" fill="#0B0D10"/>
+    <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+    <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+    <path d="M256 187 325 256 256 325 187 256Z" fill="#5B6CFF"/>
+    <path d="M220 225 256 291 292 225" fill="none" stroke="#0B0D10" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+  <g transform="translate(1118 168) scale(.09375)">
+    <rect width="512" height="512" rx="256" fill="#0B0D10"/>
+    <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+    <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+    <path d="M256 187 325 256 256 325 187 256Z" fill="#5B6CFF"/>
+    <path d="M220 225 256 291 292 225" fill="none" stroke="#0B0D10" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+
+  <text x="280" y="288" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="14">128 px</text>
+  <text x="438" y="264" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="14">80 px</text>
+  <text x="548" y="248" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="14">48 px</text>
+  <text x="850" y="288" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="14">128 px</text>
+  <text x="1008" y="264" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="14">80 px</text>
+  <text x="1118" y="248" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="14">48 px</text>
+</svg>

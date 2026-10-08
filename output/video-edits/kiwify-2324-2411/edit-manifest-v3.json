@@ -1,0 +1,145 @@
+{
+  "duration": 17.133333333333333,
+  "cuts": [
+    {
+      "start": 11.3,
+      "end": 14.466666666666667,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 91,
+      "duration": 3.033333333333333,
+      "rate": 1.0439560439560438,
+      "offset": 0
+    },
+    {
+      "start": 14.466666666666667,
+      "end": 16.866666666666667,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "frames": 68,
+      "duration": 2.2666666666666666,
+      "rate": 1.058823529411765,
+      "offset": 3.033333333333333
+    },
+    {
+      "start": 17.933333333333334,
+      "end": 21.1,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 86,
+      "duration": 2.8666666666666667,
+      "rate": 1.104651162790698,
+      "offset": 5.3
+    },
+    {
+      "start": 22.133333333333333,
+      "end": 24.566666666666666,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "frames": 69,
+      "duration": 2.3,
+      "rate": 1.0579710144927539,
+      "offset": 8.166666666666666
+    },
+    {
+      "start": 24.933333333333334,
+      "end": 29.033333333333335,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "frames": 114,
+      "duration": 3.8,
+      "rate": 1.078947368421053,
+      "offset": 10.466666666666665
+    },
+    {
+      "start": 29.766666666666666,
+      "end": 32.733333333333334,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "frames": 86,
+      "duration": 2.8666666666666667,
+      "rate": 1.0348837209302333,
+      "offset": 14.266666666666666
+    }
+  ],
+  "inserts": [
+    {
+      "name": "technology",
+      "start": 5.22,
+      "end": 6.779999999999999,
+      "sourceStart": 2,
+      "sourceEnd": 3.8,
+      "crop": [
+        608,
+        1080,
+        766,
+        0
+      ],
+      "sourcePage": "https://mixkit.co/free-stock-video/programmer-working-with-codes-on-a-computer-41637/"
+    },
+    {
+      "name": "community",
+      "start": 8.716666666666667,
+      "end": 10.466666666666665,
+      "sourceStart": 2,
+      "sourceEnd": 4.05,
+      "crop": [
+        608,
+        1080,
+        710,
+        0
+      ],
+      "sourcePage": "https://mixkit.co/free-stock-video/team-collaboration-in-a-colorful-workspace-100319/"
+    }
+  ],
+  "tech": {
+    "start": 6.81,
+    "end": 8.466666666666667
+  },
+  "flashes": [
+    3.033333333333333,
+    5.22,
+    10.466666666666665
+  ],
+  "spoken": [
+    "O Expert hoje não é só mais um especialista em algo específico.",
+    "Ele é todo um ecossistema que pode ser explorado.",
+    "hoje por IA, por você abraçar o lado tech.",
+    "por construir uma marca, construir comunidade.",
+    "Então não é mais simplesmente um funil, uma estratégia que vai",
+    "resolver toda a sua expansão, seu crescimento."
+  ],
+  "removed": [
+    "Intro about infoproducts and uncertain opening",
+    "Repeated personal-brand and ecosystem explanations",
+    "Repeated pode ser explorado",
+    "Hesitation between vai and resolver"
+  ],
+  "stockLicense": "Mixkit Stock Video Free License, confirmed on each source page",
+  "music": "Close Up - Michael Ramir C. / Mixkit",
+  "humanListeningReview": "pending"
+}

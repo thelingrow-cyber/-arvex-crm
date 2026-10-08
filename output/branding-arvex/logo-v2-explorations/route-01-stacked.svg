@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX — rota editorial empilhada</title>
+  <desc id="desc">O nome ARVEX dividido em AR e VEX, sem símbolo adicional.</desc>
+  <rect width="512" height="512" rx="52" fill="#0B0D10"/>
+  <text x="62" y="232" fill="#F4F2EC" font-family="Arial Black, Arial, sans-serif" font-size="190" font-weight="900" letter-spacing="-15">AR</text>
+  <rect x="64" y="259" width="384" height="10" fill="#F4F2EC"/>
+  <text x="51" y="439" fill="#F4F2EC" font-family="Arial Black, Arial, sans-serif" font-size="168" font-weight="900" letter-spacing="-17">VEX</text>
+</svg>
+

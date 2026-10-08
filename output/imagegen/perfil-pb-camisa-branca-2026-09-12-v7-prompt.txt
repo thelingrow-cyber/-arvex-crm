@@ -1,0 +1,12 @@
+Generation mode: built-in image_gen.
+References in order: original rkrkkrf.jpg; preferred earlier portrait exec-e90ea39a-46e8-48db-a7e2-5627c6713e25.png; original-photo wallpaper orkfd.jpg.
+Output: perfil-pb-camisa-branca-2026-09-12-v7.png
+Visual review: white shirt and restrained grayscale achieved, blur replaced with a plain wall. Skin/hair still show some synthesized fine texture; do not claim complete removal of AI appearance or exact identity reproduction.
+
+Edit the real photograph in image 1 (man beside a river wearing a black quilted jacket). Image 2 is the same man's preferred close portrait: use it as a precise guide to the desired square crop, face proportions, relaxed closed-mouth expression and head angle. Image 3 is another copy of image 1 inside a phone wallpaper; it confirms his original appearance only. Omit all phone interface elements.
+
+The deliverable is a simple, believable BLACK AND WHITE head-and-upper-chest photograph of this exact man, wearing his existing black jacket with a WHITE COTTON BUTTON-UP SHIRT inside, a small casually open collar. No earrings. Keep his face as close to image 2 as possible while using the real photograph in image 1 to preserve his natural youthful skin and real hair. Preserve eye shape, eyebrows, nose, lips, cheeks, jaw, fine facial hair and asymmetries. Do not beautify, reshape, age or add a smile.
+
+Use a quiet, evenly lit light-gray painted wall background, with barely perceptible surface texture and no strong blur. Soft ordinary overcast daylight as in image 1. The jacket and white shirt have normal, understated fabric detail and plausible seams and folds.
+
+Crucial finish: NORMAL CAMERA PHOTO, softly resolved at a natural viewing distance. Keep broad, gently varying skin tones. No added fine lines or individual drawn hairs on the cheeks. No scratch-like skin texture, no artificial pore enhancement, no etched forehead, no microcontrast or sharpening enhancement. Hair is the short naturally wavy hair seen in the real photograph, softly resolved, never shiny individually traced filaments. Neutral grayscale, soft midtones, restrained contrast, no HDR, no extreme detail. Retain the exact portrait composition and face shape of image 2. Output one square photograph only.

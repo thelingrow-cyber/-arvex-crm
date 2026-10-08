@@ -1,0 +1,17 @@
+Generation mode: built-in image_gen.
+Target reference: user-provided 2.jpg, approved portrait converted to black and white.
+Wardrobe-only reference: user-provided t2.jpg.
+Output: perfil-pb-camisa-branca-2026-09-12-v6.png
+
+Edit the FIRST supplied photograph, the square black and white portrait, with extremely restrained photographic retouching. This is an existing approved portrait: preserve it, do not reinterpret or redesign the man. Deliver one square full-frame photographic image, not a mockup.
+
+IMAGE ROLES:
+Image 1 (2.jpg) is the exact target and sole authority for identity, face, hair, expression, pose, composition, black outer jacket, and background.
+Image 2 (t2.jpg) is only a reference for tasteful layered clothing with a light inner shirt under a dark jacket. Do not borrow this other person's facial features, hair, complexion or pose, and do not reproduce the phone screenshot, interface or circular border.
+
+Only two requested changes:
+1. Replace the charcoal gray inner crewneck sweater in Image 1 with an elegant WHITE COTTON SHIRT, a modest natural open collar, top button undone, worn beneath the SAME BLACK PUFFER JACKET. Keep the shirt understated and plausible within the existing open jacket. Real cotton weave, subtle fabric creases, realistic collar thickness and soft contact shadows where it meets the neck and jacket. No tie, no logos, no jewelry. Preserve jacket quilting, zipper hardware, shoulders and outer silhouette. White shirt should have delicately shaded folds, not an overexposed flat white patch.
+2. Refine the BLACK AND WHITE photographic tonal grade. Strict neutral grayscale, no color or sepia. Gently lift face midtones, establish slightly deeper clean blacks in the jacket and hair without crushing their detail, preserve soft highlights, and give the white shirt natural separation from the existing softly blurred pale gray background. Quiet, sophisticated editorial photograph with restrained tonal contrast, not a dramatic studio transformation. Keep the original soft light direction and background.
+
+CRITICAL PRESERVATION:
+Keep the face's exact geometry and apparent age as in Image 1: cheeks, jaw, chin, nose width and profile, eyes and eyelids, brows, ears, mouth, fine moustache and goatee. Keep the exact relaxed closed mouth and head angle. NO added smile or teeth. NO face slimming, sharpening of jaw, hollow cheeks, enlargement of eyes, reshaping lips or symmetry correction. Keep the existing hairstyle and individual natural strands. Do not add earrings. Preserve natural skin texture as present; do not synthesize extra pores, wrinkles, deep under-eye lines, etched skin detail or age the face. No beauty filter, waxy smoothing, HDR, clarity halos, excessive sharpening or CGI sheen. Facial pixels should remain as unchanged as possible except for the restrained global monochrome tonal correction. The final should look like the same photograph with a wardrobe edit and careful monochrome processing, not a new generated face. Keep the exact square crop, head size, position and background.

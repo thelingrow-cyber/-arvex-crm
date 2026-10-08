@@ -1,0 +1,37 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Main,Segoe UI,62,&H00FFFFFF,&H00FFFFFF,&H00101618,&H80000000,-1,0,0,0,100,100,0,0,1,2.5,1,2,100,170,482,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 3,0:00:00.01,0:00:00.69,Main,,0,0,0,,vou fazer conteúdo,
+Dialogue: 3,0:00:00.77,0:00:01.64,Main,,0,0,0,,vou vender o infoproduto.
+Dialogue: 3,0:00:01.84,0:00:02.36,Main,,0,0,0,,Hoje {\c&H78CFED&}não{\c&HFFFFFF&}.
+Dialogue: 3,0:00:02.50,0:00:03.06,Main,,0,0,0,,Hoje eu acho que
+Dialogue: 3,0:00:03.06,0:00:04.39,Main,,0,0,0,,realmente vou cr{\c&H78CFED&}ia{\c&HFFFFFF&}r um
+Dialogue: 3,0:00:04.39,0:00:06.40,Main,,0,0,0,,{\c&H78CFED&}ecossistema{\c&HFFFFFF&} dentro da minha
+Dialogue: 3,0:00:06.40,0:00:06.73,Main,,0,0,0,,{\c&H78CFED&}marca{\c&HFFFFFF&},
+Dialogue: 3,0:00:06.82,0:00:07.40,Main,,0,0,0,,O {\c&H78CFED&}Expert{\c&HFFFFFF&} hoje não
+Dialogue: 3,0:00:07.40,0:00:07.88,Main,,0,0,0,,é só mais um
+Dialogue: 3,0:00:07.88,0:00:09.82,Main,,0,0,0,,{\c&H78CFED&}especialista{\c&HFFFFFF&} em algo específico.
+Dialogue: 3,0:00:09.83,0:00:10.49,Main,,0,0,0,,Ele é todo um
+Dialogue: 3,0:00:10.49,0:00:11.57,Main,,0,0,0,,{\c&H78CFED&}ecossistema{\c&HFFFFFF&} que pode ser
+Dialogue: 3,0:00:11.57,0:00:12.05,Main,,0,0,0,,explorado.
+Dialogue: 3,0:00:12.05,0:00:12.99,Main,,0,0,0,,hoje por {\c&H78CFED&}IA{\c&HFFFFFF&},
+Dialogue: 3,0:00:13.30,0:00:14.48,Main,,0,0,0,,por você abraçar o
+Dialogue: 3,0:00:14.48,0:00:14.89,Main,,0,0,0,,lado {\c&H78CFED&}tech{\c&HFFFFFF&}.
+Dialogue: 3,0:00:14.94,0:00:16.06,Main,,0,0,0,,por construir uma {\c&H78CFED&}marca{\c&HFFFFFF&},
+Dialogue: 3,0:00:16.24,0:00:17.20,Main,,0,0,0,,construir {\c&H78CFED&}comunidade{\c&HFFFFFF&}.
+Dialogue: 3,0:00:17.30,0:00:17.89,Main,,0,0,0,,Então {\c&H78CFED&}não{\c&HFFFFFF&} é mais
+Dialogue: 3,0:00:17.89,0:00:18.95,Main,,0,0,0,,simplesmente um {\c&H78CFED&}funil{\c&HFFFFFF&},
+Dialogue: 3,0:00:19.00,0:00:21.05,Main,,0,0,0,,uma estratég{\c&H78CFED&}ia{\c&HFFFFFF&} que vai
+Dialogue: 3,0:00:21.10,0:00:22.73,Main,,0,0,0,,resolver toda a sua
+Dialogue: 3,0:00:22.73,0:00:23.24,Main,,0,0,0,,{\c&H78CFED&}expansão{\c&HFFFFFF&},
+Dialogue: 3,0:00:23.27,0:00:23.82,Main,,0,0,0,,seu {\c&H78CFED&}crescimento{\c&HFFFFFF&}.

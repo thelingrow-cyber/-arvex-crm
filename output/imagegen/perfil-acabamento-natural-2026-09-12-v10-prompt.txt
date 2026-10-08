@@ -1,0 +1,11 @@
+Generation mode: built-in image_gen.
+Edit target: perfil-colorido-camisa-branca-2026-09-12-v9.png.
+Output: perfil-acabamento-natural-2026-09-12-v10.png.
+Visual review: composition, clothing, expression and background retained; change to facial finish is subtle, overprocessed appearance not fully resolved. No claim of exact pixel preservation or measured adjustment percentages.
+
+Use case: identity-preserve, photographic finishing edit.
+Edit this exact color photograph. The ONLY requested change is to REMOVE THE OVERPROCESSED FINISH, especially on the face. This is a tonal/texture finishing correction, not detail recovery or a new portrait.
+
+Make a visibly cleaner, less processed version: reduce the excessive local clarity on skin by roughly 30–40%, remove the high-frequency embossed/scratch-like pattern on cheeks, forehead and neck, and suppress the sharpening around individual hair strands. Replace the harsh, drawn surface rendering with gentle continuous skin tones and restrained, irregular natural texture. Keep the eyes and facial boundaries optically clear; do not put a blur filter over the face. Preserve existing soft light and natural skin color. The face must feel like ordinary camera capture without a digital enhancement filter, not a hyper-detailed render. Avoid plastic beauty retouching, watercolor smearing, pore reconstruction, artificial grain overlays, HDR and sharpening.
+
+Keep the facial anatomy, expression and proportions exactly as supplied. The same eyes, mouth, nose, jaw, head angle, haircut, moustache and goatee. Keep the white open-collar shirt, black jacket, exact background, color, framing and overall brightness unchanged. Do not add details, accessories, smiles or change clothes. Only alter the photographic finish so the overprocessed surface is perceptibly reduced. Output one square color photograph.

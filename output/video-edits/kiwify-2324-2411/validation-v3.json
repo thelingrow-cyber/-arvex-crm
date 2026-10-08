@@ -1,0 +1,45 @@
+{
+  "duration": "17.134000",
+  "bytes": "7195737",
+  "streams": [
+    {
+      "type": "video",
+      "codec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "frames": "514",
+      "duration": "17.133984"
+    },
+    {
+      "type": "audio",
+      "codec": "aac",
+      "frames": "798",
+      "duration": "17.133000"
+    }
+  ],
+  "decode": "pass",
+  "loudness": {
+    "input_i": "-15.85",
+    "input_tp": "-2.51",
+    "input_lra": "0.70",
+    "input_thresh": "-25.89",
+    "output_i": "-15.92",
+    "output_tp": "-2.45",
+    "output_lra": "0.70",
+    "output_thresh": "-25.96",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.08"
+  },
+  "qaFrames": [
+    88,
+    91,
+    95,
+    168,
+    222,
+    279,
+    314,
+    495
+  ],
+  "visualReview": "8 final frames inspected: visible flash peak/decay, both filmed B-roll inserts, approved card, face and ending",
+  "humanListeningReview": "pending; ASR-derived word joins not confirmed by listening"
+}

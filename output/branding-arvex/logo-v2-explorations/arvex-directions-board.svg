@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX — três territórios de identidade</title>
+  <desc id="desc">Comparação em preto e branco de três rotas de logo para a ARVEX.</desc>
+  <rect width="1920" height="1080" fill="#080A0D"/>
+  <text x="90" y="92" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="42" font-weight="800">ARVEX — antes da cor, a silhueta.</text>
+  <text x="90" y="132" fill="#8E949E" font-family="Arial, sans-serif" font-size="21">Três territórios distintos. A pergunta agora não é “qual está bonita?”, mas “qual poderia ser apenas nossa?”.</text>
+
+  <!-- Rota 1 -->
+  <g transform="translate(70 178)">
+    <rect width="560" height="820" rx="28" fill="#111419" stroke="#292E36" stroke-width="2"/>
+    <text x="38" y="54" fill="#8E949E" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">01 · WORDMARK EDITORIAL</text>
+    <rect x="72" y="92" width="416" height="416" rx="42" fill="#0B0D10"/>
+    <text x="122" y="282" fill="#F4F2EC" font-family="Arial Black, Arial, sans-serif" font-size="155" font-weight="900" letter-spacing="-13">AR</text>
+    <rect x="124" y="305" width="312" height="8" fill="#F4F2EC"/>
+    <text x="113" y="458" fill="#F4F2EC" font-family="Arial Black, Arial, sans-serif" font-size="137" font-weight="900" letter-spacing="-14">VEX</text>
+    <text x="38" y="566" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="30" font-weight="800">AR/VEX</text>
+    <text x="38" y="610" fill="#B6BBC3" font-family="Arial, sans-serif" font-size="20">Nome inteiro vira o símbolo.</text>
+    <text x="38" y="642" fill="#B6BBC3" font-family="Arial, sans-serif" font-size="20">Mais editorial, cultural e social first.</text>
+    <line x1="38" y1="684" x2="522" y2="684" stroke="#292E36"/>
+    <text x="38" y="726" fill="#8E949E" font-family="Arial, sans-serif" font-size="16" font-weight="700">FORÇA</text>
+    <text x="118" y="726" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="16">autoria e lembrança do nome</text>
+    <text x="38" y="766" fill="#8E949E" font-family="Arial, sans-serif" font-size="16" font-weight="700">RISCO</text>
+    <text x="118" y="766" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="16">menos “tech”, exige lettering impecável</text>
+  </g>
+
+  <!-- Rota 2 -->
+  <g transform="translate(680 178)">
+    <rect width="560" height="820" rx="28" fill="#111419" stroke="#5B6CFF" stroke-width="3"/>
+    <text x="38" y="54" fill="#7886FF" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">02 · SISTEMA / NÚCLEO</text>
+    <rect x="72" y="92" width="416" height="416" rx="42" fill="#0B0D10"/>
+    <g transform="translate(104 124) scale(.63)">
+      <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+      <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+      <rect x="224" y="224" width="64" height="64" rx="5" fill="#5B6CFF" transform="rotate(45 256 256)"/>
+    </g>
+    <text x="38" y="566" fill="#F4F2EC" font-family="Arial Black, Arial, sans-serif" font-size="55" font-weight="900" letter-spacing="5">ARVEX</text>
+    <text x="38" y="610" fill="#B6BBC3" font-family="Arial, sans-serif" font-size="20">Partes diferentes viram um sistema.</text>
+    <text x="38" y="642" fill="#B6BBC3" font-family="Arial, sans-serif" font-size="20">Mais institucional, produto e arquitetura.</text>
+    <line x1="38" y1="684" x2="522" y2="684" stroke="#292E36"/>
+    <text x="38" y="726" fill="#8E949E" font-family="Arial, sans-serif" font-size="16" font-weight="700">FORÇA</text>
+    <text x="118" y="726" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="16">território visual próprio e escalável</text>
+    <text x="38" y="766" fill="#8E949E" font-family="Arial, sans-serif" font-size="16" font-weight="700">RISCO</text>
+    <text x="118" y="766" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="16">precisa ser associado ao nome no início</text>
+  </g>
+
+  <!-- Rota 3 -->
+  <g transform="translate(1290 178)">
+    <rect width="560" height="820" rx="28" fill="#111419" stroke="#292E36" stroke-width="2"/>
+    <text x="38" y="54" fill="#8E949E" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">03 · MONOGRAMA VX</text>
+    <rect x="72" y="92" width="416" height="416" rx="42" fill="#0B0D10"/>
+    <g transform="translate(95 111) scale(.64)">
+      <path d="M54 90h74l100 245 52-128h67L262 422h-70Z" fill="#F4F2EC"/>
+      <path d="M290 90h78l45 68 45-68h78l-84 124 84 124h-78l-45-68-45 68h-78l84-124Z" fill="#F4F2EC" transform="translate(-24 42) scale(.92)"/>
+      <rect x="379" y="236" width="32" height="32" rx="3" fill="#5B6CFF" transform="rotate(45 395 252)"/>
+    </g>
+    <text x="38" y="566" fill="#F4F2EC" font-family="Arial Black, Arial, sans-serif" font-size="55" font-weight="900" letter-spacing="5">ARVEX</text>
+    <text x="38" y="610" fill="#B6BBC3" font-family="Arial, sans-serif" font-size="20">Usa as letras mais distintas do nome.</text>
+    <text x="38" y="642" fill="#B6BBC3" font-family="Arial, sans-serif" font-size="20">Mais veloz, tecnológica e challenger.</text>
+    <line x1="38" y1="684" x2="522" y2="684" stroke="#292E36"/>
+    <text x="38" y="726" fill="#8E949E" font-family="Arial, sans-serif" font-size="16" font-weight="700">FORÇA</text>
+    <text x="118" y="726" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="16">compacta e forte no avatar</text>
+    <text x="38" y="766" fill="#8E949E" font-family="Arial, sans-serif" font-size="16" font-weight="700">RISCO</text>
+    <text x="118" y="766" fill="#F4F2EC" font-family="Arial, sans-serif" font-size="16">pode parecer marca de software</text>
+  </g>
+
+  <text x="90" y="1042" fill="#717782" font-family="Arial, sans-serif" font-size="16">Exploração, não identidade final · formas em preto e branco primeiro · cor e tipografia fecham depois da rota</text>
+</svg>
+

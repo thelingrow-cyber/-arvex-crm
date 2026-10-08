@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX — rota VX</title>
+  <desc id="desc">Monograma angular formado pelas letras V e X.</desc>
+  <rect width="512" height="512" rx="52" fill="#0B0D10"/>
+  <path d="M54 90h74l100 245 52-128h67L262 422h-70Z" fill="#F4F2EC"/>
+  <path d="M290 90h78l45 68 45-68h78l-84 124 84 124h-78l-45-68-45 68h-78l84-124Z" fill="#F4F2EC" transform="translate(-24 42) scale(.92)"/>
+  <rect x="379" y="236" width="32" height="32" rx="3" fill="#5B6CFF" transform="rotate(45 395 252)"/>
+</svg>
+

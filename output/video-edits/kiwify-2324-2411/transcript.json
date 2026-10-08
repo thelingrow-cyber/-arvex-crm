@@ -1,0 +1,1974 @@
+{
+  "source_start_seconds": 1404,
+  "source_end_seconds": 1451,
+  "timestamp_basis": "seconds relative to selected excerpt",
+  "model": "faster-whisper-small",
+  "language": "pt",
+  "duration": 47.0,
+  "elapsed_seconds": 99.81,
+  "text": "Vou vender o infoproducto, vou fazer conteúdo, vou vender o infoproducto. Hoje não. Hoje eu acho que realmente vou criar um ecossistema dentro da minha marca, que é a minha marca pessoal. Que ele é o Expert. O Expert hoje não é só mais um especialista em algo específico. Ele é todo um ecossistema que pode ser explorado. Pode ser explorado hoje por IA, por você abraçar o lado tech. Você pode ser explorado por construir uma marca, construir comunidade. Então não é mais simplesmente um funil, uma estratégia que vai... resolver toda a sua expansão, seu crescimento. Você tem que dar uma analisada e olhar em todo esse setor de pra poder e expandir de pouco em pouco. É um conjunto, né? É um conjunto. E também, se você falou de expandir de pouco em pouco, a gente tá falando aqui do jogo que vocês hoje estão jogando, que é muito avançado, mas...",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.88,
+      "text": " Vou vender o infoproducto, vou fazer conteúdo, vou vender o infoproducto.",
+      "words": [
+        {
+          "word": " Vou",
+          "start": 0.0,
+          "end": 0.32,
+          "probability": 0.3297422230243683
+        },
+        {
+          "word": " vender",
+          "start": 0.32,
+          "end": 0.52,
+          "probability": 0.9526038765907288
+        },
+        {
+          "word": " o",
+          "start": 0.52,
+          "end": 0.62,
+          "probability": 0.4188576936721802
+        },
+        {
+          "word": " infoproducto,",
+          "start": 0.62,
+          "end": 1.12,
+          "probability": 0.6620239734649658
+        },
+        {
+          "word": " vou",
+          "start": 1.14,
+          "end": 1.22,
+          "probability": 0.9315100908279419
+        },
+        {
+          "word": " fazer",
+          "start": 1.22,
+          "end": 1.42,
+          "probability": 0.9953916072845459
+        },
+        {
+          "word": " conteúdo,",
+          "start": 1.42,
+          "end": 1.84,
+          "probability": 0.9844346642494202
+        },
+        {
+          "word": " vou",
+          "start": 1.98,
+          "end": 2.0,
+          "probability": 0.9873301982879639
+        },
+        {
+          "word": " vender",
+          "start": 2.0,
+          "end": 2.2,
+          "probability": 0.9954708814620972
+        },
+        {
+          "word": " o",
+          "start": 2.2,
+          "end": 2.28,
+          "probability": 0.9764318466186523
+        },
+        {
+          "word": " infoproducto.",
+          "start": 2.28,
+          "end": 2.88,
+          "probability": 0.9889896631240844
+        }
+      ]
+    },
+    {
+      "start": 3.16,
+      "end": 8.48,
+      "text": " Hoje não. Hoje eu acho que realmente vou criar um ecossistema dentro da minha marca,",
+      "words": [
+        {
+          "word": " Hoje",
+          "start": 3.16,
+          "end": 3.48,
+          "probability": 0.9876546263694763
+        },
+        {
+          "word": " não.",
+          "start": 3.48,
+          "end": 3.68,
+          "probability": 0.802956759929657
+        },
+        {
+          "word": " Hoje",
+          "start": 3.88,
+          "end": 4.06,
+          "probability": 0.9824371933937073
+        },
+        {
+          "word": " eu",
+          "start": 4.06,
+          "end": 4.18,
+          "probability": 0.6391736268997192
+        },
+        {
+          "word": " acho",
+          "start": 4.18,
+          "end": 4.38,
+          "probability": 0.9867710471153259
+        },
+        {
+          "word": " que",
+          "start": 4.38,
+          "end": 4.5,
+          "probability": 0.9915851354598999
+        },
+        {
+          "word": " realmente",
+          "start": 4.5,
+          "end": 4.76,
+          "probability": 0.5940713286399841
+        },
+        {
+          "word": " vou",
+          "start": 4.76,
+          "end": 5.12,
+          "probability": 0.9056716561317444
+        },
+        {
+          "word": " criar",
+          "start": 5.12,
+          "end": 5.38,
+          "probability": 0.9898062348365784
+        },
+        {
+          "word": " um",
+          "start": 5.38,
+          "end": 5.96,
+          "probability": 0.9887054562568665
+        },
+        {
+          "word": " ecossistema",
+          "start": 5.96,
+          "end": 6.72,
+          "probability": 0.947131484746933
+        },
+        {
+          "word": " dentro",
+          "start": 6.72,
+          "end": 7.16,
+          "probability": 0.8772359490394592
+        },
+        {
+          "word": " da",
+          "start": 7.16,
+          "end": 7.98,
+          "probability": 0.963798463344574
+        },
+        {
+          "word": " minha",
+          "start": 7.98,
+          "end": 8.16,
+          "probability": 0.9964728951454163
+        },
+        {
+          "word": " marca,",
+          "start": 8.16,
+          "end": 8.48,
+          "probability": 0.9963086247444153
+        }
+      ]
+    },
+    {
+      "start": 8.72,
+      "end": 10.16,
+      "text": " que é a minha marca pessoal.",
+      "words": [
+        {
+          "word": " que",
+          "start": 8.72,
+          "end": 8.74,
+          "probability": 0.985582709312439
+        },
+        {
+          "word": " é",
+          "start": 8.74,
+          "end": 8.86,
+          "probability": 0.9746689200401306
+        },
+        {
+          "word": " a",
+          "start": 8.86,
+          "end": 9.1,
+          "probability": 0.7574751973152161
+        },
+        {
+          "word": " minha",
+          "start": 9.1,
+          "end": 9.58,
+          "probability": 0.9923122525215149
+        },
+        {
+          "word": " marca",
+          "start": 9.58,
+          "end": 9.82,
+          "probability": 0.9946131110191345
+        },
+        {
+          "word": " pessoal.",
+          "start": 9.82,
+          "end": 10.16,
+          "probability": 0.9804986119270325
+        }
+      ]
+    },
+    {
+      "start": 10.4,
+      "end": 14.44,
+      "text": " Que ele é o Expert. O Expert hoje não é só mais um especialista em algo específico.",
+      "words": [
+        {
+          "word": " Que",
+          "start": 10.4,
+          "end": 10.7,
+          "probability": 0.7435420155525208
+        },
+        {
+          "word": " ele",
+          "start": 10.7,
+          "end": 10.84,
+          "probability": 0.3198278546333313
+        },
+        {
+          "word": " é",
+          "start": 10.84,
+          "end": 10.9,
+          "probability": 0.9945626854896545
+        },
+        {
+          "word": " o",
+          "start": 10.9,
+          "end": 11.0,
+          "probability": 0.9747811555862427
+        },
+        {
+          "word": " Expert.",
+          "start": 11.0,
+          "end": 11.2,
+          "probability": 0.14590296149253845
+        },
+        {
+          "word": " O",
+          "start": 11.36,
+          "end": 11.4,
+          "probability": 0.9727181792259216
+        },
+        {
+          "word": " Expert",
+          "start": 11.4,
+          "end": 11.62,
+          "probability": 0.9901542067527771
+        },
+        {
+          "word": " hoje",
+          "start": 11.62,
+          "end": 11.84,
+          "probability": 0.867292582988739
+        },
+        {
+          "word": " não",
+          "start": 11.84,
+          "end": 11.96,
+          "probability": 0.9854472875595093
+        },
+        {
+          "word": " é",
+          "start": 11.96,
+          "end": 12.08,
+          "probability": 0.9911789298057556
+        },
+        {
+          "word": " só",
+          "start": 12.08,
+          "end": 12.14,
+          "probability": 0.9468767046928406
+        },
+        {
+          "word": " mais",
+          "start": 12.14,
+          "end": 12.32,
+          "probability": 0.9610955119132996
+        },
+        {
+          "word": " um",
+          "start": 12.32,
+          "end": 12.46,
+          "probability": 0.9521378874778748
+        },
+        {
+          "word": " especialista",
+          "start": 12.46,
+          "end": 13.16,
+          "probability": 0.9841282367706299
+        },
+        {
+          "word": " em",
+          "start": 13.16,
+          "end": 13.64,
+          "probability": 0.9428629279136658
+        },
+        {
+          "word": " algo",
+          "start": 13.64,
+          "end": 13.8,
+          "probability": 0.9986534118652344
+        },
+        {
+          "word": " específico.",
+          "start": 13.8,
+          "end": 14.44,
+          "probability": 0.994104415178299
+        }
+      ]
+    },
+    {
+      "start": 14.5,
+      "end": 16.8,
+      "text": " Ele é todo um ecossistema que pode ser explorado.",
+      "words": [
+        {
+          "word": " Ele",
+          "start": 14.5,
+          "end": 14.64,
+          "probability": 0.9814483523368835
+        },
+        {
+          "word": " é",
+          "start": 14.64,
+          "end": 14.72,
+          "probability": 0.997765302658081
+        },
+        {
+          "word": " todo",
+          "start": 14.72,
+          "end": 14.86,
+          "probability": 0.935447633266449
+        },
+        {
+          "word": " um",
+          "start": 14.86,
+          "end": 15.2,
+          "probability": 0.9928287863731384
+        },
+        {
+          "word": " ecossistema",
+          "start": 15.2,
+          "end": 15.94,
+          "probability": 0.9960254728794098
+        },
+        {
+          "word": " que",
+          "start": 15.94,
+          "end": 16.06,
+          "probability": 0.9916384816169739
+        },
+        {
+          "word": " pode",
+          "start": 16.06,
+          "end": 16.2,
+          "probability": 0.995932400226593
+        },
+        {
+          "word": " ser",
+          "start": 16.2,
+          "end": 16.34,
+          "probability": 0.9926655888557434
+        },
+        {
+          "word": " explorado.",
+          "start": 16.34,
+          "end": 16.8,
+          "probability": 0.998786449432373
+        }
+      ]
+    },
+    {
+      "start": 17.0,
+      "end": 21.0,
+      "text": " Pode ser explorado hoje por IA, por você abraçar o lado tech.",
+      "words": [
+        {
+          "word": " Pode",
+          "start": 17.0,
+          "end": 17.42,
+          "probability": 0.9378196001052856
+        },
+        {
+          "word": " ser",
+          "start": 17.42,
+          "end": 17.52,
+          "probability": 0.9914435744285583
+        },
+        {
+          "word": " explorado",
+          "start": 17.52,
+          "end": 17.92,
+          "probability": 0.9976244866847992
+        },
+        {
+          "word": " hoje",
+          "start": 17.92,
+          "end": 18.12,
+          "probability": 0.7511466145515442
+        },
+        {
+          "word": " por",
+          "start": 18.12,
+          "end": 18.66,
+          "probability": 0.7644930481910706
+        },
+        {
+          "word": " IA,",
+          "start": 18.66,
+          "end": 18.9,
+          "probability": 0.4976099282503128
+        },
+        {
+          "word": " por",
+          "start": 19.3,
+          "end": 19.3,
+          "probability": 0.8903532028198242
+        },
+        {
+          "word": " você",
+          "start": 19.3,
+          "end": 20.04,
+          "probability": 0.8393656015396118
+        },
+        {
+          "word": " abraçar",
+          "start": 20.04,
+          "end": 20.46,
+          "probability": 0.9967388808727264
+        },
+        {
+          "word": " o",
+          "start": 20.46,
+          "end": 20.6,
+          "probability": 0.9363563656806946
+        },
+        {
+          "word": " lado",
+          "start": 20.6,
+          "end": 20.7,
+          "probability": 0.8165158033370972
+        },
+        {
+          "word": " tech.",
+          "start": 20.7,
+          "end": 21.0,
+          "probability": 0.4105016589164734
+        }
+      ]
+    },
+    {
+      "start": 21.38,
+      "end": 24.48,
+      "text": " Você pode ser explorado por construir uma marca, construir comunidade.",
+      "words": [
+        {
+          "word": " Você",
+          "start": 21.38,
+          "end": 21.52,
+          "probability": 0.9848125576972961
+        },
+        {
+          "word": " pode",
+          "start": 21.52,
+          "end": 21.68,
+          "probability": 0.997543215751648
+        },
+        {
+          "word": " ser",
+          "start": 21.68,
+          "end": 21.78,
+          "probability": 0.9573469161987305
+        },
+        {
+          "word": " explorado",
+          "start": 21.78,
+          "end": 22.14,
+          "probability": 0.9985698461532593
+        },
+        {
+          "word": " por",
+          "start": 22.14,
+          "end": 22.32,
+          "probability": 0.9350330829620361
+        },
+        {
+          "word": " construir",
+          "start": 22.32,
+          "end": 22.74,
+          "probability": 0.9968981742858887
+        },
+        {
+          "word": " uma",
+          "start": 22.74,
+          "end": 22.96,
+          "probability": 0.9978376030921936
+        },
+        {
+          "word": " marca,",
+          "start": 22.96,
+          "end": 23.28,
+          "probability": 0.9980500936508179
+        },
+        {
+          "word": " construir",
+          "start": 23.52,
+          "end": 23.88,
+          "probability": 0.99009108543396
+        },
+        {
+          "word": " comunidade.",
+          "start": 23.88,
+          "end": 24.48,
+          "probability": 0.9970772564411163
+        }
+      ]
+    },
+    {
+      "start": 25.0,
+      "end": 29.0,
+      "text": " Então não é mais simplesmente um funil, uma estratégia que vai...",
+      "words": [
+        {
+          "word": " Então",
+          "start": 25.0,
+          "end": 25.24,
+          "probability": 0.9910539984703064
+        },
+        {
+          "word": " não",
+          "start": 25.24,
+          "end": 25.36,
+          "probability": 0.8689776659011841
+        },
+        {
+          "word": " é",
+          "start": 25.36,
+          "end": 25.46,
+          "probability": 0.9976521134376526
+        },
+        {
+          "word": " mais",
+          "start": 25.46,
+          "end": 25.64,
+          "probability": 0.9744088649749756
+        },
+        {
+          "word": " simplesmente",
+          "start": 25.64,
+          "end": 26.02,
+          "probability": 0.9798312783241272
+        },
+        {
+          "word": " um",
+          "start": 26.02,
+          "end": 26.34,
+          "probability": 0.9769719243049622
+        },
+        {
+          "word": " funil,",
+          "start": 26.34,
+          "end": 26.74,
+          "probability": 0.953092485666275
+        },
+        {
+          "word": " uma",
+          "start": 26.84,
+          "end": 26.92,
+          "probability": 0.995984673500061
+        },
+        {
+          "word": " estratégia",
+          "start": 26.92,
+          "end": 27.56,
+          "probability": 0.9986889660358429
+        },
+        {
+          "word": " que",
+          "start": 27.56,
+          "end": 27.68,
+          "probability": 0.953099250793457
+        },
+        {
+          "word": " vai...",
+          "start": 27.68,
+          "end": 29.0,
+          "probability": 0.722722053527832
+        }
+      ]
+    },
+    {
+      "start": 29.839999999999996,
+      "end": 32.6,
+      "text": " resolver toda a sua expansão, seu crescimento.",
+      "words": [
+        {
+          "word": " resolver",
+          "start": 29.839999999999996,
+          "end": 30.24,
+          "probability": 0.7100416421890259
+        },
+        {
+          "word": " toda",
+          "start": 30.24,
+          "end": 30.44,
+          "probability": 0.39722397923469543
+        },
+        {
+          "word": " a",
+          "start": 30.44,
+          "end": 31.0,
+          "probability": 0.8730283379554749
+        },
+        {
+          "word": " sua",
+          "start": 31.0,
+          "end": 31.52,
+          "probability": 0.9372134804725647
+        },
+        {
+          "word": " expansão,",
+          "start": 31.52,
+          "end": 32.0,
+          "probability": 0.9924858212471008
+        },
+        {
+          "word": " seu",
+          "start": 32.08,
+          "end": 32.16,
+          "probability": 0.7756861448287964
+        },
+        {
+          "word": " crescimento.",
+          "start": 32.16,
+          "end": 32.6,
+          "probability": 0.9972720742225647
+        }
+      ]
+    },
+    {
+      "start": 32.86,
+      "end": 36.6,
+      "text": " Você tem que dar uma analisada e olhar em todo esse setor de pra poder",
+      "words": [
+        {
+          "word": " Você",
+          "start": 32.86,
+          "end": 32.96,
+          "probability": 0.9763892292976379
+        },
+        {
+          "word": " tem",
+          "start": 32.96,
+          "end": 33.14,
+          "probability": 0.9914916157722473
+        },
+        {
+          "word": " que",
+          "start": 33.14,
+          "end": 33.58,
+          "probability": 0.9813647866249084
+        },
+        {
+          "word": " dar",
+          "start": 33.58,
+          "end": 33.82,
+          "probability": 0.5965811610221863
+        },
+        {
+          "word": " uma",
+          "start": 33.82,
+          "end": 34.08,
+          "probability": 0.9809762239456177
+        },
+        {
+          "word": " analisada",
+          "start": 34.08,
+          "end": 35.04,
+          "probability": 0.9180892109870911
+        },
+        {
+          "word": " e",
+          "start": 35.04,
+          "end": 35.12,
+          "probability": 0.7162960767745972
+        },
+        {
+          "word": " olhar",
+          "start": 35.12,
+          "end": 35.24,
+          "probability": 0.5985354781150818
+        },
+        {
+          "word": " em",
+          "start": 35.24,
+          "end": 35.44,
+          "probability": 0.9205426573753357
+        },
+        {
+          "word": " todo",
+          "start": 35.44,
+          "end": 35.6,
+          "probability": 0.8935083746910095
+        },
+        {
+          "word": " esse",
+          "start": 35.6,
+          "end": 35.84,
+          "probability": 0.8889431357383728
+        },
+        {
+          "word": " setor",
+          "start": 35.84,
+          "end": 36.14,
+          "probability": 0.9738481342792511
+        },
+        {
+          "word": " de",
+          "start": 36.14,
+          "end": 36.24,
+          "probability": 0.661474883556366
+        },
+        {
+          "word": " pra",
+          "start": 36.24,
+          "end": 36.34,
+          "probability": 0.43516597151756287
+        },
+        {
+          "word": " poder",
+          "start": 36.34,
+          "end": 36.6,
+          "probability": 0.9650998115539551
+        }
+      ]
+    },
+    {
+      "start": 36.6,
+      "end": 37.98,
+      "text": " e expandir de pouco em pouco.",
+      "words": [
+        {
+          "word": " e",
+          "start": 36.6,
+          "end": 36.82,
+          "probability": 0.6204954981803894
+        },
+        {
+          "word": " expandir",
+          "start": 36.82,
+          "end": 37.24,
+          "probability": 0.9282921850681305
+        },
+        {
+          "word": " de",
+          "start": 37.24,
+          "end": 37.38,
+          "probability": 0.872752845287323
+        },
+        {
+          "word": " pouco",
+          "start": 37.38,
+          "end": 37.6,
+          "probability": 0.948539137840271
+        },
+        {
+          "word": " em",
+          "start": 37.6,
+          "end": 37.74,
+          "probability": 0.9728353023529053
+        },
+        {
+          "word": " pouco.",
+          "start": 37.74,
+          "end": 37.98,
+          "probability": 0.9857445359230042
+        }
+      ]
+    },
+    {
+      "start": 38.24,
+      "end": 39.56,
+      "text": " É um conjunto, né?",
+      "words": [
+        {
+          "word": " É",
+          "start": 38.24,
+          "end": 38.44,
+          "probability": 0.8926578164100647
+        },
+        {
+          "word": " um",
+          "start": 38.44,
+          "end": 38.72,
+          "probability": 0.9789667129516602
+        },
+        {
+          "word": " conjunto,",
+          "start": 38.72,
+          "end": 39.26,
+          "probability": 0.9940482378005981
+        },
+        {
+          "word": " né?",
+          "start": 39.46,
+          "end": 39.56,
+          "probability": 0.9142777323722839
+        }
+      ]
+    },
+    {
+      "start": 39.72,
+      "end": 40.0,
+      "text": " É um conjunto.",
+      "words": [
+        {
+          "word": " É",
+          "start": 39.72,
+          "end": 39.72,
+          "probability": 0.527635931968689
+        },
+        {
+          "word": " um",
+          "start": 39.72,
+          "end": 39.72,
+          "probability": 0.9628891944885254
+        },
+        {
+          "word": " conjunto.",
+          "start": 39.72,
+          "end": 40.0,
+          "probability": 0.9943923354148865
+        }
+      ]
+    },
+    {
+      "start": 40.08,
+      "end": 42.18,
+      "text": " E também, se você falou de expandir de pouco em pouco,",
+      "words": [
+        {
+          "word": " E",
+          "start": 40.08,
+          "end": 40.18,
+          "probability": 0.9541446566581726
+        },
+        {
+          "word": " também,",
+          "start": 40.18,
+          "end": 40.44,
+          "probability": 0.9827675223350525
+        },
+        {
+          "word": " se",
+          "start": 40.58,
+          "end": 40.7,
+          "probability": 0.8029485940933228
+        },
+        {
+          "word": " você",
+          "start": 40.7,
+          "end": 40.88,
+          "probability": 0.9947983026504517
+        },
+        {
+          "word": " falou",
+          "start": 40.88,
+          "end": 41.04,
+          "probability": 0.8467605113983154
+        },
+        {
+          "word": " de",
+          "start": 41.04,
+          "end": 41.18,
+          "probability": 0.9725232124328613
+        },
+        {
+          "word": " expandir",
+          "start": 41.18,
+          "end": 41.6,
+          "probability": 0.887803852558136
+        },
+        {
+          "word": " de",
+          "start": 41.6,
+          "end": 41.7,
+          "probability": 0.5305664539337158
+        },
+        {
+          "word": " pouco",
+          "start": 41.7,
+          "end": 41.8,
+          "probability": 0.9647070169448853
+        },
+        {
+          "word": " em",
+          "start": 41.8,
+          "end": 41.94,
+          "probability": 0.9827907085418701
+        },
+        {
+          "word": " pouco,",
+          "start": 41.94,
+          "end": 42.18,
+          "probability": 0.9924135804176331
+        }
+      ]
+    },
+    {
+      "start": 42.26,
+      "end": 44.8,
+      "text": " a gente tá falando aqui do jogo que vocês hoje estão jogando,",
+      "words": [
+        {
+          "word": " a",
+          "start": 42.26,
+          "end": 42.3,
+          "probability": 0.9632917046546936
+        },
+        {
+          "word": " gente",
+          "start": 42.3,
+          "end": 42.36,
+          "probability": 0.9992356300354004
+        },
+        {
+          "word": " tá",
+          "start": 42.36,
+          "end": 42.52,
+          "probability": 0.7538231015205383
+        },
+        {
+          "word": " falando",
+          "start": 42.52,
+          "end": 42.7,
+          "probability": 0.9967453479766846
+        },
+        {
+          "word": " aqui",
+          "start": 42.7,
+          "end": 42.94,
+          "probability": 0.967312753200531
+        },
+        {
+          "word": " do",
+          "start": 42.94,
+          "end": 43.1,
+          "probability": 0.961630642414093
+        },
+        {
+          "word": " jogo",
+          "start": 43.1,
+          "end": 43.34,
+          "probability": 0.9983955025672913
+        },
+        {
+          "word": " que",
+          "start": 43.34,
+          "end": 43.74,
+          "probability": 0.9750778079032898
+        },
+        {
+          "word": " vocês",
+          "start": 43.74,
+          "end": 43.96,
+          "probability": 0.9883430600166321
+        },
+        {
+          "word": " hoje",
+          "start": 43.96,
+          "end": 44.2,
+          "probability": 0.8441346287727356
+        },
+        {
+          "word": " estão",
+          "start": 44.2,
+          "end": 44.44,
+          "probability": 0.9949778914451599
+        },
+        {
+          "word": " jogando,",
+          "start": 44.44,
+          "end": 44.8,
+          "probability": 0.9938217401504517
+        }
+      ]
+    },
+    {
+      "start": 44.86,
+      "end": 46.98,
+      "text": " que é muito avançado, mas...",
+      "words": [
+        {
+          "word": " que",
+          "start": 44.86,
+          "end": 44.96,
+          "probability": 0.9927655458450317
+        },
+        {
+          "word": " é",
+          "start": 44.96,
+          "end": 45.04,
+          "probability": 0.9958490133285522
+        },
+        {
+          "word": " muito",
+          "start": 45.04,
+          "end": 45.34,
+          "probability": 0.9986221790313721
+        },
+        {
+          "word": " avançado,",
+          "start": 45.34,
+          "end": 46.06,
+          "probability": 0.9965307116508484
+        },
+        {
+          "word": " mas...",
+          "start": 46.4,
+          "end": 46.98,
+          "probability": 0.7633371651172638
+        }
+      ]
+    }
+  ],
+  "words": [
+    {
+      "word": " Vou",
+      "start": 0.0,
+      "end": 0.32,
+      "probability": 0.3297422230243683
+    },
+    {
+      "word": " vender",
+      "start": 0.32,
+      "end": 0.52,
+      "probability": 0.9526038765907288
+    },
+    {
+      "word": " o",
+      "start": 0.52,
+      "end": 0.62,
+      "probability": 0.4188576936721802
+    },
+    {
+      "word": " infoproducto,",
+      "start": 0.62,
+      "end": 1.12,
+      "probability": 0.6620239734649658
+    },
+    {
+      "word": " vou",
+      "start": 1.14,
+      "end": 1.22,
+      "probability": 0.9315100908279419
+    },
+    {
+      "word": " fazer",
+      "start": 1.22,
+      "end": 1.42,
+      "probability": 0.9953916072845459
+    },
+    {
+      "word": " conteúdo,",
+      "start": 1.42,
+      "end": 1.84,
+      "probability": 0.9844346642494202
+    },
+    {
+      "word": " vou",
+      "start": 1.98,
+      "end": 2.0,
+      "probability": 0.9873301982879639
+    },
+    {
+      "word": " vender",
+      "start": 2.0,
+      "end": 2.2,
+      "probability": 0.9954708814620972
+    },
+    {
+      "word": " o",
+      "start": 2.2,
+      "end": 2.28,
+      "probability": 0.9764318466186523
+    },
+    {
+      "word": " infoproducto.",
+      "start": 2.28,
+      "end": 2.88,
+      "probability": 0.9889896631240844
+    },
+    {
+      "word": " Hoje",
+      "start": 3.16,
+      "end": 3.48,
+      "probability": 0.9876546263694763
+    },
+    {
+      "word": " não.",
+      "start": 3.48,
+      "end": 3.68,
+      "probability": 0.802956759929657
+    },
+    {
+      "word": " Hoje",
+      "start": 3.88,
+      "end": 4.06,
+      "probability": 0.9824371933937073
+    },
+    {
+      "word": " eu",
+      "start": 4.06,
+      "end": 4.18,
+      "probability": 0.6391736268997192
+    },
+    {
+      "word": " acho",
+      "start": 4.18,
+      "end": 4.38,
+      "probability": 0.9867710471153259
+    },
+    {
+      "word": " que",
+      "start": 4.38,
+      "end": 4.5,
+      "probability": 0.9915851354598999
+    },
+    {
+      "word": " realmente",
+      "start": 4.5,
+      "end": 4.76,
+      "probability": 0.5940713286399841
+    },
+    {
+      "word": " vou",
+      "start": 4.76,
+      "end": 5.12,
+      "probability": 0.9056716561317444
+    },
+    {
+      "word": " criar",
+      "start": 5.12,
+      "end": 5.38,
+      "probability": 0.9898062348365784
+    },
+    {
+      "word": " um",
+      "start": 5.38,
+      "end": 5.96,
+      "probability": 0.9887054562568665
+    },
+    {
+      "word": " ecossistema",
+      "start": 5.96,
+      "end": 6.72,
+      "probability": 0.947131484746933
+    },
+    {
+      "word": " dentro",
+      "start": 6.72,
+      "end": 7.16,
+      "probability": 0.8772359490394592
+    },
+    {
+      "word": " da",
+      "start": 7.16,
+      "end": 7.98,
+      "probability": 0.963798463344574
+    },
+    {
+      "word": " minha",
+      "start": 7.98,
+      "end": 8.16,
+      "probability": 0.9964728951454163
+    },
+    {
+      "word": " marca,",
+      "start": 8.16,
+      "end": 8.48,
+      "probability": 0.9963086247444153
+    },
+    {
+      "word": " que",
+      "start": 8.72,
+      "end": 8.74,
+      "probability": 0.985582709312439
+    },
+    {
+      "word": " é",
+      "start": 8.74,
+      "end": 8.86,
+      "probability": 0.9746689200401306
+    },
+    {
+      "word": " a",
+      "start": 8.86,
+      "end": 9.1,
+      "probability": 0.7574751973152161
+    },
+    {
+      "word": " minha",
+      "start": 9.1,
+      "end": 9.58,
+      "probability": 0.9923122525215149
+    },
+    {
+      "word": " marca",
+      "start": 9.58,
+      "end": 9.82,
+      "probability": 0.9946131110191345
+    },
+    {
+      "word": " pessoal.",
+      "start": 9.82,
+      "end": 10.16,
+      "probability": 0.9804986119270325
+    },
+    {
+      "word": " Que",
+      "start": 10.4,
+      "end": 10.7,
+      "probability": 0.7435420155525208
+    },
+    {
+      "word": " ele",
+      "start": 10.7,
+      "end": 10.84,
+      "probability": 0.3198278546333313
+    },
+    {
+      "word": " é",
+      "start": 10.84,
+      "end": 10.9,
+      "probability": 0.9945626854896545
+    },
+    {
+      "word": " o",
+      "start": 10.9,
+      "end": 11.0,
+      "probability": 0.9747811555862427
+    },
+    {
+      "word": " Expert.",
+      "start": 11.0,
+      "end": 11.2,
+      "probability": 0.14590296149253845
+    },
+    {
+      "word": " O",
+      "start": 11.36,
+      "end": 11.4,
+      "probability": 0.9727181792259216
+    },
+    {
+      "word": " Expert",
+      "start": 11.4,
+      "end": 11.62,
+      "probability": 0.9901542067527771
+    },
+    {
+      "word": " hoje",
+      "start": 11.62,
+      "end": 11.84,
+      "probability": 0.867292582988739
+    },
+    {
+      "word": " não",
+      "start": 11.84,
+      "end": 11.96,
+      "probability": 0.9854472875595093
+    },
+    {
+      "word": " é",
+      "start": 11.96,
+      "end": 12.08,
+      "probability": 0.9911789298057556
+    },
+    {
+      "word": " só",
+      "start": 12.08,
+      "end": 12.14,
+      "probability": 0.9468767046928406
+    },
+    {
+      "word": " mais",
+      "start": 12.14,
+      "end": 12.32,
+      "probability": 0.9610955119132996
+    },
+    {
+      "word": " um",
+      "start": 12.32,
+      "end": 12.46,
+      "probability": 0.9521378874778748
+    },
+    {
+      "word": " especialista",
+      "start": 12.46,
+      "end": 13.16,
+      "probability": 0.9841282367706299
+    },
+    {
+      "word": " em",
+      "start": 13.16,
+      "end": 13.64,
+      "probability": 0.9428629279136658
+    },
+    {
+      "word": " algo",
+      "start": 13.64,
+      "end": 13.8,
+      "probability": 0.9986534118652344
+    },
+    {
+      "word": " específico.",
+      "start": 13.8,
+      "end": 14.44,
+      "probability": 0.994104415178299
+    },
+    {
+      "word": " Ele",
+      "start": 14.5,
+      "end": 14.64,
+      "probability": 0.9814483523368835
+    },
+    {
+      "word": " é",
+      "start": 14.64,
+      "end": 14.72,
+      "probability": 0.997765302658081
+    },
+    {
+      "word": " todo",
+      "start": 14.72,
+      "end": 14.86,
+      "probability": 0.935447633266449
+    },
+    {
+      "word": " um",
+      "start": 14.86,
+      "end": 15.2,
+      "probability": 0.9928287863731384
+    },
+    {
+      "word": " ecossistema",
+      "start": 15.2,
+      "end": 15.94,
+      "probability": 0.9960254728794098
+    },
+    {
+      "word": " que",
+      "start": 15.94,
+      "end": 16.06,
+      "probability": 0.9916384816169739
+    },
+    {
+      "word": " pode",
+      "start": 16.06,
+      "end": 16.2,
+      "probability": 0.995932400226593
+    },
+    {
+      "word": " ser",
+      "start": 16.2,
+      "end": 16.34,
+      "probability": 0.9926655888557434
+    },
+    {
+      "word": " explorado.",
+      "start": 16.34,
+      "end": 16.8,
+      "probability": 0.998786449432373
+    },
+    {
+      "word": " Pode",
+      "start": 17.0,
+      "end": 17.42,
+      "probability": 0.9378196001052856
+    },
+    {
+      "word": " ser",
+      "start": 17.42,
+      "end": 17.52,
+      "probability": 0.9914435744285583
+    },
+    {
+      "word": " explorado",
+      "start": 17.52,
+      "end": 17.92,
+      "probability": 0.9976244866847992
+    },
+    {
+      "word": " hoje",
+      "start": 17.92,
+      "end": 18.12,
+      "probability": 0.7511466145515442
+    },
+    {
+      "word": " por",
+      "start": 18.12,
+      "end": 18.66,
+      "probability": 0.7644930481910706
+    },
+    {
+      "word": " IA,",
+      "start": 18.66,
+      "end": 18.9,
+      "probability": 0.4976099282503128
+    },
+    {
+      "word": " por",
+      "start": 19.3,
+      "end": 19.3,
+      "probability": 0.8903532028198242
+    },
+    {
+      "word": " você",
+      "start": 19.3,
+      "end": 20.04,
+      "probability": 0.8393656015396118
+    },
+    {
+      "word": " abraçar",
+      "start": 20.04,
+      "end": 20.46,
+      "probability": 0.9967388808727264
+    },
+    {
+      "word": " o",
+      "start": 20.46,
+      "end": 20.6,
+      "probability": 0.9363563656806946
+    },
+    {
+      "word": " lado",
+      "start": 20.6,
+      "end": 20.7,
+      "probability": 0.8165158033370972
+    },
+    {
+      "word": " tech.",
+      "start": 20.7,
+      "end": 21.0,
+      "probability": 0.4105016589164734
+    },
+    {
+      "word": " Você",
+      "start": 21.38,
+      "end": 21.52,
+      "probability": 0.9848125576972961
+    },
+    {
+      "word": " pode",
+      "start": 21.52,
+      "end": 21.68,
+      "probability": 0.997543215751648
+    },
+    {
+      "word": " ser",
+      "start": 21.68,
+      "end": 21.78,
+      "probability": 0.9573469161987305
+    },
+    {
+      "word": " explorado",
+      "start": 21.78,
+      "end": 22.14,
+      "probability": 0.9985698461532593
+    },
+    {
+      "word": " por",
+      "start": 22.14,
+      "end": 22.32,
+      "probability": 0.9350330829620361
+    },
+    {
+      "word": " construir",
+      "start": 22.32,
+      "end": 22.74,
+      "probability": 0.9968981742858887
+    },
+    {
+      "word": " uma",
+      "start": 22.74,
+      "end": 22.96,
+      "probability": 0.9978376030921936
+    },
+    {
+      "word": " marca,",
+      "start": 22.96,
+      "end": 23.28,
+      "probability": 0.9980500936508179
+    },
+    {
+      "word": " construir",
+      "start": 23.52,
+      "end": 23.88,
+      "probability": 0.99009108543396
+    },
+    {
+      "word": " comunidade.",
+      "start": 23.88,
+      "end": 24.48,
+      "probability": 0.9970772564411163
+    },
+    {
+      "word": " Então",
+      "start": 25.0,
+      "end": 25.24,
+      "probability": 0.9910539984703064
+    },
+    {
+      "word": " não",
+      "start": 25.24,
+      "end": 25.36,
+      "probability": 0.8689776659011841
+    },
+    {
+      "word": " é",
+      "start": 25.36,
+      "end": 25.46,
+      "probability": 0.9976521134376526
+    },
+    {
+      "word": " mais",
+      "start": 25.46,
+      "end": 25.64,
+      "probability": 0.9744088649749756
+    },
+    {
+      "word": " simplesmente",
+      "start": 25.64,
+      "end": 26.02,
+      "probability": 0.9798312783241272
+    },
+    {
+      "word": " um",
+      "start": 26.02,
+      "end": 26.34,
+      "probability": 0.9769719243049622
+    },
+    {
+      "word": " funil,",
+      "start": 26.34,
+      "end": 26.74,
+      "probability": 0.953092485666275
+    },
+    {
+      "word": " uma",
+      "start": 26.84,
+      "end": 26.92,
+      "probability": 0.995984673500061
+    },
+    {
+      "word": " estratégia",
+      "start": 26.92,
+      "end": 27.56,
+      "probability": 0.9986889660358429
+    },
+    {
+      "word": " que",
+      "start": 27.56,
+      "end": 27.68,
+      "probability": 0.953099250793457
+    },
+    {
+      "word": " vai...",
+      "start": 27.68,
+      "end": 29.0,
+      "probability": 0.722722053527832
+    },
+    {
+      "word": " resolver",
+      "start": 29.839999999999996,
+      "end": 30.24,
+      "probability": 0.7100416421890259
+    },
+    {
+      "word": " toda",
+      "start": 30.24,
+      "end": 30.44,
+      "probability": 0.39722397923469543
+    },
+    {
+      "word": " a",
+      "start": 30.44,
+      "end": 31.0,
+      "probability": 0.8730283379554749
+    },
+    {
+      "word": " sua",
+      "start": 31.0,
+      "end": 31.52,
+      "probability": 0.9372134804725647
+    },
+    {
+      "word": " expansão,",
+      "start": 31.52,
+      "end": 32.0,
+      "probability": 0.9924858212471008
+    },
+    {
+      "word": " seu",
+      "start": 32.08,
+      "end": 32.16,
+      "probability": 0.7756861448287964
+    },
+    {
+      "word": " crescimento.",
+      "start": 32.16,
+      "end": 32.6,
+      "probability": 0.9972720742225647
+    },
+    {
+      "word": " Você",
+      "start": 32.86,
+      "end": 32.96,
+      "probability": 0.9763892292976379
+    },
+    {
+      "word": " tem",
+      "start": 32.96,
+      "end": 33.14,
+      "probability": 0.9914916157722473
+    },
+    {
+      "word": " que",
+      "start": 33.14,
+      "end": 33.58,
+      "probability": 0.9813647866249084
+    },
+    {
+      "word": " dar",
+      "start": 33.58,
+      "end": 33.82,
+      "probability": 0.5965811610221863
+    },
+    {
+      "word": " uma",
+      "start": 33.82,
+      "end": 34.08,
+      "probability": 0.9809762239456177
+    },
+    {
+      "word": " analisada",
+      "start": 34.08,
+      "end": 35.04,
+      "probability": 0.9180892109870911
+    },
+    {
+      "word": " e",
+      "start": 35.04,
+      "end": 35.12,
+      "probability": 0.7162960767745972
+    },
+    {
+      "word": " olhar",
+      "start": 35.12,
+      "end": 35.24,
+      "probability": 0.5985354781150818
+    },
+    {
+      "word": " em",
+      "start": 35.24,
+      "end": 35.44,
+      "probability": 0.9205426573753357
+    },
+    {
+      "word": " todo",
+      "start": 35.44,
+      "end": 35.6,
+      "probability": 0.8935083746910095
+    },
+    {
+      "word": " esse",
+      "start": 35.6,
+      "end": 35.84,
+      "probability": 0.8889431357383728
+    },
+    {
+      "word": " setor",
+      "start": 35.84,
+      "end": 36.14,
+      "probability": 0.9738481342792511
+    },
+    {
+      "word": " de",
+      "start": 36.14,
+      "end": 36.24,
+      "probability": 0.661474883556366
+    },
+    {
+      "word": " pra",
+      "start": 36.24,
+      "end": 36.34,
+      "probability": 0.43516597151756287
+    },
+    {
+      "word": " poder",
+      "start": 36.34,
+      "end": 36.6,
+      "probability": 0.9650998115539551
+    },
+    {
+      "word": " e",
+      "start": 36.6,
+      "end": 36.82,
+      "probability": 0.6204954981803894
+    },
+    {
+      "word": " expandir",
+      "start": 36.82,
+      "end": 37.24,
+      "probability": 0.9282921850681305
+    },
+    {
+      "word": " de",
+      "start": 37.24,
+      "end": 37.38,
+      "probability": 0.872752845287323
+    },
+    {
+      "word": " pouco",
+      "start": 37.38,
+      "end": 37.6,
+      "probability": 0.948539137840271
+    },
+    {
+      "word": " em",
+      "start": 37.6,
+      "end": 37.74,
+      "probability": 0.9728353023529053
+    },
+    {
+      "word": " pouco.",
+      "start": 37.74,
+      "end": 37.98,
+      "probability": 0.9857445359230042
+    },
+    {
+      "word": " É",
+      "start": 38.24,
+      "end": 38.44,
+      "probability": 0.8926578164100647
+    },
+    {
+      "word": " um",
+      "start": 38.44,
+      "end": 38.72,
+      "probability": 0.9789667129516602
+    },
+    {
+      "word": " conjunto,",
+      "start": 38.72,
+      "end": 39.26,
+      "probability": 0.9940482378005981
+    },
+    {
+      "word": " né?",
+      "start": 39.46,
+      "end": 39.56,
+      "probability": 0.9142777323722839
+    },
+    {
+      "word": " É",
+      "start": 39.72,
+      "end": 39.72,
+      "probability": 0.527635931968689
+    },
+    {
+      "word": " um",
+      "start": 39.72,
+      "end": 39.72,
+      "probability": 0.9628891944885254
+    },
+    {
+      "word": " conjunto.",
+      "start": 39.72,
+      "end": 40.0,
+      "probability": 0.9943923354148865
+    },
+    {
+      "word": " E",
+      "start": 40.08,
+      "end": 40.18,
+      "probability": 0.9541446566581726
+    },
+    {
+      "word": " também,",
+      "start": 40.18,
+      "end": 40.44,
+      "probability": 0.9827675223350525
+    },
+    {
+      "word": " se",
+      "start": 40.58,
+      "end": 40.7,
+      "probability": 0.8029485940933228
+    },
+    {
+      "word": " você",
+      "start": 40.7,
+      "end": 40.88,
+      "probability": 0.9947983026504517
+    },
+    {
+      "word": " falou",
+      "start": 40.88,
+      "end": 41.04,
+      "probability": 0.8467605113983154
+    },
+    {
+      "word": " de",
+      "start": 41.04,
+      "end": 41.18,
+      "probability": 0.9725232124328613
+    },
+    {
+      "word": " expandir",
+      "start": 41.18,
+      "end": 41.6,
+      "probability": 0.887803852558136
+    },
+    {
+      "word": " de",
+      "start": 41.6,
+      "end": 41.7,
+      "probability": 0.5305664539337158
+    },
+    {
+      "word": " pouco",
+      "start": 41.7,
+      "end": 41.8,
+      "probability": 0.9647070169448853
+    },
+    {
+      "word": " em",
+      "start": 41.8,
+      "end": 41.94,
+      "probability": 0.9827907085418701
+    },
+    {
+      "word": " pouco,",
+      "start": 41.94,
+      "end": 42.18,
+      "probability": 0.9924135804176331
+    },
+    {
+      "word": " a",
+      "start": 42.26,
+      "end": 42.3,
+      "probability": 0.9632917046546936
+    },
+    {
+      "word": " gente",
+      "start": 42.3,
+      "end": 42.36,
+      "probability": 0.9992356300354004
+    },
+    {
+      "word": " tá",
+      "start": 42.36,
+      "end": 42.52,
+      "probability": 0.7538231015205383
+    },
+    {
+      "word": " falando",
+      "start": 42.52,
+      "end": 42.7,
+      "probability": 0.9967453479766846
+    },
+    {
+      "word": " aqui",
+      "start": 42.7,
+      "end": 42.94,
+      "probability": 0.967312753200531
+    },
+    {
+      "word": " do",
+      "start": 42.94,
+      "end": 43.1,
+      "probability": 0.961630642414093
+    },
+    {
+      "word": " jogo",
+      "start": 43.1,
+      "end": 43.34,
+      "probability": 0.9983955025672913
+    },
+    {
+      "word": " que",
+      "start": 43.34,
+      "end": 43.74,
+      "probability": 0.9750778079032898
+    },
+    {
+      "word": " vocês",
+      "start": 43.74,
+      "end": 43.96,
+      "probability": 0.9883430600166321
+    },
+    {
+      "word": " hoje",
+      "start": 43.96,
+      "end": 44.2,
+      "probability": 0.8441346287727356
+    },
+    {
+      "word": " estão",
+      "start": 44.2,
+      "end": 44.44,
+      "probability": 0.9949778914451599
+    },
+    {
+      "word": " jogando,",
+      "start": 44.44,
+      "end": 44.8,
+      "probability": 0.9938217401504517
+    },
+    {
+      "word": " que",
+      "start": 44.86,
+      "end": 44.96,
+      "probability": 0.9927655458450317
+    },
+    {
+      "word": " é",
+      "start": 44.96,
+      "end": 45.04,
+      "probability": 0.9958490133285522
+    },
+    {
+      "word": " muito",
+      "start": 45.04,
+      "end": 45.34,
+      "probability": 0.9986221790313721
+    },
+    {
+      "word": " avançado,",
+      "start": 45.34,
+      "end": 46.06,
+      "probability": 0.9965307116508484
+    },
+    {
+      "word": " mas...",
+      "start": 46.4,
+      "end": 46.98,
+      "probability": 0.7633371651172638
+    }
+  ]
+}

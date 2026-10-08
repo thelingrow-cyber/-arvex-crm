@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar claro ARVEX</title>
+  <desc id="desc">Símbolo ARVEX carvão sobre fundo marfim, preparado para recorte circular.</desc>
+  <rect width="2048" height="2048" fill="#F2F0EA"/>
+  <g transform="translate(384 384) scale(2.5)">
+    <g fill="none" stroke="#101216" stroke-width="58" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M106 390 226 112"/>
+      <path d="M274 112 406 390"/>
+      <path d="M166 294h68"/>
+      <path d="M278 294h68"/>
+    </g>
+    <rect x="232" y="270" width="48" height="48" rx="3" fill="#C8A96E" transform="rotate(45 256 294)"/>
+  </g>
+</svg>

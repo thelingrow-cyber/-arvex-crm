@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX — refinamento Sistema/Núcleo</title>
+  <desc id="desc">Comparação entre o símbolo original e duas formas de incorporar um V.</desc>
+  <rect width="1920" height="1080" fill="#ECEAE4"/>
+
+  <text x="100" y="105" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="61" font-weight="760">O sistema agora carrega ARVEX.</text>
+  <text x="100" y="153" fill="#5B5E66" font-family="Inter, Arial, sans-serif" font-size="24">Mantemos a arquitetura que funcionou e colocamos o V no núcleo — sem voltar ao A tradicional nem depender do X.</text>
+
+  <g transform="translate(100 220)">
+    <rect width="500" height="600" rx="34" fill="#F8F7F3"/>
+    <text x="38" y="62" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2">BASE</text>
+    <text x="38" y="105" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="750">Núcleo abstrato</text>
+    <g transform="translate(115 145) scale(.53)">
+      <rect width="512" height="512" rx="52" fill="#0B0D10"/>
+      <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+      <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+      <rect x="224" y="224" width="64" height="64" rx="5" fill="#5B6CFF" transform="rotate(45 256 256)"/>
+    </g>
+    <text x="38" y="480" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Tem conceito.</text>
+    <text x="38" y="515" fill="#5B5E66" font-family="Inter, Arial, sans-serif" font-size="18">Mas ainda não deixa uma pista visual</text>
+    <text x="38" y="542" fill="#5B5E66" font-family="Inter, Arial, sans-serif" font-size="18">suficiente do nome ARVEX.</text>
+  </g>
+
+  <g transform="translate(710 220)">
+    <rect width="500" height="600" rx="34" fill="#0B0D10"/>
+    <rect x="363" y="30" width="105" height="34" rx="17" fill="#5B6CFF"/>
+    <text x="415.5" y="53" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="1">DIRETA</text>
+    <text x="38" y="62" fill="#9297A4" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2">02A</text>
+    <text x="38" y="105" fill="#F4F2EC" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="750">V como núcleo</text>
+    <g transform="translate(115 145) scale(.53)">
+      <rect width="512" height="512" rx="52" fill="#0B0D10"/>
+      <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+      <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+      <path d="M201 214 256 316 311 214" fill="none" stroke="#5B6CFF" stroke-width="42" stroke-linecap="square" stroke-linejoin="miter"/>
+    </g>
+    <text x="38" y="480" fill="#F4F2EC" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Reconhecimento imediato.</text>
+    <text x="38" y="515" fill="#AEB2BC" font-family="Inter, Arial, sans-serif" font-size="18">Mais legível no avatar; o V passa a ser</text>
+    <text x="38" y="542" fill="#AEB2BC" font-family="Inter, Arial, sans-serif" font-size="18">a peça que transforma a arquitetura.</text>
+  </g>
+
+  <g transform="translate(1320 220)">
+    <rect width="500" height="600" rx="34" fill="#F8F7F3"/>
+    <rect x="345" y="30" width="123" height="34" rx="17" fill="#D8D6D0"/>
+    <text x="406.5" y="53" text-anchor="middle" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="1">SUTIL</text>
+    <text x="38" y="62" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2">02B</text>
+    <text x="38" y="105" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="750">V em negativo</text>
+    <g transform="translate(115 145) scale(.53)">
+      <rect width="512" height="512" rx="52" fill="#0B0D10"/>
+      <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+      <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+      <path d="M256 187 325 256 256 325 187 256Z" fill="#5B6CFF"/>
+      <path d="M220 225 256 291 292 225" fill="none" stroke="#0B0D10" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter"/>
+    </g>
+    <text x="38" y="480" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Mais proprietário.</text>
+    <text x="38" y="515" fill="#5B5E66" font-family="Inter, Arial, sans-serif" font-size="18">Preserva o núcleo e recompensa o olhar;</text>
+    <text x="38" y="542" fill="#5B5E66" font-family="Inter, Arial, sans-serif" font-size="18">exige mais repetição para ser aprendido.</text>
+  </g>
+
+  <text x="100" y="895" fill="#73767D" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="750" letter-spacing="2">REGRA DE LANÇAMENTO</text>
+  <text x="100" y="935" fill="#0B0D10" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="700">O símbolo nasce sempre ao lado do nome.</text>
+  <text x="100" y="971" fill="#5B5E66" font-family="Inter, Arial, sans-serif" font-size="19">No avatar ele pode ficar sozinho, porque @arvexcompany já aparece ao lado. Nas peças, usamos a assinatura até a associação se consolidar.</text>
+
+  <g transform="translate(1425 859)">
+    <rect width="395" height="128" rx="25" fill="#0B0D10"/>
+    <g transform="translate(22 15) scale(.19)">
+      <path d="M76 76h250v72H148v178H76Z" fill="#F4F2EC"/>
+      <path d="M436 436H186v-72h178V186h72Z" fill="#F4F2EC"/>
+      <path d="M256 187 325 256 256 325 187 256Z" fill="#5B6CFF"/>
+      <path d="M220 225 256 291 292 225" fill="none" stroke="#0B0D10" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter"/>
+    </g>
+    <text x="135" y="83" fill="#F4F2EC" font-family="Inter, Arial, sans-serif" font-size="51" font-weight="750" letter-spacing="2">ARVEX</text>
+  </g>
+</svg>

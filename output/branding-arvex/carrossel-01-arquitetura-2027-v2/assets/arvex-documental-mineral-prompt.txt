@@ -1,0 +1,41 @@
+Use case: identity-preserve + style-transfer
+Asset type: fotografia editorial institucional para capa de carrossel da ARVEX
+
+Primary request:
+Edite a fotografia de podcast fornecida para criar a assinatura fotográfica proprietária da ARVEX, chamada “Documental Tecnológico Mineral”. A imagem final deve continuar parecendo um registro verdadeiro de dois fundadores conversando em um podcast, mas com direção de cor e acabamento editorial reconhecíveis. Não transforme a cena em ilustração e não recrie as pessoas.
+
+Input image:
+Imagem 1 é o alvo da edição. Preserve rigorosamente a identidade, os traços faciais, a idade aparente, o cabelo, a expressão, o corpo, a pose, as mãos, as roupas, os microfones, a mesa, a perspectiva e a relação espacial entre os dois homens. Mantenha ambos reconhecíveis como as mesmas pessoas da fotografia original.
+
+Scene/backdrop:
+Preserve o estúdio de podcast e sua arquitetura básica. Elimine completamente a dominante verde fluorescente do fundo. Faça a cortina e o ambiente recuarem em tons minerais de grafite, carvão e cinza-petróleo muito dessaturado. O cenário deve parecer real, sóbrio e tridimensional — nunca um fundo gerado ou um estúdio futurista.
+
+Style/medium:
+Fotografia documental contemporânea de negócios com acabamento editorial premium e linguagem arquitetônica. Realismo fotográfico, materialidade, precisão e humanidade. Aparência de frame documental cuidadosamente colorizado, não de campanha publicitária artificial. A estética deve ser contemporânea e própria da ARVEX, sem imitar o retrô rosa/creme da Vinci.
+
+Composition/framing:
+Mantenha a composição horizontal original e os dois fundadores no mesmo enquadramento. Preserve espaço visual suficiente acima e ao redor deles. A região central deve funcionar quando recortada verticalmente em 4:5 para Instagram, mantendo os dois rostos visíveis e reconhecíveis. Não aproxime, não reposicione e não altere a perspectiva da câmera.
+
+Lighting/mood:
+Luz cinematográfica discreta e plausível. Pele naturalmente quente e viva; sombras profundas em carvão com uma nuance mineral de petróleo; highlights suaves em bronze/champagne envelhecido. Contraste moderado, com profundidade no fundo e boa separação dos rostos. Sensação de inteligência, construção, precisão, confiança silenciosa e trabalho real em andamento.
+
+Color palette:
+- carvão profundo e grafite como base;
+- petróleo mineral extremamente dessaturado apenas nas sombras;
+- taupe e pedra nos médios;
+- pele quente, natural e fiel;
+- bronze/champagne envelhecido nos pontos de luz;
+- saturação global contida, aproximadamente 45–55% de uma fotografia convencional;
+- nenhum verde vivo, neon ou cor digital agressiva.
+
+Materials/textures:
+Grão fotográfico fino inspirado em filme 35 mm, distribuição orgânica e discreta. Curva tonal cinematográfica com highlights macios e sombras densas sem esmagar detalhes. Halation mínimo apenas nos pontos luminosos. Textura real de pele, tecido, cortina, metal e mesa preservada.
+
+Text:
+Não adicionar nenhum texto, legenda, tipografia, símbolo, marca ou logotipo. A identidade gráfica e a headline serão aplicadas posteriormente no layout.
+
+Constraints:
+Alterar somente tratamento cromático, atmosfera luminosa e acabamento fotográfico. Preservar com alta fidelidade as pessoas e todos os elementos importantes da cena. O resultado deve continuar parecendo a mesma fotografia, apenas dirigida e finalizada sob a lente visual da ARVEX.
+
+Avoid:
+preto e branco; sépia; estética retrô anos 1980; rosa; azul corporativo vivo; teal-and-orange clichê; cyberpunk; neon; hologramas; elementos de inteligência artificial; robôs; circuitos; luz volumétrica excessiva; pele plástica; beauty retouch; rostos modificados; troca de roupa; novas pessoas; objetos extras; cenário reconstruído; desfoque artificial intenso; HDR; vinheta pesada; molduras; vazamento de luz falso; poeira ou riscos de filme; texto; marcas d’água.

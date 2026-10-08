@@ -1,0 +1,23 @@
+Mode: built-in image_gen for the garment donor; conventional masked composition for the final portrait.
+Selected donor: first generated garment image, saved as doadora-gola.png.
+References: approved color portrait v5 (edit target); t2.jpg (clothing inspiration only).
+The second refinement attempt was not selected for the composition. Local conventional fabric finishing was applied to the selected donor instead.
+
+SELECTED DONOR PROMPT
+
+Use case: precise-object-edit, wardrobe donor for a later masked composition.
+Edit IMAGE 1, the square color portrait of the man wearing a black puffer jacket and dark crewneck sweater. IMAGE 2, the phone screenshot of another man's avatar, is a CLOTHING REFERENCE ONLY for the short upright light inner collar beneath a dark jacket. Do not copy the second person's face, hair, or any phone interface.
+
+Replace only the dark inner crewneck sweater in image 1 with an elegant LIGHT STONE GRAY / OFF-WHITE fine-knit quarter-zip pullover. A short softly structured STAND COLLAR, similar in height and understated style to image 2, with a small discreet silver zipper centered on the chest. The zip is mostly closed, with a small relaxed opening at the very top. The collar sits around the lower neck and below the chin, leaving a natural band of neck visible. Thin, supple matte cotton knit, very subtle light gray melange texture, soft folds and naturally shaded seams; no bulky fleece, no turtleneck roll, no pointed dress-shirt collar, no buttons, no logos. Keep the exact existing black puffer jacket over it.
+
+Maintain image 1's exact square crop, head size, position, face, neck proportions, jacket opening, shoulders, quilting, all outer zippers, lighting, color and softly blurred light background. This image will be used only as a donor for the inner garment, so accurate alignment with the existing jacket and neck is essential. Keep the new collar entirely beneath the jaw. Match the existing soft daylight, realistic contact shadows between the collar and neck and between the pullover and black jacket. Quiet natural photographic wardrobe styling. One full square color photograph, same dimensions and same composition as image 1.
+
+UNSELECTED REFINEMENT PROMPT
+
+Edit only the light-gray quarter-zip garment in this photograph. Keep its exact shape, stand collar, fit, color and position.
+
+Two small wardrobe refinements:
+1. Replace the squiggly embossed-looking body texture with a PLAIN, SOLID, FINE-GAUGE COTTON KNIT. Very subtle regular fabric texture, mostly smooth at this viewing distance; simple soft folds and natural shading. No paisley, no swirls, no decorative print, no speckled or etched pattern. The short collar keeps its natural understated ribbed construction.
+2. Make the pullover's central zipper pull much smaller and understated: a narrow, low-profile brushed metal tab, roughly half its current length, with no large hole or shiny bulky hardware. The pullover zipper remains in the same position and opening.
+
+Keep the black outer jacket and all its zipper hardware unchanged. Keep the rest of the photograph unchanged, including framing, face, neck geometry, color and background. This is a donor image from which only the new inner garment will be cropped. One square color image at the same dimensions.

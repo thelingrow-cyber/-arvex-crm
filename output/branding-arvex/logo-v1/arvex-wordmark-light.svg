@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 764 140" role="img" aria-labelledby="title desc">
+  <title id="title">ARVEX</title>
+  <desc id="desc">Wordmark geométrico ARVEX em carvão com núcleo dourado no X.</desc>
+  <g fill="none" stroke="#101216" stroke-width="27" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M14 128 58 12"/>
+    <path d="M80 12 126 128"/>
+    <path d="M38 92h64"/>
+  </g>
+  <g fill="#101216" fill-rule="evenodd">
+    <path d="M160 140V0h58c38 0 61 20 61 51 0 23-13 40-35 47l39 42h-43l-34-38h-12v38Zm34-68h21c19 0 29-7 29-21 0-14-10-21-29-21h-21Z"/>
+    <path d="M310 0h38l34 103L416 0h38l-55 140h-34Z"/>
+    <path d="M480 0h114v30h-80v24h68v30h-68v26h80v30H480Z"/>
+    <path d="M620 0h40l32 48 32-48h40l-50 70 50 70h-40l-32-48-32 48h-40l50-70Z"/>
+  </g>
+  <rect x="680" y="58" width="24" height="24" rx="2" fill="#C8A96E" transform="rotate(45 692 70)"/>
+</svg>

@@ -1,0 +1,22 @@
+Generation mode: built-in image_gen.
+Reference files supplied by the user: vivid.jpg, viiii.jpg, vif4.jpg, viii.jpg.
+
+Use case: photorealistic-natural, reference-guided identity preservation.
+Create ONE final square, very high resolution, ultrarealistic professional editorial profile photograph of the SAME REAL MAN shown in all four supplied reference images. This is a new portrait commissioned by the man himself. Maximum identity fidelity is the highest priority; professional production must never change his face. Do not make a different, idealized lookalike.
+
+Input images, in order:
+1 vivid.jpg: identity reference, especially face proportions, cheek volume, nose, lips, jaw, skin tone, subtle moustache and goatee. Ignore cap and sunset scenery.
+2 viiii.jpg: additional identity reference, brow shape, nose, lips, jaw from the alternate view; this is a mirror selfie, account for perspective/mirroring, do not copy the phone, cap, or black-and-white treatment.
+3 vif4.jpg: identity reference for the uncovered natural wavy dark hair, frontal/three-quarter face, moustache/goatee pattern, natural neck/shoulder build. Ignore nightclub colored light and background.
+4 viii.jpg: additional close face reference for eye shape, eyebrows, skin texture, actual hairline and hair texture. Use its genuine facial geometry but retain the neutral adult appearance and understated facial hair of references 1 and 3, not the large open-mouth smile.
+
+Subject invariants: faithfully preserve his actual oval-to-rounded face, full natural cheeks, rounded jaw and chin rather than sculpting them, eye size and spacing and dark brown irises, thick naturally shaped dark brows, nose bridge and softly rounded nose tip/nostril width, exact natural lip proportions, ears, forehead, natural facial asymmetry and warm natural skin tone. Maintain the fine moustache, small patch below lower lip and short chin goatee, with mostly clean cheeks as in references 1 and 3. Natural dark brown almost black thick wavy hair brushed loosely up and back like his uncovered hair in 3 and 4, with real strands and slight irregularity. Do not invent a sharp fade or change the hairline. Preserve actual age and build. No face thinning, jaw enhancement, enlarged eyes, nose reshaping, symmetry correction, skin lightening, heavy beard, makeup or beauty-filter retouching.
+
+Art direction: understated contemporary founder portrait conveying approachable calm authority, grounded in real work. Plain matte warm pale greige/beige studio wall, empty and softly out of focus. A simple well-fitting heavyweight charcoal-black crew-neck cotton T-shirt, no logos. Bare head. Shoulders relaxed, torso very slightly turned for dimension, face nearly frontal, head level, eyes looking directly into lens. Mouth gently closed, relaxed, with only a very slight natural friendly lift at the corners; retain the person's characteristic lips. Not stern, not a broad promotional grin. No hands in frame.
+
+Composition: true 1:1 square standalone photograph, head and upper chest, central balanced portrait designed to survive a circular Instagram profile crop. Entire hair and both sides of face safely inside the central circle, small comfortable space over hair; top of hair to chin around 62 percent of image height. Face large and clearly recognizable at thumbnail size, eyes around upper-middle area. Natural 85mm full-frame portrait perspective from eye level, enough depth of field to keep both eyes, nose, cheeks and lips convincingly sharp; background gently defocused.
+
+Lighting: a large soft daylight source from slightly beside the camera, delicate natural falloff with gentle fill on shadow side, both eyes clearly visible and small plausible catchlights. Neutral true-to-life color on skin, warm restrained background. No harsh dramatic black shadows. Photographic dynamic range with soft highlight rolloff, refined but lifelike colors.
+
+Rendering: actual photographic appearance with natural pores, fine facial hairs, subtle skin variation, plausible individual hair strands, realistic cotton weave, soft optical transitions. High detail without crunchy oversharpening, excessive microcontrast, added noise, waxy/plastic skin, CGI, illustration, artificial glow, teal/orange grading, neon rim lights or glamour retouching.
+Exclude all screenshot UI, phone controls, timestamps, text, watermarks, borders, circle masks, props, scenery and other people. Final output is one polished color professional square portrait, not a grid.

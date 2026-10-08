@@ -1,0 +1,14 @@
+[1:v]scale=1120:915:force_original_aspect_ratio=increase,crop=1080:880:x=20:y=17,eq=brightness=-0.08:contrast=1.08:saturation=0.92,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.18[photo];
+[0:v][photo]overlay=0:0:enable='lt(t,6.55)'[b0];
+[2:v]format=rgba,fade=t=in:st=0:d=0.28:alpha=1,fade=t=out:st=6.12:d=0.35:alpha=1[frame];
+[3:v]format=rgba,fade=t=in:st=0.10:d=0.42:alpha=1,fade=t=out:st=6.08:d=0.38:alpha=1[amazon];
+[4:v]format=rgba,fade=t=in:st=0.42:d=0.42:alpha=1,fade=t=out:st=6.08:d=0.38:alpha=1[meta];
+[5:v]format=rgba,fade=t=in:st=0.80:d=0.28:alpha=1,fade=t=out:st=6.05:d=0.35:alpha=1[tension];
+[6:v]format=rgba,fade=t=in:st=1.02:d=0.40:alpha=1,fade=t=out:st=6.00:d=0.38:alpha=1[headline];
+[b0][frame]overlay=0:0:enable='lt(t,6.55)'[b1];
+[b1][amazon]overlay=x='if(lt(t,0.55),-38+69*t,0)':y=0:enable='lt(t,6.55)'[b2];
+[b2][meta]overlay=x='if(lt(t,0.9),42-47*t,0)':y=0:enable='lt(t,6.55)'[b3];
+[b3][tension]overlay=0:0:enable='lt(t,6.55)'[b4];
+[b4][headline]overlay=x=0:y='if(lt(t,1.5),32-21.33*t,0)':enable='lt(t,6.55)'[opening];
+[7:v]format=rgba,fade=t=in:st=7.12:d=0.18:alpha=1,fade=t=out:st=8.02:d=0.22:alpha=1[brand];
+[opening][brand]overlay=x=0:y='-1000+if(lt(t,7.32),24*(7.32-t)/0.20,0)':enable='between(t,7.12,8.24)'[vout]

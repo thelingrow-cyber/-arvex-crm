@@ -1,0 +1,22 @@
+{
+  "method": "Conventional masked garment montage over approved v5; no resize or filter applied to the approved portrait",
+  "basePath": "C:/Users/Vitor Simões/Downloads/exec-e90ea39a-46e8-48db-a7e2-5627c6713e25.png",
+  "baseSha256": "579c6fa8278b5c5b4c92f13c6f4cadd138da2445c59bb3a0dd8246f8202a6664",
+  "finalPath": "C:\\Users\\Vitor Simões\\Desktop\\ARVEX\\output\\imagegen\\perfil-montagem-sueter-aberto-2026-09-12-v14.png",
+  "donorPath": "C:\\Users\\Vitor Simões\\Desktop\\ARVEX\\output\\imagegen\\montagem-v14\\doadora-gola.png",
+  "cropSource": "C:/Users/Vitor Simões/.codex/generated_images/01a0936b-0db6-77c2-b860-dd28e0ea4ef4/exec-4e124fe9-d101-48c0-abef-076533020734.png",
+  "width": 1254,
+  "height": 1254,
+  "protectedPixels": 793660,
+  "changedFacePixelsVsApprovedBase": 0,
+  "changedFacePixelsVsV11": 0,
+  "changedPixelsTotal": 79862,
+  "changedPercentage": 5.07861287261942,
+  "changedBounds": {
+    "left": 357,
+    "top": 708,
+    "right": 644,
+    "bottom": 1253
+  },
+  "maskFeatherSigma": 1.25
+}

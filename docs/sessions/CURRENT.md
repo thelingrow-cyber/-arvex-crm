@@ -89,3 +89,147 @@ Versão vigente para avaliação: `output/branding-arvex/carrossel-ter-ia-nao-ba
 Contexto em `docs/carrossel-arvex/direcao-visual-v1-proposta.md` e
 `docs/stories/arvex-instagram-rebrand-v1.story.md`. **Bloqueio:** aprovação visual da direção v2
 ainda pendente; Georgia e Bahnschrift são fontes de trabalho, não famílias oficiais aprovadas.
+
+## Atualização — novo player brasileiro (24/09)
+
+Primeira referência de **Bruno Belissimo (@brunobelissimo.ai)** coletada pelo pipeline local:
+Reel `DdXM4m7jDSF`, sobre Character Sheet para consistência de imagens. A ficha completa está em
+`docs/conteudo/banco-roteiros/referencias/ref-brunobelissimo-disney-resolveu-isso-1937-DdXM4m7jDSF.md`
+e o mapeamento provisório em `docs/conteudo/banco-roteiros/players/bruno-belissimo/README.md`.
+
+Leitura provisória: educação prática de ferramenta + demonstração visual + captura por entregável.
+Métricas observadas: 4.537 curtidas e 2.202 comentários; a taxa alta de comentários é contaminada pelo
+CTA de palavra-chave para receber sheet e prompts. Não fechar padrão do player com uma peça. Faltam
+grade, bio e 3–5 vídeos misturando fortes e fracos. Mecânicas aproveitáveis: problema visual em três
+degraus, analogia histórica operacional e método transformado em objeto. Estado local, sem commit.
+
+Segundo Reel do Bruno coletado: `DdSDX76gcrt`, notícia sobre desaceleração da corrida da IA, mercado
+e migração de valor para empresas que aplicam a tecnologia. Ficha em
+`docs/conteudo/banco-roteiros/referencias/ref-brunobelissimo-comenta-mentoria-pra-candidatar-DdSDX76gcrt.md`.
+Comparação provisória: arquivo gratuito gerou 48,5% de comentários/curtida; candidatura para mentoria,
+6,6%. Regra adicionada ao `ESTUDO-GANCHOS.md`: CTA por comentário mede também valor e fricção do
+entregável. Checagem factual registrou que a abertura de capital da OpenAI foi descrita nas fontes como
+adiada para 2027, não cancelada, e que a causalidade financeira apresentada no Reel é interpretação.
+Player permanece provisório com duas peças e sem leitura de grade. Estado local, sem commit.
+
+Terceiro Reel do Bruno coletado: `DdFLZ2CCnbM`, sobre a solução proposta pela OpenAI para
+Navier–Stokes. Ficha em `docs/conteudo/banco-roteiros/referencias/ref-brunobelissimo-singularidade-tem-forma-tornado-DdFLZ2CCnbM.md`.
+Métricas: 17.759 curtidas e 205 comentários. Primeira separação de função com n=3: visão/escala
+histórica lidera em alcance aparente; ativo gratuito lidera comentário; candidatura para mentoria
+fica abaixo. Constantes de edição nas três são estilo provável, não causa. Hipótese adicionada ao
+`ESTUDO-GANCHOS.md`. Checagem factual: solução foi publicada e verificada formalmente pela OpenAI,
+mas ainda dependia da avaliação da comunidade/Clay; evitar dizer "resolvido" como fato encerrado.
+Player sobe para 🟡, ainda sem leitura de grade. Estado local, sem commit.
+
+Quarto Reel do Bruno coletado: `Dc7Bc0aES57`, sobre o S1 da Skild AI aprendendo uma tarefa por vídeo.
+Ficha em `docs/conteudo/banco-roteiros/referencias/ref-brunobelissimo-robo-nao-copiou-ovo-Dc7Bc0aES57.md`.
+Métricas: 441 curtidas e 12 comentários, fundo do lote. O caso corrige a hipótese anterior: futuro
+tecnológico sozinho não alcança. Navier–Stokes e S1 têm edição e função semelhantes, mas diferem 40×;
+a peça forte liga a ruptura a escala histórica e destino humano, enquanto a fraca fica em produto,
+benchmark e previsão setorial. Regra adicionada ao CAFEIA no `ESTUDO-GANCHOS.md`: toda notícia precisa
+chegar a uma decisão, identidade ou consequência humana do dono. Estado local, sem commit.
+
+Quinto Reel do Bruno coletado: `Dcw2VRWjgKz`, sobre energia, data centers e Amazônia. Ficha em
+`docs/conteudo/banco-roteiros/referencias/ref-brunobelissimo-isso-acontecendo-aqui-enquanto-Dcw2VRWjgKz.md`.
+Métricas: 3.445 curtidas e 225 comentários. Com cinco peças, o lote mínimo fecha quatro funções:
+alcance (escala histórica), captura (ativo gratuito), conversa (ameaça localizada/dilema), oferta e
+boletim técnico. O novo caso mostra 6,5% de comentários/curtida sem isca, sugerindo que polêmica
+localizada produz conversa. Foram registradas correções factuais sobre Three Mile Island, Amazon e
+projeções de água. Mapeamento ainda 🟡 porque falta a grade de visualizações. Estado local, sem commit.
+
+Perfil geral do Bruno lido no Instagram e nos destinos da bio. Dados públicos em 24/09: 845 mil
+seguidores, conta verificada; bio “Ajudo criadores a crescer com IA” + Stanford + “Monte sua Máquina
+de Conteúdo”. Arquitetura fechada: `IA + Mente` é mídia ampla de ciência/notícia/ferramenta; a
+monetização converge para creators via curso Máquina de Conteúdo, mentoria por aplicação, gratuitos e
+afiliados de ferramentas. Nove Reels recentes medidos por curtidas/comentários; mediana 1.148/82.
+Sem login, Instagram não expôs views. Contraste registrado: Bruno explica o que a IA está fazendo;
+Vitor mostra o que uma empresa deve construir por causa disso. Estado local, sem commit.
+## Atualização — CAFEIA episódio 2 (24/09/2026)
+
+- Selecionadas duas pautas para gravação em 25/09/2026, com fontes primárias de 23/09/2026.
+- Roteiros salvos em `docs/conteudo/pautas/2026-09-25-cafeia-episodio-2.md`.
+- Peça 1: ChatGPT Ads, função conversa, tensão busca × conversa.
+- Peça 2: agentes do Claude em pesquisa biológica, função alcance, tensão geração × critério.
+- Limites factuais preservados: anúncios não implicam acesso do anunciante à conversa; função do sistema enzimático ainda é desconhecida.
+## Atualização — edição CAFEIA Amazon × Muse (24/09/2026)
+
+- Vídeo bruto copiado de Downloads para `videos/cafeia-amazon-muse/input.mp4`; original preservado.
+- Transcrição local com timestamps em `videos/cafeia-amazon-muse/transcript.json`.
+- Depuração reduziu 74,8s para 50,6s, removendo recomeço do Muse, silêncio entre tomadas e tentativas repetidas do fechamento; a última formulação correta foi preservada.
+- Montagem final em `videos/cafeia-amazon-muse/CAFEIA-amazon-muse-final-v2.mp4`.
+- Edição: 9:16, tela dividida, demonstração oficial do Muse publicada pela Meta, cards Amazon × Meta, legendas, cortes secos, correção leve de brilho/contraste/saturação e áudio normalizado.
+- Validação: H.264 1080×1920, ~30 fps, AAC estéreo 48 kHz, 50,63s; decodificação completa sem erros e revisão por folha de contato.
+- Limitação: o scaffold do HyperFrames falhou com erro de acesso no caminho Windows; a renderização foi concluída localmente com FFmpeg usando o plano visual definido.
+- Revisão posterior: removida pausa de 2,52s entre “o motivo pode” e “mudar”. Arquivo vigente: `videos/cafeia-amazon-muse/CAFEIA-amazon-muse-final-v3.mp4`, 48,12s. A análise dos 9s iniciais agora encontra apenas uma respiração natural de 0,37s.
+- Correção de naming solicitada: selo de abertura e legenda agora usam `COFFEE IA`. Arquivo vigente: `videos/cafeia-amazon-muse/COFFEE-IA-amazon-muse-final.mp4`.
+- Validação final: 48,116s, H.264 1080×1920, uma faixa AAC estéreo 48 kHz e decodificação completa sem erros. O corte da pausa inicial foi preservado.
+- Segunda revisão visual e de ritmo: abertura estática substituída por motion editorial sobre retrato desfocado, com entradas separadas de Amazon, Meta, tensão e manchete; removido o aspecto de slide/cartões da abertura.
+- Oito respiros internos foram encurtados, preservando pausas naturais de aproximadamente 0,15–0,20s. A duração caiu de 48,116s para 46,167s; não restaram silêncios maiores que 0,30s além de uma pausa natural de 0,319s no fechamento.
+- Novo arquivo vigente: `videos/cafeia-amazon-muse/COFFEE-IA-amazon-muse-final-v2.mp4`. Validado em H.264 1080×1920, AAC 48 kHz e decodificação completa sem erros.
+- Terceira revisão: o retrato desfocado/transparente da abertura foi substituído por uma imagem editorial opaca de logística × agente de compras, gerada com a ferramenta nativa de imagem e salva em `videos/cafeia-amazon-muse/opener-background-v2.png`. Motion e tipografia foram preservados sobre a nova base.
+- Auditoria de fala refeita no bruto e na montagem: as retomadas de “O Muse...” e as múltiplas tentativas de “porque agora a sua empresa...” foram removidas, mantendo as formulações posteriores completas. A transcrição da versão entregue não contém frase duplicada.
+- Arquivo vigente: `videos/cafeia-amazon-muse/COFFEE-IA-amazon-muse-final-v3.mp4`, 46,20s, H.264 1080×1920, uma faixa AAC 48 kHz; decodificação completa sem erros e abertura revisada por folha de contato.
+- Quarta revisão: removido o movimento lateral/senoidal da imagem inicial; a base agora permanece estabilizada e recebe somente as entradas dos elementos gráficos.
+- Criado sting de marca `COFFEE IA — Negócios em movimento`, exibido no painel visual superior quando o nome da série é falado, sem cobrir o rosto nem as legendas.
+- Arquivo vigente: `videos/cafeia-amazon-muse/COFFEE-IA-amazon-muse-final-v5.mp4`, 46,20s; abertura e sting revisados em quadros, decodificação completa sem erros.
+- Revisão profissional de ritmo e sincronização: a fala foi acelerada em 1,06× sem mudança de tom; 17 intervalos entre palavras foram comprimidos pelas bordas da transcrição e os dois vazios residuais acima de 0,20s foram removidos.
+- A assinatura `COFFEE IA` agora começa junto da frase “Esse é o COFFEE IA” e termina antes de “O Muse”; sincronização conferida em quadros.
+- Arquivo vigente: `videos/cafeia-amazon-muse/COFFEE-IA-amazon-muse-final-v7.mp4`, 40,967s, H.264 1080×1920, uma faixa AAC 48 kHz. Não há silêncio detectável acima de 0,20s e a decodificação completa terminou sem erros.
+- Revisão pedida pelo usuário: o intervalo sem fala após “o motivo” foi cortado; a primeira ocorrência de “compra” foi removida, mantendo a segunda após “depois”. A transcrição local dos trechos revisados confirma a sequência “e o motivo pode mudar” e uma única ocorrência de “depois compra”.
+- O card preto “#1” foi substituído por mapa dos Estados Unidos e uma captura da demonstração oficial do Muse; o trecho anterior usa a demonstração do produto. Arte em `videos/cafeia-amazon-muse/us-muse-rank.png`, gerada a partir de `us-map-background.png` e `muse-phone-list.png`.
+- Arquivo vigente: `videos/cafeia-amazon-muse/COFFEE-IA-amazon-muse-final-v9.mp4`, renderizado localmente com sucesso e confirmado no disco (~20,4 MB). A versão intermediária v8 teve decodificação completa, 39,733s, H.264 1080×1920 e AAC 48 kHz; v9 altera somente uma microtransição de áudio de 12 ms no corte de “compra”. A decodificação adicional de v9 foi impedida por limite de uso na revisão automática de ferramentas, sem avaliação de risco. Próximo passo opcional: reprodução integral de v9 no app pelo usuário.
+- Nova revisão: reconstrução da camada do apresentador a partir de `input.mp4`, com mapeamento dos cortes em `videos/cafeia-amazon-muse/timeline_map.py`. Legenda refeita por palavra em `render_v10.py` e `captions-v10-words.json`, com uma ocorrência de “e depois compra com a sua autorização” conferida por ASR local. A transição para o enquadramento inteiro ocorre em 33,03s e o retorno anterior ao plano inteiro em 6,20s. Marca `COFFEE IA` centralizada durante a fala, entre 6,79s e 7,55s; marca antiga fora da transição seguinte. Arquivo vigente: `videos/cafeia-amazon-muse/COFFEE-IA-amazon-muse-final-v10.mp4`, 39,733s, H.264 1080×1920, AAC estéreo, 1192 quadros. Vídeo e áudio decodificados sem erros; áudio tem o mesmo hash de pacotes da versão v9. Entrada/saída da marca e transição em 33,03s conferidas quadro a quadro.
+
+## Atualização — 01 a 03/10/2026 (Claude Code)
+
+**Objetivo:** produção de conteúdo da marca pessoal — análise de players, roteiros e edição.
+
+**Feito:**
+- Players analisados: Vitor M. Guerrero (60 reels, `banco-roteiros/players/vitor-guerrero/`), Herman Lind (manifesto, `ref-herman-1ind-…-Dd42Xg8MIEi.md`), Alex Sidhu (3 leituras com página real atrás, `ref-alexbsidhu-…-Dd50M91xspO.md`).
+- Postados: manifesto "timidez é covardia" (~5k, público misto); Reagan/sócio que não trabalha (eleição, edição `tools/video-recut/videos/2026-10-reagan-socio/`); "3 leituras de IA" (molde Alex, `videos/2026-10-tres-leituras-ia/montar.py` — recorte desde o início, pessoa se move, páginas reais rolando, gancho em grade 2×2, CTA direct). Postado 03/10 03:30.
+- Semana com 2 virais (segundo o Vitor). Ritmo atual: 2–3 vídeos/dia há 3 semanas.
+
+**Decisões:**
+- IA é o eixo; filosofia/política entram como lente. Estrutura Elias/Tay: tema aberto → ponte (~75%) → tese com slogan fixo → fecho sem lamento.
+- Formato "página real atrás" = captura (medir por directs), 1×/semana; não é formato de alcance.
+
+**Próximo passo (04/10):** estruturar de vez os formatos para subir o volume com qualidade (meta da grade = 5/dia, `docs/conteudo/CALENDARIO-EDITORIAL.md`): fixar 4–6 moldes com roteiro-modelo + receita de edição de baixo custo cada; definir o slogan/tese (3 opções a partir do brand book v2). Pendentes: resumos PT dos 3 textos para os directs; números dos 3 posts.
+
+**Sem commit:** pastas novas em `tools/video-recut/videos/2026-10-*` e fichas novas de referência.
+
+## Objetivo ativo
+
+Preparar para 07/10/2026 um carrossel da marca pessoal do Vitor que complemente o vídeo “Se eu fosse presidente” sobre o Brasil virar potência em IA.
+
+## Estado atual
+
+Sete lâminas 1080 × 1350, contact sheet, fonte de renderização e legenda estão em `output/carrossel-marca-pessoal/presidente-ia-2026-10-07/`. Story em `docs/stories/conteudo-presidente-ia-carrossel-2026-10-07.story.md` está Ready for Review. QA independente revisou os PNGs e considerou conteúdo e visual prontos para revisão do Vitor. Nada foi publicado.
+
+## Commits relevantes
+
+Nenhum commit criado nesta entrega. As alterações locais preexistentes foram preservadas.
+
+## Validação
+
+Os sete PNGs foram gerados, reabertos em tamanho integral e na contact sheet, e confirmados em 1080 × 1350. `node --check` e renderização com `node output/carrossel-marca-pessoal/presidente-ia-2026-10-07/build.cjs` passaram. O dado “entre os três maiores mercados do ChatGPT por usuários ativos semanais” foi checado na publicação oficial da OpenAI de 27/08/2026; ranking composto de 2023 e pesquisas não específicas de IA foram excluídos. `npm test` passou (checagem de integridade do handoff). `npm run lint` e `npm run typecheck` não existem no `package.json`.
+
+## Bloqueios e riscos
+
+A proposta de fundos de pensão é opinião, não política em vigor; a arte explicita parcela limitada, diversificação e controle de risco. Imagens conceituais geradas estão rotuladas sobre as lâminas 4 e 6. A comparação foi feita com roteiro v8 e transcrição do bruto, não com a montagem final publicada; a checagem humana do vídeo publicado permanece aberta.
+
+## Próximo passo recomendado
+
+Vitor revisar a contact sheet e conferir as três propostas com o vídeo publicado; então publicar as lâminas 01–07 na ordem e usar a legenda do README, se aprovada.
+
+## Como retomar
+
+Abrir `output/carrossel-marca-pessoal/presidente-ia-2026-10-07/contact-sheet.png` e `README.md`; qualquer ajuste visual pode ser feito em `build.cjs` e reexportado pelo comando acima. Consultar a story para checklist e limites de verificação.
+
+## Atualização — 08/10/2026 (Claude Code, encerrada por desligamento)
+
+- **Pauta do dia** montada a partir do `BACKLOG.md` (não gravada na AGENDA): 5 vídeos MP (MP-03/MP-13), VZ-02, LG-12; OF-12 se houver roteiro. Pendente: Vitor dizer o que saiu de 05–07/10 para marcar no backlog (3ª semana sem `fechar`); OF-08 (Letícia) candidata a `[~]`.
+- **Linha editorial vigente = v3** (`LINHA-EDITORIAL-FORMATOS.md`): 2 formatos — 3× Regra dita como lei + 2× Tendência → negócio. Encaixe do estoque: Regra = César/Rubicão, Muhammad Ali, Yerkes-Dodson; Tendência = CAFEIA "nem quem fez garante" + **1 a escrever**. Platão e "quando estiver pronto" são curtos demais (reserva). Roteiros precisam das 2 frases fixas (dobradiça + assinatura).
+- **WhisperFlow:** daemon OK; desde o boot de 08/10 toda gravação é descartada por silêncio. Mic padrão Realtek, não mudo, vol 56%, permissão OK, mas RMS ~0,001 (limiar 0,015). Suspeita: fone/headset de ontem desconectado ou tecla de mudo do notebook. Retomar re-medindo o mic.
+- **Commit:** tudo exceto mídia pesada (mp4/mov/m4a/wav/bin) — vídeos ficam só locais.
+
+**Próximo passo:** escrever a 2ª Tendência + ajustar os 5 roteiros à v3; confirmar o mic.

@@ -1,0 +1,13 @@
+Generation mode: built-in image_gen.
+Reference 1: user-provided orkfd.jpg, original-photo wallpaper for identity support.
+Reference 2: user-preferred portrait exec-e90ea39a-46e8-48db-a7e2-5627c6713e25.png, edit target.
+Output: perfil-colorido-camisa-branca-2026-09-12-v9.png
+Visual review: white shirt, color, source background and expression maintained. Localized editing was requested through the prompt, not enforced by a pixel mask; do not claim pixel-identical preservation of the face or guaranteed absence of synthesized texture.
+
+Localized wardrobe edit of IMAGE 2, the square color portrait. This is the exact portrait the user approves. IMAGE 1, the phone wallpaper, is supplementary identity reference of the same person only; do not use its background, interface or framing.
+
+Preserve IMAGE 2 as-is and replace ONLY the visible gray inner sweater with a WHITE COTTON SHIRT with a small, understated open collar underneath the existing black quilted jacket. Keep the opening modest and the cotton matte, naturally creased, with soft shadows matching the existing daylight. No logo, tie or jewelry.
+
+Treat every area outside the inner clothing as a protected area. Preserve the original face and its existing texture, hair, eyebrows, eyes, eyelids, nose, mouth, beard, cheeks, ears, neck, expression, skin color and facial proportions. Keep the EXACT existing light blurred background, color, exposure, head angle, jacket, crop and image dimensions.
+
+The user's highest priority is retaining the photographic appearance of the approved source face. DO NOT enhance, reconstruct, beautify, smooth, sharpen, regenerate detail in, or apply clarity to the face or hair. No new skin detail or hairs; no added smile. The face should be visually identical to the source in image 2. Achieve realism by preserving the approved photograph and integrating the shirt convincingly. A careful localized clothing replacement, with the rest of the color photograph untouched. Output one square photo only.

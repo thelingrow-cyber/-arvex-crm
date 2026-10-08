@@ -1,0 +1,123 @@
+{
+  "duration": 27.066666666666666,
+  "cuts": [
+    {
+      "start": 1.1333333333333333,
+      "end": 10.266666666666667,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "offset": 0,
+      "v1Offset": 0,
+      "duration": 8.3,
+      "frames": 249,
+      "rate": 1.100401606425703
+    },
+    {
+      "start": 11.3,
+      "end": 17.033333333333335,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "offset": 8.3,
+      "v1Offset": 9.133333333333335,
+      "duration": 5.4,
+      "frames": 162,
+      "rate": 1.0617283950617284
+    },
+    {
+      "start": 17.033333333333335,
+      "end": 24.666666666666668,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "offset": 13.700000000000001,
+      "v1Offset": 14.866666666666669,
+      "duration": 6.8,
+      "frames": 204,
+      "rate": 1.1225490196078431
+    },
+    {
+      "start": 24.933333333333334,
+      "end": 29,
+      "crop": [
+        450,
+        800,
+        1094,
+        172
+      ],
+      "offset": 20.5,
+      "v1Offset": 22.5,
+      "duration": 3.6333333333333333,
+      "frames": 109,
+      "rate": 1.1192660550458715
+    },
+    {
+      "start": 29.7,
+      "end": 32.766666666666666,
+      "crop": [
+        504,
+        896,
+        1066,
+        134
+      ],
+      "offset": 24.133333333333333,
+      "v1Offset": 26.566666666666666,
+      "duration": 2.933333333333333,
+      "frames": 88,
+      "rate": 1.0454545454545454
+    }
+  ],
+  "inserts": [
+    {
+      "name": "ecosystem",
+      "start": 4.589233576642335,
+      "duration": 2.7,
+      "end": 7.289233576642335
+    },
+    {
+      "name": "ai-create",
+      "start": 14.709606986899562,
+      "duration": 2,
+      "end": 16.709606986899562
+    },
+    {
+      "name": "funnel",
+      "start": 21.214754098360658,
+      "duration": 2.1,
+      "end": 23.31475409836066
+    }
+  ],
+  "tech": {
+    "start": 16.739606986899563,
+    "end": 18.809606986899563
+  },
+  "flashes": [
+    4.589233576642335,
+    14.709606986899562,
+    23.31475409836066
+  ],
+  "music": {
+    "title": "Close Up",
+    "author": "Michael Ramir C.",
+    "provider": "Mixkit",
+    "source": "https://assets.mixkit.co/music/1167/1167.mp3",
+    "license": "https://mixkit.co/license/#musicFree"
+  },
+  "notes": [
+    "V1 and original preserved.",
+    "No CTA or promotional freeze.",
+    "Moderate pitch-preserving tempo changes, matching video and captions.",
+    "Conceptual motion only; no personal CRM or product footage.",
+    "Visual and numeric audio checks; human listening review remains pending."
+  ]
+}

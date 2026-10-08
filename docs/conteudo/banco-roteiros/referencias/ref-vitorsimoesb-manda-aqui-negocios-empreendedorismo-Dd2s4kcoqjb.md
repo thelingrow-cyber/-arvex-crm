@@ -13,11 +13,12 @@ abertura:      rótulo (citação de figura histórica)
 mecanicas:     []
 cta:
 metricas_pub:
-  views:       ~45.000 (informado pelo Vitor, 2026-09-29)
+  views:       129.153 (Apify, 2026-10-07 — eram ~45k em 29/09)
+  views_29_09: ~45.000 (informado pelo Vitor)
   seguidores:  ~80 (0,18% das views)
   curtida/view: ~7,6% (alto — régua do Areb: 6%+ = ressonância)
-  curtidas:    3402
-  comentarios: 36
+  curtidas:    9592 (07/10; 3402 em 29/09) · curtida/view 7,4%
+  comentarios: 69 (07/10) · comentário/view 0,05% — alcance alto, conversa baixa
   compartilh:  # preencher na mão (não vem na API)
 veredito:      ✅ PRIMEIRO VÍDEO PRÓPRIO QUE ESTOUROU — repetir o molde
 ---
@@ -75,6 +76,12 @@ nenhum (take único)
 - **tema de identidade** (cauteloso × ousado), não tática
 - **tese discordável** → os comentários viraram debate (Marco Aurélio, Epicteto, "cauteloso que morreu cedo")
 - **fecho em loop** (repete a frase do começo)
+
+## Atualização 2026-10-07
+
+- 129k views em 8 dias, curtida/view se manteve em ~7,4% (a ressonância não caiu com o alcance).
+- Comentários recentes respondem com **outros aforismos**: "a sorte favorece os corajosos", "a sorte acompanha os corajosos", "só quem arrisca viver merece o extraordinário". O público desse formato devolve frase — confirma o molde FRASE e casa direto com o roteiro do César ("a sorte está lançada").
+- Comentário/view baixíssimo (0,05%): é peça de alcance e salvamento, não de conversa.
 
 ## O que os comentários mostram
 
