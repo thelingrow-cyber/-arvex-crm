@@ -39,4 +39,9 @@ Estudos completos: `elias-maman/ESTUDO.md` · `luana-carolina/ESTUDO.md` · `tay
 | **5. Frase histórica** | Vitor | 129k (Alexandre) | 30–45s | mantém, com o herói certo e a dobradiça no fim |
 | + Captura (1×/semana) | Vitor | — | 45–75s | obra na tela + CTA direct |
 
+### Adendo 08/10 (noite): Matheus Gomes, o formato da tela
+
+Estudo: `matheus-gomes/ESTUDO.md`. Com algo na tela ele faz de 3 a 4 vezes mais que opinando sem tela (113k e 72k × 27k). Ele **filma o monitor com o celular**, com a mão e o ambiente no quadro, e coloca um **título fixo que traz o dilema** (*"Isso aqui é genialidade ou roubo?"*, 839k). O público dele é dev: do Matheus vale o **jeito de gravar**, não o assunto (tutorial com prompt não serve para o empresário).
+Decisão do Vitor: **1 vídeo de tela por dia** (estilo Matheus), mais os de estilo Luana e Tay.
+
 **O que falta definir antes dos cartões:** a sua **dobradiça** (o equivalente a *"quem tem uma empresa precisa ficar atento"*) e a sua **frase-assinatura** (o equivalente a *"o silêncio dos bons"*). Os três players têm, e é a tese fixa que o brand book deixou em aberto.
