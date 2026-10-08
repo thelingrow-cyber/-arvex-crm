@@ -51,11 +51,14 @@ def transcrever(item, cache, lang):
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", bruto, "-vn", "-ac", "1", "-ar", "16000",
                     "-b:a", "32k", mp3], check=True)
     os.remove(bruto)
-    for tentativa in range(8):
+    # A cota do Groq é por modelo: no 429, alterna para o outro antes de esperar.
+    modelos = ["whisper-large-v3", "whisper-large-v3-turbo"]
+    for tentativa in range(16):
+        modelo = modelos[tentativa % 2]
         out = subprocess.run(["curl.exe", "-s", "-w", "\n%{http_code}",
                               "https://api.groq.com/openai/v1/audio/transcriptions",
                               "-H", f"Authorization: Bearer {env('GROQ_API_KEY')}",
-                              "-F", f"file=@{mp3}", "-F", "model=whisper-large-v3",
+                              "-F", f"file=@{mp3}", "-F", f"model={modelo}",
                               "-F", f"language={lang}", "-F", "response_format=verbose_json",
                               "-F", "timestamp_granularities[]=segment"],
                              capture_output=True, text=True, encoding="utf-8").stdout
@@ -65,10 +68,12 @@ def transcrever(item, cache, lang):
             json.dump(dado, open(arq, "w", encoding="utf-8"), ensure_ascii=False)
             os.remove(mp3)
             return dado
-        espera = 60 * (tentativa + 1) if codigo == "429" else 10
-        print(f"  {sc}: HTTP {codigo}, nova tentativa em {espera}s", flush=True)
+        if codigo == "429" and tentativa % 2 == 0:
+            continue  # tenta já o outro modelo
+        espera = 60 * (tentativa // 2 + 1) if codigo == "429" else 10
+        print(f"  {sc}: HTTP {codigo} nos dois modelos, nova tentativa em {espera}s", flush=True)
         time.sleep(espera)
-    raise RuntimeError(f"{sc}: Groq falhou 8 vezes")
+    raise RuntimeError(f"{sc}: Groq falhou 16 vezes")
 
 
 def main():
