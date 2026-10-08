@@ -177,3 +177,240 @@ Ordenados por views. ❤ = -1 significa curtidas ocultas.
 | [116.927](https://www.instagram.com/reel/DdpfH13swMC/) | -1 | 180 | 26-09-23 | 26s | Corte de fala espontânea | ambiente e parceiro | — | Isso é aquilo que não é sorte. mas é o que eu estou agora. Quem vai estar ao meu redor? Aonde você vai estar? É da minha responsabilidade ir… |
 | [93.809](https://www.instagram.com/reel/DdpQ0IyhOuX/) | -1 | 137 | 26-09-23 | 41s | Corte de fala espontânea | 'a fase não foi boa. qual sua mensagem?' | elo mais frágil | A fase não foi boa. o ano não foi bom. Qual seria a sua mensagem pra essa pessoa? Primeira coisa é pegar um papel e uma caneta e escrever… |
 | [4.993](https://www.instagram.com/reel/DZr1yO-Mr-5/) | 68 | 1 | 26-06-17 | 28s | Corte de fala espontânea | 'o esforçado não ganha do talentoso' | final confuso | Não. o esforçado ele não ganha do talentoso. Ele perde. perde de longe. Mas está tudo bem. Essa é a bola que eu levanto. Está tudo bem. Eu não… |
+
+---
+
+## Anexo C — roteiros completos dos maiores
+
+Transcrição automática (Whisper), uma frase por linha para ler o ritmo da fala. Pode ter palavra trocada ou acento faltando; o conteúdo é fiel.
+
+### 1.584.980 views · 66s · 2026-02-07 · [link](https://www.instagram.com/reel/DUdgGqjEWeR/)
+
+```
+meu ego é grande demais pra eu passar vergonha e receber um não.
+Para com isso.
+Gente, se vocês já tiveram noção que quanto mais alto a pessoa tá, quanto mais coisas elas conseguiram na vida, mais não elas receberam, eu vejo por mim.
+Hoje em dia eu tenho parceria com inúmeras empresas, tipo, empresa muito grande mesmo.
+Eu conquistei várias coisas muito interessantes, que é tipo, oito meses atrás eu jamais pensaria em conquistar.
+Por exemplo, há um ano atrás, muito menos.
+Só que um ano atrás eu levei muitos menos nãos do que hoje em dia Porque, meu, o negócio é gradativo ali, entendeu?
+É proporcional, quanto mais você cresce, mais oportunidades você tem Mais não na cara você recebe, filhotão Então eu acho que assim, às vezes você recebe não, não, não, não, não Desse, nossa, recebi um não Tipo, meu, em todos os dias a gente tá recebendo um não A nossa vida é um não, se você parar pra pensar Por exemplo, eu não tenho parceria com aquela X empresa que eu nunca entrei em contato Então se ela fala não, a minha vida vai continuar a mesma coisa Ai, mas aí o que vão achar de mim?
+Não sei o que, o que se importa?
+Daqui 3, 4 anos você nem vai lembrar o nome dessas pessoas É disso que eu tô falando Então assim, se a gente não tenta, a gente não sai do lugar
+```
+
+### 1.321.199 views · 74s · 2026-07-23 · [link](https://www.instagram.com/reel/DbJn2_6q9Th/)
+
+```
+A última coisa que você precisa fazer é comentar a palminha.
+Se você quer ser útil de verdade na vida de alguém que você gosta muito e você sabe que essa pessoa está fazendo de tudo para dar certo nesse caos que são as redes sociais, existe um caminho que é muito mais útil, que é qual?
+Você servir como alguém que direciona e desperta melhores ideias dessa pessoa.
+Então, como você vai ser útil?
+A próxima vez que você estiver usando o seu celular, consumindo conteúdo e por acaso você cair em algum vídeo da área daquela pessoa, da área de especialidade, você vai encaminhar para ela e você vai instigar ela, incentivar ela, falando assim, olha, eu queria ouvir você falando sobre esse tema.
+Eu acho que faria muito sentido você trazer o seu ponto de vista sobre esse assunto.
+Melhor ainda, quando vocês estiverem conversando, trocando ideia e essa pessoa soltar algo interessante, você vai ser a pessoa que vai falar, leva isso para o teu Instagram.
+Você não está só preenchendo um espaço vazio nos comentários, você está servindo como um orientador, você está servindo como uma luz que desperta o melhor lado dessa pessoa.
+E aí sim, você vai estar sendo útil de verdade.
+```
+
+### 1.310.852 views · 74s · 2026-02-06 · [link](https://www.instagram.com/reel/DUbVSO3kVrL/)
+
+```
+eu tenho que ver meus erros pra conseguir consertar então eu preciso que alguém chegue e me fale pô, lanço, tá errando nisso isso é uma crítica construtiva, mas tem aquela pessoa que chega nossa, mas tá uma porcaria mesmo tá, por quê?
+Não, porque é uma porcaria tá, mas porcaria por quê?
+a pessoa não sabe, ela simplesmente não gosta de você e vai odiar tudo que você faz então isso basicamente é uma crítica nada construtiva e eu não entendo esse tipo de jeito porque se a pessoa não gosta de você por causa de alguma coisa tudo bem, mas tem aquela pessoa que não gosta de você por simplesmente não gostar e eu não entendo isso, porque se alguém não gosta Vim, por que ela vai me seguir Por que ela vai ver minhas fotos Por que ela vai me acompanhar nos vídeos Ou por que ela vai fazer qualquer coisa do tipo Eu acho que assim, ó Se você não gosta de alguém, solta essa pessoa de você Ela é uma mala pra você, solta ela Isso é você gostar tanto da pessoa que você quer acompanhar ela Você quer saber o que tá acontecendo com a vida dela Eu acho isso uma falta de coisa pra fazer, entendeu?
+E essa pessoa vai começar a criticar ela Vai criticar ela por tudo Então eu coloquei isso na minha cabeça Eu não sou a única pessoa criticada do mundo Eu não posso me sentir afetada por ser criticada o tempo todo.
+E eu tenho que levar isso como um lado bom.
+Eu tenho que levar essas críticas de uma forma para mim crescer e não para o lado pessoal.
+Se a pessoa já não gosta de mim e está me criticando, eu deixo de lado.
+Mas se eu vejo que a pessoa não me conhece, está fazendo uma crítica legal, eu levo isso para a minha vida.
+```
+
+### 1.176.910 views · 59s · 2026-06-20 · [link](https://www.instagram.com/reel/DZz8jWARlDD/)
+
+```
+A primeira malícia que você precisa desenvolver para sobreviver em um ambiente profissional é esconder os seus talentos.
+Ponto final.
+A pessoa tem que ser muito inocente para achar que em um ambiente corporativo ela vai ser premiada por ser talentosa.
+Olha que lindo, alcançou resultados sem nem se esforçar.
+Tentou tão pouco que já conseguiu.
+Esquece essa ideia.
+porque a pessoa invejosa, que justamente vai ser uma pedra no meio do seu caminho e vai atrapalhar a tua vida, ela não tem problema com o seu resultado.
+O problema dela é você alcançar aquilo que ela tanto deseja alcançar sem nem precisar se esforçar, porque no dia a dia ela vê o quanto ela está se matando, se desdobrando em cinco e não chega aos seus pés.
+Então, se você quer ser inteligente, você não vai ficar ostentando seus talentos, Você vai esconder eles e ficar ostentando o quê?
+O teu esforço.
+```
+
+### 835.902 views · 191s · 2026-08-01 · [link](https://www.instagram.com/reel/DbgLe0cRyX9/)
+
+```
+Eu sacrifiquei a minha espontaneidade, a minha autenticidade e a minha naturalidade para dar certo na internet e esse vídeo é um pedido para que você faça o mesmo.
+A questão é que hoje você tem a sua espontaneidade e naturalidade porque você se habituou a agir de acordo com as informações que você tem.
+Quando eu tomei a decisão que eu queria transformar o meu posicionamento digital em um trabalho, um negócio que me desse muito dinheiro, eu fui atrás de aprender mais estratégia de vendas, comunicação, copy.
+Depois de ser exposta para esse mundo de informações novas, eu olhava para aquilo que eu fazia com espontaneidade, naturalidade, e achava defeito em tudo.
+Absolutamente nada estava bom.
+E eu entrei numa sinuca de bico, porque eu não conseguia ser quem eu era, porque eu me sentia culpada, porque quem eu era, era quem fazia de um jeito que era errado.
+E eu não conseguia agir com naturalidade diante de todas aquelas novas informações.
+E é aqui que está onde as pessoas abandonam e erram e perdem a chance.
+Porque quando você chega nesse vale, você precisa respirar fundo e entender que você está em um momento de desenvolvimento.
+Uma transi e normal perder espontaneidade naturalidade perder a sua autenticidade porque voc est se preparando para ser uma pessoa nova O problema n perder essa autenticidade essa naturalidade O problema nunca conseguir encontrar ela de novo Só passei por esse vale porque eu insisti e eu sabia que eu precisava daquilo.
+Então veio a segunda parte.
+E na segunda parte é justamente onde você volta a ser natural, autêntico, é onde você volta a ser espontâneo.
+Porque o que no início era contra-intuitivo, o que no início era esquisito, essas ideias de Hulk, de comunicação, de você articular melhor as palavras, você tentou tanto que agora aquilo virou natural.
+Você consegue perceber a diferença entre a pessoa que perde a identidade dela e a pessoa que perde por um momento e depois ela encontra uma nova identidade.
+E para essa nova identidade, aí sim, esses pequenos hábitos, essas novas informações se tornam naturais e espontâneas.
+É um momento, não é sua trajetória inteira, não te define como pessoa.
+Então eu preciso que você se dê uma chance de sentir esse desconforto de não ser você mesmo.
+E cuidado para não cair na crença, aquela velha desculpa de Ah, eu não vou perder a minha essência.
+A tua essência te trouxe para a vida que você tem hoje.
+Se você quer ir além, você tem que saber que a tua essência também precisa evoluir.
+```
+
+### 799.578 views · 60s · 2026-01-29 · [link](https://www.instagram.com/reel/DUGOugUEXzq/)
+
+```
+Essa é a voz de peito.
+Essa é a voz de cabeça.
+E eu tô aqui pra perguntar pra você que no dia a dia usa a voz de peito, se comunica, mas quando abre a câmera muda de personalidade.
+Oi, gente.
+Então, bom dia.
+Tô aqui com a agenda do dia, muito trabalho.
+Por que que você faz isso?
+Eu sei.
+É porque você sente que tem que agradar alguém.
+você está insegura de criar conteúdo sendo você mesma.
+E quer que eu te fale, você está deixando de lado uma vantagem competitiva que outras pessoas se matariam para ter.
+Então, assim, para de gravar a história como quem está pedindo favor, como quem tem que ter permissão de estar compartilhando ideias, pensamentos, conhecimentos.
+Ai, mas, então, que talvez, quem sabe, é claro que no caso...
+Na tua vida você não é assim?
+```
+
+### 779.736 views · 56s · 2026-01-28 · [link](https://www.instagram.com/reel/DUD97BykV8s/)
+
+```
+Pessoas estupidamente bem-sucedidas não criam nenhuma diferença entre quando é jogo e quando é treino.
+Elas usam toda a oportunidade na frente delas para entregar o seu melhor, praticar as habilidades e evoluir.
+E aquele indivíduo que fala, quando eu quiser seguir a dieta, mas se eu levar o treino a sério, o dia que eu me posicionar e escolher me posicionar nas redes sociais, não consegue.
+ele na verdade está evitando entregar o melhor dele porque vai que ele descobre que o melhor dele não é tudo aquilo que ele sempre achou que fosse e você não pode ter esse medo se você busca a sua melhor versão, você não pode ter o medo de descobrir quem você é quando entrega o seu melhor e está tudo bem se você descobrir que não é tudo aquilo que você imaginava que fosse dentro da sua cabeça porque bom você se torna
+```
+
+### 753.559 views · 207s · 2026-08-04 · [link](https://www.instagram.com/reel/DbokI0_q_O2/)
+
+```
+Se você quer chegar aqui, o foco e a constância são suficientes.
+Mas agora, se você quer chegar aqui, não é sobre foco e constância.
+Mas você vai ter que seguir essa linha de raciocínio junto comigo para entender o que eu estou falando e você vai ter o maior insight da sua vida.
+O foco e a constância, eles são importantes por quê?
+Quando você está começando algo, tudo é muito novo e você não desenvolveu todas as habilidades e todo o conhecimento.
+Precisa, literalmente, de tempo de execução.
+Isso que é experiência.
+Porque quanto mais você faz alguma coisa, são maiores as chances de você encontrar uma variação de problemas que podem surgir fazendo aquela coisa.
+Essas diferentes facetas que um problema pode ter vão exigir de você o desenvolvimento de novas habilidades.
+Pensa em um médico que executou uma só cirurgia.
+Às vezes aquele caso foi extremamente simples, mas quanto mais cirurgias ele vai executando ao longo da vida dele, mais casos diferentes ele pega.
+E essas diferenciações vão exigir dele se desenvolver.
+Então é para isso que um iniciante precisa fazer o básico bem feito.
+Constância para você desenvolver essas habilidades e foco pra você ir até o fim e não ficar pulando de galho em galho, senão você vai ficar ali molhando o pezinho e não vai mergulhar a fundo em nenhuma dessas áreas.
+Tá, então, beleza, Alona, eu entendi.
+Talvez seja esse o lugar que você esteja ocupando hoje.
+Uma pessoa que j tem disciplina que j tem foco que j tem const s que sente que n sai do lugar sente que n vai para outro n E por que voc n vai para outro n Porque talvez voc ainda n sacou que o que vai exigir de voc para sair daqui que é um lugar bom, mas ir para cá, que é um lugar melhor ainda, não é ter essa disciplina, mas é começar a desenvolver uma leitura de jogo.
+Você não concorda comigo que agora que eu já atingi certa experiência, eu tenho conhecimento, eu tenho certo know-how de como lidar com a coisa.
+Só que eu não posso mais ficar usando meu tempo para ficar chovendo no molhado.
+Eu preciso aproveitar ao máximo das oportunidades.
+Então a leitura de jogo não é simplesmente você cumprir tabela, você bater ponto.
+mais do que isso, é você começar a ser intencional e canalizar essa experiência que você adquiriu então a tarefa principal é eu começar a identificar boas oportunidades porque não é mais aquele trabalhinho de formiga que vai me levar para outro nível, é a minha percepção, é a minha inteligência de perceber as boas oportunidades que não acontecem sempre, mas quando elas surgirem, eu uso esse know-how que eu fui criando ao longo do tempo, que eu fui alimentando, para aproveitar o máximo dela.
+É aqui que eu preciso que você tome cuidado, porque se você já saiu do nível de iniciante, você não pode se cegar com a disciplina, com a constância, com a rotina, porque essas boas oportunidades, elas são extremamente sutis.
+```
+
+### 727.976 views · 66s · 2026-05-08 · [link](https://www.instagram.com/reel/DYFN0CyxafK/)
+
+```
+Quanto mais você se esforça para se especializar na sua área, aprofundar o seu conhecimento, menor se torna o grupo de pessoas que são capazes de reconhecer o seu diferencial e todo o seu esforço.
+E o maior erro dos profissionais que estão buscando aprimoramento o tempo todo é acreditar que esse esforço que eles fazem, o conhecimento que eles têm, é proporcional com o resultado profissional.
+Ou seja, quanto de dinheiro eles fazem, o quanto de clientes eles atraem.
+A demanda pelos seus produtos e serviços não cresce da mesma forma que o seu esforço por entregar um produto e serviço melhor.
+Porque o teu cliente, ele necessariamente não domina os critérios para reconhecer que o teu trabalho lhe entrega mais.
+Eu não trago essa ideia para te desmotivar, pelo contrário, é para você ter um esclarecimento, talvez de uma situação que esteja te frustrando nesse momento.
+```
+
+### 653.643 views · 146s · 2026-08-28 · [link](https://www.instagram.com/reel/DclKoiSqxiT/)
+
+```
+Não é coincidência.
+Toda pessoa podre de rica que eu conheço, ela tem o hábito de tomar decisões difíceis com muita frequência.
+Isso não acontece porque essas pessoas são mais corajosas.
+Tipo, ah, beleza, tem mais coragem de arriscar.
+Acontece porque normalmente elas têm modelos mentais que ajudam na hora de tomar decisão.
+E a partir disso, elas têm mais segurança porque esses modelos mentais diminuem as chances de dar errado.
+Então não é como se fosse infalível, mas meio que, beleza, te direciona pra você diminuir a chance de cometer uma cagada.
+Delas sentem mais seguras e tomam mais decisões difíceis.
+Tem um modelo mental que é o meu favorito, que é o de custo de reversão.
+Calma, eu vou te explicar.
+Basicamente assim, você tem uma decisão importante pra tomar e você tá até ansioso.
+O que você vai fazer?
+Você vai pegar um papel e uma caneta e vai descrever qual é o cenário em que tudo sai errado.
+Porque uma coisa é você falar, ai não, é muito ruim o que pode acontecer.
+N n n Com palavras com objetividade O que o ruim que pode acontecer A voc vai escrever ah n vou perder todo o dinheiro da minha conta Ou n a minha casa vai para a hipoteca Eu não tenho para onde ir.
+Então você vai desenhar esse cenário negativo.
+O que na prática ele significa.
+E depois disso, você precisa pensar.
+Primeiro, tem como eu reverter esse cenário?
+Tipo, ficou muito ruim.
+O que eu precisaria fazer para me livrar desse cenário ruim?
+O que ele me custaria de saúde mental?
+E o que isso afetaria as outras áreas da minha vida?
+Ou até, é de dinheiro que eu estou falando, quanto custaria para eu me livrar desse cenário negativo?
+E você escreve também qual é o custo de reversão desse cenário negativo.
+Se você está entre duas opções, não sei o que decidir, você escreve esse custo para as duas opções.
+E normalmente o mais indicado é você seguir pelo caminho que tem menor custo de reversão.
+Seja financeiro, seja psicológico, seja social.
+Isso te ajuda, te dá mais segurança de você saber por qual caminho você vai.
+```
+
+### 599.741 views · 126s · 2026-01-05 · [link](https://www.instagram.com/reel/DTI1GGhEVe-/)
+
+```
+Você jamais vai ter sucesso fazendo um planejamento para um novo ano.
+Porque se você não sabe com muita clareza, com muita sinceridade, crua honestidade, olhando no espelho, aonde a sua corda arrebenta, vai ser perda de tempo.
+Qualquer vision board, qualquer lista de metas.
+Por quê?
+Porque o erro das pessoas é ignorar que a construção de uma estratégia, diferente do que todo mundo pensa, não é você listar seu objetivo, e destrinchar o passo a passo, o que é necessário para chegar até esse objetivo?
+Ah, eu entendi, eu quero crescer uma conta no Instagram, quero lançar meu produto.
+Então você vai lá, pega o teu caderno e com a maior inocência do mundo, anota.
+Gravar vídeos, comprar ring light, comprar novo microfone.
+Isso daí, você não está criando um plano estratégico.
+No máximo das hipóteses, você está elencando algumas tarefas básicas ali que o pr chat de EPT te ajuda a montar Mas agora o que genuinamente um plano estrat voc depois de destrinchar as tuas metas e os passo a passo que ser necess para atingir aquela meta você olhar aquilo com cara e coragem e falar, aonde a minha corda vai arrebentar aqui?
+É na timidez de dar play na câmera?
+É na autocrítica de gravar um vídeo inúmeras vezes e nunca achar que ele está bom o suficiente?
+é ligar tanto para a opinião dos outros que sequer você consegue postar um story sem ficar obsessivamente vendo quem assistiu aqueles stories.
+Porque se você pega essa lista de planejamento e objetivos de metas de 2026 e não olha e destrincha com cara e coragem aonde a minha corda vai arrebentar, porque aí sim entra a estratégia que se preparar para esse momento, estar munido psicologicamente para lidar com aquele momento, Esquece, não é planejamento estratégico, é apenas um amontoado de o que fazer, como chegar lá, que não vai dar em nada.
+```
+
+### 597.491 views · 121s · 2026-08-13 · [link](https://www.instagram.com/reel/Db_Be0jxlaO/)
+
+```
+Sabe qual é a pior pessoa pra você ter por perto da sua vida?
+Amigo, parceiro, colega de trabalho, funcionário, é aquela que você entrega uma oportunidade e ela lá do outro lado recebe como obrigação.
+Ela não consegue enxergar a oportunidade.
+Tudo que você trazer pra ela, o lado bom, ela vai encontrar uma forma de transformar aquilo numa obrigação.
+Então, assim, a gente está vivendo isso agora na prática.
+Com o digital.
+Ah, criar conteúdo.
+Aí a pessoa vem lá e fala, ah, justo na minha vez de me formar, eu sou, presta atenção nos cursos, tá?
+Eu sou obrigada a criar conteúdo.
+Então, você não é obrigada.
+O mercado tradicional está lá, ninguém mexeu nele.
+quer seguir sua carreira igual fazia antigamente o caminho est livre Essa pessoa n v a oportunidade de opa pela primeira vez eu n vou precisar depender de indica eu posso criar conteúdo para as pessoas me acharem.
+Ou, eu não vou depender de entrar em uma clínica muito maior para me conhecerem, eu posso falar daquilo que eu sei e vão me encontrar.
+E aí, essa pessoa, se ela não importa o quão a oportunidade brilhe na frente dela, ela vai encontrar uma forma de transformar a oportunidade em obrigação.
+Aí esquece, né?
+Você chega pro seu namorado, porque eu vou falar namorado, que espero que você não case com alguém assim.
+Falei, nossa, pensei numa ideia de negócio.
+Da pessoa, ah, mas eu vou ter que fazer...
+Mas essas oportunidades...
+A pessoa ignora, ela fecha o olho.
+É um padrão mental.
+Oportunidade?
+Não.
+Obrigação.
+```

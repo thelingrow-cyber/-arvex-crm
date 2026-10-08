@@ -167,3 +167,350 @@ Ordenados por views. ❤ = -1 significa curtidas ocultas.
 | [44.359](https://www.instagram.com/reel/DdsIOERNQNo/) | -1 | 27 | 26-09-25 | 67s | Publi | premiação do WhatsApp Business | — | Tem uma coisa gigantesca acontecendo e você precisa entender porque é importante. O WhatsApp Business. que eu. você e milhares de outras pessoas usam… |
 | [22.436](https://www.instagram.com/reel/Dd5H2sWsLOp/) | -1 | 18 | 26-09-30 | 48s | Corte de entrevista | identidade visual = corpo; estratégia = cérebro | — | Quando você pensa numa identidade visual e verbal. ela só tem um único objetivo. É tangibilizar a estratégia. É como se a identidade fosse o corpo e… |
 | [1.846](https://www.instagram.com/reel/DeNhI7jxQel/) | 82 | 2 | 26-10-07 | 78s | Tendência → oportunidade de negócio | (repostagem do 'fumar'. 1 dia) | — | Me desculpem os conservadores. mas fumar é muito senso. Essa é a nova merda que os famosos andam dizendo. Os rostinhos bonitos. que antes eram o… |
+
+---
+
+## Anexo C — roteiros completos dos maiores
+
+Transcrição automática (Whisper), uma frase por linha para ler o ritmo da fala. Pode ter palavra trocada ou acento faltando; o conteúdo é fiel.
+
+### 1.645.218 views · 109s · 2026-07-04 · [link](https://www.instagram.com/reel/DaYs_4zxdPI/)
+
+```
+O empreendedor que empreende com bet, a emissora que divulga bet, o influenciador que influencia o Brasil a usar, o jogador de futebol bilionário que divulga, o político que lucra com o lobby das bets.
+Vocês são de serviço para o Brasil.
+Vocês contribuem para afundar o nosso país em uma miséria emocional e financeira.
+Luciano Huck, Kazé, Virginia, Vini Jr., Galvão Bueno, Zé Felipe, Mari Menezes, Rede Globo e tantos outros.
+Eu sei que vocês já sabem, mas eu quero repetir.
+O vício em apostas online é uma crise grave de saúde pública no Brasil que está afetando 11 milhões de pessoas.
+São na maioria homens, jovens, de baixa renda, que estão tendo impactos severos na vida deles.
+Nas finanças, nas relações, na saúde mental, levando alguns deles, inclusive, a tirar a própria vida.
+Eu e a minha empresa de marketing, a Vinci Society, já recusamos quantias milionárias de empresas que buscaram a gente para torná-los mais desejados.
+Eu nunca, jamais vou trabalhar em prol do mal.
+Eu sei que eu não sou ninguém demais, eu sei que eu tenho muito menos que vocês, Mas eu gostaria de convidar vocês a pararem de divulgar e de influenciar o nosso país, os nossos jovens, a perderem seus rumos, as suas vidas em algo que vocês sabem que não vai gerar nada de bom.
+Vocês já têm muito dinheiro e muitas outras formas de seguir gerando renda.
+Os valores de vocês valem muito mais do que isso.
+Queria convidar você a marcar aqui políticos, artistas e influenciadores Que podem ajudar o Brasil a se livrar das vets Antes que seja tarde demais Se é que já não é
+```
+
+### 975.745 views · 68s · 2026-08-14 · [link](https://www.instagram.com/reel/DcCgI-HN084/)
+
+```
+A gente tá ficando tão burro que não consegue mais tomar uma decisão sozinho.
+80% de tudo que é assistido na Netflix veio da recomendação.
+Aqui no Brasil, 7 em cada 10 pessoas compram o que o influenciador mandar.
+E a maior influenciadora do país é a Virgine.
+Roubaram de nós uma coisa extremamente valiosa, o nosso gosto.
+A playlist quem monta é o Spotify, o restaurante quem decide é o vídeo que viralizou, o livro quem indica é o BookTok.
+Ninguém tá escolhendo mais f*** nenhuma.
+E o pior, a personalidade e a individualidade dos seres humanos tá sendo extinta pelo algoritmo.
+O jornalista rodou um mundo estudando isso.
+O café descolado de Tóquio é idêntico ao café descolado de Nova York, que é idêntico ao de São Paulo, tem o mesmo tijolinho aparente, a mesma planta no canto, o mesmo banquinho de madeira.
+O sonho de consumo agora das pessoas é morar em uma caixa cinza com LED que chamamos de casa moderna.
+E a parte que me irrita de verdade é que a gente adora reclamar que só tem música ruim, que os filmes estão fracos, que tá tudo igual.
+Cara, a cultura não empobreceu.
+A gente é que parou de garimpar e só aceita consumir tudo o que o feed entrega.
+Então deixa eu te fazer uma pergunta.
+Qual foi a última coisa que você descobriu sozinho, sem ninguém te indicar?
+Se você demorou para responder, bom, essa é a sua resposta.
+```
+
+### 756.161 views · 59s · 2026-08-01 · [link](https://www.instagram.com/reel/Dbf9vZRRFpE/)
+
+```
+Era muito curioso, porque a galera que tem entre 45 e 60 anos é a galera mais rica e mais ignorada de todas.
+Está todo mundo supercorrendo atrás da geração Z, da geração alfa.
+E essa galera tem muito dinheiro.
+Se eu tivesse a ter ideia, essa turma comprou apartamento antes dos 30 anos.
+E essa geração é a geração que mais se preocupa com longevidade da história.
+Eles investem muito dinheiro em saúde Em prevenção de doença Em coisas pra fazer com que a vida deles seja Mais longa e mais saudável E aqui no Brasil as marcas ainda Não entenderam esse movimento Não estão fazendo um grande trabalho em relação a isso Você olha as marcas gringas Fazendo um baita trabalho E ganhando muito dinheiro com essa turma Então acho que essa é uma boa dica pra vocês Olhem pra galera 45 ou mais Essa galera tem muito dinheiro Não tá tendo muita disputa sobre eles e quem está fazendo grana com essa galera são as marcas grindas.
+Vai dar oportunidade para o empreendedor brasileiro.
+```
+
+### 755.284 views · 50s · 2026-07-06 · [link](https://www.instagram.com/reel/Dad6DZvx48J/)
+
+```
+Você já reparou que pessoas criativas têm o hábito de sentarem de um jeito estranho?
+E ainda bem que eu não sou a única.
+Steve Jobs, Billie Eilish e Neymar, todos eles possuem uma enorme dificuldade de sentar do jeito correto na cadeira.
+Seja numa reunião de trabalho ou até mesmo em casa, lendo um livro.
+Mas ainda bem que a ciência explica o motivo disso.
+Esse estudo da Universidade de Milão descobriu que quando o corpo ocupa um espaço de um jeito nada convencional, a mente segue o mesmo caminho.
+E assim, ela é capaz de ter ideias mais criativas do que aquelas pessoas que seguem a postura correta.
+Esse outro estudo do Dr.
+Darren mostrou que pessoas deitadas conseguiam resolver anagramas complexos de forma mais rápida do que aquelas que tentavam fazer de pé.
+Então, da próxima vez que você quiser ter ideias mais criativas, talvez você não precise mudar de ambiente.
+Basta você sentar de um jeito meio estranho na cadeira, ou mesmo deitar no chão.
+```
+
+### 720.129 views · 98s · 2026-04-29 · [link](https://www.instagram.com/reel/DXtsicFEU58/)
+
+```
+Tem um movimento masculino bizarro rolando nos Estados Unidos que começou a chegar no Brasil.
+Ele nasceu para lucrar em cima da insegurança de garotos, meninos virgens chamados de incels, celibatários e involuntários que acreditam que a beleza masculina gera dinheiro, status e mulheres.
+Ele se chama Lux Maxi, e beleza aqui é específica.
+Mandíbula proeminente, olhos de caçador, testosterona alta, cada traço do rosto é uma variável matemática a ser otimizada.
+Isso não é novo, né?
+Durante séculos foi a mulher que de certa forma viveu assim.
+E agora isso chegou para os homens de maneira igualmente destrutiva.
+O símbolo desse movimento é um cara chamado Clavicular.
+Ele faz lives diárias mostrando como pega mulheres.
+E recentemente ele teve uma overdose ao vivo na frente das câmeras.
+O mais louco é que nos Estados Unidos isso já gerou um mercado bilionário.
+cursos, anabolizantes, cirurgias, preenchimentos, e provavelmente o mesmo vai acontecer aqui no Brasil.
+Porque a verdade é que insegurança sempre foi um dos sentimentos mais lucrativos da história da publicidade.
+E o mercado usou esse sentimento a seu favor desde sempre.
+Mas todo mundo usa do mesmo jeito.
+Vende um produto que tampa o sintoma, a mantém a ferida aberta.
+E aí você volta para comprar amanhã.
+Seria incrível se existissem produtos e serviços que resolvessem a insegurança de verdade, que gerassem dinheiro e o bem ao mesmo tempo.
+Mas a verdade no Icru é que seria muito menos lucrativo, porque vai diminuir o LTV.
+Cliente curado, cliente que não volta.
+E a pergunta que fica pra gente como sociedade é será que a gente toparia ganhar menos fazendo um produto que cura do que ganhar mais um produto que vicia?
+```
+
+### 680.825 views · 99s · 2026-09-10 · [link](https://www.instagram.com/reel/DdHnkD_xJcN/)
+
+```
+Pra balada é coisa de loser idiota que nunca amadureceu.
+Fim de semana de adulto é ficar em casa, pô.
+Pelo menos é isso que anda dizendo a internet.
+Esse vídeo de uma garota falando que o lugar favorito dela é a própria cama pegou 28 milhões de visualizações.
+E tem uma galera batendo no peito pra falar que não tem hobby, não vai pra festa e que gosta mesmo de ficar de cama.
+Não é que todo mundo ficou introvertido do nada, não.
+É que a gente tá exausto.
+E não o corpo, o cérebro.
+Você passa o dia trabalhando em uma tela, lidando com vários desafios que no fim de semana tudo que você quer é descansar.
+Aí você coloca o seu pijama, pede uma comida gostosa e logo puxa o celular ou a Netflix.
+Você acha que assim você vai descansar, mas no fim você continua cansado.
+Porque o que a gente vive, grande parte da nossa geração, é uma exaustão pelo hiperestímulo das telas.
+E para descansar o nosso cérebro, a cama não é um bom remédio.
+Por mais contraditório que pareça, esse cansaço se cura suando, conversando, olhando para o céu do lado de fora.
+E se você tem uma empresa, você devia estar muito atento nisso.
+Criando experiências que tirem as pessoas das telas e as coloquem na vida, você vai se conectar de forma mais profunda, criar memória de marca e aumentar a sua taxa de conversão.
+A Live e a Trackfield, por exemplo, fizeram seus próprios circuitos de corrida.
+A XP criou o maior festival presencial de investimento do mundo.
+E tem uma onda de empresas pequenas lançando clube de leitura que não pode celular, aula de yoga, encontro de carros clássicos.
+Tiram a galera da cama, saem das telas e ganham as mentes e os bolsos dos clientes.
+A VINC é a agência e consultoria de marketing que mais estuda e antecipa os movimentos que moldam o mercado.
+Esse é um dos fatores que permite a gente construir as marcas mais sexys e ricas dessa geração e das próximas.
+Se você quer que a sua seja uma delas, procura a gente.
+```
+
+### 675.531 views · 72s · 2026-08-03 · [link](https://www.instagram.com/reel/Dbl-0rexgll/)
+
+```
+Se eu fosse criar uma marca de roupa infantil, é assim que eu faria.
+Eu a chamaria de Terra no Joelho.
+Uma marca feita para as poucas crianças que vão ter uma infância boa de verdade.
+E vamos ser honestos, é bem longe das telas.
+Seriam três coleções, uma para cada momento do dia da criança.
+Primeiro, Adora Aventureira.
+Colete corta-vento impermeável que dobra e cabe no bolso da mochila.
+Calça de tecido reforçado no joelho, com um bolso fundo o suficiente para guardar pedrinha, flor e o que mais aparecer pelo caminho.
+Segundo, Denis o Pimentinha.
+Conjunto de moletom com tecido antimancha, onde a tinta e a massinha de modelar saem na lavagem comum, sem produto especial.
+A criança que seja criativa, brinque, se suje, o resto a marca resolve depois.
+Terceiro, legal de galocha.
+Conjunto de roupas impermeáveis com proteção UV, feito para criança que não é feita de açúcar e pode sim brincar na chuva.
+Para o lançamento, eu criaria uma pop-up com três salas, uma para cada coleção.
+Trilha de terra, ateliê de pintura e playground com chuva artificial.
+A regra é simples.
+A criança que brincar e se sujar vai sair com uma roupa da terra no joelho e um certificado de boa conduta.
+Sim, senhoras e senhores, a metodologia Negócios Creators funciona para qualquer segmento.
+A gente só não atende políticos, casas de apostas e pessoas do OnlyFans.
+```
+
+### 552.322 views · 90s · 2026-04-30 · [link](https://www.instagram.com/reel/DXwb9_jtC1H/)
+
+```
+Nós que nascemos entre o final dos anos 80 e dos anos 90, somos a geração mais nostálgica de todas.
+Isso não aconteceu porque os nossos CDs gravados no Napster tinham um som melhor do que as músicas do Spotify.
+Nem porque os desenhos do Cartoon Network eram muito mais legais do que os desenhos de hoje em dia.
+Isso acontece porque a gente viveu a transição da humanidade.
+A gente estava no auge, no momento exato em que o mundo analógico foi engolido no mundo digital.
+A gente foi, a última geração, a sentir a leveza de se desconectar.
+Nós fomos os últimos seres humanos a saber o que é estar 100% presente.
+A gente não sente saudade de uma época.
+A gente sente saudade de um estado que a gente nunca mais vai ter.
+Bem-vindos à série O Marketing dos Sentimentos.
+Episódio Nostalgia.
+A nostalgia sempre foi um sentimento humano usado pelo marketing.
+Mas hoje ela gera mais resultado do que nunca.
+É por isso que a Gap refilmou exatamente os comerciais que ela fazia nos anos 2000.
+Crescimento de dois dígitos em jeans no trimestre, em cima do sentimento quando ligar a TV era um evento familiar.
+E o Spotify foi inteiro construído com uma fita cassete.
+Aquela mesma fita que os nossos pais faziam para dar para os seus crushes.
+Usar a nostalgia no seu marketing não aumenta o seu custo de aquisição, mas aumenta o seu retorno.
+A Vinci é a agência e consultoria que tem o melhor time de marketing do Brasil.
+E se você quer ter a minha e o meu time trabalhando para fazer com que a sua marca seja extremamente desejada e geradora de receita, aplique-se no nosso link da Biba.
+```
+
+### 508.010 views · 88s · 2026-07-15 · [link](https://www.instagram.com/reel/Da1HYK5R2Xl/)
+
+```
+Esse cara tem o maior engajamento do Instagram, dentre todos os empresários do Brasil.
+Vários vídeos dele pegam milhões de views e ele ganhou mais ou menos 400 mil novos seguidores nos últimos meses.
+Sem trend, sem dancinha, sem polêmica e sem anúncios.
+E o mais importante, gerando muito valor pra empresa dele, a XP.
+A gente tá por trás desse case e eu vou te mostrar como você também pode fazer isso.
+Hoje, muita gente fala que o empresário tem que colocar a cara.
+Mas a verdade é que se isso for feito do jeito errado, Você só vai gerar prejuízo para o seu negócio e ainda vai jogar fora o seu tempo como líder da empresa.
+Isso aqui é o mínimo que você precisa ter para gerar resultado de verdade com uma marca pessoal.
+Primeiro, entender que a marca do fundador está a serviço da marca da empresa.
+Toda marca de negócio possui uma estratégia de marca clara.
+O público, promessa, posicionamento, história.
+A marca de fundador nasce com uma missão clara.
+Provar para as pessoas que o seu negócio é capaz de entregar o que promete.
+Para todo o público da marca ou para uma parcela dele.
+Segundo, objetivo claro.
+Como é que você vai impactar o seu negócio?
+Gerando mais awareness?
+Mais receita?
+Atraindo novos talentos e investidores?
+Movendo o público interno?
+Próximo passo.
+Com público e objetivo definidos, agora você vai escolher, dentre os seus atributos, aqueles que mais te ajudarão a alcançar esse objetivo.
+Cada um desses atributos vai ser transformado em uma linha editorial.
+E depois, olha, isso aqui é muito robusto para eu te ensinar em um único risco.
+Mas eu e o Gerson estaremos em um painel na Expert, junto com Alfredo Soares, Théo Braga e Joel Jones.
+E se você quiser participar, é só você clicar no link da bio do Gerson.
+```
+
+### 505.881 views · 90s · 2026-06-10 · [link](https://www.instagram.com/reel/DZazSyFRDXm/)
+
+```
+O que você acha que uma pessoa pagaria 500 mil reais num relógio da Patek Philippe que mostra a mesma hora de um relógio de 200 da casa?
+Sei, burrice?
+Não, inteligência de mercado.
+Sem entender, a gente vai voltar lá pra 1813, na guerra entre Prússia e Napoleão.
+A princesa Mariane da Prússia precisava financiar a guerra e aí ela fez um pedido em comum às mulheres da aristocracia da época.
+Entreguem o seu ouro, todas as suas joias.
+Em troca, vocês receberão réplicas de ferro gravadas com quatro palavras.
+Dei ouro por ferro.
+As mulheres da Prússia então começaram a aparecer em eventos usando essa réplica.
+E o ferro, o metal mó barato, se tornou mais prestigioso que o próprio ouro.
+Porque o ouro simbolizava que você é rico.
+Mas o ferro mostrava que você é rico e abriu mão de riqueza por uma causa maior.
+Eu li isso no livro do Rory Schulte.
+É o que eu sempre falo aqui.
+As pessoas valorizam mais como as coisas as fazem serem vistas do que a coisa em si.
+Em 1899, o sociólogo americano Thorsten Webern concluiu em seus estudos que o motivo principal do consumo de luxo não é a utilidade, é a percepção.
+Ele chamou isso de consumo conspicuo.
+É que pensa só, você não pode chegar numa sala do nada gritando quanto você tem de dinheiro ou quão foda você é.
+Aí o que você faz?
+Você compra um objeto que faz isso por você.
+Agora, se você perguntar para o dono de uma Ferrari vermelha por que ele comprou ela, ele vai te falar que foi por causa da engenharia, da experiência de dirigir.
+Mas é mentira.
+Tem carro muito mais barato que entrega a mesma coisa.
+Agora, como símbolo, a Ferrari é superior.
+As pessoas acham que o mercado de luxo é caro por causa do craft, da matéria-prima.
+Não é nada disso, é só pelo símbolo mesmo.
+```
+
+### 492.593 views · 53s · 2026-07-11 · [link](https://www.instagram.com/reel/Dap7WojRfdw/)
+
+```
+Se eu fosse homem, eu teria mais grana.
+Mas eu gosto bastante de ser mulher.
+Porque a maior parte dos empresários são homens, e homens confiam mais na capacidade executiva e intelectual de homens que de mulheres.
+Eu acho que isso é uma coisa natural que eu vou ter que conviver ao longo da minha vida.
+E aí eu tenho que ser muito excelente pra eu conseguir passar e ficar de igual pra igual.
+E é o que eu busco fazer.
+Busco ser excelente pra eu bater de frente de igual pra igual.
+O que você falaria pra uma mulher que tá assistindo agora e quer empreender em ter um resultado parecido com o seu, mas talvez ela se dá para com esse mesmo obstáculo na questão masculina?
+É, vai se deparar.
+Você vai ter que ser melhor que os outros.
+Essa é a verdade.
+Acho que a Cris Junqueira uma vez foi cancelada porque ela falou isso, mas a verdade é essa.
+Se a mulher quiser construir uma carreira executiva, e pode não querer, mas se quiser construir uma carreira executiva, ou empreender e tiver que ela fechar negócio e não for no âmbito de beleza, de moda e de decoração, ela vai ter que ser melhor que os caras.
+Se ela for igual, ela vai perder sempre.
+Então, para ela ganhar, ela vai ter que ser melhor, ela vai ter que ter um produto melhor, ela vai ter que ter uma capacidade de entrega melhor, ela vai ter que falar melhor.
+Enfim, ganhar dele em diversos aspectos para ela conseguir vencer esse competidor.
+```
+
+### 435.580 views · 65s · 2026-08-23 · [link](https://www.instagram.com/reel/DcZGxbexNvV/)
+
+```
+O Brasil virou um cemitério de empresários.
+Depois da galera da internet ter vendido para os jovens que empreender é o caminho fácil para ficar rico e trabalhar pouco, a gente viu um boom de jovens ostentando o selo de Founder CEO na bio do Instagram e do LinkedIn.
+Mas a verdade é que empreender sempre foi muito difícil e agora é mais do que nunca.
+Os pedidos de recuperação judicial aumentaram 66% nos últimos três anos.
+E está acontecendo com negócios gigantescos e sólidos.
+Tem empresa tradicional demitindo em massa porque não consegue pagar as contas esse ano.
+E a taxa selic está na casa dos 14%.
+Essa história de largar o emprego e abrir uma empresa para ganhar dinheiro para caramba em pouco tempo é a grande mentira do nosso tempo.
+E a garotada que assistiu só na bio do Instagram vai enfrentar a realidade mais difícil dos últimos tempos até para o empresário cabeça branca.
+O Brasil nunca foi um país para Madur, mas especialmente agora.
+As empresas que sobreviverão não serão as que faturam mais ou as mais antigas ou as maiores.
+Serão aquelas lideradas por homens e mulheres resilientes, com visão de longo prazo e com disposição de dar sangue, suor e lágrimas.
+```
+
+### Picos de fora da janela
+
+#### 8.920.175 views · 78s · 2025-11-22 · [link](https://www.instagram.com/reel/DRXVy8qjUJE/)
+
+```
+A gente tá vivendo um colapso bizarro e quase ninguém tá falando disso.
+Um problema gigantesco que eu vou explicar e você precisa entender o que é grave.
+A gente tá virando uma geração de fantasmas.
+A nossa presença foi totalmente sequestrada.
+É tipo The Last of Us, mas o que deixa a gente zumbi não é um vírus.
+E cara, não tá todo mundo com TDAH.
+O que tá rolando é uma destruição arquitetada da atenção.
+A mente humana tá entrando em colapso.
+Você já reparou que a sua memória tá um lixo?
+Você não consegue chegar em lugar nenhum sozinho?
+datas, nomes, caminhos, aniversários, conversas importantes.
+Você simplesmente delegou tudo pra uma tela.
+Você nunca tá de verdade em lugar nenhum.
+Você precisa filmar a experiência, você precisa responder o WhatsApp no meio do almoço da família, você precisa de ajuda pra escrever uma mensagem de amor.
+Você olha fixo, você tenta se concentrar, ouvir, mas logo a sua mão vai pro bolso e você some.
+O seu corpo tá aqui, mas a sua mente tá vagando por notificações, microestímulos, sem nunca aterrissar.
+Você ainda existe?
+A gente ainda existe?
+A gente tá vivendo uma dissociação coletiva.
+Tá todo mundo postando uma vida com imagens de curadoria perfeita.
+Mas ninguém tá vivendo porra nenhuma.
+E você deveria se importar com isso.
+Tentar viver um pouquinho antes de morrer.
+Porque o feed fica.
+Mas a vida acaba.
+```
+
+#### 2.410.750 views · 68s · 2026-04-12 · [link](https://www.instagram.com/reel/DXCCpuVkdFf/)
+
+```
+A roça é um novo luxo.
+Pela primeira vez, o estado de São Paulo tem mais pessoas saindo do que chegando.
+E o Rio de Janeiro registrou o maior saldo negativo de moradores do país.
+É que antes, a vida agitada da cidade grande era sinônimo de sucesso profissional.
+Mas agora, com o trabalho remoto e a Gen Z preferindo ter mais tempo livre do que mais dinheiro, a vida no interior é um novo símbolo de riqueza.
+E quem tem um negócio precisa ficar atento a isso.
+Estamos vendo desfiles de moda com estética do interior, por campanhas com cavalos nas capas e grifes com DNA equestre disparando em vendas.
+E quem quiser vender para a geração que decidiu virar caipira vai ter que criar experiências que envolvam simplicidade e natureza.
+Campanhas com crenças tradicionais e produtos feitos para pegar com as mãos são uma baita vantagem competitiva.
+Marcas que entendem a fundo e com antecedência os movimentos culturais que moldam o mercado, capturam oportunidades melhor que os concorrentes e crescem acima da média.
+A Vinci é a agência e consultoria brasileira que mais entende dos movimentos que transformam o mercado.
+Se você quer ter a mim e o meu time trabalhando para a sua empresa, aplique-se no link da B.
+```
+
+#### 1.883.805 views · 76s · 2025-12-30 · [link](https://www.instagram.com/reel/DS51oFJEqI6/)
+
+```
+Namorado deixa as pessoas doentes, é por isso que tá fora de moda.
+Isso é o que dizem as gerações Z e Y.
+Quase metade do Brasil tá solteira e esse é o maior número da história.
+São 81 milhões de pessoas vivendo sozinhas, a Gen Z fazendo cada vez menos sexo e o sonho de casar virando um pesadelo entre as adolescentes desde os anos 90.
+E não é só no Brasil, esse fenômeno tá rolando no mundo todo.
+A solteirice virou estilo de vida.
+Quem tem uma empresa deveria se preocupar com isso.
+Porque a recessão do amor não impacta só os relacionamentos.
+Ela também transforma o consumo.
+Apartamentos cada vez menores, viagens em solos atingindo o mercado de um bilhão de reais até 2030 e a crescente procura nos restaurantes por mesas para um.
+Marcas que conhecem o seu público com profundidade, constroem um universo perfeito para eles habitarem, capturam as oportunidades melhor que seus concorrentes e crescem acima da média.
+Nessa nova geração que decidiu ficar para a titia, promover experiências individuais e produtos para usar sozinha É uma baita vantagem competitiva.
+A Vinci é uma das empresas que mais entende com profundidade e antecedência os movimentos culturais que moldam o mercado.
+Estudar e conhecer esses movimentos é fundamental para a sua empresa continuar relevante.
+Se você quer estar conectado com o futuro, é só seguir a gente.
+```
