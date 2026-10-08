@@ -2,6 +2,8 @@
 
 **Vigente desde:** 2026-09-28 (primeira semana) · **Substitui:** a grade de 7/semana de `docs/ecossistema/linha-editorial-e-calendario.md` §03 (o resto daquele doc — registros VISÃO/OBRA, métrica, revisão de 11/11 — continua valendo)
 
+> ⚠️ **2026-10-08:** os 5 quadros e a grade abaixo foram substituídos pelos **4 moldes** de `LINHA-EDITORIAL-FORMATOS.md` (v2, base: os seus 80 reels). Portão e estoque abaixo continuam valendo.
+
 **Princípio:** 5 vídeos por dia, **todos os 5 quadros todos os dias, inclusive sábado e domingo.** Nenhum deles é para cumprir tabela. A diferença é usar a IA no máximo em tudo que não é a câmera — pesquisa, pauta, checagem, roteiro, edição — para que o Vitor só grave, e grave coisa boa.
 
 ---
@@ -61,6 +63,19 @@ Manter sempre **6 vídeos prontos e editados** na gaveta: 2 Curtos, 2 Visões, 2
 - Vídeo reprovado no portão → entra um do estoque.
 - Dia de viagem, doença, travado → os quadros sem notícia saem do estoque; a CAFEIA é gravada pelo celular em 15 min ou pula (notícia requentada não entra).
 - Estoque abaixo de 4 → o bloco de quinta repõe antes de gravar a semana.
+
+---
+
+## As 6 etapas da produção (definidas pelo Vitor em 2026-09-30)
+
+| # | Etapa | O que é | Onde mora / com o quê |
+|---|---|---|---|
+| 1 | **Ideação** | escolher a pauta e o ângulo (notícia, referência, frase, obra) | `noticias.py` · `colher.py` · `banco-roteiros/` · `LINHA-EDITORIAL-FORMATOS.md` |
+| 2 | **Roteirização** | escrever, conferir fonte, ler em voz alta | `banco-pautas/roteiro-*.md` (seção "Checagem de fonte") |
+| 3 | **Gravação** | o Vitor grava (take único ou B-roll) | celular · `Downloads/` |
+| 4 | **Decupagem** | transcrever com tempo por palavra, escolher takes/trechos, marcar onde entra cada inserção | Groq (Whisper) · folha de contato |
+| 5 | **Edição** | montar com a receita aprovada do formato | `tools/video-recut/` (README: receitas aprovadas) |
+| 6 | **Postagem** | legenda do post, CTA, comentário fixado, horário da grade | grade acima · métricas 24h → ficha no banco |
 
 ---
 
