@@ -2,7 +2,7 @@
 
 **Vigente desde:** 2026-09-28 (primeira semana) · **Substitui:** a grade de 7/semana de `docs/ecossistema/linha-editorial-e-calendario.md` §03 (o resto daquele doc — registros VISÃO/OBRA, métrica, revisão de 11/11 — continua valendo)
 
-> ⚠️ **2026-10-08:** os 5 quadros e a grade abaixo foram substituídos pelos **4 moldes** de `LINHA-EDITORIAL-FORMATOS.md` (v2, base: os seus 80 reels). Portão e estoque abaixo continuam valendo.
+> ⚠️ **2026-10-08:** os 5 quadros e a grade abaixo foram substituídos pelos **2 formatos (3 Regras + 2 Tendências por dia)** de `LINHA-EDITORIAL-FORMATOS.md` (v3, base: estudo de 3 players). Portão e estoque abaixo continuam valendo.
 
 **Princípio:** 5 vídeos por dia, **todos os 5 quadros todos os dias, inclusive sábado e domingo.** Nenhum deles é para cumprir tabela. A diferença é usar a IA no máximo em tudo que não é a câmera — pesquisa, pauta, checagem, roteiro, edição — para que o Vitor só grave, e grave coisa boa.
 

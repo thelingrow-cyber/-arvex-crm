@@ -1,129 +1,139 @@
-# Linha Editorial — os formatos fixos (v2)
+# Linha Editorial — os 2 formatos (v3)
 
-**Status:** VIGENTE · 2026-10-08 · substitui a v1 de 28/09 (5 quadros desenhados a partir de players de fora — está no git)
-**Base:** os **seus** 80 reels medidos em `banco-roteiros/players/vitor-simoes/ANALISE.md` (05/10) + o que rodou de 06 a 08/10
-**Para quê:** gravar sem inventar. Escolhe o molde, preenche as lacunas e grava. O assunto muda, o molde não.
-
----
-
-## Por que esses e não outros
-
-| Tipo (seus vídeos, 14/09 → 05/10) | Mediana | Teto |
-|---|---|---|
-| Frase de figura histórica | **~1.850** | 126.724 (Alexandre) |
-| Identidade em confronto | **~1.330** | 80.426 ("você não é normal") |
-| Curiosidade de negócio/psicologia | ~580 | 2.515 |
-| IA pura (notícia ou tutorial) | ~370 | 1.456 |
-
-Leitura: **o que roda no seu perfil cutuca quem a pessoa é.** A IA rende quando aparece como **prova dentro** da frase (Napoleão 2.267, Ali), não como assunto. E edição pesada não salvou tema fraco (presidente, 07/10). Os acertos são take único.
+**Status:** VIGENTE · 2026-10-08 · substitui a v2 da manhã (4 moldes) e a v1 de 28/09, ambas no git
+**Base:** estudo de 150 reels de 3 players + os 80 do Vitor → `banco-roteiros/players/SINTESE-FORMATOS.md`
+**Regra do Vitor:** poucos formatos, repetidos. Não alternar 5 formatos por dia.
 
 ---
 
-## Os 4 moldes
+## O dia: 5 vídeos, 2 formatos
 
-### 1. ⚔️ FRASE: o carro-chefe · 2 por dia
-
-**Lacunas:**
-```
-[FIGURA] estava certo quando disse: "[FRASE]".
-[A CENA em 1–2 linhas: onde, quando, o que estava em jogo.]
-[LASTRO: outra figura/fato que diz o mesmo. Um ou dois, no máximo.]
-[RESSALVA curta: "Agora, isso não quer dizer ___."]
-[CONFRONTO com "você": onde a pessoa está fazendo o contrário.]
-[FECHO que funciona sozinho como print.]
-```
-- **Duração:** 25–40s
-- **Ponte com IA (opcional, 1 linha):** como prova no meio, nunca como tema. Ex.: Ali → "até a IA aprendeu isso".
-- **Temas que pegam o ICP:** cautela, esperar estar pronto, pedir permissão, cobrar pouco, humildade que vira esconderijo.
-- **Fonte:** se a frase não tem fonte primária, use "dizem que" ou "já avisava". Nunca "disse" sem fonte.
-- **Edição:** take único, legenda nativa, **1 imagem da figura nos 3 primeiros segundos** e nada mais.
-- **Exemplos:** Alexandre (126k) · César/Rubicão · Ali "Você ocupa"
-
-### 2. 🪞 CONFRONTO: identidade · 2 por dia
-
-**Lacunas:**
-```
-[CONFISSÃO curta, tom baixo: "Eu passei ___ fazendo ___."]   ← opcional, mas dá permissão pra pesar
-[O RÓTULO que a pessoa usa pra se proteger] não é [desculpa bonita].
-É [nome duro].
-[O que está acontecendo de verdade, em 2–3 linhas com "você".]
-[FECHO seco, olhando na lente.]
-```
-- **Duração:** 15–30s. É o mais curto e o mais barato de gravar.
-- **Edição:** take único, legenda nativa, **zero inserção** e uma frase fixa na tela.
-- **Exemplos:** "Timidez é covardia" (31k) · "Você não é normal" (80k) · "Quando estiver pronto" · Platão 15s ("você não é livre")
-
-### 3. 🔬 MECANISMO: a psicologia com nome · 1 por dia
-
-**Lacunas:**
-```
-[O QUE TODO MUNDO MANDA FAZER, ou a pergunta que a pessoa já se fez.]
-[O NOME: lei/efeito/pesquisador + ano.] ← foto dele na tela
-[A CENA do estudo em 2 linhas, concreta.]
-["Tá, e o que isso tem a ver com ___?" ← reinicia a atenção]
-[A CONSEQUÊNCIA na decisão do dono.]
-[O QUE FAZER HOJE, em 1 linha.]
-[FECHO em par curto.]
-```
-- **Duração:** 35–50s
-- **Notícia boa de IA entra aqui** quando passa no portão (decisão, identidade ou ameaça do dono). Nesse caso o "nome" é o fato com fonte e a abertura é *"uma fofoca rápida aqui do mundo de IA e negócios"*. Se a notícia do dia não passa, o slot fica com a psicologia.
-- **Edição:** take único + **foto real do pesquisador ou print da manchete** no começo.
-- **Exemplos:** Kahneman "quanto custa × quanto tá custando" · Yerkes-Dodson · Gradiente de meta · CAFEIA "Nem quem fez garante"
-
-### 4. 🛠️ CAPTURA: o que eu construí · 1 por semana (quarta)
-
-**Lacunas:**
-```
-[RESULTADO na tela nos primeiros 10s.]
-["Montei um sistema que faz ___."]
-[O tempo que levava × o tempo agora.]
-[O que muda na rotina do dono.]
-[CTA: "me chama no direct com ___".]
-```
-- **Duração:** 45–75s
-- **Edição:** gravação de tela + rosto, ou o molde "3 leituras" (página real rolando atrás).
-- **Métrica:** directs, não views. Este é o único molde com CTA.
-
----
-
-## A grade do dia (substitui a dos 5 quadros)
-
-| Horário | Molde |
+| Horário | Formato |
 |---|---|
-| 07h30 | 🔬 MECANISMO (com a notícia, se passar no portão) |
-| 12h00 | 🪞 CONFRONTO · quarta: 🛠️ CAPTURA |
-| 15h00 | ⚔️ FRASE |
-| 18h00 | 🪞 CONFRONTO |
-| 20h30 | ⚔️ FRASE |
+| 07h30 | 📈 **Tendência → negócio** |
+| 12h00 | ⚖️ **Regra dita como lei** |
+| 15h00 | ⚖️ **Regra dita como lei** |
+| 18h00 | 📈 **Tendência → negócio** |
+| 20h30 | ⚖️ **Regra dita como lei** |
 
-**Saíram da grade diária:** CAFEIA como quadro próprio (entra no Mecanismo), Curiosidade (~580) e Visão longa. Voltam se algum Mecanismo estourar.
-
----
-
-## Como gravar sem travar
-
-- **Um bloco por dia, 5 takes seguidos**, mesma roupa e mesmo lugar. Os roteiros saem prontos na véspera.
-- **Ordem do bloco:** CONFRONTOS primeiro (curtos, aquecem a voz), depois FRASES, por último o MECANISMO (é o mais longo).
-- **Voz:** filtro do `squads/conteudo/voz.md`. Se uma frase não sai natural na boca, troque na hora. Sua versão costuma ficar melhor que a escrita.
-- **Reprovado no portão do `CALENDARIO-EDITORIAL.md` → entra um do estoque.** Nunca um mais fraco para cumprir horário.
+**Gravação:** um bloco por dia. As 3 Regras primeiro (mesma energia, mesmo tom), depois as 2 Tendências.
+**Captura** (obra na tela + CTA direct): 1×/semana, entra no lugar de uma Regra na quarta.
+**Investigação** (Elias): fica para quando o ritmo de 5/dia estiver firme.
+**Revisão:** 22/10, mediana de cada formato. A proporção 3+2 muda conforme o número.
 
 ---
 
-## Estoque pronto hoje (08/10)
+## As 2 frases fixas (valem para os dois formatos)
 
-| Molde | Roteiro | Arquivo |
+| | Frase | Onde entra |
 |---|---|---|
-| ⚔️ FRASE | César, "a sorte está lançada" | `banco-pautas/roteiro-cesar-rubicao.md` |
-| ⚔️ FRASE | Ali, "Você ocupa" | `banco-pautas/roteiro-muhammad-ali-ocupa.md` |
-| 🪞 CONFRONTO | "Quando estiver pronto" | `banco-pautas/roteiro-quando-tiver-pronto.md` |
-| 🪞 CONFRONTO | Platão 15s, "você não é livre" | ainda só no chat de 08/10, falta salvar |
-| 🔬 MECANISMO | Gradiente de meta (falar o nº de dias do dia) | `banco-pautas/roteiro-gradiente-de-meta.md` |
-| 🔬 MECANISMO | CAFEIA "Nem quem fez garante" (⚠️ 2ª fonte) | `banco-pautas/roteiro-cafeia-ninguem-garante.md` |
-| 🔬 MECANISMO | Yerkes-Dodson | `banco-pautas/roteiro-urgencia-yerkes-dodson.md` |
+| **Dobradiça** | *"E se você tem uma empresa, isso já chegou no seu negócio."* | Tendência: sempre. Regra: quando o tema não é de empresa |
+| **Assinatura** | *"Sua empresa não tem que adicionar IA. Tem que ser AI Native."* | fecho da Tendência; na Regra só quando o tema é IA |
+
+Ditas sempre do mesmo jeito. É a repetição que transforma a frase em marca (Elias: *"o silêncio dos bons"* em todo vídeo). Se não saírem naturais na sua boca, ajuste uma vez e fixe.
 
 ---
 
-## Revisão
+## ⚖️ Formato 1 — Regra dita como lei (3 por dia)
 
-- **22/10 (2 semanas):** mediana por molde. Molde abaixo de ~500 por 2 semanas troca de template, não de assunto.
-- **11/11:** a revisão binária da linha editorial (`docs/ecossistema/linha-editorial-e-calendario.md`), que mede **quem chega** (ICP) e não só views.
+**Origem:** Luana Carolina: 11 vídeos, mediana de 445 mil, teto de 1,32 milhão. Estudo: `players/luana-carolina/ESTUDO.md`.
+**Duração:** 40–75s · **Edição:** take único, legenda nativa, sem inserção.
+
+### Esqueleto
+
+| Tempo | Etapa | Regra |
+|---|---|---|
+| 0–5s | **A regra, dita como lei** | uma frase, sem "eu acho". Pode fechar com *"Ponto final."* |
+| 5–20s | **A crença errada, imitada** | faça a voz de quem pensa o contrário. É a cena do vídeo |
+| 20–45s | **O porquê** | mecanismo simples, de conversa. Tire a culpa da pessoa e ponha na crença |
+| no meio | **A objeção dita por você** | *"Tá, Vitor, mas…"* e responda |
+| 45–60s | **Exemplo de profissão** | médico, advogado, dono de clínica, dono de loja |
+| fim | **Fecho que reformula a regra** | frase de 5 a 8 palavras que vira print |
+
+### Moldes de primeira frase (escolha um)
+- **"Quanto mais X, mais Y."** · *"Quanto mais IA a empresa compra, menos ela usa."*
+- **"A primeira/última coisa que você precisa…"** · *"A última coisa que você precisa contratar agora é mais uma ferramenta de IA."*
+- **"Pare imediatamente de ser X e comece a ser Y."**
+- **"Pessoas [muito bem-sucedidas] sempre…"** · *"Todo dono de empresa que eu conheço que cresce rápido tem o hábito de…"*
+- **Variante frase histórica:** *"[Figura] estava certo quando disse…"* + a regra (o seu Alexandre, 129k)
+
+### Proibido neste formato
+- Acusar quem assiste. Acuse a **crença** (*"essa ideia de que…"*), nunca a pessoa (*"você é covarde"*).
+- Número inventado. Este formato não precisa de número.
+- Mais de uma regra por vídeo.
+
+### Roteiro pronto (para gravar)
+
+> **Quanto mais ferramenta de IA a empresa compra, menos IA ela usa.**
+>
+> Parece contraditório, né? Mas presta atenção no discurso: *"Ah, assinei o ChatGPT, assinei o agente de atendimento, assinei aquele de planilha. Agora vai."*
+>
+> E não vai. Porque cada ferramenta nova é mais uma coisa que alguém do seu time tem que aprender, abrir, lembrar de usar. E ninguém tem tempo pra isso.
+>
+> Tá, Vitor, então é pra não comprar nada? Não. É pra parar de comprar ferramenta e começar a mudar um processo. Um só.
+>
+> Pensa num consultório. Não adianta dar três ferramentas pra secretária. Adianta pegar o agendamento, que come a manhã inteira dela, e fazer ele rodar sozinho. Uma coisa. Funcionando.
+>
+> IA que não entrou na rotina é só mais uma assinatura no cartão.
+
+*~45s. Sem número para checar. Fecho alternativo, se o tema pedir a assinatura: "Sua empresa não tem que adicionar IA. Tem que ser AI Native."*
+
+---
+
+## 📈 Formato 2 — Tendência → negócio (2 por dia)
+
+**Origem:** Tay Dantas: 8 vídeos na janela, mediana de 398 mil, picos de 2,4 milhões (roça) e 1,9 milhão (namoro). Estudo: `players/tay-dantas/ESTUDO.md` §2.
+**Duração:** 60–90s · **Edição:** take único + 1 ou 2 inserções (o print do dado, o logo das marcas citadas).
+
+### Esqueleto
+
+| Tempo | Etapa | Regra |
+|---|---|---|
+| 0–5s | **A tendência como provocação** | uma frase forte sobre comportamento: *"Ninguém mais quer falar com atendente."* |
+| 5–8s | **Distância** | *"Pelo menos é isso que anda dizendo a internet."* A provocação fica sendo da internet, não sua |
+| 8–25s | **O dado que prova** | **um** número com fonte primária, anotado no roteiro |
+| 25–40s | **O porquê humano** | o que mudou na vida das pessoas, não na tecnologia |
+| 40s | **Dobradiça** | *"E se você tem uma empresa, isso já chegou no seu negócio."* |
+| 40–60s | **Quem já está aproveitando** | 1 ou 2 empresas com nome, de preferência brasileiras |
+| 60–75s | **A regra de negócio** | uma frase curta |
+| fim | **Assinatura** | *"Sua empresa não tem que adicionar IA. Tem que ser AI Native."* |
+
+### Onde achar a tendência
+Comportamento **causado ou acelerado pela IA**, nunca o lançamento de um produto:
+como as pessoas buscam, compram, pedem atendimento, trabalham, escolhem e confiam.
+Matéria-prima: `noticias.py` (filtrar por comportamento, não por lançamento) + pesquisas de consumo.
+
+### Proibido neste formato
+- Notícia de lançamento ou benchmark (*"saiu o modelo X"*): é o que afunda (o seu IA puro tem mediana de ~370).
+- Dado sem fonte primária. Na dúvida, o dado sai e entra o mecanismo.
+- Bater em quem vendeu IA para o empresário (regra do brand book).
+
+### Roteiro modelo (falta o dado: preencher antes de gravar)
+
+> **Ninguém mais quer ligar pra empresa.** Pelo menos é isso que anda dizendo a internet.
+>
+> [DADO COM FONTE: pesquisa sobre preferência por mensagem/autoatendimento × ligação. Anotar link.]
+>
+> E não é preguiça. É que a gente se acostumou a resolver tudo sem esperar. Pede comida sem falar com ninguém, pede carro sem falar com ninguém. Aí liga pra uma clínica e fica dez minutos ouvindo musiquinha. Parece outro século.
+>
+> E se você tem uma empresa, isso já chegou no seu negócio. O cliente que não consegue resolver na hora não reclama. Ele só vai embora e marca com outro.
+>
+> [EMPRESA COM NOME que já atende 24h por mensagem, com resultado público.]
+>
+> Quem responde primeiro, atende.
+>
+> Sua empresa não tem que adicionar IA. Tem que ser AI Native.
+
+*~60s com o dado. Só grava depois de preencher os dois colchetes com fonte conferida.*
+
+---
+
+## O portão (vale para os dois)
+
+1. **Herói:** a primeira frase protege alguém ou me inclui? Ou acusa quem assiste?
+2. **Uma ideia só:** cabe em uma frase?
+3. **Fonte:** todo número tem link primário anotado?
+4. **Voz:** lido em voz alta, soa falado? Antes de escrever, ler 3 roteiros do Anexo C do player do formato.
+5. **Frases fixas:** a dobradiça e a assinatura estão iguais às da tabela?
+
+Um "não" = não grava. Entra um do estoque.
