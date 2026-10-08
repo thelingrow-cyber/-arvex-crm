@@ -24,7 +24,7 @@ O que isso revela é o **método** dele: testa muito roteiro, cerca de 1 em cada
 
 **Para nós:** o Instagram dá a mesma ferramenta de teste. Dá para testar 2 versões de gancho do mesmo roteiro antes de soltar para os seguidores.
 
-## 2. Repostar não funciona
+## 2. Repostar dias depois não funciona
 
 Ele repostou 6 roteiros idênticos. A segunda cópia fez **de 1% a 2%** da primeira em 4 dos 6 casos:
 
@@ -37,7 +37,34 @@ Ele repostou 6 roteiros idênticos. A segunda cópia fez **de 1% a 2%** da prime
 | Apaga seus stories | 385.226 | 112.187 |
 | Livro: burros ganham mais seguidores | 44.728 | 32.390 |
 
-**Para nós:** o vídeo do Alexandre não se reposta. O que se repete é o **formato** com assunto novo, nunca o mesmo texto.
+**Correção com os picos de julho (ver §2b):** os hobbies fizeram **342 mil** em 20/07, **252 mil** repostados em 20/09 e 3,7 mil repostados de novo em 22/09. Repostar **com 2 meses de intervalo** funciona; com dias de intervalo, morre.
+
+**Para nós:** o vídeo do Alexandre pode voltar daqui a uns 2 meses. Até lá, o que se repete é o **formato** com assunto novo.
+
+## 2b. Os picos fora da janela (transcritos à parte)
+
+Os 3 maiores fora dos 50 mais recentes:
+
+| Views | Data | Vídeo | Abertura literal |
+|---|---|---|---|
+| **1.659.044** | 16/07 | [Documentários](https://www.instagram.com/reel/Da28ATwOggl/) | *"Todo pai que não quer que seus filhos tenham uma vida mediana deveria pegar eles e assistir esses três documentários. Porque o que cada um revela, seu filho nunca, jamais vai aprender na escola."* |
+| 666.890 | 09/08 | [Carne cultivada (JBS)](https://www.instagram.com/reel/Db0tdsEOny7/) | *"Se nem os ricos vão comer carne vermelha, o que será que os pobres vão comer em 2030?"* |
+| 342.281 | 20/07 | [Hobbies que atraem mulheres](https://www.instagram.com/reel/DbB1kYZp7uK/) | *"O hábito masculino que mais atrai as mulheres não é fazer musculação, não é se vestir bem e muito menos tocar bateria na igreja."* |
+
+**O caso mais valioso do estudo: mesmo conteúdo, 1,66 milhão × 3 views.**
+O vídeo de julho e as duas listas de documentários de agosto (3 e 12 views, testes reprovados) recomendam os **mesmos documentários** (Século do Ego, Dilema das Redes). A diferença está em com quem a primeira frase fala:
+
+| | 1,66 milhão | 3 a 12 views |
+|---|---|---|
+| Fala com | **o pai**, que quer proteger o filho | **o jovem**, que é acusado |
+| Abertura | *"Todo pai que não quer que seus filhos tenham uma vida mediana…"* | *"Todo jovem nascido após 2000 deveria…"* · *"resetar o cérebro podre"* |
+| Promessa | o que o filho *"nunca vai aprender na escola"* | *"obrigatórios pra geração mais manipulada"* |
+| Compartilhar | mandar para outro pai: fica bem | mandar para um jovem: é chamar de burro |
+
+> **Regra:** a mesma matéria muda de patamar dependendo de **quem a primeira frase escolhe como herói**. Quem protege alguém (pai, dono, líder) compartilha. Quem é acusado rola o feed.
+> **Para o Vitor:** falar com o **dono que quer proteger a empresa e o time**, não acusar o dono de estar atrasado.
+
+**A carne virou duas peças:** JBS em 09/08 (667 mil) e Bill Gates em 23/08 (157 mil). Mesmo tema, outro personagem, ainda acima de 100 mil. Tema que funcionou pode voltar com personagem novo duas semanas depois.
 
 ---
 
@@ -89,7 +116,8 @@ Ele repostou 6 roteiros idênticos. A segunda cópia fez **de 1% a 2%** da prime
 2. **Tese fixa no fim de todo vídeo.** Falta definir a sua frase-assinatura, o equivalente ao *"silêncio dos bons"*. Esse item ficou pendente do brand book.
 3. **O gancho com 3 negações** (*"não é X, não é Y, e muito menos Z"*) é a abertura mais repetida do perfil que mais cresce no banco. Não é a muleta proibida "não é X, é Y": é eliminar as explicações óbvias antes de revelar a verdadeira.
 4. **Duração:** ele usa os 3 minutos inteiros e segura a atenção com uma investigação que vai aumentando. Os nossos 30 segundos são outro jogo. Investigação curta não existe.
-5. **Nunca repostar o mesmo roteiro.**
+5. **Repostar só com ~2 meses de intervalo;** antes disso, mesmo formato com personagem novo.
+6. **A primeira frase escolhe o herói:** falar com quem protege (o dono que protege a empresa e o time), nunca acusar quem assiste. É a diferença entre 1,66 milhão e 3 views no mesmo conteúdo (§2b).
 
 ## O que não copiar
 
