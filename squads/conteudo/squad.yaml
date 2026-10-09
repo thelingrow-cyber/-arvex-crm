@@ -25,7 +25,7 @@ workflow:
   - pauteiro: colhe e filtra as pautas do dia (tool: tools/roteiros/noticias.py + checagem na fonte primária)
   - roteirista: escreve o roteiro gravável no formato do dia (base: ESTUDO-GANCHOS + banco-roteiros + voz)
   - editor-video: monta camadas.json e renderiza (tool: tools/video-recut/camadas/camadas.py)
-  - analista-referencias: disseca players novos e atualiza a base (tool: tools/roteiros/colher.py + navegador)
+  - analista-referencias: estudo completo de players (tools: tools/roteiros/estudo_player.py · estudo_folhas.py · estudo_anexos.py; task fechar-player)
 
 base_compartilhada:
   - squads/conteudo/voz.md                           # como o Vitor fala — extraído dos takes dele, não inventado
@@ -34,7 +34,8 @@ base_compartilhada:
   - docs/conteudo/banco-pautas/GANCHOS-PRONTOS.md    # 15 ganchos já escritos, prontos para gravar
   - docs/conteudo/ESTUDO-GANCHOS.md                  # 9 famílias que funcionam, 5 que afundam — com número
   - docs/conteudo/DOSSIE-ROTEIROS.md                 # cruzamento por player
-  - docs/conteudo/banco-roteiros/                    # ~65 fichas + players fechados
+  - docs/conteudo/banco-roteiros/                    # fichas + players fechados
+  - docs/conteudo/banco-roteiros/players/SINTESE-FORMATOS.md  # regras que aparecem em todos os players estudados
   - docs/ecossistema/linha-editorial-e-calendario.md # a grade e a função de cada dia
   - docs/ecossistema/sistema-de-roteiro.md           # famílias G1-G10 e os 5 filtros
 

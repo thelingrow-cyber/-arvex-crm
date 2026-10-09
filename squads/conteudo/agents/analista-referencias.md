@@ -22,8 +22,10 @@ tasks:
   - atualizar-estudo
 
 ferramentas:
-  - tools/roteiros/colher.py    # link -> transcrição com tempo, cortes, folha de contato, ficha no banco
-  - navegador (Chrome)          # abre o perfil e lê a grade de Reels com visualizações
+  - tools/roteiros/colher.py          # 1 link -> transcrição com tempo, cortes, folha de contato, ficha no banco
+  - tools/roteiros/estudo_player.py   # perfil inteiro: 50 recentes + picos, transcritos, resumo com medianas/testes/repostagens
+  - tools/roteiros/estudo_folhas.py   # folhas de contato dos maiores (o que aparece na tela)
+  - tools/roteiros/estudo_anexos.py   # anexos do ESTUDO.md a partir da classificacao.json
 
 knowledge_sources:
   - docs/conteudo/banco-roteiros/README.md   # as 3 regras do banco e o molde de ficha
@@ -41,12 +43,9 @@ python tools\roteiros\colher.py <url> [--lang pt|en]
 
 Isso baixa, transcreve com tempo, detecta os cortes, gera a folha de contato e cria a ficha em `docs/conteudo/banco-roteiros/referencias/`.
 
-**Para fechar um player (não uma peça):**
-1. Peça 3 a 5 do mesmo perfil, **misturando o que foi bem e o que foi mal**.
-2. Abra o perfil no navegador e **meça a grade de Reels** (visualizações por vídeo). Sem isso, curtida sozinha engana.
-3. Compare **dentro** do perfil. Anote o que é constante nos dois grupos — isso é estilo, e estilo não explica resultado.
-4. Verifique a **época dos posts**: post antigo com número baixo pode ser tamanho de conta, não qualidade.
-5. Feche em `players/<nome>/README.md`: posicionamento, grade, mecânicas, o que copiar, o que não copiar, contraste com o Vitor.
+**Para fechar um player (não uma peça):** siga a task `fechar-player` à risca — 50 vídeos recentes + picos,
+todos lidos e classificados, folhas de contato dos maiores, `ESTUDO.md` pelo modelo e anexos gerados pela ferramenta.
+Exemplo de referência: `docs/conteudo/banco-roteiros/players/tay-dantas/ESTUDO.md`.
 
 **Ao terminar um lote, atualize** `ESTUDO-GANCHOS.md`: a abertura de cada peça nova entra na base, e as famílias são recalculadas. Se um caso novo contradiz uma regra, **corrija a regra no documento** e registre o caso que a derrubou.
 

@@ -1,0 +1,82 @@
+{
+ "usuario": "luanacarolina.s",
+ "n": 50,
+ "janela": [
+  "2025-12-06",
+  "2026-10-06"
+ ],
+ "mediana_views": 362644,
+ "mediana_sem_testes_e_recentes": 362644,
+ "duracao_mediana": 73,
+ "por_mes": {
+  "2025-12": {
+   "reels": 1,
+   "mediana": 584840
+  },
+  "2026-01": {
+   "reels": 3,
+   "mediana": 779736
+  },
+  "2026-02": {
+   "reels": 4,
+   "mediana": 932408
+  },
+  "2026-03": {
+   "reels": 3,
+   "mediana": 396731
+  },
+  "2026-05": {
+   "reels": 1,
+   "mediana": 727976
+  },
+  "2026-06": {
+   "reels": 7,
+   "mediana": 422015
+  },
+  "2026-07": {
+   "reels": 8,
+   "mediana": 178328
+  },
+  "2026-08": {
+   "reels": 15,
+   "mediana": 297797
+  },
+  "2026-09": {
+   "reels": 6,
+   "mediana": 170827
+  },
+  "2026-10": {
+   "reels": 2,
+   "mediana": 415932
+  }
+ },
+ "testes_reprovados": [],
+ "recentes_menos_de_3_dias": [
+  "DeKv2ufK2w4",
+  "DeHe1pRRkGm"
+ ],
+ "repostagens": [],
+ "picos_fora_da_janela": [
+  {
+   "shortCode": "DRuShCREY74",
+   "views": 923634,
+   "data": "2025-12-01",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DQr_07XEdOt",
+   "views": 677089,
+   "data": "2025-11-05",
+   "fixado": false,
+   "transcrito": false
+  },
+  {
+   "shortCode": "DR0UfTBkScn",
+   "views": 580459,
+   "data": "2025-12-03",
+   "fixado": false,
+   "transcrito": true
+  }
+ ]
+}

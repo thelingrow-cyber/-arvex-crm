@@ -1,0 +1,99 @@
+{
+ "usuario": "elias.maman",
+ "n": 50,
+ "janela": [
+  "2026-08-10",
+  "2026-10-07"
+ ],
+ "mediana_views": 25073,
+ "mediana_sem_testes_e_recentes": 55502,
+ "duracao_mediana": 176,
+ "por_mes": {
+  "2026-08": {
+   "reels": 22,
+   "mediana": 47
+  },
+  "2026-09": {
+   "reels": 18,
+   "mediana": 44554
+  },
+  "2026-10": {
+   "reels": 10,
+   "mediana": 28313
+  }
+ },
+ "testes_reprovados": [
+  "DeM9R2SpqCf",
+  "Dd6nWEsyYAZ",
+  "DcLkAtKh7cs",
+  "DcJoHTTJU5w",
+  "DcI_MaOupBC",
+  "DcHDMvcp64N",
+  "DcEeGBmJUu9",
+  "DcB6FXYhQMm",
+  "DcBQz4uOJWO",
+  "DcBQ7w9hFs8",
+  "Db-sGdUB_6_",
+  "Db8wdZ5hBiM",
+  "Db8HVvFhlhB",
+  "Db6Lt1sBWGd",
+  "Db5id0FhfXF",
+  "Db3mxX2Rpj3"
+ ],
+ "recentes_menos_de_3_dias": [
+  "DeM9R2SpqCf",
+  "DeKGJH2SftM",
+  "DeKDpYKONlf",
+  "DeHlQlfyy3s",
+  "DeHkJ5iOrDj"
+ ],
+ "repostagens": [
+  [
+   "DdcXHQKpuhx",
+   "Dd6nWEsyYAZ"
+  ],
+  [
+   "DdeRGm4ukLP",
+   "DeHlQlfyy3s"
+  ],
+  [
+   "DdhiogZpb9H",
+   "DdmCdqouVuX"
+  ],
+  [
+   "DdkFsT6JdDG",
+   "DdomJO4Oupd"
+  ],
+  [
+   "DdmA-P9O0tN",
+   "Dd4DBRCO9dD"
+  ],
+  [
+   "DdolGBxOMds",
+   "DeM9R2SpqCf"
+  ]
+ ],
+ "picos_fora_da_janela": [
+  {
+   "shortCode": "Da28ATwOggl",
+   "views": 1659044,
+   "data": "2026-07-16",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "Db0tdsEOny7",
+   "views": 666890,
+   "data": "2026-08-09",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "CxQ7dNAuIyo",
+   "views": 503261,
+   "data": "2023-09-16",
+   "fixado": true,
+   "transcrito": true
+  }
+ ]
+}

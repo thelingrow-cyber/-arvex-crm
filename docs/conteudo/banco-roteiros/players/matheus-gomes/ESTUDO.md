@@ -104,77 +104,79 @@ O Matheus fala com **dev**. A métrica dele (views, curtidas) premia o que agrad
 - *"Se bater mil curtidas eu ensino"*: isca de engajamento.
 - Ostentação de carro, barco e setup de R$ 100 mil: é dele, e conflita com a sua fase.
 
+<!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
+
 ---
 
 ## Anexo A — mediana por formato
 
-Repostagens fora da conta (as 5 cópias fizeram de 1.340 a 6.070 views).
+Cada roteiro contado uma vez (repostagens fora). *Testes* = abaixo de 500 views.
 
-| Formato | Vídeos | Mediana de views | Teto | Duração mediana |
-|---|---|---|---|---|
-| Tutorial com prompt nos comentários | 9 | 113.003 | 478.405 | 118s |
-| Novidade na tela + dilema | 7 | 72.187 | 838.684 | 77s |
-| Reação a vídeo | 1 | 56.216 | 56.216 | 43s |
-| Humor / ostentação | 6 | 43.338 | 159.872 | 47s |
-| Vlog de construção / bastidor | 11 | 41.873 | 86.358 | 53s |
-| Opinião / bronca sem tela | 11 | 26.826 | 51.263 | 59s |
+| Formato | Vídeos | Mediana de views | Teto | Duração mediana | Testes reprovados |
+|---|---|---|---|---|---|
+| Tutorial com prompt nos comentários | 9 | 113.003 | 478.405 | 118s | 0 |
+| Novidade na tela + dilema | 7 | 72.187 | 838.684 | 77s | 0 |
+| Reação a vídeo | 1 | 56.216 | 56.216 | 43s | 0 |
+| Humor / ostentação | 6 | 43.338 | 159.872 | 47s | 0 |
+| Vlog de construção / bastidor | 11 | 41.873 | 86.358 | 53s | 0 |
+| Opinião / bronca sem tela | 11 | 26.826 | 51.263 | 59s | 0 |
 
-## Anexo B — os 50 vídeos, com a abertura literal
+## Anexo B — os vídeos, com a abertura literal
 
-Ordenados por views. 🔁 = repostagem.
+Ordenados por views. 🔁 = repostagem · 🧪 = teste reprovado · ❤ -1 = curtidas ocultas.
 
 | Views | ❤ | 💬 | Data | Dur. | Formato | Gancho (tipo) | Fecho | Abertura literal |
 |---|---|---|---|---|---|---|---|---|
-| [838.684](https://www.instagram.com/reel/DeILaFXzNvu/) | 46.106 | 912 | 10-05 | 65s | Novidade na tela + dilema | 'colocaram no GitHub um repositório que faz engenharia reversa de qualquer coisa' | 'será que é legal fazer isso?' | Colocaram no GitHub um repositório que faz engenharia reversa de qualquer coisa. Deixa eu te explicar. Você pega qualquer aplicação. qualquer… |
-| [478.405](https://www.instagram.com/reel/Dc1xFAcz--l/) | 25.265 | 376 | 09-03 | 110s | Tutorial com prompt nos comentários | 'cadê o Jarvis? eu prometi. vou ter que cumprir' | 3 prompts fixados + 'compartilha com seu amigo dev' | Cadê o Jarvis? Eu prometi. vou ter que cumprir Essa paradinha ficou top Ficou linda. maravilhosa Tem três prompts aqui prontinho pra vocês E vocês… |
-| [406.724](https://www.instagram.com/reel/DeN04mJslIC/) | 36.182 | 740 | 10-08 | 120s | Novidade na tela + dilema | 'acabei de imprimir um pote de melatonina' (PS5 no PC) | 'vai colapsar ou a gente se acostuma?' | Acabei de imprimir um pote de melatonina aqui Galera. na boa Eu não sei o que o pessoal do PS5 da Sony tá tomando pra dormir Eu acho que essa… |
-| [233.955](https://www.instagram.com/reel/DdMjjtITgul/) | 10.419 | 180 | 09-12 | 163s | Tutorial com prompt nos comentários | 'você pode ser feio. mas o seu sistema não precisa' | 'eu consigo construir qualquer coisa' | Você pode ser feio. mas o seu sistema não precisa. Então repete comigo. Eu nunca mais vou fazer um sistema feio na vida. E eu estou aqui em… |
-| [210.617](https://www.instagram.com/reel/Dc_rbh-TlPD/) | 8.807 | 108 | 09-07 | 118s | Tutorial com prompt nos comentários | 'hoje é feriado… fiz um sistema esse fim de semana' | 21st.dev + prompt | Hoje é feriado. dia maravilhoso. dia de ir no lago. a pancha tá carregando aqui. só que antes de eu navegar. de eu fazer um wake. eu achei meu Mac.… |
-| [160.368](https://www.instagram.com/reel/DdXW6EeTZMs/) | 5.964 | 167 | 09-16 | 74s | Tutorial com prompt nos comentários | 'se não tá fazendo dessa forma. tá fazendo errado' | 'eu te desafio a testar' | Se você quer uma pitadinha de engenharia Harness. tá? Se você tá fazendo um prompt pra qualquer sistema. desenvolvimento. atualização. qualquer coisa… |
-| [159.872](https://www.instagram.com/reel/DdShu-EsYkA/) | 6.413 | 167 | 09-15 | 53s | Humor / ostentação | 'dá pra ser feliz no básico' (setup absurdo. ironia) | 'tem que ter uma cadeira confortável' | Uma coisa pra vocês. eu tô cansado de gente reclamando. gente ingrata. Dá pra ser feliz no básico. você não precisa de muito não. cara. Um Maczinho… |
-| [129.094](https://www.instagram.com/reel/DdbreG0z-cq/) | 4.405 | 92 | 09-18 | 77s | Novidade na tela + dilema | 'a Anthropic se juntou com a OpenAI?' | comandos fixados nos comentários | A Anthropic se juntou com a OpenAI? O que está acontecendo? A OpenAI acabou de colocar praticamente um segundo programador dentro do cloud. Agora… |
-| [128.302](https://www.instagram.com/reel/DeK1IWzTAUk/) | 2.608 | 141 | 10-06 | 29s | Humor / ostentação | 'você já viu esse cara? e se eu for ele?' | 'a gente se vê por aí' | Você já viu esse cara no Instagram? E se eu falar pra você que eu sou ele ou ele sou eu? Você acha que eu botei esse carro na parede como? Fazendo… |
-| [113.003](https://www.instagram.com/reel/DcuzRZRz5Jh/) | 3.920 | 113 | 09-01 | 42s | Tutorial com prompt nos comentários | 'tentaram me invadir 17 vezes só hoje de manhã' | prompt de segurança fixado | Tentaram me invadir 17 vezes só hoje de manhã. Ficou meio estranha essa frase. Vou botar o boneco que eu tô com cara de maluco hoje. E hoje em dia… |
-| [86.358](https://www.instagram.com/reel/Dc4S814zxUY/) | 3.519 | 132 | 09-04 | 43s | Vlog de construção / bastidor | '50 pessoas aqui em casa… em 24h nascerão 4 empresas' | 'acompanha que vou documentar tudo' | Eu tô com 50 pessoas aqui em casa. simplesmente a gente fez 3 grupos. eu montei o quarto. porque o quarto vai ser eu junto com o Leandro. que ele é… |
-| [75.706](https://www.instagram.com/reel/DdSfS5FMgkO/) | 2.780 | 109 | 09-15 | 139s | Tutorial com prompt nos comentários | continuação do design system | 'me fala você' | É praticamente. doguinho. um rios antes desse. Tem dois dias que eu ensinei vocês a criar o design system mais bonito do mundo. Ficou top. Ficou… |
-| [74.032](https://www.instagram.com/reel/Dc4s64SzcOE/) | 1.871 | 134 | 09-05 | 111s | Vlog de construção / bastidor | 'o pau tá quebrando aqui. 359 alterações' | pré-venda | Galera. o pau tá quebrando aqui. só no meu já tem 359 alterações. Eu tô com... Peraí. peraí. eu não vou nem mostrar. Deixa eu mostrar as equipes lá.… |
-| [72.187](https://www.instagram.com/reel/Ddj19YEzo8W/) | 2.457 | 72 | 09-21 | 110s | Novidade na tela + dilema | 'para tudo. acabaram de lançar o Jev' | 'se quiserem. faço o vídeo de integração' | Mano. para tudo. para tudo. eu vou ter que usar o porrete aqui. Vou pegar esse negócio aqui. cara. e vou socar no GPT e vou socar no Cloud. porque… |
-| [65.517](https://www.instagram.com/reel/Dc5wrMyTl4S/) | 1.800 | 56 | 09-05 | 79s | Vlog de construção / bastidor | '6h24 da manhã. ninguém dormiu' | 'vamos liberar daqui a pouco' | 6h24 da manhã Ninguém dormiu Só acordando aqui agora O sistema tá acontecendo Olha o estado da galera aqui Olha aquilo lá Estão preparados? Só pra… |
-| [63.790](https://www.instagram.com/reel/DdM5PxOTBRe/) | 2.586 | 79 | 09-12 | 134s | Tutorial com prompt nos comentários | exportar o design system | 'dev. se tem amigo. é outro dev' | Qual que é a ideia agora? É pegar esse Design System e a gente exportar ele pra você poder importar depois em qualquer projeto. Mobile. desktop. seja… |
-| [62.418](https://www.instagram.com/reel/Ddueo9oSQQG/) | 480 | 53 | 09-25 | 70s | Vlog de construção / bastidor | pizza no hackathon | — | Rapaz. o cara treinado. meu irmão Bora. Guga Cliente. ela tá esperando aí Agora vai pizza. meu Agora tem pizza no profissional esse negócio aqui… |
-| [60.799](https://www.instagram.com/reel/DdFb4dRTBPm/) | 1.695 | 75 | 09-09 | 86s | Vlog de construção / bastidor | imprimindo a casinha do filho → resultado do desafio (168 cadastros) | 'se não mudou tua vida. faz o ENEM' | Aquelas compras compulsivas lá que você vê que vale a pena. Meu filho pediu uma casinha pro colégio que tinha que levar a apresentação dele. Tô… |
-| [59.340](https://www.instagram.com/reel/DduW9QDT68g/) | 1.853 | 45 | 09-25 | 66s | Tutorial com prompt nos comentários | 'presta atenção nesse prompt' (setup do Mac) | seguir | Presta atenção nesse prompt aqui. não é esse não. tá? É esse aqui que tá rodando aqui no Mac Mini. que eu falei pra vocês que eu ia passar. Que é… |
-| [56.988](https://www.instagram.com/reel/DdIT2ztMXHe/) | 2.616 | 1.852 | 09-11 | 134s | Tutorial com prompt nos comentários | 'barbinha na régua… meu filho tem um trabalho' → design system | 'se bater mil curtidas e mil comentários. eu ensino' | Barbinha parada na régua. Eu sou o cara responsável. tá? Por causa dos meus filhos e por causa de vocês. Presta atenção. Meu filho tem um trabalho no… |
-| [56.216](https://www.instagram.com/reel/DdhhCwGzQdX/) | 1.132 | 38 | 09-20 | 43s | Reação a vídeo | robô lutando com humano | — | Mano... Risos Isso aqui. não sei se é uma IA que fez isso ou se está acontecendo de verdade Tá acontecendo galera. Skynet tá chegando Mano. eu vivo… |
-| [53.532](https://www.instagram.com/reel/Dd-SNRKs_O_/) | 2.136 | 354 | 10-02 | 104s | Novidade na tela + dilema | 'tem muita gente confusa com a nova precificação do ChatGPT' | 'se bater mil curtidas. eu ensino' | Tem muita gente confusa com a nova precificação agora do chat GPT. o 100. 200. 500. Mas fica de boa que eu vou te explicar como funciona tudo isso… |
-| [51.263](https://www.instagram.com/reel/DdVKlCCsHAp/) | 1.195 | 97 | 09-16 | 59s | Opinião / bronca sem tela | 'desculpa estragar o sonho de vocês: sabe o que significa GPT?' | 'a Xuxa não usa Monange' | Pessoal. desculpa estragar o sonho de vocês. essa ilusão. esse mundo da Disney. Sabe o que significa GPT? Generative Pre-trained Transformer. Em… |
-| [48.574](https://www.instagram.com/reel/DdcOiXtzpgo/) | 1.562 | 64 | 09-18 | 42s | Humor / ostentação | 'tem duas formas de usar IA' → juridiquês (humor) | — | Galera. tem duas formas de usar IATA. e as duas são excelentíssimas. A primeira é você fazer um funilzinho no Mac. deixar rodando IA local. empilhar… |
-| [42.863](https://www.instagram.com/reel/DdmEB--zFWd/) | 1.597 | 52 | 09-22 | 144s | Opinião / bronca sem tela | 'a única coisa que resta pra você é virar Uber' | 'o futuro vai ser de quem sabe vender' | E a única coisa que resta pra você. acho que é virar Uber. Eu tô aqui pra bater a real pra vocês. né. conversinha lorota. e fazer uma coisa que nem… |
-| [41.873](https://www.instagram.com/reel/DdrN5stz5xT/) | 1.443 | 28 | 09-24 | 47s | Vlog de construção / bastidor | setup na gringa | 'mais tarde tem vídeo' | E aí galera. esse aqui é meu setupzinho na gringa. é um pouquinho mais ou menos do Brasil. ficou menos tempo aqui né. só que aqui tem isso na parede.… |
-| [38.380](https://www.instagram.com/reel/DdpmLSns3MO/) | 945 | 37 | 09-24 | 43s | Vlog de construção / bastidor | open box do Mac Mini | — | Hoje vai ter open box aqui da Amazon. tá? Ó. galera. esse aqui é o setupzinho aqui da Flórida. Pelinha maneira aqui da Samsung. Só que antes de… |
-| [38.102](https://www.instagram.com/reel/DdXxKKGMiYM/) | 941 | 70 | 09-17 | 133s | Humor / ostentação | esquete com a IA ('dei um soco nele') | — | Eu tô meio na bad hoje. fiquei meio estressado Eu tava trocando ideia com um cara O cara já é programador velho. tá no mercado Aí ele ficou… |
-| [32.528](https://www.instagram.com/reel/DdpKw7gTmbq/) | 1.057 | 30 | 09-23 | 47s | Opinião / bronca sem tela | 'não adianta o melhor produto se você não fizer conteúdo' | 'o maior jogo é o da audiência' | Uma coisa que eu falo pra vocês. não adianta você construir o melhor produto. saber fazer o melhor prompt pro Codex. o melhor prompt pro Cloud. Se… |
-| [30.979](https://www.instagram.com/reel/Dd9QjCqzK4b/) | 383 | 19 | 10-01 | 27s | Humor / ostentação | volta ao Brasil (calçada) | — | E aí. galera. Cheguei. Tem um atorista aí. Ei. você tá com saudade disso aqui. Olha que coisa linda. É você que tá com saudade disso aqui. Olha. Por… |
-| [30.971](https://www.instagram.com/reel/Dc4WgTzzMDN/) | 1.174 | 50 | 09-04 | 93s | Vlog de construção / bastidor | definindo a stack do SaaS de segurança | — | Eu estou no primeiro passo aqui junto com o Leandro. a gente está definindo o que a gente vai utilizar. tá? Aqui tem que ser muito rápido para… |
-| [29.768](https://www.instagram.com/reel/Dc3sZSxTa_Z/) | 1.105 | 41 | 09-04 | 71s | Novidade na tela + dilema | 'tá surreal o que foi apresentado: GPT-6 Astra' | 'pra quem já escala com tecnologia… bem-vindo à nova era' | Tá simplesmente surreal o que foi apresentado no mercado. Foi lançado o GPT-6 Astra e ele tá... Eu tô falando assim não só porque o cara tá fazendo… |
-| [28.482](https://www.instagram.com/reel/DdUXDlvTyxV/) | 805 | 49 | 09-15 | 120s | Opinião / bronca sem tela | 'a IA não vai colapsar. o mundo vai colapsar' | '98% vai continuar na mesma vida' | do mundo são meio bobonas. Elas não entendem. não acreditam. elas procrastinam isso daí e só vivem. entendeu? O que acontecia. aconteceu e tá tudo… |
-| [28.154](https://www.instagram.com/reel/Dd7WhqRz8qc/) | 966 | 16 | 09-30 | 69s | Novidade na tela + dilema | 'o que foi mais surreal: a Flórida ou o mercado de IA' | 'faça a IA trabalhar pra você' | Galera. eu não sei o que foi mais surreal. o que aconteceu comigo na Flórida nos últimos 7 dias ou o que aconteceu no mercado de IA nos últimos 3 ou… |
-| [26.866](https://www.instagram.com/reel/DdpZl3yTdSD/) | 655 | 18 | 09-23 | 53s | Vlog de construção / bastidor | programando no Tesla | — | Chegando no carro aqui. ó. perdeu a aposta. vai me levar pra comer onde? Perdi. no Five Guys. bora! Essa tá valendo! Tem que pagar. perdeu a aposta.… |
-| [26.846](https://www.instagram.com/reel/DdHoqSGTfs-/) | 425 | 15 | 09-10 | 59s | Opinião / bronca sem tela | 'pega uma multidão de pessoas…' (diferenciação) | 'você aqui é muito burro. desculpa' | Esse assunto eu gosto. vamos lá. Pega uma multidão de pessoas. Lá você vai ter várias pessoas médias. Que não são tão bonitas e nem tão feias.… |
-| [26.826](https://www.instagram.com/reel/DczvtqVsHGJ/) | 799 | 20 | 09-03 | 79s | Opinião / bronca sem tela | 'coisa que seu pai não te falaria: pare de ser moleque' | 'o que dá dinheiro é saber vender' | Coisa que seu pai não te falaria. você tem que parar de ser moleque. Meu brother. eu ouso dizer que o que você está fazendo é quase igual jogar um… |
-| [25.623](https://www.instagram.com/reel/Dc_9KrRzMgP/) | 463 | 79 | 09-07 | 42s | Vlog de construção / bastidor | na prancha com o celular | 'quando você deixa o Claude trabalhando sozinho' | Esqueci minha câmera 360. mas não tem problema. vai de celular mesmo. Uma mão pra controlar a prancha. outra mão pra segurar o celular. A prancha tá… |
-| [24.750](https://www.instagram.com/reel/DdDNfEmsaAU/) | 592 | 12 | 09-09 | 58s | Opinião / bronca sem tela | 'não é difícil…' (aprender a programar) | 'uma pessoa produz por vinte' | É porque não é difícil. sabe? Assim. eu vou falar pra você que é fácil. que uma pessoa vai pegar um código do dia pra noite. ou de uma semana pra… |
-| [22.572](https://www.instagram.com/reel/Dc824JOxk1C/) | 408 | 24 | 09-06 | 26s | Vlog de construção / bastidor | encerramento do hackathon | — | Tem nem muito o que falar. né? É só dar uma volta aqui e mostrar a galera conversando. Só foram já uns três dias seguidos sem parar. A gente está… |
-| [21.860](https://www.instagram.com/reel/DduD1h1TUQq/) | 513 | 25 | 09-25 | 43s | Opinião / bronca sem tela | 'invistam em ambiente' (golfe na Flórida) | — | Diazinho de jogar um belo golfe aqui na Flórida. Vou contar uma coisa pra vocês. Invistam em ambiente. Quando eu falo investir em ambiente. não é… |
-| [20.648](https://www.instagram.com/reel/Dc2JjBgsa11/) | 649 | 29 | 09-04 | 110s | Opinião / bronca sem tela | 'não existe mercado prostituído' | 'agora repete comigo' | Não existe mercado prostituído. Eu não sou teu pai. tua esposa. teu esposo. seu filho. filha. tio. tia. pra te agradar. Eu tô aqui pra te falar a… |
-| [19.917](https://www.instagram.com/reel/DcxQhklMtQu/) | 266 | 2 | 09-02 | 17s | Opinião / bronca sem tela | 'no começo você cobra pouco…' | — | O mercado é assim. cara. No começo você cobra pouco. Você é mal pago pra caramba. pra entregar muito. Só que depois. você acaba sendo muito bem pago.… |
-| [18.300](https://www.instagram.com/reel/Dc4XPt0qXTo/) | 218 | 13 | 09-04 | 113s | Opinião / bronca sem tela | entrevista p/ dono de restaurante (audiência) | 'você tá botando a cara?' | Dono de restaurante. fica comigo até o final desse vídeo. porque vai ter um insight muito valioso pra você. Hoje eu tô aqui com o Matheus Gomes. meu… |
-| [16.733](https://www.instagram.com/reel/Dd7JSYvz4BG/) | 333 | 27 | 09-30 | 98s | Humor / ostentação | escolhendo carros na loja | — | Vamos lá. vocês tem duas opções. a gente vai nos clássicos. inclusive esses Shelby Cobra aqui. eles estão com o motor da Huracan V10. tá? Imagina… |
-| [6.070](https://www.instagram.com/reel/DdcdZephsLD/) | 223 | 88 | 09-18 | 110s | 🔁 Tutorial com prompt nos comentários | (repostagem do Jarvis) | — | Cadê o Jarvis? Eu prometi. vou ter que cumprir Essa paradinha ficou top Ficou linda. maravilhosa Tem três prompts aqui prontinhos pra vocês E vocês… |
-| [2.701](https://www.instagram.com/reel/DdfCH14hjPk/) | 89 | 0 | 09-19 | 163s | 🔁 Tutorial com prompt nos comentários | (repostagem do design system) | — | Você pode ser feio. mas o seu sistema não precisa. Então repete comigo. Eu nunca mais vou fazer um sistema feio na vida. E eu estou aqui na… |
-| [2.467](https://www.instagram.com/reel/Ddb5sPdTk0S/) | 62 | 1 | 09-18 | 118s | 🔁 Tutorial com prompt nos comentários | (repostagem do feriado/21st.dev) | — | Hoje é feriado. dia maravilhoso. dia de um lago. a Pancha tá carregando aqui. só que antes de eu navegar. de eu fazer um wake. eu achei meu Mac. tava… |
-| [2.305](https://www.instagram.com/reel/Ddg4EZ1BHyD/) | 41 | 4 | 09-20 | 74s | 🔁 Tutorial com prompt nos comentários | (repostagem do Superpowers) | — | Você tem uma pitadinha de engenharia Harness. tá? Se você tá fazendo um prompt pra qualquer sistema. desenvolvimento. atualização. qualquer coisa. e… |
-| [1.340](https://www.instagram.com/reel/DdeLMpYBTHg/) | 36 | 0 | 09-19 | 43s | 🔁 Vlog de construção / bastidor | (repostagem dos 50 em casa) | — | Eu tô com 50 pessoas aqui em casa. simplesmente a gente fez 3 grupos. eu montei o quarto. porque o quarto vai ser eu junto com o Leandro. que ele é… |
+| [838.684](https://www.instagram.com/reel/DeILaFXzNvu/) | 46.106 | 912 | 2026-10-05 | 65s | Novidade na tela + dilema | 'colocaram no GitHub um repositório que faz engenharia reversa de qualquer coisa' | 'será que é legal fazer isso?' | Colocaram no GitHub um repositório que faz engenharia reversa de qualquer coisa. Deixa eu te explicar. Você pega qualquer aplicação, qualquer… |
+| [478.405](https://www.instagram.com/reel/Dc1xFAcz--l/) | 25.265 | 376 | 2026-09-03 | 110s | Tutorial com prompt nos comentários | 'cadê o Jarvis? eu prometi, vou ter que cumprir' | 3 prompts fixados + 'compartilha com seu amigo dev' | Cadê o Jarvis? Eu prometi, vou ter que cumprir Essa paradinha ficou top Ficou linda, maravilhosa Tem três prompts aqui prontinho pra vocês E vocês… |
+| [406.724](https://www.instagram.com/reel/DeN04mJslIC/) | 36.182 | 740 | 2026-10-08 | 120s | Novidade na tela + dilema | 'acabei de imprimir um pote de melatonina' (PS5 no PC) | 'vai colapsar ou a gente se acostuma?' | Acabei de imprimir um pote de melatonina aqui Galera, na boa Eu não sei o que o pessoal do PS5 da Sony tá tomando pra dormir Eu acho que essa… |
+| [233.955](https://www.instagram.com/reel/DdMjjtITgul/) | 10.419 | 180 | 2026-09-12 | 163s | Tutorial com prompt nos comentários | 'você pode ser feio, mas o seu sistema não precisa' | 'eu consigo construir qualquer coisa' | Você pode ser feio, mas o seu sistema não precisa. Então repete comigo. Eu nunca mais vou fazer um sistema feio na vida. E eu estou aqui em… |
+| [210.617](https://www.instagram.com/reel/Dc_rbh-TlPD/) | 8.807 | 108 | 2026-09-07 | 118s | Tutorial com prompt nos comentários | 'hoje é feriado… fiz um sistema esse fim de semana' | 21st.dev + prompt | Hoje é feriado, dia maravilhoso, dia de ir no lago, a pancha tá carregando aqui, só que antes de eu navegar, de eu fazer um wake, eu achei meu Mac,… |
+| [160.368](https://www.instagram.com/reel/DdXW6EeTZMs/) | 5.964 | 167 | 2026-09-16 | 74s | Tutorial com prompt nos comentários | 'se não tá fazendo dessa forma, tá fazendo errado' | 'eu te desafio a testar' | Se você quer uma pitadinha de engenharia Harness, tá? Se você tá fazendo um prompt pra qualquer sistema, desenvolvimento, atualização, qualquer coisa… |
+| [159.872](https://www.instagram.com/reel/DdShu-EsYkA/) | 6.413 | 167 | 2026-09-15 | 53s | Humor / ostentação | 'dá pra ser feliz no básico' (setup absurdo, ironia) | 'tem que ter uma cadeira confortável' | Uma coisa pra vocês, eu tô cansado de gente reclamando, gente ingrata. Dá pra ser feliz no básico, você não precisa de muito não, cara. Um Maczinho… |
+| [129.094](https://www.instagram.com/reel/DdbreG0z-cq/) | 4.405 | 92 | 2026-09-18 | 77s | Novidade na tela + dilema | 'a Anthropic se juntou com a OpenAI?' | comandos fixados nos comentários | A Anthropic se juntou com a OpenAI? O que está acontecendo? A OpenAI acabou de colocar praticamente um segundo programador dentro do cloud. Agora… |
+| [128.302](https://www.instagram.com/reel/DeK1IWzTAUk/) | 2.608 | 141 | 2026-10-06 | 29s | Humor / ostentação | 'você já viu esse cara? e se eu for ele?' | 'a gente se vê por aí' | Você já viu esse cara no Instagram? E se eu falar pra você que eu sou ele ou ele sou eu? Você acha que eu botei esse carro na parede como? Fazendo… |
+| [113.003](https://www.instagram.com/reel/DcuzRZRz5Jh/) | 3.920 | 113 | 2026-09-01 | 42s | Tutorial com prompt nos comentários | 'tentaram me invadir 17 vezes só hoje de manhã' | prompt de segurança fixado | Tentaram me invadir 17 vezes só hoje de manhã. Ficou meio estranha essa frase. Vou botar o boneco que eu tô com cara de maluco hoje. E hoje em dia… |
+| [86.358](https://www.instagram.com/reel/Dc4S814zxUY/) | 3.519 | 132 | 2026-09-04 | 43s | Vlog de construção / bastidor | '50 pessoas aqui em casa… em 24h nascerão 4 empresas' | 'acompanha que vou documentar tudo' | Eu tô com 50 pessoas aqui em casa, simplesmente a gente fez 3 grupos, eu montei o quarto, porque o quarto vai ser eu junto com o Leandro, que ele é… |
+| [75.706](https://www.instagram.com/reel/DdSfS5FMgkO/) | 2.780 | 109 | 2026-09-15 | 139s | Tutorial com prompt nos comentários | continuação do design system | 'me fala você' | É praticamente, doguinho, um rios antes desse. Tem dois dias que eu ensinei vocês a criar o design system mais bonito do mundo. Ficou top. Ficou… |
+| [74.032](https://www.instagram.com/reel/Dc4s64SzcOE/) | 1.871 | 134 | 2026-09-05 | 111s | Vlog de construção / bastidor | 'o pau tá quebrando aqui, 359 alterações' | pré-venda | Galera, o pau tá quebrando aqui, só no meu já tem 359 alterações. Eu tô com... Peraí, peraí, eu não vou nem mostrar. Deixa eu mostrar as equipes lá,… |
+| [72.187](https://www.instagram.com/reel/Ddj19YEzo8W/) | 2.457 | 72 | 2026-09-21 | 110s | Novidade na tela + dilema | 'para tudo, acabaram de lançar o Jev' | 'se quiserem, faço o vídeo de integração' | Mano, para tudo, para tudo, eu vou ter que usar o porrete aqui. Vou pegar esse negócio aqui, cara, e vou socar no GPT e vou socar no Cloud, porque… |
+| [65.517](https://www.instagram.com/reel/Dc5wrMyTl4S/) | 1.800 | 56 | 2026-09-05 | 79s | Vlog de construção / bastidor | '6h24 da manhã, ninguém dormiu' | 'vamos liberar daqui a pouco' | 6h24 da manhã Ninguém dormiu Só acordando aqui agora O sistema tá acontecendo Olha o estado da galera aqui Olha aquilo lá Estão preparados? Só pra… |
+| [63.790](https://www.instagram.com/reel/DdM5PxOTBRe/) | 2.586 | 79 | 2026-09-12 | 134s | Tutorial com prompt nos comentários | exportar o design system | 'dev, se tem amigo, é outro dev' | Qual que é a ideia agora? É pegar esse Design System e a gente exportar ele pra você poder importar depois em qualquer projeto. Mobile, desktop, seja… |
+| [62.418](https://www.instagram.com/reel/Ddueo9oSQQG/) | 480 | 53 | 2026-09-25 | 70s | Vlog de construção / bastidor | pizza no hackathon | — | Rapaz, o cara treinado, meu irmão Bora, Guga Cliente, ela tá esperando aí Agora vai pizza, meu Agora tem pizza no profissional esse negócio aqui… |
+| [60.799](https://www.instagram.com/reel/DdFb4dRTBPm/) | 1.695 | 75 | 2026-09-09 | 86s | Vlog de construção / bastidor | imprimindo a casinha do filho → resultado do desafio (168 cadastros) | 'se não mudou tua vida, faz o ENEM' | Aquelas compras compulsivas lá que você vê que vale a pena. Meu filho pediu uma casinha pro colégio que tinha que levar a apresentação dele. Tô… |
+| [59.340](https://www.instagram.com/reel/DduW9QDT68g/) | 1.853 | 45 | 2026-09-25 | 66s | Tutorial com prompt nos comentários | 'presta atenção nesse prompt' (setup do Mac) | seguir | Presta atenção nesse prompt aqui, não é esse não, tá? É esse aqui que tá rodando aqui no Mac Mini, que eu falei pra vocês que eu ia passar. Que é… |
+| [56.988](https://www.instagram.com/reel/DdIT2ztMXHe/) | 2.616 | 1.852 | 2026-09-11 | 134s | Tutorial com prompt nos comentários | 'barbinha na régua… meu filho tem um trabalho' → design system | 'se bater mil curtidas e mil comentários, eu ensino' | Barbinha parada na régua. Eu sou o cara responsável, tá? Por causa dos meus filhos e por causa de vocês. Presta atenção. Meu filho tem um trabalho no… |
+| [56.216](https://www.instagram.com/reel/DdhhCwGzQdX/) | 1.132 | 38 | 2026-09-20 | 43s | Reação a vídeo | robô lutando com humano | — | Mano... Risos Isso aqui, não sei se é uma IA que fez isso ou se está acontecendo de verdade Tá acontecendo galera, Skynet tá chegando Mano, eu vivo… |
+| [53.532](https://www.instagram.com/reel/Dd-SNRKs_O_/) | 2.136 | 354 | 2026-10-02 | 104s | Novidade na tela + dilema | 'tem muita gente confusa com a nova precificação do ChatGPT' | 'se bater mil curtidas, eu ensino' | Tem muita gente confusa com a nova precificação agora do chat GPT, o 100, 200, 500. Mas fica de boa que eu vou te explicar como funciona tudo isso… |
+| [51.263](https://www.instagram.com/reel/DdVKlCCsHAp/) | 1.195 | 97 | 2026-09-16 | 59s | Opinião / bronca sem tela | 'desculpa estragar o sonho de vocês: sabe o que significa GPT?' | 'a Xuxa não usa Monange' | Pessoal, desculpa estragar o sonho de vocês, essa ilusão, esse mundo da Disney. Sabe o que significa GPT? Generative Pre-trained Transformer. Em… |
+| [48.574](https://www.instagram.com/reel/DdcOiXtzpgo/) | 1.562 | 64 | 2026-09-18 | 42s | Humor / ostentação | 'tem duas formas de usar IA' → juridiquês (humor) | — | Galera, tem duas formas de usar IATA, e as duas são excelentíssimas. A primeira é você fazer um funilzinho no Mac, deixar rodando IA local, empilhar… |
+| [42.863](https://www.instagram.com/reel/DdmEB--zFWd/) | 1.597 | 52 | 2026-09-22 | 144s | Opinião / bronca sem tela | 'a única coisa que resta pra você é virar Uber' | 'o futuro vai ser de quem sabe vender' | E a única coisa que resta pra você, acho que é virar Uber. Eu tô aqui pra bater a real pra vocês, né, conversinha lorota, e fazer uma coisa que nem… |
+| [41.873](https://www.instagram.com/reel/DdrN5stz5xT/) | 1.443 | 28 | 2026-09-24 | 47s | Vlog de construção / bastidor | setup na gringa | 'mais tarde tem vídeo' | E aí galera, esse aqui é meu setupzinho na gringa, é um pouquinho mais ou menos do Brasil, ficou menos tempo aqui né, só que aqui tem isso na parede,… |
+| [38.380](https://www.instagram.com/reel/DdpmLSns3MO/) | 945 | 37 | 2026-09-24 | 43s | Vlog de construção / bastidor | open box do Mac Mini | — | Hoje vai ter open box aqui da Amazon, tá? Ó, galera, esse aqui é o setupzinho aqui da Flórida. Pelinha maneira aqui da Samsung. Só que antes de… |
+| [38.102](https://www.instagram.com/reel/DdXxKKGMiYM/) | 941 | 70 | 2026-09-17 | 133s | Humor / ostentação | esquete com a IA ('dei um soco nele') | — | Eu tô meio na bad hoje, fiquei meio estressado Eu tava trocando ideia com um cara O cara já é programador velho, tá no mercado Aí ele ficou… |
+| [32.528](https://www.instagram.com/reel/DdpKw7gTmbq/) | 1.057 | 30 | 2026-09-23 | 47s | Opinião / bronca sem tela | 'não adianta o melhor produto se você não fizer conteúdo' | 'o maior jogo é o da audiência' | Uma coisa que eu falo pra vocês, não adianta você construir o melhor produto, saber fazer o melhor prompt pro Codex, o melhor prompt pro Cloud. Se… |
+| [30.979](https://www.instagram.com/reel/Dd9QjCqzK4b/) | 383 | 19 | 2026-10-01 | 27s | Humor / ostentação | volta ao Brasil (calçada) | — | E aí, galera. Cheguei. Tem um atorista aí. Ei, você tá com saudade disso aqui. Olha que coisa linda. É você que tá com saudade disso aqui. Olha. Por… |
+| [30.971](https://www.instagram.com/reel/Dc4WgTzzMDN/) | 1.174 | 50 | 2026-09-04 | 93s | Vlog de construção / bastidor | definindo a stack do SaaS de segurança | — | Eu estou no primeiro passo aqui junto com o Leandro, a gente está definindo o que a gente vai utilizar, tá? Aqui tem que ser muito rápido para… |
+| [29.768](https://www.instagram.com/reel/Dc3sZSxTa_Z/) | 1.105 | 41 | 2026-09-04 | 71s | Novidade na tela + dilema | 'tá surreal o que foi apresentado: GPT-6 Astra' | 'pra quem já escala com tecnologia… bem-vindo à nova era' | Tá simplesmente surreal o que foi apresentado no mercado. Foi lançado o GPT-6 Astra e ele tá... Eu tô falando assim não só porque o cara tá fazendo… |
+| [28.482](https://www.instagram.com/reel/DdUXDlvTyxV/) | 805 | 49 | 2026-09-15 | 120s | Opinião / bronca sem tela | 'a IA não vai colapsar, o mundo vai colapsar' | '98% vai continuar na mesma vida' | do mundo são meio bobonas. Elas não entendem, não acreditam, elas procrastinam isso daí e só vivem, entendeu? O que acontecia, aconteceu e tá tudo… |
+| [28.154](https://www.instagram.com/reel/Dd7WhqRz8qc/) | 966 | 16 | 2026-09-30 | 69s | Novidade na tela + dilema | 'o que foi mais surreal: a Flórida ou o mercado de IA' | 'faça a IA trabalhar pra você' | Galera, eu não sei o que foi mais surreal, o que aconteceu comigo na Flórida nos últimos 7 dias ou o que aconteceu no mercado de IA nos últimos 3 ou… |
+| [26.866](https://www.instagram.com/reel/DdpZl3yTdSD/) | 655 | 18 | 2026-09-23 | 53s | Vlog de construção / bastidor | programando no Tesla | — | Chegando no carro aqui, ó, perdeu a aposta, vai me levar pra comer onde? Perdi, no Five Guys, bora! Essa tá valendo! Tem que pagar, perdeu a aposta,… |
+| [26.846](https://www.instagram.com/reel/DdHoqSGTfs-/) | 425 | 15 | 2026-09-10 | 59s | Opinião / bronca sem tela | 'pega uma multidão de pessoas…' (diferenciação) | 'você aqui é muito burro, desculpa' | Esse assunto eu gosto, vamos lá. Pega uma multidão de pessoas. Lá você vai ter várias pessoas médias. Que não são tão bonitas e nem tão feias.… |
+| [26.826](https://www.instagram.com/reel/DczvtqVsHGJ/) | 799 | 20 | 2026-09-03 | 79s | Opinião / bronca sem tela | 'coisa que seu pai não te falaria: pare de ser moleque' | 'o que dá dinheiro é saber vender' | Coisa que seu pai não te falaria, você tem que parar de ser moleque. Meu brother, eu ouso dizer que o que você está fazendo é quase igual jogar um… |
+| [25.623](https://www.instagram.com/reel/Dc_9KrRzMgP/) | 463 | 79 | 2026-09-07 | 42s | Vlog de construção / bastidor | na prancha com o celular | 'quando você deixa o Claude trabalhando sozinho' | Esqueci minha câmera 360, mas não tem problema, vai de celular mesmo. Uma mão pra controlar a prancha, outra mão pra segurar o celular. A prancha tá… |
+| [24.750](https://www.instagram.com/reel/DdDNfEmsaAU/) | 592 | 12 | 2026-09-09 | 58s | Opinião / bronca sem tela | 'não é difícil…' (aprender a programar) | 'uma pessoa produz por vinte' | É porque não é difícil, sabe? Assim, eu vou falar pra você que é fácil, que uma pessoa vai pegar um código do dia pra noite, ou de uma semana pra… |
+| [22.572](https://www.instagram.com/reel/Dc824JOxk1C/) | 408 | 24 | 2026-09-06 | 26s | Vlog de construção / bastidor | encerramento do hackathon | — | Tem nem muito o que falar, né? É só dar uma volta aqui e mostrar a galera conversando. Só foram já uns três dias seguidos sem parar. A gente está… |
+| [21.860](https://www.instagram.com/reel/DduD1h1TUQq/) | 513 | 25 | 2026-09-25 | 43s | Opinião / bronca sem tela | 'invistam em ambiente' (golfe na Flórida) | — | Diazinho de jogar um belo golfe aqui na Flórida. Vou contar uma coisa pra vocês. Invistam em ambiente. Quando eu falo investir em ambiente, não é… |
+| [20.648](https://www.instagram.com/reel/Dc2JjBgsa11/) | 649 | 29 | 2026-09-04 | 110s | Opinião / bronca sem tela | 'não existe mercado prostituído' | 'agora repete comigo' | Não existe mercado prostituído. Eu não sou teu pai, tua esposa, teu esposo, seu filho, filha, tio, tia, pra te agradar. Eu tô aqui pra te falar a… |
+| [19.917](https://www.instagram.com/reel/DcxQhklMtQu/) | 266 | 2 | 2026-09-02 | 17s | Opinião / bronca sem tela | 'no começo você cobra pouco…' | — | O mercado é assim, cara. No começo você cobra pouco. Você é mal pago pra caramba, pra entregar muito. Só que depois, você acaba sendo muito bem pago,… |
+| [18.300](https://www.instagram.com/reel/Dc4XPt0qXTo/) | 218 | 13 | 2026-09-04 | 113s | Opinião / bronca sem tela | entrevista p/ dono de restaurante (audiência) | 'você tá botando a cara?' | Dono de restaurante, fica comigo até o final desse vídeo, porque vai ter um insight muito valioso pra você. Hoje eu tô aqui com o Matheus Gomes, meu… |
+| [16.733](https://www.instagram.com/reel/Dd7JSYvz4BG/) | 333 | 27 | 2026-09-30 | 98s | Humor / ostentação | escolhendo carros na loja | — | Vamos lá, vocês tem duas opções, a gente vai nos clássicos, inclusive esses Shelby Cobra aqui, eles estão com o motor da Huracan V10, tá? Imagina… |
+| [6.070](https://www.instagram.com/reel/DdcdZephsLD/) | 223 | 88 | 2026-09-18 | 110s | 🔁 Tutorial com prompt nos comentários | (repostagem do Jarvis) | — | Cadê o Jarvis? Eu prometi, vou ter que cumprir Essa paradinha ficou top Ficou linda, maravilhosa Tem três prompts aqui prontinhos pra vocês E vocês… |
+| [2.701](https://www.instagram.com/reel/DdfCH14hjPk/) | 89 | 0 | 2026-09-19 | 163s | 🔁 Tutorial com prompt nos comentários | (repostagem do design system) | — | Você pode ser feio, mas o seu sistema não precisa. Então repete comigo. Eu nunca mais vou fazer um sistema feio na vida. E eu estou aqui na… |
+| [2.467](https://www.instagram.com/reel/Ddb5sPdTk0S/) | 62 | 1 | 2026-09-18 | 118s | 🔁 Tutorial com prompt nos comentários | (repostagem do feriado/21st.dev) | — | Hoje é feriado, dia maravilhoso, dia de um lago, a Pancha tá carregando aqui, só que antes de eu navegar, de eu fazer um wake, eu achei meu Mac, tava… |
+| [2.305](https://www.instagram.com/reel/Ddg4EZ1BHyD/) | 41 | 4 | 2026-09-20 | 74s | 🔁 Tutorial com prompt nos comentários | (repostagem do Superpowers) | — | Você tem uma pitadinha de engenharia Harness, tá? Se você tá fazendo um prompt pra qualquer sistema, desenvolvimento, atualização, qualquer coisa, e… |
+| [1.340](https://www.instagram.com/reel/DdeLMpYBTHg/) | 36 | 0 | 2026-09-19 | 43s | 🔁 Vlog de construção / bastidor | (repostagem dos 50 em casa) | — | Eu tô com 50 pessoas aqui em casa, simplesmente a gente fez 3 grupos, eu montei o quarto, porque o quarto vai ser eu junto com o Leandro, que ele é… |
 
 ---
 
@@ -349,6 +351,20 @@ Para qualquer feature que você for desenvolver para o seu sistema, seja uma coi
 Isso faz um prompt rodar por 24, 48, 72 horas Obviamente dependendo do nível de complexidade Eu te desafio a testar aqui E me falar a diferença que você vai encontrar No teu desenvolvimento E para mais dicas de quem vive a realidade com o IA E já desenvolve há 21 anos É só clicar no botão de seguir aqui embaixo
 ```
 
+### 159.872 views · 53s · 2026-09-15 · [link](https://www.instagram.com/reel/DdShu-EsYkA/)
+
+```
+Uma coisa pra vocês, eu tô cansado de gente reclamando, gente ingrata.
+Dá pra ser feliz no básico, você não precisa de muito não, cara.
+Um Maczinho aqui tranquilo, com um RTX 5090 rodando 128GB de RAM, pra quê?
+Roda um Queen 3 de boa, vai servir pra...
+Você tá com dois agentes aqui, rodando o Opus 5, e aí você vai ter aqui um Queen 3 rodando no Oriama local, compartilhado aqui via rede, pra quê?
+Você faz um proxyzinho lindo, maravilhoso, vai rodar o que o Opus planejar, coisa de segurança, você audita lá, aí aqui você tem um outro setupzinho com Macbook Air, Rodando um open claw Óbvio que o Kratos tem que estar upado, né?
+O Kratosinho tem que estar upado Pra quê?
+Dois notas de redundância, galera Você não precisa de muito Você fica aqui tranquilo, ó Só põe o pé bonito aqui Acabou Olha um pouquinho aqui Vai aqui Planeja ali O restante, pessoal Você não precisa de muita coisa A galera hoje tá, sabe?
+Não se contenta Tá reclamando E óbvio tem que ter uma cadeira confortável, né?
+```
+
 ### 129.094 views · 77s · 2026-09-18 · [link](https://www.instagram.com/reel/DdbreG0z-cq/)
 
 ```
@@ -371,6 +387,17 @@ Eu deixei fixado nos comentários como instalar e cada comando e pra que que ser
 Não esquece de me seguir pra você acompanhar o próximo conteúdo e já corre aí pros comentários.
 ```
 
+### 128.302 views · 29s · 2026-10-06 · [link](https://www.instagram.com/reel/DeK1IWzTAUk/)
+
+```
+Você já viu esse cara no Instagram?
+E se eu falar pra você que eu sou ele ou ele sou eu?
+Você acha que eu botei esse carro na parede como?
+Fazendo conteúdo, vendendo sistema ou com várias páginas darks?
+E será que todo mundo que você vê na internet é todo mundo ou sou eu?
+A gente se vê por aí.
+```
+
 ### 113.003 views · 42s · 2026-09-01 · [link](https://www.instagram.com/reel/DcuzRZRz5Jh/)
 
 ```
@@ -389,36 +416,31 @@ Só coloca o nosso IA no seu projeto e se tiver com essa falha, que é uma falha
 Para mais conteúdos desses, é só me acompanhar, porque eu posto minha rotina real das minhas empresas de tecnologia.
 ```
 
-### 86.358 views · 43s · 2026-09-04 · [link](https://www.instagram.com/reel/Dc4S814zxUY/)
+### Picos de fora da janela
+
+#### 1.601.038 views · 26s · 2025-11-03 · [link](https://www.instagram.com/reel/DQmlirSj41E/)
 
 ```
-Eu tô com 50 pessoas aqui em casa, simplesmente a gente fez 3 grupos, eu montei o quarto, porque o quarto vai ser eu junto com o Leandro, que ele é meu sócio de algumas empresas de tecnologia.
-Sabe o que vai acontecer?
-Nas próximas 24 horas, nascerão 4 empresas, e essas empresas, elas irão faturar.
-Tá começando agora, basicamente.
-Tá começando agora.
-Ninguém sabia de nada até chegar aqui, a gente marcou esse evento aqui na minha casa, a gente vai colocar 4 empresas no ar, do zero, do absoluto zero, e nas próximas 24 horas, ninguém vai dormir, a gente só vai dormir quando estiver vendendo.
-Acompanha aí, porque eu vou documentar tudo, tudo que eu tô fazendo, desde o início, fez a parte do brainstorm, a parte que a gente vai estar colocando esse sistema no ar, o marketing, a venda, tudo vai ser documentado aqui, porque eu estou no projeto também e daqui a pouco vocês vão saber os próximos passos.
-É só começar a acompanhar, porque vocês vão ver a mágica acontecendo e como faz dinheiro de verdade com tecnologia.
-Com tudo, literalmente tudo, documentado.
+Como demitir um funcionário numa boa Sem ele guardar rancor Primeiro passo Elogie ele Dizendo que é um ótimo profissional Ele vai se sentir mais confortável E confiante em buscar emprego Mesmo não sendo verdade Ô e aí cara Você tá fazendo um ótimo trabalho Não pô Tá sem fone cara
 ```
 
-### 75.706 views · 139s · 2026-09-15 · [link](https://www.instagram.com/reel/DdSfS5FMgkO/)
+#### 1.220.816 views · 14s · 2025-08-07 · [link](https://www.instagram.com/reel/DNEki14M9DT/)
 
 ```
-É praticamente, doguinho, um rios antes desse.
-Tem dois dias que eu ensinei vocês a criar o design system mais bonito do mundo.
-Ficou top.
-Ficou incrível.
-Eu sei que muita gente está mudando a forma que trabalha.
-Só que o que eu mostrei não é 10% do que tem esse potencial.
-70 miligramas depois do almoço você vai precisar de 10 miligramas de miniaturina para dormir.
-Mas vamos lá.
-Galera, tem mais um prompt que você roda no Fluxo que você consegue criar o melhor dashboard, o melhor aplicativo mobile, o melhor site.
-A melhor coisa do mundo.
-Eu vou te ensinar isso agora.
-casinha do trabalho do colégio do meu filho está quase pronta aquele prompt do milhão está rodando aqui 24 horas por dia só que a coisa mágica vocês vão ver aqui agora comigo estou em casa de volta com a melhor tela do mundo o que você vai fazer?
-cloud.ai barra design aqui você vai clicar no design system que você criou aquele que você criou do seu negócio template blank você vai pegar nenhum template e depois você clica aqui e vai colar esse prompt esse prompt está nos comentários fixado você pode reestruturar ele para o seu negócio mas ele é uma base para você entender como que eu gosto de pautar IA.
-Depois disso, óculos 5 aqui no extra.
-s clicar aqui e pau na m Meu prontinho est rodando A m est acontecendo 100 em cima do design system Que foi criado t Ele j definiu os to aqui t criando tudo Agora vamos esperar esse negócio ficar pronto Ô, na boa, dá vontade de fazer uma pipoquinha Com bacon, aquele bacon bem fritinho Cara, que trem maravilhoso Olha isso aqui sendo criado em tempo real Em cima do design system que foi feito Tudo padronizado, qualquer coisa que eu pautar Nada vai sair do padrão Pro que for, um site, pra um web Pra um aplicativo, pra um app, pra Play Store, App Store Ah, mano Que ansiedade esse negócio aqui Eu tô sem palavras, eu não vou comentar Me fala você, me fala você Eu preciso falar alguma coisa, é só mostrar pra vocês Cara Até o XP aqui, velho Porque eu pedi pra ser Ah, velho, coisa linda, eu tô descobrindo isso aqui com vocês ao vivo, tá Ao vivo assim, só ficou pronto, eu tô gravando Cara, a parte de gamificação aqui Organizações, equipe, permissões Planos e pagamentos, perfil, suporte interno Painel, conversa, contato, funil, tarefa Caraca, velho, olha essa parte de organização Que coisa mais linda Gente, na boa Aqui eu posso ficar conversando com a Yael o dia todo Mas um prompt me entregar isso aqui É sacanagem Isso aqui é sacanagem, um prompt, cara Tá, me fala você
+Aprendeu a delegar para quem?
 ```
+
+#### 643.273 views · 41s · 2025-10-26 · [link](https://www.instagram.com/reel/DQRcNdsDLQq/)
+
+```
+O pensamento do pobre é um negócio que tem que ser estudado.
+Me perguntaram nesse barco que eu comeu, quantos HPs que ele tinha, eu acabei respondendo, né?
+São dois motores, cada motor tem 350 HP, 700 no total.
+Aí me perguntaram depois o quanto que ele consome.
+Esse barco consome 200 litros de combustível por hora, de gasolina, uma aceleração full aqui.
+Sabe o que a pessoa falou?
+Deus que me livre.
+Um barco que gasta tanto, prefiro ter um barco menor.
+Cara, se acha que você tiver condição de ter um barco desse tamanho, Você vai se preocupar com o quanto gasta de combustível Isso porque eu não somei nem o que gasta no gerador Isso só do motor Então assim, tira esse pensamento de escassez da sua cabeça Senão você vai ficar limitado Onde você está o resto da sua vida
+```
+

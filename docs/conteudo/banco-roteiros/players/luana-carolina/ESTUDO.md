@@ -103,80 +103,84 @@ Ela passou a postar 3 a 4 vezes mais a partir de julho e a mediana caiu pela met
 
 É o esqueleto da §3 inteiro em 80s: a regra como ordem, a pergunta do espectador na boca dela, a demonstração com um objeto (a tesourinha de unha de gato) e a regra de novo no fim.
 
+<!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
+
 ---
 
 ## Anexo A — mediana por formato
 
-| Formato | Vídeos | Mediana de views | Teto | Duração mediana |
-|---|---|---|---|---|
-| Demonstração (voz) | 1 | 799.578 | 799.578 | 60s |
-| Paródia / humor | 1 | 729.038 | 729.038 | 31s |
-| Estético / música | 2 | 706.071 | 858.178 | 54s |
-| Confissão de virada | 2 | 546.699 | 835.902 | 160s |
-| Frase única | 2 | 471.767 | 546.804 | 39s |
-| Modelo mental + ferramenta | 3 | 455.202 | 653.643 | 83s |
-| Regra contraintuitiva | 11 | 445.408 | 1.321.199 | 74s |
-| Lifestyle / tutorial | 6 | 400.621 | 606.005 | 110s |
-| Mecanismo com nome | 6 | 261.828 | 753.559 | 157s |
-| Par de palavras | 4 | 192.121 | 597.491 | 83s |
-| Corte de fala espontânea | 12 | 174.083 | 1.584.980 | 34s |
+Cada roteiro contado uma vez (repostagens fora). *Testes* = abaixo de 500 views.
 
-## Anexo B — os 50 vídeos, com a abertura literal
+| Formato | Vídeos | Mediana de views | Teto | Duração mediana | Testes reprovados |
+|---|---|---|---|---|---|
+| Demonstração (voz) | 1 | 799.578 | 799.578 | 60s | 0 |
+| Paródia / humor | 1 | 729.038 | 729.038 | 31s | 0 |
+| Estético / música | 2 | 706.071 | 858.178 | 54s | 0 |
+| Confissão de virada | 2 | 546.699 | 835.902 | 160s | 0 |
+| Frase única | 2 | 471.767 | 546.804 | 39s | 0 |
+| Modelo mental + ferramenta | 3 | 455.202 | 653.643 | 83s | 0 |
+| Regra contraintuitiva | 11 | 445.408 | 1.321.199 | 74s | 0 |
+| Lifestyle / tutorial | 6 | 400.621 | 606.005 | 110s | 0 |
+| Mecanismo com nome | 6 | 261.828 | 753.559 | 157s | 0 |
+| Par de palavras | 4 | 192.121 | 597.491 | 83s | 0 |
+| Corte de fala espontânea | 12 | 174.083 | 1.584.980 | 34s | 0 |
 
-Ordenados por views. ❤ = -1 significa curtidas ocultas.
+## Anexo B — os vídeos, com a abertura literal
+
+Ordenados por views. 🔁 = repostagem · 🧪 = teste reprovado · ❤ -1 = curtidas ocultas.
 
 | Views | ❤ | 💬 | Data | Dur. | Formato | Gancho (tipo) | Fecho | Abertura literal |
 |---|---|---|---|---|---|---|---|---|
-| [1.584.980](https://www.instagram.com/reel/DUdgGqjEWeR/) | 56.931 | 481 | 26-02-07 | 66s | Corte de fala espontânea | rebate uma frase-desculpa ('meu ego é grande demais pra receber não') | 'se a gente não tenta. não sai do lugar' | meu ego é grande demais pra eu passar vergonha e receber um não. Para com isso. Gente. se vocês já tiveram noção que quanto mais alto a pessoa tá.… |
-| [1.321.199](https://www.instagram.com/reel/DbJn2_6q9Th/) | 39.549 | 1.823 | 26-07-23 | 74s | Regra contraintuitiva | instrução inesperada ('a última coisa que você precisa fazer é comentar a palminha') | 'aí sim. você vai estar sendo útil' | A última coisa que você precisa fazer é comentar a palminha. Se você quer ser útil de verdade na vida de alguém que você gosta muito e você sabe que… |
-| [1.310.852](https://www.instagram.com/reel/DUbVSO3kVrL/) | 53.100 | 523 | 26-02-06 | 74s | Corte de fala espontânea | crítica construtiva × odiar por odiar | levar a crítica para crescer | eu tenho que ver meus erros pra conseguir consertar então eu preciso que alguém chegue e me fale pô. lanço. tá errando nisso isso é uma crítica… |
-| [1.176.910](https://www.instagram.com/reel/DZz8jWARlDD/) | 64.330 | 1.021 | 26-06-20 | 59s | Regra contraintuitiva | 'a primeira malícia que você precisa… é esconder seus talentos. Ponto final.' | 'ostentando o quê? O teu esforço.' | A primeira malícia que você precisa desenvolver para sobreviver em um ambiente profissional é esconder os seus talentos. Ponto final. A pessoa tem… |
-| [858.178](https://www.instagram.com/reel/DV6FeYFkbhM/) | 59.985 | 576 | 26-03-15 | 94s | Estético / música | música + 1 frase | 'construí um lugar para você' | Tables and chairs warmed by all of the dust This is a place where I don't feel alone This is a place where I feel at home Eu construí um lugar para… |
-| [835.902](https://www.instagram.com/reel/DbgLe0cRyX9/) | 26.351 | 377 | 26-08-01 | 191s | Confissão de virada | 'eu sacrifiquei minha espontaneidade… e esse vídeo é um pedido para que você faça o mesmo' | 'a tua essência também precisa evoluir' | Eu sacrifiquei a minha espontaneidade. a minha autenticidade e a minha naturalidade para dar certo na internet e esse vídeo é um pedido para que você… |
-| [799.578](https://www.instagram.com/reel/DUGOugUEXzq/) | 32.532 | 567 | 26-01-29 | 60s | Demonstração (voz) | demonstra voz de peito × de cabeça | 'na tua vida você não é assim?' | Essa é a voz de peito. Essa é a voz de cabeça. E eu tô aqui pra perguntar pra você que no dia a dia usa a voz de peito. se comunica. mas quando abre… |
-| [779.736](https://www.instagram.com/reel/DUD97BykV8s/) | 45.276 | 313 | 26-01-28 | 56s | Regra contraintuitiva | 'pessoas estupidamente bem-sucedidas não diferenciam jogo e treino' | medo de descobrir quem você é | Pessoas estupidamente bem-sucedidas não criam nenhuma diferença entre quando é jogo e quando é treino. Elas usam toda a oportunidade na frente delas… |
-| [753.559](https://www.instagram.com/reel/DbokI0_q_O2/) | 29.238 | 299 | 26-08-04 | 207s | Mecanismo com nome | 'se quer chegar aqui. foco basta; aqui. não' + promessa de insight | leitura de jogo | Se você quer chegar aqui. o foco e a constância são suficientes. Mas agora. se você quer chegar aqui. não é sobre foco e constância. Mas você vai ter… |
-| [729.038](https://www.instagram.com/reel/DbO1JIvqlgH/) | 21.108 | 288 | 26-07-25 | 31s | Paródia / humor | imita youtuber antigo dando dicas | — | Assiste esse vídeo que você vai amar! Oi gente. tudo bom? Hoje eu trouxe dicas pra vocês pro seu Instagram bombar. Pra você ganhar seguidor. pra você… |
-| [727.976](https://www.instagram.com/reel/DYFN0CyxafK/) | 35.985 | 437 | 26-05-08 | 66s | Regra contraintuitiva | 'quanto mais você se especializa. menor o grupo que reconhece' | esclarecimento. não desmotivação | Quanto mais você se esforça para se especializar na sua área. aprofundar o seu conhecimento. menor se torna o grupo de pessoas que são capazes de… |
-| [653.643](https://www.instagram.com/reel/DclKoiSqxiT/) | 25.338 | 212 | 26-08-28 | 146s | Modelo mental + ferramenta | 'não é coincidência: toda pessoa podre de rica que eu conheço…' | papel e caneta: custo de reversão | Não é coincidência. Toda pessoa podre de rica que eu conheço. ela tem o hábito de tomar decisões difíceis com muita frequência. Isso não acontece… |
-| [606.005](https://www.instagram.com/reel/DeHe1pRRkGm/) | 20.756 | 227 | 26-10-05 | 146s | Lifestyle / tutorial | 'truques de glow up que eu aprendi na base da porrada' | 'larga disso' | Truques de glow up que eu queria muito que alguém tivesse me ensinado e que eu aprendi na base da porrada. Sabe aquela pessoa que você acompanha e… |
-| [599.741](https://www.instagram.com/reel/DTI1GGhEVe-/) | 24.248 | 255 | 26-01-05 | 126s | Regra contraintuitiva | 'você jamais vai ter sucesso fazendo planejamento de ano novo' | 'onde a minha corda arrebenta?' | Você jamais vai ter sucesso fazendo um planejamento para um novo ano. Porque se você não sabe com muita clareza. com muita sinceridade. crua… |
-| [597.491](https://www.instagram.com/reel/Db_Be0jxlaO/) | 34.596 | 336 | 26-08-13 | 121s | Par de palavras | 'sabe qual é a pior pessoa pra ter por perto?' | 'Oportunidade? Não. Obrigação.' | Sabe qual é a pior pessoa pra você ter por perto da sua vida? Amigo. parceiro. colega de trabalho. funcionário. é aquela que você entrega uma… |
-| [584.840](https://www.instagram.com/reel/DR7dBrKkeBO/) | 12.356 | 242 | 25-12-06 | 165s | Lifestyle / tutorial | 'o que eu não abro mão na minha bolsa' | pergunta à audiência | Eu vou mostrar tudo que eu não abro mão de carregar na minha bolsa. E você. inclusive. vai se surpreender pelo tanto de coisa que tem aqui dentro.… |
-| [553.965](https://www.instagram.com/reel/DVHpdLXjE4D/) | 21.630 | 129 | 26-02-23 | 15s | Estético / música | quase sem fala | — | E… |
-| [546.804](https://www.instagram.com/reel/DUOltHmEWWP/) | 21.814 | 268 | 26-02-01 | 22s | Frase única | 'imagina se o seu medo não é da crítica. mas…' | (a própria frase) | Imagina se. no fundo. o medo que você tem de criar conteúdo não seja da crítica e da opinião alheia. mas seja em descobrir que as pessoas que você… |
-| [473.797](https://www.instagram.com/reel/DZDlK6LKr-3/) | 15.476 | 844 | 26-06-01 | 163s | Mecanismo com nome | 'um erro em toda frase que você fala te torna chato' | teste nos comentários | Tem um erro padrão em toda frase que você fala que torna você uma pessoa chata e desinteressante. E a não ser que você preste atenção num detalhe que… |
-| [455.202](https://www.instagram.com/reel/Dcd9-iNx7xf/) | 25.427 | 117 | 26-08-25 | 83s | Modelo mental + ferramenta | 'se você não veio de família de empresários…' | margem (exemplo do mercado) | Se você não veio de uma família cheia de empresários bem-sucedidos. provavelmente você não tem familiaridade com alguns conceitos que fazem toda a… |
-| [445.408](https://www.instagram.com/reel/DZhwyuaRodH/) | 12.525 | 502 | 26-06-13 | 87s | Regra contraintuitiva | 'pessoas de baixa capacidade cognitiva sempre…' | pergunta que abre ou limita | Você já notou que pessoas que têm uma baixa capacidade cognitiva. eles sempre têm o hábito de criticar o outro através de uma verdade universal que… |
-| [422.015](https://www.instagram.com/reel/DZxbdiXx6M9/) | 22.891 | 127 | 26-06-19 | 50s | Corte de fala espontânea | 'comecei a ser obsessiva com algumas ideias' (Munger) | evitar erros óbvios | comecei a ser obsessiva com algumas ideias. A primeira delas é simplificação. Simplifique. simplifique. simplifique. Não busque ser inteligente. Não… |
-| [420.366](https://www.instagram.com/reel/DbwO-fnqE7H/) | 5.125 | 219 | 26-08-07 | 29s | Lifestyle / tutorial | 'quer esconder o microfone?' | — | Quer esconder o microfone? Pra não deixar assim. ó. chamando atenção? Pode daí esconder no sutiã. Eu coloco essa parte sempre pra dentro. assim. No… |
-| [396.731](https://www.instagram.com/reel/DVZYNzSkQiP/) | 20.306 | 234 | 26-03-02 | 57s | Frase única | 'não é óbvio. Se tornou óbvio para você…' | a virada de chave de alguém | Não é óbvio. Se tornou óbvio para você. por causa das experiências que você teve. do conhecimento que você teve acesso e das ideias que chegaram até… |
-| [380.877](https://www.instagram.com/reel/Db9DYu5q01a/) | 11.614 | 406 | 26-08-12 | 75s | Lifestyle / tutorial | 'esse é um sinal pra você gravar dentro do carro' | 3 motivos | Esse é um sinal pra você começar a gravar dentro do carro. Ah. meu Deus. tá todo mundo gravando dentro do carro agora? É porque é maravilhoso. Vou te… |
-| [344.411](https://www.instagram.com/reel/DdjnNkyKroN/) | 13.315 | 154 | 26-09-21 | 53s | Regra contraintuitiva | 'quanto mais desenvolve comunicação. mais sofisticada a autossabotagem' | âncora que puxa pra baixo | Quanto mais uma pessoa desenvolve a comunicação e a capacidade de articular pensamentos e ideias. mais sofisticada fica a sua autossabotagem. É por… |
-| [297.797](https://www.instagram.com/reel/DcJVYdYRFci/) | 11.440 | 116 | 26-08-17 | 151s | Mecanismo com nome | 'quando você fala do seu trabalho. as pessoas somem' | história palpável > informação técnica | Quando você fala do seu trabalho. as pessoas somem. ninguém responde. ninguém interage. Aí você vai falar do seu relacionamento. vai mostrar o seu… |
-| [263.786](https://www.instagram.com/reel/DcorWHfKlSr/) | 11.751 | 245 | 26-08-29 | 104s | Regra contraintuitiva | 'a régua tá lá embaixo' | 'o cliente vai perceber que você enxergou ele' | A régua tá lá embaixo. Nunca foi tão fácil se destacar profissionalmente igual tá sendo agora. Tô falando que estamos vivendo em uma era de… |
-| [257.496](https://www.instagram.com/reel/DbYYI6xBCnM/) | 6.371 | 169 | 26-07-29 | 130s | Confissão de virada | 'dia 30 de outubro de 2024 eu escrevi isso' | 'se permita ser só mais um' | Dia 30 de outubro de 2024 eu escrevi isso. A autenticidade é afastar-se das categorias universais. onde a concorrência é alta. e criar uma… |
-| [254.165](https://www.instagram.com/reel/DblWdvdxn-f/) | 9.620 | 216 | 26-08-03 | 496s | Lifestyle / tutorial | atualização de leituras (8 min) | — | Atualizações das minhas leituras. Vou falar aí o que eu tô lendo um pouco. o que eu li e o que serão os próximos livros. tá? Em março. esse vídeo eu… |
-| [253.878](https://www.instagram.com/reel/DbrQXH6q8Ht/) | 5.641 | 67 | 26-08-05 | 45s | Lifestyle / tutorial | dica de gravação enquanto cozinha | — | Quando você estiver gravando. tipo eu estou agora. fazendo uma coisa. pegando minha comida aqui no fogo. Você não precisa narrar tudo o que você está… |
-| [239.936](https://www.instagram.com/reel/DZnxoTwq_y-/) | 8.853 | 43 | 26-06-15 | 28s | Corte de fala espontânea | 'faz sentido' (carisma offline) | toda hora é oportunidade de conteúdo | Faz sentido. O cara que numa mesa de conversa com os amigos. ele não consegue se desenrolar pra falar alguma coisa. ele não vai conseguir fazer isso… |
-| [225.860](https://www.instagram.com/reel/DeKv2ufK2w4/) | 5.995 | 110 | 26-10-06 | 195s | Mecanismo com nome | 'você está jogando uma joia rara no meio do mato' | depoimento em 3 stories + CTA | você pega o depoimento que você recebeu. joga ele nos seus stories desse jeito aqui e ainda coloca um textinho no estilo mais um cliente satisfeito.… |
-| [225.082](https://www.instagram.com/reel/DdokdyNNGn6/) | -1 | 52 | 26-09-23 | 22s | Corte de fala espontânea | 'eu não vou me rebaixar' | cavalinho na chuva | Eu não vou me rebaixar. não vou deixar essa pessoa me subestimar. Eu não vou me encaixar na caixinha que essa pessoa acha que eu tenho que me… |
-| [223.752](https://www.instagram.com/reel/DcTPXACqe4G/) | 8.003 | 101 | 26-08-21 | 95s | Par de palavras | 'pare imediatamente de ser gerador de informação e seja gerador de critério' | 'o gerador de critério fica na mente' | Pare imediatamente de ser um gerador de informação e comece a ser um gerador de critério. O gerador de informação é aquele profissional que ele cria… |
-| [221.162](https://www.instagram.com/reel/DdMODg2xMiF/) | 5.330 | 76 | 26-09-12 | 37s | Regra contraintuitiva | 'a maior vantagem competitiva é o repertório' | não é copiável | O profissional de sucesso. ele entendeu que a maior vantagem competitiva. eu diria que a outra vantagem competitiva. é o repertório dele. Por quê?… |
-| [186.194](https://www.instagram.com/reel/DbivES1R1um/) | 4.340 | 45 | 26-08-02 | 104s | Mecanismo com nome | 'profissionais brilhantes sob demanda vão ter mais dificuldade' | 'esse insight é libertador' | profissionais que estão habituados a serem brilhantes sob demanda vão ter infinitamente mais dificuldade de dar certo nas redes sociais. Ser… |
-| [184.899](https://www.instagram.com/reel/DbG-A1qKijR/) | 3.870 | 38 | 26-07-22 | 78s | Modelo mental + ferramenta | 'um negócio pra aumentar exponencialmente tua inteligência' | tabelinha de hipóteses | Um negócio pra você que quer aumentar exponencialmente a tua inteligência de negócio. Toda vez que você tomar uma decisão. fazer alguma ação. crie… |
-| [176.408](https://www.instagram.com/reel/DVrc7QqEdZk/) | 3.969 | 55 | 26-03-09 | 53s | Corte de fala espontânea | curso de comunicação × ambiente | falar com uma pessoa | Então. um curso de comunicação é mais poderoso do que o ambiente em que aquela pessoa cresceu. Na casa dos meus pais e na minha casa. é um lugar onde… |
-| [171.758](https://www.instagram.com/reel/DbEWqkyqPxC/) | 6.486 | 73 | 26-07-21 | 33s | Corte de fala espontânea | 'o que o pessoal do meu trabalho vai pensar?' | você nem vai lembrar o nome deles | O que o pessoal do meu trabalho vai pensar? Meu anjo. vamos retomar aqui. Isso aqui vai dar certo. Você nunca vai... Mas é a fuça das pessoas do seu… |
-| [165.068](https://www.instagram.com/reel/Db38G6OK79S/) | 6.187 | 30 | 26-08-10 | 27s | Corte de fala espontânea | interesses ocultos numa negociação | — | Eu levei isso em consideração para tomar uma decisão. Quais são os interesses em jogo? E quais são os interesses que a outra parte não quer revelar… |
-| [160.491](https://www.instagram.com/reel/DZ3KK2MKa2_/) | 6.738 | 66 | 26-06-21 | 52s | Par de palavras | 'você não precisa ser mais competente. precisa ser mais claro' | cliente confuso compra do outro | Você não precisa ser mais competente que o seu concorrente. Você precisa ser mais claro. Sabe por que o competente normalmente tem menos resultado… |
-| [151.731](https://www.instagram.com/reel/DbMIkD-qg9W/) | 1.787 | 39 | 26-07-24 | 123s | Mecanismo com nome | 'o psicólogo não está acostumado a externalizar' | personagens fictícios | O psicólogo. e não só o psicólogo. como a maioria dos profissionais autônomos. eles não estão acostumados em externalizar o conteúdo deles. É sempre… |
-| [146.758](https://www.instagram.com/reel/DbbmvfLByBj/) | 3.329 | 46 | 26-07-30 | 74s | Regra contraintuitiva | 'você criou um tribunal imaginário' | os juízes não pagam suas contas | Você está se criticando muito. Pior ainda. criou um tribunal imaginário dentro da sua cabeça. E sabe quem você deixou ocupar essa cadeira e sentar e… |
-| [145.239](https://www.instagram.com/reel/DbeL2T2KcJ7/) | 2.090 | 33 | 26-07-31 | 84s | Regra contraintuitiva | raso × profundo é ego intelectual | 'puro ego intelectual' | Essa dicotomia entre um conteúdo profundo e um conteúdo raso. superficial. os maiores responsáveis por levar pessoas que têm potencial. que têm… |
-| [138.368](https://www.instagram.com/reel/DcTnbZpxXzA/) | 3.516 | 38 | 26-08-21 | 72s | Par de palavras | golpe de sorte × genialidade | 'pare de confundir…' | A vida. ela não perdoa quem não sabe distinguir golpe de sorte com genialidade. porque assim. uma coisa é você ver a outra pessoa fazendo algo que… |
-| [120.492](https://www.instagram.com/reel/DdkWHByBoix/) | -1 | 74 | 26-09-21 | 36s | Corte de fala espontânea | 'quantos dedos me apontando todo dia?' | cavalinho na chuva | Pensa. são quantos dedos me apontando todo dia? Quem é você pra falar disso tudo? E se eu fosse me deixar definir por essas pessoas. o quanto eu vou… |
-| [116.927](https://www.instagram.com/reel/DdpfH13swMC/) | -1 | 180 | 26-09-23 | 26s | Corte de fala espontânea | ambiente e parceiro | — | Isso é aquilo que não é sorte. mas é o que eu estou agora. Quem vai estar ao meu redor? Aonde você vai estar? É da minha responsabilidade ir… |
-| [93.809](https://www.instagram.com/reel/DdpQ0IyhOuX/) | -1 | 137 | 26-09-23 | 41s | Corte de fala espontânea | 'a fase não foi boa. qual sua mensagem?' | elo mais frágil | A fase não foi boa. o ano não foi bom. Qual seria a sua mensagem pra essa pessoa? Primeira coisa é pegar um papel e uma caneta e escrever… |
-| [4.993](https://www.instagram.com/reel/DZr1yO-Mr-5/) | 68 | 1 | 26-06-17 | 28s | Corte de fala espontânea | 'o esforçado não ganha do talentoso' | final confuso | Não. o esforçado ele não ganha do talentoso. Ele perde. perde de longe. Mas está tudo bem. Essa é a bola que eu levanto. Está tudo bem. Eu não… |
+| [1.584.980](https://www.instagram.com/reel/DUdgGqjEWeR/) | 56.931 | 481 | 2026-02-07 | 66s | Corte de fala espontânea | rebate uma frase-desculpa ('meu ego é grande demais pra receber não') | 'se a gente não tenta, não sai do lugar' | meu ego é grande demais pra eu passar vergonha e receber um não. Para com isso. Gente, se vocês já tiveram noção que quanto mais alto a pessoa tá,… |
+| [1.321.199](https://www.instagram.com/reel/DbJn2_6q9Th/) | 39.549 | 1.823 | 2026-07-23 | 74s | Regra contraintuitiva | instrução inesperada ('a última coisa que você precisa fazer é comentar a palminha') | 'aí sim, você vai estar sendo útil' | A última coisa que você precisa fazer é comentar a palminha. Se você quer ser útil de verdade na vida de alguém que você gosta muito e você sabe que… |
+| [1.310.852](https://www.instagram.com/reel/DUbVSO3kVrL/) | 53.100 | 523 | 2026-02-06 | 74s | Corte de fala espontânea | crítica construtiva × odiar por odiar | levar a crítica para crescer | eu tenho que ver meus erros pra conseguir consertar então eu preciso que alguém chegue e me fale pô, lanço, tá errando nisso isso é uma crítica… |
+| [1.176.910](https://www.instagram.com/reel/DZz8jWARlDD/) | 64.330 | 1.021 | 2026-06-20 | 59s | Regra contraintuitiva | 'a primeira malícia que você precisa… é esconder seus talentos. Ponto final.' | 'ostentando o quê? O teu esforço.' | A primeira malícia que você precisa desenvolver para sobreviver em um ambiente profissional é esconder os seus talentos. Ponto final. A pessoa tem… |
+| [858.178](https://www.instagram.com/reel/DV6FeYFkbhM/) | 59.985 | 576 | 2026-03-15 | 94s | Estético / música | música + 1 frase | 'construí um lugar para você' | Tables and chairs warmed by all of the dust This is a place where I don't feel alone This is a place where I feel at home Eu construí um lugar para… |
+| [835.902](https://www.instagram.com/reel/DbgLe0cRyX9/) | 26.351 | 377 | 2026-08-01 | 191s | Confissão de virada | 'eu sacrifiquei minha espontaneidade… e esse vídeo é um pedido para que você faça o mesmo' | 'a tua essência também precisa evoluir' | Eu sacrifiquei a minha espontaneidade, a minha autenticidade e a minha naturalidade para dar certo na internet e esse vídeo é um pedido para que você… |
+| [799.578](https://www.instagram.com/reel/DUGOugUEXzq/) | 32.532 | 567 | 2026-01-29 | 60s | Demonstração (voz) | demonstra voz de peito × de cabeça | 'na tua vida você não é assim?' | Essa é a voz de peito. Essa é a voz de cabeça. E eu tô aqui pra perguntar pra você que no dia a dia usa a voz de peito, se comunica, mas quando abre… |
+| [779.736](https://www.instagram.com/reel/DUD97BykV8s/) | 45.276 | 313 | 2026-01-28 | 56s | Regra contraintuitiva | 'pessoas estupidamente bem-sucedidas não diferenciam jogo e treino' | medo de descobrir quem você é | Pessoas estupidamente bem-sucedidas não criam nenhuma diferença entre quando é jogo e quando é treino. Elas usam toda a oportunidade na frente delas… |
+| [753.559](https://www.instagram.com/reel/DbokI0_q_O2/) | 29.238 | 299 | 2026-08-04 | 207s | Mecanismo com nome | 'se quer chegar aqui, foco basta; aqui, não' + promessa de insight | leitura de jogo | Se você quer chegar aqui, o foco e a constância são suficientes. Mas agora, se você quer chegar aqui, não é sobre foco e constância. Mas você vai ter… |
+| [729.038](https://www.instagram.com/reel/DbO1JIvqlgH/) | 21.108 | 288 | 2026-07-25 | 31s | Paródia / humor | imita youtuber antigo dando dicas | — | Assiste esse vídeo que você vai amar! Oi gente, tudo bom? Hoje eu trouxe dicas pra vocês pro seu Instagram bombar. Pra você ganhar seguidor, pra você… |
+| [727.976](https://www.instagram.com/reel/DYFN0CyxafK/) | 35.985 | 437 | 2026-05-08 | 66s | Regra contraintuitiva | 'quanto mais você se especializa, menor o grupo que reconhece' | esclarecimento, não desmotivação | Quanto mais você se esforça para se especializar na sua área, aprofundar o seu conhecimento, menor se torna o grupo de pessoas que são capazes de… |
+| [653.643](https://www.instagram.com/reel/DclKoiSqxiT/) | 25.338 | 212 | 2026-08-28 | 146s | Modelo mental + ferramenta | 'não é coincidência: toda pessoa podre de rica que eu conheço…' | papel e caneta: custo de reversão | Não é coincidência. Toda pessoa podre de rica que eu conheço, ela tem o hábito de tomar decisões difíceis com muita frequência. Isso não acontece… |
+| [606.005](https://www.instagram.com/reel/DeHe1pRRkGm/) | 20.756 | 227 | 2026-10-05 | 146s | Lifestyle / tutorial | 'truques de glow up que eu aprendi na base da porrada' | 'larga disso' | Truques de glow up que eu queria muito que alguém tivesse me ensinado e que eu aprendi na base da porrada. Sabe aquela pessoa que você acompanha e… |
+| [599.741](https://www.instagram.com/reel/DTI1GGhEVe-/) | 24.248 | 255 | 2026-01-05 | 126s | Regra contraintuitiva | 'você jamais vai ter sucesso fazendo planejamento de ano novo' | 'onde a minha corda arrebenta?' | Você jamais vai ter sucesso fazendo um planejamento para um novo ano. Porque se você não sabe com muita clareza, com muita sinceridade, crua… |
+| [597.491](https://www.instagram.com/reel/Db_Be0jxlaO/) | 34.596 | 336 | 2026-08-13 | 121s | Par de palavras | 'sabe qual é a pior pessoa pra ter por perto?' | 'Oportunidade? Não. Obrigação.' | Sabe qual é a pior pessoa pra você ter por perto da sua vida? Amigo, parceiro, colega de trabalho, funcionário, é aquela que você entrega uma… |
+| [584.840](https://www.instagram.com/reel/DR7dBrKkeBO/) | 12.356 | 242 | 2025-12-06 | 165s | Lifestyle / tutorial | 'o que eu não abro mão na minha bolsa' | pergunta à audiência | Eu vou mostrar tudo que eu não abro mão de carregar na minha bolsa. E você, inclusive, vai se surpreender pelo tanto de coisa que tem aqui dentro.… |
+| [553.965](https://www.instagram.com/reel/DVHpdLXjE4D/) | 21.630 | 129 | 2026-02-23 | 15s | Estético / música | quase sem fala | — | E… |
+| [546.804](https://www.instagram.com/reel/DUOltHmEWWP/) | 21.814 | 268 | 2026-02-01 | 22s | Frase única | 'imagina se o seu medo não é da crítica, mas…' | (a própria frase) | Imagina se, no fundo, o medo que você tem de criar conteúdo não seja da crítica e da opinião alheia, mas seja em descobrir que as pessoas que você… |
+| [473.797](https://www.instagram.com/reel/DZDlK6LKr-3/) | 15.476 | 844 | 2026-06-01 | 163s | Mecanismo com nome | 'um erro em toda frase que você fala te torna chato' | teste nos comentários | Tem um erro padrão em toda frase que você fala que torna você uma pessoa chata e desinteressante. E a não ser que você preste atenção num detalhe que… |
+| [455.202](https://www.instagram.com/reel/Dcd9-iNx7xf/) | 25.427 | 117 | 2026-08-25 | 83s | Modelo mental + ferramenta | 'se você não veio de família de empresários…' | margem (exemplo do mercado) | Se você não veio de uma família cheia de empresários bem-sucedidos, provavelmente você não tem familiaridade com alguns conceitos que fazem toda a… |
+| [445.408](https://www.instagram.com/reel/DZhwyuaRodH/) | 12.525 | 502 | 2026-06-13 | 87s | Regra contraintuitiva | 'pessoas de baixa capacidade cognitiva sempre…' | pergunta que abre ou limita | Você já notou que pessoas que têm uma baixa capacidade cognitiva, eles sempre têm o hábito de criticar o outro através de uma verdade universal que… |
+| [422.015](https://www.instagram.com/reel/DZxbdiXx6M9/) | 22.891 | 127 | 2026-06-19 | 50s | Corte de fala espontânea | 'comecei a ser obsessiva com algumas ideias' (Munger) | evitar erros óbvios | comecei a ser obsessiva com algumas ideias. A primeira delas é simplificação. Simplifique, simplifique, simplifique. Não busque ser inteligente. Não… |
+| [420.366](https://www.instagram.com/reel/DbwO-fnqE7H/) | 5.125 | 219 | 2026-08-07 | 29s | Lifestyle / tutorial | 'quer esconder o microfone?' | — | Quer esconder o microfone? Pra não deixar assim, ó, chamando atenção? Pode daí esconder no sutiã. Eu coloco essa parte sempre pra dentro, assim. No… |
+| [396.731](https://www.instagram.com/reel/DVZYNzSkQiP/) | 20.306 | 234 | 2026-03-02 | 57s | Frase única | 'não é óbvio. Se tornou óbvio para você…' | a virada de chave de alguém | Não é óbvio. Se tornou óbvio para você, por causa das experiências que você teve, do conhecimento que você teve acesso e das ideias que chegaram até… |
+| [380.877](https://www.instagram.com/reel/Db9DYu5q01a/) | 11.614 | 406 | 2026-08-12 | 75s | Lifestyle / tutorial | 'esse é um sinal pra você gravar dentro do carro' | 3 motivos | Esse é um sinal pra você começar a gravar dentro do carro. Ah, meu Deus, tá todo mundo gravando dentro do carro agora? É porque é maravilhoso. Vou te… |
+| [344.411](https://www.instagram.com/reel/DdjnNkyKroN/) | 13.315 | 154 | 2026-09-21 | 53s | Regra contraintuitiva | 'quanto mais desenvolve comunicação, mais sofisticada a autossabotagem' | âncora que puxa pra baixo | Quanto mais uma pessoa desenvolve a comunicação e a capacidade de articular pensamentos e ideias, mais sofisticada fica a sua autossabotagem. É por… |
+| [297.797](https://www.instagram.com/reel/DcJVYdYRFci/) | 11.440 | 116 | 2026-08-17 | 151s | Mecanismo com nome | 'quando você fala do seu trabalho, as pessoas somem' | história palpável > informação técnica | Quando você fala do seu trabalho, as pessoas somem, ninguém responde, ninguém interage. Aí você vai falar do seu relacionamento, vai mostrar o seu… |
+| [263.786](https://www.instagram.com/reel/DcorWHfKlSr/) | 11.751 | 245 | 2026-08-29 | 104s | Regra contraintuitiva | 'a régua tá lá embaixo' | 'o cliente vai perceber que você enxergou ele' | A régua tá lá embaixo. Nunca foi tão fácil se destacar profissionalmente igual tá sendo agora. Tô falando que estamos vivendo em uma era de… |
+| [257.496](https://www.instagram.com/reel/DbYYI6xBCnM/) | 6.371 | 169 | 2026-07-29 | 130s | Confissão de virada | 'dia 30 de outubro de 2024 eu escrevi isso' | 'se permita ser só mais um' | Dia 30 de outubro de 2024 eu escrevi isso. A autenticidade é afastar-se das categorias universais, onde a concorrência é alta, e criar uma… |
+| [254.165](https://www.instagram.com/reel/DblWdvdxn-f/) | 9.620 | 216 | 2026-08-03 | 496s | Lifestyle / tutorial | atualização de leituras (8 min) | — | Atualizações das minhas leituras. Vou falar aí o que eu tô lendo um pouco, o que eu li e o que serão os próximos livros, tá? Em março, esse vídeo eu… |
+| [253.878](https://www.instagram.com/reel/DbrQXH6q8Ht/) | 5.641 | 67 | 2026-08-05 | 45s | Lifestyle / tutorial | dica de gravação enquanto cozinha | — | Quando você estiver gravando, tipo eu estou agora, fazendo uma coisa, pegando minha comida aqui no fogo. Você não precisa narrar tudo o que você está… |
+| [239.936](https://www.instagram.com/reel/DZnxoTwq_y-/) | 8.853 | 43 | 2026-06-15 | 28s | Corte de fala espontânea | 'faz sentido' (carisma offline) | toda hora é oportunidade de conteúdo | Faz sentido. O cara que numa mesa de conversa com os amigos, ele não consegue se desenrolar pra falar alguma coisa, ele não vai conseguir fazer isso… |
+| [225.860](https://www.instagram.com/reel/DeKv2ufK2w4/) | 5.995 | 110 | 2026-10-06 | 195s | Mecanismo com nome | 'você está jogando uma joia rara no meio do mato' | depoimento em 3 stories + CTA | você pega o depoimento que você recebeu, joga ele nos seus stories desse jeito aqui e ainda coloca um textinho no estilo mais um cliente satisfeito,… |
+| [225.082](https://www.instagram.com/reel/DdokdyNNGn6/) | -1 | 52 | 2026-09-23 | 22s | Corte de fala espontânea | 'eu não vou me rebaixar' | cavalinho na chuva | Eu não vou me rebaixar, não vou deixar essa pessoa me subestimar. Eu não vou me encaixar na caixinha que essa pessoa acha que eu tenho que me… |
+| [223.752](https://www.instagram.com/reel/DcTPXACqe4G/) | 8.003 | 101 | 2026-08-21 | 95s | Par de palavras | 'pare imediatamente de ser gerador de informação e seja gerador de critério' | 'o gerador de critério fica na mente' | Pare imediatamente de ser um gerador de informação e comece a ser um gerador de critério. O gerador de informação é aquele profissional que ele cria… |
+| [221.162](https://www.instagram.com/reel/DdMODg2xMiF/) | 5.330 | 76 | 2026-09-12 | 37s | Regra contraintuitiva | 'a maior vantagem competitiva é o repertório' | não é copiável | O profissional de sucesso, ele entendeu que a maior vantagem competitiva, eu diria que a outra vantagem competitiva, é o repertório dele. Por quê?… |
+| [186.194](https://www.instagram.com/reel/DbivES1R1um/) | 4.340 | 45 | 2026-08-02 | 104s | Mecanismo com nome | 'profissionais brilhantes sob demanda vão ter mais dificuldade' | 'esse insight é libertador' | profissionais que estão habituados a serem brilhantes sob demanda vão ter infinitamente mais dificuldade de dar certo nas redes sociais. Ser… |
+| [184.899](https://www.instagram.com/reel/DbG-A1qKijR/) | 3.870 | 38 | 2026-07-22 | 78s | Modelo mental + ferramenta | 'um negócio pra aumentar exponencialmente tua inteligência' | tabelinha de hipóteses | Um negócio pra você que quer aumentar exponencialmente a tua inteligência de negócio. Toda vez que você tomar uma decisão, fazer alguma ação, crie… |
+| [176.408](https://www.instagram.com/reel/DVrc7QqEdZk/) | 3.969 | 55 | 2026-03-09 | 53s | Corte de fala espontânea | curso de comunicação × ambiente | falar com uma pessoa | Então, um curso de comunicação é mais poderoso do que o ambiente em que aquela pessoa cresceu. Na casa dos meus pais e na minha casa, é um lugar onde… |
+| [171.758](https://www.instagram.com/reel/DbEWqkyqPxC/) | 6.486 | 73 | 2026-07-21 | 33s | Corte de fala espontânea | 'o que o pessoal do meu trabalho vai pensar?' | você nem vai lembrar o nome deles | O que o pessoal do meu trabalho vai pensar? Meu anjo, vamos retomar aqui. Isso aqui vai dar certo. Você nunca vai... Mas é a fuça das pessoas do seu… |
+| [165.068](https://www.instagram.com/reel/Db38G6OK79S/) | 6.187 | 30 | 2026-08-10 | 27s | Corte de fala espontânea | interesses ocultos numa negociação | — | Eu levei isso em consideração para tomar uma decisão. Quais são os interesses em jogo? E quais são os interesses que a outra parte não quer revelar… |
+| [160.491](https://www.instagram.com/reel/DZ3KK2MKa2_/) | 6.738 | 66 | 2026-06-21 | 52s | Par de palavras | 'você não precisa ser mais competente, precisa ser mais claro' | cliente confuso compra do outro | Você não precisa ser mais competente que o seu concorrente. Você precisa ser mais claro. Sabe por que o competente normalmente tem menos resultado… |
+| [151.731](https://www.instagram.com/reel/DbMIkD-qg9W/) | 1.787 | 39 | 2026-07-24 | 123s | Mecanismo com nome | 'o psicólogo não está acostumado a externalizar' | personagens fictícios | O psicólogo, e não só o psicólogo, como a maioria dos profissionais autônomos, eles não estão acostumados em externalizar o conteúdo deles. É sempre… |
+| [146.758](https://www.instagram.com/reel/DbbmvfLByBj/) | 3.329 | 46 | 2026-07-30 | 74s | Regra contraintuitiva | 'você criou um tribunal imaginário' | os juízes não pagam suas contas | Você está se criticando muito. Pior ainda, criou um tribunal imaginário dentro da sua cabeça. E sabe quem você deixou ocupar essa cadeira e sentar e… |
+| [145.239](https://www.instagram.com/reel/DbeL2T2KcJ7/) | 2.090 | 33 | 2026-07-31 | 84s | Regra contraintuitiva | raso × profundo é ego intelectual | 'puro ego intelectual' | Essa dicotomia entre um conteúdo profundo e um conteúdo raso, superficial, os maiores responsáveis por levar pessoas que têm potencial, que têm… |
+| [138.368](https://www.instagram.com/reel/DcTnbZpxXzA/) | 3.516 | 38 | 2026-08-21 | 72s | Par de palavras | golpe de sorte × genialidade | 'pare de confundir…' | A vida, ela não perdoa quem não sabe distinguir golpe de sorte com genialidade, porque assim, uma coisa é você ver a outra pessoa fazendo algo que… |
+| [120.492](https://www.instagram.com/reel/DdkWHByBoix/) | -1 | 74 | 2026-09-21 | 36s | Corte de fala espontânea | 'quantos dedos me apontando todo dia?' | cavalinho na chuva | Pensa, são quantos dedos me apontando todo dia? Quem é você pra falar disso tudo? E se eu fosse me deixar definir por essas pessoas, o quanto eu vou… |
+| [116.927](https://www.instagram.com/reel/DdpfH13swMC/) | -1 | 180 | 2026-09-23 | 26s | Corte de fala espontânea | ambiente e parceiro | — | Isso é aquilo que não é sorte, mas é o que eu estou agora. Quem vai estar ao meu redor? Aonde você vai estar? É da minha responsabilidade ir… |
+| [93.809](https://www.instagram.com/reel/DdpQ0IyhOuX/) | -1 | 137 | 2026-09-23 | 41s | Corte de fala espontânea | 'a fase não foi boa, qual sua mensagem?' | elo mais frágil | A fase não foi boa, o ano não foi bom. Qual seria a sua mensagem pra essa pessoa? Primeira coisa é pegar um papel e uma caneta e escrever… |
+| [4.993](https://www.instagram.com/reel/DZr1yO-Mr-5/) | 68 | 1 | 2026-06-17 | 28s | Corte de fala espontânea | 'o esforçado não ganha do talentoso' | final confuso | Não, o esforçado ele não ganha do talentoso. Ele perde, perde de longe. Mas está tudo bem. Essa é a bola que eu levanto. Está tudo bem. Eu não… |
 
 ---
 
@@ -322,6 +326,23 @@ mais do que isso, é você começar a ser intencional e canalizar essa experiên
 É aqui que eu preciso que você tome cuidado, porque se você já saiu do nível de iniciante, você não pode se cegar com a disciplina, com a constância, com a rotina, porque essas boas oportunidades, elas são extremamente sutis.
 ```
 
+### 729.038 views · 31s · 2026-07-25 · [link](https://www.instagram.com/reel/DbO1JIvqlgH/)
+
+```
+Assiste esse vídeo que você vai amar!
+Oi gente, tudo bom?
+Hoje eu trouxe dicas pra vocês pro seu Instagram bombar.
+Pra você ganhar seguidor, pra você ganhar curtida e tudo mais.
+São dicas que realmente funcionam.
+Tessa pra ver.
+Não esquece de dar aquele joinha maroto e se inscreve aqui no canal.
+A primeira dica que eu dou é pra você ter seu estilo próprio, sabe?
+Isso é uma coisa que vai fazer a marca do seu Instagram.
+Então não queira fazer foto igual todo mundo faz e tudo isso.
+Se você é diferente, você vai atrair mais pessoas e tudo mais.
+Então seja você mesmo, tenha o seu tema para o seu Instagram e não copia nada de ninguém.
+```
+
 ### 727.976 views · 66s · 2026-05-08 · [link](https://www.instagram.com/reel/DYFN0CyxafK/)
 
 ```
@@ -333,84 +354,31 @@ Porque o teu cliente, ele necessariamente não domina os critérios para reconhe
 Eu não trago essa ideia para te desmotivar, pelo contrário, é para você ter um esclarecimento, talvez de uma situação que esteja te frustrando nesse momento.
 ```
 
-### 653.643 views · 146s · 2026-08-28 · [link](https://www.instagram.com/reel/DclKoiSqxiT/)
+### Picos de fora da janela
+
+#### 923.634 views · 80s · 2025-12-01 · [link](https://www.instagram.com/reel/DRuShCREY74/)
 
 ```
-Não é coincidência.
-Toda pessoa podre de rica que eu conheço, ela tem o hábito de tomar decisões difíceis com muita frequência.
-Isso não acontece porque essas pessoas são mais corajosas.
-Tipo, ah, beleza, tem mais coragem de arriscar.
-Acontece porque normalmente elas têm modelos mentais que ajudam na hora de tomar decisão.
-E a partir disso, elas têm mais segurança porque esses modelos mentais diminuem as chances de dar errado.
-Então não é como se fosse infalível, mas meio que, beleza, te direciona pra você diminuir a chance de cometer uma cagada.
-Delas sentem mais seguras e tomam mais decisões difíceis.
-Tem um modelo mental que é o meu favorito, que é o de custo de reversão.
-Calma, eu vou te explicar.
-Basicamente assim, você tem uma decisão importante pra tomar e você tá até ansioso.
-O que você vai fazer?
-Você vai pegar um papel e uma caneta e vai descrever qual é o cenário em que tudo sai errado.
-Porque uma coisa é você falar, ai não, é muito ruim o que pode acontecer.
-N n n Com palavras com objetividade O que o ruim que pode acontecer A voc vai escrever ah n vou perder todo o dinheiro da minha conta Ou n a minha casa vai para a hipoteca Eu não tenho para onde ir.
-Então você vai desenhar esse cenário negativo.
-O que na prática ele significa.
-E depois disso, você precisa pensar.
-Primeiro, tem como eu reverter esse cenário?
-Tipo, ficou muito ruim.
-O que eu precisaria fazer para me livrar desse cenário ruim?
-O que ele me custaria de saúde mental?
-E o que isso afetaria as outras áreas da minha vida?
-Ou até, é de dinheiro que eu estou falando, quanto custaria para eu me livrar desse cenário negativo?
-E você escreve também qual é o custo de reversão desse cenário negativo.
-Se você está entre duas opções, não sei o que decidir, você escreve esse custo para as duas opções.
-E normalmente o mais indicado é você seguir pelo caminho que tem menor custo de reversão.
-Seja financeiro, seja psicológico, seja social.
-Isso te ajuda, te dá mais segurança de você saber por qual caminho você vai.
+Saia imediatamente da posição de informante e tome a posição de um influenciador, se você quer crescer nas redes sociais.
+Ai Luana, qual é a diferença?
+Qual é a diferença?
+É que o informante, quando ele dá play no vídeo dele, ele pega e ele informa.
+Ó, isso aqui é uma tesoura de cortar unha de gato.
+Ele chega lá com uma informação.
+E o que eu faço com aquela informação?
+Nada.
+Beleza, é uma informação que eu poderia ter tido através do Google, do chat de EPT.
+E qual é a diferença do influenciador?
+Porque o influenciador, ele traz o fato com a visão de mundo dele.
+Ele traz critério de valor.
+Ele traz informações, consequências de segunda ordem.
+O porquê aquilo importa.
+E como eu devo agir diante daquela informação, acima de qualquer coisa.
+Porque se você só fala fatos, você não está influenciando ninguém.
+Mas agora, se você diz como a pessoa deve agir diante daqueles fatos, aí você começa a ser um influenciador.
+Eu posso pegar e falar que essa tesourinha aqui, quando você for cortar a unha do seu gato, você pode cortar a unha do seu gato dando churu, porque aí o seu gato vai associar unhas cortadas com churu, e ele fica mais feliz de ter as unhas cortadas e vai facilitar a tua vida.
+Tá vendo que eu coloquei uma consequência de valor?
+Facilitou a tua vida?
+Eu coloquei um benefício ao expor esse fato aqui pra você?
 ```
 
-### 599.741 views · 126s · 2026-01-05 · [link](https://www.instagram.com/reel/DTI1GGhEVe-/)
-
-```
-Você jamais vai ter sucesso fazendo um planejamento para um novo ano.
-Porque se você não sabe com muita clareza, com muita sinceridade, crua honestidade, olhando no espelho, aonde a sua corda arrebenta, vai ser perda de tempo.
-Qualquer vision board, qualquer lista de metas.
-Por quê?
-Porque o erro das pessoas é ignorar que a construção de uma estratégia, diferente do que todo mundo pensa, não é você listar seu objetivo, e destrinchar o passo a passo, o que é necessário para chegar até esse objetivo?
-Ah, eu entendi, eu quero crescer uma conta no Instagram, quero lançar meu produto.
-Então você vai lá, pega o teu caderno e com a maior inocência do mundo, anota.
-Gravar vídeos, comprar ring light, comprar novo microfone.
-Isso daí, você não está criando um plano estratégico.
-No máximo das hipóteses, você está elencando algumas tarefas básicas ali que o pr chat de EPT te ajuda a montar Mas agora o que genuinamente um plano estrat voc depois de destrinchar as tuas metas e os passo a passo que ser necess para atingir aquela meta você olhar aquilo com cara e coragem e falar, aonde a minha corda vai arrebentar aqui?
-É na timidez de dar play na câmera?
-É na autocrítica de gravar um vídeo inúmeras vezes e nunca achar que ele está bom o suficiente?
-é ligar tanto para a opinião dos outros que sequer você consegue postar um story sem ficar obsessivamente vendo quem assistiu aqueles stories.
-Porque se você pega essa lista de planejamento e objetivos de metas de 2026 e não olha e destrincha com cara e coragem aonde a minha corda vai arrebentar, porque aí sim entra a estratégia que se preparar para esse momento, estar munido psicologicamente para lidar com aquele momento, Esquece, não é planejamento estratégico, é apenas um amontoado de o que fazer, como chegar lá, que não vai dar em nada.
-```
-
-### 597.491 views · 121s · 2026-08-13 · [link](https://www.instagram.com/reel/Db_Be0jxlaO/)
-
-```
-Sabe qual é a pior pessoa pra você ter por perto da sua vida?
-Amigo, parceiro, colega de trabalho, funcionário, é aquela que você entrega uma oportunidade e ela lá do outro lado recebe como obrigação.
-Ela não consegue enxergar a oportunidade.
-Tudo que você trazer pra ela, o lado bom, ela vai encontrar uma forma de transformar aquilo numa obrigação.
-Então, assim, a gente está vivendo isso agora na prática.
-Com o digital.
-Ah, criar conteúdo.
-Aí a pessoa vem lá e fala, ah, justo na minha vez de me formar, eu sou, presta atenção nos cursos, tá?
-Eu sou obrigada a criar conteúdo.
-Então, você não é obrigada.
-O mercado tradicional está lá, ninguém mexeu nele.
-quer seguir sua carreira igual fazia antigamente o caminho est livre Essa pessoa n v a oportunidade de opa pela primeira vez eu n vou precisar depender de indica eu posso criar conteúdo para as pessoas me acharem.
-Ou, eu não vou depender de entrar em uma clínica muito maior para me conhecerem, eu posso falar daquilo que eu sei e vão me encontrar.
-E aí, essa pessoa, se ela não importa o quão a oportunidade brilhe na frente dela, ela vai encontrar uma forma de transformar a oportunidade em obrigação.
-Aí esquece, né?
-Você chega pro seu namorado, porque eu vou falar namorado, que espero que você não case com alguém assim.
-Falei, nossa, pensei numa ideia de negócio.
-Da pessoa, ah, mas eu vou ter que fazer...
-Mas essas oportunidades...
-A pessoa ignora, ela fecha o olho.
-É um padrão mental.
-Oportunidade?
-Não.
-Obrigação.
-```

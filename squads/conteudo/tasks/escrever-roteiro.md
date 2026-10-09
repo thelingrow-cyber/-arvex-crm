@@ -6,9 +6,11 @@
 
 1. Confirmar a **função** da peça: alcance, captura ou conversa. Isso decide o gancho e o fecho.
 2. Escolher a família de gancho em `docs/conteudo/ESTUDO-GANCHOS.md` — nunca por intuição.
-3. Escrever com o esqueleto do formato (`cafeia`, `obra`, `disrupcao`, `arquetipo`, `contraste`, `curiosidade`).
-4. Rodar o **portão de qualidade** (7 checagens do arquivo do agente), incluindo o teste de ler em voz alta.
-5. Listar as inserções, separando dado com fonte de leitura própria.
+3. **Se o roteiro é "no estilo" de um player:** ler o `ESTUDO.md` dele (esqueleto, linguagem e 3 roteiros do Anexo C).
+   Só o mecanismo vem do player; expressões-assinatura dele e frases famosas de outros autores não entram.
+4. Escrever com o esqueleto do formato (`cafeia`, `obra`, `disrupcao`, `arquetipo`, `contraste`, `curiosidade`).
+5. Rodar o **portão de qualidade** (7 checagens do arquivo do agente), incluindo o teste de ler em voz alta.
+6. Listar as inserções, separando dado com fonte de leitura própria.
 
 ## Formato da entrega
 

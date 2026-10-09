@@ -126,87 +126,89 @@ O vídeo de julho e as duas listas de documentários de agosto (3 e 12 views, te
 - "Esposa médica" como prova universal: a sua prova são as obras (CRM, agentes, QG).
 - Atribuições históricas frágeis: os vídeos dele têm erros (a autoria de *Deep Throat* é discutível). O nosso portão de fonte continua valendo.
 
+<!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
+
 ---
 
 ## Anexo A — mediana por formato
 
-Cada roteiro contado uma vez só (repostagens fora). *Testes* = vídeos que ficaram abaixo de 500 views.
+Cada roteiro contado uma vez (repostagens fora). *Testes* = abaixo de 500 views.
 
-| Formato | Vídeos | Mediana | Teto | Testes reprovados |
-|---|---|---|---|---|
-| Posição pessoal com confissão | 1 | 429.143 | 429.143 | 0 |
-| Estudo com ranking | 1 | 251.700 | 251.700 | 0 |
-| Investigação | 5 | 144.670 | 795.835 | 0 |
-| Tutorial com promessa | 4 | 84.769 | 385.226 | 0 |
-| Corte de entrevista | 3 | 73.516 | 132.179 | 0 |
-| Livro que explica | 1 | 44.728 | 44.728 | 0 |
-| Notícia com dado que inverte | 5 | 44.381 | 429.245 | 0 |
-| Lista de livros | 4 | 36.019 | 123.152 | 1 |
-| Metaconteúdo | 1 | 29.815 | 29.815 | 0 |
-| Depoimento de cliente | 3 | 23.036 | 151.201 | 0 |
-| Lista de conselhos | 1 | 18.475 | 18.475 | 0 |
-| Diagnóstico de profissão | 3 | 107 | 21.061 | 2 |
-| Recomendação (série) | 1 | 16 | 16 | 1 |
-| Lista genérica de geração | 4 | 12 | 22 | 4 |
-| Diagnóstico genérico de geração | 5 | 10 | 131 | 5 |
-| Lista genérica | 1 | 6 | 6 | 1 |
+| Formato | Vídeos | Mediana de views | Teto | Duração mediana | Testes reprovados |
+|---|---|---|---|---|---|
+| Posição pessoal com confissão | 1 | 429.143 | 429.143 | 455s | 0 |
+| Estudo com ranking | 1 | 251.700 | 251.700 | 178s | 0 |
+| Investigação | 5 | 144.670 | 795.835 | 171s | 0 |
+| Tutorial com promessa | 4 | 84.769 | 385.226 | 172s | 0 |
+| Corte de entrevista | 3 | 73.516 | 132.179 | 86s | 0 |
+| Livro que explica | 1 | 44.728 | 44.728 | 178s | 0 |
+| Notícia com dado que inverte | 5 | 44.381 | 429.245 | 177s | 0 |
+| Lista de livros | 4 | 36.019 | 123.152 | 173s | 1 |
+| Metaconteúdo | 1 | 29.815 | 29.815 | 178s | 0 |
+| Depoimento de cliente | 3 | 23.036 | 151.201 | 125s | 0 |
+| Lista de conselhos | 1 | 18.475 | 18.475 | 167s | 0 |
+| Diagnóstico de profissão | 3 | 107 | 21.061 | 167s | 2 |
+| Recomendação (série) | 1 | 16 | 16 | 178s | 1 |
+| Lista genérica de geração | 4 | 12 | 22 | 178s | 4 |
+| Diagnóstico genérico de geração | 5 | 10 | 131 | 178s | 5 |
+| Lista genérica | 1 | 6 | 6 | 177s | 1 |
 
-## Anexo B — os 50 vídeos, com a abertura literal
+## Anexo B — os vídeos, com a abertura literal
 
-Ordenados por views. 🔁 = repostagem do mesmo roteiro · 🧪 = teste reprovado (<500).
+Ordenados por views. 🔁 = repostagem · 🧪 = teste reprovado · ❤ -1 = curtidas ocultas.
 
-| Views | ❤ | 💬 | Data | Formato | Gancho (tipo) | Fecho/ponte | Abertura literal |
-|---|---|---|---|---|---|---|---|
-| [795.835](https://www.instagram.com/reel/DcOfRIKuCZV/) | 73.737 | 3.192 | 08-19 | Investigação | Eu investiguei + personagem chocante | silêncio dos bons | Eu investiguei o homem que criou a pornografia pra zombar de Jesus Cristo. E o ódio dele era tão grande que ele foi preso 19 vezes pra cumprir a sua… |
-| [429.245](https://www.instagram.com/reel/Dd_2U9nOuK9/) | 34.412 | 1.769 | 10-02 | Notícia com dado que inverte | fato da semana + 'ninguém está comentando' | audiência vale mais que dinheiro | O Jorge Jesus não convocou o Cristiano Ronaldo aos 41 anos para jogar futebol. Mas eu acho que ele esqueceu de avisar. E tem uma coisa nessa história… |
-| [429.143](https://www.instagram.com/reel/DeDgvLvOwoC/) | 26.735 | 5.630 | 10-04 | Posição pessoal com confissão | 'vou revelar meu voto' | história de vida → voto | Pessoal. nesse vídeo eu vou revelar o meu voto pra vocês. e pelo menos pra mim. foi uma escolha difícil. tá? Ao contrário de muitos de vocês. eu não… |
-| [385.226](https://www.instagram.com/reel/DdkFsT6JdDG/) | 15.502 | 2.199 | 09-21 | Tutorial com promessa | ordem imperativa + resultado | esposa médica 0→100k | Apaga todos os seus stories agora e amanhã de manhã você vai postar uma selfie com o texto que eu vou te passar. Tudo que você precisa fazer é copiar… |
-| [251.700](https://www.instagram.com/reel/DdhiogZpb9H/) | 16.084 | 834 | 09-20 | Estudo com ranking | 3 negações + estudo | livro (1984 × Admirável) | O hábito masculino que mais atrai as mulheres não é fazer musculação. não é se vestir bem e muito menos tocar bateria na igreja. Saiu um estudo na… |
-| [157.310](https://www.instagram.com/reel/DcYtnjtub_K/) | 13.498 | 1.063 | 08-23 | Investigação | Eu investiguei + previsão chocante | silêncio dos bons | Eu investiguei a nova fábrica de carne do Bill Gates. que não precisa de boi. E se hoje algumas carnes ainda são comida de pobre. em breve será algo… |
-| [151.201](https://www.instagram.com/reel/DcRzQQYJ3Er/) | 5.833 | 2.419 | 08-20 | Depoimento de cliente | fala da cliente | — | Não imaginava que eu iria ganhar horrores. Eu não achava que eu ia ganhar dinheiro. Não era esse o intuito. Eu queria apenas ter a minha graninha ali… |
-| [144.670](https://www.instagram.com/reel/DcMiogXpzFa/) | 8.433 | 677 | 08-18 | Investigação | Eu investiguei + 'não foi por X. e sim' | cliente viciado em tela | Eu investiguei o motivo das Casas Bahia fecharem 298 lojas. E descobri que não foi por falta de vendas. E sim por algo que poucos brasileiros… |
-| [132.179](https://www.instagram.com/reel/Dc12uMRpbo8/) | 5.614 | 692 | 09-03 | Corte de entrevista | dado chocante do convidado | — | A testosterona média do homem caiu 1% ao ano nos últimos 50 anos. Você acha que os homens estão em crise? Os homens estão em crise porque somos… |
-| [132.151](https://www.instagram.com/reel/DcWPATZubHR/) | 5.783 | 336 | 08-22 | Investigação | Eu investiguei + 3 negações | silêncio dos bons | Eu investiguei por que a geração Z parou de fazer sexo. E não foi porque eles ficaram mais religiosos. não foi porque eles estão sem dinheiro. e nem… |
-| [123.152](https://www.instagram.com/reel/DdZIRL3uUto/) | 8.001 | 655 | 09-17 | Lista de livros | promessa + 3 negações de óbvios | fui chamado para… (tese) | Se você passou dos 30 anos. esses três livros vão te salvar de uma vida mediana. E eu não tô falando de como fazer amigos e influenciar pessoas. eu… |
-| [117.588](https://www.instagram.com/reel/DdeRGm4ukLP/) | 6.015 | 449 | 09-19 | Tutorial com promessa | ameaça da semana + 'concorrência desleal' | case de cliente | Se um presidente corrupto for eleito em 2026. você precisa deixar o seu produto. o seu serviço ou a sua empresa famosa. E nos próximos 60 segundos.… |
-| [112.187](https://www.instagram.com/reel/DdomJO4Oupd/) | 5.752 | 625 | 09-23 | 🔁 Tutorial com promessa | ordem imperativa (repost) | esposa médica | Apaga todos os seus stories agora e amanhã de manhã você vai postar uma selfie com o texto que eu vou te passar. Tudo que você precisa fazer é copiar… |
-| [73.516](https://www.instagram.com/reel/Dcj8MB4OS96/) | 4.590 | 1.200 | 08-27 | Corte de entrevista | afirmação contraintuitiva do convidado | — | O que é colocado para a gente como saudável quase sempre não é. É um fato. As revistas científicas. as principais do mundo. vieram se desculpar… |
-| [59.055](https://www.instagram.com/reel/DeCXct6uO31/) | 4.185 | 165 | 10-03 | Notícia com dado que inverte | comparação absurda (CR7 × Goku) | audiência vale mais que dinheiro | O Cristiano Ronaldo não vai se aposentar aos 41 anos pelo mesmo motivo que o Goku não morreu em Dragon Ball Z. Tem muita gente falando que o… |
-| [51.950](https://www.instagram.com/reel/DdwV_g8ukPZ/) | 1.527 | 405 | 09-26 | Tutorial com promessa | ordem imperativa + 3 modelos | método 80 mi | Apaga todos os seus stories agora e você vai começar o dia amanhã copiando e colando um dos três modelos que eu vou te passar. E não se assusta se… |
-| [45.099](https://www.instagram.com/reel/Dd4HC6TyCXG/) | 2.261 | 104 | 09-29 | Lista de livros | promessa financeira | alavanca de mídia | Se você ler esses quatro livros em ordem e aplicar o ensinamento deles. não se assusta se a sua vida financeira der um salto 360. Eu não sei por que… |
-| [44.728](https://www.instagram.com/reel/DdmA-P9O0tN/) | 1.478 | 69 | 09-22 | Livro que explica | 'acabei de ler' + 3 negações | empacotar | Eu acabei de ler um livro que explica por que as pessoas burras ganham mais seguidores e tem mais engajamento no Instagram do que as pessoas… |
-| [44.381](https://www.instagram.com/reel/DdtvLuGuCcd/) | 1.726 | 132 | 09-25 | Notícia com dado que inverte | personagem da semana (Fiuk) | excelência × ser descoberto | Se tem alguém que farmou aura em 2026. esse alguém foi o Fiuk. E ele farmou aura de duas maneiras diferentes. Dá uma olhada. Então é isso aí. Tinham… |
-| [44.108](https://www.instagram.com/reel/Dd1fEQmObuN/) | 1.777 | 199 | 09-28 | Tutorial com promessa | proibição + folha de papel | mercado saturado = oportunidade | Não cria uma conta nova no Instagram antes de pegar uma folha de papel e fazer exatamente o que eu vou te falar. E não se assusta se você sair de um… |
-| [32.390](https://www.instagram.com/reel/Dd4DBRCO9dD/) | 3.034 | 28 | 09-29 | 🔁 Livro que explica | 'acabei de ler' (repost) | empacotar | Eu acabei de ler um livro que explica por que as pessoas burras ganham mais seguidores e têm mais engajamento no Instagram do que as pessoas… |
-| [31.658](https://www.instagram.com/reel/DeAZVJlph55/) | 805 | 33 | 10-02 | Notícia com dado que inverte | notícia (bets) + pergunta | alavanca de mídia | O governo acabou com as vets para proteger as famílias brasileiras. Mas será que o governo acabou com o que realmente faz o brasileiro apostar? Salve… |
-| [29.815](https://www.instagram.com/reel/DdcXHQKpuhx/) | 683 | 196 | 09-18 | Metaconteúdo | autoridade (80 mi) + promessa | diagnóstico | Eu já gerei mais de 80 milhões de seguidores para os meus clientes e esses são os 4 formatos de vídeo que mais estão viralizando em 2026. E esses… |
-| [29.688](https://www.instagram.com/reel/Dd9MRbWOB3p/) | 951 | 50 | 10-01 | Notícia com dado que inverte | tendência bizarra + 'cuidado' | superestímulo → voz | Essa nova onda coreana é a prova que o cérebro da geração Z apodreceu. Mas se você acha que o que eu vou te mostrar é uma coisa idiota. cuidado.… |
-| [26.939](https://www.instagram.com/reel/DeHkJ5iOrDj/) | 1.264 | 31 | 10-05 | Lista de livros | promessa (7 problemas) | método | Esses sete livros vão resolver sete problemas urgentes da sua vida. Um desses livros aqui foi escrito há mais de 50 anos. mas você não faz ideia de… |
-| [23.208](https://www.instagram.com/reel/DdZ4mwBJBFN/) | 774 | 214 | 09-17 | Corte de entrevista | pergunta ao convidado (IA) | — | Como é que você vê essa relação de pessoas parando de usar o cérebro por conta de Iá? Eu vejo que nós vamos dividir a humanidade em dois tipos de… |
-| [23.036](https://www.instagram.com/reel/Db37qqqRDi4/) | 269 | 18 | 08-10 | Depoimento de cliente | depoimentos | mais conhecido vence o melhor | Não existe uma época onde é possível você sair do zero para uma relevância alta tão rápido quanto hoje. O que está ruim é que nós estamos em uma era… |
-| [21.061](https://www.instagram.com/reel/DdolGBxOMds/) | 613 | 24 | 09-23 | Diagnóstico de profissão | pergunta provocativa | livro (Postman) | Como é que os médicos deixaram de ser a profissão mais respeitada do mundo pra se transformar em palhaço de circo aqui no Instagram? Nos próximos 60… |
-| [18.475](https://www.instagram.com/reel/DeKDpYKONlf/) | 556 | 51 | 10-06 | Lista de conselhos | '7 regras obrigatórias' | algoritmo / esposa | Tem sete regras que são obrigatórias para quem tem entre 20 e 40 anos. E eu gostaria muito que alguém tivesse me dado esses conselhos lá atrás. A… |
-| [17.923](https://www.instagram.com/reel/Ddz7Tr-OLfI/) | 259 | 26 | 09-28 | Depoimento de cliente | depoimentos | mensagem > mensageiro | Milhões de postagens no Instagram acontecendo agora Por que as pessoas deveriam ver a minha? Isso é uma pergunta que a gente tem que fazer As redes… |
-| [3.725](https://www.instagram.com/reel/DdmCdqouVuX/) | 201 | 6 | 09-22 | 🔁 Estudo com ranking | (repost) | — | O hábito masculino que mais atrai as mulheres não é fazer musculação. não é se vestir bem e muito menos tocar bateria na igreja. Saiu um estudo na… |
-| [2.600](https://www.instagram.com/reel/DcggpK5OQmb/) | 140 | 1 | 08-26 | Investigação | Eu investiguei (Netflix/assassina) | silêncio dos bons | Eu investiguei por que a Netflix está romantizando assassinos. E eu descobri que existe uma razão psicológica da milhões de pessoas demonstrarem… |
-| [1.708](https://www.instagram.com/reel/DeKGJH2SftM/) | 67 | 3 | 10-06 | 🔁 Lista de livros | (repost) | — | Se você passou dos 30 anos. esses 3 livros vão te salvar de uma vida mediana. E eu não tô falando de como fazer amigos e influenciar pessoas. eu não… |
-| [1.605](https://www.instagram.com/reel/DeHlQlfyy3s/) | 43 | 0 | 10-05 | 🔁 Tutorial com promessa | (repost) | — | Se um presidente corrupto for eleito em 2026. você precisa deixar o seu produto. o seu serviço ou a sua empresa famosa. E nos próximos 60 segundos.… |
-| [257](https://www.instagram.com/reel/DeM9R2SpqCf/) | 79 | 0 | 10-07 | 🔁 🧪 Diagnóstico de profissão | (repost. 1 dia) | — | Como é que os médicos deixaram de ser a profissão mais respeitada do mundo pra se transformar em palhaço de circo aqui no Instagram? Nos próximos 60… |
-| [175](https://www.instagram.com/reel/Dd6nWEsyYAZ/) | 0 | 2 | 09-30 | 🔁 🧪 Metaconteúdo | (repost) | — | Eu já gerei mais de 80 milhões de seguidores para os meus clientes e esses são os 4 formatos de vídeo que mais estão viralizando em 2026. E esses… |
-| [131](https://www.instagram.com/reel/DcHDMvcp64N/) | 2 | 0 | 08-16 | 🧪 Diagnóstico genérico de geração | 'pesquisadores descobriram' | mundo de 3 segundos | E não é que os pesquisadores descobriram por que a geração Z é a geração celibato? Basicamente é a geração que faz menos sexo que qualquer outra… |
-| [107](https://www.instagram.com/reel/Db3mxX2Rpj3/) | 3 | 0 | 08-10 | 🧪 Diagnóstico de profissão | 'a bolha estourou' + dado | ser bom não basta | A bolha da medicina estourou. Enquanto os médicos de 1980 eram sinônimos de alta renda. status social e autoridade. muitos médicos da geração Z estão… |
-| [62](https://www.instagram.com/reel/DcJoHTTJU5w/) | 1 | 0 | 08-17 | 🧪 Diagnóstico de profissão | clipe de rua + afirmação | mais conhecido vence | Os médicos da geração Z são muito piores do que você imagina. Faz medicina? Faço. Como se chama a inflamação do fígado? Pancreatite. O hormônio que… |
-| [32](https://www.instagram.com/reel/DcBQz4uOJWO/) | 2 | 0 | 08-14 | 🧪 Diagnóstico genérico de geração | contraste geração passada × Z | mundo de 3 segundos | Isso é diversão para a geração passada. Isso é diversão para a geração Z. Isso é se cuidar para a geração passada. Isso é se cuidar para a geração Z.… |
-| [22](https://www.instagram.com/reel/DcEeGBmJUu9/) | 1 | 0 | 08-15 | 🧪 Lista genérica de geração | '5 coisas da geração Z' | profundidade | A geração Z está fazendo cinco coisas totalmente diferentes do que qualquer outra geração na história da humanidade já fez. E quem não prestar… |
-| [16](https://www.instagram.com/reel/DcI_MaOupBC/) | 0 | 0 | 08-17 | 🧪 Recomendação (série) | 'a série mais incrível' | desconforto | Você não percebeu que essa é a série mais incrível que você poderia assistir em 2026. Essa série está disponível no Netflix. Tem muita gente que não… |
-| [12](https://www.instagram.com/reel/DcB6FXYhQMm/) | 0 | 0 | 08-14 | 🧪 Lista genérica de geração | documentários p/ geração Z | produtor × produto | Esses são os documentários que a geração Z precisa assistir para resetar o cérebro podre com o Brain Rot. Já salva. porque a geração que odeia tudo o… |
-| [12](https://www.instagram.com/reel/Db-sGdUB_6_/) | 0 | 0 | 08-13 | 🧪 Lista genérica de geração | 3 habilidades | ser bom não basta | Todo jovem nascido após o ano 2000 deveria dominar três habilidades se quisesse destacar e ficar irreconhecível na sua área de atuação. Não importa… |
-| [10](https://www.instagram.com/reel/DcBQ7w9hFs8/) | 0 | 0 | 08-13 | 🧪 Diagnóstico genérico de geração | 'geração Z não é preguiçosa' | mundo de 3 segundos | Ação Z não parou de raciocinar porque é preguiçosa. Eles estão ficando mais burros que os pais por um motivo que a neurociência explica. E que muitos… |
-| [9](https://www.instagram.com/reel/Db8wdZ5hBiM/) | 0 | 0 | 08-12 | 🧪 Diagnóstico genérico de geração | 'não é X. e sim motivo econômico' | mundo de 3 segundos | As músicas de hoje não estão mais vazias porque a geração Z emburreceu. e sim por um motivo econômico que quase ninguém percebeu. Durante décadas. a… |
-| [7](https://www.instagram.com/reel/Db6Lt1sBWGd/) | 1 | 0 | 08-11 | 🧪 Diagnóstico genérico de geração | 'cientistas descobriram' | mundo de 3 segundos | Os cientistas finalmente descobriram por que a geração Z emburreceu tanto. E o que eles encontraram é um alerta perturbador para você que é pai.… |
-| [6](https://www.instagram.com/reel/Db5id0FhfXF/) | 0 | 0 | 08-11 | 🧪 Lista genérica | 'destrói de 4 formas' | mundo de 3 segundos | A pornografia destrói o cérebro do homem de pelo menos quatro formas diferentes. A primeira. homens que têm o hábito de consumir pornografia não… |
-| [4](https://www.instagram.com/reel/Db8HVvFhlhB/) | 0 | 0 | 08-12 | 🧪 Lista de livros | 'se eu fosse você' | jogo da atenção | Se eu fosse você. eu leria esses três livros em 2026. pra você não se arrepender em 2030. E eu tenho certeza que quem não lê esses livros vai se… |
-| [3](https://www.instagram.com/reel/DcLkAtKh7cs/) | 0 | 0 | 08-18 | 🧪 Lista genérica de geração | documentários | produtor × produto | Todo jovem nascido após o ano 2000 deveria assistir esses quatro documentários com muita urgência em 2026. Esses documentários são obrigatórios pra… |
+| Views | ❤ | 💬 | Data | Dur. | Formato | Gancho (tipo) | Fecho | Abertura literal |
+|---|---|---|---|---|---|---|---|---|
+| [795.835](https://www.instagram.com/reel/DcOfRIKuCZV/) | 73.737 | 3.192 | 2026-08-19 | 177s | Investigação | Eu investiguei + personagem chocante | silêncio dos bons | Eu investiguei o homem que criou a pornografia pra zombar de Jesus Cristo. E o ódio dele era tão grande que ele foi preso 19 vezes pra cumprir a sua… |
+| [429.245](https://www.instagram.com/reel/Dd_2U9nOuK9/) | 34.412 | 1.769 | 2026-10-02 | 178s | Notícia com dado que inverte | fato da semana + 'ninguém está comentando' | audiência vale mais que dinheiro | O Jorge Jesus não convocou o Cristiano Ronaldo aos 41 anos para jogar futebol. Mas eu acho que ele esqueceu de avisar. E tem uma coisa nessa história… |
+| [429.143](https://www.instagram.com/reel/DeDgvLvOwoC/) | 26.735 | 5.630 | 2026-10-04 | 455s | Posição pessoal com confissão | 'vou revelar meu voto' | história de vida → voto | Pessoal, nesse vídeo eu vou revelar o meu voto pra vocês, e pelo menos pra mim, foi uma escolha difícil, tá? Ao contrário de muitos de vocês, eu não… |
+| [385.226](https://www.instagram.com/reel/DdkFsT6JdDG/) | 15.502 | 2.199 | 2026-09-21 | 178s | Tutorial com promessa | ordem imperativa + resultado | esposa médica 0→100k | Apaga todos os seus stories agora e amanhã de manhã você vai postar uma selfie com o texto que eu vou te passar. Tudo que você precisa fazer é copiar… |
+| [251.700](https://www.instagram.com/reel/DdhiogZpb9H/) | 16.084 | 834 | 2026-09-20 | 178s | Estudo com ranking | 3 negações + estudo | livro (1984 × Admirável) | O hábito masculino que mais atrai as mulheres não é fazer musculação, não é se vestir bem e muito menos tocar bateria na igreja. Saiu um estudo na… |
+| [157.310](https://www.instagram.com/reel/DcYtnjtub_K/) | 13.498 | 1.063 | 2026-08-23 | 150s | Investigação | Eu investiguei + previsão chocante | silêncio dos bons | Eu investiguei a nova fábrica de carne do Bill Gates, que não precisa de boi. E se hoje algumas carnes ainda são comida de pobre, em breve será algo… |
+| [151.201](https://www.instagram.com/reel/DcRzQQYJ3Er/) | 5.833 | 2.419 | 2026-08-20 | 63s | Depoimento de cliente | fala da cliente | — | Não imaginava que eu iria ganhar horrores. Eu não achava que eu ia ganhar dinheiro. Não era esse o intuito. Eu queria apenas ter a minha graninha ali… |
+| [144.670](https://www.instagram.com/reel/DcMiogXpzFa/) | 8.433 | 677 | 2026-08-18 | 171s | Investigação | Eu investiguei + 'não foi por X, e sim' | cliente viciado em tela | Eu investiguei o motivo das Casas Bahia fecharem 298 lojas. E descobri que não foi por falta de vendas. E sim por algo que poucos brasileiros… |
+| [132.179](https://www.instagram.com/reel/Dc12uMRpbo8/) | 5.614 | 692 | 2026-09-03 | 98s | Corte de entrevista | dado chocante do convidado | — | A testosterona média do homem caiu 1% ao ano nos últimos 50 anos. Você acha que os homens estão em crise? Os homens estão em crise porque somos… |
+| [132.151](https://www.instagram.com/reel/DcWPATZubHR/) | 5.783 | 336 | 2026-08-22 | 153s | Investigação | Eu investiguei + 3 negações | silêncio dos bons | Eu investiguei por que a geração Z parou de fazer sexo. E não foi porque eles ficaram mais religiosos, não foi porque eles estão sem dinheiro, e nem… |
+| [123.152](https://www.instagram.com/reel/DdZIRL3uUto/) | 8.001 | 655 | 2026-09-17 | 170s | Lista de livros | promessa + 3 negações de óbvios | fui chamado para… (tese) | Se você passou dos 30 anos, esses três livros vão te salvar de uma vida mediana. E eu não tô falando de como fazer amigos e influenciar pessoas, eu… |
+| [117.588](https://www.instagram.com/reel/DdeRGm4ukLP/) | 6.015 | 449 | 2026-09-19 | 167s | Tutorial com promessa | ameaça da semana + 'concorrência desleal' | case de cliente | Se um presidente corrupto for eleito em 2026, você precisa deixar o seu produto, o seu serviço ou a sua empresa famosa. E nos próximos 60 segundos,… |
+| [112.187](https://www.instagram.com/reel/DdomJO4Oupd/) | 5.752 | 625 | 2026-09-23 | 166s | 🔁 Tutorial com promessa | ordem imperativa (repost) | esposa médica | Apaga todos os seus stories agora e amanhã de manhã você vai postar uma selfie com o texto que eu vou te passar. Tudo que você precisa fazer é copiar… |
+| [73.516](https://www.instagram.com/reel/Dcj8MB4OS96/) | 4.590 | 1.200 | 2026-08-27 | 80s | Corte de entrevista | afirmação contraintuitiva do convidado | — | O que é colocado para a gente como saudável quase sempre não é. É um fato. As revistas científicas, as principais do mundo, vieram se desculpar… |
+| [59.055](https://www.instagram.com/reel/DeCXct6uO31/) | 4.185 | 165 | 2026-10-03 | 147s | Notícia com dado que inverte | comparação absurda (CR7 × Goku) | audiência vale mais que dinheiro | O Cristiano Ronaldo não vai se aposentar aos 41 anos pelo mesmo motivo que o Goku não morreu em Dragon Ball Z. Tem muita gente falando que o… |
+| [51.950](https://www.instagram.com/reel/DdwV_g8ukPZ/) | 1.527 | 405 | 2026-09-26 | 177s | Tutorial com promessa | ordem imperativa + 3 modelos | método 80 mi | Apaga todos os seus stories agora e você vai começar o dia amanhã copiando e colando um dos três modelos que eu vou te passar. E não se assusta se… |
+| [45.099](https://www.instagram.com/reel/Dd4HC6TyCXG/) | 2.261 | 104 | 2026-09-29 | 178s | Lista de livros | promessa financeira | alavanca de mídia | Se você ler esses quatro livros em ordem e aplicar o ensinamento deles, não se assusta se a sua vida financeira der um salto 360. Eu não sei por que… |
+| [44.728](https://www.instagram.com/reel/DdmA-P9O0tN/) | 1.478 | 69 | 2026-09-22 | 178s | Livro que explica | 'acabei de ler' + 3 negações | empacotar | Eu acabei de ler um livro que explica por que as pessoas burras ganham mais seguidores e tem mais engajamento no Instagram do que as pessoas… |
+| [44.381](https://www.instagram.com/reel/DdtvLuGuCcd/) | 1.726 | 132 | 2026-09-25 | 149s | Notícia com dado que inverte | personagem da semana (Fiuk) | excelência × ser descoberto | Se tem alguém que farmou aura em 2026, esse alguém foi o Fiuk. E ele farmou aura de duas maneiras diferentes. Dá uma olhada. Então é isso aí. Tinham… |
+| [44.108](https://www.instagram.com/reel/Dd1fEQmObuN/) | 1.777 | 199 | 2026-09-28 | 154s | Tutorial com promessa | proibição + folha de papel | mercado saturado = oportunidade | Não cria uma conta nova no Instagram antes de pegar uma folha de papel e fazer exatamente o que eu vou te falar. E não se assusta se você sair de um… |
+| [32.390](https://www.instagram.com/reel/Dd4DBRCO9dD/) | 3.034 | 28 | 2026-09-29 | 177s | 🔁 Livro que explica | 'acabei de ler' (repost) | empacotar | Eu acabei de ler um livro que explica por que as pessoas burras ganham mais seguidores e têm mais engajamento no Instagram do que as pessoas… |
+| [31.658](https://www.instagram.com/reel/DeAZVJlph55/) | 805 | 33 | 2026-10-02 | 178s | Notícia com dado que inverte | notícia (bets) + pergunta | alavanca de mídia | O governo acabou com as vets para proteger as famílias brasileiras. Mas será que o governo acabou com o que realmente faz o brasileiro apostar? Salve… |
+| [29.815](https://www.instagram.com/reel/DdcXHQKpuhx/) | 683 | 196 | 2026-09-18 | 178s | Metaconteúdo | autoridade (80 mi) + promessa | diagnóstico | Eu já gerei mais de 80 milhões de seguidores para os meus clientes e esses são os 4 formatos de vídeo que mais estão viralizando em 2026. E esses… |
+| [29.688](https://www.instagram.com/reel/Dd9MRbWOB3p/) | 951 | 50 | 2026-10-01 | 177s | Notícia com dado que inverte | tendência bizarra + 'cuidado' | superestímulo → voz | Essa nova onda coreana é a prova que o cérebro da geração Z apodreceu. Mas se você acha que o que eu vou te mostrar é uma coisa idiota, cuidado,… |
+| [26.939](https://www.instagram.com/reel/DeHkJ5iOrDj/) | 1.264 | 31 | 2026-10-05 | 177s | Lista de livros | promessa (7 problemas) | método | Esses sete livros vão resolver sete problemas urgentes da sua vida. Um desses livros aqui foi escrito há mais de 50 anos, mas você não faz ideia de… |
+| [23.208](https://www.instagram.com/reel/DdZ4mwBJBFN/) | 774 | 214 | 2026-09-17 | 86s | Corte de entrevista | pergunta ao convidado (IA) | — | Como é que você vê essa relação de pessoas parando de usar o cérebro por conta de Iá? Eu vejo que nós vamos dividir a humanidade em dois tipos de… |
+| [23.036](https://www.instagram.com/reel/Db37qqqRDi4/) | 269 | 18 | 2026-08-10 | 161s | Depoimento de cliente | depoimentos | mais conhecido vence o melhor | Não existe uma época onde é possível você sair do zero para uma relevância alta tão rápido quanto hoje. O que está ruim é que nós estamos em uma era… |
+| [21.061](https://www.instagram.com/reel/DdolGBxOMds/) | 613 | 24 | 2026-09-23 | 177s | Diagnóstico de profissão | pergunta provocativa | livro (Postman) | Como é que os médicos deixaram de ser a profissão mais respeitada do mundo pra se transformar em palhaço de circo aqui no Instagram? Nos próximos 60… |
+| [18.475](https://www.instagram.com/reel/DeKDpYKONlf/) | 556 | 51 | 2026-10-06 | 167s | Lista de conselhos | '7 regras obrigatórias' | algoritmo / esposa | Tem sete regras que são obrigatórias para quem tem entre 20 e 40 anos. E eu gostaria muito que alguém tivesse me dado esses conselhos lá atrás. A… |
+| [17.923](https://www.instagram.com/reel/Ddz7Tr-OLfI/) | 259 | 26 | 2026-09-28 | 125s | Depoimento de cliente | depoimentos | mensagem > mensageiro | Milhões de postagens no Instagram acontecendo agora Por que as pessoas deveriam ver a minha? Isso é uma pergunta que a gente tem que fazer As redes… |
+| [3.725](https://www.instagram.com/reel/DdmCdqouVuX/) | 201 | 6 | 2026-09-22 | 178s | 🔁 Estudo com ranking | (repost) | — | O hábito masculino que mais atrai as mulheres não é fazer musculação, não é se vestir bem e muito menos tocar bateria na igreja. Saiu um estudo na… |
+| [2.600](https://www.instagram.com/reel/DcggpK5OQmb/) | 140 | 1 | 2026-08-26 | 176s | Investigação | Eu investiguei (Netflix/assassina) | silêncio dos bons | Eu investiguei por que a Netflix está romantizando assassinos. E eu descobri que existe uma razão psicológica da milhões de pessoas demonstrarem… |
+| [1.708](https://www.instagram.com/reel/DeKGJH2SftM/) | 67 | 3 | 2026-10-06 | 166s | 🔁 Lista de livros | (repost) | — | Se você passou dos 30 anos, esses 3 livros vão te salvar de uma vida mediana. E eu não tô falando de como fazer amigos e influenciar pessoas, eu não… |
+| [1.605](https://www.instagram.com/reel/DeHlQlfyy3s/) | 43 | 0 | 2026-10-05 | 165s | 🔁 Tutorial com promessa | (repost) | — | Se um presidente corrupto for eleito em 2026, você precisa deixar o seu produto, o seu serviço ou a sua empresa famosa. E nos próximos 60 segundos,… |
+| [257](https://www.instagram.com/reel/DeM9R2SpqCf/) | 79 | 0 | 2026-10-07 | 177s | 🔁 🧪 Diagnóstico de profissão | (repost, 1 dia) | — | Como é que os médicos deixaram de ser a profissão mais respeitada do mundo pra se transformar em palhaço de circo aqui no Instagram? Nos próximos 60… |
+| [175](https://www.instagram.com/reel/Dd6nWEsyYAZ/) | 0 | 2 | 2026-09-30 | 179s | 🔁 🧪 Metaconteúdo | (repost) | — | Eu já gerei mais de 80 milhões de seguidores para os meus clientes e esses são os 4 formatos de vídeo que mais estão viralizando em 2026. E esses… |
+| [131](https://www.instagram.com/reel/DcHDMvcp64N/) | 2 | 0 | 2026-08-16 | 178s | 🧪 Diagnóstico genérico de geração | 'pesquisadores descobriram' | mundo de 3 segundos | E não é que os pesquisadores descobriram por que a geração Z é a geração celibato? Basicamente é a geração que faz menos sexo que qualquer outra… |
+| [107](https://www.instagram.com/reel/Db3mxX2Rpj3/) | 3 | 0 | 2026-08-10 | 167s | 🧪 Diagnóstico de profissão | 'a bolha estourou' + dado | ser bom não basta | A bolha da medicina estourou. Enquanto os médicos de 1980 eram sinônimos de alta renda, status social e autoridade, muitos médicos da geração Z estão… |
+| [62](https://www.instagram.com/reel/DcJoHTTJU5w/) | 1 | 0 | 2026-08-17 | 153s | 🧪 Diagnóstico de profissão | clipe de rua + afirmação | mais conhecido vence | Os médicos da geração Z são muito piores do que você imagina. Faz medicina? Faço. Como se chama a inflamação do fígado? Pancreatite. O hormônio que… |
+| [32](https://www.instagram.com/reel/DcBQz4uOJWO/) | 2 | 0 | 2026-08-14 | 176s | 🧪 Diagnóstico genérico de geração | contraste geração passada × Z | mundo de 3 segundos | Isso é diversão para a geração passada. Isso é diversão para a geração Z. Isso é se cuidar para a geração passada. Isso é se cuidar para a geração Z.… |
+| [22](https://www.instagram.com/reel/DcEeGBmJUu9/) | 1 | 0 | 2026-08-15 | 178s | 🧪 Lista genérica de geração | '5 coisas da geração Z' | profundidade | A geração Z está fazendo cinco coisas totalmente diferentes do que qualquer outra geração na história da humanidade já fez. E quem não prestar… |
+| [16](https://www.instagram.com/reel/DcI_MaOupBC/) | 0 | 0 | 2026-08-17 | 178s | 🧪 Recomendação (série) | 'a série mais incrível' | desconforto | Você não percebeu que essa é a série mais incrível que você poderia assistir em 2026. Essa série está disponível no Netflix. Tem muita gente que não… |
+| [12](https://www.instagram.com/reel/DcB6FXYhQMm/) | 0 | 0 | 2026-08-14 | 178s | 🧪 Lista genérica de geração | documentários p/ geração Z | produtor × produto | Esses são os documentários que a geração Z precisa assistir para resetar o cérebro podre com o Brain Rot. Já salva, porque a geração que odeia tudo o… |
+| [12](https://www.instagram.com/reel/Db-sGdUB_6_/) | 0 | 0 | 2026-08-13 | 178s | 🧪 Lista genérica de geração | 3 habilidades | ser bom não basta | Todo jovem nascido após o ano 2000 deveria dominar três habilidades se quisesse destacar e ficar irreconhecível na sua área de atuação. Não importa… |
+| [10](https://www.instagram.com/reel/DcBQ7w9hFs8/) | 0 | 0 | 2026-08-13 | 178s | 🧪 Diagnóstico genérico de geração | 'geração Z não é preguiçosa' | mundo de 3 segundos | Ação Z não parou de raciocinar porque é preguiçosa. Eles estão ficando mais burros que os pais por um motivo que a neurociência explica. E que muitos… |
+| [9](https://www.instagram.com/reel/Db8wdZ5hBiM/) | 0 | 0 | 2026-08-12 | 175s | 🧪 Diagnóstico genérico de geração | 'não é X, e sim motivo econômico' | mundo de 3 segundos | As músicas de hoje não estão mais vazias porque a geração Z emburreceu, e sim por um motivo econômico que quase ninguém percebeu. Durante décadas, a… |
+| [7](https://www.instagram.com/reel/Db6Lt1sBWGd/) | 1 | 0 | 2026-08-11 | 178s | 🧪 Diagnóstico genérico de geração | 'cientistas descobriram' | mundo de 3 segundos | Os cientistas finalmente descobriram por que a geração Z emburreceu tanto. E o que eles encontraram é um alerta perturbador para você que é pai.… |
+| [6](https://www.instagram.com/reel/Db5id0FhfXF/) | 0 | 0 | 2026-08-11 | 177s | 🧪 Lista genérica | 'destrói de 4 formas' | mundo de 3 segundos | A pornografia destrói o cérebro do homem de pelo menos quatro formas diferentes. A primeira, homens que têm o hábito de consumir pornografia não… |
+| [4](https://www.instagram.com/reel/Db8HVvFhlhB/) | 0 | 0 | 2026-08-12 | 159s | 🧪 Lista de livros | 'se eu fosse você' | jogo da atenção | Se eu fosse você, eu leria esses três livros em 2026, pra você não se arrepender em 2030. E eu tenho certeza que quem não lê esses livros vai se… |
+| [3](https://www.instagram.com/reel/DcLkAtKh7cs/) | 0 | 0 | 2026-08-18 | 174s | 🧪 Lista genérica de geração | documentários | produtor × produto | Todo jovem nascido após o ano 2000 deveria assistir esses quatro documentários com muita urgência em 2026. Esses documentários são obrigatórios pra… |
 
 ---
 
@@ -283,6 +285,54 @@ Tem muito bom profissional que não entendeu que o mais conhecido vence o melhor
 Como todos eles aqui entenderam.
 Então não sei o que você faz, mas eu sei que ter mais audiência vai te fazer ganhar mais dinheiro.
 E se isso te interessa, já me segue e digita diagnóstico nos comentários para ter o seu perfil analisado por um especialista da minha equipe.
+```
+
+### 429.143 views · 455s · 2026-10-04 · [link](https://www.instagram.com/reel/DeDgvLvOwoC/)
+
+```
+Pessoal, nesse vídeo eu vou revelar o meu voto pra vocês, e pelo menos pra mim, foi uma escolha difícil, tá?
+Ao contrário de muitos de vocês, eu não tenho um candidato definido desde o início das eleições.
+Em determinado momento eu fiquei muito em dúvida entre dois candidatos.
+E eu fiz um compromisso comigo mesmo de postar um único vídeo sobre esse assunto, que é esse vídeo aqui.
+e por alguns motivos e principalmente por conta de um contexto da minha história de vida, um contexto familiar, que alguns de vocês que me acompanham há mais tempo sabem e alguns não.
+Não sei se vocês sabem, mas eu perdi o meu pai com 12 anos de idade.
+Quando meu pai era vivo, a gente já passava por dificuldades financeiras e quando ele morreu, fato é que a gente entrou no buraco.
+Ele não deixou dinheiro, embora meu pai tenha deixado coisas muito mais valiosas do que dinheiro.
+ele não deixou dinheiro e minha mãe já tinha uma idade avançada tinha um problema na coluna crônico e a única alternativa que ela teve pra botar comida na nossa mesa e pra fazer com que a gente tivesse condições de continuar estudando, foi fazer comida pra fora, eu lembro que ela ia na feira carregava carrinhos pesados ali com muitas compras, porque ela precisava cozinhar e toda sexta ela tinha uma entrega pra fazer e ela ganhava menos de 200 reais por semana em uma sexta básica e era isso que a gente tinha então a memória que eu tenho da minha mãe nessa fase minha mãe está viva ainda, graças a Deus mas a memória que eu tenho dela é uma memória de uma mulher muito guerreira mas também de uma mulher muito estressada muito preocupada por conta dessa situação e por conta disso eu tinha uma esperança eu tinha a esperança de que em algum momento surgiria um salvador na nossa vida algum amigo do meu pai algum parente que tocasse a campainha da nossa casa e deixasse ali um dinheiro Falar pessoal voc est passando por um desafio a vou colocar um dinheiro a na casa de voc para facilitar, para sua mãe ficar menos preocupada.
+Só que isso não aconteceu.
+E foi aí que eu aprendi uma lição muito grande na minha vida.
+Existe algo que nunca ninguém vai fazer por você, que é a sua parte.
+E eu entendi que se eu quisesse um dia fazer a minha mãe parar de trabalhar, se eu quisesse um dia mudar a minha realidade, eu precisaria estudar muito, trabalhar, porque não tem outro caminho.
+E por que eu estou contando isso para você?
+Porque eu confesso mais uma confissão, que eu nunca na minha vida fui um cara que tive fé em políticos, nunca.
+Eu nunca tive um cara que eu olhasse e falava, nossa, esse cara vai mudar a minha vida se ele for eleito.
+Nunca tive essa pretensão.
+Elias, você é dos caras que votam em branco, que vai viajar?
+Não, eu nunca fui viajar e sempre votei escolhendo alguém.
+Mas eu nunca tive a pretensão que esse alguém mudaria a minha vida.
+Qual que é a única coisa que eu espero de um político?
+Que ele não atrapalhe.
+É tipo, a gente paga imposto em tudo que a gente faz, até o ar que a gente respira daqui a pouco a gente está pagando imposto.
+Mas eu não espero muita coisa em troca, eu confesso, eu não espero mais.
+A gente já está, quem é brasileiro já sabe, a gente está anos e anos esperando alguma promessa ser cumprida e não são cumpridas as promessas.
+Ent eu n espero nada dos pol eu espero que eles n nos atrapalhem E fato que parece que o cara que est no poder hoje tem uma miss de vida que atrapalhar tudo que a gente faz Pessoal, já deu desse cara, né?
+Já deu.
+Está intragável, está beirando a ficar perigoso manter esse cara mais quatro anos aí.
+E, por que eu fiquei em dúvida, né?
+Eu sou um cara que, na minha trajetória, teve uma coisa que, posso dizer que mudou a minha vida, que foi o hábito de leitura.
+Vocês podem ver que eu falo muito de livros aqui no meu perfil, porque isso marcou a minha vida, né?
+Foi uma das fontes de conhecimento que eu tive acesso que me permitiram crescer.
+e eu li muitos livros do Augusto Cury eu sou um leitor do Augusto Cury não conheço a vida dele, não conheço a história dele eu não sou um consumidor de política, eu não assisto podcast, eu não vejo notícia é como se nos últimos anos a política eu não ligasse pra isso ah Elia, você tá errado, porque querendo ou não influencia, mas eu tô trazendo o meu ponto, a minha vida aqui pra vocês, né então em algum momento eu pensei em votar no Augusto Cury porque eu tinha lido os livros dele e ele teve um crescimento ali, eu falei, pô, será que a gente vai ter uma opção um pouquinho diferente do normal?
+Mas o fato é que hoje, pessoal, a gente não tem outra alternativa, se quiser tirar o cara lá, tem que votar no Flávio Bolsonaro.
+Ah, Elias, mas se todo mundo pensasse em votar no melhor no primeiro turno, eu sei, eu também queria acreditar nessa utopia, mas não dá.
+Agora a gente tem que fazer o que precisa ser feito para tirar o cara que est l que j est impratic O Lula um cara que ele abomin em v sentidos n Ent precisa sair pessoal N d pra ele ficar mais quatro anos.
+Elias, você acha, você bota suas mãos no fogo que o Flávio Bolsonaro vai fazer algo muito bom pela gente?
+Não boto.
+Elias, você bota as mãos no fogo que o Flávio Bolsonaro é um cara honesto?
+Não conheço.
+Não sei.
+A única coisa que eu acredito, e tudo é fé tudo a gente precisa ter fé eu acredito que ele vai atrapalhar menos a nossa vida do que o cara que tá lá porque o cara que tá lá tá ficando impraticável se ele botar mais quatro caras lá em cima talvez nunca dê pra sair desses tentáculos que ele criou então por conta disso eu vou votar no Flávio Bolsonaro mas esse é o meu racional se eu for vir aqui com tudo que eu acredito sobre política muita coisa que a gente vê são distrações tem muita coisa envolvida tem camadas na minha visão superiores a esses governantes que a gente vê não vou entrar nisso, mas quem lê a bíblia sabe o que vai acontecer no final das contas e eu acredito que a gente está caminhando para isso mas se de alguma forma a gente puder deixar esse período um pouquinho mais leve que seja tirando o cara que está lá então esse é o meu posicionamento e é isso amanhã vote a única coisa que eu acredito eu não quero nem pedir para você votar em alguém ou não é para você votar eu acredito que é importante você exercer esse direito de votar de pô, não vai viajar agora Vai votar e faz a sua parte.
+Tamo junto.
 ```
 
 ### 385.226 views · 178s · 2026-09-21 · [link](https://www.instagram.com/reel/DdkFsT6JdDG/)
@@ -392,6 +442,29 @@ Assim como todos eles que você está vendo aqui.
 Então já me segue e se você quer ser o meu próximo case de sucesso, digita análise nos comentários para ter o seu perfil analisado por um especialista da minha equipe.
 ```
 
+### 151.201 views · 63s · 2026-08-20 · [link](https://www.instagram.com/reel/DcRzQQYJ3Er/)
+
+```
+Não imaginava que eu iria ganhar horrores.
+Eu não achava que eu ia ganhar dinheiro.
+Não era esse o intuito.
+Eu queria apenas ter a minha graninha ali e fazer o que eu amava, de verdade.
+Curtir ali fazer as minhas marmitas.
+Não imaginei que fosse tomar essa proporção.
+A maior história de marmita congelada.
+De marmita congelada é a maior do mundo, tá?
+Caraca.
+Aquilo que você fala.
+Sua vida pode estar a um erro de mudar completamente.
+Esse Reels, ele mudou a minha vida.
+15 milhões, né?
+Foi a virada, né?
+Esse vídeo foi a virada.
+Então assim, eu sei que não foi sorte.
+Foi método, foi estratégia, foi muito trabalho Não tinha outro lugar pra gravar De madrugada, no dia da semana Das 11 às 4 da manhã Eu não sabia disso Você saiu do trabalho pra começar ganhando menos Nunca tive medo, quer dizer, medo eu tenho Mas eu sou uma medrosa mais corajosa que eu conheço Eu sempre brinco com isso Se você pudesse dar um conselho Olhando ali na câmera pra alguém que tá começando Esse processo de construir conteúdo Audiência, que tem um produto bom Mas que ainda não tem a demanda Sabe o que virou uma chave pra mim?
+Legenda Adriana Zanotto
+```
+
 ### 144.670 views · 171s · 2026-08-18 · [link](https://www.instagram.com/reel/DcMiogXpzFa/)
 
 ```
@@ -438,6 +511,37 @@ E se você gostaria de ser o meu próximo case de sucesso, O primeiro passo é t
 Então digita diagnóstico nos comentários e eu te mando as instruções lá no seu direct.
 ```
 
+### 132.179 views · 98s · 2026-09-03 · [link](https://www.instagram.com/reel/Dc12uMRpbo8/)
+
+```
+A testosterona média do homem caiu 1% ao ano nos últimos 50 anos.
+Você acha que os homens estão em crise?
+Os homens estão em crise porque somos inundados por informações ruins.
+Informações hoje do tipo 450 é um bom nível de testo para um homem.
+Porra nenhuma.
+Seu avô tinha mil de testo natural.
+Era o normal.
+Eu fui o cara que eu tinha 450 de testo e eu consegui bater hoje quase mil.
+E isso não é nada demais.
+É só você alinhar os seus hábitos.
+Mas a galera ficou numa paranoia que não pode comer a gordura da carne.
+O que te deixa desregulado não é a gordura da carne, é a farinha branca, é o açúcar.
+Eu tinha medo do sol, cara, porque dá câncer de pele.
+Além de você não se expor a ele, você enche o seu corpo de protetor solar.
+Ele é xenoestrogênio, cheio de produtos químicos que vai desregular o seu metabolismo.
+Entenda, você só deve passar na pele aquilo que você pode comer.
+Encha a cara do monte de porcaria, cheio de química.
+Se você passa na pele, sua pele é porosa, ela absorve.
+Aquilo lá vai para a sua corrente sanguínea, você não precisa ser um gênio para entender.
+Está cheio de um monte de coisa que você não comeria.
+Por que você vai deixar isso entrar na sua corrente sanguínea?
+Então eu comecei a cortar qualquer coisa que eu colocasse no meu organismo que pudesse causar uma disruptura endócrina em mim.
+Se você tivesse um cara na sua frente aqui agora, o cara está sedentário, está com a testa de 200, é um cara que quer mudar.
+Mas todo dia ele fala, hoje eu não vou usar o celular.
+Ele vai lá e passa o dia inteiro no celular.
+Ele tá na pornografia, ele tá na lama Por onde você começaria a ajudar esse cara No processo de mudança Que você daria de conselho pra ele Irmão, começa por aqui
+```
+
 ### 132.151 views · 153s · 2026-08-22 · [link](https://www.instagram.com/reel/DcWPATZubHR/)
 
 ```
@@ -468,112 +572,6 @@ E sim por conta do silêncio dos bons.
 Meu nome é Elias Mamã e a minha missão é fazer com que os bons tenham muita voz.
 Assim como todos eles que você está vendo aqui.
 Então já me segue e se você quer ser o meu próximo case de sucesso, digita análise nos comentários para ter o seu perfil analisado por um especialista da minha equipe.
-```
-
-### 123.152 views · 170s · 2026-09-17 · [link](https://www.instagram.com/reel/DdZIRL3uUto/)
-
-```
-Se você passou dos 30 anos, esses três livros vão te salvar de uma vida mediana.
-E eu não tô falando de como fazer amigos e influenciar pessoas, eu não tô falando de Os Segredos da Mente Milionária, e muito menos de O Pai Rico, O Pai Pobre.
-Eu tô te falando de três livros que quase ninguém no Brasil leu, e que eu tenho certeza que vão mudar a sua mente da água pro vinho.
-Então é muito importante que você salve esse vídeo.
-O primeiro livro é o Chamados pra Criar.
-Já dá o print na tela pra não perder.
-Esse livro começa com uma reflexão muito importante sobre Deus.
-Se você parar para pensar, a primeira forma que Deus se revela na Bíblia não é um Deus de amor, não é um Deus de justiça e nem um Deus todo poderoso.
-Deus se revela como um Deus criador.
-E basicamente nesse livro o autor trabalha em uma única ideia.
-Você foi chamado para criar e talvez o seu trabalho não sirva apenas para ganhar dinheiro, e sim para imprimir algo no mundo.
-Ele vai te ajudar a encontrar o que você veio fazer aqui e como trazer muito mais significado para o seu trabalho.
-O segundo livro é do mesmo autor e o nome dele é Redimindo Seu Tempo.
-E basicamente ele explode a sua cabeça com outra reflexão.
-Jesus veio para a Terra com a missão mais importante de todos os tempos.
-Mas por que será que ele nunca parecia estar com pressa?
-Basicamente nesse livro o autor mata a ideia que você pode dar conta de fazer tudo.
-Ele te ensina a entender que voc foi chamado para c para uma coisa espec e que ao inv de lotar sua agenda tentando fazer tudo o que voc pode imaginar o mais importante voc aprender a dizer n e organizar o seu tempo com muito mais efici Nesse livro ele vai te dar várias ferramentas que você não vai encontrar em nenhum livro de autoajuda de produtividade.
-Eu recomendo muito que você leia.
-E o terceiro livro também é do mesmo autor e ele mata uma das maiores mentiras da nossa geração, que você pode ser tudo o que você quiser.
-Não, você não pode justamente porque o seu tempo é limitado.
-Então nesse livro ele defende a ideia que você foi chamado para uma coisa específica e que se você foi chamado para uma coisa específica, cabe a você ficar mestre nisso.
-Ele vai te ajudar a encontrar a única coisa na sua vida que merece anos da sua dedicação até você ficar muito bom nela.
-E se você conhece alguém que está buscando crescer na vida profissional, pelo amor de Deus, compartilhe esse vídeo com essa pessoa, porque eu tenho certeza que esses três livros são fundamentais nessa jornada.
-O meu nome é Elias Mamã e eu li esses livros há alguns anos atrás.
-E eles me ajudaram a entender que eu fui chamado para uma coisa, que é transformar bons profissionais em vozes notáveis na internet.
-E eu venho fazendo isso nos últimos anos, como você pode ver com todos eles.
-São mais de 80 milhões de seguidores gerados para bons profissionais que estavam no anonimato.
-E a minha pergunta para você é, você topa ser o meu próximo case de sucesso?
-Se sim, já me segue e digita diagnóstico nos comentários se você gostaria de ter o seu perfil analisado por um especialista da minha equipe.
-Eu vou te mandar as instruções lá no seu direct.
-```
-
-### 117.588 views · 167s · 2026-09-19 · [link](https://www.instagram.com/reel/DdeRGm4ukLP/)
-
-```
-Se um presidente corrupto for eleito em 2026, você precisa deixar o seu produto, o seu serviço ou a sua empresa famosa.
-E nos próximos 60 segundos, eu vou te ensinar uma forma de fazer isso que pode parecer até concorrência desleal.
-Porque enquanto seus concorrentes gastam muito dinheiro em publicidade para divulgar os seus produtos ou serviços, eu vou te ensinar um jeito de fazer isso de graça.
-Então é muito importante que você salve esse vídeo.
-Principalmente porque o que eu vou te falar pode parecer contra intuitivo.
-Você sabe qual que é a melhor forma de deixar o seu produto ou serviço famoso?
-Parando de falar dele.
-Eu sei que parece loucura, mas eu vou te ensinar a fazer isso do jeito certo.
-Há cerca de dois anos, essa empresa aqui de marmita congelada contratou os nossos serviços para crescer o perfil do Instagram e dar uma olhada como eram os conteúdos que eles postavam.
-Vizinho novo, nunca vi ele aqui.
-Será que essa bolsa é natural?
-É onde eu levo as minhas refeições saudáveis.
-Basicamente essa estratégia faz sentido.
-Se eu vendo marmita congelada, os meus conteúdos vão ser mostrando as minhas marmitas.
-Só que o grande problema é que ninguém acorda pensando, nossa, eu vou entrar no Instagram agora para comprar uma marmita congelada.
-Então qual foi a estratégia que a gente desenvolveu?
-Bom, se o objetivo é vender marmita congelada, n vamos ensinar as pessoas a se alimentarem melhor e no final oferecer as marmitas E d uma olhada em como ficaram os conte Lavo ou n lavo o se voc quer a uma quatro marinadas que v transformar o seu frango sem gra na estrela do prato se voc gosta de pra cidade conhece as refeições da natural de frango em pouco mais de dois anos o perfil da natural e saiu disso aqui pra isso e eu perguntei para maria cândida se esse perfil era o maior perfil de marmita congeladas do brasil e olha o que ela me respondeu a minha graninha ali fazer o que eu Eu amava, de verdade.
-Curtia ali fazer as minhas marmitas.
-Não imaginei que fosse tomar essa proporção.
-A maior Instagram de marmita congelada.
-De marmita congelada é a maior de líquido do mundo, tá?
-Caraca.
-Aquilo que você fala.
-Sua vida pode estar a um erro de mudar completamente.
-É muito importante que você compartilhe esse vídeo com todo empreendedor, com todo bom profissional que você conhece.
-Porque se você empreende no Brasil, você sabe muito bem os desafios que estão surgindo.
-Por isso é muito importante que você aprenda como divulgar os seus produtos e serviços de graça aqui no Instagram.
-Meu nome é Elias Mamãe e a minha missão aqui é justamente essa.
-É transformar bons profissionais e boas empresas em vozes notáveis aqui no Instagram.
-Pra você ter ideia, o meu método gerou mais de 80 milhões de seguidores pros meus clientes nos últimos anos.
-E a minha pergunta pra você é muito simples.
-Você topa ser o nosso próximo case de sucesso?
-Eu tenho algumas opções de acompanhamento pra te ajudar nessa jornada.
-E pra conversar com alguém da minha equipe e entender qual encaixa melhor com você, digita mentoria aqui nos comentários e eu vou te mandar as instruções lá no seu direct.
-```
-
-### 59.055 views · 147s · 2026-10-03 · [link](https://www.instagram.com/reel/DeCXct6uO31/)
-
-```
-O Cristiano Ronaldo não vai se aposentar aos 41 anos pelo mesmo motivo que o Goku não morreu em Dragon Ball Z.
-Tem muita gente falando que o Cristiano Ronaldo não é mais o mesmo e que ele precisa se aposentar.
-Mas sabe por que ele não se aposenta?
-Pelo mesmo motivo que Dragon Ball não acabou em 1995.
-Nessa época o Akira Toriyama, o idealizador do desenho, reclamou que estava exausto, que estava em burnout, que não aguentava mais o processo de produzir um mangá a cada semana.
-E ele chegou a fazer um anúncio que quando acabasse a saga do Majin Buu, Dragon Ball ia acabar junto.
-E aí esse anúncio dele causou pânico no mercado.
-Derrubou as ações da Toei Animation e gerou uma pressão enorme dos acionistas.
-E eles disseram que se o Dragon Ball acabasse naquele momento de uma forma inesperada, ia gerar uma grave crise econômica em todas as empresas parceiras.
-E o fato é que o Cristiano Ronaldo não é pago pra jogar futebol há muito tempo.
-O Cristiano Ronaldo é o ser humano mais seguido do planeta.
-Se você somar os seguidores que ele tem em todas as redes sociais, a gente tem mais de um bilhão de seguidores.
-E o Cristiano Ronaldo aquilo que a gente considera uma personalidade not O que algu not algu imposs de ignorar Algu que lidera pensamentos algu que move multid Se o Cristiano Ronaldo mexe na garrafa da Coca e fala n quero tomar as ações da Coca caem.
-Se o Cristiano Ronaldo fala, pô, esse é o novo chá que eu tô tomando antes de dormir, milhões de pessoas vão comprar esse chá.
-Se o Cristiano Ronaldo fala, pô, esse é o meu novo ritual matinal, milhões de pessoas vão fazer esse ritual matinal.
-E as marcas sabem disso.
-Ah, Elias, mas o centro o avante reserva de Portugal está jogando melhor que o Cristiano Ronaldo e se ele estivesse na Copa, talvez Portugal teria ganho na Espanha.
-É, mas no mundo de hoje, infelizmente, ser o melhor não basta.
-Porque audiência vale mais que dinheiro.
-Compartilha com quem precisa entender isso.
-Meu nome é Elias Mamãe e a minha missão é justamente essa.
-É ajudar bons profissionais a terem mais voz aqui nas redes sociais, como a gente fez com todos eles aqui.
-E um exemplo é o que aconteceu com a minha esposa médica.
-10 anos de medicina, baita profissional, quando a gente casou ela veio do Rio de Janeiro para São Paulo, zero pacientes.
-E aí a gente precisou levar o perfil dela disso, para isso, para as pessoas entenderem o quão boa ela era.
-Então se isso te interessa, já me segue, digita diagnóstico nos comentários e olha o seu direct para ter o seu perfil analisado por um especialista da minha equipe.
 ```
 
 ### Picos de fora da janela
@@ -642,3 +640,30 @@ E o primeiro passo é passar pela experiência que todos eles passaram, que é t
 Digita análise nos comentários e lá no seu direct eu te mando as instruções de como você pode ter acesso a essa experiência.
 E pra você que tá me julgando e falou que eu queimei a carne, respeita minha história, isso aqui tá no ponto.
 ```
+
+#### 342.281 views · 165s · 2026-07-20 · [link](https://www.instagram.com/reel/DbB1kYZp7uK/)
+
+```
+O hábito masculino que mais atrai as mulheres não é fazer musculação, não é se vestir bem e muito menos tocar bateria na igreja.
+Saiu um estudo novo na Date Psychology que eles reuniram centenas de mulheres que avaliaram 74 hobbies masculinos, ranqueando quais eram atrativos e quais não eram.
+E depois de puxar as avaliações, eles identificaram que os hábitos mais atrativos pertenciam ao mesmo grupo.
+E da mesma forma, os hábitos menos atrativos para as mulheres também tinham algo em comum.
+Todos eles eram ligados a vícios, a escapismo e a passividade.
+Como, por exemplo, jogar videogame, participar de treta e discussão em fóruns ou comentários na internet.
+Assistir pornografia, jogar tigrinho e outros jogos de azar.
+O tigrinho soltou a carta?
+O que é isso?
+É um ganho.
+Aí se completar é o ganho.
+assistir anime, aí elas estão erradas se a gente considerar Dragon Ball, que esse aí tem que passar, e fazer cosplay, esse aí não dá pra defender mesmo não.
+Agora os hobbies mais atrativos estão ligados à construção e não a consumo, como por exemplo, aprender novos idiomas, cozinhar, fazer marcenaria, pintura, escrita.
+Mas tem um que ganhou de lavada que um h simples mas que foi completamente perdido pela nossa gera que o h de ler Mais de 90 das mulheres desse estudo consideraram muito atrativo um homem que tem o h de ler uma coisa muito simples.
+Mas por mais que seja um hábito muito simples, hoje a verdade é que quem tem o hábito de ler é alguém esquisito.
+No Brasil as pessoas leem, em média, dois livros por ano.
+Essa nova geração é a primeira da história que tem o QI mais baixo que dos pais.
+Por isso é importante que você compartilhe esse vídeo porque muitas pessoas ainda não entenderam o mundo que a gente tá vivendo um mundo de três segundos eu não sei se você viu o projeto que eu fiz com a minha esposa no Instagram tirando ela de zero seguidores para mais de 500 mil seguidores com praticamente 90 vídeos postados como é que isso foi possível simples a gente empacotou o conteúdo dela que é um conteúdo denso de saúde de um jeito simples que todo mundo consiga compreender tem muitos que são muito inteligentes, que estudaram por anos, mas que não conseguem fazer a mensagem chegar, porque eles entenderam que a nova geração não absorve conhecimento da mesma forma que a geração passada.
+E se você é um desses, se você é uma pessoa que tem muito conhecimento e não está conseguindo passar aqui nas redes sociais, já me segue e digita diagnóstico nos comentários.
+Porque lá no seu direct eu vou te mandar as instruções de como você pode receber uma análise, de como você está empacotando os conteúdos no seu perfil, e do que você precisa fazer para que mais pessoas cheguem em você.
+Legenda por Sônia Ruberti
+```
+

@@ -1,0 +1,63 @@
+{
+ "usuario": "matheusgomes",
+ "n": 50,
+ "janela": [
+  "2026-09-01",
+  "2026-10-08"
+ ],
+ "mediana_views": 42368,
+ "mediana_sem_testes_e_recentes": 40126,
+ "duracao_mediana": 74,
+ "por_mes": {
+  "2026-09": {
+   "reels": 45,
+   "mediana": 38380
+  },
+  "2026-10": {
+   "reels": 5,
+   "mediana": 128302
+  }
+ },
+ "testes_reprovados": [],
+ "recentes_menos_de_3_dias": [
+  "DeN04mJslIC",
+  "DeK1IWzTAUk"
+ ],
+ "repostagens": [
+  [
+   "Dc1xFAcz--l",
+   "DdcdZephsLD"
+  ],
+  [
+   "Dc4S814zxUY",
+   "DdeLMpYBTHg"
+  ],
+  [
+   "DdMjjtITgul",
+   "DdfCH14hjPk"
+  ]
+ ],
+ "picos_fora_da_janela": [
+  {
+   "shortCode": "DQmlirSj41E",
+   "views": 1601038,
+   "data": "2025-11-03",
+   "fixado": true,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DNEki14M9DT",
+   "views": 1220816,
+   "data": "2025-08-07",
+   "fixado": true,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DQRcNdsDLQq",
+   "views": 643273,
+   "data": "2025-10-26",
+   "fixado": true,
+   "transcrito": true
+  }
+ ]
+}

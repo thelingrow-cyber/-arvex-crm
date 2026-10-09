@@ -84,89 +84,91 @@ Os dois formatos que dão os picos são o **diagnóstico coletivo** e a **tendê
 - Publis e anúncio puro da agência: ficam no fundo.
 - O manifesto com nomes de famosos tem risco jurídico e de imagem. O formato serve, os alvos têm que ser escolhidos com cuidado (nunca quem vendeu IA para o empresário, regra do brand book).
 
+<!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
+
 ---
 
 ## Anexo A — mediana por formato
 
-Repostagem de 1 dia fora da conta.
+Cada roteiro contado uma vez (repostagens fora). *Testes* = abaixo de 500 views.
 
-| Formato | Vídeos | Mediana de views | Teto | Duração mediana |
-|---|---|---|---|---|
-| Manifesto com nomes | 1 | 1.645.218 | 1.645.218 | 109s |
-| Insight de mercado (corte) | 1 | 756.161 | 756.161 | 59s |
-| Bastidor de case | 1 | 508.010 | 508.010 | 88s |
-| Corte de entrevista | 3 | 408.118 | 492.593 | 53s |
-| Tendência → oportunidade de negócio | 8 | 398.060 | 720.129 | 86s |
-| Diagnóstico coletivo ('a gente') | 5 | 373.743 | 975.745 | 68s |
-| Hábito curioso de gente brilhante | 3 | 239.500 | 755.284 | 56s |
-| Corte / frase solta / meme | 8 | 234.345 | 718.367 | 4s |
-| Método / tutorial | 1 | 218.517 | 218.517 | 50s |
-| Confissão / crença pessoal | 2 | 212.996 | 314.181 | 42s |
-| Anúncio da agência | 1 | 182.841 | 182.841 | 75s |
-| Se eu fosse criar uma marca | 3 | 171.475 | 675.531 | 73s |
-| Caso histórico → princípio de marketing | 6 | 167.471 | 505.881 | 82s |
-| Texto narrado (reflexão) | 1 | 166.091 | 166.091 | 69s |
-| Publi | 2 | 119.270 | 194.181 | 75s |
-| Resposta a terceiro | 1 | 104.315 | 104.315 | 66s |
-| Regra / opinião | 1 | 101.072 | 101.072 | 52s |
-| Lista de frases | 1 | 92.699 | 92.699 | 52s |
+| Formato | Vídeos | Mediana de views | Teto | Duração mediana | Testes reprovados |
+|---|---|---|---|---|---|
+| Manifesto com nomes | 1 | 1.645.218 | 1.645.218 | 109s | 0 |
+| Insight de mercado (corte) | 1 | 756.161 | 756.161 | 59s | 0 |
+| Bastidor de case | 1 | 508.010 | 508.010 | 88s | 0 |
+| Corte de entrevista | 3 | 408.118 | 492.593 | 53s | 0 |
+| Tendência → oportunidade de negócio | 8 | 398.060 | 720.129 | 86s | 0 |
+| Diagnóstico coletivo ('a gente') | 5 | 373.743 | 975.745 | 68s | 0 |
+| Hábito curioso de gente brilhante | 3 | 239.500 | 755.284 | 56s | 0 |
+| Corte / frase solta / meme | 8 | 234.345 | 718.367 | 4s | 0 |
+| Método / tutorial | 1 | 218.517 | 218.517 | 50s | 0 |
+| Confissão / crença pessoal | 2 | 212.996 | 314.181 | 42s | 0 |
+| Anúncio da agência | 1 | 182.841 | 182.841 | 75s | 0 |
+| Se eu fosse criar uma marca | 3 | 171.475 | 675.531 | 73s | 0 |
+| Caso histórico → princípio de marketing | 6 | 167.471 | 505.881 | 82s | 0 |
+| Texto narrado (reflexão) | 1 | 166.091 | 166.091 | 69s | 0 |
+| Publi | 2 | 119.270 | 194.181 | 75s | 0 |
+| Resposta a terceiro | 1 | 104.315 | 104.315 | 66s | 0 |
+| Regra / opinião | 1 | 101.072 | 101.072 | 52s | 0 |
+| Lista de frases | 1 | 92.699 | 92.699 | 52s | 0 |
 
-## Anexo B — os 50 vídeos, com a abertura literal
+## Anexo B — os vídeos, com a abertura literal
 
-Ordenados por views. ❤ = -1 significa curtidas ocultas.
+Ordenados por views. 🔁 = repostagem · 🧪 = teste reprovado · ❤ -1 = curtidas ocultas.
 
 | Views | ❤ | 💬 | Data | Dur. | Formato | Gancho (tipo) | Fecho | Abertura literal |
 |---|---|---|---|---|---|---|---|---|
-| [1.645.218](https://www.instagram.com/reel/DaYs_4zxdPI/) | 101.050 | 6.937 | 26-07-04 | 109s | Manifesto com nomes | lista quem lucra com bet + 'vocês são um desserviço' | 'marque políticos e artistas… antes que seja tarde' | O empreendedor que empreende com bet. a emissora que divulga bet. o influenciador que influencia o Brasil a usar. o jogador de futebol bilionário que… |
-| [975.745](https://www.instagram.com/reel/DcCgI-HN084/) | 56.736 | 1.612 | 26-08-14 | 68s | Diagnóstico coletivo ('a gente') | 'a gente tá ficando tão burro que não consegue mais decidir sozinho' | 'se você demorou para responder. essa é a sua resposta' | A gente tá ficando tão burro que não consegue mais tomar uma decisão sozinho. 80% de tudo que é assistido na Netflix veio da recomendação. Aqui no… |
-| [756.161](https://www.instagram.com/reel/Dbf9vZRRFpE/) | 25.420 | 457 | 26-08-01 | 59s | Insight de mercado (corte) | 'a galera de 45 a 60 é a mais rica e mais ignorada' | oportunidade p/ empreendedor | Era muito curioso. porque a galera que tem entre 45 e 60 anos é a galera mais rica e mais ignorada de todas. Está todo mundo supercorrendo atrás da… |
-| [755.284](https://www.instagram.com/reel/Dad6DZvx48J/) | 48.899 | 1.381 | 26-07-06 | 50s | Hábito curioso de gente brilhante | 'pessoas criativas têm o hábito de sentar de um jeito estranho' | senta estranho na cadeira | Você já reparou que pessoas criativas têm o hábito de sentarem de um jeito estranho? E ainda bem que eu não sou a única. Steve Jobs. Billie Eilish e… |
-| [720.129](https://www.instagram.com/reel/DXtsicFEU58/) | 19.052 | 629 | 26-04-29 | 98s | Tendência → oportunidade de negócio | 'um movimento masculino bizarro chegando no Brasil' | 'produto que cura ou produto que vicia?' | Tem um movimento masculino bizarro rolando nos Estados Unidos que começou a chegar no Brasil. Ele nasceu para lucrar em cima da insegurança de… |
-| [718.367](https://www.instagram.com/reel/DaA0GujRr_B/) | 34.288 | 315 | 26-06-25 | 10s | Corte / frase solta / meme | diálogo de 10s ('eu quero ser foda') | — | Eu quero ser foda. Mas você já é boa. Eu quero ser a mais foda. E se você não conseguir? Isso nem passa pela minha… |
-| [680.825](https://www.instagram.com/reel/DdHnkD_xJcN/) | 34.230 | 306 | 26-09-10 | 99s | Tendência → oportunidade de negócio | 'balada é coisa de loser… pelo menos é isso que anda dizendo a internet' | experiências fora da tela + CTA Vinci | Pra balada é coisa de loser idiota que nunca amadureceu. Fim de semana de adulto é ficar em casa. pô. Pelo menos é isso que anda dizendo a internet.… |
-| [675.531](https://www.instagram.com/reel/Dbl-0rexgll/) | -1 | 759 | 26-08-03 | 72s | Se eu fosse criar uma marca | 'se eu fosse criar uma marca de roupa infantil' | 'a gente só não atende políticos. bets e OnlyFans' | Se eu fosse criar uma marca de roupa infantil. é assim que eu faria. Eu a chamaria de Terra no Joelho. Uma marca feita para as poucas crianças que… |
-| [552.322](https://www.instagram.com/reel/DXwb9_jtC1H/) | 25.910 | 320 | 26-04-30 | 90s | Tendência → oportunidade de negócio | 'somos a geração mais nostálgica de todas' | nostalgia no marketing + CTA Vinci | Nós que nascemos entre o final dos anos 80 e dos anos 90. somos a geração mais nostálgica de todas. Isso não aconteceu porque os nossos CDs gravados… |
-| [508.010](https://www.instagram.com/reel/Da1HYK5R2Xl/) | 15.454 | 162 | 26-07-15 | 88s | Bastidor de case | 'esse cara tem o maior engajamento entre os empresários do Brasil' | painel no evento | Esse cara tem o maior engajamento do Instagram. dentre todos os empresários do Brasil. Vários vídeos dele pegam milhões de views e ele ganhou mais ou… |
-| [505.881](https://www.instagram.com/reel/DZazSyFRDXm/) | 24.713 | 462 | 26-06-10 | 90s | Caso histórico → princípio de marketing | 'quem pagaria 500 mil num relógio que mostra a mesma hora?' | 'é só pelo símbolo' | O que você acha que uma pessoa pagaria 500 mil reais num relógio da Patek Philippe que mostra a mesma hora de um relógio de 200 da casa? Sei.… |
-| [492.593](https://www.instagram.com/reel/Dap7WojRfdw/) | 18.995 | 679 | 26-07-11 | 53s | Corte de entrevista | 'se eu fosse homem. teria mais grana' | 'vai ter que ser melhor que os caras' | Se eu fosse homem. eu teria mais grana. Mas eu gosto bastante de ser mulher. Porque a maior parte dos empresários são homens. e homens confiam mais… |
-| [435.580](https://www.instagram.com/reel/DcZGxbexNvV/) | 20.437 | 532 | 26-08-23 | 65s | Diagnóstico coletivo ('a gente') | 'o Brasil virou um cemitério de empresários' | sangue. suor e lágrimas | O Brasil virou um cemitério de empresários. Depois da galera da internet ter vendido para os jovens que empreender é o caminho fácil para ficar rico… |
-| [422.922](https://www.instagram.com/reel/DaVV3XORfBu/) | -1 | 203 | 26-07-03 | 89s | Tendência → oportunidade de negócio | 'ser promovido é uma grande m***… pelo menos é isso que diz a geração Z' | luxo → wellness + CTA Vinci | Ser promovido é uma grande m****. Vão encher você de trabalho em troca de um pouquinho mais de dinheiro. Pelo menos. é isso que anda dizendo a… |
-| [414.145](https://www.instagram.com/reel/Dc3YMzZR2QR/) | 13.879 | 81 | 26-09-04 | 4s | Corte / frase solta / meme | 'Amém' (4s) | — | Amém.… |
-| [408.118](https://www.instagram.com/reel/DbWqZaYOQ91/) | 17.603 | 287 | 26-07-28 | 76s | Corte de entrevista | 'postar todos os dias é mais importante que postar bem' | qualidade = resultado | Postar todos os dias é mais importante que postar bem. Vou ler para a Thay ali. Aproveitar a oportunidade para ressaltar o trabalho que a Thay e você… |
-| [385.373](https://www.instagram.com/reel/DcZzU-dNrvE/) | 21.299 | 319 | 26-08-24 | 4s | Corte / frase solta / meme | frase de 4s | — | Em esta casa não existem… |
-| [373.743](https://www.instagram.com/reel/DXiNJgWDDMm/) | 17.814 | 263 | 26-04-25 | 67s | Diagnóstico coletivo ('a gente') | 'não é só com você. Tá mais difícil ser feliz mesmo' | 'você tem coragem de ser feliz de novo?' | Não é só com você. Tá mais difícil ser feliz mesmo. Pela primeira vez na história. os jovens têm índices de felicidade mais baixos do que as pessoas… |
-| [373.199](https://www.instagram.com/reel/Dd2RsbvxWPM/) | -1 | 256 | 26-09-28 | 83s | Tendência → oportunidade de negócio | 'a pista tá salgada… pelo menos é isso que anda dizendo a internet' | Heineken + CTA Vinci | É. galera. a pista tá salgada. A almorada ficou frouxa e agora ninguém chega mais em ninguém. Pelo menos é isso que anda dizendo a internet. A… |
-| [362.440](https://www.instagram.com/reel/DdRQPTzx1ES/) | 21.934 | 343 | 26-09-14 | 76s | Diagnóstico coletivo ('a gente') | 'a nossa geração vai viver menos que os nossos avós' | 'eles viveram mais' | A nossa geração vai viver menos que os nossos avós. E isso não é teoria da conspiração. nem papo de maconheiro. Tá todo mundo obcecado em viver mais.… |
-| [314.181](https://www.instagram.com/reel/DZgDlH3x_no/) | -1 | 164 | 26-06-12 | 43s | Confissão / crença pessoal | 'a nossa geração vê trabalho como sacrifício' | 'gosto mais de fazer do que de ganhar' | A nossa geração vê trabalho como um sacrifício. um pedágio que se paga para a vida que se quer. E vivendo assim. abrem mão de grande parte da… |
-| [288.211](https://www.instagram.com/reel/Db4NOcuBrWf/) | 13.736 | 167 | 26-08-10 | 78s | Caso histórico → princípio de marketing | 'esse filme do Homem-Aranha esconde a propaganda mais cara do cinema' | 'quem é o seu cliente daqui a 10 anos?' | Esse novo filme do Homem-Aranha esconde a propaganda mais cara da história do cinema. E só vai funcionar daqui a 20 anos. A produção carrega mais de… |
-| [249.261](https://www.instagram.com/reel/Dd9vehrxQJZ/) | -1 | 145 | 26-10-01 | 32s | Corte / frase solta / meme | esquete de humor | — | Guro. rapidinho. pediram pra falar aqui. é verdade que você é muito meia roda? Meia roda? É. parece que você já deu PT em alguns carros. Meia roda… |
-| [239.500](https://www.instagram.com/reel/DXbq2bEDVR2/) | 11.545 | 989 | 26-04-22 | 56s | Hábito curioso de gente brilhante | 'pessoas altamente criativas costumam ter letra horrorosa' | 'você tem letra bonita ou é inteligente?' | As pessoas altamente criativas costumam ter uma letra horrorosa. Beethoven. Clarice Lispector. Machado de Assis e Jussoares. todos eles. ficaram… |
-| [219.430](https://www.instagram.com/reel/DbRLS4iRCOB/) | -1 | 116 | 26-07-26 | 4s | Corte / frase solta / meme | 'Tchau' (4s) | — | Tchau.… |
-| [218.517](https://www.instagram.com/reel/DYR35cnRGiN/) | -1 | 99 | 26-05-13 | 50s | Método / tutorial | 'foi assim que eu atingi 2 milhões em um vídeo de vendas' | CTA Vinci | Foi assim que eu atingi 2 milhões de visualizações em um vídeo de vendas. Método 1. Impacto inicial. Seu objetivo é paralisar o dedão das pessoas nos… |
-| [208.526](https://www.instagram.com/reel/Dah_wX5xTij/) | -1 | 148 | 26-07-08 | 64s | Tendência → oportunidade de negócio | 'comida velha agora tá na moda' | marcas que cresceram + CTA Vinci | Comida velha agora tá na moda. Se antes a paçoca era só amendoim e a cocada era só coco ralado. a indústria se transformou numa bomba. Cheia de… |
-| [207.414](https://www.instagram.com/reel/Dd9MKqyxvRh/) | -1 | 572 | 26-10-01 | 71s | Hábito curioso de gente brilhante | 'pessoas altamente inteligentes falam palavrão pra cacete' | 'manda esse vídeo pra quem reclama' | As pessoas altamente inteligentes têm o curioso hábito de falar palavrão pra cacete. Abraham Lincoln. Mozart e pasme. William Shakespeare. um dos… |
-| [197.561](https://www.instagram.com/reel/DbzJa5ntLWP/) | -1 | 72 | 26-08-09 | 4s | Corte / frase solta / meme | 'E aí' (4s) | — | E… |
-| [194.181](https://www.instagram.com/reel/DcrU9rpxOE6/) | -1 | 151 | 26-08-30 | 83s | Publi | hotel no Ceará | — | Esse foi o melhor lugar que eu estive nos últimos tempos e eu preciso dividir com vocês. Parece que eu tô numa praia particular. mas esse lugar fica… |
-| [191.053](https://www.instagram.com/reel/DabENUBRfVb/) | -1 | 261 | 26-07-05 | 89s | Caso histórico → princípio de marketing | 'Vini Jr. vs. Haaland' | posicionamento por percepção | Vini Jr. vs. Holland. De um lado. o menino de São Gonçalo. Raçudo. que baila. provoca. vai pra cima do adversário. Do outro. o cometa escandinavo de… |
-| [182.841](https://www.instagram.com/reel/DbHHrRGRRRg/) | -1 | 99 | 26-07-22 | 75s | Anúncio da agência | 'isso é o que acontece quando você contrata a Vinci' | — | Isso é o que acontece quando você contrata a Vince. A gente primeiro faz um diagnóstico profundo do seu negócio. Entendemos seu business. sua… |
-| [179.325](https://www.instagram.com/reel/DeNWYBkR5Wy/) | 13.049 | 319 | 26-10-07 | 78s | Tendência → oportunidade de negócio | 'me desculpem os conservadores. mas fumar é muito sexy… é o que andam dizendo' | pêndulo social + CTA Vinci | Me desculpem os conservadores. mas fumar é muito sem isso. Essa é a nova merda que os famosos andam dizendo. Os rostinhos bonitos. que antes eram o… |
-| [171.475](https://www.instagram.com/reel/DcABOr3NIlc/) | -1 | 154 | 26-08-14 | 77s | Se eu fosse criar uma marca | 'se eu fosse criar uma marca de celular' | 'a gente só não atende políticos…' | Se eu fosse criar uma marca de celular. eu a chamaria de DDD. Porque pra quem saiu de casa. a saudade tem código e diário. Ele não seria pra você.… |
-| [166.091](https://www.instagram.com/reel/DdEEca3RJjJ/) | -1 | 163 | 26-09-09 | 69s | Texto narrado (reflexão) | 'eu não quero viver mais tempo. quero viver mais' | 'você tem criado memórias suficientes?' | Eu não quero viver mais tempo. Eu quero viver mais. No tempo que eu tenho. Nesse meu curto espaço de tempo no mundo que não sei quanto é. mas ao qual… |
-| [152.698](https://www.instagram.com/reel/DaGJDyyRR1B/) | -1 | 233 | 26-06-27 | 9s | Corte / frase solta / meme | frase de 9s | — | Trabalhar com pessoas mais inteligentes que você é uma benção. não uma… |
-| [151.347](https://www.instagram.com/reel/DayWjg4Rkmx/) | -1 | 250 | 26-07-14 | 76s | Tendência → oportunidade de negócio | 'o passado tá na moda' | vintage > hype + CTA Vinci | O passado tá na moda. Se antes as casas pareciam consultórios com paletas neutras. mármore branco. hoje elas voltam com uma arquitetura carregada de… |
-| [144.033](https://www.instagram.com/reel/Dcldb0PxC5z/) | -1 | 137 | 26-08-28 | 4s | Corte / frase solta / meme | música (4s) | — | I want to break… |
-| [143.889](https://www.instagram.com/reel/DdKabovxlSr/) | -1 | 160 | 26-09-11 | 78s | Caso histórico → princípio de marketing | 'por que a galera tá viciada em coisa antiga?' | 'comprando a chance de ter memória' | O que você acha que a galera tá tão viciada em coisa antiga agora? Deve ser modinha. né? Tipo. mais cult. Não. pior que não. cara. Tem um negócio mó… |
-| [140.462](https://www.instagram.com/reel/DeKwK7ExcFi/) | -1 | 124 | 26-10-06 | 78s | Diagnóstico coletivo ('a gente') | 'nós somos a geração mais fraca que já pisou na Terra' | ser humano como vantagem + CTA Vinci | Nós somos a geração mais fraca que já pisou na Terra. A gente paga aplicativo para levar de beber água. comprar anel para saber se dormiu bem. assina… |
-| [111.811](https://www.instagram.com/reel/DcmaxpsR4MC/) | -1 | 178 | 26-08-28 | 41s | Confissão / crença pessoal | 'luxo pra mim é…' | coração bom | Luxo pra mim é eu saber que eu tenho os mesmos amigos desde criança. que são pessoas que eu confio 100%. Luxo pra mim é eu poder comer em casa. uma… |
-| [104.315](https://www.instagram.com/reel/DbWZh9Dx09U/) | -1 | 261 | 26-07-28 | 66s | Resposta a terceiro | 'vi um vídeo de um garoto que vende curso…' | 'golpistas em escala' | Esses dias eu vi um vídeo de um garoto desses que vive de vender curso. dizendo que era para as pessoas não investirem em ti. que ele ficou sabendo… |
-| [103.851](https://www.instagram.com/reel/DdETB4MRJrS/) | -1 | 126 | 26-09-09 | 70s | Caso histórico → princípio de marketing | 'o que faz uma pessoa desejar tanto um produto?' (Jordan) | 'um produto é só um produto até virar símbolo' | O que você acha que faz uma pessoa desejar tanto um produto? A qualidade e o preço? Foi quando olhei pro tênis dele e achei o caminho. Nunca parou… |
-| [101.072](https://www.instagram.com/reel/DbJmqoeRSM8/) | -1 | 83 | 26-07-23 | 52s | Regra / opinião | 'quantidade × qualidade é uma grande mentira' | a estratégia certa é a que te dá resultado | Essa história de quantidade versus qualidade é uma grande mentira. A estratégia certa não é postar muito ou postar pouco. Se o seu objetivo com o… |
-| [92.699](https://www.instagram.com/reel/DafvLplJEsy/) | 4.264 | 66 | 26-07-07 | 52s | Lista de frases | '10 anos de terapia em 1 minuto' | — | Aqui estão 10 anos de terapia que eu aprendi com a Thay Dantas. resumidos em 1 minuto para você. Número 1. A forma como a gente conquista as coisas é… |
-| [87.498](https://www.instagram.com/reel/Dcv8X1mR4Jm/) | -1 | 85 | 26-09-01 | 86s | Caso histórico → princípio de marketing | 'já comprou algo tão bonito que quis trocar o resto?' (Diderot) | Apple vende um quebra-cabeça | Você já teve isso? De comprar uma coisa tão bonita que você sentisse a necessidade de comprar outras coisas que combinem com ela e trocasse que você… |
-| [66.688](https://www.instagram.com/reel/DcPSx9VNRH6/) | -1 | 101 | 26-08-19 | 73s | Se eu fosse criar uma marca | 'se eu fosse criar uma marca de detergente' | 'a gente só não atende políticos…' | Se eu fosse criar uma marca de detergente. é assim que eu faria. Eu a chamaria de bare hands. Porque lavar a louça não deveria ser castigo. Poderia… |
-| [44.359](https://www.instagram.com/reel/DdsIOERNQNo/) | -1 | 27 | 26-09-25 | 67s | Publi | premiação do WhatsApp Business | — | Tem uma coisa gigantesca acontecendo e você precisa entender porque é importante. O WhatsApp Business. que eu. você e milhares de outras pessoas usam… |
-| [22.436](https://www.instagram.com/reel/Dd5H2sWsLOp/) | -1 | 18 | 26-09-30 | 48s | Corte de entrevista | identidade visual = corpo; estratégia = cérebro | — | Quando você pensa numa identidade visual e verbal. ela só tem um único objetivo. É tangibilizar a estratégia. É como se a identidade fosse o corpo e… |
-| [1.846](https://www.instagram.com/reel/DeNhI7jxQel/) | 82 | 2 | 26-10-07 | 78s | Tendência → oportunidade de negócio | (repostagem do 'fumar'. 1 dia) | — | Me desculpem os conservadores. mas fumar é muito senso. Essa é a nova merda que os famosos andam dizendo. Os rostinhos bonitos. que antes eram o… |
+| [1.645.218](https://www.instagram.com/reel/DaYs_4zxdPI/) | 101.050 | 6.937 | 2026-07-04 | 109s | Manifesto com nomes | lista quem lucra com bet + 'vocês são um desserviço' | 'marque políticos e artistas… antes que seja tarde' | O empreendedor que empreende com bet, a emissora que divulga bet, o influenciador que influencia o Brasil a usar, o jogador de futebol bilionário que… |
+| [975.745](https://www.instagram.com/reel/DcCgI-HN084/) | 56.736 | 1.612 | 2026-08-14 | 68s | Diagnóstico coletivo ('a gente') | 'a gente tá ficando tão burro que não consegue mais decidir sozinho' | 'se você demorou para responder, essa é a sua resposta' | A gente tá ficando tão burro que não consegue mais tomar uma decisão sozinho. 80% de tudo que é assistido na Netflix veio da recomendação. Aqui no… |
+| [756.161](https://www.instagram.com/reel/Dbf9vZRRFpE/) | 25.420 | 457 | 2026-08-01 | 59s | Insight de mercado (corte) | 'a galera de 45 a 60 é a mais rica e mais ignorada' | oportunidade p/ empreendedor | Era muito curioso, porque a galera que tem entre 45 e 60 anos é a galera mais rica e mais ignorada de todas. Está todo mundo supercorrendo atrás da… |
+| [755.284](https://www.instagram.com/reel/Dad6DZvx48J/) | 48.899 | 1.381 | 2026-07-06 | 50s | Hábito curioso de gente brilhante | 'pessoas criativas têm o hábito de sentar de um jeito estranho' | senta estranho na cadeira | Você já reparou que pessoas criativas têm o hábito de sentarem de um jeito estranho? E ainda bem que eu não sou a única. Steve Jobs, Billie Eilish e… |
+| [720.129](https://www.instagram.com/reel/DXtsicFEU58/) | 19.052 | 629 | 2026-04-29 | 98s | Tendência → oportunidade de negócio | 'um movimento masculino bizarro chegando no Brasil' | 'produto que cura ou produto que vicia?' | Tem um movimento masculino bizarro rolando nos Estados Unidos que começou a chegar no Brasil. Ele nasceu para lucrar em cima da insegurança de… |
+| [718.367](https://www.instagram.com/reel/DaA0GujRr_B/) | 34.288 | 315 | 2026-06-25 | 10s | Corte / frase solta / meme | diálogo de 10s ('eu quero ser foda') | — | Eu quero ser foda. Mas você já é boa. Eu quero ser a mais foda. E se você não conseguir? Isso nem passa pela minha… |
+| [680.825](https://www.instagram.com/reel/DdHnkD_xJcN/) | 34.230 | 306 | 2026-09-10 | 99s | Tendência → oportunidade de negócio | 'balada é coisa de loser… pelo menos é isso que anda dizendo a internet' | experiências fora da tela + CTA Vinci | Pra balada é coisa de loser idiota que nunca amadureceu. Fim de semana de adulto é ficar em casa, pô. Pelo menos é isso que anda dizendo a internet.… |
+| [675.531](https://www.instagram.com/reel/Dbl-0rexgll/) | -1 | 759 | 2026-08-03 | 72s | Se eu fosse criar uma marca | 'se eu fosse criar uma marca de roupa infantil' | 'a gente só não atende políticos, bets e OnlyFans' | Se eu fosse criar uma marca de roupa infantil, é assim que eu faria. Eu a chamaria de Terra no Joelho. Uma marca feita para as poucas crianças que… |
+| [552.322](https://www.instagram.com/reel/DXwb9_jtC1H/) | 25.910 | 320 | 2026-04-30 | 90s | Tendência → oportunidade de negócio | 'somos a geração mais nostálgica de todas' | nostalgia no marketing + CTA Vinci | Nós que nascemos entre o final dos anos 80 e dos anos 90, somos a geração mais nostálgica de todas. Isso não aconteceu porque os nossos CDs gravados… |
+| [508.010](https://www.instagram.com/reel/Da1HYK5R2Xl/) | 15.454 | 162 | 2026-07-15 | 88s | Bastidor de case | 'esse cara tem o maior engajamento entre os empresários do Brasil' | painel no evento | Esse cara tem o maior engajamento do Instagram, dentre todos os empresários do Brasil. Vários vídeos dele pegam milhões de views e ele ganhou mais ou… |
+| [505.881](https://www.instagram.com/reel/DZazSyFRDXm/) | 24.713 | 462 | 2026-06-10 | 90s | Caso histórico → princípio de marketing | 'quem pagaria 500 mil num relógio que mostra a mesma hora?' | 'é só pelo símbolo' | O que você acha que uma pessoa pagaria 500 mil reais num relógio da Patek Philippe que mostra a mesma hora de um relógio de 200 da casa? Sei,… |
+| [492.593](https://www.instagram.com/reel/Dap7WojRfdw/) | 18.995 | 679 | 2026-07-11 | 53s | Corte de entrevista | 'se eu fosse homem, teria mais grana' | 'vai ter que ser melhor que os caras' | Se eu fosse homem, eu teria mais grana. Mas eu gosto bastante de ser mulher. Porque a maior parte dos empresários são homens, e homens confiam mais… |
+| [435.580](https://www.instagram.com/reel/DcZGxbexNvV/) | 20.437 | 532 | 2026-08-23 | 65s | Diagnóstico coletivo ('a gente') | 'o Brasil virou um cemitério de empresários' | sangue, suor e lágrimas | O Brasil virou um cemitério de empresários. Depois da galera da internet ter vendido para os jovens que empreender é o caminho fácil para ficar rico… |
+| [422.922](https://www.instagram.com/reel/DaVV3XORfBu/) | -1 | 203 | 2026-07-03 | 89s | Tendência → oportunidade de negócio | 'ser promovido é uma grande m***… pelo menos é isso que diz a geração Z' | luxo → wellness + CTA Vinci | Ser promovido é uma grande m****. Vão encher você de trabalho em troca de um pouquinho mais de dinheiro. Pelo menos, é isso que anda dizendo a… |
+| [414.145](https://www.instagram.com/reel/Dc3YMzZR2QR/) | 13.879 | 81 | 2026-09-04 | 4s | Corte / frase solta / meme | 'Amém' (4s) | — | Amém.… |
+| [408.118](https://www.instagram.com/reel/DbWqZaYOQ91/) | 17.603 | 287 | 2026-07-28 | 76s | Corte de entrevista | 'postar todos os dias é mais importante que postar bem' | qualidade = resultado | Postar todos os dias é mais importante que postar bem. Vou ler para a Thay ali. Aproveitar a oportunidade para ressaltar o trabalho que a Thay e você… |
+| [385.373](https://www.instagram.com/reel/DcZzU-dNrvE/) | 21.299 | 319 | 2026-08-24 | 4s | Corte / frase solta / meme | frase de 4s | — | Em esta casa não existem… |
+| [373.743](https://www.instagram.com/reel/DXiNJgWDDMm/) | 17.814 | 263 | 2026-04-25 | 67s | Diagnóstico coletivo ('a gente') | 'não é só com você. Tá mais difícil ser feliz mesmo' | 'você tem coragem de ser feliz de novo?' | Não é só com você. Tá mais difícil ser feliz mesmo. Pela primeira vez na história, os jovens têm índices de felicidade mais baixos do que as pessoas… |
+| [373.199](https://www.instagram.com/reel/Dd2RsbvxWPM/) | -1 | 256 | 2026-09-28 | 83s | Tendência → oportunidade de negócio | 'a pista tá salgada… pelo menos é isso que anda dizendo a internet' | Heineken + CTA Vinci | É, galera, a pista tá salgada. A almorada ficou frouxa e agora ninguém chega mais em ninguém. Pelo menos é isso que anda dizendo a internet. A… |
+| [362.440](https://www.instagram.com/reel/DdRQPTzx1ES/) | 21.934 | 343 | 2026-09-14 | 76s | Diagnóstico coletivo ('a gente') | 'a nossa geração vai viver menos que os nossos avós' | 'eles viveram mais' | A nossa geração vai viver menos que os nossos avós. E isso não é teoria da conspiração, nem papo de maconheiro. Tá todo mundo obcecado em viver mais,… |
+| [314.181](https://www.instagram.com/reel/DZgDlH3x_no/) | -1 | 164 | 2026-06-12 | 43s | Confissão / crença pessoal | 'a nossa geração vê trabalho como sacrifício' | 'gosto mais de fazer do que de ganhar' | A nossa geração vê trabalho como um sacrifício, um pedágio que se paga para a vida que se quer. E vivendo assim, abrem mão de grande parte da… |
+| [288.211](https://www.instagram.com/reel/Db4NOcuBrWf/) | 13.736 | 167 | 2026-08-10 | 78s | Caso histórico → princípio de marketing | 'esse filme do Homem-Aranha esconde a propaganda mais cara do cinema' | 'quem é o seu cliente daqui a 10 anos?' | Esse novo filme do Homem-Aranha esconde a propaganda mais cara da história do cinema. E só vai funcionar daqui a 20 anos. A produção carrega mais de… |
+| [249.261](https://www.instagram.com/reel/Dd9vehrxQJZ/) | -1 | 145 | 2026-10-01 | 32s | Corte / frase solta / meme | esquete de humor | — | Guro, rapidinho, pediram pra falar aqui, é verdade que você é muito meia roda? Meia roda? É, parece que você já deu PT em alguns carros. Meia roda… |
+| [239.500](https://www.instagram.com/reel/DXbq2bEDVR2/) | 11.545 | 989 | 2026-04-22 | 56s | Hábito curioso de gente brilhante | 'pessoas altamente criativas costumam ter letra horrorosa' | 'você tem letra bonita ou é inteligente?' | As pessoas altamente criativas costumam ter uma letra horrorosa. Beethoven, Clarice Lispector, Machado de Assis e Jussoares, todos eles, ficaram… |
+| [219.430](https://www.instagram.com/reel/DbRLS4iRCOB/) | -1 | 116 | 2026-07-26 | 4s | Corte / frase solta / meme | 'Tchau' (4s) | — | Tchau.… |
+| [218.517](https://www.instagram.com/reel/DYR35cnRGiN/) | -1 | 99 | 2026-05-13 | 50s | Método / tutorial | 'foi assim que eu atingi 2 milhões em um vídeo de vendas' | CTA Vinci | Foi assim que eu atingi 2 milhões de visualizações em um vídeo de vendas. Método 1. Impacto inicial. Seu objetivo é paralisar o dedão das pessoas nos… |
+| [208.526](https://www.instagram.com/reel/Dah_wX5xTij/) | -1 | 148 | 2026-07-08 | 64s | Tendência → oportunidade de negócio | 'comida velha agora tá na moda' | marcas que cresceram + CTA Vinci | Comida velha agora tá na moda. Se antes a paçoca era só amendoim e a cocada era só coco ralado, a indústria se transformou numa bomba. Cheia de… |
+| [207.414](https://www.instagram.com/reel/Dd9MKqyxvRh/) | -1 | 572 | 2026-10-01 | 71s | Hábito curioso de gente brilhante | 'pessoas altamente inteligentes falam palavrão pra cacete' | 'manda esse vídeo pra quem reclama' | As pessoas altamente inteligentes têm o curioso hábito de falar palavrão pra cacete. Abraham Lincoln, Mozart e pasme, William Shakespeare, um dos… |
+| [197.561](https://www.instagram.com/reel/DbzJa5ntLWP/) | -1 | 72 | 2026-08-09 | 4s | Corte / frase solta / meme | 'E aí' (4s) | — | E… |
+| [194.181](https://www.instagram.com/reel/DcrU9rpxOE6/) | -1 | 151 | 2026-08-30 | 83s | Publi | hotel no Ceará | — | Esse foi o melhor lugar que eu estive nos últimos tempos e eu preciso dividir com vocês. Parece que eu tô numa praia particular, mas esse lugar fica… |
+| [191.053](https://www.instagram.com/reel/DabENUBRfVb/) | -1 | 261 | 2026-07-05 | 89s | Caso histórico → princípio de marketing | 'Vini Jr. vs. Haaland' | posicionamento por percepção | Vini Jr. vs. Holland. De um lado, o menino de São Gonçalo. Raçudo, que baila, provoca, vai pra cima do adversário. Do outro, o cometa escandinavo de… |
+| [182.841](https://www.instagram.com/reel/DbHHrRGRRRg/) | -1 | 99 | 2026-07-22 | 75s | Anúncio da agência | 'isso é o que acontece quando você contrata a Vinci' | — | Isso é o que acontece quando você contrata a Vince. A gente primeiro faz um diagnóstico profundo do seu negócio. Entendemos seu business, sua… |
+| [179.325](https://www.instagram.com/reel/DeNWYBkR5Wy/) | 13.049 | 319 | 2026-10-07 | 78s | Tendência → oportunidade de negócio | 'me desculpem os conservadores, mas fumar é muito sexy… é o que andam dizendo' | pêndulo social + CTA Vinci | Me desculpem os conservadores, mas fumar é muito sem isso. Essa é a nova merda que os famosos andam dizendo. Os rostinhos bonitos, que antes eram o… |
+| [171.475](https://www.instagram.com/reel/DcABOr3NIlc/) | -1 | 154 | 2026-08-14 | 77s | Se eu fosse criar uma marca | 'se eu fosse criar uma marca de celular' | 'a gente só não atende políticos…' | Se eu fosse criar uma marca de celular, eu a chamaria de DDD. Porque pra quem saiu de casa, a saudade tem código e diário. Ele não seria pra você,… |
+| [166.091](https://www.instagram.com/reel/DdEEca3RJjJ/) | -1 | 163 | 2026-09-09 | 69s | Texto narrado (reflexão) | 'eu não quero viver mais tempo, quero viver mais' | 'você tem criado memórias suficientes?' | Eu não quero viver mais tempo. Eu quero viver mais. No tempo que eu tenho. Nesse meu curto espaço de tempo no mundo que não sei quanto é, mas ao qual… |
+| [152.698](https://www.instagram.com/reel/DaGJDyyRR1B/) | -1 | 233 | 2026-06-27 | 9s | Corte / frase solta / meme | frase de 9s | — | Trabalhar com pessoas mais inteligentes que você é uma benção, não uma… |
+| [151.347](https://www.instagram.com/reel/DayWjg4Rkmx/) | -1 | 250 | 2026-07-14 | 76s | Tendência → oportunidade de negócio | 'o passado tá na moda' | vintage > hype + CTA Vinci | O passado tá na moda. Se antes as casas pareciam consultórios com paletas neutras, mármore branco, hoje elas voltam com uma arquitetura carregada de… |
+| [144.033](https://www.instagram.com/reel/Dcldb0PxC5z/) | -1 | 137 | 2026-08-28 | 4s | Corte / frase solta / meme | música (4s) | — | I want to break… |
+| [143.889](https://www.instagram.com/reel/DdKabovxlSr/) | -1 | 160 | 2026-09-11 | 78s | Caso histórico → princípio de marketing | 'por que a galera tá viciada em coisa antiga?' | 'comprando a chance de ter memória' | O que você acha que a galera tá tão viciada em coisa antiga agora? Deve ser modinha, né? Tipo, mais cult. Não, pior que não, cara. Tem um negócio mó… |
+| [140.462](https://www.instagram.com/reel/DeKwK7ExcFi/) | -1 | 124 | 2026-10-06 | 78s | Diagnóstico coletivo ('a gente') | 'nós somos a geração mais fraca que já pisou na Terra' | ser humano como vantagem + CTA Vinci | Nós somos a geração mais fraca que já pisou na Terra. A gente paga aplicativo para levar de beber água, comprar anel para saber se dormiu bem, assina… |
+| [111.811](https://www.instagram.com/reel/DcmaxpsR4MC/) | -1 | 178 | 2026-08-28 | 41s | Confissão / crença pessoal | 'luxo pra mim é…' | coração bom | Luxo pra mim é eu saber que eu tenho os mesmos amigos desde criança, que são pessoas que eu confio 100%. Luxo pra mim é eu poder comer em casa, uma… |
+| [104.315](https://www.instagram.com/reel/DbWZh9Dx09U/) | -1 | 261 | 2026-07-28 | 66s | Resposta a terceiro | 'vi um vídeo de um garoto que vende curso…' | 'golpistas em escala' | Esses dias eu vi um vídeo de um garoto desses que vive de vender curso, dizendo que era para as pessoas não investirem em ti, que ele ficou sabendo… |
+| [103.851](https://www.instagram.com/reel/DdETB4MRJrS/) | -1 | 126 | 2026-09-09 | 70s | Caso histórico → princípio de marketing | 'o que faz uma pessoa desejar tanto um produto?' (Jordan) | 'um produto é só um produto até virar símbolo' | O que você acha que faz uma pessoa desejar tanto um produto? A qualidade e o preço? Foi quando olhei pro tênis dele e achei o caminho. Nunca parou… |
+| [101.072](https://www.instagram.com/reel/DbJmqoeRSM8/) | -1 | 83 | 2026-07-23 | 52s | Regra / opinião | 'quantidade × qualidade é uma grande mentira' | a estratégia certa é a que te dá resultado | Essa história de quantidade versus qualidade é uma grande mentira. A estratégia certa não é postar muito ou postar pouco. Se o seu objetivo com o… |
+| [92.699](https://www.instagram.com/reel/DafvLplJEsy/) | 4.264 | 66 | 2026-07-07 | 52s | Lista de frases | '10 anos de terapia em 1 minuto' | — | Aqui estão 10 anos de terapia que eu aprendi com a Thay Dantas, resumidos em 1 minuto para você. Número 1. A forma como a gente conquista as coisas é… |
+| [87.498](https://www.instagram.com/reel/Dcv8X1mR4Jm/) | -1 | 85 | 2026-09-01 | 86s | Caso histórico → princípio de marketing | 'já comprou algo tão bonito que quis trocar o resto?' (Diderot) | Apple vende um quebra-cabeça | Você já teve isso? De comprar uma coisa tão bonita que você sentisse a necessidade de comprar outras coisas que combinem com ela e trocasse que você… |
+| [66.688](https://www.instagram.com/reel/DcPSx9VNRH6/) | -1 | 101 | 2026-08-19 | 73s | Se eu fosse criar uma marca | 'se eu fosse criar uma marca de detergente' | 'a gente só não atende políticos…' | Se eu fosse criar uma marca de detergente, é assim que eu faria. Eu a chamaria de bare hands. Porque lavar a louça não deveria ser castigo. Poderia… |
+| [44.359](https://www.instagram.com/reel/DdsIOERNQNo/) | -1 | 27 | 2026-09-25 | 67s | Publi | premiação do WhatsApp Business | — | Tem uma coisa gigantesca acontecendo e você precisa entender porque é importante. O WhatsApp Business, que eu, você e milhares de outras pessoas usam… |
+| [22.436](https://www.instagram.com/reel/Dd5H2sWsLOp/) | -1 | 18 | 2026-09-30 | 48s | Corte de entrevista | identidade visual = corpo; estratégia = cérebro | — | Quando você pensa numa identidade visual e verbal, ela só tem um único objetivo. É tangibilizar a estratégia. É como se a identidade fosse o corpo e… |
+| [1.846](https://www.instagram.com/reel/DeNhI7jxQel/) | 82 | 2 | 2026-10-07 | 78s | 🔁 Tendência → oportunidade de negócio | (repostagem do 'fumar', 1 dia) | — | Me desculpem os conservadores, mas fumar é muito senso. Essa é a nova merda que os famosos andam dizendo. Os rostinhos bonitos, que antes eram o… |
 
 ---
 
@@ -408,44 +410,6 @@ As pessoas acham que o mercado de luxo é caro por causa do craft, da matéria-p
 Não é nada disso, é só pelo símbolo mesmo.
 ```
 
-### 492.593 views · 53s · 2026-07-11 · [link](https://www.instagram.com/reel/Dap7WojRfdw/)
-
-```
-Se eu fosse homem, eu teria mais grana.
-Mas eu gosto bastante de ser mulher.
-Porque a maior parte dos empresários são homens, e homens confiam mais na capacidade executiva e intelectual de homens que de mulheres.
-Eu acho que isso é uma coisa natural que eu vou ter que conviver ao longo da minha vida.
-E aí eu tenho que ser muito excelente pra eu conseguir passar e ficar de igual pra igual.
-E é o que eu busco fazer.
-Busco ser excelente pra eu bater de frente de igual pra igual.
-O que você falaria pra uma mulher que tá assistindo agora e quer empreender em ter um resultado parecido com o seu, mas talvez ela se dá para com esse mesmo obstáculo na questão masculina?
-É, vai se deparar.
-Você vai ter que ser melhor que os outros.
-Essa é a verdade.
-Acho que a Cris Junqueira uma vez foi cancelada porque ela falou isso, mas a verdade é essa.
-Se a mulher quiser construir uma carreira executiva, e pode não querer, mas se quiser construir uma carreira executiva, ou empreender e tiver que ela fechar negócio e não for no âmbito de beleza, de moda e de decoração, ela vai ter que ser melhor que os caras.
-Se ela for igual, ela vai perder sempre.
-Então, para ela ganhar, ela vai ter que ser melhor, ela vai ter que ter um produto melhor, ela vai ter que ter uma capacidade de entrega melhor, ela vai ter que falar melhor.
-Enfim, ganhar dele em diversos aspectos para ela conseguir vencer esse competidor.
-```
-
-### 435.580 views · 65s · 2026-08-23 · [link](https://www.instagram.com/reel/DcZGxbexNvV/)
-
-```
-O Brasil virou um cemitério de empresários.
-Depois da galera da internet ter vendido para os jovens que empreender é o caminho fácil para ficar rico e trabalhar pouco, a gente viu um boom de jovens ostentando o selo de Founder CEO na bio do Instagram e do LinkedIn.
-Mas a verdade é que empreender sempre foi muito difícil e agora é mais do que nunca.
-Os pedidos de recuperação judicial aumentaram 66% nos últimos três anos.
-E está acontecendo com negócios gigantescos e sólidos.
-Tem empresa tradicional demitindo em massa porque não consegue pagar as contas esse ano.
-E a taxa selic está na casa dos 14%.
-Essa história de largar o emprego e abrir uma empresa para ganhar dinheiro para caramba em pouco tempo é a grande mentira do nosso tempo.
-E a garotada que assistiu só na bio do Instagram vai enfrentar a realidade mais difícil dos últimos tempos até para o empresário cabeça branca.
-O Brasil nunca foi um país para Madur, mas especialmente agora.
-As empresas que sobreviverão não serão as que faturam mais ou as mais antigas ou as maiores.
-Serão aquelas lideradas por homens e mulheres resilientes, com visão de longo prazo e com disposição de dar sangue, suor e lágrimas.
-```
-
 ### Picos de fora da janela
 
 #### 8.920.175 views · 78s · 2025-11-22 · [link](https://www.instagram.com/reel/DRXVy8qjUJE/)
@@ -476,6 +440,23 @@ E você deveria se importar com isso.
 Tentar viver um pouquinho antes de morrer.
 Porque o feed fica.
 Mas a vida acaba.
+```
+
+#### 4.146.827 views · 73s · 2025-09-05 · [link](https://www.instagram.com/reel/DOPCxnCktPP/)
+
+```
+Foi com essa pílula que eu perdi 10kg em 7 dias.
+É com promessas criminosas como essa que o seu concorrente consegue vender muito mais que você, mesmo tendo um produto pior que o seu.
+E esse é o guia definitivo pra você se destacar em meio aos vendedores de milagre.
+Ninguém quer uma pílula de emagrecimento, mas todo mundo quer a barriga chapada.
+A primeira compra de uma pessoa nunca é baseada no benefício funcional do seu produto.
+E esse é o erro que a maioria das marcas cometem.
+direcionam todo o esforço somente para os 5% que estão prontos para comprar, enquanto os outros 95% são totalmente ignorados.
+É assim que você constrói aqueles feeds que parecem vitrines de lojas de shoppings vazios.
+Enquanto charlatões vendem e alcançam milhões com mentiras descaradas só por terem começado lá pelo topo do fundo.
+Os negócios creators têm amplo alcance nos canais certos, com formatos certos e o posicionamento certo, o que gera alto conhecimento de marca, aumenta o desejo, a consideração da audiência, consolida a preferência pelos potenciais clientes e finalmente leva a compra.
+Impactando não apenas sim, mas 100% do público alto.
+E se você quer receber um diagnóstico gratuito do time de especialistas aqui da Vinci, para entender como o seu negócio pode ser tão desejado quanto ele merece, clique no link da B.
 ```
 
 #### 2.410.750 views · 68s · 2026-04-12 · [link](https://www.instagram.com/reel/DXCCpuVkdFf/)
@@ -514,3 +495,4 @@ A Vinci é uma das empresas que mais entende com profundidade e antecedência os
 Estudar e conhecer esses movimentos é fundamental para a sua empresa continuar relevante.
 Se você quer estar conectado com o futuro, é só seguir a gente.
 ```
+

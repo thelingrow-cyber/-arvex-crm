@@ -3,11 +3,12 @@
 Matéria-prima para o estudo de padrões: métricas + transcrição de cada reel, num JSON só.
 A análise é feita depois, em players/<pasta>/ESTUDO.md.
 
-uso:  python tools/roteiros/estudo_player.py <usuario_instagram> <pasta> [--limite 50] [--lang pt]
-saída: docs/conteudo/banco-roteiros/players/<pasta>/reels.json
+uso:  python tools/roteiros/estudo_player.py <usuario_instagram> <pasta> [--limite 50] [--picos 3] [--lang pt]
+saída: docs/conteudo/banco-roteiros/players/<pasta>/reels.json + resumo.json
+       (resumo: medianas, por mês, testes reprovados <500, repostagens, picos de fora da janela já transcritos)
 cache: tools/roteiros/work/estudo/<usuario>/  (retoma de onde parou se o Groq limitar)
 """
-import json, os, subprocess, sys, time, urllib.request
+import argparse, collections, json, os, statistics as st, subprocess, sys, time, urllib.request
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PLAYERS = os.path.join(RAIZ, "docs", "conteudo", "banco-roteiros", "players")
@@ -76,21 +77,66 @@ def transcrever(item, cache, lang):
     raise RuntimeError(f"{sc}: Groq falhou 16 vezes")
 
 
+def resumir(saida, itens_todos, janela, cache, lang, n_picos):
+    """Números do perfil, testes reprovados, repostagens e picos de fora da janela (transcritos)."""
+    hoje = max(x["data"] for x in saida)
+    from datetime import date
+    idade = lambda x: (date.fromisoformat(hoje) - date.fromisoformat(x["data"])).days
+    testes = [x["shortCode"] for x in saida if (x["views"] or 0) < 500]
+    recentes = [x["shortCode"] for x in saida if idade(x) < 3]
+    validos = [x["views"] or 0 for x in saida if x["shortCode"] not in testes and x["shortCode"] not in recentes]
+    por_mes = collections.defaultdict(list)
+    for x in saida:
+        por_mes[x["data"][:7]].append(x["views"] or 0)
+    grupos = collections.defaultdict(list)
+    for x in sorted(saida, key=lambda x: x["data"]):
+        chave = " ".join(s["texto"] for s in x["transcricao"])[:60].lower()
+        if len(chave) > 30:
+            grupos[chave].append(x["shortCode"])
+    repostagens = [g for g in grupos.values() if len(g) > 1]
+
+    fora = sorted([i for i in itens_todos if i["shortCode"] not in janela],
+                  key=lambda i: -(i.get("videoPlayCount") or i.get("videoViewCount") or 0))[:n_picos]
+    picos = []
+    for i in fora:
+        try:
+            transcrever(i, cache, lang)
+            ok = True
+        except Exception as e:  # carrossel sem áudio etc.
+            print(f"  pico {i['shortCode']}: sem transcrição ({e})", flush=True)
+            ok = False
+        picos.append({"shortCode": i["shortCode"], "views": i.get("videoPlayCount") or i.get("videoViewCount"),
+                      "data": (i.get("timestamp") or "")[:10], "fixado": bool(i.get("isPinned")), "transcrito": ok})
+    return {
+        "n": len(saida), "janela": [min(x["data"] for x in saida), hoje],
+        "mediana_views": int(st.median([x["views"] or 0 for x in saida])),
+        "mediana_sem_testes_e_recentes": int(st.median(validos)) if validos else None,
+        "duracao_mediana": int(st.median([x["duracao"] for x in saida])),
+        "por_mes": {k: {"reels": len(v), "mediana": int(st.median(v))} for k, v in sorted(por_mes.items())},
+        "testes_reprovados": testes, "recentes_menos_de_3_dias": recentes,
+        "repostagens": repostagens, "picos_fora_da_janela": picos,
+    }
+
+
 def main():
-    args = sys.argv[1:]
-    limite = int(args[args.index("--limite") + 1]) if "--limite" in args else 50
-    lang = args[args.index("--lang") + 1] if "--lang" in args else "pt"
-    usuario, pasta = [a for a in args if not a.startswith("--") and a not in (str(limite), lang)][:2]
-    cache = os.path.join(WORK, usuario)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("usuario")
+    ap.add_argument("pasta")
+    ap.add_argument("--limite", type=int, default=50)
+    ap.add_argument("--picos", type=int, default=3)
+    ap.add_argument("--lang", default="pt")
+    a = ap.parse_args()
+    cache = os.path.join(WORK, a.usuario)
     os.makedirs(cache, exist_ok=True)
 
-    # Fixados ficam fora (costumam ser antigos); o estudo prioriza os mais recentes.
-    itens = [i for i in listar(usuario, limite + 10, cache) if i.get("shortCode") and not i.get("isPinned")]
-    itens = sorted(itens, key=lambda i: i.get("timestamp") or "", reverse=True)[:limite]
-    print(f"{usuario}: {len(itens)} reels", flush=True)
+    # Lista o dobro para achar os picos de fora da janela; a janela são os mais recentes, sem fixados.
+    todos = [i for i in listar(a.usuario, a.limite * 2, cache) if i.get("shortCode")]
+    itens = sorted([i for i in todos if not i.get("isPinned")], key=lambda i: i.get("timestamp") or "",
+                   reverse=True)[:a.limite]
+    print(f"{a.usuario}: {len(itens)} reels", flush=True)
     saida = []
     for n, it in enumerate(itens, 1):
-        t = transcrever(it, cache, lang)
+        t = transcrever(it, cache, a.lang)
         print(f"  [{n}/{len(itens)}] {it['shortCode']} ok", flush=True)
         saida.append({
             "shortCode": it["shortCode"],
@@ -105,11 +151,16 @@ def main():
             "transcricao": [{"t": round(s["start"], 1), "texto": s["text"].strip()}
                             for s in (t or {}).get("segments", [])],
         })
-    destino = os.path.join(PLAYERS, pasta)
+    destino = os.path.join(PLAYERS, a.pasta)
     os.makedirs(destino, exist_ok=True)
     json.dump(saida, open(os.path.join(destino, "reels.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
-    print(f"salvo: {os.path.join(destino, 'reels.json')}")
+    resumo = {"usuario": a.usuario, **resumir(saida, todos, {x["shortCode"] for x in saida}, cache, a.lang, a.picos)}
+    json.dump(resumo, open(os.path.join(destino, "resumo.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"salvo: reels.json + resumo.json em {destino}")
+    print(f"  mediana {resumo['mediana_views']} · sem testes/recentes {resumo['mediana_sem_testes_e_recentes']} · "
+          f"testes {len(resumo['testes_reprovados'])} · repostagens {len(resumo['repostagens'])} · "
+          f"picos {[p['views'] for p in resumo['picos_fora_da_janela']]}")
 
 
 if __name__ == "__main__":

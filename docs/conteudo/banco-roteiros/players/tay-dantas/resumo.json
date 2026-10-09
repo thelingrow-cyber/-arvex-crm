@@ -1,0 +1,71 @@
+{
+ "usuario": "tay.ldantas",
+ "n": 50,
+ "janela": [
+  "2026-04-22",
+  "2026-10-07"
+ ],
+ "mediana_views": 218973,
+ "mediana_sem_testes_e_recentes": 239500,
+ "duracao_mediana": 69,
+ "por_mes": {
+  "2026-04": {
+   "reels": 4,
+   "mediana": 463032
+  },
+  "2026-05": {
+   "reels": 1,
+   "mediana": 218517
+  },
+  "2026-06": {
+   "reels": 4,
+   "mediana": 410031
+  },
+  "2026-07": {
+   "reels": 14,
+   "mediana": 213978
+  },
+  "2026-08": {
+   "reels": 12,
+   "mediana": 242886
+  },
+  "2026-09": {
+   "reels": 10,
+   "mediana": 154990
+  },
+  "2026-10": {
+   "reels": 5,
+   "mediana": 179325
+  }
+ },
+ "testes_reprovados": [],
+ "recentes_menos_de_3_dias": [
+  "DeNhI7jxQel",
+  "DeNWYBkR5Wy",
+  "DeKwK7ExcFi"
+ ],
+ "repostagens": [],
+ "picos_fora_da_janela": [
+  {
+   "shortCode": "DRXVy8qjUJE",
+   "views": 8920175,
+   "data": "2025-11-22",
+   "fixado": true,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DOPCxnCktPP",
+   "views": 4146827,
+   "data": "2025-09-05",
+   "fixado": true,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DXCCpuVkdFf",
+   "views": 2410750,
+   "data": "2026-04-12",
+   "fixado": false,
+   "transcrito": true
+  }
+ ]
+}
