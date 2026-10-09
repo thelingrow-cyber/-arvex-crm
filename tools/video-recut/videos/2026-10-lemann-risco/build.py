@@ -18,9 +18,11 @@ FONTE_FORTE = r"C:\Windows\Fonts\seguibl.ttf"
 COR = "curves=all='0/0 0.5/0.47 1/0.92'"  # padrão aprovado: realces descendo
 W, H, MEIO = 1080, 1920, 960
 
-# Lemann (gravação de tela, legenda dele já queimada no vídeo): dois trechos colados
-LEMANN = [(0.0, 7.0), (31.5, 39.95)]
-DUR_A = sum(b - a for a, b in LEMANN)
+# Lemann (gravação de tela, legenda dele já queimada no vídeo): fala inteira, com Harvard
+LEM_FIM = 39.95           # fala contínua, de "o risco é parte da vida" até "e acaba não tomando risco"
+DUR_A = LEM_FIM
+# (modo, início, fim no Lemann, início da reação no take do Vitor) — a reação é reaproveitada no 2º bloco
+BLOCOS_A = [("dividida", 0.0, 7.05, 4.0), ("cheia", 7.05, 24.6, None), ("dividida", 24.6, LEM_FIM, 8.2)]
 SOME = 37.9               # tela.mov: a imagem começa a escurecer em 38,0s (fade da gravação)
 INTRO = (1.72, 3.95)      # take do Vitor: "um dos maiores empresários do país, falou" (o nome saiu errado e foi cortado)
 ESCUTA_INI = 4.0          # take do Vitor: silêncio de 3,4 a 23,6s = ele escutando
@@ -80,21 +82,6 @@ def blocos_legenda():
 
 
 def main():
-    # --- A: tela dividida -------------------------------------------------
-    partes = []
-    for i, (a, b) in enumerate(LEMANN):
-        p = os.path.join(TMP, f"lemann{i}.mp4")
-        # a gravação escurece sozinha a partir de 38,0s: congela o último quadro bom (37,9s) até o fim da fala
-        congela = f",trim=0:{SOME - a:.2f},tpad=stop_mode=clone:stop_duration={b - SOME + 0.1:.2f}" if b > SOME else ""
-        ff("-ss", str(a), "-i", os.path.join(AQUI, "tela.mov"), "-t", str(b - a),
-           "-vf", f"fps=30,scale=1080:-2,crop=1080:960:0:96,setsar=1{congela}",
-           "-af", "aresample=48000", "-c:v", "libx264", "-crf", "18", "-c:a", "aac", p)
-        partes.append(p)
-    lista = os.path.join(TMP, "lemann.txt")
-    open(lista, "w", encoding="utf-8").write("".join(f"file '{p}'\n" for p in partes))
-    topo = os.path.join(TMP, "lemann-topo.mp4")
-    ff("-f", "concat", "-safe", "0", "-i", lista, "-c", "copy", topo)
-
     png_texto(os.path.join(TMP, "gancho.png"), GANCHO, 76, fonte=FONTE_FORTE, altura=300)
     costura(os.path.join(TMP, "costura.png"))
 
@@ -115,17 +102,50 @@ def main():
        "-map", "[v]", "-map", "[a]", "-t", f"{dur_i:.2f}", "-r", "30",
        "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-c:a", "aac", seg_i)
 
+    # --- A: Lemann contínuo (0 → 39,95s) — dividida · tela cheia · dividida
+    tela = os.path.join(AQUI, "tela.mov")
+    # versão para a metade de cima; a gravação escurece em 38,0s → último quadro bom com zoom lento até o fim da fala
+    corpo = os.path.join(TMP, "lem-corpo.mp4")
+    ff("-i", tela, "-t", str(SOME), "-an", "-vf", "fps=30,scale=1080:-2,crop=1080:960:0:96,setsar=1",
+       "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", corpo)
+    ultimo = os.path.join(TMP, "lem-ultimo.png")
+    ff("-ss", str(SOME - 0.05), "-i", tela, "-frames:v", "1", "-vf", "scale=1080:-2,crop=1080:960:0:96,setsar=1", ultimo)
+    rabo_d = LEM_FIM - SOME
+    rabo = os.path.join(TMP, "lem-rabo.mp4")
+    ff("-loop", "1", "-i", ultimo, "-t", f"{rabo_d:.2f}",
+       "-vf", f"scale=2160:-2,zoompan=z='1+0.0013*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1080x960:fps=30,setsar=1",
+       "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", rabo)
+    lista = os.path.join(TMP, "lem-topo.txt")
+    open(lista, "w", encoding="utf-8").write(f"file '{corpo}'\nfile '{rabo}'\n")
+    topo = os.path.join(TMP, "lemann-topo.mp4")
+    ff("-f", "concat", "-safe", "0", "-i", lista, "-c", "copy", topo)
+
+    take = os.path.join(AQUI, "take-vitor.mp4")
+    pecas = []
+    for n, (modo, a, b, esc) in enumerate(BLOCOS_A):
+        p = os.path.join(TMP, f"A{n}.mp4")
+        d = b - a
+        if modo == "cheia":
+            ff("-ss", str(a), "-i", tela, "-t", f"{d:.2f}", "-an",
+               "-vf", "fps=30,scale=-2:1920,crop=1080:1920,setsar=1",
+               "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", p)
+        else:
+            gancho = f";[c][3:v]overlay=0:{MEIO - 450}:enable='between(t,0,2.5)':shortest=1[v]" if n == 0 else ";[c]null[v]"
+            ff("-ss", str(a), "-t", f"{d:.2f}", "-i", topo, "-ss", str(esc), "-t", f"{d:.2f}", "-i", take,
+               "-loop", "1", "-i", os.path.join(TMP, "costura.png"), "-loop", "1", "-i", os.path.join(TMP, "gancho.png"),
+               "-filter_complex",
+               f"[1:v]fps=30,crop=1080:960:0:520,{COR},setsar=1[baixo];[0:v][baixo]vstack=inputs=2:shortest=1[pilha];"
+               f"[pilha][2:v]overlay=0:{MEIO - 140}:shortest=1[c]" + gancho,
+               "-map", "[v]", "-an", "-t", f"{d:.2f}", "-r", "30", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", p)
+        pecas.append(p)
+    lista = os.path.join(TMP, "A.txt")
+    open(lista, "w", encoding="utf-8").write("".join(f"file '{p}'\n" for p in pecas))
+    a_video = os.path.join(TMP, "A-video.mp4")
+    ff("-f", "concat", "-safe", "0", "-i", lista, "-c", "copy", a_video)
     seg_a = os.path.join(TMP, "A.mp4")
-    ff("-i", topo, "-ss", str(ESCUTA_INI), "-t", f"{DUR_A:.2f}", "-i", os.path.join(AQUI, "take-vitor.mp4"),
-       "-loop", "1", "-i", os.path.join(TMP, "costura.png"), "-loop", "1", "-i", os.path.join(TMP, "gancho.png"),
-       "-filter_complex",
-       f"[1:v]fps=30,crop=1080:960:0:520,{COR},setsar=1[baixo];"
-       f"[0:v][baixo]vstack=inputs=2[pilha];"
-       f"[pilha][2:v]overlay=0:{MEIO - 140}:shortest=1[c];"
-       f"[c][3:v]overlay=0:{MEIO - 150 - 300}:enable='between(t,0,2.5)':shortest=1[v];"
-       f"[0:a]loudnorm=I=-16:TP=-1.5,aresample=48000[a]",
-       "-map", "[v]", "-map", "[a]", "-t", f"{DUR_A:.2f}", "-r", "30",
-       "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-c:a", "aac", seg_a)
+    ff("-i", a_video, "-t", str(LEM_FIM), "-i", tela, "-map", "0:v", "-map", "1:a",
+       "-af", "loudnorm=I=-16:TP=-1.5,aresample=48000", "-t", str(LEM_FIM),
+       "-c:v", "copy", "-c:a", "aac", seg_a)
 
     # --- B: fecho em tela cheia, legenda fina -----------------------------
     blocos = blocos_legenda()
