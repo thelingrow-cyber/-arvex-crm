@@ -4,7 +4,25 @@
 **Base:** [ref-jettfranzen-video-jettfranzen-DeHxJ3VRUid](../banco-roteiros/referencias/ref-jettfranzen-video-jettfranzen-DeHxJ3VRUid.md) (Jett, 2,6k ❤) — abertura mantida igual, por pedido do Vitor
 **Texto fixo na tela:** *faltam 87 dias*
 
-## Roteiro v3 — building in public (VIGENTE)
+## Roteiro v4 — final mais claro (VIGENTE · 08/10)
+
+> Por que todo ano, quando chega outubro, bate aquela pressa de fazer o ano valer?
+>
+> Tem uma psicologia por trás disso. Chama efeito do gradiente de meta.
+>
+> Em 2006, pesquisadores de Columbia deram cartão fidelidade de café pros clientes. Quanto mais perto do café grátis, mais rápido a pessoa voltava. E quem ganhou um cartão de 12 carimbos com 2 já carimbados terminou antes de quem ganhou um de 10 vazio. Só porque enxergou que já tinha começado.
+>
+> Eu tenho uma meta pra bater até o fim do ano. Quando eu olho pra ela inteira, parece longe. Então eu dividi: toda segunda eu escolho uma chegada que cabe na semana.
+>
+> Faltam 84 dias. Faz isso hoje: anota o que você já fez da sua meta esse ano. Depois quebra o que falta em pedaços de uma semana.
+>
+> Porque o cérebro só acelera quando enxerga a linha de chegada.
+
+**Notas da v4:** "Eu vou mostrando a minha por aqui" cortado (não soou bem pro Vitor) — fecha na frase do cérebro. Alternativa se quiser a promessa de série: "Toda segunda eu conto aqui como foi a minha semana." pedido do Vitor — o final da v3 ficou confuso. Saiu o "não olho pro fim do ano, olho pro fim da semana" (vício "não é X, é Y") e o "uma chegada só". 84 dias = 08/10 → 31/12; ajustar se gravar outro dia.
+
+---
+
+## Roteiro v3 — building in public (histórico)
 
 > **[0–5s · molde dele, adaptado ao BR]** Por que todo ano, quando chega outubro, bate aquela pressa de fazer o ano valer?
 >

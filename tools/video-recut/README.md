@@ -10,6 +10,21 @@ legenda palavra a palavra, cards animados e inserts de motion graphics.
 
 Primeiro vídeo feito com isto: `videos/2026-09-convite-cindy-100k/` (convite Desafio Ótica +100K, aprovado na v2).
 
+## Passo 0 — limpar o bruto (silêncios + repetições)
+
+```powershell
+node tools\video-recut\limpar.cjs "C:\...\Downloads\IMG_1234.MOV" 2026-10-meu-video
+```
+
+- Corta silêncio > 0,30 s (deixa 0,07 s antes e 0,12 s depois da fala, para não comer consoante).
+- **Repetição: fica a ÚLTIMA tentativa.** Pega 3 casos: frase refeita depois de pausa (semelhança ≥ 0,62, palavras podem mudar),
+  falso começo curto ("porque a…" → "porque agora…") e repetição colada na mesma tomada ("o motivo pode o motivo pode mudar").
+- Saída: `Downloads\<nome>-limpo.mp4` + `work\<nome>\limpeza\RELATORIO.md` (o que cortou, com tempo, e o texto que ficou).
+  O `-limpo.mp4` entra como `-Video` no `prep.ps1`.
+- Ajustes: `--gap 0.4` (pausa mais solta) · `--sim 0.7` (só corta repetição muito parecida) · `--sem-render` (só o relatório).
+- Limite: tentativa abandonada que não se parece com nada depois (ex.: "Já é." solto) fica — aparece no texto do relatório.
+- Testado no bruto do COFFEE IA Amazon × Muse: 74,8 s → 47,9 s em 44 s, 4 retomadas cortadas, re-transcrição do resultado sem sílaba perdida.
+
 ## Fluxo (3 comandos)
 
 ```powershell
