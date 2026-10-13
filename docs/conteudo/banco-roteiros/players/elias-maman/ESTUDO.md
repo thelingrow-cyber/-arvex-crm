@@ -126,6 +126,60 @@ O vídeo de julho e as duas listas de documentários de agosto (3 e 12 views, te
 - "Esposa médica" como prova universal: a sua prova são as obras (CRM, agentes, QG).
 - Atribuições históricas frágeis: os vídeos dele têm erros (a autoria de *Deep Throat* é discutível). O nosso portão de fonte continua valendo.
 
+---
+
+## 7. A máquina por trás dos vídeos (bio, oferta e funil) — lido em 13/10/2026
+
+**Fontes:** perfil público, destino do link da bio, as 50 legendas e os 50 fechos falados de `reels.json`. O formulário (8 etapas) **não abriu** para leitura; preço e formato da mentoria não foram vistos.
+
+| Peça | O que é |
+|---|---|
+| Bio | *"O mais conhecido vence o melhor, até que o melhor se torne o mais conhecido · Concorra a um Diagnóstico de Perfil 👇"* · 1,5 mi de seguidores |
+| Link da bio | formulário "Diagnóstico de Crescimento Orgânico" da **Core Audience**, 8 etapas, com rastreio de origem |
+| Oferta | diagnóstico de perfil feito por "um especialista da minha equipe" (isca) → reunião → mentoria / **Método Audience** (os destaques mostram evento em 2ª edição) |
+| Comprador | *"bons profissionais"*: médica, psicanalista, chef, dona de marca de cosmético. É o mesmo público da Luana |
+| Assinatura falada | *"Meu nome é Elias Maman e a minha missão é dar voz aos bons profissionais."* |
+
+### O funil
+
+`Reel de 3 min (tema de massa)` → `comenta a palavra` → `direct automático` → `formulário` → `especialista da equipe` → `mentoria`
+
+- **Quase todo vídeo vende:** ~41 dos 50 fecham com palavra-chave no comentário. As exceções são cortes de entrevista, depoimentos e o vídeo do voto.
+- **Ele testa a palavra:** *diagnóstico* (maioria, promete análise do perfil), *análise* (19 a 26/08) e *mentoria* (a partir de 19/09, promete direto "agendar uma call"). O "apaga seus stories" com *mentoria* fez 2.199 comentários.
+- **A legenda virou pergunta de triagem.** Até meados de setembro era sobre o tema (*"Você acha que a pornografia está destruindo o ser humano?"*). De 18/09 em diante é sobre o comprador, qualquer que seja o tema: *"Você vende algum produto ou serviço pelo Instagram?"* · *"Você já produz conteúdo no Instagram?"* · *"Você já se posiciona no Instagram?"*
+
+### As crenças que os vídeos instalam e que a oferta precisa
+
+| Crença que o comprador precisa ter | Formato que instala |
+|---|---|
+| O mundo é moldado por quem tem voz, e hoje são os piores | Investigação (Al Goldstein, Casas Bahia) → *"silêncio dos bons"* |
+| Ser bom não basta; audiência vale mais que competência e dinheiro | Notícia com dado que inverte (Cristiano Ronaldo) → *"o mais conhecido vence o melhor"* |
+| Existe um método que se copia | Tutorial com promessa (*"apaga seus stories"*, folha de papel) |
+| Funciona para gente como eu | print de perfil antes e depois no fim de quase todo vídeo (408 → 2,1 mi; esposa médica 0 → 100 mil em 32 dias) |
+
+A tese transforma compra em missão: quem é bom e fica calado deixa o espaço para os maus. Por isso qualquer tema moral serve de isca.
+
+---
+
+## 8. Como ele grava (folhas de contato de 6 dos 8 maiores) — 13/10/2026
+
+**Fonte:** `tools/roteiros/work/estudo/elias.maman/folhas/` (16 quadros por vídeo, 240 px; 1 quadro a cada ~11s, então a contagem de inserções é aproximada).
+
+| Elemento | O que ele faz |
+|---|---|
+| Cenário | três, todos produzidos: mesa com fundo de luzes desfocadas (agosto), poltrona de vime num jardim (setembro), mesa em biblioteca escura (outubro). Troca de cenário por lote, não por vídeo |
+| Enquadramento | frontal, sentado, mãos à vista sobre a mesa; no jardim, corpo inteiro |
+| Legenda | palavra a palavra, sempre no mesmo ponto (altura do peito). Amarela em agosto, branca serifada depois |
+| Título | caixa verde no topo nos primeiros segundos (*"Faça Isso Para Ter A Voz Ouvida No Instagram"*) nos de setembro |
+| Inserções | **ele fica na tela a maior parte do tempo**: 3 a 6 dos 16 quadros são imagem. Foto de arquivo em cartão pequeno sobre preto, cartão acima da cabeça, capa de livro sobre o fundo dele desfocado em preto e branco |
+| Citação | congela em preto e branco com a frase em serifa (*"Nós achamos que Cristo é uma merda"*) |
+| Fim | print dos perfis dos clientes, antes e depois, enquanto ele fala o CTA |
+
+- **De novo, o vídeo cru está no topo:** o do voto (429 mil, 5.630 comentários, o mais comentado) é selfie no sofá, 7 min 35, legenda automática. Mesmo padrão do manifesto das bets da Tay. Dois casos, não é regra.
+- **O custo dele é pesquisa, não edição.** A edição é mais leve que a da Tay; o que pesa é levantar personagem, ano e número de cada investigação.
+
+**Para o Vitor:** levar o print de prova no fecho (obra na tela: CRM, agente, QG), a frase de missão dita igual em todo vídeo e a legenda como pergunta de triagem. A investigação continua sendo 1 por semana, pelo custo de pesquisa.
+
 <!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
 
 ---

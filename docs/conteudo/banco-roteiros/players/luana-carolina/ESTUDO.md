@@ -103,6 +103,69 @@ Ela passou a postar 3 a 4 vezes mais a partir de julho e a mediana caiu pela met
 
 É o esqueleto da §3 inteiro em 80s: a regra como ordem, a pergunta do espectador na boca dela, a demonstração com um objeto (a tesourinha de unha de gato) e a regra de novo no fim.
 
+---
+
+## 7. A máquina por trás dos vídeos (bio, oferta e funil) — lido em 13/10/2026
+
+**Fontes:** perfil público, página de vendas `luanacarolinas.com.br/spe` e as 50 legendas de `reels.json`. Os stories (onde ela vende) **não foram vistos**; o produto "ED" dos destaques não foi mapeado.
+
+| Peça | O que é |
+|---|---|
+| Bio | *"Especialista em comunicação e conteúdo · ↓ Copie meus modelos de stories que engajam e vendem"* · 1,8 mi de seguidores |
+| Oferta de entrada | **Story para Enriquecer (SPE)**: R$ 697 à vista ou 12× R$ 72,09 · garantia de 7 dias · acesso de 365 dias |
+| Promessa | *"O único curso com modelos de stories validados que você copia, posta e vende"*, sem virar blogueira, sem gravar Reels, sem postar todo dia |
+| Para quem (literal da página) | terapeutas, consultores, personais, esteticistas, dentistas, nutricionistas, advogados, médicos, psicólogos |
+| Prova na página | agendamentos de 42 para 132 em um mês · 40 mil → 100 mil com ~5 mil seguidores · "mais de 40 mil alunos" (afirmação dela) |
+| Destaques | Alunos SPE (2) · Alunos ED · Imersão ED · estratégias (há um segundo produto, "ED", não mapeado) |
+
+### O funil
+
+`Reel de tese (alcance, sem venda)` → `seguir` → `stories (onde ela vende e demonstra o método)` → `link da bio` → `SPE R$ 697`
+
+- **O Reel quase nunca vende.** Das 50 legendas, 2 dizem "Aula gratuita", 1 pede para compartilhar e nenhuma usa palavra-chave própria (os 2 "Comente LUANA" são postagens do podcast que a recebeu). Na fala, 1 vídeo cita o treinamento e 1 pede comentário como teste.
+- **O produto dispensa o que ela mesma faz para crescer:** ela cresce por Reels e vende um curso cuja promessa é *não precisar de Reels*. O Reel é a vitrine dela; o story é o produto.
+
+### As crenças que os Reels instalam e que a oferta precisa
+
+| Crença que o comprador precisa ter | Vídeos que instalam |
+|---|---|
+| Competência não se vende sozinha | *quanto mais se especializa, menor o grupo que reconhece* · *competente × claro* |
+| O que me trava é medo, não falta de conhecimento | *ego × não* · *tribunal imaginário* · *brilhante sob demanda* · *voz de peito* |
+| Criar conteúdo é oportunidade, não obrigação | *Oportunidade? Não. Obrigação.* |
+| Existe um jeito certo, e eu não sei qual é | *informante × influenciador* · *gerador de critério* · *depoimento em 3 stories* |
+
+A oferta fecha a conta com a saída de menor exposição possível (modelos prontos, sem aparecer obrigatoriamente): o conteúdo diz "você é bom e está travado", o produto diz "copie e poste".
+
+**Para o Vitor:** o que se modela aqui é a ordem do raciocínio, da oferta para o vídeo. Listar as crenças que o comprador precisa ter antes da call e fazer de cada uma uma Regra.
+
+---
+
+## 8. Como ela grava (folhas de contato dos 8 maiores) — 13/10/2026
+
+**Fonte:** `tools/roteiros/work/estudo/luanacarolina.s/folhas/` (16 quadros por vídeo, 240 px). Nessa resolução dá para ver enquadramento, título e cenário; **não dá para garantir** ausência de legenda fina nem de corte seco entre quadros.
+
+### Vídeo de tese (talentos · palminha · jogo e treino · voz de peito · espontaneidade)
+
+| Elemento | O que ela faz |
+|---|---|
+| Tomada | uma só, mesmo enquadramento do primeiro ao último quadro; sem inserção, sem B-roll, sem tela dividida |
+| Câmera | celular apoiado, plano médio fechado (do peito para cima), rosto no terço de cima |
+| Microfone | de lapela **na mão**, entre os dedos, à vista |
+| Cenário | casa e rotina: cama, sofá com a gata, carro, cozinha. Nunca estúdio |
+| Título fixo | 2 a 9 palavras, na altura do peito, rosto livre. Fica o vídeo inteiro (*talentos*, *espontaneidade*) ou só nos primeiros ~15–20s (*palminha*, *voz de peito*, *jogo e treino*) |
+| Texto do título | **não repete a primeira frase falada: é a ordem.** Fala: *"A primeira malícia que você precisa desenvolver… é esconder os seus talentos"* → tela: **ESCONDA OS SEUS TALENTOS**. Fala: *"Pessoas estupidamente bem-sucedidas não diferenciam jogo e treino"* → tela: *Pare agora de fugir da sua melhor versão* |
+| Atividade | nos longos ela faz outra coisa enquanto fala: no de 191s prepara um guacamole, com a tela dividida em rosto (cima) e prato visto de cima (baixo) |
+
+### Correção: os dois maiores "cortes" não são cortes
+
+`DUdgGqjEWeR` (1,58 mi) e `DUbVSO3kVrL` (1,31 mi) estão classificados como *corte de fala espontânea*. São outro formato: **tela dividida "19 anos × 25 anos" / "15 anos × 25 anos"**. Em cima, um vídeo antigo dela falando; embaixo, ela hoje, **muda**, reagindo (comendo no carro, se maquiando). As legendas confirmam: *"6 anos se passaram e a minha caixinha de nãos continua crescendo"* · *"Algumas opiniões envelhecem como vinho"*.
+Toda a fala é da versão antiga. O formato depende de arquivo de anos atrás; **não é replicável por quem não tem**. A mediana de "corte" (174 mil) e o teto (1,58 mi) do Anexo A misturam os dois formatos: reclassificar em `classificacao.json` e regerar os anexos.
+
+### Para o Vitor
+
+- O molde de tese dela custa **zero de edição**: uma tomada e um título. É o oposto do recorte com tela dividida, que custa ~25 min de máquina por minuto de vídeo.
+- Título como ordem na altura do peito já respeita a regra "rosto livre, pouca edição com função".
+
 <!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
 
 ---

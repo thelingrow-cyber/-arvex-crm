@@ -33,7 +33,7 @@ Os dois formatos que dão os picos são o **diagnóstico coletivo** e a **tendê
 | 5–8s | **Ela se distancia da frase** | *"**Pelo menos é isso que anda dizendo a internet.**"* · *"Isso é o que dizem as gerações Z e Y."* Assim a provocação é da internet, não dela |
 | 8–30s | **O dado que prova a tendência** | *"pela primeira vez, São Paulo tem mais gente saindo do que chegando"* · *"81 milhões de pessoas vivendo sozinhas"* · *"esse vídeo pegou 28 milhões de views"* |
 | 30–45s | **O porquê humano** | *"não é que todo mundo ficou introvertido, é que a gente tá exausto. Não o corpo, o cérebro."* |
-| 45s | **A dobradiça** | *"**E quem tem uma empresa precisa ficar atento a isso.**"* (palavra por palavra em vários vídeos) |
+| 45s | **A dobradiça** | *"**E quem tem uma empresa precisa ficar atento a isso.**"* **Correção de 13/10:** a frase literal aparece em **2 dos 50** (balada e pista salgada). Nos outros a virada para o negócio existe, mas com palavras livres (*"as marcas…"*, *"no marketing a gente usa isso…"*), entre 35% e 60% do vídeo. O que é fixo é o movimento, não a frase |
 | 45–65s | **Marcas que já surfam** | Heineken, XP, Gucci × Alo, Dove, Polaroid: case com nome e número |
 | 65–75s | **A regra de negócio em uma frase** | *"Status precisa de plateia."* · *"Cliente curado é cliente que não volta."* · *"Quem ganha o coração leva o bolso junto."* |
 | fim | **CTA da agência** | *"A Vinci é a agência que mais estuda e antecipa os movimentos que moldam o mercado… aplique-se no link da bio."* |
@@ -62,7 +62,7 @@ Os dois formatos que dão os picos são o **diagnóstico coletivo** e a **tendê
 ## 4. Linguagem: o que deixa natural
 
 - **"Pelo menos é isso que anda dizendo a internet."** Deixa abrir com uma frase absurda sem assumir a autoria. É a marca registrada dela.
-- **"E quem tem uma empresa precisa ficar atento a isso."** A dobradiça fixa entre comportamento e negócio.
+- **"E quem tem uma empresa precisa ficar atento a isso."** A virada entre comportamento e negócio. Dita assim em só 2 dos 50; nos demais a virada vem com outras palavras (ver correção na §2).
 - **Plural que inclui:** *"a gente tá ficando burro"*, *"nossa geração"*. Ela nunca aponta o dedo para quem assiste nos diagnósticos.
 - **Gíria e palavrão na dose:** *"pista salgada"*, *"mó profundo"*, *"porra nenhuma"*, *"f*** nenhuma"*. Soa gente, não consultora.
 - **Fecho em frase-print de 5 a 8 palavras:** *"Status precisa de plateia."* · *"O feed fica, mas a vida acaba."* · *"Um produto é só um produto até virar símbolo."*
@@ -83,6 +83,59 @@ Os dois formatos que dão os picos são o **diagnóstico coletivo** e a **tendê
 - Frases de 4s, memes e cortes: só funcionam com a base dela.
 - Publis e anúncio puro da agência: ficam no fundo.
 - O manifesto com nomes de famosos tem risco jurídico e de imagem. O formato serve, os alvos têm que ser escolhidos com cuidado (nunca quem vendeu IA para o empresário, regra do brand book).
+
+---
+
+## 6. A máquina por trás dos vídeos (bio, oferta e funil) — lido em 13/10/2026
+
+**Fontes:** perfil público, destino do link da bio, as 50 legendas e os 50 fechos falados de `reels.json`. O formulário de aplicação (Typeform) **não abriu** para leitura; preço, perguntas de qualificação e site da Vinci não foram vistos.
+
+| Peça | O que é |
+|---|---|
+| Bio | *"Founder CEO @vinci.society · Consultoria e agência que constrói as marcas + sexy e ricas dessa geração e das próximas"* · 1,2 mi de seguidores |
+| Link da bio | vai **direto para um formulário de aplicação**, sem página de vendas, com rastreio de origem (instagram · tay · bio) |
+| Oferta | duas linhas ditas no vídeo de 22/07: **consultoria** (diagnóstico → estratégia → treina e lidera o time do cliente) ou **agência** (executa tudo). Método com nome: *Negócios Creators* |
+| Destaques | Clientes Vinci · Trajetória · UCLA · A Vinci |
+| Postura | *"Aplique-se no link da bio. Se a gente gostar de você, vai ser um prazer trabalhar para ti."* · *"A gente só não atende políticos, casas de apostas e pessoas do OnlyFans."* |
+
+### Onde está o CTA
+
+- **Na fala, no fim:** 14 dos 50 vídeos fecham chamando para a Vinci. Na Tendência → negócio são **7 de 8** (o único sem CTA é o maior, looksmaxing, 720k). No diagnóstico coletivo é 1 de 5; no caso histórico, 1 de 6.
+- **Na legenda, nunca venda:** quase toda legenda é uma pergunta para comentar (*"Vc tá em qual time?"* · *"Compraria algo assim para seu filho?"* · *"Indica aqui um filme que vc descobriu sozinho"*).
+- Divisão de trabalho: a legenda puxa comentário, a fala puxa aplicação.
+
+### As crenças que os vídeos instalam e que a oferta precisa
+
+| Crença que o comprador precisa ter | Formato que instala |
+|---|---|
+| O comportamento das pessoas muda, e isso é dinheiro para quem percebe antes | Tendência → negócio |
+| As pessoas compram símbolo, não produto; marca é o que gera receita | Caso histórico (Patek, Jordan, Diderot, Homem-Aranha/BMW) |
+| A Vinci tem método criativo que serve para qualquer segmento | "Se eu fosse criar uma marca de…" (é a demonstração do produto) |
+| A Vinci escolhe cliente e tem valores | manifesto das bets · *"só não atende…"* · *"se a gente gostar de você"* |
+| Já fizeram isso para gente grande | bastidor do case (Benchimol/XP) |
+
+**Diferença para a Luana:** na Luana quem assiste é quem compra. Na Tay a audiência é de massa e o comprador é uma fração pequena (dono de empresa que paga agência); a dobradiça e o formulário fazem a triagem. É o caso do Vitor.
+
+---
+
+## 7. Como ela grava (folhas de contato de 6 dos maiores) — 13/10/2026
+
+**Fonte:** `tools/roteiros/work/estudo/tay.ldantas/folhas/` (16 quadros por vídeo, 240 px).
+
+| Elemento | Tendência / diagnóstico / hábito curioso | Manifesto das bets (1,65 mi) |
+|---|---|---|
+| Captação | cenário montado (estante, luz quente, poltrona), sentada de pernas cruzadas, microfone pequeno na mão | selfie com o celular na mão, parede atrás |
+| Inserções | **cerca de metade dos quadros** é imagem que não é ela: vídeo viral com os números na tela, artigo com trecho grifado, marcas citadas, cenas de apoio | nenhuma |
+| Legenda | palavra a palavra (1 a 3 por vez), sempre | legenda automática simples + título fixo no topo |
+| Abertura | primeiro quadro diferente do resto (na "balada", ela deitada num tapete com o título por cima) | o rosto, falando |
+| Marca | camiseta *Vinci Society* no corpo em vários | nenhuma |
+| CTA | ela volta para a câmera nos últimos ~15s | pede para marcar pessoas |
+
+- **A prova aparece na tela:** quando ela diz *"esse vídeo pegou 28 milhões"*, o vídeo está lá com o contador; quando diz *"a ciência explica"*, o artigo aparece com o trecho grifado. O dado não é só falado.
+- **Dois jeitos de inserir:** (a) tela cheia ou cartão sobre fundo preto, ela some; (b) cartão no terço de cima, **ela continua na tela** (looksmaxing, 720k). O (b) é uma tomada só com imagens por cima.
+- **O maior vídeo da janela é o menos produzido.** O manifesto é selfie sem edição.
+
+**Para o Vitor:** o formato escolhido como principal (2 Tendências por dia) é o mais caro de editar dos estudados. A versão barata é o jeito (b): uma tomada, cartões de prova no terço de cima, rosto sempre visível.
 
 <!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
 

@@ -233,3 +233,26 @@ Abrir `output/carrossel-marca-pessoal/presidente-ia-2026-10-07/contact-sheet.png
 - **Commit:** tudo exceto mídia pesada (mp4/mov/m4a/wav/bin) — vídeos ficam só locais.
 
 **Próximo passo:** escrever a 2ª Tendência + ajustar os 5 roteiros à v3; confirmar o mic.
+
+## Atualização — 13/10/2026 (Claude Code): engenharia reversa dos players e grade de 10 por dia
+
+**Objetivo:** fechar a engenharia reversa de Luana, Tay e Elias e definir a grade para a meta da semana, 10 vídeos por dia.
+
+**Feito:**
+- `players/{luana-carolina,tay-dantas,elias-maman}/ESTUDO.md` ganharam duas seções cada: a máquina (bio, oferta, funil, onde entra o CTA, crenças que os vídeos instalam) e como gravam (folhas de contato dos maiores, em `tools/roteiros/work/estudo/<usuario>/folhas/`, fora do git).
+- Correções no que o estudo afirmava: os dois maiores "cortes" da Luana são tela dividida "19 anos × 25 anos" (falta reclassificar em `classificacao.json` e regerar anexos); a "dobradiça" da Tay aparece literal em só 2 de 50 reels (corrigido no estudo e na `SINTESE-FORMATOS.md`).
+- `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md` virou **v4**: 10 por dia = 2 referências + 2 negócio com IA no meio + 2 regras + 2 identidade + 1 tendência + 1 bastidor. Portão ganhou 3 itens (um assunto só, conclusão dita, chegada concreta).
+
+**Decisões do Vitor:**
+- Herói = dono de negócio que sente que está sempre atrasado; paralelo = Tay; "AI Native" no fim, não como assunto.
+- Sem dobradiça nem frase-assinatura fixa por ora.
+- "Você não comprou errado, comprou a peça que vem antes" é brusca como fecho; vira uma Regra inteira.
+- Processo: a IA gera o cardápio (~25 linhas), ele aprova por voz e grava.
+
+**Limites do que foi visto:** formulários de aplicação da Tay e do Elias não abriram; stories de nenhum dos três; folhas só dos 6 a 8 maiores de cada um; as tabelas de crenças são leitura do agente.
+
+**Pendências com o Vitor:** o que pode aparecer na tela no Bastidor; o que ele vende hoje, para quem e por quanto; o que está de fato funcionando para mostrar (o dossiê e a memória divergem sobre o agente de atendimento); as 2 referências de cada dia.
+
+**Próximo passo:** montar o primeiro cardápio na grade v4 (lista de crenças do herói → Regras; fatos do dia com fonte → Negócio e Tendência). Matheus Gomes ainda não passou pelo mesmo aprofundamento de funil.
+
+**Estado:** commit local; nada publicado no remoto.
