@@ -32,8 +32,10 @@ def chave_groq():
 
 
 def baixar(url, dest):
-    subprocess.run(["yt-dlp", url, "-o", f"{dest}.%(ext)s", "--write-info-json",
-                    "--no-warnings", "-q", "--no-playlist"], check=True)
+    cmd = ["yt-dlp", url, "-o", f"{dest}.%(ext)s", "--write-info-json", "--no-warnings", "-q", "--no-playlist"]
+    if subprocess.run(cmd).returncode:
+        # Instagram às vezes dá HTTP 500 no áudio DASH (o padrão bv+ba); os progressivos "1/2/3" (vídeo+áudio juntos) baixam
+        subprocess.run(cmd + ["-f", "1/2/3/b", "--retries", "3"], check=True)
     video = next(f"{dest}.{e}" for e in ("mp4", "mkv", "webm", "mov") if os.path.exists(f"{dest}.{e}"))
     info = json.load(open(f"{dest}.info.json", encoding="utf-8"))
     return video, info
