@@ -66,3 +66,27 @@ nenhum (take único)
 
 ## Adaptação
 
+**Mecanismo (o que se modela):** paradoxo sobre um valor que todo mundo acha bom (liberdade) → a pessoa que se acha livre → "repara no que ela faz" → alguém ainda dá as ordens → por que isso a deixa fácil → fecho binário que redefine o valor. Platão, a citação e "Welcome to the other side" NÃO entram.
+
+**Versão Vitor v1 · 14/10** (filosofia, sem negócio e sem IA):
+
+> A pessoa mais fácil de controlar é a que precisa ser aprovada.
+>
+> Ela acha que é livre. Ninguém manda nela.
+>
+> Só que repara em como ela escolhe.
+> Escolhe a roupa pensando em quem vai ver.
+> Escolhe a opinião pensando em quem vai concordar.
+> Escolhe até o sonho pensando no que vão achar.
+>
+> Então tem alguém mandando, sim.
+> Só não tem rosto. É todo mundo.
+>
+> E aí ela fica fácil.
+> Pra mandar nela ninguém precisa de força.
+> Basta um elogio. Ou o medo de perder ele.
+>
+> Quem precisa de aplauso obedece a quem aplaude.
+> Quem não precisa não tem dono.
+
+Notas: ~30s, uma tomada. **Título fixo:** QUEM PRECISA DE APLAUSO TEM DONO. **Topo (molde topo fixo):** Jean-Léon Gérôme, *Pollice Verso* (1872, Phoenix Art Museum, domínio público), o gladiador esperando o veredito da multidão. Nenhum fato para conferir.
