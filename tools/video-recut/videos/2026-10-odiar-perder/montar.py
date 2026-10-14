@@ -74,18 +74,24 @@ def moldura(im, larg):
 
 
 def abertura():
-    """Headline em cima (faixa escura: frase curta dourada + título) e a foto da rede embaixo. Fica parado o vídeo todo."""
-    L, FT, FA = 680, 150, 380
-    card = Image.new("RGBA", (L, FT + FA), (20, 20, 26, 255))
-    card.alpha_composite(recorte(Image.open(w("cand/net3.jpg")), L, FA), (0, FT))
-    d = ImageDraw.Draw(card)
-    fk, tam = ImageFont.truetype(SEMI, 30), 52
-    while d.textlength("A LOROTA DO BOM PERDEDOR", font=ImageFont.truetype(BLACK, tam)) > L - 68:
+    """v3 (pedido do Vitor): só a foto (sem faixa, sem frase extra) e o título escrito direto no vídeo, EMBAIXO da foto.
+    Fica parado o vídeo todo."""
+    L, FA, TXT = 680, 400, "A LOROTA DO BOM PERDEDOR"
+    tam = 60
+    while ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength(TXT, font=ImageFont.truetype(BLACK, tam)) > 1000:
         tam -= 1
-    d.rectangle([36, 30, 44, 62], fill=OURO)
-    d.text((58, 24), "perder bem é bonito?", font=fk, fill=OURO)
-    d.text((34, 68), "A LOROTA DO BOM PERDEDOR", font=ImageFont.truetype(BLACK, tam), fill=(255, 255, 255))
-    return sombra(arredondar(card))
+    ft = ImageFont.truetype(BLACK, tam)
+    foto = sombra(arredondar(recorte(Image.open(w("cand/net3.jpg")), L, FA)))
+    yt = foto.height - 12
+    out = Image.new("RGBA", (1080, yt + tam + 30), (0, 0, 0, 0))
+    out.alpha_composite(foto, ((1080 - foto.width) // 2, 0))
+    sh = Image.new("RGBA", out.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(sh)
+    x = (1080 - d.textlength(TXT, font=ft)) / 2
+    d.text((x, yt + 4), TXT, font=ft, fill=(0, 0, 0, 200))
+    out = Image.alpha_composite(out, sh.filter(ImageFilter.GaussianBlur(5)))
+    ImageDraw.Draw(out).text((x, yt), TXT, font=ft, fill=(255, 255, 255))
+    return out
 
 
 def cards():
@@ -155,7 +161,7 @@ def compor():
         return f"x={cx}-{wpx}/2:y='{cy}-{hpx}/2+28*max(0,1-(t-{e})/0.22)'"
 
     ins += ["-loop", "1", "-framerate", "30", "-t", str(DUR), "-i", w("abre.png")]
-    fc.append(f"[{ult}][{n}:v]overlay=x=(W-w)/2:y=40[oab]")   # parado do início ao fim
+    fc.append(f"[{ult}][{n}:v]overlay=x=0:y=30[oab]")   # parado do início ao fim
     ult, n = "oab", n + 1
     for i, (arq, e, s, lugar, larg) in enumerate(CARDS):
         im = Image.open(w(f"card{i}.png"))
