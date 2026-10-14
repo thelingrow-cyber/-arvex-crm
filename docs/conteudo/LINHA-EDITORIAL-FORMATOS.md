@@ -17,6 +17,7 @@
 | Matheus Gomes | `players/matheus-gomes/ESTUDO.md` | celular filmando o monitor · título-dilema · reagir em vez de apresentar | 🛠️ Bastidor |
 | Vitor (próprios) | `players/vitor-simoes/ANALISE.md` | frase histórica e identidade (Alexandre 129 mil, "você não é normal" 80 mil) | 🗿 Identidade |
 
+A tabela acima mostra só o molde principal de cada um. **Todos os moldes de cada player** (são 12 da Luana, 18 da Tay, 16 do Elias e 6 do Matheus), com veredito e as variantes de cada vaga: `players/CATALOGO-MOLDES.md`.
 Regras que valem para os quatro players: `players/SINTESE-FORMATOS.md`. Funil e gravação de Luana, Tay e Elias: seções 6–8 de cada estudo. O Matheus não teve a parte de funil.
 
 ---
