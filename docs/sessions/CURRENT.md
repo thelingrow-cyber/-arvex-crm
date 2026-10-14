@@ -256,3 +256,13 @@ Abrir `output/carrossel-marca-pessoal/presidente-ia-2026-10-07/contact-sheet.png
 **Próximo passo:** montar o primeiro cardápio na grade v4 (lista de crenças do herói → Regras; fatos do dia com fonte → Negócio e Tendência). Matheus Gomes ainda não passou pelo mesmo aprofundamento de funil.
 
 **Estado:** commit local; nada publicado no remoto.
+
+## Atualização — 14/10/2026 (Claude Code): 2 vídeos editados e molde de edição aprovado
+
+**Feito:**
+- Roteiro "Chegue atrasado" (Regra, molde Luana) escrito com o Vitor em várias rodadas; ele gravou e o vídeo foi editado: `tools/video-recut/videos/2026-10-chegue-atrasado/montar.py` (topo fixo com título, pares de imagens nas laterais, página do repositório REA no topo no trecho em que ele fala dele).
+- Vídeo "Rei do gelo" (Frederic Tudor) editado em 4 versões até ele aprovar ("perfeito"): `tools/video-recut/videos/2026-10-rei-do-gelo/montar.py`. Saídas em `Downloads\` (mídia fica local).
+- **Molde aprovado** (registrado na memória): pintura clássica histórica/filosófica FIXA no topo, cantos retos; título em Bebas Neue; legenda uma palavra por vez em Montserrat ExtraBold com contorno; inserções reais nas laterais, alternando. Reprovado: borda redonda, logo em fundo branco, imagem genérica, Segoe de 3 palavras.
+- Fontes livres em `tools/video-recut/assets/fontes/` (Bebas Neue, Montserrat).
+
+**Pendências:** créditos das imagens (CREDITOS.txt de cada vídeo) para a legenda do post; no "Chegue atrasado", o Vitor ainda não rodou o REA (primeiro uso pendente); cardápio da grade v4 segue por montar.
