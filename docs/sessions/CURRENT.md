@@ -265,4 +265,7 @@ Abrir `output/carrossel-marca-pessoal/presidente-ia-2026-10-07/contact-sheet.png
 - **Molde aprovado** (registrado na memória): pintura clássica histórica/filosófica FIXA no topo, cantos retos; título em Bebas Neue; legenda uma palavra por vez em Montserrat ExtraBold com contorno; inserções reais nas laterais, alternando. Reprovado: borda redonda, logo em fundo branco, imagem genérica, Segoe de 3 palavras.
 - Fontes livres em `tools/video-recut/assets/fontes/` (Bebas Neue, Montserrat).
 
+**Players (14/10, tarde):** `players/CATALOGO-MOLDES.md` (todos os moldes de cada player, com veredito e variantes por vaga); fichas completas dos moldes 3–5 e edição por molde na linha editorial; Luana reclassificada; **novo player Fabiano Carvalho** (`players/fabiano-carvalho/ESTUDO.md`): concorrente direto (vende IA ao dono), ~7 posts/dia num relógio fixo, pedido de comentário em 48/50, e descreve o próprio fluxo de agentes.
+**Próximo projeto decidido pelo Vitor:** depois de terminar a estruturação, instalar esse fluxo de agentes de conteúdo (ver seção 1 do estudo do Fabiano).
+
 **Pendências:** créditos das imagens (CREDITOS.txt de cada vídeo) para a legenda do post; no "Chegue atrasado", o Vitor ainda não rodou o REA (primeiro uso pendente); cardápio da grade v4 segue por montar.
