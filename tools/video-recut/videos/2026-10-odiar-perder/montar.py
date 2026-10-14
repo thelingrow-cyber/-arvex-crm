@@ -20,14 +20,15 @@ BLACK = r"C:\Windows\Fonts\seguibl.ttf"
 OURO = (221, 184, 112)
 
 # boné a partir de y ~720 → topo livre até ~690
-TOPO = (540, 380)
-ABRE = (0.15, 5.0)   # card de abertura: "Te ensinaram que perder bem é bonito… o importante é competir."
+# v2 (pedido do Vitor): card do topo PARADO o vídeo todo (sem entrar/sair), headline em cima da foto;
+# as outras fotos vão para as laterais (TV à esquerda, parede à direita), sem cobrir o rosto (x ~400–800).
+ESQ, DIR = (185, 1010), (895, 960)
 # (arquivo em work/cand, entra, sai, lugar, largura)
 CARDS = [
-    ("jordan.jpg", 7.55, 9.25, TOPO, 470),    # "nunca conheci alguém que construiu algo grande"
-    ("senna.jpg", 9.25, 10.75, TOPO, 560),    # "e aceitava perder numa boa. Isso é lorota."
-    ("boxe.jpg", 14.15, 16.35, TOPO, 470),    # "usa essa raiva pra voltar mais forte. Isso é lei."
-    ("podio.jpg", 23.85, 25.85, TOPO, 580),   # "É a raiva de perder que faz você voltar mais forte." — depois, rosto limpo
+    ("jordan.jpg", 7.55, 9.25, ESQ, 300),    # "nunca conheci alguém que construiu algo grande"
+    ("senna.jpg", 9.25, 10.75, DIR, 300),    # "e aceitava perder numa boa. Isso é lorota."
+    ("boxe.jpg", 14.15, 16.35, ESQ, 300),    # "usa essa raiva pra voltar mais forte. Isso é lei."
+    ("podio.jpg", 23.85, 25.85, DIR, 300),   # "É a raiva de perder que faz você voltar mais forte." — depois, rosto limpo
 ]
 
 CREDITOS = """Fotos: Wikimedia Commons — "At the net" (CC BY-SA 2.0) · "Michael Jordan" (CC BY-SA 2.0) · "Ayrton Senna in 1988" (CC BY 2.0) ·
@@ -68,24 +69,22 @@ def arredondar(im, raio=20):
 
 def moldura(im, larg):
     """Foto sem borda, canto arredondado e sombra suave."""
-    alt = min(int(im.height * larg / im.width), int(larg * 1.1), 600)
+    alt = min(int(im.height * larg / im.width), int(larg * 1.15))
     return sombra(arredondar(recorte(im, larg, alt)))
 
 
 def abertura():
-    """Foto (aperto de mão na rede) + faixa escura com frase curta dourada e título."""
-    L, FA, FB = 680, 400, 170
-    foto = recorte(Image.open(w("cand/net3.jpg")), L, FA)
-    card = Image.new("RGBA", (L, FA + FB), (20, 20, 26, 255))
-    card.alpha_composite(foto, (0, 0))
+    """Headline em cima (faixa escura: frase curta dourada + título) e a foto da rede embaixo. Fica parado o vídeo todo."""
+    L, FT, FA = 680, 150, 380
+    card = Image.new("RGBA", (L, FT + FA), (20, 20, 26, 255))
+    card.alpha_composite(recorte(Image.open(w("cand/net3.jpg")), L, FA), (0, FT))
     d = ImageDraw.Draw(card)
     fk, tam = ImageFont.truetype(SEMI, 30), 52
     while d.textlength("A LOROTA DO BOM PERDEDOR", font=ImageFont.truetype(BLACK, tam)) > L - 68:
         tam -= 1
-    ft = ImageFont.truetype(BLACK, tam)
-    d.rectangle([36, FA + 34, 44, FA + 66], fill=OURO)
-    d.text((58, FA + 28), "perder bem é bonito?", font=fk, fill=OURO)
-    d.text((34, FA + 76), "A LOROTA DO BOM PERDEDOR", font=ft, fill=(255, 255, 255))
+    d.rectangle([36, 30, 44, 62], fill=OURO)
+    d.text((58, 24), "perder bem é bonito?", font=fk, fill=OURO)
+    d.text((34, 68), "A LOROTA DO BOM PERDEDOR", font=ImageFont.truetype(BLACK, tam), fill=(255, 255, 255))
     return sombra(arredondar(card))
 
 
@@ -155,10 +154,8 @@ def compor():
         cx, cy = lugar
         return f"x={cx}-{wpx}/2:y='{cy}-{hpx}/2+28*max(0,1-(t-{e})/0.22)'"
 
-    e, s = ABRE
     ins += ["-loop", "1", "-framerate", "30", "-t", str(DUR), "-i", w("abre.png")]
-    fc.append(f"[{n}:v]format=rgba,fade=t=in:st={e}:d=0.25:alpha=1,fade=t=out:st={s - 0.2}:d=0.2:alpha=1[ab]")
-    fc.append(f"[{ult}][ab]overlay=x=(W-w)/2:y='70-40*max(0,1-(t-{e})/0.3)':enable='between(t,{e},{s})'[oab]")
+    fc.append(f"[{ult}][{n}:v]overlay=x=(W-w)/2:y=40[oab]")   # parado do início ao fim
     ult, n = "oab", n + 1
     for i, (arq, e, s, lugar, larg) in enumerate(CARDS):
         im = Image.open(w(f"card{i}.png"))
