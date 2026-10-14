@@ -23,6 +23,29 @@ Ele contou a máquina num vídeo (`DeSN2nhFZr3`, 9,5 mil): *"esse é o fluxo que
 
 **O código no comentário rastreia cada post.** Toda legenda pede um código diferente de 5 caracteres (*"Comente 'EHYMR'"*). O último caractere muda pelo tipo: **R** nos vídeos falados, **H** nos posts de 8 segundos. A leitura mais provável é de que o código diz qual post gerou cada conversa no direct (não visto por dentro; inferido do padrão).
 
+## 1b. O calendário diário: um relógio fixo (horário de Brasília, 08 a 14/10)
+
+Os posts saem sempre entre os minutos :02 e :05 da hora, o que indica postagem agendada. Os poucos fora desse padrão (23:41, 21:20) parecem manuais.
+
+| Horário | O que sai | Em 7 dias |
+|---|---|---|
+| **09h** | vídeo de 8s sem fala | 7 de 7 dias |
+| **12h** | falado (ferramenta, resumo ou games) | 7 de 7 |
+| **13h** | falado (ferramenta, tutorial ou método) | 7 de 7 |
+| 14h | falado, às vezes | 2 |
+| **15h** | vídeo de 8s sem fala | 6 de 6 dias completos |
+| **16h** | falado (ferramenta, método, resumo, tutorial) | 6 de 6 |
+| **17h** | falado (quase sempre ferramenta) | 6 de 6 |
+| 18h | games, no fim de semana | 2 |
+| **20h** | falado (ferramenta, tutorial ou resumo) | 5 de 6 |
+| 21h–23h | extra: games, humor, 8s | 3 |
+
+- **A base é 7 por dia: 2 vídeos de 8s sem fala (9h e 15h) + 5 falados (12h, 13h, 16h, 17h, 20h).** No fim de semana entram 1 ou 2 extras quando há assunto quente (os games de sábado e domingo).
+- **O formato não tem horário fixo; o tipo tem.** Ferramenta aparece em todos os horários falados. Os de 8s ficam presos às 9h e às 15h.
+- **A noite rende mais:** mediana de 29 mil views nos falados das 18h às 24h × 9,5 mil das 12h às 18h. Parte disso são os games de sábado e domingo, mas mesmo as ferramentas das 20h fizeram 21, 29 e 43 mil.
+- **O intervalo mediano entre posts é de 1 hora.** Ele espaça a tarde inteira em vez de soltar tudo de uma vez.
+- **14/10** tem só 3 posts porque a coleta foi feita no meio do dia.
+
 ## 2. Views não são o objetivo: o que traz conversa é outra coisa
 
 | Formato | Vídeos | Mediana de views | Comentários por mil views |
