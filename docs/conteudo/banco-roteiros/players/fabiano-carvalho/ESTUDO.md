@@ -19,9 +19,13 @@
 
 Ele contou a máquina num vídeo (`DeSN2nhFZr3`, 9,5 mil): *"esse é o fluxo que faz os reels que você tá assistindo agora. A cada dois dias, os reels mais recentes dos meus concorrentes são puxados, e um dos meus 12 agentes passa em cada um deles e escreve os temas que eu ainda não cobri. Essa ideia, por exemplo, veio dessa lista, de um reels que fez bastante view."*
 
-É o mesmo processo que o Vitor quer (a IA gera o cardápio a partir das referências, ele aprova e grava), já rodando em escala. As legendas reforçam: todas têm a mesma estrutura, longa e factual, com número e fonte (*"158.478 estrelas no GitHub, licença MIT, está no ar desde outubro de 2025"*), o que indica texto feito pelo mesmo fluxo de agentes.
+O fluxo inteiro, na fala dele (28s a 106s do mesmo vídeo): concorrentes puxados a cada 2 dias → agente lista temas não cobertos → ganchos num banco de dados ordenado → Claude escreve o roteiro com as regras de voz, ganchos e proibições → checagem de voz → um Claude novo "destrói o roteiro antes de eu ler" → ele lê (se não gosta, reescreve) → filma → agente escolhe takes, corta pausas, renderiza → outro faz legenda, animação, opções de capa e os materiais do direct → o último arquiva e limpa. *"Nenhum deles conversa entre si… cada etapa deixa um arquivo que a próxima pega."*
 
-**O código no comentário rastreia cada post.** Toda legenda pede um código diferente de 5 caracteres (*"Comente 'EHYMR'"*). O último caractere muda pelo tipo: **R** nos vídeos falados, **H** nos posts de 8 segundos. A leitura mais provável é de que o código diz qual post gerou cada conversa no direct (não visto por dentro; inferido do padrão).
+**Atenção:** isso é o que ele **afirma**, num vídeo que termina vendendo *"o modelo das páginas e o guia completo"*. Não foi visto funcionando. **Dedução do agente, não fala dele:** que as legendas (todas na mesma estrutura, longa e factual, com número e fonte) saem desse fluxo; e que o código do comentário rastreia a origem de cada conversa.
+
+É o mesmo processo que o Vitor quer, já rodando em escala. Equivalentes que já existem aqui: `estudo_player.py` (puxar concorrentes), `voz.md` (regras), o portão da linha editorial, `limpar.cjs` (cortar pausas) e o `montar.py` de topo fixo (legenda e montagem). Falta encadear.
+
+**O código no comentário (dedução).** Toda legenda pede um código diferente de 5 caracteres (*"Comente 'EHYMR'"*). O último caractere muda pelo tipo: **R** nos vídeos falados, **H** nos posts de 8 segundos. A leitura mais provável é de que o código diz qual post gerou cada conversa no direct (não visto por dentro; inferido do padrão).
 
 ## 1b. O calendário diário: um relógio fixo (horário de Brasília, 08 a 14/10)
 
