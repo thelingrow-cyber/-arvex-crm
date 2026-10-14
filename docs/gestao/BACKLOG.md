@@ -2,7 +2,7 @@
 
 **Fonte única.** Toda atividade de qualquer projeto entra aqui. A semana (`docs/semanas/`) é uma *seleção* deste arquivo, nunca uma lista paralela.
 **Painel visual:** `docs/gestao/painel.html`
-**Última atualização:** 2026-10-05 · **+4 atividades em 05/10** (MP-13, OF-12, LG-21, VZ-17) · *semana 28/09 sem `fechar` (2ª seguida)*
+**Última atualização:** 2026-10-14 · semana 14-18/10 em `docs/semanas/AGENDA-semana-2026-10-14.md` (missões de 05/10 repetidas) · OF-08 encerrado
 
 ---
 
@@ -185,7 +185,7 @@ Refazer um SaaS é trabalho de **meses**. **Gate:** só começa com **cliente pa
 
 ### Trilha 4 — Pipeline
 
-- [ ] **OF-08** Letícia Wendy: última chamada ou enterrar — 👤 · P · M3 · ⚠️ *call foi 30/06 — 34 dias; sua janela histórica máxima é 13*
+- [~] **OF-08** Letícia Wendy — encerrado pelo Vitor (14/10). Não volta à pauta.
 
 ---
 
