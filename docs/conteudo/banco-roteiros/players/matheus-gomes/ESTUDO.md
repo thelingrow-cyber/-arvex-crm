@@ -104,6 +104,28 @@ O Matheus fala com **dev**. A métrica dele (views, curtidas) premia o que agrad
 - *"Se bater mil curtidas eu ensino"*: isca de engajamento.
 - Ostentação de carro, barco e setup de R$ 100 mil: é dele, e conflita com a sua fase.
 
+---
+
+## 7. A máquina por trás dos vídeos (bio, oferta e funil) — lido em 14/10/2026
+
+**Fontes:** perfil público, destino do link da bio, as 50 legendas e os fechos falados de `reels.json`.
+
+| Peça | O que é |
+|---|---|
+| Bio | *"Zerando o jogo do capitalismo no modo Hard. Level 30 🕹️"* + as empresas marcadas (@asaas.brasil, @lemoncaps.br, @swapofinance, @foundersxp) · 532 mil seguidores |
+| Link da bio | `soumatheusgomes.com`: programador e fundador, *"construiu e vendeu 13 empresas"*, M&A em 2023 (autodeclarado) |
+| Oferta vista | **Workshop "Código que Vende"**: 2 noites ao vivo (19 e 20/10, 20h), sair com a oferta esboçada e um plano de 30 dias para a primeira venda. **R$ 47 → 67 → 97** em lotes, garantia de 7 dias. Chamada: *"Ninguém compra produto. Compram oferta."* |
+
+### O funil
+
+`Reel` → `seguir` → `link da bio` → `workshop barato ao vivo` → (o que vem depois não foi visto)
+
+- **O Reel quase não vende.** Nenhuma das 50 legendas pede comentário; quase todas são só *"@matheusgomes"*. O fecho falado, quando existe, é *"clica no botãozinho aqui embaixo e me segue"*. O único pedido diferente é *"prompt fixado nos comentários"* (160 mil).
+- **A venda mora fora do Reel:** no link da bio e, provavelmente, nos stories (não vistos).
+- **É o oposto do Fabiano,** que pede comentário em 48 de 50. Os dois falam de IA para quem quer construir; um capta seguidor, o outro capta conversa no direct.
+
+**Para o Vitor:** o workshop de entrada barato (R$ 47) para quem quer montar a primeira oferta é um degrau de produto que o Vitor ainda não tem. Do Reel, o que vale continua sendo o jeito de gravar a tela (§2 e §6).
+
 <!-- ANEXOS · gerado por tools/roteiros/estudo_anexos.py · não editar à mão daqui para baixo -->
 
 ---

@@ -19,7 +19,7 @@
 | Vitor (próprios) | `players/vitor-simoes/ANALISE.md` | frase histórica e identidade (Alexandre 129 mil, "você não é normal" 80 mil) | 🗿 Identidade |
 
 A tabela acima mostra só o molde principal de cada um. **Todos os moldes de cada player** (são 12 da Luana, 18 da Tay, 16 do Elias, 6 do Matheus e 7 do Fabiano), com veredito e as variantes de cada vaga: `players/CATALOGO-MOLDES.md`.
-Regras que valem para os quatro players: `players/SINTESE-FORMATOS.md`. Funil e gravação de Luana, Tay e Elias: seções 6–8 de cada estudo. O Matheus não teve a parte de funil.
+Regras que valem para os quatro players: `players/SINTESE-FORMATOS.md`. Funil e gravação de cada player: seções de máquina (bio, oferta, funil) e de gravação em cada estudo. Comparação de funil: Fabiano pede comentário em 48 de 50 vídeos, Elias em ~41 de 50, Matheus em nenhum (vende no link da bio).
 
 ---
 
