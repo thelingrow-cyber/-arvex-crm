@@ -15,9 +15,10 @@
 | Tay Dantas | `players/tay-dantas/ESTUDO.md` | comportamento que mudou → virada para o dono · um dado com fonte · cartão de prova no terço de cima | 📈 Tendência |
 | Elias Maman | `players/elias-maman/ESTUDO.md` | caso com nome contado inteiro · descartar os óbvios na abertura · objeção na boca do espectador | 🏢 Negócio |
 | Matheus Gomes | `players/matheus-gomes/ESTUDO.md` | celular filmando o monitor · título-dilema · reagir em vez de apresentar | 🛠️ Bastidor |
+| Fabiano Carvalho (concorrente direto) | `players/fabiano-carvalho/ESTUDO.md` | máquina de ~7 por dia alimentada por concorrentes · pedido de comentário com código em todo vídeo · legenda com número e fonte · método para negócio | 🏢 Negócio · 🛠️ Bastidor · funil |
 | Vitor (próprios) | `players/vitor-simoes/ANALISE.md` | frase histórica e identidade (Alexandre 129 mil, "você não é normal" 80 mil) | 🗿 Identidade |
 
-A tabela acima mostra só o molde principal de cada um. **Todos os moldes de cada player** (são 12 da Luana, 18 da Tay, 16 do Elias e 6 do Matheus), com veredito e as variantes de cada vaga: `players/CATALOGO-MOLDES.md`.
+A tabela acima mostra só o molde principal de cada um. **Todos os moldes de cada player** (são 12 da Luana, 18 da Tay, 16 do Elias, 6 do Matheus e 7 do Fabiano), com veredito e as variantes de cada vaga: `players/CATALOGO-MOLDES.md`.
 Regras que valem para os quatro players: `players/SINTESE-FORMATOS.md`. Funil e gravação de Luana, Tay e Elias: seções 6–8 de cada estudo. O Matheus não teve a parte de funil.
 
 ---

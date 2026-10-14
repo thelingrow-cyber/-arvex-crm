@@ -82,6 +82,24 @@
 
 ---
 
+## Fabiano Carvalho (254 mil seguidores) — **concorrente direto: vende IA para o dono de negócio**
+
+Estudo: `fabiano-carvalho/ESTUDO.md` (14/10). Janela de só 7 dias: ele posta ~7 por dia. Aqui a coluna que importa é **comentários por mil views**, porque todo vídeo pede um comentário que vira conversa no direct.
+
+| Molde | Vídeos | Mediana | Teto | Comentários/mil | Veredito | Lugar na grade |
+|---|---|---|---|---|---|---|
+| Método para negócio (agentes / prompt) | 2 | 9 mil | 10 mil | **35,8** | ✅ o que mais conversa e o mais perto do dono (*"o Claude vai destruir a sua ideia antes de você perder 6 meses"*) | 🏢 Negócio / ⚖️ Regra (variante) |
+| Ferramenta ou repositório grátis que saiu | 18 | 16 mil | 46 mil (232 mil fora da janela) | 21,1 | 🧪 só como Bastidor (testar na tela, como o REA no *Chegue atrasado*). É o território dele | 🛠️ Bastidor |
+| Tutorial na tela | 6 | 6 mil | 27 mil | 26,1 | ❌ tutorial não serve para o dono (mesma conclusão do Matheus) | — |
+| Resumo de notícia ou relatório | 5 | 5 mil | 8 mil | 6,1 | ❌ fraco e caro | — |
+| Games / emulação | 4 | 179 mil | 464 mil | 14,2 | ❌ pesca fora do nicho | — |
+| Vídeo de 8s sem fala | 14 | 5 mil | 31 mil | 1,9 | ❌ mantém volume, não gera conversa | — |
+| Esquete de humor | 1 | 12 mil | 12 mil | 0,5 | ❌ | — |
+
+**O que ele ensina além dos moldes:** a máquina de volume (concorrentes puxados a cada 2 dias → agente lista os temas não cobertos → roteiro), o pedido de comentário com código por post em 48 de 50 vídeos, e a legenda como a parte séria do vídeo.
+
+---
+
 ## Como isso entra na grade de 10
 
 Cada vaga da grade v4 tem um molde principal e variantes para não repetir:
@@ -89,7 +107,7 @@ Cada vaga da grade v4 tem um molde principal e variantes para não repetir:
 | Vaga | Principal | Variantes para alternar |
 |---|---|---|
 | ⚖️ Regra (2) | Regra contraintuitiva (Luana) | Par de palavras · Modelo mental + ferramenta · Mecanismo com nome (longo) · Tutorial com promessa (Elias, com cuidado) |
-| 🏢 Negócio (2) | Caso histórico → princípio (Tay) | Notícia com dado que inverte (Elias) · Se eu fosse dono de… (Tay) · Novidade na tela + dilema (Matheus) |
+| 🏢 Negócio (2) | Caso histórico → princípio (Tay) | Notícia com dado que inverte (Elias) · Se eu fosse dono de… (Tay) · Novidade na tela + dilema (Matheus) · Método para negócio (Fabiano) |
 | 📈 Tendência (1) | Tendência → oportunidade (Tay) | Diagnóstico coletivo "a gente" (Tay) · Estudo com ranking (Elias) |
 | 🗿 Identidade (2) | Frase histórica (Vitor) | Frase única (Luana) · Hábito curioso de gente brilhante (Tay) |
 | 🛠️ Bastidor (1) | Vlog de construção / tela (Matheus) | Bastidor de case (Tay) · Lifestyle / persona (Luana) · O que estou lendo (Elias) |

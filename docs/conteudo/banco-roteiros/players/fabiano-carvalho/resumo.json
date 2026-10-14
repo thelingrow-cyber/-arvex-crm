@@ -1,0 +1,62 @@
+{
+ "usuario": "fabianocarvalhojr",
+ "n": 50,
+ "janela": [
+  "2026-10-08",
+  "2026-10-14"
+ ],
+ "mediana_views": 9074,
+ "mediana_sem_testes_e_recentes": 8980,
+ "duracao_mediana": 36,
+ "por_mes": {
+  "2026-10": {
+   "reels": 50,
+   "mediana": 9074
+  }
+ },
+ "testes_reprovados": [],
+ "recentes_menos_de_3_dias": [
+  "DeexJGQjIQQ",
+  "DeeqaAmAf9V",
+  "DeeVlHIFsiM",
+  "DedFCIPPtO-",
+  "DecnsSVlBIC",
+  "DechDEGCfcs",
+  "DecZ9qmDnPw",
+  "DecMds_knnN",
+  "DecFlAqgsl4",
+  "DebwwavCG_e",
+  "DeaXmSVD5jm",
+  "DeaC4mTgMup",
+  "DeZ8HfSAWxK",
+  "DeZ1KZCiPDR",
+  "DeZun4GlOwf",
+  "DeZnvliipPG",
+  "DeZgxHciqye",
+  "DeZL-L2CNLl"
+ ],
+ "repostagens": [],
+ "picos_fora_da_janela": [
+  {
+   "shortCode": "DeC-mAXknYX",
+   "views": 232272,
+   "data": "2026-10-03",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DeIV3XIE9cA",
+   "views": 183234,
+   "data": "2026-10-05",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DeKD6UxH_2c",
+   "views": 114357,
+   "data": "2026-10-06",
+   "fixado": false,
+   "transcrito": true
+  }
+ ]
+}
