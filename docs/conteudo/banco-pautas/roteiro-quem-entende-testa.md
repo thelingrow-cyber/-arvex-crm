@@ -1,6 +1,6 @@
 # Roteiro: "Quem entende, testa. Quem precisa, usa."
 
-**Status:** v1 · 2026-10-14 · **Formato:** ⚖️ Regra dita como lei (mecanismo da Luana: "quanto mais X, pior Y", 1,58 mi e 728 mil no molde) · **Duração:** ~45s · **Sem CTA**
+**Status:** ❌ CANCELADO pelo Vitor em 14/10 (fala de IA, que ele já tinha vetado como assunto) · v1 · 2026-10-14 · **Formato:** ⚖️ Regra dita como lei (mecanismo da Luana: "quanto mais X, pior Y", 1,58 mi e 728 mil no molde) · **Duração:** ~45s · **Sem CTA**
 **Pedido do Vitor:** sem historinha, pela referência de Luana e Tay. Substitui os roteiros da Britannica e do Ali.
 **Herói:** o dono que se sente atrasado por não entender de IA. O vídeo diz que ele pode estar na frente. A culpa vai para o fascínio pela ferramenta, não para a pessoa.
 **Pedágio:** o agente de atendimento que ficou no ar sem responder nenhum cliente (`project_crm_agente_sdr_gatilho`). **O Vitor confirma antes de gravar se quer contar isso.**
