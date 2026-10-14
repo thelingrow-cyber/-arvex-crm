@@ -44,4 +44,4 @@ Estudos completos: `elias-maman/ESTUDO.md` · `luana-carolina/ESTUDO.md` · `tay
 Estudo: `matheus-gomes/ESTUDO.md`. Com algo na tela ele faz de 3 a 4 vezes mais que opinando sem tela (113k e 72k × 27k). Ele **filma o monitor com o celular**, com a mão e o ambiente no quadro, e coloca um **título fixo que traz o dilema** (*"Isso aqui é genialidade ou roubo?"*, 839k). O público dele é dev: do Matheus vale o **jeito de gravar**, não o assunto (tutorial com prompt não serve para o empresário).
 Decisão do Vitor: **1 vídeo de tela por dia** (estilo Matheus), mais os de estilo Luana e Tay.
 
-**O que falta definir antes dos cartões:** a sua **dobradiça** (o equivalente a *"quem tem uma empresa precisa ficar atento"*) e a sua **frase-assinatura** (o equivalente a *"o silêncio dos bons"*). Os três players têm, e é a tese fixa que o brand book deixou em aberto.
+**Resolvido em 13/10:** sem dobradiça nem frase-assinatura fixa por ora (a contagem mostrou que só o Elias tem frase fixa de verdade). Os cartões viraram os moldes da grade v4, com ficha completa de cada um em `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`.

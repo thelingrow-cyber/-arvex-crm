@@ -159,7 +159,7 @@ A oferta fecha a conta com a saída de menor exposição possível (modelos pron
 ### Correção: os dois maiores "cortes" não são cortes
 
 `DUdgGqjEWeR` (1,58 mi) e `DUbVSO3kVrL` (1,31 mi) estão classificados como *corte de fala espontânea*. São outro formato: **tela dividida "19 anos × 25 anos" / "15 anos × 25 anos"**. Em cima, um vídeo antigo dela falando; embaixo, ela hoje, **muda**, reagindo (comendo no carro, se maquiando). As legendas confirmam: *"6 anos se passaram e a minha caixinha de nãos continua crescendo"* · *"Algumas opiniões envelhecem como vinho"*.
-Toda a fala é da versão antiga. O formato depende de arquivo de anos atrás; **não é replicável por quem não tem**. A mediana de "corte" (174 mil) e o teto (1,58 mi) do Anexo A misturam os dois formatos: reclassificar em `classificacao.json` e regerar os anexos.
+Toda a fala é da versão antiga. O formato depende de arquivo de anos atrás; **não é replicável por quem não tem**. **Reclassificado em 14/10:** no Anexo A, o corte de fala espontânea ficou com 10 vídeos, mediana de 168 mil e teto de 422 mil (antes: 174 mil e 1,58 mi). A tela dividida antes × hoje virou linha própria, com 2 vídeos.
 
 ### Para o Vitor
 
@@ -176,6 +176,7 @@ Cada roteiro contado uma vez (repostagens fora). *Testes* = abaixo de 500 views.
 
 | Formato | Vídeos | Mediana de views | Teto | Duração mediana | Testes reprovados |
 |---|---|---|---|---|---|
+| Tela dividida antes × hoje (arquivo antigo) | 2 | 1.447.916 | 1.584.980 | 70s | 0 |
 | Demonstração (voz) | 1 | 799.578 | 799.578 | 60s | 0 |
 | Paródia / humor | 1 | 729.038 | 729.038 | 31s | 0 |
 | Estético / música | 2 | 706.071 | 858.178 | 54s | 0 |
@@ -186,7 +187,7 @@ Cada roteiro contado uma vez (repostagens fora). *Testes* = abaixo de 500 views.
 | Lifestyle / tutorial | 6 | 400.621 | 606.005 | 110s | 0 |
 | Mecanismo com nome | 6 | 261.828 | 753.559 | 157s | 0 |
 | Par de palavras | 4 | 192.121 | 597.491 | 83s | 0 |
-| Corte de fala espontânea | 12 | 174.083 | 1.584.980 | 34s | 0 |
+| Corte de fala espontânea | 10 | 168.413 | 422.015 | 30s | 0 |
 
 ## Anexo B — os vídeos, com a abertura literal
 
@@ -194,9 +195,9 @@ Ordenados por views. 🔁 = repostagem · 🧪 = teste reprovado · ❤ -1 = cur
 
 | Views | ❤ | 💬 | Data | Dur. | Formato | Gancho (tipo) | Fecho | Abertura literal |
 |---|---|---|---|---|---|---|---|---|
-| [1.584.980](https://www.instagram.com/reel/DUdgGqjEWeR/) | 56.931 | 481 | 2026-02-07 | 66s | Corte de fala espontânea | rebate uma frase-desculpa ('meu ego é grande demais pra receber não') | 'se a gente não tenta, não sai do lugar' | meu ego é grande demais pra eu passar vergonha e receber um não. Para com isso. Gente, se vocês já tiveram noção que quanto mais alto a pessoa tá,… |
+| [1.584.980](https://www.instagram.com/reel/DUdgGqjEWeR/) | 56.931 | 481 | 2026-02-07 | 66s | Tela dividida antes × hoje (arquivo antigo) | rebate uma frase-desculpa ('meu ego é grande demais pra receber não') | 'se a gente não tenta, não sai do lugar' | meu ego é grande demais pra eu passar vergonha e receber um não. Para com isso. Gente, se vocês já tiveram noção que quanto mais alto a pessoa tá,… |
 | [1.321.199](https://www.instagram.com/reel/DbJn2_6q9Th/) | 39.549 | 1.823 | 2026-07-23 | 74s | Regra contraintuitiva | instrução inesperada ('a última coisa que você precisa fazer é comentar a palminha') | 'aí sim, você vai estar sendo útil' | A última coisa que você precisa fazer é comentar a palminha. Se você quer ser útil de verdade na vida de alguém que você gosta muito e você sabe que… |
-| [1.310.852](https://www.instagram.com/reel/DUbVSO3kVrL/) | 53.100 | 523 | 2026-02-06 | 74s | Corte de fala espontânea | crítica construtiva × odiar por odiar | levar a crítica para crescer | eu tenho que ver meus erros pra conseguir consertar então eu preciso que alguém chegue e me fale pô, lanço, tá errando nisso isso é uma crítica… |
+| [1.310.852](https://www.instagram.com/reel/DUbVSO3kVrL/) | 53.100 | 523 | 2026-02-06 | 74s | Tela dividida antes × hoje (arquivo antigo) | crítica construtiva × odiar por odiar | levar a crítica para crescer | eu tenho que ver meus erros pra conseguir consertar então eu preciso que alguém chegue e me fale pô, lanço, tá errando nisso isso é uma crítica… |
 | [1.176.910](https://www.instagram.com/reel/DZz8jWARlDD/) | 64.330 | 1.021 | 2026-06-20 | 59s | Regra contraintuitiva | 'a primeira malícia que você precisa… é esconder seus talentos. Ponto final.' | 'ostentando o quê? O teu esforço.' | A primeira malícia que você precisa desenvolver para sobreviver em um ambiente profissional é esconder os seus talentos. Ponto final. A pessoa tem… |
 | [858.178](https://www.instagram.com/reel/DV6FeYFkbhM/) | 59.985 | 576 | 2026-03-15 | 94s | Estético / música | música + 1 frase | 'construí um lugar para você' | Tables and chairs warmed by all of the dust This is a place where I don't feel alone This is a place where I feel at home Eu construí um lugar para… |
 | [835.902](https://www.instagram.com/reel/DbgLe0cRyX9/) | 26.351 | 377 | 2026-08-01 | 191s | Confissão de virada | 'eu sacrifiquei minha espontaneidade… e esse vídeo é um pedido para que você faça o mesmo' | 'a tua essência também precisa evoluir' | Eu sacrifiquei a minha espontaneidade, a minha autenticidade e a minha naturalidade para dar certo na internet e esse vídeo é um pedido para que você… |

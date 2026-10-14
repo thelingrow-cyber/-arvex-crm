@@ -5,6 +5,19 @@
 **Decisão do Vitor (13/10):** jogo de volume, 10 por dia nesta semana. Vários moldes, um herói só.
 **Herói:** o dono de negócio que sente que está sempre atrasado. O conteúdo alivia e dá direção; não aumenta o medo.
 **Paralelo:** Tay Dantas. "AI Native" entra no fim de alguns vídeos, como ela faz com "Negócios Creators"; não é o assunto.
+**Atualização 14/10:** fichas completas dos moldes 3 a 5, edição por molde e itens 7–8 do portão.
+
+### De onde vem cada molde
+
+| Player | Estudo | O que se leva | Molde |
+|---|---|---|---|
+| Luana Carolina | `players/luana-carolina/ESTUDO.md` | regra contraintuitiva dita como lei · título que é a ordem · uma tomada · vídeos de persona | ⚖️ Regra · 🛠️ Bastidor |
+| Tay Dantas | `players/tay-dantas/ESTUDO.md` | comportamento que mudou → virada para o dono · um dado com fonte · cartão de prova no terço de cima | 📈 Tendência |
+| Elias Maman | `players/elias-maman/ESTUDO.md` | caso com nome contado inteiro · descartar os óbvios na abertura · objeção na boca do espectador | 🏢 Negócio |
+| Matheus Gomes | `players/matheus-gomes/ESTUDO.md` | celular filmando o monitor · título-dilema · reagir em vez de apresentar | 🛠️ Bastidor |
+| Vitor (próprios) | `players/vitor-simoes/ANALISE.md` | frase histórica e identidade (Alexandre 129 mil, "você não é normal" 80 mil) | 🗿 Identidade |
+
+Regras que valem para os quatro players: `players/SINTESE-FORMATOS.md`. Funil e gravação de Luana, Tay e Elias: seções 6–8 de cada estudo. O Matheus não teve a parte de funil.
 
 ---
 
@@ -139,29 +152,75 @@ Matéria-prima: `noticias.py` (filtrar por comportamento, não por lançamento) 
 
 ## 🏢 Formato 3 — Negócio com IA no meio (2 por dia)
 
-**Origem:** Elias Maman, na versão curta: investigação (Casas Bahia, 145 mil) e notícia com dado que inverte (Cristiano Ronaldo, 429 mil). Estudo: `players/elias-maman/ESTUDO.md`.
-**O que é:** notícia ou curiosidade de **empresa**, não de IA. A IA entra como a virada da história, não como o assunto. Corrige o ponto mais fraco do perfil (IA pura: mediana de ~370).
-**Duração:** 45–75s · **Edição:** uma tomada + cartão com a prova (a manchete, a foto, o número).
-**Regras:** caso com nome próprio · todo número com fonte primária · não confundir com o Formato 2, que começa no comportamento das pessoas e não numa empresa.
+**Origem:** Elias Maman, na versão curta: investigação (Casas Bahia, 145 mil) e notícia com dado que inverte (Cristiano Ronaldo, 429 mil). Estudo: `players/elias-maman/ESTUDO.md` §3–4.
+**O que é:** história de **empresa ou pessoa**, não de IA. A IA entra como a virada da história, não como o assunto. Corrige o ponto mais fraco do perfil (IA pura: mediana de ~370).
+**Duração:** 40–75s · **Edição:** molde topo fixo (ver "Edição por molde").
+**Exemplo feito:** *Rei do gelo* (14/10): Frederic Tudor → fábrica de gelo → geladeira → "ser o melhor do jeito antigo não te protege do jeito novo".
+
+| Tempo | Etapa | Regra |
+|---|---|---|
+| 0–5s | **A conclusão ou o choque, primeiro** | a frase que o vídeo vai provar, ou o fato que não deveria ser possível. Opcional: descartar as explicações óbvias antes (*"não foi X, não foi Y, nem Z"*), como o Elias abre |
+| 5–35s | **A história, com nome** | personagem, ano, lugar, valor. Cada frase sobe a aposta. **Um caso contado inteiro**, não três citados de passagem |
+| no meio | **A objeção dita por você** | *"Ah, mas…"*, e responda |
+| ~35–45s | **A virada** | onde a história encosta no agora. A IA aparece aqui, como a nova fábrica de gelo, sem explicar tecnologia |
+| 45–60s | **A chegada** | o que isso muda para quem tem empresa, numa cena que ele reconhece |
+| fim | **A conclusão, de novo** | a mesma frase do começo, agora provada |
+
+**Regras:** caso com nome próprio · todo número com fonte primária · fato histórico conferido antes de gravar · não confundir com o Formato 2, que começa no comportamento das pessoas e não numa empresa.
+**Onde achar:** viradas de mercado em que o líder perdeu para a tecnologia seguinte (gelo, locadora, câmera de filme, enciclopédia, telefonista), e notícia da semana de empresa com nome.
 
 ## 🗿 Formato 4 — Identidade (2 por dia)
 
-**Origem:** os números do próprio Vitor: Alexandre 129 mil, *"você não é normal"* 80 mil. Frases do tipo *"grandes homens dizem não"*, *"homens foram feitos para conquistar"*.
+**Origem:** os números do próprio Vitor: Alexandre 129 mil, *"você não é normal"* 80 mil, *"grandes homens dizem não"*. Frases do tipo *"homens foram feitos para conquistar"*.
 **O que é:** alcance. Não chega no dono e não precisa chegar.
-**Duração:** 30–45s · **Edição:** nenhuma, uma tomada + título.
-**Cuidado:** é o molde que mais alcança e o que mais pode puxar público errado. Olhar quem comenta e quem segue depois de cada um. Estoque: César/Rubicão, Muhammad Ali.
+**Duração:** 30–45s · **Edição:** molde topo fixo, com o título sendo a própria lei.
+
+| Tempo | Etapa | Regra |
+|---|---|---|
+| 0–3s | **A lei** | uma frase de identidade, sem "eu acho": quem é a pessoa que faz X |
+| 3–25s | **A figura e a cena** | uma figura histórica num momento que prova a lei (César no Rubicão, Ali recusando o alistamento). Cena, não biografia |
+| 25–35s | **O porquê** | o que custou e o que ela ganhou por isso |
+| fim | **A lei, de volta** | reformulada para quem assiste, sem acusar ninguém |
+
+**Cuidado:** é o molde que mais alcança e o que mais pode puxar público errado. Olhar quem comenta e quem segue depois de cada um. Frase famosa de autor não entra (regra de 08/10). Estoque: César/Rubicão, Muhammad Ali.
 
 ## 🛠️ Formato 5 — Bastidor (1 por dia)
 
-**Origem:** os vídeos de persona da Luana (bolsa, leituras, microfone), traduzidos: a vida de um dono que constrói com IA.
+**Origem:** os vídeos de persona da Luana (bolsa, leituras, microfone) e o jeito de gravar a tela do Matheus Gomes (`players/matheus-gomes/ESTUDO.md` §2 e §6): com a tela ele faz de 3 a 4 vezes mais.
 **O que é:** afinidade, com a vantagem de também provar que ele faz (a tela, o painel de agentes, o vídeo editado pela própria ferramenta).
-**Pautas:** o que roda na máquina · o que está lendo (só livro lido) · como grava 10 por dia sem editor · a semana e o placar.
-**Regra:** em conta pequena, bastidor sem gancho não sai do lugar. Precisa de algo para **ver** nos primeiros segundos.
+**Duração:** 30–60s · **Gravação:** celular apontado para o monitor, mão e ambiente no quadro, sem programa de captura. Primeiro quadro com ação.
+
+| Etapa | Regra |
+|---|---|
+| **O que eu fiz, numa frase de choque** | *"Montei numa noite o que…"* (só com número real) |
+| **"Deixa eu te mostrar"** | a tela entra no meio, não na abertura; rosto em ~60% do tempo |
+| **"Imagina isso na sua empresa"** | a virada, em palavras livres |
+| **Uma pergunta para o comentário** | sem isca de engajamento (*"se bater mil curtidas…"*) |
+
+**Título fixo:** o dilema ou a aposta, não a descrição (*"ISSO AQUI É GENIALIDADE OU ROUBO?"*, 839 mil).
+**Duas fontes de tela:** o que ele construiu (CRM, agentes, QG, o editor de vídeo) e o que saiu e ele testou (como o REA). A segunda rende mais e custa menos.
+**Proibido:** tutorial passo a passo e prompt nos comentários (é para dev, não para o dono).
 **Pendente do Vitor:** o que pode aparecer (quais telas, e se viagem e rotina pessoal entram).
 
 ## 📎 Referência do dia (2 por dia)
 
 O Vitor manda duas por dia. Modela-se **só o mecanismo** do original, na voz dele: nenhuma expressão do player, nenhuma frase famosa de autor. Ficha em `banco-roteiros/referencias/`.
+
+---
+
+## Edição por molde (aprovado em 14/10)
+
+| Molde | Edição | Script de partida |
+|---|---|---|
+| 🏢 Negócio · 🗿 Identidade | **topo fixo:** pintura clássica histórica que traduz a tese, fixa o vídeo todo, cantos retos · título em Bebas Neue embaixo · legenda de uma palavra em Montserrat · inserções reais nas laterais, alternando | `tools/video-recut/videos/2026-10-rei-do-gelo/montar.py` |
+| ⚖️ Regra | uma tomada + título fixo que é a **ordem** (não repete a fala) + legenda de uma palavra; inserção só se o caso tiver imagem real | idem, sem as laterais |
+| 📈 Tendência | topo fixo + inserções de prova (manchete, número, empresa) | idem |
+| 🛠️ Bastidor | tela filmada com o celular, título-dilema no topo | — |
+| 📎 Referência | conforme o original | — |
+
+Primeiro passo de qualquer bruto: `tools/video-recut/limpar.cjs` (corta silêncio e repetição).
+**Reprovado:** borda redonda, logo em fundo branco, imagem genérica, motion de desenho, texto descritivo sobre a foto, legenda Segoe de 3 palavras.
+**Créditos:** toda imagem de terceiro com licença anotada no `CREDITOS.txt` do vídeo, para colar na legenda do post.
 
 ---
 
@@ -172,8 +231,10 @@ O Vitor manda duas por dia. Modela-se **só o mecanismo** do original, na voz de
 3. **Fonte:** todo número tem link primário anotado?
 4. **Voz:** lido em voz alta, soa falado? Antes de escrever, ler 3 roteiros do Anexo C do player do formato.
 5. **Conclusão:** dá para dizer em uma frase o que o vídeo conclui? Essa frase está dita no vídeo?
-6. **Chegada:** termina em algo concreto que o dono reconhece, sem virar tutorial?
+6. **Chegada:** termina em algo concreto que o dono reconhece, sem virar tutorial? E é algo que ele faria de verdade?
+7. **Tese:** parece errada no começo e o vídeo prova? Conselho que todo mundo já ouviu ("pare de planejar e faça") não vira vídeo.
+8. **Prova:** o exemplo está contado com o detalhe que prova? Se for o batido de sempre (iPhone, Steve Jobs), vem junto de um menos óbvio que carrega a prova (no "Chegue atrasado", o Zoom)?
 
-Os itens 2, 5 e 6 vieram do teste de roteiro de 13/10, que precisou de quatro versões por falhar em cada um deles.
+Os itens 2, 5 e 6 vieram do teste de roteiro de 13/10, que precisou de quatro versões por falhar em cada um deles. Os itens 7 e 8, do "Chegue atrasado" de 14/10: a primeira tese era senso comum, a ponte com o "primeiro funcionário" era forçada, e o iPhone citado numa frase não provava nada.
 
 Um "não" = não grava. Entra um do estoque.
