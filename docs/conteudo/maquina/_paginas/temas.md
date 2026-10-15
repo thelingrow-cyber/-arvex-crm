@@ -1,30 +1,44 @@
-# Página: temas que o Vitor não cobriu
+# Listar temas não cobertos
 
-Você tem um trabalho só: **ler o que os concorrentes postaram e listar os temas que o Vitor ainda não cobriu.** Você não escreve roteiro.
+## Quando esta página é usada
+Na etapa 2: depois de cada coleta dos concorrentes (a cada 2 dias), pelo comando `python tools/maquina/maquina.py temas`.
 
-## Leia, nesta ordem
+## O que chega
+- O caminho da coleta mais recente: `docs/conteudo/maquina/05-Concorrentes/coletas/<dia>/`, com um JSON por perfil (views, legenda, abertura e transcrição de cada reel).
+- O caminho da lista atual, `01-Ideias/TEMAS-NAO-COBERTOS.md`, e o último número usado.
 
-1. `squads/conteudo/voz.md` e `docs/conteudo/maquina/_regras/proibido.md`. As linhas 8 a 11 dizem qual assunto ele aceita hoje.
-2. A coleta mais recente em `docs/conteudo/maquina/05-Concorrentes/coletas/` (o caminho vem na mensagem): legenda, transcrição e views de cada reel.
-3. O que ele já cobriu ou já tem escrito: os nomes das pastas em `docs/conteudo/maquina/03-Publicados/` e `02-Rascunhos/`, e os títulos em `docs/conteudo/banco-pautas/` e na seção "Adaptação" das fichas de `docs/conteudo/banco-roteiros/referencias/`.
-4. A lista atual, `docs/conteudo/maquina/01-Ideias/TEMAS-NAO-COBERTOS.md` (o arquivo vem na mensagem), para continuar a numeração e não repetir.
+Exemplo de reel da coleta: `{"perfil": "jettfranzen", "views": 325243, "abertura": "When I was a kid, I thought this is what adulthood would look like. Imagine my disappointment."}`
 
-## O que é um tema bom
-
-- É uma **tese** sobre comportamento, identidade, decisão ou filosofia aplicada, e parece errada à primeira vista. Um assunto solto não serve.
-- Nasce de um reel que teve muitas views. Você leva a tensão dele e reescreve com as palavras do Vitor. A frase do concorrente não entra.
-- Passa pelo `proibido.md`: IA não é o assunto, sem historinha comprida, sem preço nem negócio aberto, e sem notícia batida.
-- Não repete nada que ele já cobriu, nem com outras palavras.
-
-## Responda só com as linhas novas, neste formato exato (de 10 a 15 linhas)
-
+## O que sai
+Só as linhas novas da tabela, de 10 a 15, continuando a numeração:
 ```
-| N | Tema (a tese, em uma frase dele) | Molde | Estilo de gancho | Veio de | Views |
+| 4 | Você se sente atrasado em relação a um adulto que só existia na cabeça de uma criança de oito anos. | Identidade | pergunta com alvo | @jettfranzen https://www.instagram.com/reel/DedDyegxjJc/ | 325.243 |
 ```
+Colunas: N · tema (a tese, numa frase do Vitor) · molde (Regra, Identidade, Tendência, Negócio ou Bastidor) · estilo de gancho · veio de (@perfil + link) · views.
 
-- **N:** continua a numeração da lista atual.
-- **Molde:** Regra, Identidade, Tendência, Negócio ou Bastidor (fichas em `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`).
-- **Estilo de gancho:** opinião contrária, "a última coisa que você…", "quanto mais X, mais Y", paradoxo, ordem ou pergunta com alvo.
-- **Veio de:** @perfil e link do reel.
+## Como fazer
+1. Leia `squads/conteudo/voz.md` e `docs/conteudo/maquina/_regras/proibido.md`.
+2. Abra cada JSON da coleta e ordene os reels por views.
+3. Para cada reel com muitas views, escreva a **tensão** dele como tese, nas palavras do Vitor.
+4. Liste o que o Vitor já cobriu: as pastas de `03-Publicados/` e `02-Rascunhos/`, os títulos de `docs/conteudo/banco-pautas/` e as seções "Adaptação" das fichas de `docs/conteudo/banco-roteiros/referencias/`.
+5. Corte toda tese que repete algo já coberto, mesmo com outras palavras.
+6. Corte toda tese que cai no `proibido.md`.
+7. Escreva as linhas no formato acima.
 
-Nenhum texto antes ou depois da tabela. Não escreva o cabeçalho, só as linhas.
+## Regras que não se quebram
+- IA não é o assunto. *Motivo: o Vitor vetou duas vezes em 14/10.*
+- Sem historinha, sem preço, sem negócio aberto. *Motivo: quatro roteiros reprovados em 14/10.*
+- A tese parece errada à primeira vista. *Motivo: conselho que todo mundo já ouviu não vira vídeo (portão 7).*
+- A frase do concorrente não entra, nem traduzida. *Motivo: modelar não é transpor (08/10).*
+
+## Critério de pronto
+- [ ] Toda linha começa com `| N |` e tem as 6 colunas.
+- [ ] Toda linha tem link do reel de origem.
+- [ ] Nenhuma tese aparece já coberta nas pastas e listas do passo 4.
+- [ ] Nenhuma tese cai no `proibido.md`.
+- [ ] Nada antes ou depois das linhas.
+
+## Erros conhecidos
+| Sintoma | Causa | Correção |
+|---|---|---|
+| (vazio: anotar aqui quando aparecer) | | |

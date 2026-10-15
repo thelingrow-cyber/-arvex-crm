@@ -92,13 +92,15 @@ def revisar(pasta):
         parecer = claude("revisor", f"Resultado do `checar_voz.py`:\n\n{voz}\n\nO roteiro (`{rel(rot)}`):\n\n{texto}")
         hist.append(f"## Volta {volta + 1}\n\n{voz}\n\n{parecer}\n")
         aprovado = "VEREDITO: APROVADO" in parecer.upper()
-        if aprovado or volta == VOLTAS:
+        escalado = "VEREDITO: ESCALAR" in parecer.upper()
+        if aprovado or escalado or volta == VOLTAS:
             break
         shutil.copy(rot, os.path.join(pasta, f"roteiro-v{volta + 1}.md"))
         novo = claude("roteiro", f"Reescreva o roteiro abaixo aplicando TODAS as correções do revisor.\n\n"
                       f"## Correções do revisor\n\n{voz}\n\n{parecer}\n\n## Roteiro atual\n\n{texto}", web=True)
         open(rot, "w", encoding="utf-8").write(novo + "\n")
-    veredito = "APROVADO" if aprovado else "REFAZER (esgotou as voltas: o Vitor decide)"
+    veredito = ("APROVADO" if aprovado else "ESCALADO PARA O VITOR (ver revisao.md)" if escalado
+                else "REFAZER (esgotou as voltas: o Vitor decide)")
     open(os.path.join(pasta, "revisao.md"), "w", encoding="utf-8").write(
         f"# Revisão: {veredito}\n\n" + "\n".join(hist))
     return veredito
@@ -123,6 +125,13 @@ def reescrever(pasta, nota):
     shutil.copy(rot, os.path.join(pasta, f"roteiro-v{k}.md"))
     with open(os.path.join(pasta, "notas-do-vitor.md"), "a", encoding="utf-8") as f:
         f.write(f"- {datetime.datetime.now():%d/%m %H:%M} · {nota}\n")
+    # método do Fabiano: a nota vira incidente, e só sai de PENDENTE quando a página da etapa que errou for editada
+    inc = os.path.join(MAQ, "_regras", "INCIDENTES.md")
+    txt = open(inc, encoding="utf-8").read()
+    linha = f"| {datetime.date.today():%d/%m} | 4 · roteiro (conferir se não nasceu antes) | {os.path.basename(pasta)}: {nota.replace('|', '/')} | PENDENTE |\n"
+    txt = txt.replace("\n## Medição semanal", linha + "\n## Medição semanal", 1) if "\n\n## Medição semanal" not in txt else \
+        txt.replace("\n\n## Medição semanal", "\n" + linha + "\n## Medição semanal", 1)
+    open(inc, "w", encoding="utf-8").write(txt)
     novo = claude("roteiro", f"O Vitor leu e não curtiu. **Nota dele:** {nota}\n\n"
                   f"Reescreva aplicando a nota. Ela vale mais que qualquer regra.\n\n"
                   f"## Roteiro atual\n\n{open(rot, encoding='utf-8').read()}", web=True)

@@ -1,51 +1,57 @@
-# Página: opções de capa + materiais
+# Preparar capa e materiais
 
-Você tem um trabalho só: **preparar o que sai junto com o vídeo.** São as opções de capa, a legenda do post e o **material que vai no direct** de quem comentar o código.
+## Quando esta página é usada
+Na etapa 10, com o roteiro já aprovado pelo Vitor: `maquina.py legenda <pasta>`.
 
-No fluxo do Fabiano é a mesma etapa: "se precisar ele dá opções de capa e ainda cria os materiais". No quadro aparecem `guia-completo.pdf`, `modelo-das-paginas.md` e `legenda.txt`. O material é **feito para cada vídeo** e entrega o que o vídeo prometeu, de forma mais completa.
+## O que chega
+O caminho do `roteiro.md` aprovado.
 
-## Leia
-
-- O `roteiro.md` aprovado (o caminho vem na mensagem).
-- `squads/conteudo/voz.md` (o material também sai na voz do Vitor).
-- `docs/conteudo/maquina/_regras/proibido.md`, todos os itens. Os itens 31 e 32 tratam de edição e licença.
-
-## 1. Capa (3 opções de texto)
-
-- Duas linhas no máximo, em Bebas Neue, branca com contorno escuro, o mesmo padrão do título fixo do vídeo.
-- As 3 opções seguem 3 ângulos: a lei, o paradoxo e a ordem.
-- A capa não repete a primeira frase falada.
-- **Capa de série:** se o vídeo for de uma série, mantém a fonte e troca só o texto.
-
-## 2. Material do direct (`guia.md`)
-
-- É o "guia completo" do vídeo: o que o vídeo disse em 40 segundos, aprofundado em **uma página** que a pessoa usa.
-- Formato: título · a tese em 2 linhas · **de 3 a 5 perguntas ou passos que a pessoa aplica na vida dela hoje** · um fecho na voz do Vitor · no fim, uma linha leve sobre quem é o Vitor e onde segui-lo.
-- Sem venda e sem link de produto. Nenhum número sem fonte. Nada do `proibido.md`.
-- **O Vitor ainda aprova esse formato** (até lá, o material fica como rascunho na pasta).
-
-## 3. Legenda do post (`legenda.txt`)
-
-- Primeira linha: a tese em até 12 palavras.
-- Depois, de 2 a 4 linhas curtas que aprofundam sem repetir o vídeo.
-- **Pedido de comentário com código**, como o Fabiano faz em 48 de 50 posts: `Comenta <CÓDIGO> que eu te mando o guia completo no direct.` O código é uma palavra curta, em maiúsculas, ligada ao tema, e precisa ser fácil de digitar.
-- Créditos das imagens, se houver ("Imagens: …", tirado do `CREDITOS.txt`).
-- No máximo 3 hashtags.
-
-## Responda só com isto
-
+## O que sai
 ```
 ## Capa (3 opções)
-1. …
-2. …
-3. …
+1. <a lei>   2. <o paradoxo>   3. <a ordem>
 
 ## Código
-<CÓDIGO>
+<PALAVRA>
 
 ## guia.md
-…
+<o material do direct, no formato abaixo>
 
 ## legenda.txt
-…
+<a legenda do post>
 ```
+
+## Como fazer
+1. Leia o roteiro, `squads/conteudo/voz.md`, `_regras/proibido.md` e a estrutura de referência em `docs/conteudo/maquina/_referencias/guia-fabiano-estrutura.md`.
+2. **Capa:** escreva 3 textos de até 2 linhas (Bebas Neue, branco com contorno). Os ângulos são a lei, o paradoxo e a ordem. Nenhum repete a primeira frase falada.
+3. **Código:** escolha uma palavra curta, em maiúsculas, fácil de digitar e ligada ao tema (exemplo: SILÊNCIO).
+4. **Guia (o material do direct), no formato do guia do Fabiano, adaptado para o tema do vídeo:**
+   1. Selo "Guia exclusivo" e um **título longo que promete o que a pessoa vai conseguir**.
+   2. Abertura: a tese do vídeo em uma frase forte. Se houver, a fonte primária com data.
+   3. O que o guia entrega, contado ("6 perguntas, 1 exercício, 1 checklist").
+   4. 3 números ou marcos de destaque (só os que tiverem fonte, ou contagens do próprio guia).
+   5. Passo a passo numerado (de 5 a 9 passos) que a pessoa aplica **na vida dela**. Cada passo tem uma explicação curta e um "**Atalho:**" com a dica prática.
+   6. De 3 a 5 **perguntas ou prompts prontos para copiar**, cada um com o que devolve.
+   7. Checklist final, "confira antes de…", de 5 a 8 itens.
+   8. Links das fontes, se houver.
+   9. "**Dica do Vitor**": o fecho pessoal, na voz dele, em 3 a 5 frases.
+5. **Legenda:** a tese em até 12 palavras · de 2 a 4 linhas curtas · `Comenta <CÓDIGO> que eu te mando o guia completo no direct.` · créditos das imagens, se houver · no máximo 3 hashtags.
+
+## Regras que não se quebram
+- O guia não copia o texto do guia do Fabiano. Leva só a estrutura. *Motivo: modelar não é transpor.*
+- Nenhum número sem fonte, e nada do `proibido.md`. *Motivo: o material sai com o nome do Vitor.*
+- Sem venda e sem link de produto no guia. *Motivo: a oferta do Vitor ainda não foi definida para o funil.*
+- O guia entrega o que o vídeo prometeu, nem mais nem outro assunto. *Motivo: quem comentou quer aquilo.*
+
+## Critério de pronto
+- [ ] As 4 seções de saída estão presentes.
+- [ ] O guia tem as 9 partes, com passos que trazem "Atalho:".
+- [ ] A legenda traz o pedido de comentário com o código.
+- [ ] Nada do `proibido.md`.
+
+## Erros conhecidos
+| Sintoma | Causa | Correção |
+|---|---|---|
+| (vazio: anotar aqui quando aparecer) | | |
+
+> ⚠️ **Formato do guia pendente de aprovação do Vitor** (15/10). Até lá, o `guia.md` fica como rascunho na pasta do vídeo.
