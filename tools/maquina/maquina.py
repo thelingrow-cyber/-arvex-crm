@@ -7,7 +7,8 @@ uso:
   python tools/maquina/maquina.py temas                       # 2 · lista temas novos em 01-Ideias
   python tools/maquina/maquina.py roteiro 12 [13 14 …]        # 4+5 · roteiro + checagem de voz + revisor (até 2 voltas)
   python tools/maquina/maquina.py reescrever <pasta> "nota"   # 6 · o Vitor não curtiu: reescreve com a nota dele
-  python tools/maquina/maquina.py corte <pasta>               # 8 · bruto/ → vídeo limpo (limpar.cjs: última tentativa, sem pausas)
+  python tools/maquina/maquina.py corrigir <pasta>            # ciclo · diagnostica qual página errou e propõe a edição (antes → depois)
+  python tools/maquina/maquina.py corte <pasta>              # 8 · bruto/ → vídeo limpo (limpar.cjs: última tentativa, sem pausas)
   python tools/maquina/maquina.py edicao <pasta>              # 9 · plano de legenda e animações + CREDITOS.txt
   python tools/maquina/maquina.py legenda <pasta>             # 10 · capas + código + guia.md (material do direct) + legenda.txt
   python tools/maquina/maquina.py arquivar <pasta> [--limpar] # 11 · move para 03-Publicados (--limpar apaga o bruto)
@@ -149,7 +150,20 @@ def legenda(pasta):
         return ((m.group(1) or m.group(2)) if m else "").strip()
     open(os.path.join(pasta, "legenda.txt"), "w", encoding="utf-8").write(secao("legenda.txt") + "\n")
     open(os.path.join(pasta, "guia.md"), "w", encoding="utf-8").write(secao("guia.md") + "\n")
-    print(f"materiais.md (capas + código) · guia.md (material do direct) · legenda.txt em {rel(pasta)}")
+    from guia_pdf import gerar
+    pdf = gerar(pasta)
+    print(f"materiais.md (capas + código) · guia.md + guia.pdf (material do direct) · legenda.txt em {rel(pasta)}")
+
+
+# ---------- ciclo · corrigir a página, não o caso ----------
+def corrigir(pasta):
+    pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
+    arqs = [rel(p) for p in sorted(glob.glob(os.path.join(pasta, "roteiro*.md")) +
+                                  glob.glob(os.path.join(pasta, "notas-do-vitor.md")) +
+                                  glob.glob(os.path.join(pasta, "revisao.md")))]
+    out = claude("corrigir", "Arquivos desta pasta:\n" + "\n".join(f"- `{a}`" for a in arqs))
+    open(os.path.join(pasta, "correcao-de-pagina.md"), "w", encoding="utf-8").write(out + "\n")
+    print(f"diagnóstico em {rel(pasta)}/correcao-de-pagina.md: ler, aplicar a edição na página e tirar o PENDENTE do INCIDENTES.md")
 
 
 # ---------- 8 · corte ----------
@@ -210,6 +224,8 @@ def main():
         reescrever(a[1], " ".join(a[2:]))
     elif cmd == "legenda":
         legenda(a[1])
+    elif cmd == "corrigir":
+        corrigir(a[1])
     elif cmd == "corte":
         corte(a[1])
     elif cmd == "edicao":
