@@ -144,7 +144,9 @@ def legenda(pasta):
     pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
     out = claude("capa", f"Roteiro aprovado: `{rel(os.path.join(pasta, 'roteiro.md'))}`")
     open(os.path.join(pasta, "materiais.md"), "w", encoding="utf-8").write(out + "\n")
-    secao = lambda nome: (re.search(rf"## {re.escape(nome)}\s*(.*?)(?=\n## |\Z)", out, re.S | re.I) or [None, ""])[1].strip()
+    def secao(nome):  # a seção inteira até o próximo "## " de topo; tira a cerca ``` que o modelo às vezes põe em volta
+        m = re.search(rf"^## {re.escape(nome)}\s*\n(?:```\w*\n(.*?)\n```|(.*?)(?=^## |\Z))", out, re.S | re.I | re.M)
+        return ((m.group(1) or m.group(2)) if m else "").strip()
     open(os.path.join(pasta, "legenda.txt"), "w", encoding="utf-8").write(secao("legenda.txt") + "\n")
     open(os.path.join(pasta, "guia.md"), "w", encoding="utf-8").write(secao("guia.md") + "\n")
     print(f"materiais.md (capas + código) · guia.md (material do direct) · legenda.txt em {rel(pasta)}")
