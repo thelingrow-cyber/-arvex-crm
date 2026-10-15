@@ -1,4 +1,48 @@
-# Ponto de retomada — sessão 21 a 23/09/2026
+# Ponto de retomada
+
+## ▶ RETOMAR AQUI — 15/10/2026 (Claude Code, Orion)
+
+**Objetivo (visão do Vitor, 15/10):** uma máquina de conteúdo da marca pessoal em que **ele só grava**. Roteiro, edição, legenda, material do direct e agendamento da postagem saem daqui, sem ele entrar no Instagram.
+
+**Estado:** a máquina foi construída copiando o fluxo do Fabiano Carvalho (reel `DeSN2nhFZr3`, conferido quadro a quadro, mais o guia/PDF que ele entrega no direct). O mapa está em `docs/conteudo/maquina/README.md`.
+- **Scripts:**
+  - `tools/maquina/coletar.py`: etapas 1 e 3, concorrentes e banco de ganchos.
+  - `maquina.py`: comandos `temas`, `roteiro N`, `revisar`, `reescrever`, `corrigir`, `corte`, `edicao`, `legenda`, `arquivar` e `status`.
+  - `checar_voz.py`.
+  - `guia_pdf.py`.
+- **Como os agentes rodam:** cada etapa é uma sessão nova de `claude -p` lendo uma página, com 7 seções, em `_paginas/`. As regras ficam em `_regras/` (`proibido.md`, `nao-fale-assim.md`, `INCIDENTES.md` com a medição).
+- **Rodou de verdade:**
+  - coleta: 7 perfis e 73 reels;
+  - 13 temas;
+  - 42 ganchos;
+  - 4 roteiros;
+  - o guia em PDF do tema 8.
+- **Roteiros prontos em `02-Rascunhos/`:**
+  - **014 "Quem tá atrasado não pode correr": APROVADO pelo revisor**, é o recomendado.
+  - 008 "Quem acerta ganha silêncio": tem capa, legenda e `guia.pdf`.
+  - 003 e 004.
+
+**Pendências do Vitor:**
+1. Gravar o 014 ou o 008.
+2. Aprovar o formato do guia do direct (`Downloads\guia-quem-acerta-ganha-silencio.pdf`).
+3. Dar o ok para agendar a coleta a cada 2 dias no Windows.
+
+**Próximo passo técnico, em ordem:**
+1. Montagem automática do vídeo a partir do `edicao.md`.
+2. Capa em imagem.
+3. Postagem e agendamento pela API do Instagram (com @devops, credencial só por env).
+4. Corrigir o @ do Speltz, que voltou vazio.
+5. Refazer o `voz.md` com os takes de outubro.
+
+**Regras novas (memória):**
+- Roteiro avulso não tem IA como assunto, não é historinha e não é preço ou negócio aberto.
+- Começa pelas referências do banco, na estrutura da Luana.
+
+**Commits locais (sem push):** de `15918f9` a `8006379`, mais o fechamento desta sessão.
+
+---
+
+# Histórico — sessão 21 a 23/09/2026
 
 > Atualizado em 2026-09-23, fim da sessão. Ferramenta: Claude Code (Opus 5).
 

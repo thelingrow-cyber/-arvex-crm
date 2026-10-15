@@ -224,6 +224,8 @@ def main():
         reescrever(a[1], " ".join(a[2:]))
     elif cmd == "legenda":
         legenda(a[1])
+    elif cmd == "revisar":  # roteiro escrito fora da máquina: passa só pela etapa 5
+        print(revisar(os.path.join(RASC, os.path.basename(a[1].rstrip("/\\")))))
     elif cmd == "corrigir":
         corrigir(a[1])
     elif cmd == "corte":

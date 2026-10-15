@@ -17,3 +17,4 @@
 | 11 | Briga barulhenta quase sempre é um pedido de conexão disfarçado. | Tendência | opinião contrária | @tay.ldantas https://www.instagram.com/reel/Dd2RsbvxWPM/ | 378.528 |
 | 12 | A frase perfeita convence menos do que a frase de quem tá de fato apaixonado pelo que fala. | Identidade | opinião contrária | @tay.ldantas https://www.instagram.com/reel/Dd9MKqyxvRh/ | 238.516 |
 | 13 | Quando copiar fica de graça, o que ninguém consegue copiar é o critério de quem escolhe. | Tendência | "a última coisa que você…" | @matheusgomes https://www.instagram.com/reel/DeN04mJslIC/ | 1.795.695 |
+| 14 | Quem tá atrasado não pode se dar ao luxo de correr. | Regra | "a última coisa que você…" | @luanacarolina.s https://www.instagram.com/reel/DbJn2_6q9Th/ (mecanismo) | 1.321.199 |
