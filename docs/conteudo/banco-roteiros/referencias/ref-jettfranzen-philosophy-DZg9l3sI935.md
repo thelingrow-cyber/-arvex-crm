@@ -64,3 +64,39 @@ nenhum (take único)
 
 ## Adaptação
 
+
+**Mecanismo (o que se modela):** abre com uma imagem forte e antiga → "isso é comum hoje" → quem luta contra algo vira esse algo → exemplo do dia a dia → a regra (você vira o que consome) → fecho que volta à imagem do começo. A citação de Nietzsche e o "abismo" NÃO entram.
+
+**Versão Vitor v1 · 14/10** (sem ângulo de negócio, a pedido; outra imagem no lugar do abismo):
+
+> Fica muito tempo num quarto escuro e repara: o seu olho se acostuma. Depois de um tempo, você nem lembra que tá no escuro.
+>
+> Com a cabeça é igual.
+>
+> Tem gente que passa o dia inteiro brigando com o que odeia. Assiste, comenta, compartilha, xinga. Diz que é contra aquilo, mas é o assunto que mais ocupa a cabeça dela.
+>
+> Aí, no primeiro comentário que discorda, ela responde com a mesma raiva que dizia combater.
+>
+> Você vira aquilo que você mais olha. Tanto faz se é pra admirar ou pra criticar.
+>
+> Então presta atenção no que você olha o dia inteiro. De tanto olhar, o escuro vira o lugar onde você mora.
+
+Notas: ~35s. Sem a citação e sem o exemplo político ("lutar contra o ódio").
+
+❌ **v1 reprovada (14/10):** "o dele tá bem melhor". Tirar a citação tirou o gancho; o quarto escuro é imagem fraca perto do abismo; o exemplo ficou genérico e não acusa quem assiste.
+
+**Versão Vitor v2 · 14/10 (VIGENTE):** a citação é do Nietzsche (domínio público), não do Jett, então ela fica. O que muda é a explicação, com palavras do Vitor.
+
+> Nietzsche escreveu: quem luta contra monstros precisa tomar cuidado pra não virar um deles.
+>
+> E se você olha muito tempo pro abismo, o abismo começa a olhar de volta pra você.
+>
+> Repara na internet hoje. A pessoa diz que é contra o ódio, e é a primeira a xingar quem discorda dela.
+>
+> Ela consumiu tanto aquilo que combatia que virou aquilo.
+>
+> Essa é a armadilha. Quanto mais você briga com uma coisa, mais tempo passa olhando pra ela. E você vira o que você mais olha.
+>
+> Então escolhe bem pra onde você olha. Senão, um dia, quem te encara no espelho é o abismo.
+
+Notas: ~30s.
