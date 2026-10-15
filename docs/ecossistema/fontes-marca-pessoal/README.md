@@ -18,3 +18,4 @@ modelar é diferente de transpor, então expressões e frases dos autores não v
 | `2026-10-15-matt-gray-5-niveis-marca-pessoal.md` | Matt Gray | 5 níveis da marca lucrativa | ✅ 5 pontos |
 | `2026-10-15-rollston-7-principios-se-destacar.md` | Rollston (provável) | se destacar sem copiar | ✅ 5 pontos |
 | `2026-10-15-daniel-dalen-documentar-jornada.md` | Daniel Dalen | documentar a jornada de founder | ✅ 5 pontos |
+| `2026-10-15-dan-koe-renascentista-digital.md` | Dan Koe | 3 tipos de pessoa na era da IA | ✅ 5 pontos |
