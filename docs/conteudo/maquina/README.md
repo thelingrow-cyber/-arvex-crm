@@ -17,6 +17,8 @@
 | 8 | Corte (escolhe os melhores takes, corta cada pausa, renderiza) | `maquina.py corte` → `limpar.cjs` (fica a última tentativa de cada frase) | `bruto/` | vídeo limpo + `RELATORIO.md` | ✅ |
 | 9 | Legendas + animações | `_paginas/animacoes.md` (`maquina.py edicao`) → `montar.py` | roteiro + transcrição com tempos | `edicao.md` (pintura do topo, título, inserções com licença) + `CREDITOS.txt` | 🟡 o plano sai automático, mas a montagem ainda é por vídeo |
 | 10 | Opções de capa + materiais | `_paginas/capa.md` (`maquina.py legenda`) | roteiro aprovado | 3 capas + código + **`guia.md`** (o material do direct) + `legenda.txt` | 🟡 o formato do guia precisa da aprovação do Vitor; capa só em texto |
+| 10b | Guia em PDF (o arquivo que vai no direct) | `tools/maquina/guia_pdf.py` (roda dentro do `legenda`) | `guia.md` | `guia.pdf`, no molde do PDF do Fabiano | ✅ |
+| ciclo | Corrigir a página, não o caso (prompt 3 do guia dele) | `_paginas/corrigir.md` (`maquina.py corrigir`) | roteiro + nota do Vitor | `correcao-de-pagina.md`: a etapa que errou e a edição no formato antes → depois | ✅ |
 | 11 | Arquiva tudo e limpa as gravações | `maquina.py arquivar <pasta> --limpar` | pasta do rascunho | `03-Publicados/`, com o bruto apagado | ✅ |
 
 ## Conferência com a fala do Fabiano (15/10)
