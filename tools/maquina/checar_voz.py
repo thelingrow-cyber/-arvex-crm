@@ -50,7 +50,8 @@ def checar(md):
             erros.append(f"frase sem fôlego ({len(frase.split())} palavras): '{frase[:70]}…' (proibido 25)")
     if re.search(r"\b\w+(?:ção|dade|ência|ância|ismo), \w+(?:ção|dade|ência|ância|ismo) e \w+(?:ção|dade|ência|ância|ismo)\b", baixo):
         erros.append("tríade de abstrações (proibido 22)")
-    hits = [p for p in IA if re.search(p, t, re.I)]
+    # "IA" em maiúscula de propósito: com re.I casaria o verbo "ia" ("eu ia ter casa")
+    hits = [p for p in IA if re.search(p, t, 0 if p == r"\bIA\b" else re.I)]
     if hits:
         avisos.append("fala de IA: confirmar que IA não é o assunto, no máximo a virada (proibido 8)")
     palavras = len(t.split())

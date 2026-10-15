@@ -7,8 +7,10 @@ uso:
   python tools/maquina/maquina.py temas                       # 2 · lista temas novos em 01-Ideias
   python tools/maquina/maquina.py roteiro 12 [13 14 …]        # 4+5 · roteiro + checagem de voz + revisor (até 2 voltas)
   python tools/maquina/maquina.py reescrever <pasta> "nota"   # 6 · o Vitor não curtiu: reescreve com a nota dele
-  python tools/maquina/maquina.py legenda <pasta>             # 10 · capa (3 opções) + legenda.txt
-  python tools/maquina/maquina.py arquivar <pasta>            # 11 · move para 03-Publicados
+  python tools/maquina/maquina.py corte <pasta>               # 8 · bruto/ → vídeo limpo (limpar.cjs: última tentativa, sem pausas)
+  python tools/maquina/maquina.py edicao <pasta>              # 9 · plano de legenda e animações + CREDITOS.txt
+  python tools/maquina/maquina.py legenda <pasta>             # 10 · capas + código + guia.md (material do direct) + legenda.txt
+  python tools/maquina/maquina.py arquivar <pasta> [--limpar] # 11 · move para 03-Publicados (--limpar apaga o bruto)
   python tools/maquina/maquina.py status                      # rascunhos e veredito de cada um
 """
 import datetime, glob, json, os, re, shutil, subprocess, sys, unicodedata
@@ -133,17 +135,45 @@ def legenda(pasta):
     pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
     out = claude("capa", f"Roteiro aprovado: `{rel(os.path.join(pasta, 'roteiro.md'))}`")
     open(os.path.join(pasta, "materiais.md"), "w", encoding="utf-8").write(out + "\n")
-    m = re.search(r"## legenda\.txt\s*(.*)", out, re.S | re.I)
-    open(os.path.join(pasta, "legenda.txt"), "w", encoding="utf-8").write((m.group(1) if m else out).strip() + "\n")
-    print(f"materiais.md + legenda.txt em {rel(pasta)}")
+    secao = lambda nome: (re.search(rf"## {re.escape(nome)}\s*(.*?)(?=\n## |\Z)", out, re.S | re.I) or [None, ""])[1].strip()
+    open(os.path.join(pasta, "legenda.txt"), "w", encoding="utf-8").write(secao("legenda.txt") + "\n")
+    open(os.path.join(pasta, "guia.md"), "w", encoding="utf-8").write(secao("guia.md") + "\n")
+    print(f"materiais.md (capas + código) · guia.md (material do direct) · legenda.txt em {rel(pasta)}")
+
+
+# ---------- 8 · corte ----------
+def corte(pasta):
+    pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
+    brutos = sorted(glob.glob(os.path.join(pasta, "bruto", "*")))
+    if not brutos:
+        sys.exit(f"ponha a gravação em {rel(pasta)}/bruto/ e rode de novo")
+    nome = os.path.basename(pasta)
+    subprocess.run(["node", os.path.join(RAIZ, "tools", "video-recut", "limpar.cjs"), brutos[-1], nome], check=True)
+    print(f"vídeo limpo: Downloads\\{nome}-limpo.mp4 · relatório: tools/video-recut/work/{nome}/limpeza/RELATORIO.md")
+
+
+# ---------- 9 · legendas + animações (plano) ----------
+def edicao(pasta):
+    pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
+    tr = os.path.join(RAIZ, "tools", "video-recut", "work", os.path.basename(pasta), "limpeza", "transcricao.json")
+    msg = f"Roteiro: `{rel(os.path.join(pasta, 'roteiro.md'))}`" + (f"\nTranscrição com tempos: `{rel(tr)}`" if os.path.exists(tr) else
+                                                                  "\n(Ainda sem gravação: dê os tempos como estimativa pela ordem das frases.)")
+    out = claude("animacoes", msg, web=True)
+    open(os.path.join(pasta, "edicao.md"), "w", encoding="utf-8").write(out + "\n")
+    m = re.search(r"## CREDITOS\.txt\s*(.*)", out, re.S | re.I)
+    open(os.path.join(pasta, "CREDITOS.txt"), "w", encoding="utf-8").write((m.group(1) if m else "").strip() + "\n")
+    print(f"edicao.md + CREDITOS.txt em {rel(pasta)}")
 
 
 # ---------- 11 · arquivar ----------
-def arquivar(pasta):
+def arquivar(pasta, limpar=False):
     origem = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
+    destino = os.path.join(PUBL, os.path.basename(origem))
     os.makedirs(PUBL, exist_ok=True)
-    shutil.move(origem, os.path.join(PUBL, os.path.basename(origem)))
-    print(f"arquivado em {rel(PUBL)}/{os.path.basename(origem)}")
+    shutil.move(origem, destino)
+    if limpar and os.path.isdir(os.path.join(destino, "bruto")):  # "limpa as gravações", só depois de postado
+        shutil.rmtree(os.path.join(destino, "bruto"))
+    print(f"arquivado em {rel(destino)}" + (" · gravação bruta apagada" if limpar else ""))
 
 
 def status():
@@ -169,8 +199,12 @@ def main():
         reescrever(a[1], " ".join(a[2:]))
     elif cmd == "legenda":
         legenda(a[1])
+    elif cmd == "corte":
+        corte(a[1])
+    elif cmd == "edicao":
+        edicao(a[1])
     elif cmd == "arquivar":
-        arquivar(a[1])
+        arquivar(a[1], "--limpar" in a)
     elif cmd == "status":
         status()
     else:

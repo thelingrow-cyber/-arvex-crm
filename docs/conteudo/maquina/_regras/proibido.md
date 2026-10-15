@@ -10,7 +10,7 @@
 3. **Não bater em quem vendeu IA para o empresário.** É regra do brand book.
 4. **Número inventado não entra.** Todo número é de terceiro, com veículo, data e link da fonte primária. Na dúvida, o número sai.
 5. **Frase famosa de autor não entra** (Platão, Nietzsche, Jobs…). Modela-se o mecanismo, não a citação (08/10).
-6. **Expressões do player modelado não entram** ("Ponto final", "presta atenção no discurso", "Tá, Luana"). Roteiro "no estilo de X" leva só o mecanismo de X, dito na voz do Vitor (08/10).
+6. **Expressões do player modelado não entram** ("Ponto final", "presta atenção no discurso", "Tá, Luana"). Roteiro "no estilo de X" leva só o mecanismo de X, dito na voz do Vitor (08/10). **Exceção que pode:** a objeção "Tá, Vitor, mas…" faz parte da estrutura aprovada da Regra (`LINHA-EDITORIAL-FORMATOS.md`) e não conta como transposição. Traduzir literalmente a primeira frase de um gancho estrangeiro conta como transposição.
 7. **Material de mentoria de terceiros** não é fonte de nada.
 
 ## Assunto (14/10: quatro roteiros reprovados seguidos)
