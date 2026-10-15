@@ -2,8 +2,6 @@
 
 ## ▶ RETOMAR AQUI — 15/10/2026 (Claude Code, Orion)
 
-**Objetivo (visão do Vitor, 15/10):** uma máquina de conteúdo da marca pessoal em que **ele só grava**. Roteiro, edição, legenda, material do direct e agendamento da postagem saem daqui, sem ele entrar no Instagram.
-
 **Estado:** a máquina foi construída copiando o fluxo do Fabiano Carvalho (reel `DeSN2nhFZr3`, conferido quadro a quadro, mais o guia/PDF que ele entrega no direct). O mapa está em `docs/conteudo/maquina/README.md`.
 - **Scripts:**
   - `tools/maquina/coletar.py`: etapas 1 e 3, concorrentes e banco de ganchos.
