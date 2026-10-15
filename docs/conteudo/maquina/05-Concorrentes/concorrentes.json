@@ -1,0 +1,15 @@
+{
+  "_nota": "Perfis puxados pela etapa 1 a cada 2 dias. 'lang' = idioma da fala (Groq). Acrescentar perfil = uma linha.",
+  "limite_por_perfil": 12,
+  "transcrever_top": 6,
+  "perfis": [
+    {"usuario": "luanacarolina.s",   "nome": "Luana Carolina",     "lang": "pt", "por_que": "regra dita como lei (molde principal)"},
+    {"usuario": "tay.ldantas",       "nome": "Tay Dantas",         "lang": "pt", "por_que": "tendência → negócio"},
+    {"usuario": "fabianocarvalhojr", "nome": "Fabiano Carvalho",   "lang": "pt", "por_que": "concorrente direto, 7/dia"},
+    {"usuario": "elias.maman",       "nome": "Elias Maman",        "lang": "pt", "por_que": "caso com nome"},
+    {"usuario": "matheusgomes",      "nome": "Matheus Gomes",      "lang": "pt", "por_que": "bastidor de tela"},
+    {"usuario": "jettfranzen",       "nome": "Jett",               "lang": "en", "por_que": "filosofia curta (referência do Vitor)"},
+    {"usuario": "pedronfrey",        "nome": "Pedro Frey",         "lang": "en", "por_que": "filosofia curta (referência do Vitor)"},
+    {"usuario": "christopherspeltz", "nome": "Christopher Speltz", "lang": "en", "por_que": "identidade, opinião contrária (referência do Vitor)"}
+  ]
+}

@@ -90,3 +90,30 @@ nenhum (take único)
 > Quem não precisa não tem dono.
 
 Notas: ~30s, uma tomada. **Título fixo:** QUEM PRECISA DE APLAUSO TEM DONO. **Topo (molde topo fixo):** Jean-Léon Gérôme, *Pollice Verso* (1872, Phoenix Art Museum, domínio público), o gladiador esperando o veredito da multidão. Nenhum fato para conferir.
+
+**Versão Vitor v2 · 14/10 (na estrutura da Luana, a pedido)**: lei com o molde "a última coisa que você…" → frases de quem pensa errado, imitadas → o porquê em tom de conversa → objeção na boca do espectador → exemplo que todo mundo reconhece → fecho curto que reformula a lei.
+
+> A última coisa que você deveria querer é que todo mundo goste de você.
+>
+> Olha como a pessoa fala:
+> "Ah, não vou postar isso não, vai que alguém não gosta."
+> "Melhor eu ficar quieto, pra não criar clima."
+> "Até queria mudar, mas o que vão pensar de mim?"
+>
+> Ela acha que tá sendo educada.
+> Tá sendo mandada.
+> Porque quem precisa que todo mundo goste entrega o controle pra qualquer um que torcer o nariz.
+>
+> Tá, Vitor, então é pra ser grosso?
+> Pode ser educado à vontade.
+> Só não pede licença pra ser quem você é.
+>
+> Pensa naquele amigo que todo mundo adora.
+> Concorda com todo mundo, não discute com ninguém.
+> Agora tenta lembrar de uma opinião dele.
+> Nenhuma, né?
+>
+> Agradar todo mundo não é gentileza.
+> É obediência.
+
+Notas: ~35s, uma tomada. **Título fixo (a ordem, não repete a fala):** PARE DE PEDIR LICENÇA PRA SER VOCÊ. As três frases entre aspas são a cena: voz de quem tem medo do que vão achar. "Nenhuma, né?" com pausa antes. O fecho seco, olhando na lente.
