@@ -1,32 +1,32 @@
 {
  "titulo": "COMECE A REMAR ANTES DA ONDA.",
  "topo": {
-  "url": "https://commons.wikimedia.org/wiki/File:Winslow_Homer_-_The_Fog_Warning_-_Google_Art_Project.jpg"
+  "url": "https://commons.wikimedia.org/wiki/File:Washington_Crossing_the_Delaware_by_Emanuel_Leutze,_MMA-NYC,_1851.jpg"
  },
  "laterais": [
   {
-   "de": 7.76,
-   "ate": 9.98,
+   "de": 7.78,
+   "ate": 10.3,
    "lado": "ESQ",
-   "url": "https://commons.wikimedia.org/wiki/File:Praia_da_Enseada_20190623_2.jpg"
+   "url": "https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Der_M%C3%B6nch_am_Meer_-_Google_Art_Project.jpg"
   },
   {
-   "de": 11.12,
-   "ate": 13.92,
+   "de": 10.98,
+   "ate": 13.82,
    "lado": "DIR",
-   "url": "https://commons.wikimedia.org/wiki/File:Mercadinho_JM.jpg"
+   "url": "https://commons.wikimedia.org/wiki/File:Veysey_and_Co_store,_Hoquiam,_Washington,_probably_between_1890_and_1900_(WASTATE_187).jpeg"
   },
   {
-   "de": 14.56,
-   "ate": 19.65,
+   "de": 14.4,
+   "ate": 19.06,
    "lado": "ESQ",
-   "url": "https://commons.wikimedia.org/wiki/File:Mundo_de_entrega_-_Laarissabreu_-_entregador_de_bicicleta.jpg"
+   "url": "https://commons.wikimedia.org/wiki/File:James_and_Ethel_Stout_with_their_delivery_wagon_in_front_of_Stout_Grocery,_Seattle,_circa_1913_(MOHAI_9374).jpg"
   },
   {
-   "de": 28.3,
+   "de": 27.6,
    "ate": 31.3,
    "lado": "DIR",
-   "url": "https://commons.wikimedia.org/wiki/File:Surfer_paddling_out_into_waves.jpg"
+   "url": "https://commons.wikimedia.org/wiki/File:Tsunami_by_hokusai_19th_century.jpg"
   }
  ]
 }

@@ -1,0 +1,32 @@
+{
+ "titulo": "COMECE A REMAR ANTES DA ONDA.",
+ "topo": {
+  "url": "https://commons.wikimedia.org/wiki/File:Winslow_Homer_-_The_Fog_Warning_-_Google_Art_Project.jpg"
+ },
+ "laterais": [
+  {
+   "de": 7.76,
+   "ate": 9.98,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Praia_da_Enseada_20190623_2.jpg"
+  },
+  {
+   "de": 11.12,
+   "ate": 13.92,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Mercadinho_JM.jpg"
+  },
+  {
+   "de": 14.56,
+   "ate": 19.65,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Mundo_de_entrega_-_Laarissabreu_-_entregador_de_bicicleta.jpg"
+  },
+  {
+   "de": 28.3,
+   "ate": 31.3,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Surfer_paddling_out_into_waves.jpg"
+  }
+ ]
+}

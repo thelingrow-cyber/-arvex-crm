@@ -33,9 +33,9 @@ O exemplo real é o "Rei do gelo", aprovado em 14/10. O bloco `edicao.json` é o
 ## Como fazer
 1. Leia o roteiro e a seção "Edição por molde" de `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`.
 2. **Todo vídeo leva topo fixo**, inclusive o molde Regra. *Motivo: o Vitor pediu imagem em cima também no Regra, em 16/10 ("Comece a remar antes da onda").*
-3. Ache no Wikimedia Commons uma pintura clássica de domínio público que **traduza a tese e represente o arquétipo** do vídeo (o homem que decide, constrói, resiste) e anote autor, ano, link e licença. Confira que o link `File:` existe de verdade.
+3. Ache no Wikimedia Commons uma pintura clássica de domínio público que **traduza a tese e represente o arquétipo** do vídeo (o homem que decide, constrói, resiste) e anote autor, ano, link e licença. Confira que o link `File:` existe de verdade. **Prefira o histórico e o filosófico:** Antiguidade, mitologia, grandes mestres (Rembrandt, Caravaggio, David, Turner, Gérôme), batalhas, navegações, pensadores. Nada de nudez. *Motivo: o Vitor pediu "algo mais histórico" em 16/10, e trocou o Pigmalião (nudez) pelo Rembrandt.*
 4. Escreva o título fixo: a ordem ou a lei, sem repetir a primeira fala.
-5. Planeje **de 2 a 4 inserções laterais** (310×390, alternando esquerda e direita), com os tempos, nos momentos concretos da fala (um lugar, um objeto, uma cena, um dado). Caso hipotético também ganha inserção: uma foto real que represente a cena (uma loja de bairro, uma praia), com licença. *Motivo: o Vitor pediu inserções no vídeo do Regra, em 16/10.*
+5. Planeje **de 2 a 4 inserções laterais** (310×390, alternando esquerda e direita), com os tempos, nos momentos concretos da fala (um lugar, um objeto, uma cena, um dado). Caso hipotético também ganha inserção. **As inserções também são históricas:** gravura, pintura ou foto antiga (anterior a 1950) que represente a cena (um armazém antigo, um entregador de época, um barco a remo pintado), e não foto contemporânea de banco. *Motivo: em 16/10 o Vitor pediu inserções "mais históricas"; mercadinho, entregador de bicicleta e surfista de hoje não serviram.* *Motivo: o Vitor pediu inserções no vídeo do Regra, em 16/10.*
 6. Monte o `CREDITOS.txt`.
 7. Feche com o bloco `edicao.json`, com os mesmos topo, título e inserções da tabela.
 
@@ -53,5 +53,6 @@ O exemplo real é o "Rei do gelo", aprovado em 14/10. O bloco `edicao.json` é o
 ## Erros conhecidos
 | Sintoma | Causa | Correção |
 |---|---|---|
+| Topo e inserções contemporâneas demais (16/10, "Remar" v2: Homer ok, mas mercadinho/entregador/surfista de hoje) | a página não pedia imagem histórica | topo e inserções históricas (pintura, gravura, foto antiga) |
 | Regra saiu sem topo e sem inserção (16/10, "Remar"), e o Vitor pediu os dois | a página mandava Regra sem topo e inserção só com caso real | todo molde leva topo e de 2 a 4 inserções |
 | Legenda e inserções fora de hora (16/10, Efeito IKEA) | tempos lidos da transcrição do bruto, antes do corte das pausas | usar `palavras-editado.json`, que já está nos tempos do vídeo cortado |
