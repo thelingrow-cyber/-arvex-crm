@@ -1,6 +1,26 @@
 # Ponto de retomada
 
-## ▶ RETOMAR AQUI — 15/10/2026 (Claude Code, Orion)
+## ▶ RETOMAR AQUI — 16/10/2026 (Claude Code, Orion): automatizar a máquina de ponta a ponta
+
+**Meta do Vitor:** ele só grava e aprova. Toda manhã recebe os roteiros no WhatsApp → grava → sobe no Drive → a máquina edita no molde certo → manda o vídeo no WhatsApp perguntando "aprovado?" → "pode" = posta/agenda no Instagram, sem ele abrir o app.
+
+**Já ligado (16/10):**
+- **Drive:** rclone instalado (winget, v1.75.1), remote `drive:` com escopo **só leitura** na conta thelingrow. Pasta de entrada "Vídeos claude" (nome tem espaço no fim) → usar o ID `1HbNe1b3WuKUBqaosktWyqtrIW3Loedj1` com `--drive-root-folder-id`. ⚠️ O rclone avisou que o client_id compartilhado será desativado em 2026: criar client_id próprio no Google Cloud.
+- **WhatsApp:** instância **`maquina-vitor`** criada na Evolution (`wpp.viziom.io`, VPS Hostinger 187.77.206.39, Docker Swarm), conectada ao número pessoal do Vitor, **sem webhook e fora do CRM**. A máquina manda e lê na conversa "Você" (consulta periódica via `chat/findMessages`). A resposta dele chega com `remoteJid` em `@lid`, não no JID do número: o leitor precisa aceitar os dois. Envio e leitura testados.
+- Env vars do usuário (Windows): `EVOLUTION_API_URL`, `EVOLUTION_API_KEY` (chave global).
+- ⚠️ **Não conectar nada pelo botão de QR do CRM:** o `evolution-proxy` só conhece a instância `arvex-agente-sdr` (da Thalita) e trocaria o número dela.
+- ⚠️ A chave global da Evolution passou pelo chat em 16/10: trocar junto com @devops (servidor + secret do Supabase + credencial do n8n, senão a Carol para).
+
+**Próximo, em ordem:**
+1. Ligar a etapa 9 ao montador: `maquina.py edicao` grava `edicao.md`, e o `tools/maquina/montar.py` (ainda sem commit) espera `edicao.json`.
+2. Criar o maestro: roteiros às 6h → WhatsApp; vigiar o Drive → identificar o roteiro pela fala → corte → montagem → WhatsApp "aprovado?" → ler resposta; avisos de falha; trava para não rodar duas etapas na mesma pasta; vídeo limpo dentro da pasta do rascunho, não em Downloads.
+3. Agendador do Windows (coleta a cada 2 dias + manhã).
+4. Instagram: Graph API (conta profissional + Página do Facebook, ainda não confirmado), app na Meta com @devops.
+5. Montadores por molde (Regra primeiro; depois Negócio/Identidade, Tendência; Bastidor e Referência sem receita).
+
+---
+
+## Retomada anterior — 15/10/2026 (Claude Code, Orion)
 
 **Estado:** a máquina foi construída copiando o fluxo do Fabiano Carvalho (reel `DeSN2nhFZr3`, conferido quadro a quadro, mais o guia/PDF que ele entrega no direct). O mapa está em `docs/conteudo/maquina/README.md`.
 - **Scripts:**
