@@ -22,6 +22,8 @@
 
 **Gatilho da manhã ligado (16/10, 04h50):** tarefa do Windows "ARVEX Maquina - roteiro da manha", única, em 16/10 às 09:00 → `maquina.py manha 1 --as 10:00`: pega o tema não usado com mais views (fila: 5, 13, 9), escreve, passa no revisor; só manda no WhatsApp se APROVADO (até 3 temas); senão manda aviso. Log: `_regras/manha.log` e `manha-saida.log`. **Conferir às 10h se chegou.** Se der certo e o Vitor quiser, virar diária. Atenção: 3 dos 4 roteiros da máquina em 15/10 saíram REFAZER.
 
+**Combinado para a próxima sessão (16/10):** (a) postar pelo Instagram daqui (Vitor confere conta profissional + Página do Facebook; app na Meta com @devops); (b) 3 moldes curtos de volume, ideia dele no modelo do Fabiano: **Curto** (5 frases numa gravação → a máquina corta em 5 vídeos), **Curto com trilha** (trilha livre; áudio em alta do Instagram só postando à mão) e **Curto com conteúdo na legenda** (vídeo = gancho de 8–15 s, conteúdo escrito no post + pedido de comentário com código). Wake timers na tomada liberados (powercfg) para a tarefa das 9h acordar o notebook.
+
 **Próximo, em ordem:**
 1. ~~Ligar a etapa 9 ao montador~~ feito em 16/10.
 2. Criar o maestro: roteiros às 6h → WhatsApp; vigiar o Drive → identificar o roteiro pela fala → corte → montagem → WhatsApp "aprovado?" → ler resposta; avisos de falha; trava para não rodar duas etapas na mesma pasta; vídeo limpo dentro da pasta do rascunho, não em Downloads.
