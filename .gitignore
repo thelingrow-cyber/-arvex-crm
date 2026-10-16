@@ -56,3 +56,9 @@ tmp-listas/
 .claude/skills/*
 # skills próprias (versionadas)
 !.claude/skills/kieai/
+
+# máquina de conteúdo: vídeos brutos vindos do Drive (mídia fica só local)
+docs/conteudo/maquina/00-Entrada/
+docs/conteudo/maquina/**/bruto/
+docs/conteudo/maquina/**/final.mp4
+docs/conteudo/maquina/**/final*.mp4

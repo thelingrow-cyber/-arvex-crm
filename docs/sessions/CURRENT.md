@@ -11,8 +11,17 @@
 - ⚠️ **Não conectar nada pelo botão de QR do CRM:** o `evolution-proxy` só conhece a instância `arvex-agente-sdr` (da Thalita) e trocaria o número dela.
 - ⚠️ A chave global da Evolution passou pelo chat em 16/10: trocar junto com @devops (servidor + secret do Supabase + credencial do n8n, senão a Carol para).
 
+**1º teste de ponta a ponta (16/10, madrugada) — "Efeito IKEA", 6 versões:** Drive → corte → plano de edição → montador → WhatsApp → resposta dele → ajuste → Drive `Vídeos claude/Prontos/`. Funcionou. Final aprovado para subir: `02-Rascunhos/2026-10-16-efeito-ikea/` (topo Rembrandt "O Artista em Seu Ateliê", título "PARE DE AMAR O SEU ORIGAMI TORTO.", gráfico +63% com dado conferido no artigo, sem música). Consertos que o teste exigiu, todos já no código:
+- etapa 9 agora grava `edicao.json` (o montador lê sozinho); `tools/maquina/zap.py` = enviar/esperar no WhatsApp;
+- legenda e inserções usam `palavras-editado.json` (os tempos do bruto atrasavam a legenda);
+- `limpar.cjs` não corta mais a última palavra; o montador deixa 0,6 s de respiro no fim;
+- montador aceita `"musica"` (opcional) e inserção local (`"arquivo"`); legenda menor (46) e mais ao centro (y 1300);
+- rclone agora com escopo **drive** (escrita), autorizado pelo Vitor; `00-Entrada/`, `bruto/` e `final*.mp4` no `.gitignore`.
+- Preferências dele no teste: título é ordem forte (Luana), nada de nudez no topo, música com direito autoral não entra no arquivo (só trilha livre, e ele preferiu sem).
+- ⚠️ O bruto continua na raiz da pasta do Drive: o maestro precisa registrar o que já processou para não refazer.
+
 **Próximo, em ordem:**
-1. Ligar a etapa 9 ao montador: `maquina.py edicao` grava `edicao.md`, e o `tools/maquina/montar.py` (ainda sem commit) espera `edicao.json`.
+1. ~~Ligar a etapa 9 ao montador~~ feito em 16/10.
 2. Criar o maestro: roteiros às 6h → WhatsApp; vigiar o Drive → identificar o roteiro pela fala → corte → montagem → WhatsApp "aprovado?" → ler resposta; avisos de falha; trava para não rodar duas etapas na mesma pasta; vídeo limpo dentro da pasta do rascunho, não em Downloads.
 3. Agendador do Windows (coleta a cada 2 dias + manhã).
 4. Instagram: Graph API (conta profissional + Página do Facebook, ainda não confirmado), app na Meta com @devops.

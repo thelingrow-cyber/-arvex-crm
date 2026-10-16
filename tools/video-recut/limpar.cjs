@@ -126,6 +126,9 @@ function refeito(cauda, prox) {
     keep = keep.flatMap(([x, y]) => (c1 <= x || c0 >= y) ? [[x, y]] : [[x, c0], [c1, y]].filter(([p, q]) => q - p > 0.05));
   }
   keep = keep.sort((p, q) => p[0] - q[0]).reduce((acc, s) => { const l = acc[acc.length - 1]; if (l && s[0] <= l[1] + 0.02) l[1] = Math.max(l[1], s[1]); else acc.push([...s]); return acc; }, []);
+  // a última palavra costuma morrer abaixo do limiar de silêncio e era cortada no meio ("torto", 16/10):
+  // o último trecho vai até o fim da última palavra + 0.5s, ou até o fim do bruto
+  if (keep.length) { const ult = vivos.flatMap((b) => b.w).pop(); if (ult) keep[keep.length - 1][1] = Math.min(dur, Math.max(keep[keep.length - 1][1], ult.e + 0.5)); }
   const total = keep.reduce((s, [x, y]) => s + y - x, 0);
   const off = []; let acc = 0; for (const [x, y] of keep) { off.push(acc); acc += y - x; }
   const map = (t) => { for (let i = 0; i < keep.length; i++) { const [x, y] = keep[i]; if (t < x) return off[i]; if (t <= y) return off[i] + t - x; } return acc; };

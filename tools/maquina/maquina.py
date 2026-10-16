@@ -180,14 +180,19 @@ def corte(pasta):
 # ---------- 9 · legendas + animações (plano) ----------
 def edicao(pasta):
     pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
-    tr = os.path.join(RAIZ, "tools", "video-recut", "work", os.path.basename(pasta), "limpeza", "transcricao.json")
+    tr = os.path.join(RAIZ, "tools", "video-recut", "work", os.path.basename(pasta), "limpeza", "palavras-editado.json")  # tempos do vídeo cortado
     msg = f"Roteiro: `{rel(os.path.join(pasta, 'roteiro.md'))}`" + (f"\nTranscrição com tempos: `{rel(tr)}`" if os.path.exists(tr) else
                                                                   "\n(Ainda sem gravação: dê os tempos como estimativa pela ordem das frases.)")
     out = claude("animacoes", msg, web=True)
     open(os.path.join(pasta, "edicao.md"), "w", encoding="utf-8").write(out + "\n")
-    m = re.search(r"## CREDITOS\.txt\s*(.*)", out, re.S | re.I)
+    m = re.search(r"## CREDITOS\.txt\s*(.*?)(?=\n## |\Z)", out, re.S | re.I)
     open(os.path.join(pasta, "CREDITOS.txt"), "w", encoding="utf-8").write((m.group(1) if m else "").strip() + "\n")
-    print(f"edicao.md + CREDITOS.txt em {rel(pasta)}")
+    j = re.search(r"## edicao\.json\s*```(?:json)?\s*(\{.*?\})\s*```", out, re.S | re.I)
+    if not j:
+        sys.exit(f"o plano não trouxe o bloco edicao.json: veja {rel(os.path.join(pasta, 'edicao.md'))}")
+    plano = json.loads(j.group(1))  # inválido = erro aqui, antes de chegar ao montador
+    json.dump(plano, open(os.path.join(pasta, "edicao.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"edicao.md + edicao.json + CREDITOS.txt em {rel(pasta)}")
 
 
 # ---------- 11 · arquivar ----------

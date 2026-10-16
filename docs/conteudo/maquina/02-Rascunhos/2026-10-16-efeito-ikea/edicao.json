@@ -1,0 +1,32 @@
+{
+ "titulo": "PARE DE AMAR O SEU ORIGAMI TORTO.",
+ "topo": {
+  "url": "https://commons.wikimedia.org/wiki/File:Rembrandt_The_Artist_in_his_studio.jpg"
+ },
+ "laterais": [
+  {
+   "de": 5.83,
+   "ate": 8.4,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Michael_Norton_Poptech.jpg"
+  },
+  {
+   "de": 8.45,
+   "ate": 11.6,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Ikea_kitchen_flatpacks.jpg"
+  },
+  {
+   "de": 11.68,
+   "ate": 16.0,
+   "lado": "ESQ",
+   "arquivo": "docs/conteudo/maquina/02-Rascunhos/2026-10-16-efeito-ikea/insercao-63.png"
+  },
+  {
+   "de": 18.3,
+   "ate": 23.7,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Cranes_made_by_Origami_paper.jpg"
+  }
+ ]
+}
