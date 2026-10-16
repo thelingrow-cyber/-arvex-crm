@@ -215,7 +215,7 @@ O Vitor manda duas por dia. Modela-se **só o mecanismo** do original, na voz de
 | Molde | Edição | Script de partida |
 |---|---|---|
 | 🏢 Negócio · 🗿 Identidade | **topo fixo:** pintura clássica histórica que traduz a tese, fixa o vídeo todo, cantos retos · título em Bebas Neue embaixo · legenda de uma palavra em Montserrat · inserções reais nas laterais, alternando | `tools/video-recut/videos/2026-10-rei-do-gelo/montar.py` |
-| ⚖️ Regra | uma tomada + título fixo que é a **ordem** (não repete a fala) + legenda de uma palavra; inserção só se o caso tiver imagem real | idem, sem as laterais |
+| ⚖️ Regra | uma tomada + **topo fixo** + título fixo que é a **ordem** (não repete a fala) + legenda de uma palavra + inserções nos momentos concretos (16/10: o Vitor pediu topo e inserções também no Regra) | `tools/maquina/montar.py` |
 | 📈 Tendência | topo fixo + inserções de prova (manchete, número, empresa) | idem |
 | 🛠️ Bastidor | tela filmada com o celular, título-dilema no topo | — |
 | 📎 Referência | conforme o original | — |
