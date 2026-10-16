@@ -24,7 +24,7 @@ BEBAS, MONT = os.path.join(FONTES, "BebasNeue-Regular.ttf"), os.path.join(FONTES
 L, A, Y = 540, 400, 110                  # pintura do topo
 ESQ, DIR = (170, 985), (910, 985)        # centro das laterais (rosto em x ~330–740)
 LARG, ALT = 310, 390
-Y_TIT_SEM_TOPO = 1180                    # molde Regra: título na altura do peito
+Y_TIT_SEM_TOPO = 470                     # molde Regra: título acima da cabeça (em 1180 batia no rosto e na legenda, 16/10)
 Y_LEG = 1300                             # 16/10: o Vitor pediu a legenda menor e mais perto do meio (era 1440, fonte 54)
 
 
@@ -93,7 +93,30 @@ def palavras(transcricao, dur):
     return out
 
 
-def legenda_mov(ws, dur, work):
+def y_legenda(video, dur, work):
+    """Legenda logo abaixo do queixo: acha o rosto em 6 quadros (OpenCV) e usa a mediana.
+    Posição fixa não serve: no "Efeito IKEA" o rosto estava baixo, no "Remar" alto e a legenda caiu na boca (16/10)."""
+    try:
+        import cv2, numpy as np
+        # YuNet (o OpenCV 5 não traz mais o haar). Modelo lido da memória: o OpenCV não abre caminho com acento ("Simões")
+        buf = np.fromfile(os.path.join(RAIZ, "tools", "video-recut", "assets", "modelos", "face_yunet.onnx"), np.uint8)
+        det, fundos = cv2.FaceDetectorYN.create("onnx", buf, np.array([], np.uint8), (1080, 1920), 0.7), []
+        for k in range(6):
+            f = os.path.join(work, f"_rosto{k}.png")
+            run(["-ss", f"{dur * (k + 0.5) / 6:.2f}", "-i", video, "-frames:v", "1", "-vf", "scale=1080:1920", f])
+            img = cv2.imdecode(np.fromfile(f, np.uint8), cv2.IMREAD_COLOR)
+            _, rostos = det.detect(img)
+            if rostos is not None:
+                x, y, w, h = max(rostos[:, :4].tolist(), key=lambda r: r[2] * r[3])
+                fundos.append(y + h)
+        if fundos:
+            return int(min(1620, max(1150, sorted(fundos)[len(fundos) // 2] + 30)))   # a caixa do YuNet termina no queixo
+    except Exception as e:
+        print(f"  rosto não detectado ({e}); legenda na altura padrão")
+    return Y_LEG
+
+
+def legenda_mov(ws, dur, work, y_leg=Y_LEG):
     fonte = ImageFont.truetype(MONT, 46)
     fonte.set_variation_by_name("ExtraBold")
     pasta = os.path.join(work, "leg"); shutil.rmtree(pasta, ignore_errors=True); os.makedirs(pasta)
@@ -108,9 +131,9 @@ def legenda_mov(ws, dur, work):
         img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
         sh = Image.new("RGBA", img.size, (0, 0, 0, 0))
         x = (1080 - ImageDraw.Draw(img).textlength(txt, font=fonte)) / 2
-        ImageDraw.Draw(sh).text((x, Y_LEG + 4), txt, font=fonte, fill=(0, 0, 0, 160), stroke_width=7, stroke_fill=(0, 0, 0, 160))
+        ImageDraw.Draw(sh).text((x, y_leg + 4), txt, font=fonte, fill=(0, 0, 0, 160), stroke_width=7, stroke_fill=(0, 0, 0, 160))
         img = Image.alpha_composite(sh.filter(ImageFilter.GaussianBlur(4)), img)
-        ImageDraw.Draw(img).text((x, Y_LEG), txt, font=fonte, fill="white", stroke_width=5, stroke_fill=(15, 15, 15))
+        ImageDraw.Draw(img).text((x, y_leg), txt, font=fonte, fill="white", stroke_width=5, stroke_fill=(15, 15, 15))
         q = os.path.join(pasta, f"{i:03d}.png"); img.save(q)
         linhas.append((q, b - a)); t = b
     linhas.append((vazio, max(dur - t, 0) + 0.5))
@@ -158,7 +181,9 @@ def montar(pasta):
         q = os.path.join(work, f"lado{i}.png")
         ImageOps.autocontrast(enquadrar(im, LARG, ALT), cutoff=1).save(q)
         lados.append((q, float(ins["de"]), min(float(ins["ate"]), dur), ESQ if ins.get("lado", "ESQ").upper().startswith("E") else DIR))
-    mov = legenda_mov(palavras(transc, dur), dur, work)
+    y_leg = y_legenda(video, dur, work)
+    print(f"  legenda em y={y_leg}")
+    mov = legenda_mov(palavras(transc, dur), dur, work, y_leg)
 
     FOLGA = 0.6                                       # 16/10: respiro depois da última palavra (o "torto" terminava cortado)
     dur += FOLGA
