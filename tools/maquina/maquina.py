@@ -13,6 +13,7 @@ uso:
   python tools/maquina/maquina.py legenda <pasta>             # 10 · capas + código + guia.md (material do direct) + legenda.txt
   python tools/maquina/maquina.py arquivar <pasta> [--limpar] # 11 · move para 03-Publicados (--limpar apaga o bruto)
   python tools/maquina/maquina.py status                      # rascunhos e veredito de cada um
+  python tools/maquina/maquina.py manha [N]                   # gatilho da manhã · N roteiros APROVADOS no WhatsApp (padrão 1) [--as 10:00]
 """
 import datetime, glob, json, os, re, shutil, subprocess, sys, unicodedata
 from concurrent.futures import ThreadPoolExecutor
@@ -117,6 +118,52 @@ def roteiro(n):
     open(os.path.join(pasta, "roteiro.md"), "w", encoding="utf-8").write(texto + "\n")
     v = revisar(pasta)
     return f"tema {n}: {v} → {rel(pasta)}/roteiro.md"
+
+
+# ---------- manhã · o roteiro do dia chega no WhatsApp (gatilho: tarefa agendada no Windows) ----------
+def usados():
+    pastas = glob.glob(os.path.join(RASC, "*")) + glob.glob(os.path.join(PUBL, "*"))
+    return {int(m.group(1)) for p in pastas if (m := re.match(r"\d{4}-\d{2}-\d{2}-(\d{3})-", os.path.basename(p)))}
+
+
+def _aguardar(hora):
+    """Segura o envio até HH:MM (o roteiro fica pronto antes; chega no horário combinado)."""
+    if hora:
+        alvo = datetime.datetime.combine(datetime.date.today(), datetime.time(*map(int, hora.split(":"))))
+        import time
+        while datetime.datetime.now() < alvo:
+            time.sleep(20)
+
+
+def manha(qtd=1, tentativas=3, hora=None):
+    """Escolhe os temas ainda não usados com mais views no original, escreve, revisa e manda os APROVADOS no WhatsApp.
+    Reprovado pelo revisor não vai: tenta o próximo tema. Se nenhum passar, avisa em vez de mandar roteiro fraco."""
+    import zap
+    linhas = [[c.strip() for c in l.strip().strip("|").split("|")] for l in open(TEMAS, encoding="utf-8")
+              if re.match(r"^\| \d+ \|", l.strip())]
+    views = lambda c: int(re.sub(r"\D", "", c[5]) or 0)
+    fila = [int(c[0]) for c in sorted(linhas, key=views, reverse=True) if int(c[0]) not in usados()]
+    enviados, tentados = [], []
+    for n in fila[:tentativas]:
+        if len(enviados) == qtd:
+            break
+        try:
+            r = roteiro(n)
+        except Exception as e:
+            tentados.append(f"tema {n}: falhou ({e})"); continue
+        tentados.append(r)
+        if ": APROVADO" in r:
+            _aguardar(hora)
+            pasta = os.path.join(RAIZ, r.split("→ ")[1].rsplit("/", 1)[0])
+            zap.texto(f"☀️ *Roteiro do dia* (tema {n})\n\n" + open(os.path.join(pasta, "roteiro.md"), encoding="utf-8").read().strip()
+                      + "\n\n🎥 Grava e sobe na pasta *Vídeos claude*. Se não curtir, responde *não, + o que mudar*.")
+            enviados.append(n)
+    if not enviados:
+        _aguardar(hora)
+        zap.texto("⚠️ A máquina não conseguiu um roteiro aprovado pelo revisor hoje.\n\n" + "\n".join(tentados))
+    with open(os.path.join(MAQ, "_regras", "manha.log"), "a", encoding="utf-8") as f:
+        f.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M} · enviados {enviados} · " + " | ".join(tentados) + "\n")
+    print("enviados:", enviados, "\n" + "\n".join(tentados))
 
 
 def reescrever(pasta, nota):
@@ -241,6 +288,9 @@ def main():
         arquivar(a[1], "--limpar" in a)
     elif cmd == "status":
         status()
+    elif cmd == "manha":
+        hora = a[a.index("--as") + 1] if "--as" in a else None
+        manha(int(a[1]) if len(a) > 1 and a[1].isdigit() else 1, hora=hora)
     else:
         sys.exit(__doc__)
 
