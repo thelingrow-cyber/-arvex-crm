@@ -48,18 +48,38 @@ def video(arquivo, legenda=""):
         "media": base64.b64encode(open(arquivo, "rb").read()).decode()}, timeout=300)
 
 
+LID = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".zap-lid")   # local, fora do git
+
+
+def conversa_voce():
+    """JIDs da conversa "Você": o do número e o @lid (as respostas dele chegam no @lid, 16/10).
+    O @lid é aprendido uma vez, da 1ª resposta dele ("Vamos com tudo", 16/10), e guardado em .zap-lid."""
+    jids = {f"{meu_numero()}@s.whatsapp.net"}
+    if not os.path.exists(LID):
+        r = _api(f"/chat/findMessages/{INST}", {"where": {"key": {"fromMe": True}}, "page": 1, "offset": 1000}, timeout=60)
+        lid = next((m["key"]["remoteJid"] for m in r["messages"]["records"]
+                    if "Vamos com tudo" in (m.get("message", {}).get("conversation") or "")), None)
+        if lid:
+            open(LID, "w").write(lid)
+    if os.path.exists(LID):
+        jids.add(open(LID).read().strip())
+    return jids
+
+
 def esperar(minutos=30, desde=None):
     """Devolve o texto da próxima mensagem que o Vitor digitar no celular depois de `desde`, ou None."""
     desde = desde or time.time()
     fim = time.time() + minutos * 60
+    minhas = conversa_voce()   # só a conversa "Você": mensagem dele para outra pessoa nunca é resposta
     while time.time() < fim:
         try:
-            recs = _api(f"/chat/findMessages/{INST}", {"where": {}, "page": 1, "offset": 20}, timeout=30)["messages"]["records"]
+            recs = [m for j in minhas for m in _api(f"/chat/findMessages/{INST}", {"where": {"key": {"remoteJid": j}}, "page": 1,
+                                                                                  "offset": 20}, timeout=30)["messages"]["records"]]
             for m in recs:
                 k = m.get("key", {})
                 jid = str(k.get("remoteJid", ""))
                 if (not k.get("fromMe") or m.get("source") == "web"          # web = enviada pela máquina
-                        or m.get("messageTimestamp", 0) < desde or jid.endswith("@g.us")):
+                        or m.get("messageTimestamp", 0) < desde or jid not in minhas):
                     continue
                 msg = m.get("message", {})
                 t = msg.get("conversation") or msg.get("extendedTextMessage", {}).get("text")
