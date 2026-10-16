@@ -41,7 +41,19 @@ def texto(msg):
     return _api(f"/message/sendText/{INST}", {"number": meu_numero(), "text": msg})
 
 
+def previa(arquivo):
+    """Cópia leve (720p) só para aprovar no celular. Mandar 35–55 MB em base64 travou a Evolution inteira
+    em 16/10, inclusive a instância do CRM (respostas de 30–60 s). O arquivo cheio vai para o Drive."""
+    if os.path.getsize(arquivo) <= 12 * 2**20:
+        return arquivo
+    leve = os.path.splitext(arquivo)[0] + "-previa.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", arquivo, "-vf", "scale=720:-2", "-c:v", "libx264", "-crf", "28",
+                    "-preset", "fast", "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", leve], check=True)
+    return leve
+
+
 def video(arquivo, legenda=""):
+    arquivo = previa(arquivo)
     return _api(f"/message/sendMedia/{INST}", {
         "number": meu_numero(), "mediatype": "video", "mimetype": "video/mp4",
         "fileName": os.path.basename(arquivo), "caption": legenda,
