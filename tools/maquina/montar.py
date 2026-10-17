@@ -165,8 +165,9 @@ def montar(pasta):
                                capture_output=True, text=True).stdout.strip())
 
     topo = None
-    if plano.get("topo") and plano["topo"].get("url"):
-        im = Image.open(baixar(plano["topo"]["url"], os.path.join(work, "topo-orig")))
+    if plano.get("topo") and (plano["topo"].get("url") or plano["topo"].get("arquivo")):
+        im = Image.open(os.path.join(RAIZ, plano["topo"]["arquivo"]) if plano["topo"].get("arquivo")   # quadro de vídeo (17/10)
+                        else baixar(plano["topo"]["url"], os.path.join(work, "topo-orig")))
         topo = os.path.join(work, "topo.png")
         ImageOps.autocontrast(enquadrar(im, L, A), cutoff=1).save(topo)
     tit = os.path.join(work, "titulo.png")
