@@ -36,7 +36,8 @@ def url_direta(u):
     """Página do Commons (…/wiki/File:X.jpg) → arquivo (Special:FilePath), em tamanho bom para 1080p."""
     m = re.search(r"commons\.wikimedia\.org/wiki/(?:File|Arquivo):(.+)$", u)
     if m:
-        return f"https://commons.wikimedia.org/wiki/Special:FilePath/{m.group(1)}?width=1600"
+        nome = urllib.parse.quote(urllib.parse.unquote(m.group(1)))   # nome com acento ("único") quebrava o download
+        return f"https://commons.wikimedia.org/wiki/Special:FilePath/{nome}?width=1600"
     return u
 
 
@@ -173,6 +174,16 @@ def montar(pasta):
     y_tit = Y + A + 14 if topo else Y_TIT_SEM_TOPO
     lados = []
     for i, ins in enumerate(plano.get("laterais") or []):
+        lado = ESQ if ins.get("lado", "ESQ").upper().startswith("E") else DIR
+        if ins.get("video"):   # 17/10: inserção em vídeo no mesmo quadro lateral ({"video", "inicio", "crop": "w:h:x:y"})
+            q = os.path.join(work, f"lado{i}.mp4")
+            e, s = float(ins["de"]), min(float(ins["ate"]), dur)
+            vf = (f"crop={ins['crop']}," if ins.get("crop") else "") + \
+                 f"scale={LARG}:{ALT}:force_original_aspect_ratio=increase,crop={LARG}:{ALT},fps=30,setsar=1"
+            run(["-ss", str(ins.get("inicio", 0)), "-t", f"{s - e:.2f}", "-i", os.path.join(RAIZ, ins["video"]),
+                 "-vf", vf, "-an", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", q])
+            lados.append((q, e, s, lado))
+            continue
         try:
             im = Image.open(os.path.join(RAIZ, ins["arquivo"]) if ins.get("arquivo")       # gráfico gerado (ex.: número do estudo)
                             else baixar(ins["url"], os.path.join(work, f"lado{i}-orig")))
@@ -180,7 +191,7 @@ def montar(pasta):
             print(f"  lateral {i} pulada ({e})"); continue
         q = os.path.join(work, f"lado{i}.png")
         ImageOps.autocontrast(enquadrar(im, LARG, ALT), cutoff=1).save(q)
-        lados.append((q, float(ins["de"]), min(float(ins["ate"]), dur), ESQ if ins.get("lado", "ESQ").upper().startswith("E") else DIR))
+        lados.append((q, float(ins["de"]), min(float(ins["ate"]), dur), lado))
     y_leg = y_legenda(video, dur, work)
     print(f"  legenda em y={y_leg}")
     mov = legenda_mov(palavras(transc, dur), dur, work, y_leg)
@@ -194,6 +205,14 @@ def montar(pasta):
     ins += ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", tit]
     fc.append(f"[{ult}][{n}:v]overlay=x=0:y={y_tit}[ot]"); ult, n = "ot", n + 1
     for i, (q, e, s, (cx, cy)) in enumerate(lados):
+        if q.endswith(".mp4"):   # vídeo: começa a tocar quando a inserção entra
+            ins += ["-i", q]
+            fc.append(f"[{n}:v]setpts=PTS-STARTPTS+{e}/TB,format=rgba,fade=t=in:st={e}:d=0.15:alpha=1,"
+                      f"fade=t=out:st={s - 0.15}:d=0.15:alpha=1[l{i}]")
+            fc.append(f"[{ult}][l{i}]overlay=x={cx - LARG // 2}:y='{cy - ALT // 2}+28*max(0,1-(t-{e})/0.22)':eof_action=pass:"
+                      f"enable='between(t,{e},{s})'[ol{i}]")
+            ult, n = f"ol{i}", n + 1
+            continue
         ins += ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", q]
         fc.append(f"[{n}:v]format=rgba,fade=t=in:st={e}:d=0.15:alpha=1,fade=t=out:st={s - 0.15}:d=0.15:alpha=1[l{i}]")
         fc.append(f"[{ult}][l{i}]overlay=x={cx - LARG // 2}:y='{cy - ALT // 2}+28*max(0,1-(t-{e})/0.22)':enable='between(t,{e},{s})'[ol{i}]")
