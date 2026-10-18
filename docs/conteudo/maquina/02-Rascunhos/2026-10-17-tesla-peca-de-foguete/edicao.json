@@ -1,26 +1,26 @@
 {
- "titulo": "SUA VANTAGEM COMPETITIVA ESTÁ FORA DA SUA BOLHA.",
+ "titulo": "SUA VANTAGEM ESTÁ FORA DA SUA BOLHA.",
  "topo": {
   "arquivo": "docs/conteudo/maquina/02-Rascunhos/2026-10-17-tesla-peca-de-foguete/topo-elon-roadster.png"
  },
  "laterais": [
   {
-   "de": 3.74,
-   "ate": 7.8,
+   "de": 4.08,
+   "ate": 8.16,
    "lado": "DIR",
    "video": "tools/video-recut/work/2026-10-17-tesla-peca-de-foguete/clipes/zLCfSXUoYrM.mp4",
    "inicio": 49.0,
    "crop": "640:800:600:40"
   },
   {
-   "de": 10.28,
-   "ate": 12.5,
+   "de": 10.66,
+   "ate": 12.84,
    "lado": "ESQ",
    "url": "https://commons.wikimedia.org/wiki/File:Dragon_2_hover_test_(24159153709).jpg"
   },
   {
-   "de": 22.76,
-   "ate": 27.24,
+   "de": 23.08,
+   "ate": 27.6,
    "lado": "DIR",
    "url": "https://commons.wikimedia.org/wiki/File:Invention_of_printing_-_Gutenberg_taking_the_first_proof_LCCN2006690328.jpg"
   }

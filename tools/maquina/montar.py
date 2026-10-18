@@ -59,7 +59,7 @@ def enquadrar(im, larg, alt):
 
 def titulo_png(texto, dest):
     tam = 96
-    while tam > 78:   # 17/10: abaixo disso o título longo ficava miúdo numa linha; quebra em 2 linhas grandes
+    while tam > 64:   # 17/10: abaixo de 64 o título ficava miúdo numa linha; aí quebra em 2 linhas grandes
         ft = ImageFont.truetype(BEBAS, tam)
         if ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength(texto, font=ft) <= 900:
             break
