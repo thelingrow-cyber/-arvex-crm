@@ -59,16 +59,17 @@ def enquadrar(im, larg, alt):
 
 def titulo_png(texto, dest):
     tam = 96
-    while tam > 40:
+    while tam > 78:   # 17/10: abaixo disso o título longo ficava miúdo numa linha; quebra em 2 linhas grandes
         ft = ImageFont.truetype(BEBAS, tam)
         if ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength(texto, font=ft) <= 900:
             break
         tam -= 2
     linhas = [texto]
     if ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength(texto, font=ft) > 900:   # quebra em 2 linhas
-        p = texto.split(); meio = len(p) // 2
-        linhas = [" ".join(p[:meio]), " ".join(p[meio:])]
         ft = ImageFont.truetype(BEBAS, 84)
+        p, med = texto.split(), ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength
+        meio = min(range(1, len(p)), key=lambda m: max(med(" ".join(p[:m]), font=ft), med(" ".join(p[m:]), font=ft)))
+        linhas = [" ".join(p[:meio]), " ".join(p[meio:])]   # quebra que equilibra as duas linhas
     out = Image.new("RGBA", (1080, 110 * len(linhas) + 40), (0, 0, 0, 0))
     sh = Image.new("RGBA", out.size, (0, 0, 0, 0))
     for i, ln in enumerate(linhas):
