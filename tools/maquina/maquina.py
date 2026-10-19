@@ -32,9 +32,48 @@ VOLTAS = 2
 rel = lambda p: os.path.relpath(p, RAIZ).replace("\\", "/")
 
 
+# Quem executa cada etapa (19/10, pedido do Vitor: "adicione cada agente melhor em cada etapa").
+# A página diz O QUE fazer e o formato; o agente traz o método e as bases dele. Persona + bases entram em toda chamada.
+SQ = "squads/conteudo/agents/"
+BASE_ROTEIRO = ["squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
+                "docs/conteudo/banco-pautas/GANCHOS-PRONTOS.md", "docs/conteudo/maquina/06-Ganchos/ganchos.md",
+                "docs/conteudo/banco-roteiros/players/CATALOGO-MOLDES.md", "docs/conteudo/banco-roteiros/players/SINTESE-FORMATOS.md",
+                "docs/conteudo/maquina/_regras/proibido.md", "docs/conteudo/maquina/_regras/nao-fale-assim.md"]
+AGENTES = {
+    "curadoria": ([SQ + "pauteiro.md"],
+                  ["docs/conteudo/banco-roteiros/players/bernardo-precht/ESTUDO.md", "squads/conteudo/voz.md"]),
+    "temas":     ([SQ + "analista-referencias.md", SQ + "pauteiro.md"],
+                  ["docs/conteudo/ESTUDO-GANCHOS.md", "docs/conteudo/banco-roteiros/players/CATALOGO-MOLDES.md",
+                   "docs/conteudo/banco-pautas/BANCO.md"]),
+    "roteiro":   ([SQ + "roteirista.md", "squads/marketing/agents/copy-chief.md"], BASE_ROTEIRO),
+    "revisor":   (["squads/marketing/agents/copy-chief.md"],
+                  ["squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
+                   "docs/conteudo/maquina/_regras/proibido.md", "docs/conteudo/maquina/_regras/nao-fale-assim.md"]),
+    "corrigir":  ([SQ + "roteirista.md"], ["squads/conteudo/voz.md", "docs/conteudo/maquina/_regras/proibido.md"]),
+    "capa":      (["squads/marketing/agents/copy-chief.md", SQ + "roteirista.md"],
+                  ["docs/conteudo/ESTUDO-GANCHOS.md", "squads/conteudo/voz.md"]),
+    "animacoes": ([SQ + "editor-video.md"], ["tools/video-recut/README.md", "tools/maquina/montar.py",
+                                             "docs/conteudo/LINHA-EDITORIAL-FORMATOS.md"]),
+}
+
+
+def quem(pagina):
+    """O cabeçalho do agente da etapa: persona(s) na íntegra + bases para abrir antes de trabalhar."""
+    if pagina not in AGENTES:
+        return ""
+    personas, bases = AGENTES[pagina]
+    txt = "\n\n".join(open(os.path.join(RAIZ, f), encoding="utf-8").read() for f in personas)
+    return ("# Quem executa esta etapa\n\nVocê é o agente abaixo (se forem dois, trabalham juntos: o primeiro escreve, "
+            "o segundo cobra). Use o método e o critério deles.\n\n" + txt +
+            "\n\n## Bases obrigatórias: abra cada uma com Read ANTES de começar\n" + "\n".join(f"- `{b}`" for b in bases) +
+            "\n\n**Precedência:** onde a persona conflitar com `squads/conteudo/voz.md`, com `_regras/` ou com a página "
+            "abaixo, valem esses (são mais novos e vieram das reprovações do Vitor). O formato de saída é SEMPRE o da "
+            "página, não o \"Entregue sempre\" da persona.\n\n---\n\n")
+
+
 def claude(pagina, mensagem, web=False, modelo="opus"):
-    """Uma sessão nova: a página + a mensagem. Devolve só o texto da resposta."""
-    corpo = open(os.path.join(PAG, f"{pagina}.md"), encoding="utf-8").read()
+    """Uma sessão nova: o agente da etapa + a página + a mensagem. Devolve só o texto da resposta."""
+    corpo = quem(pagina) + open(os.path.join(PAG, f"{pagina}.md"), encoding="utf-8").read()
     prompt = (f"{corpo}\n\n---\n\n# Mensagem desta execução\n\n{mensagem}\n\n"
               "Abra com a ferramenta Read todos os arquivos que a página e a mensagem apontam antes de responder. "
               "Responda só com o conteúdo pedido, sem comentário antes ou depois.")
@@ -169,11 +208,9 @@ def resumo_zap(pasta):
             + (f"\n\n📺 Título na tela: {tela.group(1).strip()}" if tela else ""))
 
 
-def manha(qtd=5, hora=None):
-    """Escreve e revisa os roteiros do dia pela COTA de moldes e manda no WhatsApp, um por mensagem, com código (R1…R5).
-    O id de cada mensagem fica em zap.registrar: quando o Vitor responde em cima dela, o maestro sabe de qual roteiro é.
+def _gerar_grade(qtd=5):
+    """Escreve e revisa os roteiros da grade pela COTA de moldes. Devolve ([(pasta, molde, tema, veredito)], falhas).
     Ordem de preferência: aprovado pelo revisor > escalado > esgotou as voltas (esse vai marcado)."""
-    import zap
     abastecer()
     livres = sorted([c for c in _temas() if int(c[0]) not in usados()],
                     key=lambda c: int(re.sub(r"\D", "", c[5]) or 0), reverse=True)
@@ -181,35 +218,124 @@ def manha(qtd=5, hora=None):
     candidatos = []                                                     # cota + 1 de reserva por molde
     for m, q in cota.items():
         candidatos += [int(c[0]) for c in livres if not m or c[2] == m][:q + 1]
-    with ThreadPoolExecutor(4) as ex:
+    with ThreadPoolExecutor(2) as ex:                                   # 4 em paralelo estourou a memória (19/10)
         res = dict(zip(candidatos, ex.map(lambda n: _seguro(roteiro, n), candidatos)))
-    nota = lambda r: 0 if ": APROVADO" in r else 1 if "ESCALADO" in r else 2 if "REFAZER" in r else 9
     molde = {int(c[0]): c[2] for c in _temas()}
     escolhidos = []
     for m, q in cota.items():
-        bons = sorted([n for n in candidatos if (not m or molde[n] == m) and nota(res[n]) < 9], key=lambda n: nota(res[n]))
+        bons = sorted([n for n in candidatos if (not m or molde[n] == m) and _nota(res[n]) < 9], key=lambda n: _nota(res[n]))
         escolhidos += bons[:q]
-    _aguardar(hora)
-    dia = f"{datetime.date.today():%d/%m}"
-    if escolhidos:
-        zap.texto(f"☀️ *Roteiros de hoje ({dia})*: {len(escolhidos)} a seguir.\n\n"
-                  "↩️ Responde *em cima* de cada um (segura a mensagem → Responder):\n"
-                  "• *ok* = aprovado, pode gravar\n• escreve ou manda *áudio* com o que mudar = eu reescrevo\n"
-                  "• *troca* = outro tema\n\n🎥 Gravou? Sobe na pasta *Vídeos claude* com qualquer nome.")
-    e = zap.estado()
-    for i, n in enumerate(escolhidos, 1):
-        pasta = os.path.join(RAIZ, res[n].split("→ ")[1].rsplit("/", 1)[0])
-        cod = f"R{i}"
-        aviso = "" if nota(res[n]) == 0 else "\n\n⚠️ _O revisor não aprovou de primeira: lê com atenção._"
-        r = zap.texto(f"🎬 *{cod} · {ICONE.get(molde[n], '')} {molde[n]}* · {dia}\n\n{resumo_zap(pasta)}{aviso}")
-        zap.registrar(r["key"]["id"], {"tipo": "roteiro", "codigo": cod, "dia": str(datetime.date.today()),
-                                       "pasta": rel(pasta), "molde": molde[n], "tema": n, "status": "enviado"})
-    if len(escolhidos) < qtd:
-        zap.texto(f"⚠️ Hoje saíram {len(escolhidos)} de {qtd}. O que falhou:\n" +
-                  "\n".join(r for n, r in res.items() if n not in escolhidos))
+    _log(f"grade: escolhidos {escolhidos} · " + " | ".join(res.values()))
+    falhas = [r for n, r in res.items() if n not in escolhidos]
+    return [(os.path.join(RAIZ, res[n].split("→ ")[1].rsplit("/", 1)[0]), molde[n], n, res[n]) for n in escolhidos], falhas
+
+
+def _nota(r):
+    return 0 if ": APROVADO" in r else 1 if "ESCALADO" in r else 2 if "REFAZER" in r else 9
+
+
+def _log(txt):
     with open(os.path.join(MAQ, "_regras", "manha.log"), "a", encoding="utf-8") as f:
-        f.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M} · enviados {escolhidos} · " + " | ".join(res.values()) + "\n")
-    print("enviados:", escolhidos, "\n" + "\n".join(res.values()))
+        f.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M} · {txt}\n")
+
+
+def _enviar(lista, prefixo):
+    """Um roteiro por mensagem, com código (N1… / R1…). O id fica em zap.registrar: quando o Vitor responde em cima,
+    o maestro sabe de qual roteiro é."""
+    import zap
+    dia_ = f"{datetime.date.today():%d/%m}"
+    for i, (pasta, molde, tema, ver) in enumerate(lista, 1):
+        cod = f"{prefixo}{i}"
+        aviso = "" if _nota(ver) == 0 else "\n\n⚠️ _O revisor não aprovou de primeira: lê com atenção._"
+        r = zap.texto(f"🎬 *{cod} · {ICONE.get(molde, '')} {molde}* · {dia_}\n\n{resumo_zap(pasta)}{aviso}")
+        zap.registrar(r["key"]["id"], {"tipo": "roteiro", "codigo": cod, "dia": str(datetime.date.today()),
+                                       "pasta": rel(pasta), "molde": molde, "tema": tema, "status": "enviado"})
+
+
+def _cabecalho(n_noticias, n_grade):
+    import zap
+    partes = ([f"📰 {n_noticias} de mercado (N)"] if n_noticias else []) + ([f"🎬 {n_grade} da grade (R)"] if n_grade else [])
+    zap.texto(f"☀️ *Roteiros de hoje ({datetime.date.today():%d/%m})*: " + " + ".join(partes) + ".\n\n"
+              "↩️ Responde *em cima* de cada um (segura a mensagem → Responder):\n"
+              "• *ok* = aprovado, pode gravar\n• escreve ou manda *áudio* com o que mudar = eu reescrevo\n"
+              "• *troca* = outro tema\n\n🎥 Gravou? Sobe na pasta *Vídeos claude* com qualquer nome.")
+
+
+def manha(qtd=5, hora=None):
+    import zap
+    lista, falhas = _gerar_grade(qtd)
+    _aguardar(hora)
+    if lista:
+        _cabecalho(0, len(lista))
+    _enviar(lista, "R")
+    if len(lista) < qtd:
+        zap.texto(f"⚠️ Hoje saíram {len(lista)} de {qtd} da grade. O que falhou:\n" + "\n".join(falhas))
+
+
+# ---------- manhã · notícias de mercado (Caio cura e confere → Téo + copy-chief escrevem → revisor) ----------
+def _gerar_noticias(qtd=4):
+    hoje = f"{datetime.date.today():%Y-%m-%d}"
+    subprocess.run([sys.executable, os.path.join(RAIZ, "tools", "roteiros", "noticias.py"), "--horas", "72", "--salvar"],
+                   cwd=RAIZ, check=False, capture_output=True)
+    pautas = os.path.join(RAIZ, "docs", "conteudo", "pautas", f"{hoje}.md")
+    ja = sorted({re.sub(r"^\d{4}-\d{2}-\d{2}-n\d+-", "", os.path.basename(p))
+                 for p in glob.glob(os.path.join(RASC, "*-n[0-9]*")) + glob.glob(os.path.join(PUBL, "*-n[0-9]*"))})
+    cur = claude("curadoria", f"Escolha {qtd} notícias.\nPautas do dia: `{rel(pautas)}`" +
+                 ("" if os.path.exists(pautas) else " (não foi gerado: busque na web)") +
+                 "\nJá usados (não repetir): " + (", ".join(ja) or "nenhum"), web=True)
+    blocos = re.findall(r"### N\d+ · ([\w-]+)\s*\n(.*?)(?=\n### N\d+ ·|\Z)", cur, re.S)[:qtd]
+    if not blocos:
+        raise RuntimeError("a curadoria não devolveu blocos ### N1 · slug")
+
+    def um(k_bloco):
+        k, (sl, fatos) = k_bloco
+        pasta = os.path.join(RASC, f"{hoje}-n{k}-{slug(sl.replace('-', ' '), 6)}")
+        os.makedirs(pasta, exist_ok=True)
+        open(os.path.join(pasta, "pauta.md"), "w", encoding="utf-8").write(f"# Pauta do Caio\n\n{fatos.strip()}\n")
+        txt = claude("roteiro", "**Molde: 📰 Mercado da manhã** (notícia + leitura de negócio, modelo @beprecht, 60 a 80 s; "
+                     "ver `docs/conteudo/banco-roteiros/players/bernardo-precht/ESTUDO.md`). Use SÓ os fatos conferidos abaixo "
+                     "(nada de número fora deles). Padrão-ouro desta voz: os N3 e N4 finais de 19/10 em "
+                     "`docs/conteudo/maquina/02-Rascunhos/2026-10-19-n3-bending-spoons-buffett/roteiro.md` e "
+                     "`docs/conteudo/maquina/02-Rascunhos/2026-10-19-n4-big-techs-no-fiado/roteiro.md` (o N4 o Vitor "
+                     "reescreveu à mão; ver a seção 7 do voz.md). No cabeçalho, em vez de Tema nº, escreva em uma linha a "
+                     "família de gancho usada (ESTUDO-GANCHOS).\n\n"
+                     f"## Pauta conferida pelo Caio\n\n{fatos.strip()}", web=True)
+        open(os.path.join(pasta, "roteiro.md"), "w", encoding="utf-8").write(txt + f"\n\n## Fontes (Caio)\n\n{fatos.strip()}\n")
+        return pasta, "Mercado", None, revisar(pasta)
+
+    with ThreadPoolExecutor(2) as ex:
+        res = list(ex.map(lambda kb: _seguro(um, kb), enumerate(blocos, 1)))
+    ok = [r for r in res if isinstance(r, tuple)]
+    _log(f"notícias: {len(ok)}/{qtd} · " + " | ".join(f"{rel(r[0])}: {r[3]}" if isinstance(r, tuple) else r for r in res))
+    ok.sort(key=lambda r: _nota(r[3]))
+    return ok, [r for r in res if not isinstance(r, tuple)]
+
+
+def noticias(qtd=4, hora=None):
+    lista, _ = _gerar_noticias(qtd)
+    _aguardar(hora)
+    if lista:
+        _cabecalho(len(lista), 0)
+    _enviar(lista, "N")
+
+
+def dia(n_noticias=4, n_grade=5, hora=None):
+    """A manhã inteira: gera as notícias e a grade (em sequência, para não estourar a memória), espera a hora e manda
+    primeiro as N (o primeiro vídeo do dia é o de mercado), depois as R."""
+    import zap
+    ln, fn = [], []
+    if n_noticias:
+        r = _seguro(_gerar_noticias, n_noticias)
+        ln, fn = r if isinstance(r, tuple) else ([], [r])
+    lr, fr = _gerar_grade(n_grade) if n_grade else ([], [])
+    _aguardar(hora)
+    if ln or lr:
+        _cabecalho(len(ln), len(lr))
+    _enviar(ln, "N")
+    _enviar(lr, "R")
+    if len(ln) < n_noticias or len(lr) < n_grade:
+        zap.texto(f"⚠️ Hoje saíram {len(ln)}/{n_noticias} de mercado e {len(lr)}/{n_grade} da grade.\n"
+                  + "\n".join(map(str, fn + fr)))
 
 
 def reescrever(pasta, nota):
@@ -350,6 +476,13 @@ def main():
         arquivar(a[1], "--limpar" in a)
     elif cmd == "status":
         status()
+    elif cmd in ("noticias", "dia"):
+        hora = a[a.index("--as") + 1] if "--as" in a else None
+        nums = [int(x) for x in a[1:] if x.isdigit()]
+        if cmd == "noticias":
+            noticias(nums[0] if nums else 4, hora=hora)
+        else:
+            dia(*(nums + [4, 5][len(nums):])[:2], hora=hora)
     elif cmd == "manha":
         hora = a[a.index("--as") + 1] if "--as" in a else None
         manha(int(a[1]) if len(a) > 1 and a[1].isdigit() else 5, hora=hora)

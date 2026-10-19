@@ -21,13 +21,30 @@
 | ciclo | Corrigir a página, não o caso (prompt 3 do guia dele) | `_paginas/corrigir.md` (`maquina.py corrigir`) | roteiro + nota do Vitor | `correcao-de-pagina.md`: a etapa que errou e a edição no formato antes → depois | ✅ |
 | 11 | Arquiva tudo e limpa as gravações | `maquina.py arquivar <pasta> --limpar` | pasta do rascunho | `03-Publicados/`, com o bruto apagado | ✅ |
 
+## Quem executa cada etapa (desde 19/10)
+
+A máquina chamava um Claude genérico com uma página curta; os especialistas do squad e os bancos de estudo ficavam
+de fora, e os roteiros saíam com cara de IA. Agora `maquina.py` (`AGENTES` + `quem()`) injeta em toda chamada a
+persona do agente da etapa e a lista de bases que ele abre antes de trabalhar. A página continua dizendo o que fazer
+e o formato de saída; em conflito, vale `voz.md` e `_regras/`.
+
+| Etapa | Página | Agente | Bases que ele abre |
+|---|---|---|---|
+| Curadoria das notícias (7h) | `curadoria.md` | ☕ Caio (pauteiro) | `noticias.py` do dia + web; confere cada número na fonte primária; estudo @beprecht |
+| Temas | `temas.md` | 🔬 Bia (analista) + ☕ Caio | ESTUDO-GANCHOS, CATALOGO-MOLDES, banco de pautas |
+| Roteiro | `roteiro.md` | ✍️ Téo (roteirista) + 🖊️ Halbert (copy-chief) | voz + pares, ESTUDO-GANCHOS, GANCHOS-PRONTOS, ganchos dos concorrentes, moldes, proibido, não-fale-assim |
+| Revisão | `revisor.md` | 🖊️ Halbert (copy-chief), sessão nova | voz + pares, ESTUDO-GANCHOS, proibido, não-fale-assim |
+| Correção de página | `corrigir.md` | ✍️ Téo | voz, proibido |
+| Edição (plano) | `animacoes.md` → `montar.py` | 🎞️ Rui (editor) | README do video-recut, `montar.py`, linha editorial |
+| Capa, legenda e guia | `capa.md` | 🖊️ Halbert + ✍️ Téo | ESTUDO-GANCHOS, voz |
+
 ## Rodando sozinha (desde 19/10)
 
 O Vitor só conversa pelo WhatsApp (conversa "Você") e sobe a gravação no Drive. O resto é de duas tarefas do Windows:
 
 | Tarefa | Quando | O que faz |
 |---|---|---|
-| `ARVEX Maquina - roteiro da manha` | todo dia 04:30, envia às 07:00 | `maquina.py manha 5`: abastece temas se faltar (coleta a cada 2 dias), escreve e revisa pela cota **2 Regra + 2 Identidade + 1 Tendência** (+1 reserva por molde) e manda um roteiro por mensagem, com código `R1`…`R5` |
+| `ARVEX Maquina - roteiro da manha` | todo dia 04:00, envia às 07:00 | `maquina.py dia 4 5 --as 07:00`: **primeiro 4 notícias de mercado** (Caio cura e confere → Téo + Halbert escrevem → revisor), códigos `N1`…`N4`; **depois a grade** pela cota **2 Regra + 2 Identidade + 1 Tendência** (+1 reserva por molde), `R1`…`R5`. Gera tudo em sequência (2 em paralelo; 4 estourou a memória em 19/10) e manda N antes de R |
 | `ARVEX Maquina - maestro` | ao entrar no Windows, sempre ligado | `maestro.py`: a cada 30 s lê as respostas; a cada 2 min olha a raiz da pasta do Drive |
 
 **O que ele responde (em cima da mensagem, ou começando com o código):**
