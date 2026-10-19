@@ -63,14 +63,15 @@ def titulo_fino(texto, dest):
     ft, med = ImageFont.truetype(os.path.join(os.environ.get("WINDIR", "C:\\Windows"), "Fonts", "arial.ttf"), 56), \
         ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength
     texto, linhas = texto.upper(), [texto.upper()]
-    if med(texto, font=ft) > L + 60:
+    if med(texto, font=ft) > 900:   # 18/10: o Vitor quer o título em uma linha só
         p = texto.split()
         meio = min(range(1, len(p)), key=lambda m: max(med(" ".join(p[:m]), font=ft), med(" ".join(p[m:]), font=ft)))
         linhas = [" ".join(p[:meio]), " ".join(p[meio:])]
     out = Image.new("RGBA", (1080, 64 * len(linhas) + 40), (0, 0, 0, 0))
     sh = Image.new("RGBA", out.size, (0, 0, 0, 0))
     for i, ln in enumerate(linhas):
-        ImageDraw.Draw(sh).text(((1080 - med(ln, font=ft)) / 2, 22 + i * 64), ln, font=ft, fill=(0, 0, 0, 200))
+        ImageDraw.Draw(sh).text(((1080 - med(ln, font=ft)) / 2, 22 + i * 64), ln, font=ft, fill=(0, 0, 0, 235),
+                                stroke_width=5, stroke_fill=(0, 0, 0, 235))   # 18/10: lâmpada atrás apagava a letra fina
     out = Image.alpha_composite(out, sh.filter(ImageFilter.GaussianBlur(5)))
     for i, ln in enumerate(linhas):
         ImageDraw.Draw(out).text(((1080 - med(ln, font=ft)) / 2, 20 + i * 64), ln, font=ft, fill=(255, 255, 255))
