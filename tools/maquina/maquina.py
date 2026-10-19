@@ -273,7 +273,7 @@ def manha(qtd=5, hora=None):
 
 
 # ---------- manhã · notícias de mercado (Caio cura e confere → Téo + copy-chief escrevem → revisor) ----------
-def _gerar_noticias(qtd=4):
+def _gerar_noticias(qtd=4, inicio=1):
     hoje = f"{datetime.date.today():%Y-%m-%d}"
     subprocess.run([sys.executable, os.path.join(RAIZ, "tools", "roteiros", "noticias.py"), "--horas", "72", "--salvar"],
                    cwd=RAIZ, check=False, capture_output=True)
@@ -304,7 +304,7 @@ def _gerar_noticias(qtd=4):
         return pasta, "Mercado", None, revisar(pasta)
 
     with ThreadPoolExecutor(2) as ex:
-        res = list(ex.map(lambda kb: _seguro(um, kb), enumerate(blocos, 1)))
+        res = list(ex.map(lambda kb: _seguro(um, kb), enumerate(blocos, inicio)))
     ok = [r for r in res if isinstance(r, tuple)]
     _log(f"notícias: {len(ok)}/{qtd} · " + " | ".join(f"{rel(r[0])}: {r[3]}" if isinstance(r, tuple) else r for r in res))
     ok.sort(key=lambda r: _nota(r[3]))
