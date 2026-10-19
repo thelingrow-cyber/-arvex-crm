@@ -239,12 +239,12 @@ def _log(txt):
         f.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M} · {txt}\n")
 
 
-def _enviar(lista, prefixo):
+def _enviar(lista, prefixo, inicio=1):
     """Um roteiro por mensagem, com código (N1… / R1…). O id fica em zap.registrar: quando o Vitor responde em cima,
     o maestro sabe de qual roteiro é."""
     import zap
     dia_ = f"{datetime.date.today():%d/%m}"
-    for i, (pasta, molde, tema, ver) in enumerate(lista, 1):
+    for i, (pasta, molde, tema, ver) in enumerate(lista, inicio):
         cod = f"{prefixo}{i}"
         aviso = "" if _nota(ver) == 0 else "\n\n⚠️ _O revisor não aprovou de primeira: lê com atenção._"
         r = zap.texto(f"🎬 *{cod} · {ICONE.get(molde, '')} {molde}* · {dia_}\n\n{resumo_zap(pasta)}{aviso}")

@@ -32,10 +32,10 @@ O exemplo real é o "Rei do gelo", aprovado em 14/10. O bloco `edicao.json` é o
 
 ## Como fazer
 1. Leia o roteiro e a seção "Edição por molde" de `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`.
-2. **Todo vídeo leva topo fixo**, inclusive o molde Regra. *Motivo: o Vitor pediu imagem em cima também no Regra, em 16/10 ("Comece a remar antes da onda").*
-3. Ache no Wikimedia Commons uma pintura clássica de domínio público que **traduza a tese e represente o arquétipo** do vídeo (o homem que decide, constrói, resiste) e anote autor, ano, link e licença. Confira que o link `File:` existe de verdade. **Prefira o histórico e o filosófico:** Antiguidade, mitologia, grandes mestres (Rembrandt, Caravaggio, David, Turner, Gérôme), batalhas, navegações, pensadores. Nada de nudez. *Motivo: o Vitor pediu "algo mais histórico" em 16/10, e trocou o Pigmalião (nudez) pelo Rembrandt.*
-4. Escreva o título fixo: a ordem ou a lei, sem repetir a primeira fala.
-5. Planeje **de 2 a 4 inserções laterais** (310×390, alternando esquerda e direita), com os tempos, nos momentos concretos da fala (um lugar, um objeto, uma cena, um dado). Caso hipotético também ganha inserção. **As inserções também são históricas:** gravura, pintura ou foto antiga (anterior a 1950) que represente a cena (um armazém antigo, um entregador de época, um barco a remo pintado), e não foto contemporânea de banco. *Motivo: em 16/10 o Vitor pediu inserções "mais históricas"; mercadinho, entregador de bicicleta e surfista de hoje não serviram.* *Motivo: o Vitor pediu inserções no vídeo do Regra, em 16/10.*
+2. **O topo TROCA ao longo do vídeo** (molde de 19/10, aprovado no N3 "Buffett na contramão de novo"): use `"topo": {"seq": [{"de": 0, "url": "…"}, {"de": 4.3, "url": "…"}, …]}` com **uma imagem nova a cada 3 a 6 s**, casada com o que ele está falando (a pessoa citada, a empresa, o produto, o lugar, o gráfico). *Motivo: o Vitor pediu "no topo vai mesclando… as inserções aparecerão continuamente", 19/10.*
+3. Imagens: **o primeiro quadro do topo mostra o rosto/assunto principal** (ex.: a cara do Buffett). Pessoa, empresa, produto e lugar = foto atual e real (Wikimedia Commons, press kit, site oficial com licença). Ideia ou metáfora = pintura histórica de domínio público (Rembrandt, Caravaggio, Turner, Leutze…). Nada de nudez. Confira que cada link `File:` existe. **Só imagem (url), sem vídeo**: aqui não há como baixar vídeo, e foto mantém a edição em minutos.
+4. Título fixo: **curto (até ~30 caracteres), caixa alta, provocação ou síntese que gera curiosidade**, sem repetir a primeira fala. Sai em tipografia FINA (padrão do `montar.py`; não use `titulo_estilo`). Referências aprovadas: "OCUPADO DEMAIS PRA CONSTRUIR?", "BUFFETT NA CONTRAMÃO DE NOVO". Se o roteiro trouxer "Título fixo", parta dele.
+5. Planeje **de 5 a 9 inserções laterais contínuas** (310×390, alternando esquerda e direita, 2 a 3 s cada, uma logo depois da outra), nos momentos concretos da fala (nome, número, objeto, cena). Números conferidos podem virar inserção só se houver imagem real que os mostre; não invente card. Opcional: **1 ou 2 momentos em tela cheia** (`"cheia": [{"de","ate","url","modo":"encaixe"}]`, 1,5 a 3 s) no número ou na frase mais forte.
 6. Monte o `CREDITOS.txt`.
 7. Feche com o bloco `edicao.json`, com os mesmos topo, título e inserções da tabela.
 
@@ -53,6 +53,6 @@ O exemplo real é o "Rei do gelo", aprovado em 14/10. O bloco `edicao.json` é o
 ## Erros conhecidos
 | Sintoma | Causa | Correção |
 |---|---|---|
-| Topo e inserções contemporâneas demais (16/10, "Remar" v2: Homer ok, mas mercadinho/entregador/surfista de hoje) | a página não pedia imagem histórica | topo e inserções históricas (pintura, gravura, foto antiga) |
+| Topo e metáforas contemporâneas demais (16/10, "Remar" v2) e depois cena comum histórica demais (v3: loja de 1890, carroça) | a página não separava cena comum de metáfora | topo e metáfora = históricos; cena do dia a dia = foto atual |
 | Regra saiu sem topo e sem inserção (16/10, "Remar"), e o Vitor pediu os dois | a página mandava Regra sem topo e inserção só com caso real | todo molde leva topo e de 2 a 4 inserções |
 | Legenda e inserções fora de hora (16/10, Efeito IKEA) | tempos lidos da transcrição do bruto, antes do corte das pausas | usar `palavras-editado.json`, que já está nos tempos do vídeo cortado |
