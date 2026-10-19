@@ -137,7 +137,7 @@ def _aguardar(hora):
 
 # semana de 19/10 (decisão do Vitor): 5 por dia, puxado para Regra e Identidade, que saem sem edição pesada
 COTA = {"Regra": 2, "Identidade": 2, "Tendência": 1}
-ICONE = {"Regra": "⚖️", "Identidade": "🗿", "Tendência": "📈", "Negócio": "🏢", "Bastidor": "🛠️"}
+ICONE = {"Mercado": "📰", "Regra": "⚖️", "Identidade": "🗿", "Tendência": "📈", "Negócio": "🏢", "Bastidor": "🛠️"}
 
 
 def _temas():

@@ -1,0 +1,126 @@
+{
+ "usuario": "beprecht",
+ "n": 50,
+ "janela": [
+  "2026-09-25",
+  "2026-10-18"
+ ],
+ "mediana_views": 4488,
+ "mediana_sem_testes_e_recentes": 13689,
+ "duracao_mediana": 98,
+ "por_mes": {
+  "2026-09": {
+   "reels": 4,
+   "mediana": 20320
+  },
+  "2026-10": {
+   "reels": 46,
+   "mediana": 3155
+  }
+ },
+ "testes_reprovados": [
+  "DepzsDHlr_u",
+  "Depjpc9FFPU",
+  "DenOSTYlKKu",
+  "DenHQ9MkpVY",
+  "DekpavXoKm-",
+  "DekNOLhiFRZ",
+  "DeiEwh5AlaZ",
+  "DefZ-k0BS_s",
+  "DecIYVYAYuO",
+  "DebprF1Pu1z"
+ ],
+ "recentes_menos_de_3_dias": [
+  "DepzsDHlr_u",
+  "DepmXr3DKYu",
+  "Depjpc9FFPU",
+  "DepUGsxDdgY",
+  "DenOSTYlKKu",
+  "DenHQ9MkpVY",
+  "Dem-1ArireB",
+  "DemvaX_CS4m",
+  "Del9C4wkU4L",
+  "DekpavXoKm-",
+  "DekaYe4gd8C",
+  "DekNOLhiFRZ",
+  "DejwHthjVJ2",
+  "DejYGHXAqdg"
+ ],
+ "repostagens": [
+  [
+   "DeKEO3qPmSX",
+   "DeJowfFPF61"
+  ],
+  [
+   "DePwYlZjz2N",
+   "DeSoGlLic0a",
+   "DeUMdYMFbvl",
+   "DeXZOYIEsXv",
+   "DeZf2gRE20m",
+   "DecsgwGlI8W"
+  ],
+  [
+   "DeZ6o6PDOfe",
+   "Defg8QEkmKL",
+   "DenOSTYlKKu"
+  ],
+  [
+   "DecIYVYAYuO",
+   "DekpavXoKm-"
+  ],
+  [
+   "Deb8ouvAKDK",
+   "DebprF1Pu1z"
+  ],
+  [
+   "DebwiHkP8G4",
+   "DehZ-kfFWVH",
+   "DekaYe4gd8C",
+   "DenHQ9MkpVY"
+  ],
+  [
+   "DeenzFLGjSg",
+   "DekNOLhiFRZ",
+   "DepUGsxDdgY"
+  ],
+  [
+   "DeiEwh5AlaZ",
+   "DepzsDHlr_u"
+  ],
+  [
+   "Dehn-QKiZxn",
+   "DemvaX_CS4m"
+  ],
+  [
+   "DehLDedkcny",
+   "Dem-1ArireB"
+  ],
+  [
+   "DejwHthjVJ2",
+   "Depjpc9FFPU"
+  ]
+ ],
+ "picos_fora_da_janela": [
+  {
+   "shortCode": "DcbS6fegjxi",
+   "views": 139421,
+   "data": "2026-08-24",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DdoJxbWBYKk",
+   "views": 118341,
+   "data": "2026-09-23",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DdBh1aWhDhj",
+   "views": 98760,
+   "data": "2026-09-08",
+   "fixado": false,
+   "transcrito": true
+  }
+ ]
+}

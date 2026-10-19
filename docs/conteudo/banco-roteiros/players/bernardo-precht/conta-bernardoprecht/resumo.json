@@ -1,0 +1,103 @@
+{
+ "usuario": "bernardoprecht",
+ "n": 50,
+ "janela": [
+  "2025-04-29",
+  "2026-09-16"
+ ],
+ "mediana_views": 14397,
+ "mediana_sem_testes_e_recentes": 15130,
+ "duracao_mediana": 67,
+ "por_mes": {
+  "2025-04": {
+   "reels": 2,
+   "mediana": 174737
+  },
+  "2025-05": {
+   "reels": 8,
+   "mediana": 13219
+  },
+  "2025-06": {
+   "reels": 3,
+   "mediana": 4986
+  },
+  "2025-07": {
+   "reels": 2,
+   "mediana": 14209
+  },
+  "2025-09": {
+   "reels": 4,
+   "mediana": 10202
+  },
+  "2026-01": {
+   "reels": 5,
+   "mediana": 9059
+  },
+  "2026-02": {
+   "reels": 4,
+   "mediana": 13197
+  },
+  "2026-03": {
+   "reels": 5,
+   "mediana": 8294
+  },
+  "2026-04": {
+   "reels": 6,
+   "mediana": 78113
+  },
+  "2026-05": {
+   "reels": 3,
+   "mediana": 62246
+  },
+  "2026-07": {
+   "reels": 5,
+   "mediana": 7
+  },
+  "2026-08": {
+   "reels": 1,
+   "mediana": 30166
+  },
+  "2026-09": {
+   "reels": 2,
+   "mediana": 30477
+  }
+ },
+ "testes_reprovados": [
+  "DbJ40hKEX53",
+  "DbJ4kn2gRBG",
+  "DbJ4WXeFpHr"
+ ],
+ "recentes_menos_de_3_dias": [
+  "DdWPORbR9Ls"
+ ],
+ "repostagens": [
+  [
+   "DbJ40hKEX53",
+   "DbJ4kn2gRBG",
+   "DbJ4WXeFpHr"
+  ]
+ ],
+ "picos_fora_da_janela": [
+  {
+   "shortCode": "DGbZTUpBEE1",
+   "views": 2059748,
+   "data": "2025-02-23",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DFsEzAcuHT0",
+   "views": 402025,
+   "data": "2025-02-05",
+   "fixado": false,
+   "transcrito": true
+  },
+  {
+   "shortCode": "DIzV1QpBkyz",
+   "views": 176241,
+   "data": "2025-04-23",
+   "fixado": false,
+   "transcrito": true
+  }
+ ]
+}

@@ -73,10 +73,10 @@ def em_segundo_plano(nome, f, *a):
 def alvo(m, itens):
     if m["citada"] in itens:
         return m["citada"]
-    cod = re.search(r"\b[Rr](\d{1,2})\b", m["texto"] or "")
+    cod = re.search(r"\b([RrNn])(\d{1,2})\b", m["texto"] or "")          # R = roteiro da grade, N = notícia da manhã
     hoje = str(datetime.date.today())
     if cod:
-        cands = [i for i, v in itens.items() if v.get("codigo") == f"R{cod.group(1)}" and v.get("dia") == hoje]
+        cands = [i for i, v in itens.items() if v.get("codigo") == f"{cod.group(1).upper()}{cod.group(2)}" and v.get("dia") == hoje]
         if cands:
             return max(cands, key=lambda i: itens[i]["enviado"])
     abertos = [i for i, v in itens.items() if v.get("status") in ("enviado", "previa") and v.get("dia") == hoje]
@@ -156,7 +156,7 @@ def tratar(m):
                       "ou começa com o código, tipo *R3 ok*.")
         return                                                          # recado solto: fica no log para o Orion
     item = itens[mid]
-    resto = re.sub(r"^\s*[Rr]\d{1,2}\s*[:,.-]?\s*", "", texto)
+    resto = re.sub(r"^\s*[RrNn]\d{1,2}\s*[:,.-]?\s*", "", texto)
     eco = f"🎙️ Entendi: _{texto}_\n\n" if m["audio"] else ""
     if item["tipo"] == "roteiro":
         if eh(resto, SIM):
