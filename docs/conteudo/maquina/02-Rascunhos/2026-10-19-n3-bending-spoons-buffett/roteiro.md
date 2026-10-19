@@ -4,10 +4,10 @@
 
 ## Roteiro
 
-> v4 (19/10): corpo da v3 aprovado pelo Vitor ("EU GOSTEI MESMO"); gancho refeito na direção dele ("mais uma vez na contramão"). O "mais uma vez" se apoia na entrada de julho, não em histórico da Berkshire.
+> **FINAL, gancho do Vitor (19/10).** Gravar esta. · v4 (19/10): corpo da v3 aprovado pelo Vitor ("EU GOSTEI MESMO"); gancho refeito na direção dele ("mais uma vez na contramão"). O "mais uma vez" se apoia na entrada de julho, não em histórico da Berkshire.
 
 ```
-A empresa do Warren Buffett tá indo mais uma vez na contramão. Enquanto quase todo mundo corre atrás da próxima novidade, ela acabou de botar mais trezentos e trinta milhões de dólares numa empresa que vive de comprar aplicativo que parou de crescer. Trezentos e trinta milhões. E em julho, quando essa empresa abriu capital, eles já tinham entrado com seiscentos.
+A empresa do maior investidor do mundo tá mais uma vez na contramão. Enquanto quase todo mundo corre atrás da próxima novidade, ela acabou de botar mais trezentos e trinta milhões de dólares numa empresa que vive de comprar aplicativo que parou de crescer. Trezentos e trinta milhões. E em julho, quando essa empresa abriu capital, eles já tinham entrado com seiscentos.
 
 O nome é Bending Spoons, é italiana, e é bem capaz de você já ter usado alguma coisa dela sem saber. Evernote, WeTransfer, Vimeo, é tudo dela. Mês passado comprou o Airtable e agora tá comprando o Miro.
 
