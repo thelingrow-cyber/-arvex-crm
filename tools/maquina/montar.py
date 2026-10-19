@@ -26,7 +26,7 @@ Saída: <pasta>/final.mp4 + <pasta>/previa.jpg
 
 uso:  python tools/maquina/montar.py <pasta>
 """
-import json, os, re, shutil, subprocess, sys, urllib.parse, urllib.request
+import hashlib, json, os, re, shutil, subprocess, sys, urllib.parse, urllib.request
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -56,6 +56,7 @@ def url_direta(u):
 
 
 def baixar(u, dest):
+    dest += "-" + hashlib.md5(u.encode()).hexdigest()[:8]   # 19/10: cache pela URL (por posição, trocar a foto não pegava)
     if not os.path.exists(dest):
         req = urllib.request.Request(url_direta(u), headers={"User-Agent": "ARVEX-maquina/1.0 (conteudo)"})
         with urllib.request.urlopen(req, timeout=60) as r, open(dest, "wb") as f:

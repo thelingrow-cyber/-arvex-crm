@@ -6,73 +6,91 @@
     "url": "https://commons.wikimedia.org/wiki/File:Jeff_Bezos_Unveils_Blue_Origin_Lunar_Lander_(cropped).jpg"
    },
    {
-    "url": "https://commons.wikimedia.org/wiki/File:Amazon_Spheres_2018.jpg"
+    "url": "https://commons.wikimedia.org/wiki/File:Head_Marcus_Aurelius_archmus_Heraklion.jpg"
    },
    {
-    "url": "https://commons.wikimedia.org/wiki/File:Stadium_of_Football_Club_FC_Barcelona_-_Camp_Nou.jpg"
+    "url": "https://commons.wikimedia.org/wiki/File:Steve_Jobs_Headshot_2010-CROP.jpg"
    }
   ]
  },
  "laterais": [
   {
    "de": 5.6,
-   "ate": 11.6,
+   "ate": 9.0,
    "lado": "DIR",
-   "url": "https://commons.wikimedia.org/wiki/File:Amazon_Fulfillment_Center,_Ocala.jpg"
+   "video": "tools/video-recut/videos/2026-10-bezos-decidir/leno1999-full.mp4",
+   "inicio": 32,
+   "crop": "300:378:170:40"
+  },
+  {
+   "de": 9.0,
+   "ate": 11.6,
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-bezos-decidir/robos-full.mp4",
+   "inicio": 15,
+   "crop": "330:416:470:40"
   },
   {
    "de": 11.7,
    "ate": 14.6,
-   "lado": "ESQ",
-   "arquivo": "docs/conteudo/maquina/02-Rascunhos/2026-10-19-bezos-decidir/card-70.png"
+   "lado": "DIR",
+   "video": "tools/video-recut/videos/2026-10-bezos-decidir/card-70.mp4"
   },
   {
    "de": 14.7,
    "ate": 17.4,
-   "lado": "DIR",
-   "arquivo": "docs/conteudo/maquina/02-Rascunhos/2026-10-19-bezos-decidir/card-90.png"
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-bezos-decidir/card-90.mp4"
   },
   {
    "de": 17.4,
    "ate": 22.0,
-   "lado": "ESQ",
-   "url": "https://commons.wikimedia.org/wiki/File:Snail_macro.jpg"
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Hourglass_with_sand.jpg"
   },
   {
    "de": 22.1,
    "ate": 24.2,
-   "lado": "DIR",
-   "arquivo": "docs/conteudo/maquina/02-Rascunhos/2026-10-19-bezos-decidir/card-30.png"
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-bezos-decidir/card-30.mp4"
   },
   {
    "de": 24.2,
    "ate": 27.7,
-   "lado": "ESQ",
+   "lado": "DIR",
    "url": "https://commons.wikimedia.org/wiki/File:Library_stacks_of_books_and_bookshelf.jpg"
   },
   {
    "de": 27.8,
+   "ate": 31.2,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Amazon's_founding_site_in_Bellevue,_Washington_-_garage.jpg"
+  },
+  {
+   "de": 31.2,
    "ate": 34.7,
    "lado": "DIR",
-   "arquivo": "docs/conteudo/maquina/02-Rascunhos/2026-10-19-bezos-decidir/card-primeiros.png"
+   "video": "tools/video-recut/videos/2026-10-bezos-decidir/leno1999-full.mp4",
+   "inicio": 40,
+   "crop": "300:378:170:40"
   },
   {
    "de": 34.8,
    "ate": 38.6,
    "lado": "ESQ",
-   "url": "https://commons.wikimedia.org/wiki/File:Crossroads_Signpost_-_geograph.org.uk_-_5217734.jpg"
+   "url": "https://commons.wikimedia.org/wiki/File:The_Thinker,_Rodin.jpg"
   },
   {
    "de": 38.7,
    "ate": 42.6,
    "lado": "DIR",
-   "url": "https://commons.wikimedia.org/wiki/File:Football_scoreboard_at_Churchill_High_School.jpg"
+   "url": "https://commons.wikimedia.org/wiki/File:Stadium_of_Football_Club_FC_Barcelona_-_Camp_Nou.jpg"
   },
   {
    "de": 42.9,
    "ate": 46.0,
    "lado": "ESQ",
-   "arquivo": "docs/conteudo/maquina/02-Rascunhos/2026-10-19-bezos-decidir/card-decide.png"
+   "video": "tools/video-recut/videos/2026-10-bezos-decidir/card-decide.mp4"
   }
  ]
 }
