@@ -270,6 +270,22 @@ def corte(pasta):
     print(f"vídeo limpo: Downloads\\{nome}-limpo.mp4 · relatório: tools/video-recut/work/{nome}/limpeza/RELATORIO.md")
 
 
+def par_voz(pasta):
+    """Depois do corte: guarda o roteiro enviado ao lado do que ele disse (squads/conteudo/voz-pares.md).
+    É assim que a página do roteiro aprende o jeito dele de falar, gravação por gravação."""
+    pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))
+    tr = os.path.join(RAIZ, "tools", "video-recut", "work", os.path.basename(pasta), "limpeza", "palavras-editado.json")
+    if not os.path.exists(tr):
+        return
+    j = json.load(open(tr, encoding="utf-8"))
+    falado = " ".join(w.get("word", "").strip() for w in (j.get("words", j) if isinstance(j, dict) else j)).strip()
+    resumo = resumo_zap(pasta)
+    titulo = resumo.split("\n", 1)[0].strip("* ")
+    escrito = re.sub(r"\s+", " ", resumo.split("\n", 1)[-1].split("📺")[0]).strip()
+    with open(os.path.join(RAIZ, "squads", "conteudo", "voz-pares.md"), "a", encoding="utf-8") as f:
+        f.write(f"\n## {datetime.date.today()} · {titulo}\n\n**Escrito:**\n\n{escrito}\n\n**Falado:**\n\n{falado}\n")
+
+
 # ---------- 9 · legendas + animações (plano) ----------
 def edicao(pasta):
     pasta = os.path.join(RASC, os.path.basename(pasta.rstrip("/\\")))

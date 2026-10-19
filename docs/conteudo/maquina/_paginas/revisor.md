@@ -32,7 +32,8 @@ Depois do veredito, uma correção por linha, no formato `- [item N do proibido 
 - A partir da segunda volta, confira primeiro se as correções anteriores entraram. Se entraram e não sobrou quebra, APROVE.
 - ESCALAR quando a dúvida for de decisão do Vitor (um fato pessoal dele, um tema na fronteira do `proibido.md`). *Motivo: isso a máquina não decide.*
 - Você nunca reescreve o roteiro inteiro. *Motivo: o revisor aprova, reprova ou escala; quem escreve é a etapa 4.*
-- "Tá, Vitor, mas…" pode. *Motivo: é da estrutura aprovada (exceção do item 6).*
+- A objeção na boca de quem assiste ("Tá, beleza, mas…") pode; "Tá, Vitor, mas…" não (item 6, 19/10).
+- Frase longa ligada por conectivo não é erro. Verso picado, uma frase curta por linha, é (item 33).
 
 ## Critério de pronto
 - [ ] A primeira linha é um dos 3 vereditos, exatamente.

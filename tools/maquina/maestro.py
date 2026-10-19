@@ -249,6 +249,7 @@ def processar_video(nome):
     zap.atualizar(mid, status="gravado")
     zap.texto(f"🎥 Recebi o *{item['codigo']}* ({nome}). Editando, a prévia chega em uns minutos.", citando=mid)
     maquina.corte(item["pasta"])
+    maquina.par_voz(item["pasta"])                                      # a máquina aprende com o que ele mudou ao falar
     maquina.edicao(item["pasta"])
     subprocess.run([sys.executable, os.path.join(AQUI, "montar.py"), os.path.basename(pasta)], check=True, cwd=RAIZ)
     r = zap.video(os.path.join(pasta, "final.mp4"), f"🎬 {item['codigo']} editado. *pode* = sobe em Prontos · "

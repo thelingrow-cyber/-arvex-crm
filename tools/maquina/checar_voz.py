@@ -46,7 +46,7 @@ def checar(md):
     if n_nao_e > 1:
         erros.append(f"'não é X, é Y' aparece {n_nao_e} vezes (proibido 23)")
     for frase in re.split(r"(?<=[.!?])\s+|\n", t):
-        if len(frase.split()) > 22:
+        if len(frase.split()) > 30:
             erros.append(f"frase sem fôlego ({len(frase.split())} palavras): '{frase[:70]}…' (proibido 25)")
     if re.search(r"\b\w+(?:ção|dade|ência|ância|ismo), \w+(?:ção|dade|ência|ância|ismo) e \w+(?:ção|dade|ência|ância|ismo)\b", baixo):
         erros.append("tríade de abstrações (proibido 22)")

@@ -20,11 +20,11 @@ O `roteiro.md` neste formato (exemplo real de 15/10, tema 8):
 ## Roteiro
 
 ​```
-A gente apoia muito mais fácil quem erra do que quem acerta.
-E todo mundo jura que não.
-"Eu torço por todo mundo."
-…
-Quem erra ganha apoio. Quem acerta ganha silêncio.
+A gente perdoa muito mais rápido quem erra do que quem dá certo, e todo mundo jura que não, que torce por todo mundo, que quer ver geral crescendo.
+
+É só você pensar naquele amigo que abriu um negócio e quebrou. …
+
+… Se você é esse amigo, escuta o silêncio, porque ele quer dizer que você saiu do lugar.
 ​```
 
 ## Na tela
@@ -40,13 +40,14 @@ Quem erra ganha apoio. Quem acerta ganha silêncio.
 ## Como fazer
 1. Cumpra a lista de verificação `docs/conteudo/maquina/_regras/checklists/roteiro.md` e abra todos os arquivos que ela aponta.
 2. Escolha no `06-Ganchos/ganchos.md` o gancho cujo **mecanismo** serve ao tema.
-3. Para Regra e Identidade, escreva na estrutura da Luana:
-   1. a lei;
-   2. a fala de quem pensa o contrário, imitada, em 2 ou 3 frases entre aspas;
-   3. o porquê, em tom de conversa;
-   4. a objeção "Tá, Vitor, mas…" e a resposta;
-   5. um exemplo concreto que qualquer pessoa reconhece;
-   6. o fecho, com a lei de volta em 5 a 8 palavras.
+3. **Antes de escrever, leia `squads/conteudo/voz.md` inteiro e os últimos pares de `squads/conteudo/voz-pares.md`** (o que ele escreveu × o que ele disse na câmera). Escreva já como ele diria, em **parágrafos de fala** (um por ideia, frases corridas ligadas por "e", "mas", "porque", "então"), nunca uma frase curta por linha.
+   Para Regra e Identidade, a ordem é:
+   1. a lei, dita como afirmação de conversa;
+   2. a fala de quem pensa o contrário, imitada sem cerimônia ("Repara que a pessoa fala, …");
+   3. o porquê, com uma ressalva ou comentário de passagem;
+   4. um exemplo concreto que qualquer pessoa reconhece ("É só você pensar em…");
+   5. a objeção na boca de quem assiste ("Tá, beleza, mas…") e a resposta;
+   6. o fecho: pode ter uma frase afiada, mas termina numa frase falada.
 
    Para os outros moldes, siga a ficha do molde em `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`.
 4. Confira todo fato com WebSearch na fonte primária e anote o link em "Fontes". Fato sem fonte sai.
@@ -61,8 +62,9 @@ Quem erra ganha apoio. Quem acerta ganha silêncio.
 
 ## Critério de pronto
 - [ ] O formato de saída está completo: título, molde, roteiro, título fixo, notas e fontes.
-- [ ] A primeira linha é a lei, e a última é a lei de volta.
-- [ ] O `checar_voz.py` não acusaria erro: sem travessão, sem palavra proibida, sem frase de mais de 22 palavras.
+- [ ] A primeira frase é a lei, e a última é falada (não aforismo espelhado).
+- [ ] Lido em voz alta, soa como os pares de `voz-pares.md` do lado "falado".
+- [ ] O `checar_voz.py` não acusaria erro: sem travessão, sem palavra proibida, sem frase de mais de 30 palavras.
 - [ ] Todo fato tem link.
 
 ## Erros conhecidos

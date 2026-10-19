@@ -1,190 +1,161 @@
 # voz.md — como o Vitor fala
 
-> Fonte: **transcrição literal dos takes que ele mesmo gravou** (`tools/video-recut/work/*/words.json`),
-> não uma descrição de estilo inventada. Extraído em 2026-09-23 de 5 roteiros, ~4 minutos de fala.
-> Um deles (`plano-vs-prova`) foi publicado e aprovado por ele — é o **padrão-ouro** deste arquivo.
-
-## Como usar
-
-Escreveu um roteiro? Passe pelos **6 testes** no fim do arquivo antes de entregar. Se falhar em um,
-reescreve. Não adapta: reescreve.
+> **v2 (19/10/2026).** Refeito a partir de **27 vídeos gravados** (~4.600 palavras de fala real, set–out/26,
+> `tools/video-recut/work/*/`) e dos pares **roteiro escrito × o que ele disse na câmera**.
+> A v1 (23/09) saiu de 4 minutos de fala e ensinava frase picada e fecho de efeito. Os roteiros soavam
+> como IA, e ele reescrevia tudo na hora de gravar. Esta versão corrige isso.
+>
+> **A regra-mãe:** escreva como ele **fala**, não como se escreve um post. Se der para postar o texto como
+> legenda sem mudar nada, está escrito demais.
 
 ---
 
-## 1. O ritmo: frase curta, em rajada, com uma longa no meio
+## 1. Frase corrida, ligada por conectivo
 
-Ele não escreve períodos compostos. Ele empilha orações curtas e deixa **uma** frase longa respirar
-antes de voltar a cortar.
+Ele fala em frases inteiras, de 12 a 25 palavras, ligadas por **e, mas, porque, então, só que, aí, ou seja**.
+A frase curta existe, mas é **reação**, não verso: "Finalmente." "Isso é lorota." "Isso é lei." "Mais um."
 
-> "E não, eu não fui atrás de me tornar o maior especialista em edição de vídeos com IA. Não, eu só
-> fui clicando, apertando e testando."
+> "Essa semana a Tesla mostrou o carro novo, ele saiu do chão, passou por cima de outro carro, foi aquele show."
 
-> "Mais um."
+> "Quem tinha montado topava pagar bem mais do que quem recebeu a mesma caixa já pronta."
 
-> "E prova é a única coisa que não se discute."
+❌ Verso de IA, uma frase por linha: *"Parece atenção. / Só que da areia toda onda parece igual."*
+✅ Como ele disse: *"Sempre vai parecer atenção, só que lá da areia toda onda parece igual."*
 
-**Padrão:** a frase mais curta do roteiro é sempre o veredito. Ela vem sozinha, sem conjunção.
+**No arquivo, o roteiro vai em parágrafos de fala** (um por ideia), não uma frase por linha.
+A quebra por linha foi o que puxou o texto para o verso.
 
-## 2. A repetição em três, com o verbo repetido
+## 2. Abre com afirmação direta ou com um fato datado
 
-É a assinatura rítmica dele. Não é tríade simétrica de IA (aquela com três substantivos abstratos
-paralelos) — é **o mesmo verbo batendo três vezes** com objeto diferente.
+> "A gente chama de capricho, mas na maioria das vezes é medo."
+> "Te ensinaram que perder bem é bonito, que é preciso saber perder."
+> "Ontem a inteligência artificial ficou 40% mais barata."
+> "No século XIX, Frederic Tudor ficou milionário vendendo gelo."
 
-> "A gente parou de decorar a rua, parou de olhar pro mapa, parou de perguntar pro [atendente] pra onde ir."
+Marca de tempo é dele: **essa semana, ontem, em 1995, no século XIX, nos Estados Unidos, em 79**.
 
-> "Ninguém usou, ninguém testou, ninguém chegou na sinceridade e falou: ó, isso aqui não é tão bom
-> quanto você imagina."
+## 3. O exemplo entra como conversa
 
-> "Eu só fui clicando, apertando e testando."
+> "É só você pensar em duas lojas de bairro que ouvem um cliente perguntar se elas entregam."
+> "Você lembra daquela cena do Homem de Ferro, quando ele fala, papai chegou?"
+> "Pensa naquele…" / "Observa a vida de quem chega primeiro."
 
-❌ O que **não** é a voz dele: *"clareza, consistência e conversão"* — três substantivos abstratos
-alinhados. Isso é vício de modelo.
+**O exemplo vem antes da objeção.** Na gravação do tema 5 ele mesmo trocou a ordem: primeiro a prova,
+depois "tá, mas e eu?".
 
-## 3. Ele se acusa antes de acusar o público
+## 4. A objeção vem na boca de quem assiste
 
-Sempre em primeira pessoa, sempre concreto, sempre com custo real declarado.
+> "Tá, beleza, mas eu já deixei passar a minha, e agora?"
+> "Ah, então é pra ficar parado, esperando? Não, atrasado parado é só atrasado."
 
-> "Passei meses da minha vida planejando coisas que nunca saíram do papel. Eu achava que se não
-> tivesse a estratégia certa, inovadora, não ia dar certo."
+❌ *"Tá, Vitor, mas…"*: ele **trocou isso na gravação**. Não usar.
 
-Só **depois** disso ele vira a câmera pro espectador:
+A fala dos outros entra imitada, **sem cerimônia de aspas**:
+> "Repara que a pessoa fala, quando aparecer a oportunidade certa eu entro, eu tô de olho."
 
-> "Você tá protegendo elas demais."
+## 5. Ele concede, pondera e comenta de passagem
 
-**Ordem obrigatória:** admissão danosa → diagnóstico do público. Nunca o contrário. Se o roteiro
-começa julgando o espectador sem o autor ter pago pedágio, não é a voz dele.
+É o que mais tira a cara de texto gerado: uma ressalva honesta no meio.
 
-## 4. Ele corrige a si mesmo no meio da fala
+> "Claro, a SpaceX também é do Elon Musk, então estava tudo dentro de casa."
+> "E dá pra entender."
+> "E não é falta de gente boa."
+> "Não porque a IA vai te substituir, esquece esse papo, ainda não."
 
-> "Ou melhor, lembra do GPS quando chegou."
+Ele **não fala em absoluto**: na maioria das vezes, quase, muitas vezes, cerca de, eventualmente.
+Roteiro que só afirma, sem uma ressalva, soa de palestra.
 
-> "Não porque a IA vai te substituir — esquece esse papo, ainda não."
+## 6. O fecho é de conversa, não de efeito
 
-Isso é o que faz soar falado e não lido. **Deixar pelo menos uma autocorreção ou um desmonte de
-objeção no meio do roteiro.** É a coisa que mais rápido tira a cara de texto gerado.
+> "Foi isso que eu tirei. Comenta aqui o que você acha."
+> "Então é só um insight pra gente pensar aqui. Tempo no jogo, jogando, conta e conta muito."
+> "Não cai nessa lorota, não."
+> "O mundo mudou, meus caros."
+> "Se o seu projeto, o seu negócio, o seu capricho não tem data, sabe qual dos dois é."
 
-## 5. Ele fecha em regra binária, não em conselho
+Pode haver **uma** frase afiada antes ("Capricho tem data pra acabar. Medo não tem."), mas o vídeo
+termina numa frase falada, que puxa quem assiste.
 
-> "Se a tarefa tem resposta certa e repetitiva, a máquina faz. Se a tarefa tem escolha, sempre vai
-> ser a sua."
-
-> "Quem entrega pra máquina a execução vai ganhar tempo. Mas quem entrega a decisão vira passageiro dela."
-
-> "A IA está vencendo em cada mesa individual. E está perdendo no resultado na empresa."
-
-O fecho dele é uma **linha divisória**, não uma recomendação. Nunca "então comece hoje", nunca
-"o segredo é", nunca "reflita sobre isso".
-
-## 6. A antítese é o motor do argumento inteiro
-
-Plano × prova. Execução × decisão. Mesa individual × empresa. Ideia na cabeça × ideia testada.
-Preço que cai pra você × preço que cai pro mercado todo.
-
-**Todo roteiro dele tem um par em tensão.** Se não tiver, o roteiro não é dele — é informativo.
+❌ Fecho de IA: dois membros espelhados *("Quem erra ganha apoio. Quem acerta ganha silêncio.")*,
+ou conselho *("então comece hoje")*.
 
 ---
 
 ## O léxico
 
-### Palavras que são dele
-`a gente` (nunca "nós") · `pra`, `pro`, `tá`, `tô` · `cara` · `foda` · `papo` · `ó` · `de fato` ·
-`na real` · `só que` · `e é aqui que` · `é por isso que` · `todo mundo` · `o cara do seu mercado` ·
-`prova` · `piso` · `decisão` · `travado` · `parado no mesmo lugar` · `sair do papel` · `mesa`
+### Dele (aparece nas gravações)
+`a gente` e também `nós` · `pra`, `pro`, `tá`, `tô` · `cara` · `foda` · `esquece esse papo` · `foi aquele show` ·
+`nem a pau` · `lorota` · `isso é lei` · `meus caros` · `tipo` · `obviamente` · `de fato` · `na real` ·
+`só que` · `ou seja` · `é só você pensar` · `observa` · `essa semana` · `todo mundo` · `o cara do seu mercado` ·
+`esses caras malucos da IA` · `uma fofoca rápida aqui` · `comenta aqui`
 
-### Conectivos que ele usa para virar o argumento
-> "E é aqui que todo mundo lê errado."
-> "É aqui que a maioria erra com inteligência artificial."
-> "Só que existe um problema nisso."
-> "Por outro lado."
-> "Então a regra é só uma."
+### Proibido (não aparece na fala dele, ou ele reprovou)
+❌ otimizar · escalar · alavancar · solução · ecossistema · jornada · mindset · destravar · potencializar ·
+exponencial · game changer · imagine só · vamos lá · é importante lembrar · em resumo · nesse sentido · vale destacar
+❌ **frases-ponte de virada** (reprovadas em 18/10): "só que repara numa coisa", "agora presta atenção",
+"e é aqui que", "sabe o que acontece?", "Ou melhor" como fórmula
+❌ "Tá, Vitor, mas…" · "não é X, é Y" mais de uma vez · tríade de abstrações · travessão · meta-conteúdo
+("nesse vídeo eu vou te mostrar")
 
-### Palavras proibidas (nenhuma aparece em 4 minutos de fala dele)
-❌ otimizar · escalar · alavancar · solução · ecossistema · jornada · mindset · destravar ·
-potencializar · exponencial · game changer · na prática (como muleta) · imagine só · vamos lá ·
-é importante lembrar · em resumo · nesse sentido · vale destacar
+---
 
-### Construções proibidas
-- **Tríade simétrica de abstrações** — "estratégia, execução e resultado".
-- **Paralelismo repetido em blocos** — "Não é X. É Y." usado mais de uma vez no mesmo roteiro.
-- **Pergunta retórica genérica** de abertura — "Você já parou pra pensar…?" (afunda, ver `ESTUDO-GANCHOS.md`).
-- **Meta-conteúdo** — "nesse vídeo eu vou te mostrar…".
-- **Travessão explicativo** no lugar de ponto final. Ele fala em ponto final.
-- **Frase que ninguém consegue dizer em uma respiração.** Se precisa de vírgula na leitura em voz
-  alta pra não engasgar, quebra em duas.
+## Os 5 testes (filtro, não receita)
+
+Servem para **cortar** o que soa falso, não para encaixar ingrediente. Pedágio, autocorreção ou verbo
+repetido três vezes, quando entram à força, soam plantados (lição de 24/09).
+
+1. **Lido em voz alta, sai como conversa?** Se soa como poema ou como post, junte as frases.
+2. **Tem pelo menos uma frase longa ligada por conectivo a cada três?**
+3. **Tem uma ressalva ou um comentário de passagem?** (seção 5)
+4. **O exemplo é concreto e vem antes da objeção?**
+5. **A última frase é falada, não um aforismo espelhado?**
+
+E as travas de conteúdo, acima de tudo:
+
+- 🔒 **A saída da Cindy é confidencial.** Nunca em roteiro público, em nenhuma forma.
+- 🔒 **Ótica é vertical bloqueada publicamente.**
+- 🔒 **Número só com fonte primária**, e nunca número inventado nem resultado dele que não exista.
+
+---
+
+## O que ele mudou ao gravar (pares escrito → falado)
+
+O melhor professor desta página. A cada vídeo gravado, o maestro acrescenta um par em
+`squads/conteudo/voz-pares.md` (roteiro enviado × transcrição). Leia os últimos antes de escrever.
+
+**Tema 5, "Só quem rema vê a onda" (16/10):**
+
+| Escrito | Falado |
+|---|---|
+| Olha como a pessoa fala: / "Quando aparecer a oportunidade certa, eu entro." / "Eu fico de olho." | Repara que a pessoa fala, quando aparecer oportunidade certa eu entro, eu tô de olho. |
+| Parece atenção. / Só que da areia toda onda parece igual. | Sempre vai aparecer atenção, só que lá da areia toda onda parece igual. |
+| Tá, Vitor, mas e quem já deixou passar uma? *(antes do exemplo)* | Tá, beleza, mas eu já deixei passar a minha, e agora? *(depois do exemplo)* |
+| Duas lojas de bairro ouvem cliente perguntar se elas entregam. | É só você pensar em duas lojas de bairro que ouvem um cliente perguntar se elas entregam. |
+| E a próxima você só vê de dentro. | A próxima é só você ver de dentro. |
+
+---
+
+## Trechos de referência (fala real, publicada)
+
+> "Nós temos uma tendência a sempre achar que o que a gente fez com as próprias mãos vale mais do que
+> realmente vale." *(efeito IKEA)*
+
+> "Observa que nenhum deles era ruim. Os cortadores de gelo eram os melhores do mundo no que faziam. Foi
+> justamente por serem tão bons que eles continuaram cortando gelo enquanto o mundo mudava de lado." *(rei do gelo)*
+
+> "Quem chega longe fica com raiva quando perde, raiva de verdade. E usa essa raiva pra voltar mais forte.
+> Isso é lei." *(odiar perder)*
+
+> "Ou seja, a gente é o cliente que mais compra e não fabrica nada." *(presidente IA)*
+
+> "A gente vive numa cultura obcecada por certezas, que aplaude quem tem um bom plano e ignora quem tem
+> prova." *(plano vs prova, padrão-ouro de setembro)*
 
 ---
 
 ## Os dois registros dele
 
-| Registro | Quando | Exemplo | Ritmo |
-|---|---|---|---|
-| **Tese** | mentalidade, decisão, crítica de cultura | `plano-vs-prova`, `mate-as-ideias`, `quase` | 30–40s, frase curta, fecho em regra |
-| **Notícia + leitura** | fato do dia com a opinião em cima | `cafeia-opus55`, `mckinsey` | 45–85s, abre no fato, vira na interpretação |
-
-No registro de **notícia**, a estrutura que ele usa é sempre a mesma:
-1. o fato, em uma frase, com o número (`"Ontem a inteligência artificial ficou 40% mais barata."`)
-2. **a virada imediata** (`"O problema é que não foi só para você, foi para todo o seu mercado."`)
-3. o nome do formato
-4. o que todo mundo lê errado
-5. a consequência para o negócio de quem assiste
-6. fecho em linha divisória — sem CTA
-
----
-
-## As 6 regras que o roteiro precisa passar
-
-1. **Leu em voz alta sem engasgar?** Qualquer frase que precise de fôlego extra é reescrita.
-2. **Tem um par em tensão?** Se não tem antítese, é informativo — não publica.
-3. **O autor pagou pedágio antes de apontar o dedo?** Admissão danosa vem antes do diagnóstico.
-4. **Tem autocorreção ou desmonte de objeção no meio?** Sem isso soa lido.
-5. **Todo número é prova de terceiro, com veículo e data, conferido na fonte primária?**
-   Nunca número próprio não verificável, nunca número de terceiro implicando resultado dele.
-6. **O fecho é uma linha divisória, não um conselho?** Nada de "comece hoje".
-
-E as duas travas de conteúdo, que valem acima de tudo:
-
-- 🔒 **A saída da Cindy é confidencial.** Nunca em roteiro público, em nenhuma forma, nem indireta.
-- 🔒 **Ótica é vertical bloqueada publicamente.** Case de bastidor, nunca nome de nicho no conteúdo.
-
----
-
-## Trechos aprovados (banco de referência para calibrar)
-
-Da peça **publicada e aprovada** (`2026-09-plano-vs-prova`, 42s):
-
-> "A gente vive numa cultura obcecada por certezas, que aplaude quem tem um bom plano e ignora quem
-> tem prova."
-
-> "Esse vídeo que você está vendo foi editado por ele."
-
-> "Planejar sempre vai parecer seguro e certo. Mas é de fato fazer que vai gerar prova e resultado.
-> E prova é a única coisa que não se discute."
-
-A segunda linha é o modelo de **prova performativa**: o artefato é o próprio vídeo. É o mecanismo
-mais forte do arsenal dele e o mais subutilizado — sempre que houver artefato, colocar na tela antes
-dos 15 segundos (ver regra 3 do squad).
-
----
-
-## Manutenção
-
-Este arquivo se atualiza sozinho a cada vídeo gravado: as transcrições ficam em
-`tools/video-recut/work/<video>/words.json`. Depois de cada lote, reextrair e conferir se apareceu
-tique novo — vício de linguagem entra por repetição, não por decisão.
-
-```powershell
-# reconstruir a fala de um take
-$j = Get-Content tools\video-recut\work\<video>\words.json -Encoding utf8 -Raw | ConvertFrom-Json; $j.text
-```
-
----
-
-## Aprendido no take `2026-09-freio-da-ia` (24/09)
-
-O roteiro levou 4 versões. Na gravação ele **melhorou o texto sozinho**, e as frases dele ficaram melhores que as escritas:
-
-- **Abertura de notícia:** *"Uma fofoca rápida aqui do mundo de AI e negócios."* Dá nome ao formato sem soar como anúncio.
-- **Fecho:** *"Então é só um insight pra gente pensar aqui. Tempo no jogo, jogando, conta e conta muito."* O fecho dele é **humilde e repetido**, não é uma linha divisória sentenciosa.
-- **Regra de processo:** os 6 testes acima são **filtro** para cortar o que soa falso. Não são ingredientes obrigatórios. Pedágio, "ou melhor" e verbo 3× encaixados à força soaram plantados.
-- **Antes de escrever:** perguntar qual é a leitura dele da notícia em uma frase. A melhor estrutura veio quando ele ditou.
-- **A ponte notícia → dono precisa ser literalmente verdadeira.** Ele percebe o salto lógico ("não sei se a correlação está correta").
+| Registro | Exemplo | Ritmo |
+|---|---|---|
+| **Tese** (regra, identidade) | `mate-as-ideias`, `odiar-perder`, `capricho`, `efeito-ikea` | 25–40s, abre na afirmação, um exemplo, fecho falado |
+| **Notícia + leitura** (tendência, negócio) | `cafeia-opus55`, `freio-da-ia`, `tesla`, `presidente-ia` | 40–80s, abre no fato datado, "o que dá pra aprender com isso", consequência pro negócio, fecho que pede comentário |

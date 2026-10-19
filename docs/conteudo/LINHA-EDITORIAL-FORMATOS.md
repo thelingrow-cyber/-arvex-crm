@@ -71,7 +71,7 @@ A v3 fixava uma dobradiça e uma assinatura. **Saíram.** A contagem nos 50 reel
 | 0–5s | **A regra, dita como lei** | uma frase, sem "eu acho". Sem as expressões da Luana (*"Ponto final"*): modela-se o mecanismo, não as palavras |
 | 5–20s | **A crença errada, imitada** | faça a voz de quem pensa o contrário. É a cena do vídeo |
 | 20–45s | **O porquê** | mecanismo simples, de conversa. Tire a culpa da pessoa e ponha na crença |
-| no meio | **A objeção dita por você** | *"Tá, Vitor, mas…"* e responda |
+| no meio | **A objeção na boca de quem assiste** | *"Tá, beleza, mas…"* e responda (o "Tá, Vitor" saiu em 19/10) |
 | 45–60s | **Exemplo de profissão** | médico, advogado, dono de clínica, dono de loja |
 | fim | **Fecho que reformula a regra** | frase de 5 a 8 palavras que vira print |
 

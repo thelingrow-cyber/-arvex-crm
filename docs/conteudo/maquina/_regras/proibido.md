@@ -10,7 +10,7 @@
 3. **Não bater em quem vendeu IA para o empresário.** É regra do brand book.
 4. **Número inventado não entra.** Todo número é de terceiro, com veículo, data e link da fonte primária. Na dúvida, o número sai.
 5. **Frase famosa de autor não entra** (Platão, Nietzsche, Jobs…). Modela-se o mecanismo, não a citação (08/10).
-6. **Expressões do player modelado não entram** ("Ponto final", "presta atenção no discurso", "Tá, Luana"). Roteiro "no estilo de X" leva só o mecanismo de X, dito na voz do Vitor (08/10). **Exceção que pode:** a objeção "Tá, Vitor, mas…" faz parte da estrutura aprovada da Regra (`LINHA-EDITORIAL-FORMATOS.md`) e não conta como transposição. Traduzir literalmente a primeira frase de um gancho estrangeiro conta como transposição.
+6. **Expressões do player modelado não entram** ("Ponto final", "presta atenção no discurso", "Tá, Luana"). Roteiro "no estilo de X" leva só o mecanismo de X, dito na voz do Vitor (08/10). **A objeção vem na boca de quem assiste** ("Tá, beleza, mas eu já deixei passar a minha, e agora?"). "Tá, Vitor, mas…" saiu em 19/10: ele mesmo trocou na gravação. Traduzir literalmente a primeira frase de um gancho estrangeiro conta como transposição.
 7. **Material de mentoria de terceiros** não é fonte de nada.
 
 ## Assunto (14/10: quatro roteiros reprovados seguidos)
@@ -41,12 +41,16 @@
 22. **Tríade simétrica de abstrações reprova** ("clareza, consistência e conversão"). O verbo repetido três vezes ("passa por ele…, passa por ele…") é dele e pode.
 23. **"Não é X, é Y" mais de uma vez no mesmo roteiro reprova.**
 24. **Travessão explicativo reprova.** Ele fala em ponto final.
-25. **Frase que não sai em uma respiração reprova.** Quebra em duas.
+25. **Frase que não sai em uma respiração reprova** (mais de ~30 palavras). Frase de 12 a 25 palavras ligada por conectivo é o normal dele, e não é para quebrar.
 26. **Palavras proibidas:** otimizar, escalar, alavancar, solução, ecossistema, jornada, mindset, destravar, potencializar, exponencial, game changer, imagine só, vamos lá, é importante lembrar, em resumo, nesse sentido, vale destacar.
 27. **Abertura proibida:** pergunta retórica genérica ("Você já parou pra pensar…?") e meta-conteúdo ("nesse vídeo eu vou te mostrar").
-28. **Fecho proibido:** conselho ("comece hoje", "o segredo é", "reflita"). O fecho é uma linha divisória ou a lei de volta.
+28. **Fecho proibido:** conselho ("comece hoje", "o segredo é", "reflita") e aforismo espelhado ("Quem erra ganha apoio. Quem acerta ganha silêncio."). O vídeo termina numa frase falada ("Não cai nessa lorota, não.", "Foi isso que eu tirei."); uma frase afiada antes dela pode.
 29. **Os testes do `voz.md` funcionam como filtro.** Não são ingredientes obrigatórios: "ou melhor", pedágio e verbo 3× encaixados à força soam plantados (24/09).
 30. **Pedágio pessoal só com fato real do Vitor.** Inventar experiência dele é proibido. Sem fato real, o roteiro fica sem pedágio.
+
+33. **Verso picado reprova (19/10).** Uma frase curta por linha ("Parece atenção.") soa poema de IA; na gravação ele junta tudo em frase corrida. O roteiro vai em parágrafos de fala.
+34. **Frase-ponte de virada reprova (18/10):** "só que repara numa coisa", "agora presta atenção", "e é aqui que", "sabe o que acontece?", e "Ou melhor" como fórmula. A virada acontece no conteúdo, sem anunciar.
+35. **Roteiro só de afirmação reprova (19/10).** Ele pondera ("na maioria das vezes", "quase", "e dá pra entender") e comenta de passagem ("Claro, a SpaceX também é do Elon Musk"). Sem nenhuma ressalva, soa palestra.
 
 ## Edição (para o legendista e o editor)
 
