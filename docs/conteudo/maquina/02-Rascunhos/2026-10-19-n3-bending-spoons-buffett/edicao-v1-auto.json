@@ -1,0 +1,26 @@
+{
+ "titulo": "BUFFETT FOI NA CONTRAMÃO",
+ "topo": {
+  "url": "https://commons.wikimedia.org/wiki/File:Washington_Crossing_the_Delaware_by_Emanuel_Leutze,_MMA-NYC,_1851.jpg"
+ },
+ "laterais": [
+  {
+   "de": 0.0,
+   "ate": 3.5,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Warren_Buffett_at_the_2015_SelectUSA_Investment_Summit.jpg"
+  },
+  {
+   "de": 36.7,
+   "ate": 43.8,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Padaria_em_Ara%C3%A7atuba_sp.jpg"
+  },
+  {
+   "de": 69.0,
+   "ate": 72.4,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Padaria_Qui_Del%C3%ADcia.jpg"
+  }
+ ]
+}

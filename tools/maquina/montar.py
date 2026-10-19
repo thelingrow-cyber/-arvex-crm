@@ -9,6 +9,16 @@ Entrada (na pasta do rascunho):
                  "laterais": [{"de": 3.5, "ate": 6.1, "lado": "ESQ"|"DIR", "url": "..."}]}
   vídeo limpo   Downloads/<pasta>-limpo.mp4      (saída do limpar.cjs, etapa 8)
   transcrição   tools/video-recut/work/<pasta>/limpeza/palavras-editado.json   (tempos por palavra, já no vídeo cortado)
+Chaves opcionais (todas retrocompatíveis: sem elas o vídeo sai como antes):
+  "topo": {"seq": [{"de": 0, "video": "tools/…/x.mp4", "inicio": 46, "crop": "w:h:x:y"} | {"de": 4.3, "arquivo"|"url": …}]}
+          topo que troca ao longo do vídeo (corte seco), foto com zoom lento ou trecho de vídeo
+  "laterais": [{"de", "ate", "lado", "video", "inicio", "crop"}]   inserção lateral em vídeo
+  "cheia": [{"de": 13.5, "ate": 15.4, "video": "tools/…/x.mp4" | "arquivo"|"url": "…", "inicio": 82.5,
+             "crop": "w:h:x:y", "modo": "encaixe" | "cobrir"}]
+          19/10: momento em TELA INTEIRA, por cima de topo, título e laterais (a legenda continua por cima).
+          "encaixe" (padrão): o quadro 16:9 inteiro na largura, sobre ele mesmo desfocado e escurecido, para não
+          cortar a manchete do telejornal. "cobrir": recorta para preencher 1080x1920 (use "crop" para mirar).
+          Entra e sai com dissolução de 0,2 s, para a volta à tela dividida não ser um corte seco.
 Saída: <pasta>/final.mp4 + <pasta>/previa.jpg
 
 uso:  python tools/maquina/montar.py <pasta>
@@ -236,6 +246,24 @@ def montar(pasta):
         q = os.path.join(work, f"lado{i}.png")
         ImageOps.autocontrast(enquadrar(im, LARG, ALT), cutoff=1).save(q)
         lados.append((q, float(ins["de"]), min(float(ins["ate"]), dur), lado))
+    cheias = []
+    for i, ch in enumerate(plano.get("cheia") or []):   # 19/10: tela inteira (ver docstring)
+        e, s = float(ch["de"]), min(float(ch["ate"]), dur)
+        q = os.path.join(work, f"cheia{i}.mp4")
+        if ch.get("video"):
+            src = ["-ss", str(ch.get("inicio", 0)), "-t", f"{s - e:.3f}", "-i", os.path.join(RAIZ, ch["video"])]
+        else:
+            p = os.path.join(RAIZ, ch["arquivo"]) if ch.get("arquivo") else baixar(ch["url"], os.path.join(work, f"cheia{i}-orig"))
+            src = ["-loop", "1", "-framerate", "30", "-t", f"{s - e:.3f}", "-i", p]
+        cr = f"crop={ch['crop']}," if ch.get("crop") else ""
+        if ch.get("modo", "encaixe") == "cobrir":
+            fcc = f"[0:v]{cr}scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,setsar=1[v]"
+        else:
+            fcc = (f"[0:v]{cr}fps=30,setsar=1,split[a][b];"
+                   f"[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=40:2,eq=brightness=-0.28[bg];"
+                   f"[b]scale=1080:-2[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2,format=yuv420p[v]")
+        run(src + ["-filter_complex", fcc, "-map", "[v]", "-an", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", q])
+        cheias.append((q, e, s))
     y_leg = y_legenda(video, dur, work)
     print(f"  legenda em y={y_leg}")
     mov = legenda_mov(palavras(transc, dur), dur, work, y_leg)
@@ -261,6 +289,12 @@ def montar(pasta):
         fc.append(f"[{n}:v]format=rgba,fade=t=in:st={e}:d=0.15:alpha=1,fade=t=out:st={s - 0.15}:d=0.15:alpha=1[l{i}]")
         fc.append(f"[{ult}][l{i}]overlay=x={cx - LARG // 2}:y='{cy - ALT // 2}+28*max(0,1-(t-{e})/0.22)':enable='between(t,{e},{s})'[ol{i}]")
         ult, n = f"ol{i}", n + 1
+    for i, (q, e, s) in enumerate(cheias):   # tela inteira: por cima de tudo, menos da legenda
+        ins += ["-i", q]
+        fc.append(f"[{n}:v]setpts=PTS-STARTPTS+{e}/TB,format=rgba,fade=t=in:st={e}:d=0.2:alpha=1,"
+                  f"fade=t=out:st={s - 0.2}:d=0.2:alpha=1[c{i}]")
+        fc.append(f"[{ult}][c{i}]overlay=x=0:y=0:eof_action=pass:enable='between(t,{e},{s})'[oc{i}]")
+        ult, n = f"oc{i}", n + 1
     ins += ["-i", mov]
     fc.append(f"[{ult}][{n}:v]overlay=format=auto[v]"); n += 1
     mus = plano.get("musica")   # {"arquivo": "tools/video-recut/assets/musica/x.mp3", "inicio": 8, "volume": 0.08}
