@@ -11,7 +11,7 @@ A empresa do maior investidor do mundo tá mais uma vez na contramão. Enquanto 
 
 O nome é Bending Spoons, é italiana, e é bem capaz de você já ter usado alguma coisa dela sem saber. Evernote, WeTransfer, Vimeo, é tudo dela. Mês passado comprou o Airtable e agora tá comprando o Miro.
 
-O jogo dela é pegar um software conhecido que parou de crescer, enxugar e arrumar a operação até aquilo dar dinheiro. É tipo comprar aquela padaria que o bairro inteiro conhece mas que parou de encher, e em vez de inventar pão novo, só colocar a casa em ordem. Quando saiu a notícia da Berkshire, a ação subiu uns trinta e cinco por cento no dia.
+O jogo dela é pegar um software conhecido que parou de crescer, enxugar e arrumar a operação até aquilo dar dinheiro. É tipo comprar aquela padaria que o bairro inteiro conhece mas que parou de encher, e em vez de inventar pão novo, só colocar a casa em ordem. Quando saiu a notícia da Berkshire, a ação subiu uns quarenta por cento no dia.
 
 Tá, beleza, mas isso é jogo de bilionário, o que tem a ver com o meu negócio? Tem mais do que parece. A empresa de um dos investidores mais famosos do mundo colocou dinheiro, duas vezes, em quem sabe arrumar o que já existe. Claro, ação sobe e desce, pode dar errado.
 
@@ -67,4 +67,5 @@ Me conta, qual negócio da sua cidade você compraria só pra arrumar?
 - **Título fixo:** BUFFETT FOI NA CONTRAMÃO
 
 ## Fontes
+- Checagem 19/10: CNBC (manchete) e Bending Spoons IR: alta de 41% no fechamento de 14/10 (34–45% conforme a fonte; máx. 55% intradia; recuou p/ US$ 47 em 16/10) → roteiro diz "uns quarenta". Airtable fechado em 04/09; Miro (US$ 1,355 bi) assinado, ainda sem conclusão. Axios 15/10: difícil ver o Buffett, avesso a software, por trás do negócio. https://investors.bendingspoons.com/newsroom/berkshire-hathaway-invests-further-in-bending-spoons · https://www.cnbc.com/2026/10/14/berkshire-hathaway-investment-bending-spoons.html · https://www.axios.com/2026/10/15/bending-spoons-aol-berkshire-hathaway
 - CNBC, 14/10/2026 (Alexis Dufresne): Berkshire compra 10 mi de ações a US$ 33 (US$ 330 mi), participação ~4%; entrou com US$ 600 mi no IPO de julho; ação +~35%; Airtable concluído em 04/09, Miro acordado em 10/09; portfólio inclui Evernote, Vimeo, WeTransfer — https://www.cnbc.com/2026/10/14/berkshire-hathaway-investment-bending-spoons.html (resumo conferido em aiweekly.co)
