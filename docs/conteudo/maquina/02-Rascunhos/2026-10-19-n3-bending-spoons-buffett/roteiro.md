@@ -7,9 +7,9 @@
 > v2 (19/10), refeito com as lições da reescrita do Vitor no N4
 
 ```
-Tem uma empresa italiana que quase ninguém conhece e que é dona do Evernote, do WeTransfer, do Vimeo, comprou o Airtable mês passado e tá comprando o Miro. E a Berkshire, a empresa do Warren Buffett, acabou de colocar mais trezentos e trinta milhões de dólares nela.
+Sabe o Evernote, o WeTransfer, o Vimeo? É tudo da mesma empresa, uma italiana que quase ninguém conhece. E a Berkshire, a empresa do Warren Buffett, acabou de colocar mais trezentos e trinta milhões de dólares nela.
 
-O nome é Bending Spoons, e o jogo dela é meio o contrário do que todo mundo tá fazendo. Ela não inventa nada. Ela compra software conhecido que parou de crescer, enxuga, arruma a operação e faz aquilo dar dinheiro.
+O nome é Bending Spoons. Ela comprou o Airtable mês passado, tá comprando o Miro, e o jogo dela é meio o contrário do que todo mundo tá fazendo. Ela não inventa nada. Ela compra software conhecido que parou de crescer, enxuga, arruma a operação e faz aquilo dar dinheiro.
 
 É tipo aquele cara que compra o restaurante do bairro que tá caindo, não mexe no cardápio, só arruma a cozinha, e um ano depois tá cheio de novo.
 
