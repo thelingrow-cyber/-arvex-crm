@@ -251,7 +251,8 @@ def processar_video(nome):
     maquina.corte(item["pasta"])
     maquina.par_voz(item["pasta"])                                      # a máquina aprende com o que ele mudou ao falar
     maquina.edicao(item["pasta"])
-    subprocess.run([sys.executable, os.path.join(AQUI, "montar.py"), os.path.basename(pasta)], check=True, cwd=RAIZ)
+    py = sys.executable.replace("pythonw.exe", "python.exe")           # pythonw não tem console: o print do montar.py quebrava (19/10)
+    subprocess.run([py, os.path.join(AQUI, "montar.py"), os.path.basename(pasta)], check=True, cwd=RAIZ)
     r = zap.video(os.path.join(pasta, "final.mp4"), f"🎬 {item['codigo']} editado. *pode* = sobe em Prontos · "
                                                      "ou responde em cima com o que ajustar.")
     zap.registrar(r["key"]["id"], {**item, "tipo": "video", "status": "previa", "dia": str(datetime.date.today())})
