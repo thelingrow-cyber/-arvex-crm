@@ -21,6 +21,23 @@
 | ciclo | Corrigir a página, não o caso (prompt 3 do guia dele) | `_paginas/corrigir.md` (`maquina.py corrigir`) | roteiro + nota do Vitor | `correcao-de-pagina.md`: a etapa que errou e a edição no formato antes → depois | ✅ |
 | 11 | Arquiva tudo e limpa as gravações | `maquina.py arquivar <pasta> --limpar` | pasta do rascunho | `03-Publicados/`, com o bruto apagado | ✅ |
 
+## Rodando sozinha (desde 19/10)
+
+O Vitor só conversa pelo WhatsApp (conversa "Você") e sobe a gravação no Drive. O resto é de duas tarefas do Windows:
+
+| Tarefa | Quando | O que faz |
+|---|---|---|
+| `ARVEX Maquina - roteiro da manha` | todo dia 04:30, envia às 07:00 | `maquina.py manha 5`: abastece temas se faltar (coleta a cada 2 dias), escreve e revisa pela cota **2 Regra + 2 Identidade + 1 Tendência** (+1 reserva por molde) e manda um roteiro por mensagem, com código `R1`…`R5` |
+| `ARVEX Maquina - maestro` | ao entrar no Windows, sempre ligado | `maestro.py`: a cada 30 s lê as respostas; a cada 2 min olha a raiz da pasta do Drive |
+
+**O que ele responde (em cima da mensagem, ou começando com o código):**
+
+| No roteiro | No vídeo editado |
+|---|---|
+| `ok` → aprovado · `troca` → outro tema do mesmo molde · qualquer outra coisa (texto ou áudio) → nota: reescreve e manda a v2 | `pode` → sobe em `Prontos/` e manda a legenda do post com créditos · `postei` → arquiva · outra coisa → vai para `ajustes-do-vitor.md` (ajuste de edição ainda é feito numa sessão com o Claude) |
+
+O vídeo novo no Drive é reconhecido pela fala do primeiro minuto (o roteiro enviado mais parecido); depois roda corte → edicao → `montar.py` e a prévia vai para o WhatsApp. O que a máquina mandou fica em `tools/maquina/.estado.json` (id da mensagem → roteiro/vídeo) e tudo o que ele escreve, inclusive recado solto, fica em `tools/maquina/maestro.log` (os dois fora do git). Depende do PC ligado.
+
 ## Conferência com a fala do Fabiano (15/10)
 
 | Fala dele (reel `DeSN2nhFZr3`) | Nosso agente | Material que precisa ter dentro | Temos? |

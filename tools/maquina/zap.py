@@ -9,7 +9,7 @@ uso:  python tools/maquina/zap.py texto "mensagem"
       python tools/maquina/zap.py video <arquivo.mp4> "legenda"
       python tools/maquina/zap.py esperar [minutos]      # imprime a próxima resposta dele
 """
-import base64, json, os, subprocess, sys, time, urllib.request
+import base64, json, os, subprocess, sys, threading, time, urllib.request
 
 INST = "maquina-vitor"
 
@@ -37,8 +37,102 @@ def meu_numero():
     return str(_api(f"/instance/fetchInstances?instanceName={INST}")[0]["ownerJid"]).split("@")[0].split(":")[0]
 
 
-def texto(msg):
-    return _api(f"/message/sendText/{INST}", {"number": meu_numero(), "text": msg})
+def texto(msg, citando=None):
+    """Manda texto. `citando` = id de uma mensagem da conversa: a resposta sai em cima dela (o Vitor vê a qual se refere)."""
+    corpo = {"number": meu_numero(), "text": msg}
+    if citando:
+        try:
+            return _api(f"/message/sendText/{INST}", {**corpo, "quoted": {"key": {"id": citando}}})
+        except Exception:                                                  # citação recusada: manda solta
+            pass
+    return _api(f"/message/sendText/{INST}", corpo)
+
+
+# ---------- o que a máquina mandou (para ligar a resposta dele ao roteiro ou vídeo certo) ----------
+ESTADO = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".estado.json")   # local, fora do git
+
+
+def estado():
+    try:
+        return json.load(open(ESTADO, encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"itens": {}, "visto": 0}
+
+
+def salvar(e):
+    tmp = ESTADO + ".tmp"
+    json.dump(e, open(tmp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    os.replace(tmp, ESTADO)
+
+
+_trava = threading.RLock()                                              # o maestro grava de várias threads
+
+
+def registrar(msg_id, item):
+    """Guarda o que foi mandado com aquele id: {"tipo": "roteiro"|"video", "codigo": "R3", "pasta": ..., ...}."""
+    with _trava:
+        e = estado()
+        e["itens"][msg_id] = {**item, "enviado": int(time.time())}
+        salvar(e)
+
+
+def guardar(chave, valor):
+    with _trava:
+        e = estado()
+        e[chave] = valor
+        salvar(e)
+
+
+def atualizar(msg_id, **campos):
+    with _trava:
+        e = estado()
+        e["itens"].setdefault(msg_id, {}).update(campos)
+        salvar(e)
+
+
+def _texto_de(msg):
+    return (msg.get("conversation") or msg.get("extendedTextMessage", {}).get("text")
+            or next((v["caption"] for v in msg.values() if isinstance(v, dict) and v.get("caption")), None))
+
+
+def _citada(m):
+    """Id da mensagem em cima da qual ele respondeu (Responder no WhatsApp), se respondeu em cima de alguma."""
+    for c in [m.get("contextInfo")] + [v.get("contextInfo") for v in m.get("message", {}).values() if isinstance(v, dict)]:
+        if c and c.get("stanzaId"):
+            return c["stanzaId"]
+    return None
+
+
+def novas(desde):
+    """Mensagens que o Vitor digitou (ou gravou em áudio) na conversa "Você" depois de `desde`, da mais antiga à mais nova.
+    Cada uma: {"id", "ts", "texto" (ou None), "audio": bool, "citada": id ou None}."""
+    minhas, vistas, out = conversa_voce(), set(), []
+    for j in minhas:
+        for m in _api(f"/chat/findMessages/{INST}", {"where": {"key": {"remoteJid": j}}, "page": 1, "offset": 30},
+                      timeout=45)["messages"]["records"]:
+            k, msg = m.get("key", {}), m.get("message", {}) or {}
+            if (not k.get("fromMe") or m.get("source") == "web" or m.get("messageTimestamp", 0) <= desde
+                    or k.get("id") in vistas):
+                continue
+            vistas.add(k["id"])
+            out.append({"id": k["id"], "ts": m["messageTimestamp"], "texto": _texto_de(msg),
+                        "audio": "audioMessage" in msg, "citada": _citada(m)})
+    return sorted(out, key=lambda x: x["ts"])
+
+
+def transcrever_audio(msg_id):
+    """Baixa o áudio que ele mandou e transcreve no Groq (whisper-large-v3). Chave: variável de usuário GROQ_API_KEY."""
+    b64 = _api(f"/chat/getBase64FromMediaMessage/{INST}", {"message": {"key": {"id": msg_id}}, "convertToMp4": False},
+               timeout=120)["base64"]
+    limite = "----maquina" + str(int(time.time()))
+    corpo = (f"--{limite}\r\nContent-Disposition: form-data; name=\"model\"\r\n\r\nwhisper-large-v3\r\n"
+             f"--{limite}\r\nContent-Disposition: form-data; name=\"language\"\r\n\r\npt\r\n"
+             f"--{limite}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"audio.ogg\"\r\n"
+             f"Content-Type: audio/ogg\r\n\r\n").encode() + base64.b64decode(b64) + f"\r\n--{limite}--\r\n".encode()
+    req = urllib.request.Request("https://api.groq.com/openai/v1/audio/transcriptions", data=corpo, method="POST",
+                                 headers={"Authorization": f"Bearer {_env('GROQ_API_KEY')}", "User-Agent": "curl/8.4.0",
+                                          "Content-Type": f"multipart/form-data; boundary={limite}"})
+    return json.load(urllib.request.urlopen(req, timeout=120))["text"].strip()
 
 
 def previa(arquivo):

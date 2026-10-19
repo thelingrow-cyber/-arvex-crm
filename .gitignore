@@ -64,4 +64,6 @@ docs/conteudo/maquina/**/final.mp4
 docs/conteudo/maquina/**/final*.mp4
 docs/conteudo/maquina/_regras/manha-saida.log
 tools/maquina/.zap-lid
+tools/maquina/.estado.json*
+tools/maquina/maestro.log
 docs/conteudo/maquina/**/*-previa.mp4

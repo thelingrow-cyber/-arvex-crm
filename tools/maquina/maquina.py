@@ -135,35 +135,81 @@ def _aguardar(hora):
             time.sleep(20)
 
 
-def manha(qtd=1, tentativas=3, hora=None):
-    """Escolhe os temas ainda não usados com mais views no original, escreve, revisa e manda os APROVADOS no WhatsApp.
-    Reprovado pelo revisor não vai: tenta o próximo tema. Se nenhum passar, avisa em vez de mandar roteiro fraco."""
+# semana de 19/10 (decisão do Vitor): 5 por dia, puxado para Regra e Identidade, que saem sem edição pesada
+COTA = {"Regra": 2, "Identidade": 2, "Tendência": 1}
+ICONE = {"Regra": "⚖️", "Identidade": "🗿", "Tendência": "📈", "Negócio": "🏢", "Bastidor": "🛠️"}
+
+
+def _temas():
+    return [[c.strip() for c in l.strip().strip("|").split("|")] for l in open(TEMAS, encoding="utf-8")
+            if re.match(r"^\| \d+ \|", l.strip())]
+
+
+def abastecer(reserva=1):
+    """Se faltar tema de algum molde da cota (cota + reserva, contra reprovação do revisor), coleta os concorrentes
+    (se a última coleta tem 2 dias ou mais) e roda a etapa 2 para listar temas novos."""
+    livres = [c for c in _temas() if int(c[0]) not in usados()]
+    falta = [m for m, q in COTA.items() if sum(c[2] == m for c in livres) < q + reserva]
+    if not falta:
+        return
+    coletas = sorted(glob.glob(os.path.join(MAQ, "05-Concorrentes", "coletas", "*")))
+    ultima = datetime.date.fromisoformat(os.path.basename(coletas[-1])) if coletas else datetime.date.min
+    if (datetime.date.today() - ultima).days >= 2:
+        subprocess.run([sys.executable, os.path.join(AQUI, "coletar.py")], cwd=RAIZ, check=False)
+    temas()
+
+
+def resumo_zap(pasta):
+    """O que vai no celular: título, o texto para ler na câmera e o título da tela. As notas de gravação ficam no arquivo."""
+    t = open(os.path.join(pasta, "roteiro.md"), encoding="utf-8").read()
+    titulo = re.search(r"^# (.+)", t, re.M)
+    fala = re.search(r"## Roteiro\s*```\w*\n(.*?)\n```", t, re.S) or re.search(r"## Roteiro\s*\n(.*?)(?=\n## |\Z)", t, re.S)
+    tela = re.search(r"\*\*T[íi]tulo fixo:\*\*\s*(.+)", t)
+    return ((f"*{titulo.group(1).strip()}*\n\n" if titulo else "") + (fala.group(1).strip() if fala else t.strip())
+            + (f"\n\n📺 Título na tela: {tela.group(1).strip()}" if tela else ""))
+
+
+def manha(qtd=5, hora=None):
+    """Escreve e revisa os roteiros do dia pela COTA de moldes e manda no WhatsApp, um por mensagem, com código (R1…R5).
+    O id de cada mensagem fica em zap.registrar: quando o Vitor responde em cima dela, o maestro sabe de qual roteiro é.
+    Ordem de preferência: aprovado pelo revisor > escalado > esgotou as voltas (esse vai marcado)."""
     import zap
-    linhas = [[c.strip() for c in l.strip().strip("|").split("|")] for l in open(TEMAS, encoding="utf-8")
-              if re.match(r"^\| \d+ \|", l.strip())]
-    views = lambda c: int(re.sub(r"\D", "", c[5]) or 0)
-    fila = [int(c[0]) for c in sorted(linhas, key=views, reverse=True) if int(c[0]) not in usados()]
-    enviados, tentados = [], []
-    for n in fila[:tentativas]:
-        if len(enviados) == qtd:
-            break
-        try:
-            r = roteiro(n)
-        except Exception as e:
-            tentados.append(f"tema {n}: falhou ({e})"); continue
-        tentados.append(r)
-        if ": APROVADO" in r:
-            _aguardar(hora)
-            pasta = os.path.join(RAIZ, r.split("→ ")[1].rsplit("/", 1)[0])
-            zap.texto(f"☀️ *Roteiro do dia* (tema {n})\n\n" + open(os.path.join(pasta, "roteiro.md"), encoding="utf-8").read().strip()
-                      + "\n\n🎥 Grava e sobe na pasta *Vídeos claude*. Se não curtir, responde *não, + o que mudar*.")
-            enviados.append(n)
-    if not enviados:
-        _aguardar(hora)
-        zap.texto("⚠️ A máquina não conseguiu um roteiro aprovado pelo revisor hoje.\n\n" + "\n".join(tentados))
+    abastecer()
+    livres = sorted([c for c in _temas() if int(c[0]) not in usados()],
+                    key=lambda c: int(re.sub(r"\D", "", c[5]) or 0), reverse=True)
+    cota = dict(COTA) if qtd == sum(COTA.values()) else {"": qtd}
+    candidatos = []                                                     # cota + 1 de reserva por molde
+    for m, q in cota.items():
+        candidatos += [int(c[0]) for c in livres if not m or c[2] == m][:q + 1]
+    with ThreadPoolExecutor(4) as ex:
+        res = dict(zip(candidatos, ex.map(lambda n: _seguro(roteiro, n), candidatos)))
+    nota = lambda r: 0 if ": APROVADO" in r else 1 if "ESCALADO" in r else 2 if "REFAZER" in r else 9
+    molde = {int(c[0]): c[2] for c in _temas()}
+    escolhidos = []
+    for m, q in cota.items():
+        bons = sorted([n for n in candidatos if (not m or molde[n] == m) and nota(res[n]) < 9], key=lambda n: nota(res[n]))
+        escolhidos += bons[:q]
+    _aguardar(hora)
+    dia = f"{datetime.date.today():%d/%m}"
+    if escolhidos:
+        zap.texto(f"☀️ *Roteiros de hoje ({dia})*: {len(escolhidos)} a seguir.\n\n"
+                  "↩️ Responde *em cima* de cada um (segura a mensagem → Responder):\n"
+                  "• *ok* = aprovado, pode gravar\n• escreve ou manda *áudio* com o que mudar = eu reescrevo\n"
+                  "• *troca* = outro tema\n\n🎥 Gravou? Sobe na pasta *Vídeos claude* com qualquer nome.")
+    e = zap.estado()
+    for i, n in enumerate(escolhidos, 1):
+        pasta = os.path.join(RAIZ, res[n].split("→ ")[1].rsplit("/", 1)[0])
+        cod = f"R{i}"
+        aviso = "" if nota(res[n]) == 0 else "\n\n⚠️ _O revisor não aprovou de primeira: lê com atenção._"
+        r = zap.texto(f"🎬 *{cod} · {ICONE.get(molde[n], '')} {molde[n]}* · {dia}\n\n{resumo_zap(pasta)}{aviso}")
+        zap.registrar(r["key"]["id"], {"tipo": "roteiro", "codigo": cod, "dia": str(datetime.date.today()),
+                                       "pasta": rel(pasta), "molde": molde[n], "tema": n, "status": "enviado"})
+    if len(escolhidos) < qtd:
+        zap.texto(f"⚠️ Hoje saíram {len(escolhidos)} de {qtd}. O que falhou:\n" +
+                  "\n".join(r for n, r in res.items() if n not in escolhidos))
     with open(os.path.join(MAQ, "_regras", "manha.log"), "a", encoding="utf-8") as f:
-        f.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M} · enviados {enviados} · " + " | ".join(tentados) + "\n")
-    print("enviados:", enviados, "\n" + "\n".join(tentados))
+        f.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M} · enviados {escolhidos} · " + " | ".join(res.values()) + "\n")
+    print("enviados:", escolhidos, "\n" + "\n".join(res.values()))
 
 
 def reescrever(pasta, nota):
@@ -290,7 +336,7 @@ def main():
         status()
     elif cmd == "manha":
         hora = a[a.index("--as") + 1] if "--as" in a else None
-        manha(int(a[1]) if len(a) > 1 and a[1].isdigit() else 1, hora=hora)
+        manha(int(a[1]) if len(a) > 1 and a[1].isdigit() else 5, hora=hora)
     else:
         sys.exit(__doc__)
 
