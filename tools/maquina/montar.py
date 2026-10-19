@@ -224,7 +224,8 @@ def montar(pasta):
         topo = os.path.join(work, "topo.png")
         ImageOps.autocontrast(enquadrar(im, L, A), cutoff=1).save(topo)
     tit = os.path.join(work, "titulo.png")
-    (titulo_fino if plano.get("titulo_estilo") == "fino" else titulo_png)(plano["titulo"], tit)
+    estilo = titulo_png if plano.get("titulo_estilo") == "bebas" else titulo_fino   # 19/10: fino é o padrão (o Vitor mandou a referência 2x)
+    estilo(plano["titulo"], tit)
     y_tit = Y + A + 14 if topo else Y_TIT_SEM_TOPO
     lados = []
     for i, ins in enumerate(plano.get("laterais") or []):

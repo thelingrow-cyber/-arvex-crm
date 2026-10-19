@@ -4,7 +4,7 @@ A v1 automática (pintura fixa + 3 inserções) está em `edicao-v1-auto.md` / `
 Os clipes ficam em `tools/video-recut/work/2026-10-19-n3-bending-spoons-buffett/clipes/` (baixados com yt-dlp; cartões gerados por `gerar_cartoes.py`).
 
 ## Título fixo
-BUFFETT FOI NA CONTRAMÃO (Bebas Neue)
+BUFFETT NA CONTRAMÃO DE NOVO (Bebas Neue)
 
 ## Linha do tempo (segundos do vídeo limpo)
 

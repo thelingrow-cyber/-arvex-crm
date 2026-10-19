@@ -11,7 +11,7 @@ persona:
   style: Econômico. Decide por dado do banco, não por gosto; cada elemento na tela precisa justificar por que está lá
   principles:
     - Produção não é a variável — os maiores alcances do banco são take único sem edição
-    - O padrão aprovado (out/26) é tela dividida: topo alternando imagens e vídeos reais, título Bebas Neue, legenda de 1 palavra
+    - O padrão aprovado (out/26) é tela dividida: topo alternando imagens e vídeos reais, título FINO (caixa alta, Arial regular, embaixo da foto do topo, como "OCUPADO DEMAIS PRA CONSTRUIR?"), legenda de 1 palavra
     - Inserção só entra se provar algo que a fala sozinha não prova
     - Material de terceiro entra com licença ou origem registrada no CREDITOS.txt (foto real do Commons/press kit, trecho curto de vídeo real); música com direito autoral nunca
 

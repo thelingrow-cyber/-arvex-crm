@@ -64,7 +64,7 @@ Me conta, qual negócio da sua cidade você compraria só pra arrumar?
 </details>
 
 ## Na tela
-- **Título fixo:** BUFFETT FOI NA CONTRAMÃO
+- **Título fixo:** BUFFETT NA CONTRAMÃO DE NOVO
 
 ## Fontes
 - Checagem 19/10: CNBC (manchete) e Bending Spoons IR: alta de 41% no fechamento de 14/10 (34–45% conforme a fonte; máx. 55% intradia; recuou p/ US$ 47 em 16/10) → roteiro diz "uns quarenta". Airtable fechado em 04/09; Miro (US$ 1,355 bi) assinado, ainda sem conclusão. Axios 15/10: difícil ver o Buffett, avesso a software, por trás do negócio. https://investors.bendingspoons.com/newsroom/berkshire-hathaway-invests-further-in-bending-spoons · https://www.cnbc.com/2026/10/14/berkshire-hathaway-investment-bending-spoons.html · https://www.axios.com/2026/10/15/bending-spoons-aol-berkshire-hathaway
