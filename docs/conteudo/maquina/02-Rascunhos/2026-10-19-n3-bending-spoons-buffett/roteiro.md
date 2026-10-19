@@ -1,10 +1,28 @@
 # A empresa que compra o que já existe
 
-**Molde:** 📰 Mercado da manhã (curadoria das 7h, modelo @beprecht) · **Duração:** ~60–75s · escrito na voz v2
+**Molde:** 📰 Mercado da manhã (curadoria das 7h, modelo @beprecht) · **Duração:** ~70–80s · escrito na voz v2
 
 ## Roteiro
 
-> v2 (19/10), refeito com as lições da reescrita do Vitor no N4
+> v3 (19/10), gancho novo (autoridade + paradoxo, em andamento) e texto no padrão da reescrita do Vitor no N4
+
+```
+A empresa do Warren Buffett tá colocando dinheiro numa empresa que vive de comprar aplicativo que parou de crescer. A Berkshire acabou de botar mais trezentos e trinta milhões de dólares lá. Trezentos e trinta milhões. E em julho, quando ela abriu capital, eles já tinham entrado com seiscentos.
+
+O nome é Bending Spoons, é italiana, e é bem capaz de você já ter usado alguma coisa dela sem saber. Evernote, WeTransfer, Vimeo, é tudo dela. Mês passado comprou o Airtable e agora tá comprando o Miro.
+
+O jogo dela é pegar um software conhecido que parou de crescer, enxugar e arrumar a operação até aquilo dar dinheiro. É tipo comprar aquela padaria que o bairro inteiro conhece mas que parou de encher, e em vez de inventar pão novo, só colocar a casa em ordem. Quando saiu a notícia da Berkshire, a ação subiu uns trinta e cinco por cento no dia.
+
+Tá, beleza, mas isso é jogo de bilionário, o que tem a ver com o meu negócio? Tem mais do que parece. Enquanto quase todo mundo corre atrás da próxima novidade, a empresa de um dos investidores mais famosos do mundo colocou dinheiro em quem sabe arrumar o que já existe. Claro, ação sobe e desce, pode dar errado.
+
+E eu? Sinceramente, acho isso quase um alívio. Porque na maioria das vezes o dinheiro tá menos no produto novo que você ainda vai lançar e mais no que já tá aí no teu negócio, rodando do jeito que dava. Eu, antes de inventar qualquer coisa, olharia primeiro pro que já tá rodando aqui dentro.
+
+E você, comprava a padaria vazia pra arrumar ou abria uma do zero? Fala aí nos comentários.
+```
+
+<details><summary>Versões anteriores (reprovadas)</summary>
+
+**v2 (19/10), reprovada pelo Vitor: "HORRÍVEL" (gancho fraco, lista de apps virou transposição do gancho do @beprecht)**
 
 ```
 Sabe o Evernote, o WeTransfer, o Vimeo? É tudo da mesma empresa, uma italiana que quase ninguém conhece. E a Berkshire, a empresa do Warren Buffett, acabou de colocar mais trezentos e trinta milhões de dólares nela.
@@ -20,7 +38,7 @@ Aí, enquanto o mercado inteiro corre atrás da próxima novidade de IA, um dos 
 E você, qual negócio da tua cidade você compraria só pra arrumar? Fala aí nos comentários.
 ```
 
-<details><summary>v1 da máquina (reprovada: escrita, lida)</summary>
+**v1 da máquina (reprovada: escrita, lida)**
 
 ```
 Tem uma empresa italiana que quase ninguém conhece e que é dona do Evernote, do WeTransfer, do Vimeo, comprou o Airtable mês passado e tá comprando o Miro. E a Berkshire, a empresa do Warren Buffett, acabou de colocar mais 330 milhões de dólares nela.
@@ -36,7 +54,7 @@ Me conta, qual negócio da sua cidade você compraria só pra arrumar?
 </details>
 
 ## Na tela
-- **Título fixo:** O DINHEIRO TÁ EM OPERAR MELHOR
+- **Título fixo:** BUFFETT FOI NA CONTRAMÃO
 
 ## Fontes
 - CNBC, 14/10/2026 (Alexis Dufresne): Berkshire compra 10 mi de ações a US$ 33 (US$ 330 mi), participação ~4%; entrou com US$ 600 mi no IPO de julho; ação +~35%; Airtable concluído em 04/09, Miro acordado em 10/09; portfólio inclui Evernote, Vimeo, WeTransfer — https://www.cnbc.com/2026/10/14/berkshire-hathaway-investment-bending-spoons.html (resumo conferido em aiweekly.co)
