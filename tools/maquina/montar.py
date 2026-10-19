@@ -12,6 +12,9 @@ Entrada (na pasta do rascunho):
 Chaves opcionais (todas retrocompatíveis: sem elas o vídeo sai como antes):
   "topo": {"seq": [{"de": 0, "video": "tools/…/x.mp4", "inicio": 46, "crop": "w:h:x:y"} | {"de": 4.3, "arquivo"|"url": …}]}
           topo que troca ao longo do vídeo (corte seco), foto com zoom lento ou trecho de vídeo
+  "topo": {"trio": [{"url"|"arquivo": …} | {"video": "tools/…/x.mp4", "inicio": 12, "crop": "w:h:x:y"}, …×3]}
+          19/10 (referência do Vitor): 3 quadros quadrados lado a lado no topo, fixos o vídeo todo, título logo
+          abaixo; vídeo no quadro toca em loop. As laterais continuam entrando e saindo embaixo.
   "laterais": [{"de", "ate", "lado", "video", "inicio", "crop"}]   inserção lateral em vídeo
   "cheia": [{"de": 13.5, "ate": 15.4, "video": "tools/…/x.mp4" | "arquivo"|"url": "…", "inicio": 82.5,
              "crop": "w:h:x:y", "modo": "encaixe" | "cobrir"}]
@@ -35,6 +38,7 @@ L, A, Y = 540, 400, 110                  # pintura do topo
 ESQ, DIR = (170, 985), (910, 985)        # centro das laterais (rosto em x ~330–740)
 LARG, ALT = 310, 390
 Y_TIT_SEM_TOPO = 470                     # molde Regra: título acima da cabeça (em 1180 batia no rosto e na legenda, 16/10)
+TRIO, TGAP = 280, 24                     # 19/10: topo com 3 quadros lado a lado (referência do Vitor)
 Y_LEG = 1300                             # 16/10: o Vitor pediu a legenda menor e mais perto do meio (era 1440, fonte 54)
 
 
@@ -223,10 +227,24 @@ def montar(pasta):
                         else baixar(plano["topo"]["url"], os.path.join(work, "topo-orig")))
         topo = os.path.join(work, "topo.png")
         ImageOps.autocontrast(enquadrar(im, L, A), cutoff=1).save(topo)
+    trio = []
+    if plano.get("topo") and plano["topo"].get("trio"):   # 19/10: 3 quadros lado a lado, fixos o vídeo todo
+        x0 = (1080 - 3 * TRIO - 2 * TGAP) // 2
+        for k, it in enumerate(plano["topo"]["trio"][:3]):
+            if it.get("video"):
+                q = os.path.join(work, f"trio{k}.mp4")
+                vf = (f"crop={it['crop']}," if it.get("crop") else "") +                      f"scale={TRIO}:{TRIO}:force_original_aspect_ratio=increase,crop={TRIO}:{TRIO},fps=30,setsar=1"
+                run(["-stream_loop", "-1", "-ss", str(it.get("inicio", 0)), "-i", os.path.join(RAIZ, it["video"]),
+                     "-t", f"{dur + 0.6:.2f}", "-vf", vf, "-an", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", q])
+            else:
+                im = Image.open(os.path.join(RAIZ, it["arquivo"]) if it.get("arquivo") else baixar(it["url"], os.path.join(work, f"trio{k}-orig")))
+                q = os.path.join(work, f"trio{k}.png")
+                ImageOps.autocontrast(enquadrar(im, TRIO, TRIO), cutoff=1).save(q)
+            trio.append((q, x0 + k * (TRIO + TGAP)))
     tit = os.path.join(work, "titulo.png")
     estilo = titulo_png if plano.get("titulo_estilo") == "bebas" else titulo_fino   # 19/10: fino é o padrão (o Vitor mandou a referência 2x)
     estilo(plano["titulo"], tit)
-    y_tit = Y + A + 14 if topo else Y_TIT_SEM_TOPO
+    y_tit = Y + A + 14 if topo else Y + TRIO + 14 if trio else Y_TIT_SEM_TOPO
     lados = []
     for i, ins in enumerate(plano.get("laterais") or []):
         lado = ESQ if ins.get("lado", "ESQ").upper().startswith("E") else DIR
@@ -275,6 +293,9 @@ def montar(pasta):
     if topo:
         ins += ["-i", topo] if topo.endswith(".mp4") else ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", topo]
         fc.append(f"[{n}:v]setpts=PTS-STARTPTS[tp];[{ult}][tp]overlay=x={(1080 - L) // 2}:y={Y}:eof_action=repeat[ot0]"); ult, n = "ot0", n + 1
+    for k, (q, x) in enumerate(trio):
+        ins += ["-i", q] if q.endswith(".mp4") else ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", q]
+        fc.append(f"[{ult}][{n}:v]overlay=x={x}:y={Y}:eof_action=repeat[tr{k}]"); ult, n = f"tr{k}", n + 1
     ins += ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", tit]
     fc.append(f"[{ult}][{n}:v]overlay=x=0:y={y_tit}[ot]"); ult, n = "ot", n + 1
     for i, (q, e, s, (cx, cy)) in enumerate(lados):
