@@ -1,17 +1,65 @@
 {
  "titulo": "SE NÃO TEM DATA, É MEDO.",
- "topo": {"seq": [
-  {"de": 0,     "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4", "inicio": 30},
-  {"de": 3.25,  "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_board.jpg"},
-  {"de": 7.45,  "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4", "inicio": 195},
-  {"de": 10.75, "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4", "inicio": 121},
-  {"de": 12.9,  "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_Reid_Hoffman.jpg"},
-  {"de": 18.25, "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_jobs_topo.jpg"},
-  {"de": 21.45, "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4", "inicio": 70}
- ]},
+ "topo": {
+  "seq": [
+   {
+    "de": 0,
+    "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_jobs_topo.jpg"
+   },
+   {
+    "de": 1.55,
+    "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4",
+    "inicio": 31
+   },
+   {
+    "de": 3.25,
+    "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_board.jpg"
+   },
+   {
+    "de": 7.45,
+    "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4",
+    "inicio": 195
+   },
+   {
+    "de": 10.75,
+    "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4",
+    "inicio": 121
+   },
+   {
+    "de": 12.9,
+    "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_Reid_Hoffman.jpg"
+   },
+   {
+    "de": 18.25,
+    "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4",
+    "inicio": 250
+   },
+   {
+    "de": 21.45,
+    "video": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/mac84.mp4",
+    "inicio": 70
+   }
+  ]
+ },
  "laterais": [
-  {"de": 6.2,  "ate": 7.45,  "lado": "DIR", "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_SteveJobsSig.jpg"},
-  {"de": 10.9, "ate": 12.85, "lado": "ESQ", "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_Computer_mac.jpg"},
-  {"de": 18.3, "ate": 20.0,  "lado": "DIR", "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_Reid_Hoffman.jpg"}
- ]
+  {
+   "de": 6.2,
+   "ate": 7.45,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_SteveJobsSig.jpg"
+  },
+  {
+   "de": 10.9,
+   "ate": 12.85,
+   "lado": "ESQ",
+   "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_Computer_mac.jpg"
+  },
+  {
+   "de": 18.3,
+   "ate": 20.0,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/work/2026-10-18-capricho-tem-data/clipes/c_Reid_Hoffman.jpg"
+  }
+ ],
+ "titulo_estilo": "fino"
 }

@@ -57,6 +57,27 @@ def enquadrar(im, larg, alt):
     return im.crop((x0, y0, x0 + larg, y0 + alt))
 
 
+def titulo_fino(texto, dest):
+    """18/10: tipografia do post da Amazon que o Vitor mandou de referência: caixa alta, fina (Arial regular),
+    da largura da imagem do topo, em até 2 linhas equilibradas, sombra suave."""
+    ft, med = ImageFont.truetype(os.path.join(os.environ.get("WINDIR", "C:\\Windows"), "Fonts", "arial.ttf"), 56), \
+        ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength
+    texto, linhas = texto.upper(), [texto.upper()]
+    if med(texto, font=ft) > L + 60:
+        p = texto.split()
+        meio = min(range(1, len(p)), key=lambda m: max(med(" ".join(p[:m]), font=ft), med(" ".join(p[m:]), font=ft)))
+        linhas = [" ".join(p[:meio]), " ".join(p[meio:])]
+    out = Image.new("RGBA", (1080, 64 * len(linhas) + 40), (0, 0, 0, 0))
+    sh = Image.new("RGBA", out.size, (0, 0, 0, 0))
+    for i, ln in enumerate(linhas):
+        ImageDraw.Draw(sh).text(((1080 - med(ln, font=ft)) / 2, 22 + i * 64), ln, font=ft, fill=(0, 0, 0, 200))
+    out = Image.alpha_composite(out, sh.filter(ImageFilter.GaussianBlur(5)))
+    for i, ln in enumerate(linhas):
+        ImageDraw.Draw(out).text(((1080 - med(ln, font=ft)) / 2, 20 + i * 64), ln, font=ft, fill=(255, 255, 255))
+    out.save(dest)
+    return out.height
+
+
 def titulo_png(texto, dest):
     tam = 96
     while tam > 64:   # 17/10: abaixo de 64 o título ficava miúdo numa linha; aí quebra em 2 linhas grandes
@@ -183,17 +204,16 @@ def montar(pasta):
                      f"scale={L * 2}:{A * 2},zoompan=z='1+0.04*on/({(s - e) * 30:.0f})':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={L}x{A}:fps=30",
                      "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", q])
             partes.append(q)
-        lista = os.path.join(work, "topo.txt")
-        open(lista, "w", encoding="utf-8").write("".join(f"file '{q}'\n" for q in partes))
-        topo = os.path.join(work, "topo.mp4")
-        run(["-f", "concat", "-safe", "0", "-i", lista, "-c", "copy", topo])
+        topo = os.path.join(work, "topo.mp4")   # filtro concat: o demuxer concat engolia a parte em vídeo logo após a foto (18/10)
+        run(sum([["-i", q] for q in partes], []) + ["-filter_complex", "".join(f"[{k}:v]" for k in range(len(partes))) +
+            f"concat=n={len(partes)}:v=1:a=0[v]", "-map", "[v]", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", topo])
     elif plano.get("topo") and (plano["topo"].get("url") or plano["topo"].get("arquivo")):
         im = Image.open(os.path.join(RAIZ, plano["topo"]["arquivo"]) if plano["topo"].get("arquivo")   # quadro de vídeo (17/10)
                         else baixar(plano["topo"]["url"], os.path.join(work, "topo-orig")))
         topo = os.path.join(work, "topo.png")
         ImageOps.autocontrast(enquadrar(im, L, A), cutoff=1).save(topo)
     tit = os.path.join(work, "titulo.png")
-    titulo_png(plano["titulo"], tit)
+    (titulo_fino if plano.get("titulo_estilo") == "fino" else titulo_png)(plano["titulo"], tit)
     y_tit = Y + A + 14 if topo else Y_TIT_SEM_TOPO
     lados = []
     for i, ins in enumerate(plano.get("laterais") or []):
@@ -224,7 +244,7 @@ def montar(pasta):
     ins, fc, ult, n = ["-i", video], [f"[0:v]fps=30,scale=1080:1920,format=yuv420p,tpad=stop_mode=clone:stop_duration={FOLGA}[b0]"], "b0", 1
     if topo:
         ins += ["-i", topo] if topo.endswith(".mp4") else ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", topo]
-        fc.append(f"[{ult}][{n}:v]overlay=x={(1080 - L) // 2}:y={Y}[ot0]"); ult, n = "ot0", n + 1
+        fc.append(f"[{n}:v]setpts=PTS-STARTPTS[tp];[{ult}][tp]overlay=x={(1080 - L) // 2}:y={Y}:eof_action=repeat[ot0]"); ult, n = "ot0", n + 1
     ins += ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", tit]
     fc.append(f"[{ult}][{n}:v]overlay=x=0:y={y_tit}[ot]"); ult, n = "ot", n + 1
     for i, (q, e, s, (cx, cy)) in enumerate(lados):
