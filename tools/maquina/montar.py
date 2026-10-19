@@ -166,7 +166,28 @@ def montar(pasta):
                                capture_output=True, text=True).stdout.strip())
 
     topo = None
-    if plano.get("topo") and (plano["topo"].get("url") or plano["topo"].get("arquivo")):
+    if plano.get("topo") and plano["topo"].get("seq"):   # 18/10: topo que troca (vídeo e imagem em sequência, corte seco)
+        partes = []
+        for k, it in enumerate(plano["topo"]["seq"]):
+            e = float(it["de"]); s = dur + 0.6 if k == len(plano["topo"]["seq"]) - 1 else float(plano["topo"]["seq"][k + 1]["de"])
+            q = os.path.join(work, f"topo{k}.mp4")
+            if it.get("video"):
+                vf = (f"crop={it['crop']}," if it.get("crop") else "") + \
+                     f"scale={L}:{A}:force_original_aspect_ratio=increase,crop={L}:{A},fps=30,setsar=1,eq=contrast=1.05"
+                run(["-ss", str(it.get("inicio", 0)), "-t", f"{s - e:.3f}", "-i", os.path.join(RAIZ, it["video"]),
+                     "-vf", vf, "-an", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", q])
+            else:
+                im = Image.open(os.path.join(RAIZ, it["arquivo"]) if it.get("arquivo") else baixar(it["url"], os.path.join(work, f"topo{k}-orig")))
+                p = os.path.join(work, f"topo{k}.png"); ImageOps.autocontrast(enquadrar(im, L, A), cutoff=1).save(p)
+                run(["-loop", "1", "-framerate", "30", "-t", f"{s - e:.3f}", "-i", p, "-vf",   # zoom lento: a foto não fica morta
+                     f"scale={L * 2}:{A * 2},zoompan=z='1+0.04*on/({(s - e) * 30:.0f})':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={L}x{A}:fps=30",
+                     "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", q])
+            partes.append(q)
+        lista = os.path.join(work, "topo.txt")
+        open(lista, "w", encoding="utf-8").write("".join(f"file '{q}'\n" for q in partes))
+        topo = os.path.join(work, "topo.mp4")
+        run(["-f", "concat", "-safe", "0", "-i", lista, "-c", "copy", topo])
+    elif plano.get("topo") and (plano["topo"].get("url") or plano["topo"].get("arquivo")):
         im = Image.open(os.path.join(RAIZ, plano["topo"]["arquivo"]) if plano["topo"].get("arquivo")   # quadro de vídeo (17/10)
                         else baixar(plano["topo"]["url"], os.path.join(work, "topo-orig")))
         topo = os.path.join(work, "topo.png")
@@ -202,7 +223,7 @@ def montar(pasta):
     dur += FOLGA
     ins, fc, ult, n = ["-i", video], [f"[0:v]fps=30,scale=1080:1920,format=yuv420p,tpad=stop_mode=clone:stop_duration={FOLGA}[b0]"], "b0", 1
     if topo:
-        ins += ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", topo]
+        ins += ["-i", topo] if topo.endswith(".mp4") else ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", topo]
         fc.append(f"[{ult}][{n}:v]overlay=x={(1080 - L) // 2}:y={Y}[ot0]"); ult, n = "ot0", n + 1
     ins += ["-loop", "1", "-framerate", "30", "-t", str(dur), "-i", tit]
     fc.append(f"[{ult}][{n}:v]overlay=x=0:y={y_tit}[ot]"); ult, n = "ot", n + 1
