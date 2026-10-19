@@ -79,6 +79,28 @@ termina numa frase falada, que puxa quem assiste.
 ❌ Fecho de IA: dois membros espelhados *("Quem erra ganha apoio. Quem acerta ganha silêncio.")*,
 ou conselho *("então comece hoje")*.
 
+## 7. O que a reescrita dele no N4 ensinou (19/10)
+
+Ele pegou o roteiro de notícia "A maior obra da história no fiado" e reescreveu à mão porque saiu **escrito
+pra ser lido**. Par completo em `voz-pares.md`. O que ele mudou:
+
+| A máquina escreveu | Ele trocou por | Lição |
+|---|---|---|
+| "A maior obra da história tá sendo feita no fiado." | "**Tá rolando uma das** maiores obras da história, e **boa parte dela** tá sendo feita no fiado." | Abre em andamento ("tá rolando") e sem absoluto |
+| "vão colocar perto de 700 bilhões" | "vão **torrar uns setecentos bilhões**… **Setecentos bilhões.**" | Verbo de rua; número por extenso; repete o número que assusta, sozinho |
+| "segundo o Morgan Stanley, o setor deve pegar" | "**O Morgan Stanley calcula que** as empresas de IA vão pegar" | Fonte como sujeito que fala, nunca "segundo" |
+| (nada) | "**É tipo** construir a casa inteira no cartão de crédito, só que com uns zeros a mais." | **Uma comparação do dia a dia**, com graça, logo depois do número |
+| "Eu não sei qual dos dois tá certo" | "**E eu? Sinceramente, não sei.** … muita gente falando **com cara de quem sabe**." | Ele se pergunta e responde; alfinetada leve |
+| "O que dá pra saber é que" | "**Mas tem uma coisa que eu sei.**" | Posição pessoal, curta |
+| "A ferramenta que você paga uns vinte dólares" | "**Aquela IA de vinte dólares por mês que tá aí no teu celular?**" | Aponta o objeto **na mão de quem assiste**, em pergunta; **teu**, não "seu" |
+| "preço de briga não costuma durar pra sempre" | (cortou) | Máxima abstrata sai |
+| "talvez esse seja o momento mais barato" | "**vou ser bem sincero: eu não esperaria.** Pode ser bolha, pode não ser. Mas eu sei **de que lado da mesa** eu quero estar." | Fecho = **o que ele faria**, não conselho pro outro |
+| "Comenta aqui, você acha que é bolha?" | "E você, acha que é bolha? **Fala aí nos comentários.**" | |
+
+**Na prática, todo roteiro de notícia leva:** abertura em andamento · número por extenso e repetido quando
+pesa · fonte que "calcula/falou" · **um "é tipo…" do dia a dia** · "E eu?" com posição dele · fecho em
+primeira pessoa ("eu não esperaria", "eu prefiro") · **teu/tua**.
+
 ---
 
 ## O léxico

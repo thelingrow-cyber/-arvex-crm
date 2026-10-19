@@ -4,6 +4,26 @@
 
 ## Roteiro
 
+> v2 do Vitor (reescreveu à mão, 19/10). **Gravar esta.**
+
+```
+Tá rolando uma das maiores obras da história, e boa parte dela tá sendo feita no fiado.
+
+Google, Amazon, Meta e Microsoft vão torrar uns setecentos bilhões de dólares esse ano em data center pra IA. Setecentos bilhões. E uma parte boa disso é emprestada. O Morgan Stanley calcula que as empresas de IA vão pegar mais de quinhentos bilhões emprestado só esse ano. Até maio, já era quatro vezes mais do que no mesmo período do ano passado.
+
+É tipo construir a casa inteira no cartão de crédito, só que com uns zeros a mais.
+
+Aí, de um lado, tem economista da Moody's dizendo que isso pode virar problema pro sistema financeiro inteiro. Do outro, tem gente jurando que é o investimento do século. E eu? Sinceramente, não sei. E acho que ninguém sabe, por mais que tenha muita gente falando com cara de quem sabe.
+
+Mas tem uma coisa que eu sei. Enquanto esses gigantes brigam, quem leva vantagem é quem usa. Aquela IA de vinte dólares por mês que tá aí no teu celular? Tem uma das maiores apostas da história pagando a conta dela.
+
+Então, se você tá esperando ela ficar mais barata, mais pronta, pra começar a usar no teu negócio, vou ser bem sincero: eu não esperaria. Pode ser bolha, pode não ser. Mas eu sei de que lado da mesa eu quero estar.
+
+E você, acha que é bolha? Fala aí nos comentários.
+```
+
+<details><summary>v1 da máquina (reprovada: escrita, lida)</summary>
+
 ```
 A maior obra da história tá sendo feita no fiado. Google, Amazon, Meta e Microsoft vão colocar perto de 700 bilhões de dólares esse ano em data center pra IA. E pra isso, segundo o Morgan Stanley, o setor deve pegar mais de 500 bilhões de dólares emprestado só em 2026. Até maio já tinha pego quatro vezes mais do que no mesmo período do ano passado.
 
@@ -13,6 +33,7 @@ O que dá pra saber é que, enquanto eles brigam, quem ganha é quem usa. A ferr
 
 Então se você tá esperando a IA ficar mais barata pra começar a usar no seu negócio, talvez esse seja o momento mais barato que ela vai ter. Comenta aqui, você acha que é bolha?
 ```
+</details>
 
 ## Na tela
 - **Título fixo:** A MAIOR OBRA DA HISTÓRIA É NO FIADO

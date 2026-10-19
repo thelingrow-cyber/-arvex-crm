@@ -4,6 +4,24 @@
 
 ## Roteiro
 
+> v2 (19/10), refeito com as lições da reescrita do Vitor no N4
+
+```
+A Meta lançou um assistente de IA que faz compra por você, e os maiores bancos dos Estados Unidos tão batendo a porta na cara dele.
+
+O presidente da Charles Schwab, que é uma das maiores corretoras de lá, falou essa semana que eles barram esse tipo de robô de dez a vinte vezes por semana. Dez a vinte vezes. É robô tentando mexer no dinheiro de cliente. O JPMorgan foi pelo mesmo caminho, e a Amazon bloqueou o mesmo assistente na loja dela doze dias depois que ele saiu.
+
+E dá pra entender, né. É tipo você dar a senha do teu cartão pra um estagiário que você nunca viu e falar, compra o que achar melhor.
+
+Agora, o banco não proibiu a IA, ele fez a dele. A Schwab lançou um assistente próprio e deixou o robô de fora entrar só pra ver saldo e pesquisar. Mexer no dinheiro, não.
+
+E eu acho que isso chega em qualquer negócio, não só em banco. Uma hora o teu cliente vai mandar um robô fazer o pedido, perguntar preço, marcar horário, e aí você vai ter que decidir o que ele pode fazer aí dentro. Eu prefiro decidir isso antes do que descobrir pela reclamação de cliente.
+
+E você, deixaria um robô comprar na tua empresa? Fala aí nos comentários.
+```
+
+<details><summary>v1 da máquina (reprovada: escrita, lida)</summary>
+
 ```
 A Meta lançou um assistente que compra pela pessoa, e as maiores empresas dos Estados Unidos estão fechando a porta na cara dele. A Charles Schwab é uma das maiores corretoras de lá. O presidente dela falou essa semana que eles bloqueiam de dez a vinte vezes por semana esse tipo de robô tentando mexer no dinheiro de cliente. O JPMorgan foi pelo mesmo caminho. E, segundo o TechCrunch, a Amazon barrou o mesmo assistente na loja dela doze dias depois do lançamento.
 
@@ -13,6 +31,7 @@ E isso vai chegar em qualquer negócio. Mais cedo ou mais tarde o seu cliente va
 
 Me conta aqui, você deixaria um robô comprar na sua empresa?
 ```
+</details>
 
 ## Na tela
 - **Título fixo:** O ROBÔ QUER COMPRAR. O BANCO NÃO DEIXA.
