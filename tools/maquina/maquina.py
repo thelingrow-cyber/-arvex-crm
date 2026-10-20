@@ -297,7 +297,7 @@ def _concorrentes_recentes(dias=3):
     return "\n".join(linhas)
 
 
-def _gerar_noticias(qtd=4, inicio=1):
+def _gerar_noticias(qtd=4, inicio=1, escolha=None):
     hoje = f"{datetime.date.today():%Y-%m-%d}"
     subprocess.run([sys.executable, os.path.join(RAIZ, "tools", "roteiros", "noticias.py"), "--horas", "72", "--salvar"],
                    cwd=RAIZ, check=False, capture_output=True)
@@ -309,7 +309,10 @@ def _gerar_noticias(qtd=4, inicio=1):
                  ("" if os.path.exists(pautas) else " (não foi gerado: busque na web)") +
                  "\nJá usados (não repetir): " + (", ".join(ja) or "nenhum") +
                  "\n\n## O que os concorrentes postaram nos últimos 3 dias (coleta de hoje)\n\n" +
-                 (conc or "(coleta indisponível hoje)"), web=True)
+                 (conc or "(coleta indisponível hoje)") +
+                 (f"\n\n## O Vitor já escolheu as notícias (20/10)\n\nUse EXATAMENTE estas, nesta ordem; seu trabalho é conferir "
+                  f"cada fato na fonte primária e montar os blocos (número que não confere vai para 'Não confere'):\n\n{escolha}"
+                  if escolha else ""), web=True)
     blocos = re.findall(r"### N\d+ · ([\w-]+)\s*\n(.*?)(?=\n### N\d+ ·|\Z)", cur, re.S)[:qtd]
     if not blocos:
         raise RuntimeError("a curadoria não devolveu blocos ### N1 · slug")
@@ -336,12 +339,20 @@ def _gerar_noticias(qtd=4, inicio=1):
     return ok, [r for r in res if not isinstance(r, tuple)]
 
 
-def noticias(qtd=4, hora=None):
-    lista, _ = _gerar_noticias(qtd)
+def _noticias_de_hoje():
+    """Quantas notícias de hoje já têm roteiro (ex.: o Vitor escolheu 3 de madrugada). O `dia` continua a numeração
+    e só escreve o que falta, sem repetir assunto nem colidir pasta/código."""
+    hoje = f"{datetime.date.today():%Y-%m-%d}"
+    return len([p for p in glob.glob(os.path.join(RASC, f"{hoje}-n[0-9]*")) if os.path.exists(os.path.join(p, "roteiro.md"))])
+
+
+def noticias(qtd=4, hora=None, escolha=None):
+    ja = _noticias_de_hoje()
+    lista, _ = _gerar_noticias(qtd, ja + 1, escolha)
     _aguardar(hora)
     if lista:
         _cabecalho(len(lista), 0)
-    _enviar(lista, "N")
+    _enviar(lista, "N", ja + 1)
 
 
 def dia(n_noticias=4, n_grade=5, hora=None):
@@ -349,14 +360,16 @@ def dia(n_noticias=4, n_grade=5, hora=None):
     primeiro as N (o primeiro vídeo do dia é o de mercado), depois as R."""
     import zap
     ln, fn = [], []
+    ja = _noticias_de_hoje()                       # 20/10: notícias escolhidas antes (madrugada) já contam
+    pedidas, n_noticias = n_noticias, max(0, n_noticias - ja)
     if n_noticias:
-        r = _seguro(_gerar_noticias, n_noticias)
+        r = _seguro(_gerar_noticias, n_noticias, ja + 1)
         ln, fn = r if isinstance(r, tuple) else ([], [r])
     lr, fr = _gerar_grade(n_grade) if n_grade else ([], [])
     _aguardar(hora)
     if ln or lr:
         _cabecalho(len(ln), len(lr))
-    _enviar(ln, "N")
+    _enviar(ln, "N", ja + 1)
     _enviar(lr, "R")
     if len(ln) < n_noticias or len(lr) < n_grade:
         zap.texto(f"⚠️ Hoje saíram {len(ln)}/{n_noticias} de mercado e {len(lr)}/{n_grade} da grade.\n"
@@ -504,8 +517,9 @@ def main():
     elif cmd in ("noticias", "dia"):
         hora = a[a.index("--as") + 1] if "--as" in a else None
         nums = [int(x) for x in a[1:] if x.isdigit()]
-        if cmd == "noticias":
-            noticias(nums[0] if nums else 4, hora=hora)
+        if cmd == "noticias":   # --escolha arquivo.md: as notícias que o Vitor escolheu (o Caio só confere)
+            esc = open(a[a.index("--escolha") + 1], encoding="utf-8").read() if "--escolha" in a else None
+            noticias(nums[0] if nums else 4, hora=hora, escolha=esc)
         else:
             dia(*(nums + [4, 5][len(nums):])[:2], hora=hora)
     elif cmd == "manha":
