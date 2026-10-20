@@ -26,8 +26,23 @@ Na escrita: o vídeo é mandado **pra ele**, não pra "a audiência", e alivia e
 A especificidade vai **no objeto, não nele** (skill §1): nunca "se você é dono de empresa…"; sim "aquela IA de
 vinte dólares que tá aí no teu celular".
 
-**O Vitor confirma:** (a) se a faixa R$50–500k/mês, que é do calendário de setembro, vale pro conteúdo diário;
-(b) se o profissional liberal é a mesma pessoa ou um segundo ouvinte; (c) a linha "o que já sabe", que é inferência.
+**Confirmado pelo Vitor (20/10):** "as pessoas estão certas" (o dono de R$50–500k/mês e o profissional liberal com caixa).
+
+### Dois jeitos de abrir: pro dono, ou aberto (como a Tay)
+
+Pedido do Vitor (20/10): *"podemos, como a Tay, falar mais aberto às vezes também, público mais amplo de alcance"*.
+
+- **Pro dono (padrão):** o vídeo é mandado pra ele desde a linha 1 (o N3, o N4).
+- **Aberto (alcance), mais ou menos 1 em cada 3 vídeos:** a linha 1 fala de um **comportamento humano ou uma mudança
+  que qualquer pessoa reconhece** (cansaço, solidão, celular, trabalho, dinheiro, o que a IA mudou no dia a dia),
+  sem citar empresa nem dono. A pessoa assiste como pessoa e se reconhece; o dado prova; vem o porquê humano; e só
+  entre 35% e 60% do vídeo vem a virada pra quem tem negócio, com palavras livres (nunca uma frase fixa). Por quê:
+  é o molde que dá os picos da Tay (8 de 50 vídeos, mediana de 398 mil, 2 dos 4 maiores picos;
+  `docs/conteudo/banco-roteiros/players/tay-dantas/ESTUDO.md` §2). Bom para Tendência, notícia de comportamento e
+  Identidade.
+- **O que não muda no aberto:** a especificidade continua no objeto, a fala continua a do Vitor (nada de "pelo menos
+  é isso que anda dizendo a internet", que é a frase dela), e o vídeo ainda termina servindo ao dono.
+- No cabeçalho do roteiro, escreva **"Abertura: dono"** ou **"Abertura: aberta"**.
 
 ---
 
