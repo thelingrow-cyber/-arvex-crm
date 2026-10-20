@@ -37,6 +37,7 @@ rel = lambda p: os.path.relpath(p, RAIZ).replace("\\", "/")
 SQ = "squads/conteudo/agents/"
 PARALELO = int(os.environ.get("MAQUINA_PARALELO", "1"))   # 19/10: 2 em paralelo morreu por RAM (PC com ~1 GB livre); 1 cabe em 4h–7h
 BASE_ROTEIRO = ["squads/conteudo/roteiros-ouro.md",   # 19/10: princípios com o porquê + os textos que ele aprovou/falou
+                ".claude/skills/content-principles/SKILL.md",   # 20/10: a skill que o Vitor trouxe (Fabiano); aplicar em silêncio
                 "squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
                 "docs/conteudo/banco-pautas/GANCHOS-PRONTOS.md", "docs/conteudo/maquina/06-Ganchos/ganchos.md",
                 "docs/conteudo/banco-roteiros/players/CATALOGO-MOLDES.md", "docs/conteudo/banco-roteiros/players/SINTESE-FORMATOS.md",
@@ -49,7 +50,7 @@ AGENTES = {
                    "docs/conteudo/banco-pautas/BANCO.md"]),
     "roteiro":   ([SQ + "roteirista.md", "squads/marketing/agents/copy-chief.md"], BASE_ROTEIRO),
     "revisor":   (["squads/marketing/agents/copy-chief.md"],
-                  ["squads/conteudo/roteiros-ouro.md", "squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
+                  ["squads/conteudo/roteiros-ouro.md", ".claude/skills/content-principles/SKILL.md", "squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
                    "docs/conteudo/maquina/_regras/proibido.md", "docs/conteudo/maquina/_regras/nao-fale-assim.md"]),
     "corrigir":  ([SQ + "roteirista.md"], ["squads/conteudo/voz.md", "docs/conteudo/maquina/_regras/proibido.md"]),
     "capa":      (["squads/marketing/agents/copy-chief.md", SQ + "roteirista.md"],
@@ -339,6 +340,20 @@ def _gerar_noticias(qtd=4, inicio=1, escolha=None):
     return ok, [r for r in res if not isinstance(r, tuple)]
 
 
+def _uma_rodada_por_vez():
+    """20/10: a rodada da madrugada (notícias escolhidas pelo Vitor) e a das 4h rodaram juntas, a memória acabou e as
+    duas morreram. Trava de arquivo: a segunda espera a primeira terminar. O Windows solta a trava se o processo morrer."""
+    import msvcrt, time
+    f = open(os.path.join(MAQ, "_regras", ".rodada.lock"), "a+")
+    while True:
+        try:
+            f.seek(0)
+            msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
+            return f                                    # manter a referência viva enquanto a rodada roda
+        except OSError:
+            time.sleep(30)
+
+
 def _noticias_de_hoje():
     """Quantas notícias de hoje já têm roteiro (ex.: o Vitor escolheu 3 de madrugada). O `dia` continua a numeração
     e só escreve o que falta, sem repetir assunto nem colidir pasta/código."""
@@ -347,6 +362,7 @@ def _noticias_de_hoje():
 
 
 def noticias(qtd=4, hora=None, escolha=None):
+    trava = _uma_rodada_por_vez()  # noqa: F841
     ja = _noticias_de_hoje()
     lista, _ = _gerar_noticias(qtd, ja + 1, escolha)
     _aguardar(hora)
@@ -359,6 +375,7 @@ def dia(n_noticias=4, n_grade=5, hora=None):
     """A manhã inteira: gera as notícias e a grade (em sequência, para não estourar a memória), espera a hora e manda
     primeiro as N (o primeiro vídeo do dia é o de mercado), depois as R."""
     import zap
+    trava = _uma_rodada_por_vez()  # noqa: F841
     ln, fn = [], []
     ja = _noticias_de_hoje()                       # 20/10: notícias escolhidas antes (madrugada) já contam
     pedidas, n_noticias = n_noticias, max(0, n_noticias - ja)

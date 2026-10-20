@@ -67,3 +67,4 @@ tools/maquina/.zap-lid
 tools/maquina/.estado.json*
 tools/maquina/maestro.log
 docs/conteudo/maquina/**/*-previa.mp4
+docs/conteudo/maquina/_regras/.rodada.lock
