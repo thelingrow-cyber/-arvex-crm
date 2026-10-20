@@ -60,3 +60,6 @@ O exemplo real é o "Rei do gelo", aprovado em 14/10. O bloco `edicao.json` é o
 | Regra saiu sem topo e sem inserção (16/10, "Remar"), e o Vitor pediu os dois | a página mandava Regra sem topo e inserção só com caso real | todo molde leva topo e inserções (hoje: 8 a 12 contínuas) |
 | Trio com estádio, caracol na lateral, número em cartão parado (19/10, Bezos v1) | foto que ilustra a palavra em vez do arquétipo; card estático | trio = arquétipo; foto específica e forte; número = cartão animado (`numero`) |
 | Legenda e inserções fora de hora (16/10, Efeito IKEA) | tempos lidos da transcrição do bruto, antes do corte das pausas | usar `palavras-editado.json`, que já está nos tempos do vídeo cortado |
+
+
+> **20/10, reprovado pelo Vitor:** o cartão animado de número (`"numero"`) ficou "horrível". Não use até ser redesenhado. Número dito na fala vira imagem real do objeto (capa do livro, vídeo da pessoa dizendo a frase, foto do lugar). Autor citado = mostre o livro dele.

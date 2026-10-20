@@ -1,0 +1,23 @@
+{
+ "titulo": "O QUE NÃO VAI MUDAR?",
+ "topo": {"trio": [
+  {"url": "https://commons.wikimedia.org/wiki/File:Nassim_Nicholas_Taleb_DLD_2009-012_(cropped).jpg"},
+  {"url": "https://commons.wikimedia.org/wiki/File:Johannes_Moreelse_-_Heraclitus_-_Google_Art_Project.jpg"},
+  {"url": "https://commons.wikimedia.org/wiki/File:Jeff_Bezos_Unveils_Blue_Origin_Lunar_Lander_(cropped).jpg"}
+ ]},
+ "laterais": [
+  {"de": 4.2, "ate": 8.0, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Lindys_Restaurant_Broadway_and_51st_Street_New_York_City.JPG"},
+  {"de": 8.1, "ate": 12.7, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Lucille_Ball_looked_so_happy,_Milton_Berle_had_to_kiss_her,_1960.jpg"},
+  {"de": 12.8, "ate": 15.0, "lado": "DIR", "arquivo": "tools/video-recut/videos/2026-10-lindy/antifragil-capa.jpg"},
+  {"de": 15.0, "ate": 19.5, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:El_ingenioso_hidalgo_don_Quijote_de_la_Mancha.jpg"},
+  {"de": 19.6, "ate": 22.9, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Nassim_Taleb_Lecturing.jpg"},
+  {"de": 23.0, "ate": 25.8, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg"},
+  {"de": 25.9, "ate": 30.6, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-lindy/bezos10.mp4", "inicio": 1, "crop": "270:300:292:0"},
+  {"de": 30.7, "ate": 35.2, "lado": "ESQ", "video": "tools/video-recut/videos/2026-10-lindy/bezos10.mp4", "inicio": 46, "crop": "270:300:292:0"},
+  {"de": 35.3, "ate": 39.8, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-bezos-decidir/robos-full.mp4", "inicio": 15, "crop": "330:416:470:40"},
+  {"de": 39.9, "ate": 42.7, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Data_Center_2_(UNC).jpg"},
+  {"de": 42.8, "ate": 47.2, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Walter_Johnson_and_Calvin_Coolidge_shake_hands_FINAL.jpg"},
+  {"de": 47.3, "ate": 50.0, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Pieter_Aertsen_-_Market_Scene_-_Google_Art_Project.jpg"},
+  {"de": 50.1, "ate": 53.8, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Library_stacks_of_books_and_bookshelf.jpg"}
+ ]
+}
