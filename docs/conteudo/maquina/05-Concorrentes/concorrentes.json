@@ -3,6 +3,7 @@
   "limite_por_perfil": 12,
   "transcrever_top": 6,
   "perfis": [
+    {"usuario": "beprecht",          "nome": "Bernardo Precht",    "lang": "pt", "por_que": "notícia de mercado da manhã (modelo do 📰)"},
     {"usuario": "luanacarolina.s",   "nome": "Luana Carolina",     "lang": "pt", "por_que": "regra dita como lei (molde principal)"},
     {"usuario": "tay.ldantas",       "nome": "Tay Dantas",         "lang": "pt", "por_que": "tendência → negócio"},
     {"usuario": "fabianocarvalhojr", "nome": "Fabiano Carvalho",   "lang": "pt", "por_que": "concorrente direto, 7/dia"},

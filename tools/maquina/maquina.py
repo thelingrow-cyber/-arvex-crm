@@ -275,16 +275,41 @@ def manha(qtd=5, hora=None):
 
 
 # ---------- manhã · notícias de mercado (Caio cura e confere → Téo + copy-chief escrevem → revisor) ----------
+def _concorrentes_recentes(dias=3):
+    """20/10, pedido do Vitor (como o Fabiano faz): antes da curadoria, puxa os reels dos concorrentes e resume o que
+    eles postaram nos últimos dias, para o Caio ver se alguém já deu a notícia (batida) ou se um player de fora deu
+    algo que ninguém no Brasil pegou (sinal a favor). Falha da coleta não trava as notícias."""
+    try:
+        subprocess.run([sys.executable, os.path.join(AQUI, "coletar.py")], cwd=RAIZ, check=False,
+                       capture_output=True, timeout=1800)
+    except Exception as e:
+        _log(f"coleta dos concorrentes falhou: {e}")
+    corte = f"{datetime.date.today() - datetime.timedelta(days=dias):%Y-%m-%d}"
+    vistos = {}
+    for arq in sorted(glob.glob(os.path.join(RAIZ, "docs", "conteudo", "maquina", "05-Concorrentes", "coletas", "*", "*.json"))):
+        for r in json.load(open(arq, encoding="utf-8")):
+            if (r.get("data") or "") >= corte:
+                vistos[r["shortCode"]] = r          # a coleta mais nova sobrescreve (views atualizadas)
+    linhas = []
+    for r in sorted(vistos.values(), key=lambda r: (r["data"], int(r.get("views") or 0)), reverse=True):
+        txt = re.sub(r"\s+", " ", (r.get("abertura") or "") + " | " + (r.get("legenda") or ""))[:280]
+        linhas.append(f"- @{r['perfil']} · {r['data']} · {int(r.get('views') or 0)} views · {txt}")
+    return "\n".join(linhas)
+
+
 def _gerar_noticias(qtd=4, inicio=1):
     hoje = f"{datetime.date.today():%Y-%m-%d}"
     subprocess.run([sys.executable, os.path.join(RAIZ, "tools", "roteiros", "noticias.py"), "--horas", "72", "--salvar"],
                    cwd=RAIZ, check=False, capture_output=True)
     pautas = os.path.join(RAIZ, "docs", "conteudo", "pautas", f"{hoje}.md")
+    conc = _concorrentes_recentes()
     ja = sorted({re.sub(r"^\d{4}-\d{2}-\d{2}-n\d+-", "", os.path.basename(p))
                  for p in glob.glob(os.path.join(RASC, "*-n[0-9]*")) + glob.glob(os.path.join(PUBL, "*-n[0-9]*"))})
     cur = claude("curadoria", f"Escolha {qtd} notícias.\nPautas do dia: `{rel(pautas)}`" +
                  ("" if os.path.exists(pautas) else " (não foi gerado: busque na web)") +
-                 "\nJá usados (não repetir): " + (", ".join(ja) or "nenhum"), web=True)
+                 "\nJá usados (não repetir): " + (", ".join(ja) or "nenhum") +
+                 "\n\n## O que os concorrentes postaram nos últimos 3 dias (coleta de hoje)\n\n" +
+                 (conc or "(coleta indisponível hoje)"), web=True)
     blocos = re.findall(r"### N\d+ · ([\w-]+)\s*\n(.*?)(?=\n### N\d+ ·|\Z)", cur, re.S)[:qtd]
     if not blocos:
         raise RuntimeError("a curadoria não devolveu blocos ### N1 · slug")
