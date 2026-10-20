@@ -1,14 +1,14 @@
-# Roteiro — Cindy grava na loja (B10 "A armação de oitenta")
+# Roteiro — Cindy grava (B10 "O que eu mais anunciei foi o que menos vendeu")
 
 > **Agentes:** Téo (roteirista, `squads/conteudo/agents/roteirista.md`) escreve · Halbert (copy-chief) revisa.
 > **Fonte da voz e do conteúdo:** transcrição da live da Cindy de 22/10/2025
 > (`Downloads/Legendas/GMT20251022-223753_Recording.transcript.vtt`), onde ela explica aos alunos a
-> Black Friday da loja dela. As expressões vêm de lá ("tá?", "gente", "ali", "então", "olha só").
-> Nada aqui é inventado: a armação de R$ 449 a R$ 80, a peça parada desde 2024, o combo 3x R$ 99
-> e o "de dez, duas levaram o combo" são falas dela.
+> Black Friday da loja dela. As expressões vêm de lá ("tá?", "gente", "ali", "então").
+> O paradoxo resume o que ela contou na aula: a peça anunciada servia para atrair, e a venda
+> acontecia em outros produtos. Os detalhes (preço, combo) ficam fora do anúncio de propósito.
 >
-> **Família de gancho:** objeto na mão + número que não faz sentido. Para o polegar porque ela
-> mostra a peça e diz um preço absurdo, e a explicação só vem depois.
+> **Família de gancho:** paradoxo. "O que eu mais anunciei foi o que menos vendeu" para o polegar do
+> dono de ótica, e só ele entende por que isso é bom.
 
 ---
 
