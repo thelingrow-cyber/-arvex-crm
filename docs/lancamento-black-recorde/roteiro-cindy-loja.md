@@ -19,13 +19,15 @@
 > combo e o "mais cara", e mantém o paradoxo numa frase que só o dono de ótica decodifica.
 > (v2: a v1 entregava o mecanismo inteiro e matava a curiosidade.)
 
-Na Black do ano passado, o que eu mais anunciei foi o que menos vendeu.
+Olha essa armação aqui.
 
-E não, não deu errado, tá? Foi uma das minhas melhores Black.
+Ela foi a que eu mais anunciei na Black do ano passado… e foi a que menos vendeu.
+
+E sabe o que é engraçado? Foi a Black que mais deu certo. A minha melhor Black.
 
 Parece que não faz sentido, né?
 
-Isso não é sorte, gente. Tem coisa montada ali. Na oferta, no balcão, no que a minha equipe fala quando o cliente entra.
+Isso não é sorte, gente. Tem coisa montada aqui. Na oferta, no balcão, no que a minha equipe fala quando o cliente entra.
 
 E é isso que eu vou abrir no dia vinte e sete, ao vivo, na Operação Black Recorde. O que eu fiz, como eu montei, o que a minha equipe falou… vou te mostrar tudo.
 
@@ -46,7 +48,7 @@ público quem segue ou interagiu com o Instagram da loja.
 ## Como gravar
 
 - **Onde:** FORA da loja (escritório, carro ou fundo neutro), para o cliente final não reconhecer o lugar. Celular na vertical, na altura do olho.
-- **Primeiro segundo:** ela já começa falando, olhando para a câmera. Sem "oi, gente", sem se apresentar.
+- **Primeiro segundo:** ela já aparece com a armação na mão, mostrando para a câmera (ajuste do Vitor). Sem etiqueta de preço visível. Sem "oi, gente", sem se apresentar.
 - **"Parece que não faz sentido, né?":** pausa curta e meio sorriso. É a frase que segura o vídeo.
 - **Tom:** de conversa com aluna, igual na live. Pode errar, rir e repetir com as palavras dela. Não decorar: ler duas vezes e falar do jeito dela.
 - **Legenda:** simples, branca, palavra por palavra. Nenhum preço na tela. Só "27/10 · ao vivo · gratuito" no fim.
@@ -72,6 +74,6 @@ público quem segue ou interagiu com o Instagram da loja.
 
 ## Confirmar com a Cindy antes de gravar
 
-1. "O que eu mais anunciei foi o que menos vendeu" e "uma das minhas melhores Black" são verdade para a Black de 2025?
+1. "A que eu mais anunciei foi a que menos vendeu" e "a minha melhor Black" são verdade para 2025? (se não for a melhor, usar "uma das minhas melhores")
 2. "Eu faço isso todo ano" é verdade? (campanha de Black estruturada todo ano)
 3. Pode usar essa história, que vem da aula da mentoria, num anúncio aberto?
