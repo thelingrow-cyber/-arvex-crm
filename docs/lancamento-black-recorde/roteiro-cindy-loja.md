@@ -12,7 +12,10 @@
 
 ---
 
-## Roteiro limpo (para ler na câmera)
+## Roteiro limpo (v2, para ler na câmera)
+
+> v2 em 20/10: a v1 entregava o mecanismo inteiro (isca → conversão → lição) e matava a
+> curiosidade. A v2 mostra o que aconteceu e guarda o como para o workshop. Fecho ajustado pelo Vitor.
 
 Olha essa armação aqui.
 
@@ -22,30 +25,28 @@ Na Black do ano passado eu coloquei ela a oitenta.
 
 E não, eu não fiquei doida, tá?
 
-Essa armação tava parada aqui desde dois mil e vinte e quatro. Todo mundo vinha, experimentava… e não levava.
+Sabe o que é mais engraçado? Quase ninguém levou ela.
 
-Então eu usei ela pra trazer o cliente pra dentro da loja.
+A gente tinha um combo de três vezes noventa e nove também. De cada dez pessoas que vieram por causa do combo… duas levaram o combo.
 
-Porque quando ele chega aqui, ele olha o resto, né? Experimenta outra, não fica boa no rosto dele, ele quer aquela outra ali…
+E as outras oito?
 
-A gente tinha um combo rodando, de três vezes noventa e nove. De cada dez pessoas que vieram por causa do combo, duas levaram o combo. O resto levou outra coisa.
+Compraram outra coisa. Coisa mais cara.
 
-Então, gente, desconto não é pecado.
+Isso não é sorte, gente. Tem coisa montada ali. Na oferta, no balcão, no que a minha equipe fala quando o cliente entra.
 
-Ruim é baixar tudo, igual todo mundo da rua, e não ter nada pensado pra hora que o cliente entra.
+E é isso que eu vou abrir no dia vinte e sete, ao vivo, na Operação Black Recorde. O que eu fiz, como eu montei, o que a minha equipe falou… vou te mostrar tudo.
 
-E isso tem que tá montado antes de novembro. A oferta, o combo, o que a sua equipe vai falar no balcão…
+Como usar essa Black pra buscar um novo recorde na sua ótica e fazer desses últimos sessenta dias os maiores do seu ano.
 
-No dia vinte e sete eu vou montar isso com você, ao vivo. Uma noite, eu e você, montando a sua Black.
+É possível, tá? Eu faço isso todo ano. E tá na hora de você ter esse plano também.
 
-É gratuito. Clica aqui embaixo e entra no grupo, que o link vai ser liberado só lá.
-
-Te espero lá, tá?
+Clica aqui no anúncio e entra agora no grupo. Te espero lá.
 
 ---
 
-**Duração estimada:** 50 a 55 s.
-**Para encurtar (cerca de 35 s):** corte "Porque quando ele chega aqui… aquela outra ali…" e "Ruim é baixar tudo…".
+**Duração estimada:** cerca de 50 s.
+**Para encurtar (cerca de 40 s):** corte "Como usar essa Black…" e deixe só "É possível, tá? Eu faço isso todo ano."
 
 ## Como gravar
 
@@ -79,4 +80,7 @@ Te espero lá, tá?
 
 1. Na live de 22/10/2025 ela **planejava** a armação a R$ 80. Ela executou isso na Black? Se não, troque por "na Black eu decidi colocar ela a oitenta".
 2. O dado do combo ("de dez, duas") foi do patrocinado de combo que já rodava. Ela confirma?
-3. Ela tem a armação física na loja para mostrar? Pode ser qualquer peça cara que estava parada.
+3. "Eu faço isso todo ano" é verdade? (campanha de Black estruturada todo ano)
+4. "Compraram coisa mais cara": confere com a live (compras de até R$ 2.500)?
+5. Pode usar essa história da aula da mentoria num anúncio aberto?
+6. Ela tem a armação física na loja para mostrar? Pode ser qualquer peça cara que estava parada.
