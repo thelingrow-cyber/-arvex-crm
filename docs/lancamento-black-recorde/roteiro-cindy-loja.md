@@ -25,15 +25,15 @@ Ela foi a que eu mais anunciei na Black do ano passado… e foi a que menos vend
 
 E sabe o que é engraçado? Foi a Black que mais deu certo. A minha melhor Black.
 
-Parece que não faz sentido, né?
+Parece que não faz sentido, né? Mas se você tem ótica, você vai entender.
 
-Isso não é sorte, gente. Tem coisa montada aqui. Na oferta, no balcão, no que a minha equipe fala quando o cliente entra.
+Isso não é sorte, gente. Tem coisa montada por trás. Na oferta, no balcão, no que a minha equipe fala quando o cliente entra.
 
-E é isso que eu vou abrir no dia vinte e sete, ao vivo, na Operação Black Recorde. O que eu fiz, como eu montei, o que a minha equipe falou… vou te mostrar tudo.
+E é isso que eu vou abrir no dia vinte e sete, ao vivo e de graça, na Operação Black Recorde. O que eu fiz, como eu montei, o que a minha equipe falou… vou te mostrar tudo.
 
 Como usar essa Black pra buscar um novo recorde na sua ótica e fazer desses últimos sessenta dias os maiores do seu ano.
 
-É possível, tá? Eu faço isso todo ano. E tá na hora de você ter esse plano também.
+É possível, tá? Eu faço isso todo ano. A Black é daqui a um mês. E tá na hora de você ter esse plano também.
 
 Clica aqui no anúncio e entra agora no grupo. Te espero lá.
 
