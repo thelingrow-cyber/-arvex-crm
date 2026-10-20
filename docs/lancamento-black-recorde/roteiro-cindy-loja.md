@@ -12,26 +12,18 @@
 
 ---
 
-## Roteiro limpo (v2, para ler na câmera)
+## Roteiro limpo (v3, para ler na câmera)
 
-> v2 em 20/10: a v1 entregava o mecanismo inteiro (isca → conversão → lição) e matava a
-> curiosidade. A v2 mostra o que aconteceu e guarda o como para o workshop. Fecho ajustado pelo Vitor.
+> v3 em 20/10: a Cindy avaliou que a v2 queimava a loja. O anúncio pode chegar aos clientes dela, e
+> "R$ 449 a R$ 80" + "compraram coisa mais cara" soam como "a promoção era isca". A v3 tira preço,
+> combo e o "mais cara", e mantém o paradoxo numa frase que só o dono de ótica decodifica.
+> (v2: a v1 entregava o mecanismo inteiro e matava a curiosidade.)
 
-Olha essa armação aqui.
+Na Black do ano passado, o que eu mais anunciei foi o que menos vendeu.
 
-Ela custa quatrocentos e quarenta e nove reais.
+E não, não deu errado, tá? Foi uma das minhas melhores Black.
 
-Na Black do ano passado eu coloquei ela a oitenta.
-
-E não, eu não fiquei doida, tá?
-
-Sabe o que é mais engraçado? Quase ninguém levou ela.
-
-A gente tinha um combo de três vezes noventa e nove também. De cada dez pessoas que vieram por causa do combo… duas levaram o combo.
-
-E as outras oito?
-
-Compraram outra coisa. Coisa mais cara.
+Parece que não faz sentido, né?
 
 Isso não é sorte, gente. Tem coisa montada ali. Na oferta, no balcão, no que a minha equipe fala quando o cliente entra.
 
@@ -45,7 +37,10 @@ Clica aqui no anúncio e entra agora no grupo. Te espero lá.
 
 ---
 
-**Duração estimada:** cerca de 50 s.
+**Proteção da loja:** gravar fora da loja (escritório, carro ou fundo neutro). No Meta, excluir do
+público quem segue ou interagiu com o Instagram da loja.
+
+**Duração estimada:** cerca de 35 s.
 **Para encurtar (cerca de 40 s):** corte "Como usar essa Black…" e deixe só "É possível, tá? Eu faço isso todo ano."
 
 ## Como gravar
