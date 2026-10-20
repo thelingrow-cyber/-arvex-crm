@@ -38,34 +38,27 @@ A gente perdoa muito mais rápido quem erra do que quem dá certo, e todo mundo 
 ```
 
 ## Como fazer
-1. Cumpra a lista de verificação `docs/conteudo/maquina/_regras/checklists/roteiro.md` e abra todos os arquivos que ela aponta.
-2. Leia `.claude/skills/content-principles/SKILL.md` e `squads/conteudo/roteiros-ouro.md` (a pessoa, as 3 decisões, os princípios) e **aplique em silêncio**: nada disso vira lista nem seção no roteiro.
-3. **Abertura:** escreva numa linha a pergunta que **este** tema abre na cabeça da pessoa; a primeira frase faz ela segurar essa pergunta. Só depois consulte `06-Ganchos/ganchos.md` pra entender **por que** famílias parecidas prenderam, nunca pra adaptar a frase de outro (decisão 3 do `roteiros-ouro.md`; vale sobre a linha "Os ganchos vêm daqui" da lista de verificação). No cabeçalho, em vez de "Gancho modelado", anote **"Pergunta aberta:"**.
-4. **Antes de escrever, leia `squads/conteudo/voz.md` inteiro e os últimos pares de `squads/conteudo/voz-pares.md`** (o que ele escreveu × o que ele disse na câmera). Escreva já como ele diria, em **parágrafos de fala** (um por ideia, frases corridas ligadas por "e", "mas", "porque", "então"), nunca uma frase curta por linha.
-   Para Regra e Identidade, a ordem é:
-   1. a lei, dita como afirmação de conversa;
-   2. a fala de quem pensa o contrário, imitada sem cerimônia ("Repara que a pessoa fala, …");
-   3. o porquê, com uma ressalva ou comentário de passagem;
-   4. um exemplo concreto que qualquer pessoa reconhece ("É só você pensar em…");
-   5. a objeção na boca de quem assiste ("Tá, beleza, mas…") e a resposta;
-   6. o fecho: pode ter uma frase afiada, mas termina numa frase falada.
+*Mudança de 20/10: o Claude do celular, sem regra nenhuma, escreveu melhor que a máquina (texto D do `roteiros-ouro.md`).
+Por isso o escritor escreve livre e as regras ficam com o revisor.*
 
-   Para os outros moldes, siga a ficha do molde em `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`.
-5. Confira todo fato com WebSearch na fonte primária e anote o link em "Fontes". Fato sem fonte sai.
-6. Leia o roteiro em voz alta, na cabeça, e quebre toda frase que não sai numa respiração.
-7. Se chegaram correções ou uma nota, aplique **todas**. A nota do Vitor vale mais que qualquer regra.
+1. Leia `squads/conteudo/roteiros-ouro.md` (a pessoa e os 4 textos-ouro, sobretudo o D) e a skill
+   `.claude/skills/content-principles/SKILL.md`, e veja os últimos pares de `squads/conteudo/voz-pares.md`.
+2. Entenda o tema até conseguir dizê-lo em dez palavras. Pergunte-se qual pergunta ele abre na cabeça de quem assiste.
+3. Escreva de uma vez, como o Vitor falaria pra um amigo dono de negócio: uma ideia só, em parágrafos de fala, pensando
+   em voz alta. **Não siga roteiro de etapas, não encaixe "É tipo", objeção ou CTA porque "tem que ter".** Se a peça
+   pedir uma comparação ou uma ressalva, ela entra; se não pedir, não entra.
+4. Confira todo fato com WebSearch na fonte primária e anote o link em "Fontes". Fato sem fonte sai.
+5. Leia em voz alta, na cabeça. O que não sai numa respiração, refaça.
+6. Se chegaram correções do revisor ou uma nota do Vitor, aplique todas. A nota do Vitor vale mais que qualquer regra.
 
-## Regras que não se quebram
-- Tudo o que está em `_regras/proibido.md`. *Motivo: cada linha de lá veio de uma reprovação dele.*
-- A primeira frase do gancho estrangeiro não é traduzida. *Motivo: tradução literal é transposição. O revisor pegou "Quando eu era criança, achava que…" copiado do Jett em 15/10.*
-- Pedágio pessoal só com fato real do Vitor. *Motivo: inventar experiência dele é mentir no rosto dele.*
-- Entre 20 e 45 segundos. *Motivo: é a faixa das referências que ele aprovou.*
+## Regras que não se quebram (só estas; o resto o revisor cobra)
+- Nada inventado: número, citação e fato pessoal do Vitor só com fonte real.
+- Nada de ótica nem da Cindy.
+- A ponte pro negócio sai da consequência da própria notícia, nunca "a IA que responde teu cliente" (20/10).
 
 ## Critério de pronto
-- [ ] O formato de saída está completo: título, molde, roteiro, título fixo, notas e fontes.
-- [ ] A primeira frase é a lei, e a última é falada (não aforismo espelhado).
-- [ ] Lido em voz alta, soa como os pares de `voz-pares.md` do lado "falado".
-- [ ] O `checar_voz.py` não acusaria erro: sem travessão, sem palavra proibida, sem frase de mais de 30 palavras.
+- [ ] Formato de saída completo: título, molde, roteiro, título fixo, notas e fontes.
+- [ ] Lido em voz alta, soa como o texto D e o lado "falado" de `voz-pares.md`.
 - [ ] Todo fato tem link.
 
 ## Erros conhecidos

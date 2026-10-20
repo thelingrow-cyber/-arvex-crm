@@ -38,10 +38,9 @@ SQ = "squads/conteudo/agents/"
 PARALELO = int(os.environ.get("MAQUINA_PARALELO", "1"))   # 19/10: 2 em paralelo morreu por RAM (PC com ~1 GB livre); 1 cabe em 4h–7h
 BASE_ROTEIRO = ["squads/conteudo/roteiros-ouro.md",   # 19/10: princípios com o porquê + os textos que ele aprovou/falou
                 ".claude/skills/content-principles/SKILL.md",   # 20/10: a skill que o Vitor trouxe (Fabiano); aplicar em silêncio
-                "squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
-                "docs/conteudo/banco-pautas/GANCHOS-PRONTOS.md", "docs/conteudo/maquina/06-Ganchos/ganchos.md",
-                "docs/conteudo/banco-roteiros/players/CATALOGO-MOLDES.md", "docs/conteudo/banco-roteiros/players/SINTESE-FORMATOS.md",
-                "docs/conteudo/maquina/_regras/proibido.md", "docs/conteudo/maquina/_regras/nao-fale-assim.md"]
+                "squads/conteudo/voz-pares.md"]
+# 20/10: o escritor lê só isso. Com ~31k tokens de regra o texto saía "pra passar na prova" e o Claude do celular, sem
+# regra nenhuma, escrevia melhor (texto D do roteiros-ouro). Proibido, voz.md e bancos de gancho ficam com o REVISOR.
 AGENTES = {
     "curadoria": ([SQ + "pauteiro.md"],
                   ["docs/conteudo/banco-roteiros/players/bernardo-precht/ESTUDO.md", "squads/conteudo/voz.md"]),

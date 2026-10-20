@@ -248,3 +248,24 @@ talvez a informação que você está esperando para decidir só aparece depois 
 - "de uma pesquisa a mais, de um vídeo a mais no YouTube, de um estudo a mais" → **P9** → repetição de fala ("a mais" 3×), não tríade de abstrações (item 22).
 - "é tipo querer saber o placar de um jogo…" → **P4** → a única comparação, no ponto em que a ideia fica abstrata.
 - "Decide com 70, os outros 30 vem no caminho. Você acha que faz sentido?" → **P8** → a regra comprimida com número, e o fim é conversa; sem "E eu?", sem "Fala aí".
+
+### D. Lindy · "Quanto mais tempo uma coisa existe…" (feito no Claude do celular, aprovado pelo Vitor, 20/10)
+
+**Por que este é o padrão de escrita:** veio de uma conversa simples, sem regra nenhuma, e o Vitor achou melhor do que
+os roteiros da máquina. É uma ideia só, desenvolvida como quem pensa em voz alta: a lei, a origem curiosa do nome, uma
+prova (o livro de 50 anos), a opinião dele, um segundo apoio de peso (Bezos), a ponte pro negócio e uma frase final que
+fica. Não tem "É tipo", objeção plantada nem CTA. Nada aqui foi montado por checklist.
+
+```
+Quanto mais tempo uma coisa já existe, mais tempo ela provavelmente ainda vai existir.
+
+Isso tem até nome: efeito Lindy. Vem de uma lanchonete em Nova York, a Lindy's, onde uns comediantes nos anos 60 viviam discutindo quanto tempo a carreira de cada um ia durar. Depois, o Nassim Taleb levou essa ideia pra tudo. Um livro que é lido há cinquenta anos provavelmente vai ser lido por mais cinquenta. Um que lançou mês passado, ninguém sabe.
+
+E eu acho isso muito útil agora, que parece que tudo muda toda semana.
+
+O Bezos fala uma coisa parecida. Todo mundo pergunta pra ele o que vai mudar nos próximos dez anos, e quase ninguém pergunta o que não vai mudar. Pra ele, a segunda pergunta é a mais importante, porque daqui a dez anos o cliente da Amazon ainda vai querer preço baixo e entrega rápida.
+
+Em qualquer negócio é igual. A ferramenta muda toda semana, mas o cliente querer ser respondido rápido e poder confiar em quem tá do outro lado existe há séculos.
+
+Então a jogada boa é usar o que é novo pra entregar melhor o que é velho.
+```
