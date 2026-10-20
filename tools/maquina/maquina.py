@@ -40,7 +40,7 @@ BASE_ROTEIRO = ["squads/conteudo/roteiros-ouro.md",   # 19/10: princípios com o
                 ".claude/skills/content-principles/SKILL.md",   # 20/10: a skill que o Vitor trouxe (Fabiano); aplicar em silêncio
                 "squads/conteudo/voz-pares.md"]
 # 20/10: o escritor lê só isso. Com ~31k tokens de regra o texto saía "pra passar na prova" e o Claude do celular, sem
-# regra nenhuma, escrevia melhor (texto D do roteiros-ouro). Proibido, voz.md e bancos de gancho ficam com o REVISOR.
+# regra nenhuma, escrevia melhor (exemplo D do roteiros-ouro). Proibido, voz.md e bancos de gancho ficam com o REVISOR.
 AGENTES = {
     "curadoria": ([SQ + "pauteiro.md"],
                   ["docs/conteudo/banco-roteiros/players/bernardo-precht/ESTUDO.md", "squads/conteudo/voz.md"]),

@@ -38,15 +38,17 @@ A gente perdoa muito mais rápido quem erra do que quem dá certo, e todo mundo 
 ```
 
 ## Como fazer
-*Mudança de 20/10: o Claude do celular, sem regra nenhuma, escreveu melhor que a máquina (texto D do `roteiros-ouro.md`).
+*Mudança de 20/10: o Claude do celular, sem regra nenhuma, escreveu melhor que a máquina (exemplo D do `roteiros-ouro.md`, que mostra o processo e não é padrão).
 Por isso o escritor escreve livre e as regras ficam com o revisor.*
 
-1. Leia `squads/conteudo/roteiros-ouro.md` (a pessoa e os 4 textos-ouro, sobretudo o D) e a skill
+1. Leia `squads/conteudo/roteiros-ouro.md` (a pessoa e os textos-ouro, como referência de voz e nunca como fôrma) e a skill
    `.claude/skills/content-principles/SKILL.md`, e veja os últimos pares de `squads/conteudo/voz-pares.md`.
 2. Entenda o tema até conseguir dizê-lo em dez palavras. Pergunte-se qual pergunta ele abre na cabeça de quem assiste.
 3. Escreva de uma vez, como o Vitor falaria pra um amigo dono de negócio: uma ideia só, em parágrafos de fala, pensando
    em voz alta. **Não siga roteiro de etapas, não encaixe "É tipo", objeção ou CTA porque "tem que ter".** Se a peça
    pedir uma comparação ou uma ressalva, ela entra; se não pedir, não entra.
+   **Varie a forma de falar:** pensamento em voz alta, história, notícia contada, pergunta, lista falada, confissão.
+   O tema escolhe a forma, e dois roteiros seguidos não saem com a mesma arquitetura.
 4. Confira todo fato com WebSearch na fonte primária e anote o link em "Fontes". Fato sem fonte sai.
 5. Leia em voz alta, na cabeça. O que não sai numa respiração, refaça.
 6. Se chegaram correções do revisor ou uma nota do Vitor, aplique todas. A nota do Vitor vale mais que qualquer regra.
@@ -58,7 +60,7 @@ Por isso o escritor escreve livre e as regras ficam com o revisor.*
 
 ## Critério de pronto
 - [ ] Formato de saída completo: título, molde, roteiro, título fixo, notas e fontes.
-- [ ] Lido em voz alta, soa como o texto D e o lado "falado" de `voz-pares.md`.
+- [ ] Lido em voz alta, soa como o Vitor falando (lado "falado" de `voz-pares.md`), e não com a mesma cara do roteiro anterior.
 - [ ] Todo fato tem link.
 
 ## Erros conhecidos

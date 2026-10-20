@@ -249,12 +249,12 @@ talvez a informação que você está esperando para decidir só aparece depois 
 - "é tipo querer saber o placar de um jogo…" → **P4** → a única comparação, no ponto em que a ideia fica abstrata.
 - "Decide com 70, os outros 30 vem no caminho. Você acha que faz sentido?" → **P8** → a regra comprimida com número, e o fim é conversa; sem "E eu?", sem "Fala aí".
 
-### D. Lindy · "Quanto mais tempo uma coisa existe…" (feito no Claude do celular, aprovado pelo Vitor, 20/10)
+### D. Lindy · "Quanto mais tempo uma coisa existe…" (exemplo do celular, 20/10, NÃO é padrão)
 
-**Por que este é o padrão de escrita:** veio de uma conversa simples, sem regra nenhuma, e o Vitor achou melhor do que
-os roteiros da máquina. É uma ideia só, desenvolvida como quem pensa em voz alta: a lei, a origem curiosa do nome, uma
-prova (o livro de 50 anos), a opinião dele, um segundo apoio de peso (Bezos), a ponte pro negócio e uma frase final que
-fica. Não tem "É tipo", objeção plantada nem CTA. Nada aqui foi montado por checklist.
+**Não é padrão, nem molde.** O Vitor fez no Claude do celular só para ter uma noção, e ainda não foi gravado nem
+testado (20/10: *"não sei nem se funcionou… devemos ter diferentes padrões, diferentes formas de fala"*). Ele está aqui
+para mostrar o **processo**: uma ideia pensada em voz alta, escrita sem checklist. Não serve de estrutura para copiar.
+Nenhum texto-ouro é fôrma, e dois roteiros seguidos não devem ter a mesma arquitetura.
 
 ```
 Quanto mais tempo uma coisa já existe, mais tempo ela provavelmente ainda vai existir.
