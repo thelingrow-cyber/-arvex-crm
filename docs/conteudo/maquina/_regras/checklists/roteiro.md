@@ -1,7 +1,7 @@
 # Lista de verificação: roteiro (antes de gravar)
 
 - [ ] **Leia as regras de tom de voz primeiro:** `squads/conteudo/voz.md`, antes de escrever qualquer frase.
-- [ ] **Os ganchos vêm daqui:** `docs/conteudo/maquina/06-Ganchos/ganchos.md`, ordenado por views. A primeira frase modela o mecanismo de um gancho do banco, sem copiar as palavras.
+- [ ] **A abertura sai da pergunta que esta notícia/tema abre** (`.claude/skills/content-principles/SKILL.md` e `squads/conteudo/roteiros-ouro.md`). O banco `docs/conteudo/maquina/06-Ganchos/ganchos.md` é consulta do porquê um gancho segurou, nunca molde a adaptar. *Motivo: adaptar um gancho que funcionou é o sinal de "formula mode" da skill (20/10).*
 - [ ] **A estrutura vem daqui:** `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`, na ficha do molde que o tema pede (Regra, Identidade, Tendência, Negócio ou Bastidor).
 - [ ] **Isso aqui é proibido:** `docs/conteudo/maquina/_regras/proibido.md`. Se cair em uma linha, reescreve.
 - [ ] **Não fale assim:** `docs/conteudo/maquina/_regras/nao-fale-assim.md`, com os exemplos do que não é a voz dele.

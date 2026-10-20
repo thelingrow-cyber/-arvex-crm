@@ -39,8 +39,9 @@ A gente perdoa muito mais rápido quem erra do que quem dá certo, e todo mundo 
 
 ## Como fazer
 1. Cumpra a lista de verificação `docs/conteudo/maquina/_regras/checklists/roteiro.md` e abra todos os arquivos que ela aponta.
-2. Escolha no `06-Ganchos/ganchos.md` o gancho cujo **mecanismo** serve ao tema.
-3. **Antes de escrever, leia `squads/conteudo/voz.md` inteiro e os últimos pares de `squads/conteudo/voz-pares.md`** (o que ele escreveu × o que ele disse na câmera). Escreva já como ele diria, em **parágrafos de fala** (um por ideia, frases corridas ligadas por "e", "mas", "porque", "então"), nunca uma frase curta por linha.
+2. Leia `.claude/skills/content-principles/SKILL.md` e `squads/conteudo/roteiros-ouro.md` (a pessoa, as 3 decisões, os princípios) e **aplique em silêncio**: nada disso vira lista nem seção no roteiro.
+3. **Abertura:** escreva numa linha a pergunta que **este** tema abre na cabeça da pessoa; a primeira frase faz ela segurar essa pergunta. Só depois consulte `06-Ganchos/ganchos.md` pra entender **por que** famílias parecidas prenderam, nunca pra adaptar a frase de outro (decisão 3 do `roteiros-ouro.md`; vale sobre a linha "Os ganchos vêm daqui" da lista de verificação). No cabeçalho, em vez de "Gancho modelado", anote **"Pergunta aberta:"**.
+4. **Antes de escrever, leia `squads/conteudo/voz.md` inteiro e os últimos pares de `squads/conteudo/voz-pares.md`** (o que ele escreveu × o que ele disse na câmera). Escreva já como ele diria, em **parágrafos de fala** (um por ideia, frases corridas ligadas por "e", "mas", "porque", "então"), nunca uma frase curta por linha.
    Para Regra e Identidade, a ordem é:
    1. a lei, dita como afirmação de conversa;
    2. a fala de quem pensa o contrário, imitada sem cerimônia ("Repara que a pessoa fala, …");
@@ -50,9 +51,9 @@ A gente perdoa muito mais rápido quem erra do que quem dá certo, e todo mundo 
    6. o fecho: pode ter uma frase afiada, mas termina numa frase falada.
 
    Para os outros moldes, siga a ficha do molde em `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`.
-4. Confira todo fato com WebSearch na fonte primária e anote o link em "Fontes". Fato sem fonte sai.
-5. Leia o roteiro em voz alta, na cabeça, e quebre toda frase que não sai numa respiração.
-6. Se chegaram correções ou uma nota, aplique **todas**. A nota do Vitor vale mais que qualquer regra.
+5. Confira todo fato com WebSearch na fonte primária e anote o link em "Fontes". Fato sem fonte sai.
+6. Leia o roteiro em voz alta, na cabeça, e quebre toda frase que não sai numa respiração.
+7. Se chegaram correções ou uma nota, aplique **todas**. A nota do Vitor vale mais que qualquer regra.
 
 ## Regras que não se quebram
 - Tudo o que está em `_regras/proibido.md`. *Motivo: cada linha de lá veio de uma reprovação dele.*

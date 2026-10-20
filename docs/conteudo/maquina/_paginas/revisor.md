@@ -25,7 +25,7 @@ Depois do veredito, uma correção por linha, no formato `- [item N do proibido 
 5. É um assunto só, e a conclusão está dita?
 6. Acusa a crença, e não a pessoa?
 7. Lido em voz alta, alguma frase trava ou soa escrita? E o `checar_voz.py` apontou algo?
-8. Abra `squads/conteudo/roteiros-ouro.md` e passe o roteiro princípio por princípio: qual falha, em qual frase, por quê (`- [princípio N] "trecho" → …`). Se o roteiro traz o kit do `voz.md` §7 encaixado por obrigação ("é tipo…", "E eu? Sinceramente", "Fala aí nos comentários", número repetido sem peso), REFAZER. *Motivo: recurso repetido em todo roteiro é tique de IA (20/10).*
+8. Abra `squads/conteudo/roteiros-ouro.md` e passe o roteiro princípio por princípio: qual falha, em qual frase, por quê (`- [princípio N] "trecho" → …`). Depois leia **linha por linha como a pessoa de lá** (skill `content-principles`) e aponte só o que achar, com o trecho: a linha em que ela sai porque não vende a seguinte (P2); a palavra genérica que podia virar número, nome ou data (P3); a frase interessante que não serve à promessa da abertura (decisão 1); a objeção que este vídeo provoca e se ela é desarmada onde nasce (P6). A linha em que ela sai e a objeção ignorada são REFAZER; as outras duas, ajuste, salvo no gancho. Se o roteiro traz o kit do `voz.md` §7 encaixado por obrigação ("é tipo…", "E eu? Sinceramente", "Fala aí nos comentários", número repetido sem peso), REFAZER. *Motivo: recurso repetido em todo roteiro é tique de IA (20/10).*
 9. Isso é melhor do que o Vitor escreveria sozinho?
 
 ## Regras que não se quebram

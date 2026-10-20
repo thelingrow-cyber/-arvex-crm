@@ -1,11 +1,86 @@
-# Roteiros-ouro: princípios com o porquê
+# Roteiros-ouro: a régua única, com o porquê
 
-> **v1 (20/10/2026), Halbert (copy-chief).** Feito a partir de 3 textos que o Vitor aprovou ou falou ele mesmo
-> (N3, N4 reescrito à mão, Bezos) contra as versões reprovadas dos mesmos temas.
-> **Por que esta página existe:** dado só o exemplo, a IA copia os PASSOS ("afirmação forte, lista, CTA") e perde
-> o raciocínio (diagnóstico do Fabiano Carvalho, 19/10). Aqui cada princípio vem com o motivo, a prova e o limite.
-> Quem escreve lê os princípios; quem revisa julga o roteiro um por um (`docs/conteudo/maquina/_paginas/revisor.md`).
-> Onde a evidência é só a reprovação ou aprovação do Vitor, está dito. Onde é leitura minha, está marcado *(leitura)*.
+> **v2 (20/10/2026), Halbert (copy-chief).** A v1 saiu de 3 textos que o Vitor aprovou ou falou (N3, N4 reescrito
+> à mão, Bezos) contra as versões reprovadas. A v2 junta a skill **Content Principles**
+> (`.claude/skills/content-principles/SKILL.md`, indicação do Fabiano): a skill explica a cabeça de quem assiste;
+> esta página diz como isso soa na boca do Vitor. Onde as duas dizem o mesmo, ficou um princípio só.
+> **Aplicar em silêncio:** quem escreve lê e esquece; nada daqui vira lista no roteiro nem seção na saída. Quem
+> revisa usa para apontar a frase que quebra (`docs/conteudo/maquina/_paginas/revisor.md`).
+> Evidência que é só aprovação/reprovação dele está dita; leitura minha está marcada *(leitura)*.
+
+---
+
+## A pessoa (para quem o vídeo é mandado)
+
+É o **dono de um negócio que já roda e sente que está sempre atrasado** (herói fixado em
+`docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`, 13/10): empresário de R$50–500k/mês ou profissional liberal com
+caixa (`docs/ecossistema/linha-editorial-e-calendario.md`, registro OBRA). **O que dói:** a operação depende dele,
+o time cansa, lead morre no WhatsApp (mesma fonte); e por baixo, a fissura do brand book v2 §02.4: foi convencido
+de que precisava de IA, pagou, continua pra trás e acha, calado, que o problema é ele. **O que quer:** que o
+negócio deixe de ser um emprego caro e vire um ativo; decidir e definir meta em vez de responder WhatsApp (brand
+book §02.6), **sem virar tech** ("eu falo com o dono que não quer virar tech"). **O que já sabe** *(leitura)*: usa
+IA no celular, conhece Google e Amazon mas não o mercado por dentro (a Bending Spoons precisou ser apresentada),
+já ouviu todo "pare de planejar e faça" (portão, item 7) e não fala sigla de dev.
+
+Na escrita: o vídeo é mandado **pra ele**, não pra "a audiência", e alivia e dá direção, nunca aumenta o medo.
+A especificidade vai **no objeto, não nele** (skill §1): nunca "se você é dono de empresa…"; sim "aquela IA de
+vinte dólares que tá aí no teu celular".
+
+**O Vitor confirma:** (a) se a faixa R$50–500k/mês, que é do calendário de setembro, vale pro conteúdo diário;
+(b) se o profissional liberal é a mesma pessoa ou um segundo ouvinte; (c) a linha "o que já sabe", que é inferência.
+
+---
+
+## Onde a skill e esta página se encaixam
+
+| Skill | Aqui | O que a skill acrescentou |
+|---|---|---|
+| Postura: pensar, não preencher molde | Aviso "cardápio, não receita" + decisão 3 | os 4 sinais de formula mode; o mais nosso: gancho adaptado |
+| §1 Uma pessoa | "A pessoa" + P8 | especificidade no objeto, não no público |
+| §2 Valor × tempo | decisão 2 | 60s já é longo; o tamanho custa |
+| §3 Linha vende linha · §4 Loops | **P2** | loop novo a ~60–70%; nunca desinflar um loop (= P1: contradição verdadeira) |
+| §5 Especificidade | **P3** | o teste por frase vai pro revisor |
+| §6 Simples de entender | **P4** | a tese cabe em 10 palavras ("Decide com 70, os outros 30 vem no caminho": 9) |
+| §7 Valor por segundo | P1 + P2 | o primeiro fato que vale até ~10s (N3: "trezentos e trinta milhões" aos 7–10s) |
+| §8 Cortar o que não serve | decisão 1 + P9 | o "interessante mas fora da promessa" sai |
+| §9 Objeções | **P6** + P5 | a objeção é a que *este* vídeo provoca, desarmada onde nasce |
+| §10 O quadro | edição (`_paginas/animacoes.md`) | um fato por frase dá à edição onde trocar a imagem |
+
+A skill vale como **tendência, não lei** (o fecho dela). Roteiro que quebra tudo e prende vale mais.
+
+---
+
+## Três decisões
+
+### 1. Tamanho da frase: corta-se palavra e ideia, não conectivo
+**Decisão:** cada frase cabe numa respiração (até ~25 palavras; 30 é trava do `checar_voz.py`) e traz **uma
+informação nova**. Sai o que não serve à promessa: máxima abstrata, recapitulação, "que eu acho" repetido, o fato
+bonito que não é do assunto. **Fica** o "e, mas, porque, então".
+**Por quê:** (a) a média de menos de 9 palavras da skill é de short-form em inglês; os 3 textos-ouro medem
+14,4 (N3), 11,4 (N4) e 16,5 (Bezos) palavras por frase, e o reprovado foi o verso picado (`proibido.md` 33);
+(b) na fala o conectivo **é** o loop: "mas" e "porque" prometem a frase seguinte, é a linha 1 vendendo a 2;
+(c) o que a skill pune de fato, densidade de palavra sem ideia, a gente também pune.
+**Limite:** três frases seguidas acima de 20 palavras quase sempre escondem duas ideias numa. Parta.
+
+### 2. Duração da notícia: **PROPOSTA, depende do Vitor**
+Hoje: 📰 Mercado escrito pra 60–80s; `voz.md` diz 40–80s; Regra e Identidade, 20–45s. Medido nos vídeos
+publicados: N3 = **78s** (288 palavras), Bezos = **48s** (165), Capricho = 30s. O ritmo real dele no vídeo final
+é ~3,5 palavras/s; as estimativas nos cabeçalhos dos rascunhos usam de 2,6 a 3,1 e erram o tempo. Conte
+palavras, não segundos.
+**Proposta:** notícia em **45–65s, alvo ~55s (160–230 palavras)**. **Por quê:** a skill diz que 60s já é longo e
+que o tamanho é o custo que a pessoa pesa contra o valor; o Bezos, que ele inventou e falou sozinho, tem 48s;
+o N3 passou com 78s, mas aprovação dele não é retenção de quem assiste. **Quem decide:** a curva de retenção do
+N3 contra a do Bezos no Instagram. Até o Vitor decidir, `voz.md` e `LINHA-EDITORIAL-FORMATOS.md` não mudam.
+
+### 3. Gancho: a abertura sai da pergunta que esta notícia abre
+**Decisão:** antes de abrir o banco, escreva numa linha **a pergunta que este fato abre na cabeça da pessoa**
+("que contramão?", "fiado como?"). A linha 1 faz ela segurar essa pergunta sem responder. Só então o banco
+(`06-Ganchos/ganchos.md`, `GANCHOS-PRONTOS.md`, `ESTUDO-GANCHOS.md`) entra, **como consulta do porquê**: por que
+aquela família prendeu (contradição, ameaça de terceiro, referência sem contexto) e o que afundou. Nunca pra
+adaptar a frase de outro.
+**Por quê:** "escreveu o gancho adaptando um que funcionou" é sinal de formula mode na skill, e a nossa prova
+é a mesma: o N3 v2, transposto do @beprecht, foi "HORRÍVEL"; o N3 final abre na pergunta que a notícia da
+Berkshire abre. No cabeçalho do roteiro, "Gancho modelado: nº X" vira **"Pergunta aberta:"**.
 
 ---
 
@@ -21,6 +96,8 @@
 - **Por quê:** a frase de abertura abre uma dúvida ("que contramão?", "que fiado?") e a seguinte paga com o fato. Sem dúvida aberta, não há motivo pra ouvir a próxima frase. Evidência: aprovação do corpo do N3 ("EU GOSTEI MESMO") contra a v1 reprovada; o ESTUDO não mede isso diretamente.
 - **Nos textos-ouro:** N3 só diz o nome "Bending Spoons" no 2º parágrafo, depois do dinheiro · N4 "boa parte dela tá sendo feita no fiado" e só então os setecentos bilhões · Bezos "Mas o que eu acho mais interessante é o porquê." e o porquê vem logo.
 - **Anti-exemplo:** N3 v1 gasta tudo na primeira frase: "Tem uma empresa italiana que quase ninguém conhece e que é dona do Evernote, do WeTransfer, do Vimeo, comprou o Airtable mês passado e tá comprando o Miro." → reprovada como "escrita, lida". *(leitura: não sobrou nada pra linha 2 pagar)*
+- **Loop novo antes de ele se sentir completo** (skill §4): por volta de 60–70% do vídeo, já paga a primeira
+  pergunta, abre outra. N3 "o que tem a ver com o meu negócio?" · N4 "Mas tem uma coisa que eu sei." · Bezos "o porquê".
 - **Quando NÃO usar:** a dúvida fecha no mesmo parágrafo. Anunciar a virada sem conteúdo ("sabe o que acontece?", "agora presta atenção") é frase-ponte, item 34 do `proibido.md`. A ponte do Bezos passa porque nomeia o que vem (o porquê).
 
 ### 3. Seja específico: número de terceiro, nome, objeto na mão de quem assiste
@@ -42,7 +119,9 @@
 - **Quando NÃO usar:** ressalva que desmonta a tese, ou ressalva em tese seca de 20–30s que fecha melhor sem ela (item 11 do `proibido.md`).
 
 ### 6. A objeção vem na boca de quem assiste, depois da prova
-- **Por quê:** é a pergunta que o espectador já está fazendo; respondida, ele fica. Na gravação do tema 5 o próprio Vitor trocou a ordem (prova primeiro) e trocou "Tá, Vitor" por "Tá, beleza" (`voz.md` §3–4).
+- **Por quê:** é a pergunta que o espectador já está fazendo; respondida, ele fica. Vale a que **este** vídeo
+  provoca ("é coisa de bilionário", "não serve pra mim", "é propaganda"), desarmada onde nasce; pode ser um aparte
+  de meia linha, não precisa de "Tá, beleza, mas" (skill §9). Na gravação do tema 5 o próprio Vitor trocou a ordem (prova primeiro) e trocou "Tá, Vitor" por "Tá, beleza" (`voz.md` §3–4).
 - **Nos textos-ouro:** N3 "Tá, beleza, mas isso é jogo de bilionário, o que tem a ver com o meu negócio?"
 - **Anti-exemplo:** tema 5 escrito, antes do exemplo: "Tá, Vitor, mas e quem já deixou passar uma?"
 - **Quando NÃO usar:** quando não há objeção real (o Bezos não tem e não precisa). Objeção fabricada só pra cumprir estrutura é ingrediente.
