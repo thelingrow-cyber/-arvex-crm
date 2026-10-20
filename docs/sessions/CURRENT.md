@@ -1,5 +1,20 @@
 # Ponto de retomada
 
+## ▶ RETOMAR AQUI — 19-20/10/2026 (Claude Code, Orion): agentes em cada etapa da máquina + meta de 10 vídeos/dia
+
+**Feito em 19/10:**
+- **Agente da função em cada etapa** (`maquina.py` → `AGENTES` + `quem()`): Caio cura notícias, Bia+Caio temas, Téo+Halbert roteiro, Halbert revisa, Rui edita. Regra fixa em `.claude/rules/agente-da-funcao.md`.
+- Tarefa das 04:00 agora roda `maquina.py dia 4 5 --as 07:00` (4 notícias N + 5 da grade R). **Primeira rodada sozinha ainda não conferida: olhar `_regras/manha-saida.log` em 20/10.**
+- `voz.md` §7 com o que a reescrita do Vitor no N4 ensinou; par N4 em `voz-pares.md`.
+- `montar.py`: título fino é o padrão; `cheia` (tela inteira); **`topo.trio`** (3 quadros lado a lado, referência do Vitor); cache de imagem pela URL (antes trocar foto não pegava).
+- Publicados: N3 Bending Spoons/Buffett e o vídeo do Bezos (regra dos 70%), gravado fora da máquina e editado à mão no molde trio + vídeos laterais + números animados.
+
+**Pendente:**
+- Lote da tarde (3 notícias + grade) morreu por falta de RAM; pautas em `02-Rascunhos/2026-10-19-n1-sites-fecham…`, `n2-alice…`, `n3-mede…` (nomes colidem: renomear n5–n7). Só rodar quando o Vitor pedir.
+- **Vitor vai mandar a skill "Content Principles"** (vídeo do Fabiano `DesEj7NinpB`: dar princípio e não passo à IA). Plano: ler a skill → página de princípios nossa (a partir do ESTUDO-GANCHOS e dos números dele) → revisor do Halbert audita por princípio.
+- Maestro: vídeo gravado fora da máquina não é reconhecido (fica para edição à mão); resposta solta no WhatsApp fica "sem alvo".
+- Antigos: trocar chave global da Evolution com @devops; `animacoes.md` "Erros conhecidos" desatualizado.
+
 ## ▶ RETOMAR AQUI — 16/10/2026 (Claude Code, Orion): automatizar a máquina de ponta a ponta
 
 **Meta do Vitor:** ele só grava e aprova. Toda manhã recebe os roteiros no WhatsApp → grava → sobe no Drive → a máquina edita no molde certo → manda o vídeo no WhatsApp perguntando "aprovado?" → "pode" = posta/agenda no Instagram, sem ele abrir o app.
