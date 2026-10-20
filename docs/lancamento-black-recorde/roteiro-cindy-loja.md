@@ -45,37 +45,33 @@ público quem segue ou interagiu com o Instagram da loja.
 
 ## Como gravar
 
-- **Onde:** dentro da loja dela, de pé, perto do expositor. Celular na vertical, na altura do olho, com a loja aberta ao fundo.
-- **Primeiro segundo:** ela já está com a armação na mão, mostrando para a câmera. Sem "oi, gente", sem se apresentar.
-- **No "o resto da loja":** vira de leve para o expositor ou passa a mão nas armações. Um gesto, sem corte.
+- **Onde:** FORA da loja (escritório, carro ou fundo neutro), para o cliente final não reconhecer o lugar. Celular na vertical, na altura do olho.
+- **Primeiro segundo:** ela já começa falando, olhando para a câmera. Sem "oi, gente", sem se apresentar.
+- **"Parece que não faz sentido, né?":** pausa curta e meio sorriso. É a frase que segura o vídeo.
 - **Tom:** de conversa com aluna, igual na live. Pode errar, rir e repetir com as palavras dela. Não decorar: ler duas vezes e falar do jeito dela.
-- **Legenda:** simples, branca, palavra por palavra. Na tela, só "R$ 449 → R$ 80" no gancho e "27/10 · ao vivo · gratuito" no fim.
+- **Legenda:** simples, branca, palavra por palavra. Nenhum preço na tela. Só "27/10 · ao vivo · gratuito" no fim.
 
 ## Inserções
 
 | Momento | O que aparece | Tipo |
 |---|---|---|
-| 0–3 s | "R$ 449 → R$ 80" | dado da Cindy (live 22/10/2025) |
-| "de dez pessoas, duas" | "2 em cada 10 levaram o combo" | dado da Cindy (live 22/10/2025) |
 | fecho | "27/10 · 19h30 · ao vivo e gratuito" + seta para o botão | evento |
 
 ## Ganchos alternativos (só os 3 primeiros segundos)
 
-1. "De cada dez clientes que vieram pelo meu combo de noventa e nove, só duas levaram o combo." *(abre pela prova)*
-2. "Ano passado eu peguei as armações que ninguém levava e coloquei a oitenta reais. Vou te contar por quê." *(abre pela curiosidade)*
+1. "O produto que eu mais anunciei na Black foi o que menos vendeu. E eu adorei." *(abre pelo paradoxo)*
+2. "Se o que você anuncia na Black é o que você mais vende, tem alguma coisa errada." *(abre pela provocação; só o dono entende)*
 
 ## Revisão do Halbert
 
-- **Teste da boca:** passa. São frases curtas e quebradas, com os marcadores dela ("tá?", "gente", "né?", "ali") e as reticências onde ela respira na live.
-- **Promessa:** nenhuma promessa de faturamento. O número é dela, da loja dela, e é prova de mecanismo.
-- **Ad scent com a página:** "igual todo mundo da rua" conversa com "sem a promoção igual à do quarteirão".
-- **CTA:** é o mesmo do B1 ("o link vai ser liberado só lá").
+- **Teste da boca:** passa. Frases curtas, com os marcadores dela ("tá?", "gente", "né?").
+- **Proteção da loja:** nenhum preço, produto ou comportamento de cliente que o consumidor final reconheça. O paradoxo só faz sentido para quem é dono.
+- **Curiosidade:** o vídeo não diz o que foi anunciado, o que vendeu nem por quê. Tudo isso fica para o workshop.
+- **Promessa:** "buscar um novo recorde" trata o recorde como meta.
+- **CTA:** o mesmo da página ("entra no grupo").
 
 ## Confirmar com a Cindy antes de gravar
 
-1. Na live de 22/10/2025 ela **planejava** a armação a R$ 80. Ela executou isso na Black? Se não, troque por "na Black eu decidi colocar ela a oitenta".
-2. O dado do combo ("de dez, duas") foi do patrocinado de combo que já rodava. Ela confirma?
-3. "Eu faço isso todo ano" é verdade? (campanha de Black estruturada todo ano)
-4. "Compraram coisa mais cara": confere com a live (compras de até R$ 2.500)?
-5. Pode usar essa história da aula da mentoria num anúncio aberto?
-6. Ela tem a armação física na loja para mostrar? Pode ser qualquer peça cara que estava parada.
+1. "O que eu mais anunciei foi o que menos vendeu" e "uma das minhas melhores Black" são verdade para a Black de 2025?
+2. "Eu faço isso todo ano" é verdade? (campanha de Black estruturada todo ano)
+3. Pode usar essa história, que vem da aula da mentoria, num anúncio aberto?
