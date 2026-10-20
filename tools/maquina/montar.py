@@ -16,6 +16,7 @@ Chaves opcionais (todas retrocompatíveis: sem elas o vídeo sai como antes):
           19/10 (referência do Vitor): 3 quadros quadrados lado a lado no topo, fixos o vídeo todo, título logo
           abaixo; vídeo no quadro toca em loop. As laterais continuam entrando e saindo embaixo.
   "laterais": [{"de", "ate", "lado", "video", "inicio", "crop"}]   inserção lateral em vídeo
+  "lado": "ESQ" | "DIR" | "BAIXO" (20/10: embaixo da legenda; laterais com tempos sobrepostos aparecem juntas)
   "laterais": [{"de", "ate", "lado", "numero": 70, "sufixo": "%", "linhas": ["DO QUE VOCÊ", "GOSTARIA DE SABER"],
                 "cor": "vermelho"}]   19/10: cartão animado (conta de 0 até o número, barra enche, frase sobe), molde Bezos
   "cheia": [{"de": 13.5, "ate": 15.4, "video": "tools/…/x.mp4" | "arquivo"|"url": "…", "inicio": 82.5,
@@ -38,6 +39,7 @@ FONTES = os.path.join(RAIZ, "tools", "video-recut", "assets", "fontes")
 BEBAS, MONT = os.path.join(FONTES, "BebasNeue-Regular.ttf"), os.path.join(FONTES, "Montserrat.ttf")
 L, A, Y = 540, 400, 110                  # pintura do topo
 ESQ, DIR = (170, 985), (910, 985)        # centro das laterais (rosto em x ~330–740)
+BAIXO = (540, 1600)                      # 20/10: 3ª posição, embaixo da legenda (o Vitor pediu 2–3 inserções ao mesmo tempo)
 LARG, ALT = 310, 390
 Y_TIT_SEM_TOPO = 470                     # molde Regra: título acima da cabeça (em 1180 batia no rosto e na legenda, 16/10)
 TRIO, TGAP = 280, 24                     # 19/10: topo com 3 quadros lado a lado (referência do Vitor)
@@ -290,7 +292,8 @@ def montar(pasta):
     y_tit = Y + A + 14 if topo else Y + TRIO + 14 if trio else Y_TIT_SEM_TOPO
     lados = []
     for i, ins in enumerate(plano.get("laterais") or []):
-        lado = ESQ if ins.get("lado", "ESQ").upper().startswith("E") else DIR
+        ld = ins.get("lado", "ESQ").upper()
+        lado = ESQ if ld.startswith("E") else BAIXO if ld.startswith("B") else DIR
         if ins.get("numero") is not None:   # 19/10: cartão de número animado
             e, s = float(ins["de"]), min(float(ins["ate"]), dur)
             lados.append((card_numero(ins, s - e + 0.1, os.path.join(work, f"lado{i}-num.mp4")), e, s, lado))

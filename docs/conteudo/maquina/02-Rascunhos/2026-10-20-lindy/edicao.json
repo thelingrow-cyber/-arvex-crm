@@ -1,23 +1,30 @@
 {
  "titulo": "O QUE NÃO VAI MUDAR?",
  "topo": {"trio": [
+  {"url": "https://commons.wikimedia.org/wiki/File:Jeff_Bezos_Unveils_Blue_Origin_Lunar_Lander_(cropped).jpg"},
   {"url": "https://commons.wikimedia.org/wiki/File:Nassim_Nicholas_Taleb_DLD_2009-012_(cropped).jpg"},
-  {"url": "https://commons.wikimedia.org/wiki/File:Johannes_Moreelse_-_Heraclitus_-_Google_Art_Project.jpg"},
-  {"url": "https://commons.wikimedia.org/wiki/File:Jeff_Bezos_Unveils_Blue_Origin_Lunar_Lander_(cropped).jpg"}
+  {"url": "https://commons.wikimedia.org/wiki/File:Johannes_Moreelse_-_Heraclitus_-_Google_Art_Project.jpg"}
  ]},
  "laterais": [
-  {"de": 4.2, "ate": 8.0, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Lindys_Restaurant_Broadway_and_51st_Street_New_York_City.JPG"},
-  {"de": 8.1, "ate": 12.7, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Lucille_Ball_looked_so_happy,_Milton_Berle_had_to_kiss_her,_1960.jpg"},
-  {"de": 12.8, "ate": 15.0, "lado": "DIR", "arquivo": "tools/video-recut/videos/2026-10-lindy/antifragil-capa.jpg"},
-  {"de": 15.0, "ate": 19.5, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:El_ingenioso_hidalgo_don_Quijote_de_la_Mancha.jpg"},
-  {"de": 19.6, "ate": 22.9, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Nassim_Taleb_Lecturing.jpg"},
-  {"de": 23.0, "ate": 25.8, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg"},
-  {"de": 25.9, "ate": 30.6, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-lindy/bezos10.mp4", "inicio": 1, "crop": "270:300:292:0"},
-  {"de": 30.7, "ate": 35.2, "lado": "ESQ", "video": "tools/video-recut/videos/2026-10-lindy/bezos10.mp4", "inicio": 46, "crop": "270:300:292:0"},
-  {"de": 35.3, "ate": 39.8, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-bezos-decidir/robos-full.mp4", "inicio": 15, "crop": "330:416:470:40"},
-  {"de": 39.9, "ate": 42.7, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Data_Center_2_(UNC).jpg"},
-  {"de": 42.8, "ate": 47.2, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Walter_Johnson_and_Calvin_Coolidge_shake_hands_FINAL.jpg"},
-  {"de": 47.3, "ate": 50.0, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Pieter_Aertsen_-_Market_Scene_-_Google_Art_Project.jpg"},
-  {"de": 50.1, "ate": 53.8, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Library_stacks_of_books_and_bookshelf.jpg"}
+  {"de": 4.6, "ate": 8.3, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Lindys_Restaurant_Broadway_and_51st_Street_New_York_City.JPG"},
+  {"de": 8.4, "ate": 13.2, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Lucille_Ball_looked_so_happy,_Milton_Berle_had_to_kiss_her,_1960.jpg"},
+  {"de": 9.8, "ate": 13.2, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:US042_Times_Square_1963.jpg"},
+  {"de": 13.3, "ate": 15.4, "lado": "DIR", "arquivo": "tools/video-recut/videos/2026-10-lindy/antifragil-capa.jpg"},
+  {"de": 13.6, "ate": 15.4, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Nassim_Taleb_Lecturing.jpg"},
+  {"de": 15.5, "ate": 20.0, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:El_ingenioso_hidalgo_don_Quijote_de_la_Mancha.jpg"},
+  {"de": 20.1, "ate": 23.4, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Nassim_Nicholas_Taleb_DLD_2009-009.jpg"},
+  {"de": 23.5, "ate": 26.3, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg"},
+  {"de": 24.6, "ate": 26.3, "lado": "BAIXO", "url": "https://commons.wikimedia.org/wiki/File:Data_Center_2_(UNC).jpg"},
+  {"de": 26.4, "ate": 31.1, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-bezos-decidir/leno1999-full.mp4", "inicio": 32, "crop": "300:378:170:40"},
+  {"de": 28.2, "ate": 31.1, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Jeff_Bezos_2005.jpg"},
+  {"de": 31.2, "ate": 35.7, "lado": "ESQ", "video": "tools/video-recut/videos/2026-10-lindy/bezos10.mp4", "inicio": 1, "crop": "270:300:292:0"},
+  {"de": 33.4, "ate": 35.7, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Jeff_Bezos_visits_the_Robot_Co-op_in_2005.jpg"},
+  {"de": 35.8, "ate": 40.3, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-bezos-decidir/robos-full.mp4", "inicio": 15, "crop": "330:416:470:40"},
+  {"de": 37.4, "ate": 40.3, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Amazon_fulfillment_center_-_Troutdale_Oregon.jpg"},
+  {"de": 40.4, "ate": 43.3, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Data_Center_3_(UNC).jpg"},
+  {"de": 43.4, "ate": 47.7, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Walter_Johnson_and_Calvin_Coolidge_shake_hands_FINAL.jpg"},
+  {"de": 47.8, "ate": 50.6, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Pieter_Aertsen_-_Market_Scene_-_Google_Art_Project.jpg"},
+  {"de": 50.7, "ate": 54.3, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:Library_stacks_of_books_and_bookshelf.jpg"},
+  {"de": 51.6, "ate": 54.3, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg"}
  ]
 }

@@ -63,3 +63,4 @@ O exemplo real é o "Rei do gelo", aprovado em 14/10. O bloco `edicao.json` é o
 
 
 > **20/10, reprovado pelo Vitor:** o cartão animado de número (`"numero"`) ficou "horrível". Não use até ser redesenhado. Número dito na fala vira imagem real do objeto (capa do livro, vídeo da pessoa dizendo a frase, foto do lugar). Autor citado = mostre o livro dele.
+> **20/10, ajustes do Vitor no Lindy:** no começo, a primeira frase fica limpa (sem inserção e sem cortar a pausa dela); a pessoa principal é o 1º quadro do trio; nos momentos fortes, 2 ou 3 inserções juntas (`"lado": "BAIXO"` é a 3ª posição); a mesma pessoa aparece em vídeos/fotos diferentes, nunca o mesmo vídeo duas vezes.
