@@ -146,6 +146,11 @@ Berkshire abre. No cabeçalho do roteiro, "Gancho modelado: nº X" vira **"Pergu
 - **Nos textos-ouro:** N3 "colocou dinheiro, duas vezes, em quem sabe arrumar o que já existe" → "o dinheiro tá menos no produto novo… e mais no que já tá aí no teu negócio" · N4 big techs pagando a conta → "Aquela IA de vinte dólares… Tem uma das maiores apostas da história pagando a conta dela."
 - **Anti-exemplo:** "O primeiro funcionário que você contrata…" no "Chegue atrasado" (14/10, ponte forçada).
 - **Quando NÃO usar:** se a ponte precisa de três frases pra se sustentar, o tema não serve pra este molde. Troque o tema, não force.
+- **Vício proibido: atendimento como ponte padrão.** O Vitor pediu em 20/10: *"sair desse vício de ficar fazendo sobre atendimento"*.
+  "A IA que responde teu cliente", "o WhatsApp do teu atendimento", "o atendente" e "o chatbot" saíram em quase todo roteiro
+  (Alice 19/10, WhatsApp 20/10, pautas). A ponte sai **da consequência que esta notícia tem**: dinheiro, preço, margem,
+  decisão, contratação, estoque, concorrência, tempo do dono, o que muda no mercado dele. Atendimento só entra quando a
+  própria notícia for sobre atendimento, e mesmo assim no máximo **1 vídeo por semana**.
 
 ### 8. Feche com posição em primeira pessoa, não com conselho pro outro
 - **Por quê:** o herói é quem se sente atrasado (`proibido.md` 21); conselho soa sermão (item 28), "eu faria" alivia e dá direção. Foi a troca dele no N4 (`voz.md` §7).

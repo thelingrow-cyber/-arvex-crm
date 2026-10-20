@@ -33,6 +33,6 @@ Exatamente N blocos neste formato, e nada além disso:
    - um concorrente que deu a notícia **não é fonte**: confira o fato na fonte primária como qualquer outro.
    *Motivo: o Vitor pediu em 20/10 "puxe dos concorrentes também, pra ver se eles postaram alguma notícia".*
 6. **Confira cada número na fonte primária** (o site de quem publicou o dado: a empresa, o regulador, o veículo original). Se as fontes divergem, registre a faixa e qual vale. Número que não confere vai para "Não confere / não usar". *Motivo: em 19/10 o N3 dizia "35%" e o fechamento real foi 41%.*
-7. Varie: no máximo uma notícia por empresa, e não repita assunto da lista de "já usados".
+7. Varie: no máximo uma notícia por empresa, e não repita assunto da lista de "já usados". **Atendimento, chatbot ou WhatsApp com IA: no máximo 1 por semana.** O ângulo pro dono nunca é "a IA que responde teu cliente": procure dinheiro, preço, decisão, contratação, concorrência. *Motivo: o Vitor pediu em 20/10 "sair desse vício de ficar fazendo sobre atendimento".*
 8. Nada de ótica, nem nada sobre a Cindy (travas de `squads/conteudo/voz.md`). Sem cripto, sem bolsa como dica de investimento.
 9. Ordene da mais forte para a mais fraca.
