@@ -35,7 +35,9 @@ rel = lambda p: os.path.relpath(p, RAIZ).replace("\\", "/")
 # Quem executa cada etapa (19/10, pedido do Vitor: "adicione cada agente melhor em cada etapa").
 # A página diz O QUE fazer e o formato; o agente traz o método e as bases dele. Persona + bases entram em toda chamada.
 SQ = "squads/conteudo/agents/"
-BASE_ROTEIRO = ["squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
+PARALELO = int(os.environ.get("MAQUINA_PARALELO", "1"))   # 19/10: 2 em paralelo morreu por RAM (PC com ~1 GB livre); 1 cabe em 4h–7h
+BASE_ROTEIRO = ["squads/conteudo/roteiros-ouro.md",   # 19/10: princípios com o porquê + os textos que ele aprovou/falou
+                "squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
                 "docs/conteudo/banco-pautas/GANCHOS-PRONTOS.md", "docs/conteudo/maquina/06-Ganchos/ganchos.md",
                 "docs/conteudo/banco-roteiros/players/CATALOGO-MOLDES.md", "docs/conteudo/banco-roteiros/players/SINTESE-FORMATOS.md",
                 "docs/conteudo/maquina/_regras/proibido.md", "docs/conteudo/maquina/_regras/nao-fale-assim.md"]
@@ -47,7 +49,7 @@ AGENTES = {
                    "docs/conteudo/banco-pautas/BANCO.md"]),
     "roteiro":   ([SQ + "roteirista.md", "squads/marketing/agents/copy-chief.md"], BASE_ROTEIRO),
     "revisor":   (["squads/marketing/agents/copy-chief.md"],
-                  ["squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
+                  ["squads/conteudo/roteiros-ouro.md", "squads/conteudo/voz.md", "squads/conteudo/voz-pares.md", "docs/conteudo/ESTUDO-GANCHOS.md",
                    "docs/conteudo/maquina/_regras/proibido.md", "docs/conteudo/maquina/_regras/nao-fale-assim.md"]),
     "corrigir":  ([SQ + "roteirista.md"], ["squads/conteudo/voz.md", "docs/conteudo/maquina/_regras/proibido.md"]),
     "capa":      (["squads/marketing/agents/copy-chief.md", SQ + "roteirista.md"],
@@ -218,7 +220,7 @@ def _gerar_grade(qtd=5):
     candidatos = []                                                     # cota + 1 de reserva por molde
     for m, q in cota.items():
         candidatos += [int(c[0]) for c in livres if not m or c[2] == m][:q + 1]
-    with ThreadPoolExecutor(2) as ex:                                   # 4 em paralelo estourou a memória (19/10)
+    with ThreadPoolExecutor(PARALELO) as ex:                                   # 4 em paralelo estourou a memória (19/10)
         res = dict(zip(candidatos, ex.map(lambda n: _seguro(roteiro, n), candidatos)))
     molde = {int(c[0]): c[2] for c in _temas()}
     escolhidos = []
@@ -294,16 +296,14 @@ def _gerar_noticias(qtd=4, inicio=1):
         open(os.path.join(pasta, "pauta.md"), "w", encoding="utf-8").write(f"# Pauta do Caio\n\n{fatos.strip()}\n")
         txt = claude("roteiro", "**Molde: 📰 Mercado da manhã** (notícia + leitura de negócio, modelo @beprecht, 60 a 80 s; "
                      "ver `docs/conteudo/banco-roteiros/players/bernardo-precht/ESTUDO.md`). Use SÓ os fatos conferidos abaixo "
-                     "(nada de número fora deles). Padrão-ouro desta voz: os N3 e N4 finais de 19/10 em "
-                     "`docs/conteudo/maquina/02-Rascunhos/2026-10-19-n3-bending-spoons-buffett/roteiro.md` e "
-                     "`docs/conteudo/maquina/02-Rascunhos/2026-10-19-n4-big-techs-no-fiado/roteiro.md` (o N4 o Vitor "
-                     "reescreveu à mão; ver a seção 7 do voz.md). No cabeçalho, em vez de Tema nº, escreva em uma linha a "
+                     "(nada de número fora deles). Padrão-ouro desta voz: os textos de `squads/conteudo/roteiros-ouro.md` "
+                     "(N3 final e o N4 que o Vitor reescreveu à mão). Use os princípios, não copie as frases. No cabeçalho, em vez de Tema nº, escreva em uma linha a "
                      "família de gancho usada (ESTUDO-GANCHOS).\n\n"
                      f"## Pauta conferida pelo Caio\n\n{fatos.strip()}", web=True)
         open(os.path.join(pasta, "roteiro.md"), "w", encoding="utf-8").write(txt + f"\n\n## Fontes (Caio)\n\n{fatos.strip()}\n")
         return pasta, "Mercado", None, revisar(pasta)
 
-    with ThreadPoolExecutor(2) as ex:
+    with ThreadPoolExecutor(PARALELO) as ex:
         res = list(ex.map(lambda kb: _seguro(um, kb), enumerate(blocos, inicio)))
     ok = [r for r in res if isinstance(r, tuple)]
     _log(f"notícias: {len(ok)}/{qtd} · " + " | ".join(f"{rel(r[0])}: {r[3]}" if isinstance(r, tuple) else r for r in res))

@@ -16,6 +16,8 @@ Chaves opcionais (todas retrocompatíveis: sem elas o vídeo sai como antes):
           19/10 (referência do Vitor): 3 quadros quadrados lado a lado no topo, fixos o vídeo todo, título logo
           abaixo; vídeo no quadro toca em loop. As laterais continuam entrando e saindo embaixo.
   "laterais": [{"de", "ate", "lado", "video", "inicio", "crop"}]   inserção lateral em vídeo
+  "laterais": [{"de", "ate", "lado", "numero": 70, "sufixo": "%", "linhas": ["DO QUE VOCÊ", "GOSTARIA DE SABER"],
+                "cor": "vermelho"}]   19/10: cartão animado (conta de 0 até o número, barra enche, frase sobe), molde Bezos
   "cheia": [{"de": 13.5, "ate": 15.4, "video": "tools/…/x.mp4" | "arquivo"|"url": "…", "inicio": 82.5,
              "crop": "w:h:x:y", "modo": "encaixe" | "cobrir"}]
           19/10: momento em TELA INTEIRA, por cima de topo, título e laterais (a legenda continua por cima).
@@ -26,7 +28,7 @@ Saída: <pasta>/final.mp4 + <pasta>/previa.jpg
 
 uso:  python tools/maquina/montar.py <pasta>
 """
-import hashlib, json, os, re, shutil, subprocess, sys, urllib.parse, urllib.request
+import hashlib, json, os, re, shutil, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -57,10 +59,50 @@ def url_direta(u):
 
 def baixar(u, dest):
     dest += "-" + hashlib.md5(u.encode()).hexdigest()[:8]   # 19/10: cache pela URL (por posição, trocar a foto não pegava)
-    if not os.path.exists(dest):
-        req = urllib.request.Request(url_direta(u), headers={"User-Agent": "ARVEX-maquina/1.0 (conteudo)"})
-        with urllib.request.urlopen(req, timeout=60) as r, open(dest, "wb") as f:
-            f.write(r.read())
+    for tentativa in range(4):                               # 19/10: o Commons devolve 429 quando baixa muita coisa seguida
+        if os.path.exists(dest):
+            break
+        try:
+            req = urllib.request.Request(url_direta(u), headers={"User-Agent": "ARVEX-maquina/1.0 (conteudo)"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                dado = r.read()
+            open(dest, "wb").write(dado)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or tentativa == 3:
+                raise
+            time.sleep(6 * (tentativa + 1))
+    return dest
+
+
+def card_numero(ins, dur, dest):
+    """19/10 (aprovado no vídeo do Bezos): número que conta de 0 até o valor com barra enchendo e a frase subindo.
+    Quadro 620x780 (o dobro da lateral), fundo escuro discreto; vermelho para número ruim ("90% já é lento demais")."""
+    W, H, FPS, F = 620, 780, 30, os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts")
+    cor = (235, 70, 60) if ins.get("cor") == "vermelho" else (255, 196, 0)
+    alvo, suf, pre = float(ins["numero"]), ins.get("sufixo", ""), ins.get("prefixo", "")
+    fp = ImageFont.truetype(os.path.join(F, "arial.ttf"), 42)
+    fundo = Image.new("RGB", (W, H))
+    for y in range(H):
+        c = int(14 + 14 * y / H); ImageDraw.Draw(fundo).line([(0, y), (W, y)], fill=(c, c, c + 4))
+    ease = lambda t: 1 - (1 - min(max(t, 0), 1)) ** 3
+    quadros = dest + "_q"; os.makedirs(quadros, exist_ok=True)
+    for k in range(int(dur * FPS) + 1):
+        t = k / FPS; im = fundo.copy(); d = ImageDraw.Draw(im); v = ease(t / 0.9); esc = 0.92 + 0.08 * ease(t / 0.35)
+        txt = f"{pre}{round(alvo * v):g}{suf}" if alvo == int(alvo) else f"{pre}{alvo * v:.1f}{suf}".replace(".", ",")
+        tam = 200
+        while tam > 60 and d.textlength(f"{pre}{alvo:g}{suf}".replace(".", ","), font=ImageFont.truetype(os.path.join(F, "arialbd.ttf"), tam)) > 540:
+            tam -= 10                                          # número comprido ("R$ 2,5 bi") cabe na largura
+        fg = ImageFont.truetype(os.path.join(F, "arialbd.ttf"), int(tam * esc))
+        d.text(((W - d.textlength(txt, font=fg)) / 2, 175 + 10 * (1 - esc)), txt, font=fg, fill=(255, 255, 255))
+        d.rounded_rectangle([70, 440, W - 70, 456], 8, fill=(55, 55, 60))
+        d.rounded_rectangle([70, 440, 70 + (W - 140) * v * (min(alvo, 100) / 100 if suf.strip() == "%" else 1), 456], 8, fill=cor)
+        a = ease((t - 0.6) / 0.4)
+        for i, l in enumerate(ins.get("linhas", [])):
+            d.text(((W - d.textlength(l, font=fp)) / 2, 520 + 58 * i + 20 * (1 - a)), l, font=fp,
+                   fill=tuple(int(c * a + 22 * (1 - a)) for c in (225, 225, 230)))
+        im.save(os.path.join(quadros, f"{k:04d}.png"))
+    run(["-framerate", str(FPS), "-i", os.path.join(quadros, "%04d.png"), "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", dest])
+    shutil.rmtree(quadros, ignore_errors=True)
     return dest
 
 
@@ -249,6 +291,10 @@ def montar(pasta):
     lados = []
     for i, ins in enumerate(plano.get("laterais") or []):
         lado = ESQ if ins.get("lado", "ESQ").upper().startswith("E") else DIR
+        if ins.get("numero") is not None:   # 19/10: cartão de número animado
+            e, s = float(ins["de"]), min(float(ins["ate"]), dur)
+            lados.append((card_numero(ins, s - e + 0.1, os.path.join(work, f"lado{i}-num.mp4")), e, s, lado))
+            continue
         if ins.get("video"):   # 17/10: inserção em vídeo no mesmo quadro lateral ({"video", "inicio", "crop": "w:h:x:y"})
             q = os.path.join(work, f"lado{i}.mp4")
             e, s = float(ins["de"]), min(float(ins["ate"]), dur)

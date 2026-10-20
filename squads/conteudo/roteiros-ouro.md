@@ -1,0 +1,151 @@
+# Roteiros-ouro: princípios com o porquê
+
+> **v1 (20/10/2026), Halbert (copy-chief).** Feito a partir de 3 textos que o Vitor aprovou ou falou ele mesmo
+> (N3, N4 reescrito à mão, Bezos) contra as versões reprovadas dos mesmos temas.
+> **Por que esta página existe:** dado só o exemplo, a IA copia os PASSOS ("afirmação forte, lista, CTA") e perde
+> o raciocínio (diagnóstico do Fabiano Carvalho, 19/10). Aqui cada princípio vem com o motivo, a prova e o limite.
+> Quem escreve lê os princípios; quem revisa julga o roteiro um por um (`docs/conteudo/maquina/_paginas/revisor.md`).
+> Onde a evidência é só a reprovação ou aprovação do Vitor, está dito. Onde é leitura minha, está marcado *(leitura)*.
+
+---
+
+## Princípios
+
+### 1. Abra na contradição, não no assunto
+- **Por quê:** as famílias que mais alcançam carregam uma contradição na primeira frase: imperativo contraintuitivo (109.257 e 10.614, topo do perfil) e autoridade + paradoxo (41.452 e 16.840) em `docs/conteudo/ESTUDO-GANCHOS.md`. Abrir no tema não dá motivo pra ficar.
+- **Nos textos-ouro:** N3 "A empresa do maior investidor do mundo tá mais uma vez na contramão." (gancho na direção do próprio Vitor) · Bezos "talvez a informação que você está esperando para decidir só aparece depois que você decidir."
+- **Anti-exemplo:** N3 v2, "Sabe o Evernote, o WeTransfer, o Vimeo? É tudo da mesma empresa…" → "HORRÍVEL" (gancho fraco e transposto do @beprecht).
+- **Quando NÃO usar:** quando a contradição não é literalmente verdadeira. O "mais uma vez" do N3 só entrou porque se apoia na entrada de julho.
+
+### 2. A linha 1 vende a linha 2 (e segura uma pergunta até a hora de pagar)
+- **Por quê:** a frase de abertura abre uma dúvida ("que contramão?", "que fiado?") e a seguinte paga com o fato. Sem dúvida aberta, não há motivo pra ouvir a próxima frase. Evidência: aprovação do corpo do N3 ("EU GOSTEI MESMO") contra a v1 reprovada; o ESTUDO não mede isso diretamente.
+- **Nos textos-ouro:** N3 só diz o nome "Bending Spoons" no 2º parágrafo, depois do dinheiro · N4 "boa parte dela tá sendo feita no fiado" e só então os setecentos bilhões · Bezos "Mas o que eu acho mais interessante é o porquê." e o porquê vem logo.
+- **Anti-exemplo:** N3 v1 gasta tudo na primeira frase: "Tem uma empresa italiana que quase ninguém conhece e que é dona do Evernote, do WeTransfer, do Vimeo, comprou o Airtable mês passado e tá comprando o Miro." → reprovada como "escrita, lida". *(leitura: não sobrou nada pra linha 2 pagar)*
+- **Quando NÃO usar:** a dúvida fecha no mesmo parágrafo. Anunciar a virada sem conteúdo ("sabe o que acontece?", "agora presta atenção") é frase-ponte, item 34 do `proibido.md`. A ponte do Bezos passa porque nomeia o que vem (o porquê).
+
+### 3. Seja específico: número de terceiro, nome, objeto na mão de quem assiste
+- **Por quê:** lei 2 do ESTUDO: número no gancho só funciona como ameaça ou descoberta de terceiro ("830 bilhões perdidos…"), nunca como especificação técnica (listicle técnico: 466 ❤). O número que assusta, dito por extenso e repetido sozinho, dá tempo de pesar.
+- **Nos textos-ouro:** N4 "uns setecentos bilhões… Setecentos bilhões." · N3 "Trezentos e trinta milhões." · N4 "Aquela IA de vinte dólares por mês que tá aí no teu celular?"
+- **Anti-exemplo:** N4 v1 "A ferramenta que você paga uns vinte dólares por mês" (genérico, longe da mão) e "preço de briga não costuma durar pra sempre" (máxima abstrata; ele cortou).
+- **Quando NÃO usar:** número sem fonte primária (trava 4); número técnico; repetir número que não assusta. Um número repetido por roteiro, no máximo.
+
+### 4. Uma comparação do dia a dia logo depois do fato abstrato
+- **Por quê:** bilhões e "enxugar a operação" não cabem na cabeça de ninguém; a cena doméstica traduz em 3 segundos. Parente da família 2 do ESTUDO (referência que dispensa contexto, 108.890). Está nos 3 textos-ouro, inclusive no que ele inventou sozinho.
+- **Nos textos-ouro:** N3 "É tipo comprar aquela padaria que o bairro inteiro conhece mas que parou de encher" · N4 "É tipo construir a casa inteira no cartão de crédito, só que com uns zeros a mais." · Bezos "é tipo querer saber o placar de um jogo você nem entrou em campo ainda".
+- **Anti-exemplo:** N3 v2 "…só arruma a cozinha, e um ano depois tá cheio de novo." *(leitura: a comparação inventa um desfecho que a notícia não prova)*
+- **Quando NÃO usar:** quando o fato já é do dia a dia; nunca duas no mesmo vídeo; nunca "é tipo" encaixado por obrigação (ver aviso abaixo).
+
+### 5. Conceda e pondere: uma ressalva honesta no meio
+- **Por quê:** roteiro só de afirmação soa palestra e foi reprovado (`proibido.md` item 35, 19/10). A ressalva compra credibilidade pro resto.
+- **Nos textos-ouro:** N3 "Claro, ação sobe e desce, pode dar errado." · N4 "Pode ser bolha, pode não ser." · Bezos "na maioria das vezes fracassando".
+- **Anti-exemplo:** N3 v1 inteira sem uma ressalva, fechando em absoluto: "Você não precisa inventar a próxima moda."
+- **Quando NÃO usar:** ressalva que desmonta a tese, ou ressalva em tese seca de 20–30s que fecha melhor sem ela (item 11 do `proibido.md`).
+
+### 6. A objeção vem na boca de quem assiste, depois da prova
+- **Por quê:** é a pergunta que o espectador já está fazendo; respondida, ele fica. Na gravação do tema 5 o próprio Vitor trocou a ordem (prova primeiro) e trocou "Tá, Vitor" por "Tá, beleza" (`voz.md` §3–4).
+- **Nos textos-ouro:** N3 "Tá, beleza, mas isso é jogo de bilionário, o que tem a ver com o meu negócio?"
+- **Anti-exemplo:** tema 5 escrito, antes do exemplo: "Tá, Vitor, mas e quem já deixou passar uma?"
+- **Quando NÃO usar:** quando não há objeção real (o Bezos não tem e não precisa). Objeção fabricada só pra cumprir estrutura é ingrediente.
+
+### 7. A ponte do fato pro negócio de quem assiste é literal
+- **Por quê:** ele percebe quando a correlação não fecha ("não sei se a correlação está correta"); ponte forçada reprova (`proibido.md` 13–14).
+- **Nos textos-ouro:** N3 "colocou dinheiro, duas vezes, em quem sabe arrumar o que já existe" → "o dinheiro tá menos no produto novo… e mais no que já tá aí no teu negócio" · N4 big techs pagando a conta → "Aquela IA de vinte dólares… Tem uma das maiores apostas da história pagando a conta dela."
+- **Anti-exemplo:** "O primeiro funcionário que você contrata…" no "Chegue atrasado" (14/10, ponte forçada).
+- **Quando NÃO usar:** se a ponte precisa de três frases pra se sustentar, o tema não serve pra este molde. Troque o tema, não force.
+
+### 8. Feche com posição em primeira pessoa, não com conselho pro outro
+- **Por quê:** o herói é quem se sente atrasado (`proibido.md` 21); conselho soa sermão (item 28), "eu faria" alivia e dá direção. Foi a troca dele no N4 (`voz.md` §7).
+- **Nos textos-ouro:** N4 "vou ser bem sincero: eu não esperaria." · N3 "Eu, antes de inventar qualquer coisa, olharia primeiro pro que já tá rodando aqui dentro." · Bezos "Decide com 70, os outros 30 vem no caminho."
+- **Anti-exemplo:** N4 v1 "talvez esse seja o momento mais barato que ela vai ter" (projeção pro outro; ele trocou).
+- **Quando NÃO usar:** fato pessoal inventado ("eu fiz…") é proibido (item 30); opinião ("eu não esperaria") pode. O imperativo do Bezos passa porque é a própria regra, com número, e não "comece hoje".
+
+### 9. Escreva o que sai da boca: frase corrida, verbo de rua, fonte que fala
+- **Por quê:** verso picado e frase de post são o que ele reescreve na gravação (`proibido.md` 25 e 33). O texto do Bezos, falado de improviso, é um parágrafo só, ligado por "mas", "então", "e".
+- **Nos textos-ouro:** N4 "vão torrar uns setecentos bilhões" · "O Morgan Stanley calcula que…" · N3 "e é bem capaz de você já ter usado alguma coisa dela sem saber."
+- **Anti-exemplo:** N4 v1 "vão colocar perto de 700 bilhões" e "segundo o Morgan Stanley, o setor deve pegar" · tema 5 "Parece atenção. / Só que da areia toda onda parece igual."
+- **Quando NÃO usar:** frase acima de ~30 palavras não sai numa respiração (item 25). Frase curta como reação ("Setecentos bilhões.") pode.
+
+---
+
+## Aviso: os recursos do `voz.md` §7 são cardápio, não receita
+
+O §7 do `voz.md` termina com "todo roteiro de notícia leva: … um 'é tipo…', 'E eu?'…". **Leia como recursos que
+funcionaram no N4, não como ingredientes obrigatórios.** "É tipo…", "E eu? Sinceramente…", "Fala aí nos comentários",
+"vou ser bem sincero" e o número repetido entram **quando servem** ao trecho. Repetir o mesmo kit em todo roteiro é
+exatamente o vício de IA que esta página combate: o espectador que viu três vídeos seguidos ouve a fórmula.
+
+A prova está nos próprios textos-ouro:
+- No Bezos, que ele inventou e falou, não há "E eu?" nem "Fala aí nos comentários"; o fecho é "Você acha que faz sentido?".
+- Gravando o N3, ele mesmo tirou o "E eu?" ("Eu sinceramente acho isso quase um alívio") e trocou "Fala aí nos comentários" por "Comenta aqui" (`voz-pares.md`, 19/10).
+- O ESTUDO manda **peça de alcance não pedir nada** (regras operacionais). O CTA de comentário é escolha por peça, não rodapé fixo.
+
+Teste do revisor: se der pra apontar no roteiro cada item da lista do §7, um por um, ele foi montado por checklist. Reprova.
+
+---
+
+## Os 3 textos-ouro na íntegra
+
+### A. N3 · "A empresa que compra o que já existe" (FINAL aprovado, 19/10)
+
+```
+A empresa do maior investidor do mundo tá mais uma vez na contramão. Enquanto quase todo mundo corre atrás da próxima novidade, ela acabou de botar mais trezentos e trinta milhões de dólares numa empresa que vive de comprar aplicativo que parou de crescer. Trezentos e trinta milhões. E em julho, quando essa empresa abriu capital, eles já tinham entrado com seiscentos.
+
+O nome é Bending Spoons, é italiana, e é bem capaz de você já ter usado alguma coisa dela sem saber. Evernote, WeTransfer, Vimeo, é tudo dela. Mês passado comprou o Airtable e agora tá comprando o Miro.
+
+O jogo dela é pegar um software conhecido que parou de crescer, enxugar e arrumar a operação até aquilo dar dinheiro. É tipo comprar aquela padaria que o bairro inteiro conhece mas que parou de encher, e em vez de inventar pão novo, só colocar a casa em ordem. Quando saiu a notícia da Berkshire, a ação subiu uns quarenta por cento no dia.
+
+Tá, beleza, mas isso é jogo de bilionário, o que tem a ver com o meu negócio? Tem mais do que parece. A empresa de um dos investidores mais famosos do mundo colocou dinheiro, duas vezes, em quem sabe arrumar o que já existe. Claro, ação sobe e desce, pode dar errado.
+
+E eu? Sinceramente, acho isso quase um alívio. Porque na maioria das vezes o dinheiro tá menos no produto novo que você ainda vai lançar e mais no que já tá aí no teu negócio, rodando do jeito que dava. Eu, antes de inventar qualquer coisa, olharia primeiro pro que já tá rodando aqui dentro.
+
+E você, comprava a padaria vazia pra arrumar ou abria uma do zero? Fala aí nos comentários.
+```
+
+- "tá mais uma vez na contramão" → **P1** → autoridade + paradoxo numa frase; o "mais uma vez" é verdadeiro (julho).
+- "Enquanto quase todo mundo corre atrás da próxima novidade" → **P1** → na v3 esta frase estava no 4º parágrafo; subir pro gancho deu o "contra quem" da contramão.
+- "Trezentos e trinta milhões." sozinho → **P3** → o número pesa antes de virar contexto.
+- "O nome é Bending Spoons" só no 2º parágrafo → **P2** → a lista de apps vira resposta, não abertura (na v2 era a abertura e foi "HORRÍVEL").
+- "É tipo comprar aquela padaria…" → **P4** → traduz "enxugar a operação" sem prometer desfecho.
+- "Claro, ação sobe e desce, pode dar errado." → **P5** → uma ressalva, curta, sem desmontar a tese.
+- "comprava a padaria vazia pra arrumar ou abria uma do zero?" → fecho reaproveita a imagem do próprio vídeo e oferece escolha concreta *(leitura)*.
+
+### B. N4 · "A maior obra da história no fiado" (reescrito à mão pelo Vitor, 19/10)
+
+```
+Tá rolando uma das maiores obras da história, e boa parte dela tá sendo feita no fiado.
+
+Google, Amazon, Meta e Microsoft vão torrar uns setecentos bilhões de dólares esse ano em data center pra IA. Setecentos bilhões. E uma parte boa disso é emprestada. O Morgan Stanley calcula que as empresas de IA vão pegar mais de quinhentos bilhões emprestado só esse ano. Até maio, já era quatro vezes mais do que no mesmo período do ano passado.
+
+É tipo construir a casa inteira no cartão de crédito, só que com uns zeros a mais.
+
+Aí, de um lado, tem economista da Moody's dizendo que isso pode virar problema pro sistema financeiro inteiro. Do outro, tem gente jurando que é o investimento do século. E eu? Sinceramente, não sei. E acho que ninguém sabe, por mais que tenha muita gente falando com cara de quem sabe.
+
+Mas tem uma coisa que eu sei. Enquanto esses gigantes brigam, quem leva vantagem é quem usa. Aquela IA de vinte dólares por mês que tá aí no teu celular? Tem uma das maiores apostas da história pagando a conta dela.
+
+Então, se você tá esperando ela ficar mais barata, mais pronta, pra começar a usar no teu negócio, vou ser bem sincero: eu não esperaria. Pode ser bolha, pode não ser. Mas eu sei de que lado da mesa eu quero estar.
+
+E você, acha que é bolha? Fala aí nos comentários.
+```
+
+- "Tá rolando uma das… e boa parte dela" → **P9** + **P5** → abre em andamento e sem absoluto (a v1 dizia "A maior obra da história").
+- "boa parte dela tá sendo feita no fiado" → **P2** → "fiado" abre a dúvida que os números pagam.
+- "torrar uns setecentos bilhões… Setecentos bilhões." → **P3** + **P9** → verbo de rua; número por extenso, repetido uma vez.
+- "O Morgan Stanley calcula que" → **P9** → a fonte fala; "segundo" é escrita.
+- "É tipo construir a casa inteira no cartão de crédito" → **P4** → a dívida de bilhões vira a fatura de casa.
+- "E eu? Sinceramente, não sei." → **P5** → aqui o "E eu?" serve: admite não saber antes de tomar posição. É recurso deste texto, não molde.
+- "Aquela IA de vinte dólares por mês que tá aí no teu celular?" → **P3** + **P7** → o objeto na mão de quem assiste é a ponte literal.
+- "vou ser bem sincero: eu não esperaria." → **P8** → posição dele no lugar do "talvez esse seja o momento" da v1.
+
+### C. Bezos · "A regra dos 70% do Bezos" (inventado e falado pelo Vitor; transcrição do corte, 19/10)
+
+```
+talvez a informação que você está esperando para decidir só aparece depois que você decidir. O Jeff Bezos tem uma regra para isso que eu acho muito boa. Ele escreveu para os acionistas da Amazon que a maioria das decisões devia ser tomada com 70% do que você gostaria de saber. você espera ter 90%, provavelmente já está lento demais e aquela decisão nem vai mais ter impacto. Mas o que eu acho mais interessante é o porquê. esses 30% que faltam quase nunca vem de uma pesquisa a mais, de um vídeo a mais no YouTube, de um estudo a mais. Ele vem do primeiro cliente, do primeiro erro, da primeira semana com um projeto rodando, com a coisa rodando, na maioria das vezes fracassando. Então ficar parado esperando eles aparecerem é tipo querer saber o placar de um jogo você nem entrou em campo ainda, o jogo nem começou. Decide com 70, os outros 30 vem no caminho. Você acha que faz sentido?
+```
+
+- "a informação… só aparece depois que você decidir" → **P1** → paradoxo puro, sem nome nem número; a autoridade vem na linha 2.
+- "O Jeff Bezos tem uma regra para isso" → **P2** → a linha 2 paga a 1 com autoridade (família 7) e já abre outra dúvida: que regra?
+- "Ele escreveu para os acionistas da Amazon" → **P3** → fonte concreta e verificável, não "o Bezos diz que".
+- "Mas o que eu acho mais interessante é o porquê." → **P2** → ponte que nomeia o conteúdo, diferente da frase-ponte vazia do item 34.
+- "de uma pesquisa a mais, de um vídeo a mais no YouTube, de um estudo a mais" → **P9** → repetição de fala ("a mais" 3×), não tríade de abstrações (item 22).
+- "é tipo querer saber o placar de um jogo…" → **P4** → a única comparação, no ponto em que a ideia fica abstrata.
+- "Decide com 70, os outros 30 vem no caminho. Você acha que faz sentido?" → **P8** → a regra comprimida com número, e o fim é conversa; sem "E eu?", sem "Fala aí".
