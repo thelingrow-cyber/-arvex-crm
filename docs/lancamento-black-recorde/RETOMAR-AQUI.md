@@ -33,3 +33,5 @@ Black Friday 2026 = 27/11. A campanha foi montada em 20/10 por agentes em parale
 - Se copiar a página do +100K, trocar o rótulo do evento de clique ("Otica 100K").
 - Pedir o export de setembro do Gerenciador (custo por entrada real do +100K) para refazer a conta.
 - No dia 27, o link da live fica na descrição do grupo e é reenviado a cada ~20 min (quem entra não vê mensagens antigas).
+
+- 21/10: B16 confissao, claim 1 CONFIRMADO (a Cindy ja foi a otica que baixa tudo; no comeco a Black nao deu certo). Faltam: "melhores Blacks" e etiquetas de preco. Video no Drive: pasta "Cindy - Black Recorde - Criativos".
