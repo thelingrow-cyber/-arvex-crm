@@ -57,7 +57,7 @@ público quem segue ou interagiu com o Instagram da loja.
 
 | Momento | O que aparece | Tipo |
 |---|---|---|
-| fecho | "27/10 · 19h30 · ao vivo e gratuito" + seta para o botão | evento |
+| fecho | "27/10 · 20h · ao vivo e gratuito" + seta para o botão | evento |
 
 ## Ganchos alternativos (só os 3 primeiros segundos)
 

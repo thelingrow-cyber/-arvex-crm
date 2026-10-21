@@ -57,7 +57,7 @@ Clica aqui no anúncio e entra agora no grupo. Te espero lá.
 | Momento | O que aparece | Tipo |
 |---|---|---|
 | "dia vinte e nove, trinta, trinta e um" | "29 · 30 · 31/10" | fato da Cindy (live 22/10/2025) |
-| fecho | "27/10 · 19h30 · ao vivo e gratuito" + seta para o botão | evento |
+| fecho | "27/10 · 20h · ao vivo e gratuito" + seta para o botão | evento |
 
 ## Ganchos alternativos (só os 3 primeiros segundos)
 

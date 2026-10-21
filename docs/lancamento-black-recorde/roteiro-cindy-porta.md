@@ -44,7 +44,7 @@ Clica aqui no anúncio e entra agora no grupo. Te espero lá.
 - **Começo:** dentro da loja, de costas para a porta e virada para a câmera, apontando para a porta no "tá vendo essa porta aqui?".
 - **"E a loja enche.":** pausa curta, olhando para a câmera.
 - **"Ele chega e já sabe o que quer":** ela anda para dentro da loja, passando pelo balcão. Um gesto, sem corte.
-- Celular na vertical, sem etiqueta de preço no enquadramento. Legenda simples; no fim, "27/10 · 19h30 · ao vivo e gratuito".
+- Celular na vertical, sem etiqueta de preço no enquadramento. Legenda simples; no fim, "27/10 · 20h · ao vivo e gratuito".
 
 ## Revisão do Halbert
 

@@ -6,7 +6,7 @@
 > ICP (`docs/crm/sales-coach/conhecimento/icp-dono-de-otica.md`) ·
 > avatares A1/A2/A3 e protocolo do `docs/landing-desafio-otica-100k/criativos-ad-grid.md`.
 >
-> **Evento:** workshop online, gratuito, ao vivo, 3–4 h · **27/10/2026, 19h30 (a confirmar)**.
+> **Evento:** workshop online, gratuito, ao vivo, 3–4 h · **27/10/2026, 20h (confirmado em 21/10)**.
 > Black Friday 2026 = **sexta, 27/11**. O workshop cai exatamente um mês antes — isso é munição.
 
 ---
@@ -161,7 +161,7 @@ efeito.
 > pra você sair com o passo a passo da Black Friday da sua ótica
 > e com dezembro já engatilhado.
 >
-> Dia 27 de outubro, às 19h30.
+> Dia 27 de outubro, às 20h.
 >
 > 👉 Clique em saiba mais e entre no grupo VIP.
 >
@@ -250,7 +250,7 @@ passado** (com autorização para citar cidade e número) — substitui ou soma 
 ### B7 — "Faltam 2 dias" · AS4 RMKT · 25–26/10
 
 **Primary text**
-> Terça, 27 de outubro, às 19h30.
+> Terça, 27 de outubro, às 20h.
 >
 > É quando eu entro ao vivo pra montar, junto com você, a campanha de Black Friday da sua ótica.
 > Calendário, oferta e campanha, prontos antes de novembro.
@@ -267,13 +267,13 @@ passado** (com autorização para citar cidade e número) — substitui ou soma 
 > Ou você chega em novembro com o plano pronto…
 > ou chega com o desconto de sempre.
 
-**Headlines:** Terça, 27/10, às 19h30 · O link sai só no grupo VIP · A Black Friday montada antes de novembro
+**Headlines:** Terça, 27/10, às 20h · O link sai só no grupo VIP · A Black Friday montada antes de novembro
 **Criativo:** story 9:16, Cindy no celular, plano médio, 10–12 s. Texto fixo na base:
-`27/10 · 19h30 · ao vivo e gratuito`. **Duas versões de fala, porque "faltam 2 dias" só é
+`27/10 · 20h · ao vivo e gratuito`. **Duas versões de fala, porque "faltam 2 dias" só é
 verdade no domingo:**
-- **B7a (25/10):** "Faltam dois dias. Terça, às sete e meia da noite, eu entro ao vivo pra montar a
+- **B7a (25/10):** "Faltam dois dias. Terça, às oito da noite, eu entro ao vivo pra montar a
   Black Friday da sua ótica com você. O link sai só no grupo VIP. Toca aqui e entra."
-- **B7b (26/10):** "É amanhã. Terça, às sete e meia da noite, eu entro ao vivo pra montar a Black
+- **B7b (26/10):** "É amanhã. Terça, às oito da noite, eu entro ao vivo pra montar a Black
   Friday da sua ótica com você. O link sai só no grupo VIP. Toca aqui e entra."
 
 Subir as duas no AS4 e **pausar B7a às 0h de 26/10** (sugestão ao Buck: `utm_content`
@@ -283,12 +283,12 @@ na data, não na contagem.
 
 ---
 
-### B8 — "É hoje" · AS5 Evento · 27/10 até 19h
+### B8 — "É hoje" · AS5 Evento · 27/10 até 19h30
 
 **Primary text**
 > É hoje.
 >
-> Às 19h30 eu entro ao vivo pra montar a campanha de Black Friday da ótica, passo a passo.
+> Às 20h eu entro ao vivo pra montar a campanha de Black Friday da ótica, passo a passo.
 >
 > São algumas horas, online e de graça.
 > Dá pra assistir depois de fechar a loja, do computador, com um caderno do lado.
@@ -296,26 +296,26 @@ na data, não na contagem.
 > Se você decide a loja com alguém, sócia, marido ou irmã, assiste junto.
 > Montar a campanha com as duas cabeças na mesma sala é bem mais fácil.
 >
-> O link sai só no grupo VIP, às 19h15.
+> O link sai só no grupo VIP, às 19h45.
 >
 > 👉 Clique em saiba mais e entre no grupo agora, pra não ficar procurando na hora.
 >
 > Hoje à noite você monta a sua Black Friday…
 > ou deixa ela igual à do quarteirão.
 
-**Headlines:** É hoje, às 19h30 · Ao vivo e gratuito, pra dono de ótica · O link sai só no grupo VIP
-**Criativo:** story 9:16, Cindy no celular, 10–12 s, texto fixo grande no topo: `HOJE · 19h30`.
+**Headlines:** É hoje, às 20h · Ao vivo e gratuito, pra dono de ótica · O link sai só no grupo VIP
+**Criativo:** story 9:16, Cindy no celular, 10–12 s, texto fixo grande no topo: `HOJE · 20h`.
 Fala: "É hoje. Às sete e meia da noite eu entro ao vivo pra montar a Black Friday da sua ótica com
 você. O link sai só no grupo VIP. Toca aqui e entra agora." Pode ser gravado antes (nada na
 imagem data o vídeo), desde que suba agendado para 27/10.
 **Fontes:** "assistir do computador, com o caderno do lado" = mensagem de 18h30 da sequência;
-"assiste junto" = ICP §1 (não existe decisor solitário) e enquete de 26/10; "link às 19h15" =
+"assiste junto" = ICP §1 (não existe decisor solitário) e enquete de 26/10; "link às 19h45" =
 sequência do grupo. "Algumas horas" em vez de "3 a 4 horas" porque a duração ainda está por
 confirmar (briefing §08).
 
 ---
 
-### B9 — "Estamos ao vivo" · AS5 Evento · 27/10 a partir das 19h30
+### B9 — "Estamos ao vivo" · AS5 Evento · 27/10 a partir das 20h
 
 **Primary text**
 > Estamos ao vivo.
@@ -336,16 +336,16 @@ a live, então a frase é verdadeira em todo o tempo de veiculação. Não dá p
 recorte da própria live: a aprovação da Meta pode levar horas.
 
 **⚠️ Dois ajustes que o B9 exige do plano e da operação:**
-1. **Início às 19h30, não às 19h20.** O plano marca "19h20–21h". Das 19h20 às 19h30 a frase
-   "estamos ao vivo" seria falsa. Agendar o conjunto ou anúncio para começar às 19h30. Se o Buck
+1. **Início às 20h, não às 19h50.** O plano marca "19h50–21h". Das 19h50 às 20h a frase
+   "estamos ao vivo" seria falsa. Agendar o conjunto ou anúncio para começar às 20h. Se o Buck
    quiser cobrir esses 10 minutos, quem roda é o B8.
-2. **Quem entra no grupo depois das 19h15 precisa achar o link.** No WhatsApp, quem entra num
+2. **Quem entra no grupo depois das 19h45 precisa achar o link.** No WhatsApp, quem entra num
    grupo normalmente não vê as mensagens enviadas antes da entrada. A Reva já prevê os envios das
-   19h30 e 19h50; enquanto o B9 roda, **o `LINK_LIVE` precisa estar na descrição do grupo** e ser
+   20h e 20h20; enquanto o B9 roda, **o `LINK_LIVE` precisa estar na descrição do grupo** e ser
    reenviado a cada ~20 min até as 21h. Sem isso, o B9 paga entradas que chegam num grupo sem
    link. Vale testar com um celular de fora antes do dia 27.
 
-**Fonte:** mensagem das 19h30 da sequência ("Quem chegar agora ainda pega o começo"), adaptada
+**Fonte:** mensagem das 20h da sequência ("Quem chegar agora ainda pega o começo"), adaptada
 porque o anúncio roda até as 21h. Duração do formato: briefing (3–4 h, ainda a confirmar).
 
 ---
@@ -385,7 +385,7 @@ sendo ruído.
 
 ## Pendências antes de subir
 
-1. **Data e horário** — 27/10, 19h30 está "a confirmar"; B4 e B5 dependem disso.
+1. **Data e horário** — 27/10, 20h está "a confirmar"; B4 e B5 dependem disso.
 2. **Nome** — "Operação Black Recorde" ainda em validação de conflito de marca. Só B4 cita o nome;
    as demais funcionam sem ele.
 3. **Link do grupo VIP novo** e página de destino.

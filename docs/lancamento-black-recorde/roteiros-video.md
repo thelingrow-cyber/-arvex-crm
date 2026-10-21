@@ -5,7 +5,7 @@
 > `docs/materiais-cindy/swipe-criativos.md` · `docs/crm/sales-coach/conhecimento/icp-dono-de-otica.md` ·
 > `docs/aprendizados-ia/heuristicas-vitor.md`.
 >
-> **Evento:** online, gratuito, ao vivo, 3–4 h · **27/10/2026, 19h30 (a confirmar)** · Black Friday = 27/11.
+> **Evento:** online, gratuito, ao vivo, 3–4 h · **27/10/2026, 20h (confirmado em 21/10)** · Black Friday = 27/11.
 > Se a data mudar, os trechos marcados com **[DATA]** mudam juntos (fala, legenda e texto fixo).
 
 ## Como usar este arquivo
@@ -25,7 +25,7 @@
   (interface do Reels/Stories cobre).
 - Legenda: frase a frase, Inter peso 800–900, branca com contorno ou fundo navy; palavra-chave em
   dourado (sistema visual das peças da Cindy). Sem animação de palavra pulando, sem emoji.
-- Texto fixo de evento (quando houver): `27/10 · 19h30 · ao vivo e gratuito` **[DATA]**.
+- Texto fixo de evento (quando houver): `27/10 · 20h · ao vivo e gratuito` **[DATA]**.
 - Sem trilha nos vídeos da Cindy (B1, B4, B5). B2 e B3: trilha baixa, sem batida marcada, a −20 dB
   sob a voz.
 - Nenhuma tela mostra faturamento, print de venda ou número de resultado.
@@ -61,7 +61,7 @@ movimento 1 do swipe (absolver antes de deslocar a causa).
 
 **Enquadramento:** Cindy sentada, plano médio, olhando para a lente (não para a tela). Fundo
 neutro ou escritório da loja. Celular fixo, sem movimento.
-**O que mostrar:** só ela. Texto fixo na base durante o vídeo inteiro: `27/10 · 19h30 · ao vivo
+**O que mostrar:** só ela. Texto fixo na base durante o vídeo inteiro: `27/10 · 20h · ao vivo
 e gratuito` **[DATA]**.
 **Tom:** convite firme. É a peça do evento (Modelo A): data clara, nome do workshop, fecho que
 obriga a escolher.
@@ -72,13 +72,13 @@ obriga a escolher.
 | 2 | 4–7 s | "Ou podem ser só mais dois meses de promoção." | ...ou mais dois meses de promoção |
 | 3 | 7–15 s | "O que separa uma coisa da outra não é o tamanho da loja. Nem o tamanho do desconto. É chegar em novembro com um plano pronto." | Um plano pronto antes de novembro |
 | 4 | 15–21 s | "Saber em que dia cada ação entra, o que você vai oferecer e como vai divulgar." | Calendário · oferta · campanha |
-| 5 | 21–30 s | "É isso que a gente vai montar junto no Workshop Operação Black Recorde. Ao vivo, gratuito, dia 27 de outubro, às sete e meia da noite." | WORKSHOP OPERAÇÃO BLACK RECORDE |
+| 5 | 21–30 s | "É isso que a gente vai montar junto no Workshop Operação Black Recorde. Ao vivo, gratuito, dia 27 de outubro, às oito da noite." | WORKSHOP OPERAÇÃO BLACK RECORDE |
 | 6 | 30–36 s | "Você sai de lá com o passo a passo da Black Friday da sua ótica. E com dezembro já engatilhado." | Black Friday + dezembro |
 | 7 | 36–41 s | "O link só vai ser liberado no grupo VIP. Clica em saiba mais e entra." | 👉 Clique em saiba mais |
 | 8 | 41–47 s | "Ou você planeja a sua Black Friday agora... ou ela vai ser igual à de todo mundo." | Ou você planeja agora... |
 
 **Se o nome não for aprovado** (pendência 2), bloco 5 vira: *"É isso que a gente vai montar
-junto, num workshop ao vivo e gratuito, no dia 27 de outubro, às sete e meia da noite."*
+junto, num workshop ao vivo e gratuito, no dia 27 de outubro, às oito da noite."*
 Legenda: `WORKSHOP AO VIVO · 27/10`.
 **Fonte:** promessa principal do briefing (passo a passo + últimos 60 dias); fecho em bifurcação
 = movimento 7 do swipe, Modelo A.
@@ -131,7 +131,7 @@ E ainda deixa dezembro engatilhado.
 
 Faltam poucas semanas. É agora que essa diferença se constrói.
 
-No dia vinte e sete de outubro, às sete e meia da noite, eu vou montar esse plano ao vivo... junto com você.
+No dia vinte e sete de outubro, às oito da noite, eu vou montar esse plano ao vivo... junto com você.
 
 Clica no botão e entra no grupo VIP.
 ```
@@ -155,7 +155,7 @@ soletrado.
 | 5 | 16–22 s | "Quem planeja chega em novembro sabendo o que vai vender, pra quem... e em que dia cada ação entra." | Mesa de escritório de loja: calendário de novembro organizado, com etiquetas coloridas em dias diferentes e anotações à mão (ilegíveis). Câmera desliza devagar sobre ele. | O que vender · pra quem · em que dia |
 | 6 | 22–24 s | "E ainda deixa dezembro engatilhado." | Folha de dezembro ao lado, também com marcações. | Dezembro engatilhado |
 | 7 | 24–27 s | "Faltam poucas semanas. É agora que essa diferença se constrói." | Volta ao calendário de outubro na parede da loja; o dia de hoje marcado. | É agora |
-| 8 | 27–33 s | "No dia vinte e sete de outubro, às sete e meia da noite, eu vou montar esse plano ao vivo... junto com você." | Notebook aberto sobre o balcão da ótica, tela com uma chamada ao vivo (sem rosto definido, só a luz da tela), armações desfocadas atrás. | 27/10 · 19h30 · AO VIVO E GRATUITO **[DATA]** |
+| 8 | 27–33 s | "No dia vinte e sete de outubro, às oito da noite, eu vou montar esse plano ao vivo... junto com você." | Notebook aberto sobre o balcão da ótica, tela com uma chamada ao vivo (sem rosto definido, só a luz da tela), armações desfocadas atrás. | 27/10 · 20h · AO VIVO E GRATUITO **[DATA]** |
 | 9 | 33–36 s | "Clica no botão e entra no grupo VIP." | Mesma cena, fecha devagar. Texto ocupa o centro. | 👉 Entre no grupo VIP |
 
 **Observação de produção:** cenas 1, 3, 5 e 6 podem sair de **uma só imagem-base** (o

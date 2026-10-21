@@ -6,7 +6,7 @@
 > **Fontes:** briefing (`briefing.pdf`) · peças B1–B6 e o protocolo inicial (`criativos-ad-grid.md`) ·
 > protocolo e auditoria do +100K (`docs/landing-desafio-otica-100k/`) · diagnóstico de funil
 > (`docs/crm/diagnostico-funil-2026-07-31.md`) · produtos do SOP (`docs/processos/sop-fluxo-vendas.md`).
-> **Data deste plano:** 20/10/2026 (terça). Evento: **27/10/2026 (terça), 19h30**, horário ainda a confirmar.
+> **Data deste plano:** 20/10/2026 (terça). Evento: **27/10/2026 (terça), 20h**, horário confirmado em 21/10.
 
 **Legenda usada no documento inteiro:** **[DADO]** é o que está escrito numa fonte do repositório.
 **[PREMISSA]** é uma hipótese minha, que precisa ser confirmada ou trocada por número real.
@@ -42,7 +42,7 @@ aprendizado em 2 a 3 dias com essa verba. O que pesa é volume e conversão, nã
    paga a meta sozinha.
 3. **Subir hoje à noite, não amanhã.** Cada dia vale cerca de 14% da captação.
 4. **Comparecimento é a alavanca mais barata.** Lembretes no grupo em D-1, no dia às 9h, às 18h30 e
-   às 19h25, mais a peça "estamos ao vivo" (§2), movem o comparecimento de 20% para 35%. Isso vale
+   às 19h55, mais a peça "estamos ao vivo" (§2), movem o comparecimento de 20% para 35%. Isso vale
    mais que 30% de verba extra.
 5. **Calls depois do evento.** A janela de venda vai de 27 a 31/10, ou seja, 4 dias **[DADO, briefing]**.
    Isso combina com o dado do CRM (média de 1 dia entre cadastro e fechamento, máximo de 13 **[DADO]**),
@@ -85,7 +85,7 @@ CAMPANHA 2 — CB_BLACKREC_2610_REMARKETING_LEADS_ABO     (23/10 → 27/10)
 ├─ AS4 RMKT    | Visitou a página / viu 50% dos vídeos B* e não clicou
 │    └─ B5 · B4 · B7 "faltam 2 dias" (a produzir)
 └─ AS5 EVENTO  | AS4 + AS3, só em 27/10
-     └─ B8 "é hoje" (até 19h30) · B9 "estamos ao vivo" (19h30–21h)
+     └─ B8 "é hoje" (até 20h) · B9 "estamos ao vivo" (20h–21h30)
 ```
 
 **B7, B8 e B9 não existem ainda.** São stories curtos (Cindy no celular, 10–15 s). A copy é do
@@ -126,7 +126,7 @@ valores por conjunto são o ponto de partida; **depois de 72h, as regras do §4 
 | **Total** | | | | | | **5.000** |
 
 Reserva do fim: **remarketing em 25–26/10 = R$ 600** · **dia do evento = R$ 400** (R$ 250 "é hoje"
-até 19h + R$ 150 "ao vivo" das 19h30 às 21h). Juntos, 20% da verba.
+até 19h30 + R$ 150 "ao vivo" das 20h às 21h). Juntos, 20% da verba.
 
 ### Cenário R$ 7.000
 
@@ -163,7 +163,7 @@ R$ 2 mil em produção de B7/B8/B9 e operação da base, **eu fico com a segunda
 | Meta de faturamento em outubro | R$ 60–70 mil | **[DADO]** | Briefing §07 (meta, não projeção) |
 | Ticket da oferta | R$ 3 mil / **5 mil** / 7 mil | **[PREMISSA]** | A oferta não está definida (briefing §08). O SOP lista R$ 5, 7 e 10 mil **[DADO]**. O ticket médio realizado no CRM é R$ 3.314, contaminado por parcela lançada como valor cheio **[DADO]** |
 | Clique no CTA → entra no grupo | 50% | **[DADO, n = 16]** | Auditoria do +100K, amostra pequena demais para confiar |
-| Grupo → presente na live | 30% (base) · 20% (pessimista) | **[PREMISSA]** | Live gratuita de 3–4 h numa terça às 19h30. Não há dado de comparecimento do +100K no repositório |
+| Grupo → presente na live | 30% (base) · 20% (pessimista) | **[PREMISSA]** | Live gratuita de 3–4 h numa terça às 20h. Não há dado de comparecimento do +100K no repositório |
 | Presente → venda (até 31/10) | 4% (base) · 2,5% (pessimista) | **[PREMISSA]** | Venda de ticket alto via call depois da live. O CRM fecha 9,9% dos leads **[DADO]**, mas é outro funil (lead já qualificado) |
 | **Grupo → venda** | **1,2%** (base) · **0,5%** (pessimista) | derivado | 30% × 4% · 20% × 2,5% |
 | Custo por entrada de mercado | R$ 8–15 | **[PREMISSA]** | Sem histórico no repositório. **Substituir pelo export do +100K** |

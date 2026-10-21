@@ -1,6 +1,6 @@
 # Retomar aqui — Workshop Operação Black Recorde (Cindy)
 
-Workshop online, gratuito e ao vivo para donos de ótica · **27/10/2026, 19h30 (a confirmar)** ·
+Workshop online, gratuito e ao vivo para donos de ótica · **27/10/2026, 20h (confirmado em 21/10)** ·
 Black Friday 2026 = 27/11. A campanha foi montada em 20/10 por agentes em paralelo.
 
 ## O que está pronto
@@ -17,7 +17,7 @@ Black Friday 2026 = 27/11. A campanha foi montada em 20/10 por agentes em parale
 
 ## Bloqueios antes de subir
 
-1. Confirmar data, horário e nome ("Operação Black Recorde" ainda em validação).
+1. ~~Data e horário~~ confirmados em 21/10: 27/10, 20h. Falta confirmar o nome ("Operação Black Recorde" ainda em validação).
 2. ~~Link do grupo VIP~~ OK em 21/10 (chat.whatsapp.com/C34KXzEq4NvFRFDJhQNpu9). Falta o 2º grupo (limite de 1.024 pessoas por grupo).
 3. Pixel (`PIXEL_ID`), link da política de privacidade e URL da foto no WordPress.
 4. Oferta do evento: produto, preço e condição (`LINK_OFERTA`, `[OFERTA A DEFINIR]`), até 22/10.

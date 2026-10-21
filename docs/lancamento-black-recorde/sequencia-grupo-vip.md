@@ -60,8 +60,8 @@ de abrir), **12h–13h** (almoço) e **19h–21h** (depois de fechar).
 | 26/10 seg | 20h | **enquete** | Com quem você vai assistir |
 | 27/10 ter | 9h | texto | É hoje |
 | 27/10 ter | 18h30 | texto | Falta 1 hora |
-| 27/10 ter | 19h15 | texto | 15 minutos + link |
-| 27/10 ter | 19h30 | texto | Estamos ao vivo |
+| 27/10 ter | 19h45 | texto | 15 minutos + link |
+| 27/10 ter | 20h | texto | Estamos ao vivo |
 | 27/10 ter | [HORÁRIO DA APRESENTAÇÃO] | texto | Abertura da oferta |
 | 27/10 ter | fim da live | texto | Fechamento da noite |
 | 28/10 qua | 9h | texto | Replay (se houver) |
@@ -86,7 +86,7 @@ Aqui é a Cindy.
 
 Esse é o grupo do *Workshop Operação Black Recorde*.
 
-Dia 27 de outubro, terça, às 19h30.
+Dia 27 de outubro, terça, às 20h.
 Ao vivo, online e gratuito.
 
 Nesse encontro eu vou montar junto com você a campanha de Black Friday da sua ótica:
@@ -311,7 +311,7 @@ Boa semana pra você.
 ```
 Amanhã é o dia.
 
-Terça, 27 de outubro, às 19h30.
+Terça, 27 de outubro, às 20h.
 
 Pra aproveitar de verdade, separa hoje:
 
@@ -345,7 +345,7 @@ Opções:
 - Ainda não sei se consigo
 
 > **Uso:** quem marca "ainda não sei se consigo" recebe no privado, no dia 27 de manhã, a mensagem
-> "o link sai às 19h15 no grupo; se não conseguir, me avisa". Não prometa replay antes de saber se
+> "o link sai às 19h45 no grupo; se não conseguir, me avisa". Não prometa replay antes de saber se
 > ele existe.
 
 ---
@@ -358,12 +358,12 @@ Opções:
 É hoje.
 
 Workshop Operação Black Recorde.
-Hoje, às 19h30. Ao vivo.
+Hoje, às 20h. Ao vivo.
 
 Deixa marcado no celular agora,
 pra não ser engolida pelo dia da loja.
 
-O link sai aqui às 19h15.
+O link sai aqui às 19h45.
 ```
 
 ### 18h30 · texto · 1 hora antes
@@ -371,7 +371,7 @@ O link sai aqui às 19h15.
 ```
 Falta 1 hora.
 
-Às 19h30 eu entro ao vivo pra montar com você
+Às 20h eu entro ao vivo pra montar com você
 a campanha de Black Friday da sua ótica.
 
 Vai ser longo e com a mão na massa.
@@ -380,7 +380,7 @@ Se puder, assiste do computador, com o caderno do lado.
 O link sai aqui em 45 minutos.
 ```
 
-### 19h15 · texto · 15 minutos antes
+### 19h45 · texto · 15 minutos antes
 
 ```
 15 minutos.
@@ -389,10 +389,10 @@ Esse é o link:
 👉 LINK_LIVE
 
 Já pode entrar.
-Eu começo pontualmente às 19h30.
+Eu começo pontualmente às 20h.
 ```
 
-### 19h30 · texto · estamos ao vivo
+### 20h · texto · estamos ao vivo
 
 ```
 Estamos ao vivo.
@@ -402,7 +402,7 @@ Estamos ao vivo.
 Quem chegar agora ainda pega o começo.
 ```
 
-> **Repetir às 19h50** só com "Ainda dá tempo. Começamos pelo calendário. 👉 LINK_LIVE".
+> **Repetir às 20h20** só com "Ainda dá tempo. Começamos pelo calendário. 👉 LINK_LIVE".
 
 ### [HORÁRIO DA APRESENTAÇÃO] · texto · abertura da oferta
 
@@ -446,7 +446,7 @@ Amanhã eu volto aqui.
 
 ### 28/10 (quarta) · 9h · texto · replay
 
-**Só use esta mensagem se houver replay.** Se não houver, pule para a de 19h30 e tire a última
+**Só use esta mensagem se houver replay.** Se não houver, pule para a de 20h e tire a última
 linha dela.
 
 ```
@@ -653,7 +653,7 @@ Texto de apoio:
 
 ## Pendências antes de disparar
 
-1. **Data e horário** confirmados (27/10, 19h30 ainda "a confirmar"). Todas as mensagens dependem disso.
+1. **Data e horário** confirmados (27/10, 20h, confirmados em 21/10). Todas as mensagens dependem disso.
 2. **Oferta, condição e prazo real** → preenchem `[OFERTA A DEFINIR]`, `[PRAZO REAL DA CONDIÇÃO]` e a mensagem de 31/10, 9h.
 3. **Conteúdo confirmado pela Cindy** (scripts e recuperação de orçamentos) → trava o áudio de 25/10.
 4. **Replay sim ou não, e até quando** → mensagens de 28/10 e 30/10.
