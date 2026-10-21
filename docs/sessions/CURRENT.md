@@ -1,5 +1,20 @@
 # Ponto de retomada
 
+## ▶ RETOMAR AQUI — 21/10/2026 (Claude Code, Orion): Cindy · Workshop Operação Black Recorde
+
+**Evento:** terça, 27/10/2026, **20h** (confirmado), online, gratuito. Tudo em `docs/lancamento-black-recorde/` (ver `RETOMAR-AQUI.md`).
+
+**Feito (20–21/10):**
+- Roteiros para a Cindy gravar: B10–B14 e B15, este sobre o print de R$ 103.679 da Black 2025 (`roteiro-cindy-print.md`; confirmar com ela o período do número).
+- Página v2 (preto + vermelho do suéter, faixa no topo, linha do tempo, faixa de luz no botão). Sub: "O plano do calendário, da oferta e da campanha…". Link do grupo VIP já na página. HTML do Elementor: `pagina/embed-elementor.html` (`node gerar-embed.cjs` regera). Foto no WP confirmada (200).
+- Horário 19h30 → 20h em todos os docs do dia da live.
+- ElevenLabs Creator: chave em env `ELEVENLABS_API_KEY` (User) funcionando (falta só models_read, não precisa). A 1ª chave vazou no chat: o Vitor deve apagá-la no painel.
+- Amostra de voz: `voz/amostra-cindy.mp3` (1:45, vídeos de captação de set/26; fora do Git). Criar o clone e enviar o arquivo para fora foram BLOQUEADOS pelo classificador (consentimento): **o Vitor cria o clone sozinho no site**.
+
+**Próximo passo:** quando a voz "Cindy Batista" existir na conta → pegar o voice_id (GET /v1/voices) → gerar a narração do B2 (`roteiros-video.md`) com eleven_multilingual_v2 → montar um criativo com os takes que o Vitor mandar (Drive "Vídeos claude") via `tools/video-recut`.
+
+**Pendente:** título "Monte comigo" → "Planeje comigo"? (sem resposta) · Pixel · link da política de privacidade · oferta · claims da Cindy · prova do print na página.
+
 ## ▶ RETOMAR AQUI — 19-20/10/2026 (Claude Code, Orion): agentes em cada etapa da máquina + meta de 10 vídeos/dia
 
 **Feito em 19/10:**
