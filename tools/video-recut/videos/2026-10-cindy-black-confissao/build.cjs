@@ -7,44 +7,44 @@ const NOME = path.basename(__dirname);
 const work = path.join(__dirname, "../../work", NOME);
 const DUR = JSON.parse(fs.readFileSync(path.join(work, "meta.json"), "utf8")).duracao;
 
-const CORTES = [3.15, 7.85, 11.45, 14.35, 18.4, 22.35, 24.9, 30.95, 34.75];
+const CORTES = [3.31, 8.78, 12.15, 15.44, 20.29, 25.25, 28.72, 35.68, 39.96];
 const SFX_DIR = path.join(__dirname, "../../assets/sfx");
 const SFX = [
-  ...[0.2, 3.3, 7.95, 11.55, 18.45, 22.45, 25.0, 31.0, 34.8].map((t) => ["whoosh-short.mp3", t - 0.2, 0.26]),
-  ["whoosh.mp3", 14.25, 0.38],
-  ["impact-bass-1.mp3", 14.4, 0.55], ["impact-bass-2.mp3", 10.97, 0.35],
-  ["sparkle.mp3", 24.27, 0.25], ["sparkle.mp3", 33.18, 0.2],
-  ...[18.56, 19.62].map((t) => ["click-soft.mp3", t - 0.02, 0.26]),
+  ...[0.2, 3.51, 8.88, 12.24, 20.38, 25.38, 28.9, 35.69, 40.03].map((t) => ["whoosh-short.mp3", t - 0.2, 0.26]),
+  ["whoosh.mp3", 15.35, 0.38],
+  ["impact-bass-1.mp3", 15.48, 0.55], ["impact-bass-2.mp3", 11.46, 0.35],
+  ["sparkle.mp3", 27.93, 0.25], ["sparkle.mp3", 38.32, 0.2],
+  ...[20.51, 22.09].map((t) => ["click-soft.mp3", t - 0.02, 0.26]),
 ];
-const RISER = { arq: "riser.mp3", fimEm: 14.4, dur: 2.4, vol: 0.3 };
-const MUSICA = { arq: path.join(__dirname, "../../assets/musica/mixkit-32.mp3"), inicio: 20.5, vol: 0.11 };
-const RESPIRO = [13.5, 14.35];
+const RISER = { arq: "riser.mp3", fimEm: 15.48, dur: 2.4, vol: 0.3 };
+const MUSICA = { arq: path.join(__dirname, "../../assets/musica/mixkit-32.mp3"), inicio: 23.09, vol: 0.11 };
+const RESPIRO = [14.62, 15.44];
 
 if (process.argv.includes("--mix")) { mix(); return; }
 
 const V = require("../../lib.cjs").criar({ dur: DUR });
 V.corteSuave(CORTES);
-V.flash([14.35, 24.9, 34.75]);
-V.shake([14.4], { forca: 12 });
+V.flash([15.44, 28.72, 39.96]);
+V.shake([15.48], { forca: 12 });
 
 // ── bloco 1: a confissão (frio) ──
-V.cardTitulo("c0", 0.2, 3.0, { kicker: "EU JÁ FUI ESSA ÓTICA", titulo: "QUE BAIXA", gold: "TUDO", tituloAt: 1.5, goldAt: 1.92 });
-V.cardTitulo("c1", 3.3, 7.7, { kicker: "NA BLACK, O DESCONTO", titulo: "IGUAL AO", gold: "VIZINHO", tituloAt: 3.6, goldAt: 4.23 });
-V.cardTitulo("c2", 7.95, 11.3, { kicker: "A LOJA ATÉ ENCHIA", titulo: "MAS SOBRAVA", gold: "POUCO", tituloAt: 9.54, goldAt: 10.97 });
-V.cardTitulo("c3", 11.55, 14.2, { kicker: "NO PREÇO, A ÓTICA", titulo: "NÃO GANHA DO", gold: "SITE", tituloAt: 13.45, goldAt: 14.02 });
+V.cardTitulo("c0", 0.12, 3.12, { kicker: "EU JÁ FUI ESSA ÓTICA", titulo: "QUE BAIXA", gold: "TUDO", tituloAt: 1.7, goldAt: 2.29 });
+V.cardTitulo("c1", 3.51, 8.63, { kicker: "NA BLACK, O DESCONTO", titulo: "IGUAL AO", gold: "VIZINHO", tituloAt: 3.84, goldAt: 4.65 });
+V.cardTitulo("c2", 8.88, 11.98, { kicker: "A LOJA ATÉ ENCHIA", titulo: "MAS SOBRAVA", gold: "POUCO", tituloAt: 10.02, goldAt: 11.46 });
+V.cardTitulo("c3", 12.24, 15.3, { kicker: "NO PREÇO, A ÓTICA", titulo: "NÃO GANHA DO", gold: "SITE", tituloAt: 14.59, goldAt: 15.13 });
 
 // ── bloco 2: a virada ──
-V.insertTitulo({ start: 14.4, end: 17.4, kicker: "O QUE MUDOU", linhas: [["PLANEJAR", 15.86], ["A BLACK", 16.57], ["ANTES", 16.99]] });
-V.cardLista("c4", 18.45, 22.2, { kicker: "ANTES DE NOVEMBRO", itens: [["OFERTA PRONTA", 18.56], ["EQUIPE PREPARADA", 19.62]] });
-V.cardTitulo("c5", 22.45, 24.8, { kicker: "E AÍ VIERAM", titulo: "AS MELHORES", gold: "BLACKS", tituloAt: 23.55, goldAt: 24.27 });
+V.insertTitulo({ start: 15.48, end: 19.11, kicker: "O QUE MUDOU", linhas: [["PLANEJAR", 17.62], ["A BLACK", 18.22], ["ANTES", 18.59]] });
+V.cardLista("c4", 20.38, 25.05, { kicker: "ANTES DE NOVEMBRO", itens: [["OFERTA PRONTA", 20.51], ["EQUIPE PREPARADA", 22.09]] });
+V.cardTitulo("c5", 25.38, 28.54, { kicker: "E AÍ VIERAM", titulo: "AS MELHORES", gold: "BLACKS", tituloAt: 27.1, goldAt: 27.93 });
 
 // ── bloco 3: o convite ──
-V.cardTitulo("c6", 25.0, 30.8, { kicker: "WORKSHOP OPERAÇÃO BLACK RECORDE", titulo: "27/10 · AO VIVO ·", gold: "20H", tituloAt: 25.29, goldAt: 26.28 });
-V.cardTitulo("c7", 31.0, 34.6, { kicker: "PRA VOCÊ BUSCAR O SEU RECORDE", titulo: "NOS ÚLTIMOS", gold: "60 DIAS", tituloAt: 32.83, goldAt: 33.18 });
-V.cardCTA("c8", 34.8, { kicker: "GRATUITO · VAGAS NO GRUPO", texto: "ENTRE NO GRUPO VIP", popAt: 35.99 });
+V.cardTitulo("c6", 28.9, 35.57, { kicker: "WORKSHOP OPERAÇÃO BLACK RECORDE", titulo: "27/10 · AO VIVO ·", gold: "20H", tituloAt: 29.34, goldAt: 30.49 });
+V.cardTitulo("c7", 35.69, 39.77, { kicker: "PRA VOCÊ BUSCAR O SEU RECORDE", titulo: "NOS ÚLTIMOS", gold: "60 DIAS", tituloAt: 37.94, goldAt: 38.32 });
+V.cardCTA("c8", 40.03, { kicker: "GRATUITO · VAGAS NO GRUPO", texto: "ENTRE NO GRUPO VIP", popAt: 41.45 });
 
 const leg = JSON.parse(fs.readFileSync(path.join(work, "legenda.json"), "utf8"))
-  .map((g) => g.filter(([, t]) => t < 14.4 || t >= 17.4))
+  .map((g) => g.filter(([, t]) => t < 15.48 || t >= 19.11))
   .filter((g) => g.length);
 V.legendaDinamica(leg, { destaques: ["tudo", "vizinho", "pouco", "site", "outubro", "pronta", "melhores", "oito", "recorde", "sessenta", "vip"] });
 V.salvar(process.argv[2] || path.join(work, "public/index.html"));

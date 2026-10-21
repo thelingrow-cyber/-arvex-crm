@@ -20,16 +20,16 @@ const FRIO = "hqdn3d=1.5:1.5:5:5,eq=contrast=1.05:saturation=0.55:gamma=0.95,col
 const QUENTE = "hqdn3d=1.2:1.2:4:4,eq=contrast=1.1:saturation=1.16:gamma=0.98,colorbalance=rs=0.04:gs=0.01:bs=-0.03,curves=all='0/0.02 0.5/0.5 1/0.98'";
 // cortes colados na fala (tempos do voz.wav — ver transcricao.json)
 const CENAS = [
-  ["IMG_4929.MOV", 0.5, 3.15, "frio"],   // 0.00 loja parada — "eu já fui essa ótica que baixa tudo"
-  ["IMG_4928.MOV", 1.0, 4.70, "frio"],   // 3.15 loja ampla — "desconto igual ao do vizinho, cartaz na porta"
-  ["IMG_4928.MOV", 12.0, 3.60, "frio"],  // 7.85 loja com gente — "a loja até enchia… sobrava pouco"
-  ["IMG_4930.MOV", 1.5, 2.90, "frio"],   // 11.45 armações — "no preço a ótica não ganha do site"
-  ["IMG_4934.MOV", 0.5, 4.05, "quente"], // 14.35 VIRADA, ela trabalhando — "comecei a planejar a Black antes"
-  ["IMG_4937.MOV", 2.0, 3.95, "quente"], // 18.40 atendimento — "oferta pronta, equipe sabendo o que falar"
-  ["IMG_4928.MOV", 16.0, 2.55, "quente"],// 22.35 loja cheia — "minhas melhores Blacks"
-  ["IMG_4935.MOV", 6.0, 6.05, "quente"], // 24.90 balcão — "dia 27, às 8 da noite… passo a passo"
-  ["IMG_4930.MOV", 6.0, 3.80, "quente"], // 30.95 armações — "buscar o seu recorde… 60 dias"
-  ["IMG_4931.MOV", 8.0, +(DUR - 34.75).toFixed(2), "quente"], // 34.75 CTA
+  ["IMG_4929.MOV", 0.5, 3.31, "frio"],   // 0.00 loja parada — "eu já fui essa ótica que baixa tudo"
+  ["IMG_4928.MOV", 1.0, 5.47, "frio"],   // 3.15 loja ampla — "desconto igual ao do vizinho, cartaz na porta"
+  ["IMG_4928.MOV", 12.0, 3.37, "frio"],  // 7.85 loja com gente — "a loja até enchia… sobrava pouco"
+  ["IMG_4930.MOV", 1.5, 3.29, "frio"],   // 11.45 armações — "no preço a ótica não ganha do site"
+  ["IMG_4934.MOV", 0.5, 4.85, "quente"], // 14.35 VIRADA, ela trabalhando — "comecei a planejar a Black antes"
+  ["IMG_4937.MOV", 2.0, 4.96, "quente"], // 18.40 atendimento — "oferta pronta, equipe sabendo o que falar"
+  ["IMG_4928.MOV", 16.0, 3.47, "quente"],// 22.35 loja cheia — "minhas melhores Blacks"
+  ["IMG_4935.MOV", 6.0, 6.96, "quente"], // 24.90 balcão — "dia 27, às 8 da noite… passo a passo"
+  ["IMG_4930.MOV", 6.0, 4.28, "quente"], // 30.95 armações — "buscar o seu recorde… 60 dias"
+  ["IMG_4931.MOV", 8.0, +(DUR - 39.96).toFixed(2), "quente"], // 39.96 CTA
 ];
 if (process.argv.includes("--so-audio")) return;
 

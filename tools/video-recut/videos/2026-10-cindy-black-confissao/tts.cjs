@@ -1,15 +1,15 @@
-// Gera a narração com o clone instantâneo da Cindy (ElevenLabs) + tempos por palavra no formato da Groq.
+// Gera a narração com o clone profissional da Cindy (ElevenLabs) + tempos por palavra no formato da Groq.
 // uso: node tts.cjs   (chave em ELEVENLABS_API_KEY do usuário do Windows)
 const fs = require("fs"), path = require("path"), { execSync, execFileSync } = require("child_process");
 const NOME = path.basename(__dirname), work = path.join(__dirname, "../../work", NOME);
-const VOZ = "uiKHW2bpXItBnfY02Ais"; // "Cindy Batista - teste voz real 21-10" (a do criativo C)
+const VOZ = "plsczSttbqHX09y0ObkG"; // "Cindy Batista PRO" (clone profissional, aprovado 21/10 na comparação D)
 const key = process.env.ELEVENLABS_API_KEY || execSync(`powershell -NoProfile -c "[Environment]::GetEnvironmentVariable('ELEVENLABS_API_KEY','User')"`).toString().trim();
 const text = fs.readFileSync(path.join(__dirname, "copy.txt"), "utf8").trim();
 (async () => {
   const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOZ}/with-timestamps?output_format=mp3_44100_192`, {
     method: "POST", headers: { "xi-api-key": key, "Content-Type": "application/json" },
     body: JSON.stringify({ text, model_id: "eleven_multilingual_v2", language_code: "pt",
-      voice_settings: { stability: 0.4, similarity_boost: 0.8, style: 0.15, use_speaker_boost: true, speed: 1 } }),
+      voice_settings: { stability: 0.45, similarity_boost: 0.85, style: 0.1, use_speaker_boost: true, speed: 1 } }),
   });
   if (!r.ok) throw new Error(r.status + " " + (await r.text()));
   const j = await r.json();
