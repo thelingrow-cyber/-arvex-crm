@@ -64,7 +64,7 @@ Primário: **Entrar no grupo VIP** (mantido). Alternativas para teste, só com v
 ### 2.2 Fricções, em ordem
 
 1. **A tela do WhatsApp é a segunda página de captura.** O nome do grupo deve ser "Operação Black Recorde", a foto deve ser a logo do evento, a descrição deve ter data e horário e a mensagem de boas-vindas deve estar pronta. É a ação de maior retorno da lista, porque a perda de 50% do funil anterior (16 → 8) mora aqui ou no clique.
-2. **Os placeholders impedem a publicação:** `LINK_GRUPO_VIP` e `PIXEL_ID`.
+2. **Os placeholders impedem a publicação:** `https://chat.whatsapp.com/C34KXzEq4NvFRFDJhQNpu9` e `PIXEL_ID`.
 3. **Pixel duplicado:** se o WordPress já injeta o Pixel (PixelYourSite), o script da página detecta o `fbq` e não inicializa de novo. Mesmo assim, conferir no Meta Pixel Helper que o PageView sai **uma** vez.
 
 ### 2.3 Hierarquia: o olhar vai para o CTA?
@@ -115,7 +115,7 @@ Lido no código e confirmado por render headless dentro de iframes de 375×667 e
 
 | Placeholder | Onde | Bloqueia |
 |---|---|---|
-| `LINK_GRUPO_VIP` | `index.html`, CTA | Publicar |
+| `https://chat.whatsapp.com/C34KXzEq4NvFRFDJhQNpu9` | `index.html`, CTA | Publicar |
 | `PIXEL_ID` | `index.html`, script (enquanto for placeholder, nada é inicializado) | Tráfego e retargeting (B5) |
 | `LINK_POLITICA_PRIVACIDADE` | rodapé | Aprovação do anúncio |
 | URL da foto no WP | `gerar-embed.cjs` → `IMG_URL` e `og:image` | Publicação via Elementor |
@@ -123,7 +123,7 @@ Lido no código e confirmado por render headless dentro de iframes de 375×667 e
 
 ### 3.4 Como publicar (no mesmo padrão do +100K: WordPress `cindybatista.com` + Elementor)
 
-1. Substituir `LINK_GRUPO_VIP` e `PIXEL_ID` no `index.html` (ou deixar `PIXEL_ID` se o PixelYourSite já cobre o site).
+1. Substituir `https://chat.whatsapp.com/C34KXzEq4NvFRFDJhQNpu9` e `PIXEL_ID` no `index.html` (ou deixar `PIXEL_ID` se o PixelYourSite já cobre o site).
 2. Subir `cindy-dinheiro.jpg` em Mídia do WordPress, colar a URL em `IMG_URL` (`gerar-embed.cjs`) e no `og:image`.
 3. `node gerar-embed.cjs` → gera `embed-elementor.html`.
 4. Criar a página no WordPress com o mesmo template das páginas do +100K (ou **Elementor Canvas**, para ficar sem o cabeçalho do tema), adicionar o widget **HTML** e colar todo o conteúdo de `embed-elementor.html`.

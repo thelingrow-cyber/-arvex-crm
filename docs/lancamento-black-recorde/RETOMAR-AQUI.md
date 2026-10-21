@@ -18,7 +18,7 @@ Black Friday 2026 = 27/11. A campanha foi montada em 20/10 por agentes em parale
 ## Bloqueios antes de subir
 
 1. Confirmar data, horário e nome ("Operação Black Recorde" ainda em validação).
-2. Link do grupo VIP novo (`LINK_GRUPO_VIP`) e o 2º grupo (limite de 1.024 pessoas por grupo).
+2. ~~Link do grupo VIP~~ OK em 21/10 (chat.whatsapp.com/C34KXzEq4NvFRFDJhQNpu9). Falta o 2º grupo (limite de 1.024 pessoas por grupo).
 3. Pixel (`PIXEL_ID`), link da política de privacidade e URL da foto no WordPress.
 4. Oferta do evento: produto, preço e condição (`LINK_OFERTA`, `[OFERTA A DEFINIR]`), até 22/10.
 5. Cindy confirmar o conteúdo: scripts, recuperação de orçamentos e ferramenta. Trava trechos de B5 e da sequência.
