@@ -75,6 +75,12 @@ a{text-decoration:none;color:inherit}
 .cta:hover{transform:translateY(-2px);background:var(--red-dk)}
 @keyframes pulse{0%,100%{box-shadow:0 10px 36px var(--red-glow)}50%{box-shadow:0 10px 54px rgba(210,33,60,.75)}}
 .micro{font-size:13px;color:var(--muted);margin-top:12px}
+/* faixa de luz passando no botão */
+.cta{position:relative;overflow:hidden;isolation:isolate}
+.cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:-1;pointer-events:none;
+  background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.55) 50%,transparent 100%);transform:skewX(-20deg);
+  animation:shine 3s ease-in-out infinite}
+@keyframes shine{0%{left:-60%}55%,100%{left:130%}}
 
 /* foto em moldura (integrada como peça do layout, não recorte flutuando) */
 .photo{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;max-width:460px;width:100%;align-self:center}
