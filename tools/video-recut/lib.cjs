@@ -435,7 +435,7 @@ function criar({ dur, fps = 30 }) {
   // ── INSERT: evento em tela cheia (ex.: OPERAÇÃO BLACK RECORDE) — faixas correndo, nome bate em 2 tempos,
   // selos de data e promessa com contador. Fundo opaco (não usa vídeo desfocado). Paleta da página da Black (preto + vermelho).
   // t = { nome1, nome2, selos, promessa } em segundos (cole na fala); contaAte = número do contador da promessa
-  function insertEvento({ start, end, kicker = "", topo = "OPERAÇÃO", nome1 = "BLACK", nome2 = "RECORDE", selos = [], promessa = "", contaAte = 60, sufixo = "DIAS", faixa = "", t, cor = "#D2213C" }) {
+  function insertEvento({ start, end, kicker = "", topo = "OPERAÇÃO", nome1 = "BLACK", nome2 = "RECORDE", selos = [], promessa = "", contaAte = 60, sufixo = "DIAS", faixa = "", t, cor = "#D2213C", fundoVideo = null }) {
     const id = "ins-evento";
     const fx = (faixa || `${topo} ${nome1} ${nome2}`) + " • ";
     const fita = fx.repeat(8);
@@ -463,10 +463,12 @@ function criar({ dur, fps = 30 }) {
       #${id} .ev-prom b { color:${cor}; font-weight:900; font-size:58px; }
       #${id} .ev-burst { position:absolute; left:50%; top:1010px; }
       #${id} .ev-p { position:absolute; left:-9px; top:-9px; width:18px; height:18px; border-radius:50%; box-shadow: 0 0 18px ${cor}; }
+      #${id} .ev-mos { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.55; filter:saturate(0.7) contrast(1.1); }
+      #${id} .ev-tint { position:absolute; inset:0; background: radial-gradient(70% 45% at 50% 47%, rgba(10,2,4,0.92) 0%, rgba(60,6,14,0.72) 60%, rgba(20,2,6,0.85) 100%); }
       #${id} .ev-flash { position:absolute; inset:0; background:#fff; opacity:0; }
     </style>
     <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="6">
-      <div class="ev-bg" id="${id}-bg"><div class="ev-grid" id="${id}-grid"></div><div class="ev-glow" id="${id}-glow"></div></div>
+      <div class="ev-bg" id="${id}-bg">${fundoVideo ? `<video class="ev-mos" src="${fundoVideo}" muted playsinline data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="12"></video><div class="ev-tint"></div>` : ""}<div class="ev-grid" id="${id}-grid"></div><div class="ev-glow" id="${id}-glow"></div></div>
       <div class="ev-tape" id="${id}-t1" style="top:250px; transform:rotate(-4deg)"><span id="${id}-f1">${fita}</span></div>
       <div class="ev-tape b" id="${id}-t2" style="top:1560px; transform:rotate(3deg)"><span id="${id}-f2">${fita}</span></div>
       <div class="ev-wrap" id="${id}-wrap">
@@ -523,6 +525,69 @@ function criar({ dur, fps = 30 }) {
     add(`tl.to('#${id}-wrap', { scale: 1.6, opacity: 0, filter: 'blur(16px)', duration: 0.45, ease: 'power3.in' }, ${q(end - 0.45)});`);
     add(`tl.to(['#${id}-t1', '#${id}-t2'], { opacity: 0, duration: 0.35, ease: 'power2.in' }, ${q(end - 0.4)});`);
     add(`tl.to('#${id}-bg', { clipPath: 'inset(0% 0% 100% 0%)', duration: 0.45, ease: 'power4.inOut' }, ${q(end - 0.45)});`);
+  }
+  // ── CELULAR na mão do cliente (loja online genérica, preço borrado) — entra girando de frente pra câmera,
+  // etiqueta de desconto cai em degraus; opcional: empurrado pra fora. degraus = [[texto, t], …]
+  function celular(id, { start, end, giraAt = start + 0.1, degraus = [], empurraAt = null, etiqueta = "-20%" }) {
+    if (!layers.includes("/*celular*/")) layers += `    <style>/*celular*/
+      .cel { position:absolute; left:50%; top:330px; width:440px; height:880px; margin-left:-220px; z-index:6; transform-style:preserve-3d; }
+      .cel-body { position:absolute; inset:0; border-radius:70px; background:#0d0d10; box-shadow: 0 50px 120px rgba(0,0,0,0.65), inset 0 0 0 4px #2b2b33; }
+      .cel-scr { position:absolute; left:18px; top:18px; right:18px; bottom:18px; border-radius:54px; background:#fff; overflow:hidden; font-family:Inter, sans-serif; }
+      .cel-isl { position:absolute; left:50%; top:16px; width:140px; height:38px; margin-left:-70px; border-radius:20px; background:#0d0d10; }
+      .cel-url { margin:72px 26px 0; height:52px; border-radius:26px; background:#f1f1f4; color:#777; font-size:24px; font-weight:700; line-height:52px; padding-left:24px; }
+      .cel-img { margin:22px 24px 0; height:250px; border-radius:24px; background:linear-gradient(160deg,#f6f3ee,#e7e1d8); display:flex; align-items:center; justify-content:center; }
+      .cel-nome { margin:26px 30px 0; font-size:32px; font-weight:800; color:#1b1b1f; }
+      .cel-prec { margin:10px 30px 0; font-size:58px; font-weight:900; color:#111; filter: blur(9px); }
+      .cel-de { margin:6px 30px 0; font-size:28px; color:#999; text-decoration:line-through; filter: blur(5px); }
+      .cel-tag { position:absolute; right:-30px; top:330px; background:#E3102C; color:#fff; font-weight:900; font-size:66px; padding:10px 26px; border-radius:20px; box-shadow:0 14px 34px rgba(227,16,44,0.45); }
+      .cel-btn { position:absolute; left:30px; right:30px; bottom:44px; height:96px; border-radius:48px; background:#111; color:#fff; font-size:34px; font-weight:900; text-align:center; line-height:96px; letter-spacing:2px; }
+      .cel-glare { position:absolute; inset:0; border-radius:54px; background:linear-gradient(115deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 65%); }
+    </style>\n`;
+    const oculos = `<svg width="300" height="120" viewBox="0 0 300 120"><g fill="none" stroke="#2a2018" stroke-width="10"><ellipse cx="80" cy="62" rx="62" ry="46"/><ellipse cx="220" cy="62" rx="62" ry="46"/><path d="M142 56 q8-12 16 0"/><path d="M18 50 L2 40"/><path d="M282 50 L298 40"/></g></svg>`;
+    layers += `    <div class="cel clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="7">
+      <div class="cel-body"></div>
+      <div class="cel-scr"><div class="cel-url">🔒 lojaonline.com.br</div><div class="cel-img">${oculos}</div>
+        <div class="cel-nome">Óculos de grau completo</div><div class="cel-de">R$ 000,00</div><div class="cel-prec">R$ 000,00</div>
+        <div class="cel-btn">COMPRAR AGORA</div><div class="cel-glare" id="${id}-gl"></div></div>
+      <div class="cel-isl"></div>
+      <div class="cel-tag" id="${id}-tag">${etiqueta}</div>
+    </div>\n`;
+    add(`// celular ${id}`);
+    add(`tl.fromTo('#${id}', { y: 1300, rotationY: -75, rotation: -14, transformPerspective: 1400 }, { y: 0, rotationY: 0, rotation: -4, duration: 0.9, ease: 'expo.out' }, ${q(giraAt)});`);
+    add(`tl.fromTo('#${id}-gl', { xPercent: -120 }, { xPercent: 120, duration: 0.9, ease: 'power2.inOut', immediateRender: false }, ${q(giraAt + 0.5)});`);
+    add(`tl.to('#${id}', { y: -18, rotation: -2, duration: 1.4, ease: 'sine.inOut', yoyo: true, repeat: ${Math.max(1, Math.floor((end - giraAt - 1) / 1.4))} }, ${q(giraAt + 0.9)});`);
+    hide(`#${id}-tag`, "{ scale: 0 }", start);
+    add(`tl.fromTo('#${id}-tag', { scale: 0 }, { scale: 1, duration: 0.45, ease: 'back.out(3)', immediateRender: false }, ${q(giraAt + 0.55)});`);
+    degraus.forEach(([txt, t]) => {
+      add(`tl.set('#${id}-tag', { textContent: '${txt}' }, ${q(t)});`);
+      add(`tl.fromTo('#${id}-tag', { scale: 1.7 }, { scale: 1, duration: 0.4, ease: 'expo.out', immediateRender: false }, ${q(t)});`);
+      shake([t + 0.02], { forca: 9, alvo: `#${id}` });
+    });
+    if (empurraAt) add(`tl.to('#${id}', { x: 1250, rotation: 28, duration: 0.55, ease: 'power3.in' }, ${q(empurraAt)});`);
+    else add(`tl.to('#${id}', { y: 1300, rotation: 10, duration: 0.45, ease: 'power3.in' }, ${q(end - 0.45)});`);
+  }
+  // ── PILHA de vídeos em profundidade (como cartas); a da frente toma a tela no fim. srcs = arquivos em public/ (frente por último)
+  function pilhaVideos({ start, end, srcs }) {
+    const id = "pilha";
+    const n = srcs.length;
+    layers += `    <style>#${id} { z-index:5; } #${id} .pc { position:absolute; left:50%; top:50%; width:760px; height:1350px; margin:-675px 0 0 -380px; border-radius:36px; overflow:hidden; box-shadow:0 40px 90px rgba(0,0,0,0.6); border:5px solid rgba(255,255,255,0.85); }
+      #${id} .pc video { width:100%; height:100%; object-fit:cover; } #${id}-bg { position:absolute; inset:0; background:radial-gradient(circle at 50% 50%, rgba(20,6,10,0.55), rgba(0,0,0,0.85)); }</style>
+    <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="8">
+      <div id="${id}-bg"></div>
+      ${srcs.map((s, i) => `<div class="pc" id="${id}-c${i}"><video src="${s}" muted playsinline data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="${20 + i}"></video></div>`).join("")}
+    </div>\n`;
+    add(`// pilha de vídeos`);
+    add(`tl.fromTo('#${id}-bg', { opacity: 0 }, { opacity: 1, duration: 0.35 }, ${q(start)});`);
+    srcs.forEach((_, i) => {
+      const k = n - 1 - i; // 0 = frente
+      const pos = { x: [0, -150, 150][k] || 0, rot: [0, -8, 7][k] || 0, sc: [1, 0.86, 0.86][k] || 0.8, y: [0, -60, -40][k] || 0 };
+      add(`tl.fromTo('#${id}-c${i}', { y: 1500, rotation: ${pos.rot * 3}, scale: 0.7, opacity: 1 }, { x: ${pos.x}, y: ${pos.y}, rotation: ${pos.rot}, scale: ${pos.sc}, duration: 0.7, ease: 'expo.out', immediateRender: false }, ${q(start + 0.1 + i * 0.16)});`);
+      add(`tl.to('#${id}-c${i}', { y: ${pos.y - 14}, duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: 1 }, ${q(start + 0.9 + i * 0.1)});`);
+    });
+    const f = `#${id}-c${n - 1}`;
+    add(`tl.to('${f}', { width: 1080, height: 1920, marginLeft: -540, marginTop: -960, borderRadius: 0, borderWidth: 0, rotation: 0, x: 0, y: 0, scale: 1, duration: 0.6, ease: 'power3.inOut' }, ${q(end - 0.65)});`);
+    srcs.slice(0, -1).forEach((_, i) => add(`tl.to('#${id}-c${i}', { opacity: 0, scale: 0.6, duration: 0.4, ease: 'power2.in' }, ${q(end - 0.6)});`));
+    add(`tl.to('#${id}-bg', { opacity: 0, duration: 0.4 }, ${q(end - 0.5)});`);
   }
   // ── card de contraste: "NÃO É SOBRE X" (risca) → vira em 3D → "É SOBRE Y" dourado ──
   function cardContraste(id, start, end, { k1, t1, t1At, riscoAt, virarAt, k2, t2, t2At }) {
@@ -582,7 +647,7 @@ ${js}
     console.log("composição gerada:", outFile);
   }
 
-  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, insertProvas, insertEvento, cardContraste, shake, filtro, corteSuave, legenda, legendaDinamica, flash, salvar };
+  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, insertProvas, insertEvento, celular, pilhaVideos, cardContraste, shake, filtro, corteSuave, legenda, legendaDinamica, flash, salvar };
 }
 
 module.exports = { criar };
