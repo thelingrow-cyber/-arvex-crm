@@ -74,11 +74,12 @@ Se você não quer repetir essa sexta este ano... clica em saiba mais e entra no
 > **Agentes:** Halbert + Téo · 22/10/2026 · mesmo formato do B17 (voz PRO sobre os takes).
 > **Ângulo novo:** a dor 2.2 do ICP (`icp-dono-de-otica.md`), que é a estagnação. "A gente faturou a mesma coisa
 > esse ano. Isso para mim é inadmissível." O "recorde" deixa de ser o da Cindy e vira o número do próprio dono.
-> **Família de gancho (v2, 22/10):** prazo real (falta 1 mês) + ordem direta com objeto concreto (o caixa dele), parente do nº 1 de GANCHOS-PRONTOS.
+> **v3 (22/10, revisão do Halbert 7,5 → 8,5):** gancho começa pela ordem; contraste "não foi dar mais desconto"; 60 dias na frase final; CTA com motivo.
+> **Família de gancho:** prazo real (falta 1 mês) + ordem direta com objeto concreto (o caixa dele), parente do nº 1 de GANCHOS-PRONTOS.
 > O dono se mede no primeiro segundo.
 
 ```
-Falta um mês pra Black Friday. Abre aí o caixa da Black do ano passado... esse é o número que você tem que bater.
+Abre aí o caixa da sua Black do ano passado. Esse é o número que você tem que bater... e falta um mês.
 
 Esquece a ótica da esquina por um minuto. Quem você precisa vencer em novembro é você mesmo, um ano atrás.
 
@@ -86,15 +87,15 @@ Porque fechar a Black com o mesmo número do ano passado, com tudo mais caro... 
 
 E repetir o número quase sempre vem de repetir a Black. O mesmo desconto, decidido na mesma última semana.
 
-Eu já passei por isso. O que fez o meu número subir foi planejar antes. Saber o que entra na oferta e em que dia cada ação vai pro ar.
+Eu já passei por isso. E o que fez o meu número subir não foi dar mais desconto. Foi planejar antes.
 
 A gente tá no fim de outubro. Ainda dá tempo... mas é pouco.
 
-Na Operação Black Recorde eu vou te mostrar como eu faço esse plano, pra você buscar o seu recorde nesses últimos sessenta dias do ano. Dia vinte e sete, às oito da noite, ao vivo e de graça.
+Na Operação Black Recorde eu vou te mostrar como eu faço esse plano. Dia vinte e sete, às oito da noite, ao vivo e de graça.
 
-O recorde que eu quero que você busque não é o meu. É o seu.
+Nesses últimos sessenta dias do ano, o recorde que eu quero que você busque não é o meu. É o seu.
 
-Clica em saiba mais e entra no grupo vip.
+Clica em saiba mais e entra no grupo vip. O link da aula sai só lá.
 ```
 
 | Trecho | Take | Tom | Texto na tela |

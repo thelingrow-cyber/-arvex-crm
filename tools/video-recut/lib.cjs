@@ -432,6 +432,98 @@ function criar({ dur, fps = 30 }) {
     add(`tl.to('#${id}-bg', { opacity: 0, duration: 0.3, ease: 'power2.in' }, ${q(end - 0.3)});`);
   }
 
+  // ── INSERT: evento em tela cheia (ex.: OPERAÇÃO BLACK RECORDE) — faixas correndo, nome bate em 2 tempos,
+  // selos de data e promessa com contador. Fundo opaco (não usa vídeo desfocado). Paleta da página da Black (preto + vermelho).
+  // t = { nome1, nome2, selos, promessa } em segundos (cole na fala); contaAte = número do contador da promessa
+  function insertEvento({ start, end, kicker = "", topo = "OPERAÇÃO", nome1 = "BLACK", nome2 = "RECORDE", selos = [], promessa = "", contaAte = 60, sufixo = "DIAS", faixa = "", t, cor = "#D2213C" }) {
+    const id = "ins-evento";
+    const fx = (faixa || `${topo} ${nome1} ${nome2}`) + " • ";
+    const fita = fx.repeat(8);
+    const dots = Array.from({ length: 22 }, (_, i) => `<i class="ev-p" id="${id}-p${i}" style="background:${i % 3 ? cor : "#fff"}"></i>`).join("");
+    layers += `    <style>
+      #${id} { z-index: 9; }
+      #${id} .ev-bg { position:absolute; inset:0; background: radial-gradient(120% 70% at 50% 46%, #2a060c 0%, #0b0204 55%, #000 100%); }
+      #${id} .ev-grid { position:absolute; inset:-200px; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 90px 90px; transform: perspective(900px) rotateX(58deg) translateY(380px); transform-origin: 50% 100%; }
+      #${id} .ev-glow { position:absolute; left:50%; top:47%; width:1300px; height:1300px; margin:-650px 0 0 -650px; border-radius:50%; background: radial-gradient(circle, ${cor}66 0%, ${cor}00 62%); }
+      #${id} .ev-tape { position:absolute; left:-200px; width:1600px; height:86px; background:${cor}; color:#fff; font-weight:900; font-size:40px; letter-spacing:6px; line-height:86px; white-space:nowrap; overflow:hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+      #${id} .ev-tape span { display:inline-block; }
+      #${id} .ev-tape.b { background:#F5F1E8; color:#0b0204; }
+      #${id} .ev-wrap { position:absolute; left:0; right:0; top:560px; text-align:center; }
+      #${id} .ev-k { font-weight:800; font-size:34px; letter-spacing:10px; color:rgba(245,241,232,0.75); overflow:hidden; }
+      #${id} .ev-top { margin-top:26px; font-weight:900; font-size:64px; letter-spacing:26px; padding-left:26px; color:#F5F1E8; }
+      #${id} .ev-n1, #${id} .ev-n2 { font-weight:900; line-height:0.86; letter-spacing:-6px; }
+      #${id} .ev-n1 { font-size:230px; color:#fff; margin-top:6px; }
+      #${id} .ev-n2 { font-size:178px; letter-spacing:-4px; color:${cor}; text-shadow: 0 0 60px ${cor}AA, 0 0 140px ${cor}66; position:relative; }
+      #${id} .ev-shine { position:absolute; top:0; bottom:0; width:160px; left:0; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.75), transparent); mix-blend-mode: overlay; }
+      #${id} .ev-line { width:760px; height:8px; margin:40px auto 0; background:${cor}; transform-origin:50% 50%; box-shadow: 0 0 30px ${cor}; }
+      #${id} .ev-selos { display:flex; justify-content:center; gap:22px; margin-top:44px; }
+      #${id} .ev-selo { font-weight:900; font-size:50px; color:#fff; padding:16px 30px; border:4px solid #F5F1E8; border-radius:18px; background:rgba(0,0,0,0.45); }
+      #${id} .ev-selo.r { background:${cor}; border-color:${cor}; }
+      #${id} .ev-prom { margin-top:52px; font-weight:800; font-size:44px; letter-spacing:2px; color:#F5F1E8; }
+      #${id} .ev-prom b { color:${cor}; font-weight:900; font-size:58px; }
+      #${id} .ev-burst { position:absolute; left:50%; top:1010px; }
+      #${id} .ev-p { position:absolute; left:-9px; top:-9px; width:18px; height:18px; border-radius:50%; box-shadow: 0 0 18px ${cor}; }
+      #${id} .ev-flash { position:absolute; inset:0; background:#fff; opacity:0; }
+    </style>
+    <div class="insert clip" id="${id}" data-start="${q(start)}" data-duration="${q(end - start)}" data-track-index="6">
+      <div class="ev-bg" id="${id}-bg"><div class="ev-grid" id="${id}-grid"></div><div class="ev-glow" id="${id}-glow"></div></div>
+      <div class="ev-tape" id="${id}-t1" style="top:250px; transform:rotate(-4deg)"><span id="${id}-f1">${fita}</span></div>
+      <div class="ev-tape b" id="${id}-t2" style="top:1560px; transform:rotate(3deg)"><span id="${id}-f2">${fita}</span></div>
+      <div class="ev-wrap" id="${id}-wrap">
+        ${kicker ? `<div class="ev-k">${M(kicker)}</div>` : ""}
+        <div class="ev-top" id="${id}-top">${topo}</div>
+        <div class="ev-n1" id="${id}-n1">${nome1}</div>
+        <div class="ev-n2" id="${id}-n2">${nome2}<i class="ev-shine" id="${id}-sh"></i></div>
+        <div class="ev-line" id="${id}-line"></div>
+        <div class="ev-selos">${selos.map((s, i) => `<div class="ev-selo${i === selos.length - 1 ? " r" : ""}" id="${id}-s${i}">${s}</div>`).join("")}</div>
+        ${promessa ? `<div class="ev-prom" id="${id}-pr">${promessa} <b id="${id}-num">0</b> <b>${sufixo}</b></div>` : ""}
+      </div>
+      <div class="ev-burst">${dots}</div>
+      <div class="ev-flash" id="${id}-fl"></div>
+    </div>\n`;
+    const D = (end - start).toFixed(2);
+    add(`// insert evento`);
+    // abre: fundo entra de baixo como cortina + faixas cruzam
+    add(`tl.fromTo('#${id}-bg', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'power4.inOut' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-grid', { backgroundPosition: '0px 0px' }, { backgroundPosition: '0px 360px', duration: ${D}, ease: 'none' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-glow', { scale: 0.6, opacity: 0.4 }, { scale: 1.15, opacity: 1, duration: ${D}, ease: 'sine.inOut' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-t1', { xPercent: -110 }, { xPercent: 0, duration: 0.55, ease: 'expo.out' }, ${q(start + 0.15)});`);
+    add(`tl.fromTo('#${id}-t2', { xPercent: 110 }, { xPercent: 0, duration: 0.55, ease: 'expo.out' }, ${q(start + 0.22)});`);
+    add(`tl.fromTo('#${id}-f1', { x: 0 }, { x: -900, duration: ${D}, ease: 'none' }, ${q(start)});`);
+    add(`tl.fromTo('#${id}-f2', { x: -900 }, { x: 0, duration: ${D}, ease: 'none' }, ${q(start)});`);
+    if (kicker) maskIn(`#${id} .ev-k .mi`, start + 0.3, 0, start);
+    hide(`#${id}-top, #${id}-n1, #${id}-n2, #${id}-line, #${id} .ev-selo, #${id}-pr`, "{ opacity: 0 }", start);
+    hide(`#${id} .ev-p, #${id}-sh`, "{ opacity: 0 }", start);
+    add(`tl.fromTo('#${id}-top', { opacity: 0, scaleX: 1.5 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: 'expo.out', immediateRender: false }, ${q(start + 0.35)});`);
+    // BLACK bate
+    add(`tl.fromTo('#${id}-n1', { opacity: 0, scale: 2.6, filter: 'blur(26px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.45, ease: 'expo.out', immediateRender: false }, ${q(t.nome1 - 0.05)});`);
+    shake([t.nome1 + 0.06], { forca: 10, alvo: `#${id}-wrap` });
+    // RECORDE bate com flash + estouro
+    add(`tl.fromTo('#${id}-n2', { opacity: 0, scale: 3, filter: 'blur(30px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.5, ease: 'expo.out', immediateRender: false }, ${q(t.nome2 - 0.05)});`);
+    add(`tl.fromTo('#${id}-fl', { opacity: 0.55 }, { opacity: 0, duration: 0.35, ease: 'power2.out', immediateRender: false }, ${q(t.nome2)});`);
+    shake([t.nome2 + 0.06], { forca: 16, alvo: `#${id}-wrap` });
+    for (let k = 0; k < 22; k++) {
+      const a = (k / 22) * 2 * Math.PI, d = 360 + (k % 4) * 90;
+      add(`tl.fromTo('#${id}-p${k}', { x: 0, y: 0, opacity: 1, scale: 1.2 }, { x: ${(Math.cos(a) * d).toFixed(0)}, y: ${(Math.sin(a) * d * 0.75).toFixed(0)}, opacity: 0, scale: 0.2, duration: 0.9, ease: 'expo.out', immediateRender: false }, ${q(t.nome2 + 0.02)});`);
+    }
+    add(`tl.fromTo('#${id}-sh', { xPercent: -150, opacity: 1 }, { xPercent: 650, opacity: 1, duration: 0.9, ease: 'power2.inOut', immediateRender: false }, ${q(t.nome2 + 0.45)}); tl.set('#${id}-sh', { opacity: 0 }, ${q(t.nome2 + 0.45 + 0.92)});`);
+    add(`tl.fromTo('#${id}-sh', { xPercent: -150, opacity: 1 }, { xPercent: 650, opacity: 1, duration: 0.9, ease: 'power2.inOut', immediateRender: false }, ${q(Math.min(end - 1.2, t.nome2 + 3))}); tl.set('#${id}-sh', { opacity: 0 }, ${q(Math.min(end - 1.2, t.nome2 + 3) + 0.92)});`);
+    add(`tl.fromTo('#${id}-line', { opacity: 1, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: 'expo.out', immediateRender: false }, ${q(t.nome2 + 0.25)});`);
+    add(`tl.to('#${id}-n2', { scale: 1.04, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: 3 }, ${q(t.nome2 + 0.6)});`);
+    // selos
+    if (selos.length) add(`tl.fromTo('#${id} .ev-selo', { opacity: 0, y: 50, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(2.2)', stagger: 0.14, immediateRender: false }, ${q(t.selos)});`);
+    // promessa + contador
+    if (promessa) {
+      add(`tl.fromTo('#${id}-pr', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out', immediateRender: false }, ${q(t.promessa)});`);
+      const n = 24;
+      for (let k = 0; k <= n; k++) add(`tl.set('#${id}-num', { textContent: '${Math.round((contaAte * (1 - (1 - k / n) ** 2)))}' }, ${q(t.promessa + 0.15 + k * 0.045)});`);
+      add(`tl.fromTo('#${id}-num', { scale: 1.6 }, { scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.5)', immediateRender: false }, ${q(t.promessa + 0.15 + n * 0.045)});`);
+    }
+    // sai: zoom pra dentro
+    add(`tl.to('#${id}-wrap', { scale: 1.6, opacity: 0, filter: 'blur(16px)', duration: 0.45, ease: 'power3.in' }, ${q(end - 0.45)});`);
+    add(`tl.to(['#${id}-t1', '#${id}-t2'], { opacity: 0, duration: 0.35, ease: 'power2.in' }, ${q(end - 0.4)});`);
+    add(`tl.to('#${id}-bg', { clipPath: 'inset(0% 0% 100% 0%)', duration: 0.45, ease: 'power4.inOut' }, ${q(end - 0.45)});`);
+  }
   // ── card de contraste: "NÃO É SOBRE X" (risca) → vira em 3D → "É SOBRE Y" dourado ──
   function cardContraste(id, start, end, { k1, t1, t1At, riscoAt, virarAt, k2, t2, t2At }) {
     card(id, start, end,
@@ -490,7 +582,7 @@ ${js}
     console.log("composição gerada:", outFile);
   }
 
-  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, insertProvas, cardContraste, shake, filtro, corteSuave, legenda, legendaDinamica, flash, salvar };
+  return { q, add, M, hide, maskIn, shimmer, sheen, camera, card, cardTitulo, cardLista, cardCTA, insertCirculo, insertCrescimento, insertCiclo, insertEtapas, insertTitulo, insertProvas, insertEvento, cardContraste, shake, filtro, corteSuave, legenda, legendaDinamica, flash, salvar };
 }
 
 module.exports = { criar };
