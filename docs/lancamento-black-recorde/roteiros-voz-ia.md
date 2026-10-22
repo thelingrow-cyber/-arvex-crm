@@ -35,7 +35,7 @@ O que mudou pra mim foi chegar com a oferta montada antes. Sabendo o que entra n
 
 É isso que eu vou te mostrar na Operação Black Recorde. Dia vinte e sete de outubro, às oito da noite, ao vivo e de graça.
 
-Você sai de lá com o plano da sua Black pronto... pra buscar o seu recorde nesses últimos sessenta dias do ano.
+Você sai de lá com o plano da sua Black... pra buscar o seu recorde nesses últimos sessenta dias do ano.
 
 Se você não quer repetir essa sexta este ano... clica em saiba mais e entra no grupo vip.
 ```
@@ -59,7 +59,7 @@ Se você não quer repetir essa sexta este ano... clica em saiba mais e entra no
 ## Revisão do Halbert
 
 - **Um trabalho por peça:** B17 vende a dor da margem; não repete o ângulo do B16 (confissão). B18 descartado em 22/10 (repetia o B2/B16).
-- **Evento e promessa (pedido do Vitor):** nome "Operação Black Recorde" falado e a promessa da página (sair com o plano da Black pronto para buscar o recorde nos últimos 60 dias). Recorde como meta.
+- **Evento e promessa (pedido do Vitor):** nome "Operação Black Recorde" falado e a promessa da página (sair com o plano da Black para buscar o recorde nos últimos 60 dias). Recorde como meta.
 - **Sem queimar a loja:** os dois dizem o QUE ela fez (oferta e plano antes), não o COMO. Nenhum preço na tela.
   Nos takes de armação, conferir se as etiquetas redondas mostram preço (mesma dúvida do B16).
 - **Promessa:** "recorde" só como meta ("dá tempo de buscar"). Nenhum número de faturamento.
