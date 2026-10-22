@@ -9,7 +9,7 @@ const text = fs.readFileSync(path.join(__dirname, "copy.txt"), "utf8").trim();
   const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOZ}/with-timestamps?output_format=mp3_44100_192`, {
     method: "POST", headers: { "xi-api-key": key, "Content-Type": "application/json" },
     body: JSON.stringify({ text, model_id: "eleven_multilingual_v2", language_code: "pt",
-      voice_settings: { stability: 0.45, similarity_boost: 0.85, style: 0.1, use_speaker_boost: true, speed: 1.08 } }),
+      voice_settings: { stability: 0.45, similarity_boost: 0.85, style: 0.1, use_speaker_boost: true, speed: 1 } }),
   });
   if (!r.ok) throw new Error(r.status + " " + (await r.text()));
   const j = await r.json();

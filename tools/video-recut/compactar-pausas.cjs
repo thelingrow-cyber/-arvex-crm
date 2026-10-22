@@ -1,4 +1,5 @@
 // Encurta as pausas longas da narração (voz.wav), acelera opcionalmente (atempo, sem mudar o tom)
+// ⚠️ 22/10: o Vitor achou robótico. Para narração não use: acelerar ou cortar pausas tira a respiração. Encurte o texto em vez disso.
 // e corrige os tempos da transcricao.json. Sempre parte do original (voz-longa.wav / transcricao-longa.json),
 // então pode rodar várias vezes.
 // uso: node compactar-pausas.cjs <pasta work> [pausaMax=0.38] [tempo=1]   (env RUIDO=-30 = limiar do silêncio em dB)
