@@ -24,7 +24,7 @@ const A = require("../../ancora.cjs")(work);
 const LEN = (a) => +execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", path.join(DL, a)]).toString();
 const BASE = [
   ["IMG_4935.MOV", 20, null, "frio"], // balcão/caixa
-  ["IMG_4929.MOV", 1, "esse é o número", "frio"], // vitrine
+  ["IMG_4929.MOV", 1, "e falta um mês", "frio"], // vitrine
   ["IMG_4928.MOV", 1, "esquece a ótica", "frio"], // loja ampla
   ["IMG_4928.MOV", 12, "porque fechar", "frio"], // loja com gente
   ["IMG_4935.MOV", 35, "e repetir", "frio"], // balcão

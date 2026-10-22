@@ -74,12 +74,12 @@ Se você não quer repetir essa sexta este ano... clica em saiba mais e entra no
 > **Agentes:** Halbert + Téo · 22/10/2026 · mesmo formato do B17 (voz PRO sobre os takes).
 > **Ângulo novo:** a dor 2.2 do ICP (`icp-dono-de-otica.md`), que é a estagnação. "A gente faturou a mesma coisa
 > esse ano. Isso para mim é inadmissível." O "recorde" deixa de ser o da Cindy e vira o número do próprio dono.
-> **v3 (22/10, revisão do Halbert 7,5 → 8,5):** gancho começa pela ordem; contraste "não foi dar mais desconto"; 60 dias na frase final; CTA com motivo.
+> **v4 (22/10):** gancho trocado pelo Vitor; a maioria das Blacks dos donos foi ruim, então o vilão é a repetição e não um número a bater. **v3 (revisão do Halbert 7,5 → 8,5):** gancho começa pela ordem; contraste "não foi dar mais desconto"; 60 dias na frase final; CTA com motivo.
 > **Família de gancho:** prazo real (falta 1 mês) + ordem direta com objeto concreto (o caixa dele), parente do nº 1 de GANCHOS-PRONTOS.
 > O dono se mede no primeiro segundo.
 
 ```
-Abre aí o caixa da sua Black do ano passado. Esse é o número que você tem que bater... e falta um mês.
+Se a sua Black do ano passado foi fraca, o maior risco desse ano é ela se repetir. E falta um mês.
 
 Esquece a ótica da esquina por um minuto. Quem você precisa vencer em novembro é você mesmo, um ano atrás.
 

@@ -12,7 +12,7 @@ const EV = { ini: at("na operação") - 0.25, fim: fim("sessenta dias do ano") +
 const SFX_DIR = path.join(__dirname, "../../assets/sfx");
 const SFX = [
   ...CORTES.filter((t) => t < EV.ini - 0.3 || t > EV.fim).map((t) => ["whoosh-short.mp3", t - 0.1, 0.24]),
-  ["impact-bass-2.mp3", at("número"), 0.35],
+  ["impact-bass-2.mp3", at("se repetir"), 0.35],
   ["impact-bass-2.mp3", at("andar pra trás"), 0.4],
   ["click-soft.mp3", at("não foi dar"), 0.3], ["sparkle.mp3", at("planejar"), 0.25],
   ["whoosh.mp3", EV.ini - 0.1, 0.4],
@@ -31,8 +31,8 @@ const V = require("../../lib.cjs").criar({ dur: DUR });
 V.corteSuave(CORTES.filter((t) => t < EV.ini || t > EV.fim));
 V.flash([at("eu já passei") - 0.12]);
 
-// gancho: o número dele
-V.cardTitulo("c0", 0.12, at("esquece") - 0.2, { kicker: "A SUA BLACK DO ANO PASSADO", titulo: "O NÚMERO QUE", gold: "VOCÊ TEM QUE BATER", tituloAt: at("esse é"), goldAt: at("você tem que") });
+// gancho: o medo de repetir a Black fraca
+V.cardTitulo("c0", 0.12, at("esquece") - 0.2, { kicker: "A SUA BLACK DO ANO PASSADO FOI FRACA?", titulo: "O MAIOR RISCO:", gold: "SE REPETIR", tituloAt: at("o maior risco"), goldAt: at("se repetir") });
 V.shake([at("falta um mês")], { forca: 8 });
 // a dor
 V.cardTitulo("c1", at("é andar") - 0.1, at("e repetir") - 0.15, { kicker: "MESMO NÚMERO, TUDO MAIS CARO", titulo: "É ANDAR PRA", gold: "TRÁS", tituloAt: at("é andar"), goldAt: at("trás") });
@@ -52,7 +52,7 @@ V.cardCTA("c8", at("clica") - 0.1, { kicker: "O LINK DA AULA SAI SÓ LÁ", texto
 const leg = JSON.parse(fs.readFileSync(path.join(work, "legenda.json"), "utf8"))
   .map((g) => g.filter(([, t]) => t < EV.ini || t >= EV.fim))
   .filter((g) => g.length);
-V.legendaDinamica(leg, { destaques: ["caixa", "bater", "mês", "você", "trás", "desconto", "planejar", "pouco", "seu", "vip"] });
+V.legendaDinamica(leg, { destaques: ["fraca", "repetir", "mês", "você", "trás", "desconto", "planejar", "pouco", "seu", "vip"] });
 V.salvar(process.argv[2] || path.join(work, "public/index.html"));
 
 function mix() {
