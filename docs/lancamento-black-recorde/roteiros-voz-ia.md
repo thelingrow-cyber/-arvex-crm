@@ -74,11 +74,11 @@ Se você não quer repetir essa sexta este ano... clica em saiba mais e entra no
 > **Agentes:** Halbert + Téo · 22/10/2026 · mesmo formato do B17 (voz PRO sobre os takes).
 > **Ângulo novo:** a dor 2.2 do ICP (`icp-dono-de-otica.md`), que é a estagnação. "A gente faturou a mesma coisa
 > esse ano. Isso para mim é inadmissível." O "recorde" deixa de ser o da Cindy e vira o número do próprio dono.
-> **Família de gancho:** ordem direta com objeto concreto (o caixa dele), parente do nº 1 de GANCHOS-PRONTOS.
+> **Família de gancho (v2, 22/10):** prazo real (falta 1 mês) + ordem direta com objeto concreto (o caixa dele), parente do nº 1 de GANCHOS-PRONTOS.
 > O dono se mede no primeiro segundo.
 
 ```
-Abre aí o caixa da sua Black Friday do ano passado. Esse número é o seu adversário este ano.
+Falta um mês pra Black Friday. Abre aí o caixa da Black do ano passado... esse é o número que você tem que bater.
 
 Esquece a ótica da esquina por um minuto. Quem você precisa vencer em novembro é você mesmo, um ano atrás.
 
@@ -86,11 +86,11 @@ Porque fechar a Black com o mesmo número do ano passado, com tudo mais caro... 
 
 E repetir o número quase sempre vem de repetir a Black. O mesmo desconto, decidido na mesma última semana.
 
-Eu já passei por isso.
+Eu já passei por isso. O que fez o meu número subir foi planejar antes. Saber o que entra na oferta e em que dia cada ação vai pro ar.
 
-O que fez o meu número subir foi planejar antes. Em outubro. Saber o que entra na oferta e em que dia cada ação vai pro ar.
+A gente tá no fim de outubro. Ainda dá tempo... mas é pouco.
 
-Na Operação Black Recorde eu vou te mostrar como eu faço esse plano. Dia vinte e sete de outubro, às oito da noite, ao vivo e de graça.
+Na Operação Black Recorde eu vou te mostrar como eu faço esse plano, pra você buscar o seu recorde nesses últimos sessenta dias do ano. Dia vinte e sete, às oito da noite, ao vivo e de graça.
 
 O recorde que eu quero que você busque não é o meu. É o seu.
 
@@ -99,12 +99,13 @@ Clica em saiba mais e entra no grupo vip.
 
 | Trecho | Take | Tom | Texto na tela |
 |---|---|---|---|
-| "Abre aí o caixa… adversário" | 4935, balcão/caixa | frio | O SEU ADVERSÁRIO: VOCÊ, ANO PASSADO |
+| "Falta um mês… tem que bater" | 4935, balcão/caixa | frio | FALTA 1 MÊS PRA BLACK |
 | "Esquece a ótica da esquina…" | 4928 (1 s), loja ampla | frio | VOCÊ, UM ANO ATRÁS |
 | "mesmo número… andar pra trás" | 4929, loja parada | frio | MESMO NÚMERO = ANDAR PRA TRÁS |
 | "repetir a Black… última semana" | 4930, armações | frio | O MESMO DESCONTO, NA ÚLTIMA SEMANA |
 | "Eu já passei… vai pro ar" | 4934, ela trabalhando (virada) | quente | PLANEJAR EM OUTUBRO |
-| "Operação Black Recorde… de graça" | 4937, atendimento | quente | OPERAÇÃO BLACK RECORDE · 27/10 · 20H |
+| "fim de outubro… é pouco" | 4937, atendimento | quente | AINDA DÁ TEMPO. MAS É POUCO. |
+| "Operação Black Recorde… de graça" | 4935, balcão | quente | OPERAÇÃO BLACK RECORDE · SEU RECORDE NOS ÚLTIMOS 60 DIAS · 27/10 · 20H |
 | "O recorde… é o seu" | 4928 (16 s), loja cheia | quente | O RECORDE É O SEU |
 | CTA | 4931 | quente | 👉 ENTRE NO GRUPO VIP |
 
