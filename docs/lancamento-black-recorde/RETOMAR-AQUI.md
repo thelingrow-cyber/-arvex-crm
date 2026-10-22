@@ -35,3 +35,4 @@ Black Friday 2026 = 27/11. A campanha foi montada em 20/10 por agentes em parale
 - No dia 27, o link da live fica na descrição do grupo e é reenviado a cada ~20 min (quem entra não vê mensagens antigas).
 
 - 21/10: B16 confissao, claim 1 CONFIRMADO (a Cindy ja foi a otica que baixa tudo; no comeco a Black nao deu certo). Faltam: "melhores Blacks" e etiquetas de preco. Video no Drive: pasta "Cindy - Black Recorde - Criativos".
+- 22/10: dashboard da campanha (Looker Studio): https://datastudio.google.com/reporting/c5d423e5-e6bd-4fb3-b166-0474f05c487e
