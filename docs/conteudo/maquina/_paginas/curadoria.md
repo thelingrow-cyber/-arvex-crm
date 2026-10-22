@@ -23,8 +23,9 @@ Exatamente N blocos neste formato, e nada além disso:
 ~~~
 
 ## Como fazer
-1. Leia o arquivo de pautas inteiro. Se vier fraco, busque na web: big techs, IA aplicada a negócio, movimentos de mercado e de grandes empresas que um dono de negócio entende.
-2. **Filtro do Caio:** *e daí, para o dono de uma loja de R$ 200 mil por mês?* Sem resposta em uma frase, descarte.
+1. Leia o arquivo de pautas inteiro. Se vier fraco, busque na web: big techs, IA aplicada a negócio, movimentos de mercado e de grandes empresas que um dono de negócio entende. **Vale também (22/10, pedido do Vitor) notícia do mundo ou uma curiosidade que aconteceu**, do tipo que a pessoa conta numa mesa ("uma academia/um evento proibiu quem faz vibe coding"): fato estranho, decisão inesperada, regra nova de alguém conhecido. O critério é dar uma ideia e uma opinião do Vitor em ~1 minuto. *Motivo: "pode ser uma notícia do mundo ou uma curiosidade… criar um roteiro mais humanizado, com tom de fala normal, já com uma ideia e opinião."*
+2. **Filtro do Caio:** *e daí, para o dono de uma loja de R$ 200 mil por mês?* Sem resposta em uma frase, descarte. Na curiosidade, a resposta pode ser uma ideia sobre gente, trabalho ou decisão (não precisa ser dinheiro), desde que caiba em uma frase.
+2b. **Escolha as mais fortes:** a máquina gera uma a mais e manda só as 3 de melhor nota; ordene pensando em qual a pessoa contaria pra alguém depois de ver.
 3. **Frescor:** a notícia tem no máximo **3 dias** (5, só se for muito forte e ainda pouco falada no Brasil). Marque a data.
 4. **Nada batido:** se todo mundo no Brasil já falou e já tem empresa fazendo, descarte. *Motivo: o Vitor reprovou CAFEIA "batida" (muita cobertura é sinal contra).*
 5. **Olhe a lista dos concorrentes** antes de fechar a escolha (é o que o Fabiano faz: "a cada dois dias os reels dos concorrentes são puxados"):

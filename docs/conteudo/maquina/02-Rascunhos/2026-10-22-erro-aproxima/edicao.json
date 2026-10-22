@@ -1,0 +1,133 @@
+{
+ "titulo": "BOM DEMAIS PRA MOSTRAR O ERRO?",
+ "topo": {
+  "seq": [
+   {
+    "de": 0.0,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/lawrence2.mp4",
+    "inicio": 1.2
+   },
+   {
+    "de": 5.0,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4",
+    "inicio": 330,
+    "crop": "486:360:41:0"
+   },
+   {
+    "de": 11.36,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4",
+    "inicio": 837,
+    "crop": "486:360:41:0"
+   },
+   {
+    "de": 13.27,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/cafe-4k.mp4",
+    "inicio": 46.0
+   },
+   {
+    "de": 18.37,
+    "url": "https://commons.wikimedia.org/wiki/File:Freshly_brewed_cup_of_espresso_in_sunlight_on_kitchen_counter.jpg"
+   },
+   {
+    "de": 24.14,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4",
+    "inicio": 627,
+    "crop": "486:360:41:0"
+   },
+   {
+    "de": 28.4,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/cafe-4k.mp4",
+    "inicio": 29.0
+   },
+   {
+    "de": 31.4,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/gates.mp4",
+    "inicio": 13.0,
+    "crop": "1458:1080:62:0"
+   },
+   {
+    "de": 36.93,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/spacex.mp4",
+    "inicio": 119.0
+   },
+   {
+    "de": 41.53,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/spacex.mp4",
+    "inicio": 98.0
+   },
+   {
+    "de": 42.93,
+    "video": "tools/video-recut/videos/2026-10-erro-aproxima/spacex.mp4",
+    "inicio": 21.0
+   },
+   {
+    "de": 46.13,
+    "url": "https://commons.wikimedia.org/wiki/File:JCSAT-14_first_stage_on_droneship_(26820652856).jpg"
+   }
+  ]
+ },
+ "laterais": [
+  {
+   "de": 5.6,
+   "ate": 9.4,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Elliot_Aronson_1972.jpg"
+  },
+  {
+   "de": 9.43,
+   "ate": 11.3,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Studer_B67_reel-to-reel_audio_tape_recorder,_ca._1978_(cropped_and_edited).jpg"
+  },
+  {
+   "de": 9.43,
+   "ate": 11.3,
+   "lado": "DIR",
+   "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4",
+   "inicio": 795,
+   "crop": "286:360:141:0"
+  },
+  {
+   "de": 18.57,
+   "ate": 20.97,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Coffee_drink_spills_in_a_glass_against_a_cafe_wall_with_sketches.jpg"
+  },
+  {
+   "de": 21.07,
+   "ate": 24.07,
+   "lado": "DIR",
+   "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4",
+   "inicio": 61,
+   "crop": "286:360:141:0"
+  },
+  {
+   "de": 31.9,
+   "ate": 35.7,
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-erro-aproxima/cybertruck.mp4",
+   "inicio": 15.5,
+   "crop": "858:1080:380:0"
+  },
+  {
+   "de": 33.5,
+   "ate": 35.7,
+   "lado": "DIR",
+   "video": "tools/video-recut/videos/2026-10-erro-aproxima/cybertruck.mp4",
+   "inicio": 44.8,
+   "crop": "858:1080:340:0"
+  },
+  {
+   "de": 40.13,
+   "ate": 42.83,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Vinci_-_Hammer_2A.jpg"
+  },
+  {
+   "de": 40.33,
+   "ate": 42.83,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:'Atlas_Slave'_by_Michelangelo_-_JBU_01.jpg"
+  }
+ ]
+}

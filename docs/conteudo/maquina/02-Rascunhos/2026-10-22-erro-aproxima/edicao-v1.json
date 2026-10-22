@@ -1,0 +1,33 @@
+{
+ "titulo": "VOCÊ ESCONDE SEUS ERROS?",
+ "topo": {"seq": [
+  {"de": 0.0,  "video": "tools/video-recut/videos/2026-10-erro-aproxima/lawrence2.mp4", "inicio": 1.2},
+  {"de": 5.0,  "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4", "inicio": 330, "crop": "486:360:41:0"},
+  {"de": 12.4, "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4", "inicio": 837, "crop": "486:360:41:0"},
+  {"de": 15.5, "video": "tools/video-recut/videos/2026-10-erro-aproxima/cafe-4k.mp4", "inicio": 46.0},
+  {"de": 20.6, "video": "tools/video-recut/videos/2026-10-erro-aproxima/oscar.mp4", "inicio": 101.0},
+  {"de": 26.4, "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4", "inicio": 627, "crop": "486:360:41:0"},
+  {"de": 31.5, "video": "tools/video-recut/videos/2026-10-erro-aproxima/cafe-4k.mp4", "inicio": 29.0},
+  {"de": 34.5, "video": "tools/video-recut/videos/2026-10-erro-aproxima/gates.mp4", "inicio": 13.0, "crop": "1458:1080:62:0"},
+  {"de": 41.4, "video": "tools/video-recut/videos/2026-10-erro-aproxima/spacex.mp4", "inicio": 119.0},
+  {"de": 46.0, "video": "tools/video-recut/videos/2026-10-erro-aproxima/spacex.mp4", "inicio": 98.0},
+  {"de": 50.6, "url": "https://commons.wikimedia.org/wiki/File:JCSAT-14_first_stage_on_droneship_(26820652856).jpg"}
+ ]},
+ "laterais": [
+  {"de": 5.6,  "ate": 9.4,  "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Elliot_Aronson_1972.jpg"},
+  {"de": 9.7,  "ate": 12.3, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Studer_B67_reel-to-reel_audio_tape_recorder,_ca._1978_(cropped_and_edited).jpg"},
+  {"de": 9.9,  "ate": 12.3, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-erro-aproxima/cbcolor.mp4", "inicio": 795, "crop": "286:360:141:0"},
+  {"de": 20.8, "ate": 23.2, "lado": "ESQ", "video": "tools/video-recut/videos/2026-10-erro-aproxima/oscar.mp4", "inicio": 147.4, "crop": "858:1080:1011:0"},
+  {"de": 23.3, "ate": 26.3, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-erro-aproxima/oscar.mp4", "inicio": 112.7, "crop": "858:1080:620:0"},
+  {"de": 35.0, "ate": 38.8, "lado": "ESQ", "video": "tools/video-recut/videos/2026-10-erro-aproxima/cybertruck.mp4", "inicio": 15.5, "crop": "858:1080:380:0"},
+  {"de": 36.6, "ate": 38.8, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-erro-aproxima/cybertruck.mp4", "inicio": 44.8, "crop": "858:1080:340:0"},
+  {"de": 44.6, "ate": 47.3, "lado": "ESQ", "url": "https://commons.wikimedia.org/wiki/File:Vinci_-_Hammer_2A.jpg"},
+  {"de": 44.8, "ate": 47.3, "lado": "DIR", "url": "https://commons.wikimedia.org/wiki/File:'Atlas_Slave'_by_Michelangelo_-_JBU_01.jpg"},
+  {"de": 51.4, "ate": 54.9, "lado": "ESQ", "video": "tools/video-recut/videos/2026-10-erro-aproxima/oscar.mp4", "inicio": 104.0, "crop": "858:1080:531:0"},
+  {"de": 52.5, "ate": 54.9, "lado": "DIR", "video": "tools/video-recut/videos/2026-10-erro-aproxima/oscar.mp4", "inicio": 128.0, "crop": "858:1080:620:0"}
+ ],
+ "cheia": [
+  {"de": 18.6, "ate": 20.6, "video": "tools/video-recut/videos/2026-10-erro-aproxima/cafe-4k.mp4", "inicio": 14.0},
+  {"de": 47.5, "ate": 50.6, "video": "tools/video-recut/videos/2026-10-erro-aproxima/spacex.mp4", "inicio": 21.0}
+ ]
+}

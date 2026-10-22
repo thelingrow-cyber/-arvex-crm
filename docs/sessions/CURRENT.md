@@ -1,5 +1,25 @@
 # Ponto de retomada
 
+## ▶ 22/10/2026 (Claude Code, Rui/editor-video): vídeo "erro aproxima" (efeito Pratfall, Aronson 1966)
+
+- **Bruto:** Drive `31C44BDD-…mp4` (96,6 s) → limpo 54,3 s. O `limpar.cjs` NÃO pegou 3 repetições (gancho dito 2×, "Agora pegadinha", fecho 3×): cortes feitos à mão em `tools/video-recut/work/2026-10-22-erro-aproxima/limpeza/cortes.json`, ficando a última tentativa. Lição: o Whisper funde gancho repetido; conferir com silencedetect.
+- **Edição:** `02-Rascunhos/2026-10-22-erro-aproxima/edicao.json` (montar.py): 11 trocas no topo (Lawrence Oscar 2013, College Bowl 1960, caneca 4K, Gates BSOD, SpaceX), 11 laterais (4 duplas), 2 telas cheias (café, explosões SpaceX). Sem cartão de número, sem música. Créditos no `CREDITOS.txt`.
+- **v1** (55 s) → Vitor mandou o corte dele pelo WhatsApp; **v2** (50,5 s): cortes dele reproduzidos no bruto por alinhamento de áudio (`cortes.json`, v1 em `cortes-v1.json`), Oscar fora depois do gancho, café no meio, SEM tela cheia (pedido dele). v3 = só título trocado para "BOM DEMAIS PRA MOSTRAR O ERRO?" (Halbert: abre loop com a pegadinha; a lei entregaria a virada). Entregue em Downloads, Drive `Prontos/…-v3.mp4` e WhatsApp. Aguardando aprovação.
+- **Manhã mudou (22/10, pedido do Vitor):** tarefa das 04:00 agora roda `maquina.py dia 4 0 --as 07:00 --top 3` → gera 4 notícias e manda às 7h só as **3 de melhor nota**, ~1 min cada (170–230 palavras), notícia do mundo/mercado OU curiosidade, com ideia e opinião; grade R desligada. Tom = texto E de `roteiros-ouro.md` (fala do vídeo do erro). Curadoria aceita curiosidade (`_paginas/curadoria.md` itens 1, 2, 2b). **Conferir em 22/10 o `_regras/manha-saida.log`** (RAM baixa já matou rodada antes).
+- **Bloqueios:** Kie.ai sem saldo; disco C: com 1,4 GB livres; RAM ~0,6 GB.
+
+## Retomada Codex — 21/10/2026: entrega final com voz C
+
+- **Objetivo:** concluir anúncio Cindy, aproximadamente 45 segundos, com takes existentes, evento e promessa aprovados.
+- **Decisão do usuário:** escolheu C e pediu entrega imediata, sem mais testes. C foi a voz mais parecida segundo ele, ainda com naturalidade limitada; D/E não foram escolhidas.
+- **Áudio final:** `docs/lancamento-black-recorde/voz/b2-final-C.mp3`, alinhamento e request JSON na mesma pasta. Clone de teste com referência real de boas-vindas, multilingual v2, stability 0,40, similarity 0,75, style 0, speed 1, speaker boost ativo. Nenhuma desaceleração, mudança de pitch ou filtro na voz; atraso inicial de 100 ms e trilha original baixa. Fala termina em 39,853 s; cartela final permanece até 45 s.
+- **Vídeo:** `videos/cindy-black-b2/cindy-black-recorde-FINAL-C.mp4`. Concluído e conferido: 45,000 s, 1080×1920, H.264/AAC, 29,6 MB. Takes da primeira montagem reaproveitados, legendas e títulos sincronizados com a nova fala. Exportador `export_final_c.py`, `timing-C.json`, `delivery-C.ass`, `assets/voice-C.wav` e `assets/mix-C.wav`. HTML anterior preservado como primeira versão; revisão C é renderizada por FFmpeg/ASS.
+- **Conteúdo:** Workshop Operação Black Recorde, 27/10 às 20h, ao vivo e gratuito; promessa aspiracional antes do CTA grupo VIP. Texto gerado conferido com a copy aprovada.
+- **Histórico:** primeira exportação e A/B rejeitadas; clone original e arquivos anteriores preservados. Referência original de 104,5 s já estava no clone (hash idêntico). Novo clone criado a pedido usando outra gravação real de 65,3 s. Usuário autorizou limpeza: apenas cache npm removido, 1,53 GB liberados.
+- **Validação:** MP4 final C decodificado integralmente sem erros; três frames de evento, promessa e CTA inspecionados. Evidências em `validation-final-C.json` e `final-C-contact.jpg`. Checks anteriores HyperFrames sem erros; npm test passou; lint/typecheck ausentes na raiz.
+- **Estado Git:** tudo local, sem commit/push/publicação; alterações preexistentes preservadas.
+- **Próximo passo:** MP4 final C pronto para o usuário enviar; nenhuma publicação realizada.
+
 ## ▶ RETOMAR AQUI — 21/10/2026 (Claude Code, Orion): Cindy · Workshop Operação Black Recorde
 
 **Evento:** terça, 27/10/2026, **20h** (confirmado), online, gratuito. Tudo em `docs/lancamento-black-recorde/` (ver `RETOMAR-AQUI.md`).

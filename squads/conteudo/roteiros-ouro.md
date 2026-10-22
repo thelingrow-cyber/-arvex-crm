@@ -77,7 +77,7 @@ bonito que não é do assunto. **Fica** o "e, mas, porque, então".
 (c) o que a skill pune de fato, densidade de palavra sem ideia, a gente também pune.
 **Limite:** três frases seguidas acima de 20 palavras quase sempre escondem duas ideias numa. Parta.
 
-### 2. Duração da notícia: **PROPOSTA, depende do Vitor**
+### 2. Duração da notícia: **DECIDIDO pelo Vitor em 22/10: cerca de 1 minuto (50–70 s, 170–230 palavras)**
 Hoje: 📰 Mercado escrito pra 60–80s; `voz.md` diz 40–80s; Regra e Identidade, 20–45s. Medido nos vídeos
 publicados: N3 = **78s** (288 palavras), Bezos = **48s** (165), Capricho = 30s. O ritmo real dele no vídeo final
 é ~3,5 palavras/s; as estimativas nos cabeçalhos dos rascunhos usam de 2,6 a 3,1 e erram o tempo. Conte
@@ -269,3 +269,32 @@ Em qualquer negócio é igual. A ferramenta muda toda semana, mas o cliente quer
 
 Então a jogada boa é usar o que é novo pra entregar melhor o que é velho.
 ```
+
+### E. "O erro aproxima" · efeito Pratfall (falado pelo Vitor, corte dele, 22/10) — **padrão de fala natural**
+
+O Vitor, ao ver o corte final: *"Veja como ficou melhor a fala; ficou muito bem falado, normal, natural."* É a
+referência de **tom** para a notícia da manhã (não de estrutura: nenhum texto-ouro é fôrma). O que faz soar natural
+*(leitura do Téo)*: gancho que declara a dívida ("tem uma pegadinha") e paga depois ("Agora vem a pegadinha"); fato
+datado contado, não citado ("um psicólogo **chamado**… um teste **bem simples**"); uma ação visível por frase; gíria
+só na história ("um cara", "mandava muito bem"); o porquê em palavra comum; a regra só depois do caso, puxada por
+"Então"; opinião em três palavras ("Isso é libertador"); aplicação sem apontar o dedo ("Muita gente…"); fecho em
+linha divisória, sem CTA. ~130 palavras em 50 s.
+
+```
+Errar na frente dos outros pode fazer as pessoas gostarem mais de você, mas tem uma pegadinha nisso.
+Nos anos 60, um psicólogo chamado Elliot Aronson fez um teste bem simples.
+Gravou um cara respondendo um quiz.
+E o cara mandava muito bem, acertava quase tudo.
+Só que numa das versões da gravação, no final, ele derrubava uma xícara de café na roupa.
+E quem ouviu essa versão com café, gostou mais dele.
+O erro deixou o cara mais humano, mais perto de quem estava ouvindo.
+Agora vem a pegadinha.
+Quando fizeram a mesma coisa com o cara que tinha ido muito mal no quiz,
+derrubar o café deixou ainda pior a avaliação das pessoas.
+Então o erro só ajuda quando a pessoa já percebeu que você sabe o que está fazendo.
+Isso é libertador.
+Muita gente só quer mostrar a versão perfeita, o resultado pronto, esconde todo o processo.
+Mas se você é bom no que você faz, mostrar o que deu errado no caminho te aproxima ainda mais das pessoas.
+O erro aproxima, só que de quem já confia em você.
+```
+

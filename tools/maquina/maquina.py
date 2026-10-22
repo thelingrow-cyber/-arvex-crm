@@ -256,7 +256,7 @@ def _enviar(lista, prefixo, inicio=1):
 
 def _cabecalho(n_noticias, n_grade):
     import zap
-    partes = ([f"📰 {n_noticias} de mercado (N)"] if n_noticias else []) + ([f"🎬 {n_grade} da grade (R)"] if n_grade else [])
+    partes = ([f"📰 {n_noticias} notícias, ~1 min cada (N)"] if n_noticias else []) + ([f"🎬 {n_grade} da grade (R)"] if n_grade else [])
     zap.texto(f"☀️ *Roteiros de hoje ({datetime.date.today():%d/%m})*: " + " + ".join(partes) + ".\n\n"
               "↩️ Responde *em cima* de cada um (segura a mensagem → Responder):\n"
               "• *ok* = aprovado, pode gravar\n• escreve ou manda *áudio* com o que mudar = eu reescrevo\n"
@@ -322,10 +322,13 @@ def _gerar_noticias(qtd=4, inicio=1, escolha=None):
         pasta = os.path.join(RASC, f"{hoje}-n{k}-{slug(sl.replace('-', ' '), 6)}")
         os.makedirs(pasta, exist_ok=True)
         open(os.path.join(pasta, "pauta.md"), "w", encoding="utf-8").write(f"# Pauta do Caio\n\n{fatos.strip()}\n")
-        txt = claude("roteiro", "**Molde: 📰 Mercado da manhã** (notícia + leitura de negócio, modelo @beprecht, 60 a 80 s; "
-                     "ver `docs/conteudo/banco-roteiros/players/bernardo-precht/ESTUDO.md`). Use SÓ os fatos conferidos abaixo "
+        txt = claude("roteiro", "**Molde: 📰 Notícia da manhã** (22/10, pedido do Vitor: notícia do mundo, de mercado ou uma "
+                     "curiosidade que aconteceu, contada com UMA ideia e a opinião dele; cerca de 1 minuto, 50 a 70 s, "
+                     "170 a 230 palavras). Tom de fala normal, de conversa: o padrão de naturalidade é o texto E de "
+                     "`squads/conteudo/roteiros-ouro.md` (o vídeo do erro, 22/10, que ele elogiou: \"muito bem falado, normal, "
+                     "natural\"). Use SÓ os fatos conferidos abaixo "
                      "(nada de número fora deles). Padrão-ouro desta voz: os textos de `squads/conteudo/roteiros-ouro.md` "
-                     "(N3 final e o N4 que o Vitor reescreveu à mão). Use os princípios, não copie as frases. No cabeçalho, em vez de Tema nº, escreva em uma linha a "
+                     "(E primeiro; depois N3 final e o N4 que o Vitor reescreveu à mão). Use os princípios, não copie as frases. No cabeçalho, em vez de Tema nº, escreva em uma linha a "
                      "família de gancho usada (ESTUDO-GANCHOS).\n\n"
                      f"## Pauta conferida pelo Caio\n\n{fatos.strip()}", web=True)
         open(os.path.join(pasta, "roteiro.md"), "w", encoding="utf-8").write(txt + f"\n\n## Fontes (Caio)\n\n{fatos.strip()}\n")
@@ -370,9 +373,10 @@ def noticias(qtd=4, hora=None, escolha=None):
     _enviar(lista, "N", ja + 1)
 
 
-def dia(n_noticias=4, n_grade=5, hora=None):
+def dia(n_noticias=4, n_grade=5, hora=None, top=None):
     """A manhã inteira: gera as notícias e a grade (em sequência, para não estourar a memória), espera a hora e manda
-    primeiro as N (o primeiro vídeo do dia é o de mercado), depois as R."""
+    primeiro as N (o primeiro vídeo do dia é o de mercado), depois as R.
+    top (22/10, pedido do Vitor "envie três, o melhor"): gera n_noticias e manda só as `top` com melhor nota do revisor."""
     import zap
     trava = _uma_rodada_por_vez()  # noqa: F841
     ln, fn = [], []
@@ -382,6 +386,9 @@ def dia(n_noticias=4, n_grade=5, hora=None):
         r = _seguro(_gerar_noticias, n_noticias, ja + 1)
         ln, fn = r if isinstance(r, tuple) else ([], [r])
     lr, fr = _gerar_grade(n_grade) if n_grade else ([], [])
+    if top:                                        # ln já vem ordenada pela nota do revisor (_gerar_noticias)
+        n_noticias = min(n_noticias, top)
+        ln = ln[:top]
     _aguardar(hora)
     if ln or lr:
         _cabecalho(len(ln), len(lr))
@@ -532,12 +539,13 @@ def main():
         status()
     elif cmd in ("noticias", "dia"):
         hora = a[a.index("--as") + 1] if "--as" in a else None
-        nums = [int(x) for x in a[1:] if x.isdigit()]
+        top = int(a[a.index("--top") + 1]) if "--top" in a else None
+        nums = [int(x) for i, x in enumerate(a[1:], 1) if x.isdigit() and a[i - 1] != "--top"]
         if cmd == "noticias":   # --escolha arquivo.md: as notícias que o Vitor escolheu (o Caio só confere)
             esc = open(a[a.index("--escolha") + 1], encoding="utf-8").read() if "--escolha" in a else None
             noticias(nums[0] if nums else 4, hora=hora, escolha=esc)
         else:
-            dia(*(nums + [4, 5][len(nums):])[:2], hora=hora)
+            dia(*(nums + [4, 5][len(nums):])[:2], hora=hora, top=top)
     elif cmd == "manha":
         hora = a[a.index("--as") + 1] if "--as" in a else None
         manha(int(a[1]) if len(a) > 1 and a[1].isdigit() else 5, hora=hora)
