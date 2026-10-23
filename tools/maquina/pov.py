@@ -21,14 +21,27 @@ FONTE = os.path.join(os.path.dirname(__file__), "..", "video-recut", "assets", "
 W, H = 1080, 1920
 TOPO = 300            # logo abaixo da barra de cima do Reels; --topo muda por take (não cobrir o rosto)
 LARG = 980
-TAM = 46
+TAM = 42            # medido no DeZ1KZCiPDR: 46 = mesma largura do dele; 40 compensa take fechado
+
+
+ESPACO = 0.035        # espaço extra entre letras (em fração do tamanho), medido no dele
+
+
+def _largura(draw, texto, fonte):
+    return draw.textlength(texto, font=fonte) + ESPACO * TAM * (len(texto) - 1)
+
+
+def _escrever(draw, x, y, texto, fonte):
+    for c in texto:
+        draw.text((x, y), c, font=fonte, fill=255)
+        x += draw.textlength(c, font=fonte) + ESPACO * TAM
 
 
 def _quebrar(draw, texto, fonte):
     linhas, atual = [], ""
     for palavra in texto.split():
         teste = f"{atual} {palavra}".strip()
-        if draw.textlength(teste, font=fonte) <= LARG:
+        if _largura(draw, teste, fonte) <= LARG:
             atual = teste
         else:
             linhas.append(atual)
@@ -44,14 +57,13 @@ def placa(texto, caminho, topo=None):
     y = topo or TOPO
     for bloco in texto.split("\n"):           # \n na frase = quebra forçada
         for linha in _quebrar(d, bloco, f):
-            x = (W - d.textlength(linha, font=f)) / 2
-            d.text((x, y), linha, font=f, fill=255)
-            y += int(TAM * 1.25)
+            _escrever(d, (W - _largura(d, linha, f)) / 2, y, linha, f)
+            y += int(TAM * 1.15)   # entrelinha medido no dele
     sombra = letras.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(5))
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     borda = letras.filter(ImageFilter.MaxFilter(5))   # contorno fino escuro colado na letra, como no dele
     img.paste((0, 0, 0, 255), (2, 3), sombra.point(lambda v: int(v * 0.85)))
-    img.paste((20, 20, 20, 255), (0, 0), borda.point(lambda v: int(v * 0.55)))
+    img.paste((20, 20, 20, 255), (0, 0), borda.point(lambda v: int(v * 0.8)))
     img.paste((255, 255, 255, 255), (0, 0), letras)
     img.save(caminho)
 
