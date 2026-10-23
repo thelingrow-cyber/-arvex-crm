@@ -16,12 +16,12 @@ import tempfile
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
-FONTE = os.path.join(os.path.dirname(__file__), "..", "video-recut", "assets", "fontes", "Montserrat.ttf")
-PESO = b"SemiBold"     # referência Fabiano: sans arredondada, peso médio, pequena, sombra suave
+FONTE = os.path.join(os.path.dirname(__file__), "..", "video-recut", "assets", "fontes", "Poppins-SemiBold.ttf")
+# referência Fabiano (DeZ1KZCiPDR, ampliado quadro a quadro): Poppins SemiBold bate letra por letra
 W, H = 1080, 1920
 TOPO = 300            # logo abaixo da barra de cima do Reels; --topo muda por take (não cobrir o rosto)
-LARG = 820
-TAM = 44
+LARG = 980
+TAM = 46
 
 
 def _quebrar(draw, texto, fonte):
@@ -39,7 +39,6 @@ def _quebrar(draw, texto, fonte):
 
 def placa(texto, caminho, topo=None):
     f = ImageFont.truetype(FONTE, TAM)
-    f.set_variation_by_name(PESO)
     letras = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(letras)
     y = topo or TOPO
@@ -50,7 +49,9 @@ def placa(texto, caminho, topo=None):
             y += int(TAM * 1.25)
     sombra = letras.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(5))
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    borda = letras.filter(ImageFilter.MaxFilter(5))   # contorno fino escuro colado na letra, como no dele
     img.paste((0, 0, 0, 255), (2, 3), sombra.point(lambda v: int(v * 0.85)))
+    img.paste((20, 20, 20, 255), (0, 0), borda.point(lambda v: int(v * 0.55)))
     img.paste((255, 255, 255, 255), (0, 0), letras)
     img.save(caminho)
 
