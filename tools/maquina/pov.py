@@ -1,10 +1,12 @@
 """Vídeo de 8 s sem fala: um take + uma frase na tela (formato "POV", modelo do Fabiano às 9h e 15h).
 
-  python tools/maquina/pov.py <take.mp4> "<frase>" <saida.mp4> [--inicio 0] [--dur 8] [--topo 230]
+  python tools/maquina/pov.py <take.mp4> "<frase>" <saida.mp4> [--inicio 0] [--dur 8] [--topo 300]
 
 - O take vira 1080x1920. Se for mais curto que --dur, é desacelerado até caber (nunca abaixo de 0,6x).
-- A frase fica no terço de cima, fora da área dos botões do Instagram, em branco com contorno preto
-  (a cara de texto nativo do app). Parada o vídeo inteiro: nada de animação (cartões animados reprovados).
+- A frase fica no terço de cima, fora da área dos botões do Instagram, em branco
+  com sombra suave (como o texto do Fabiano). Parada o vídeo inteiro: nada de animação (cartões animados reprovados).
+- A imagem é escurecida de leve (menos brilho e saturação, bordas mais escuras), como na referência:
+  é isso que faz o texto branco pequeno ler sem contorno.
 - Sem áudio de terceiros: sai com faixa muda. O som do momento, se quiser, entra no app.
 """
 import os
@@ -12,13 +14,14 @@ import subprocess
 import sys
 import tempfile
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
-FONTE = os.path.join(os.path.dirname(__file__), "..", "video-recut", "assets", "fontes", "Inter-800.ttf")
+FONTE = os.path.join(os.path.dirname(__file__), "..", "video-recut", "assets", "fontes", "Montserrat.ttf")
+PESO = b"SemiBold"     # referência Fabiano: sans arredondada, peso médio, pequena, sombra suave
 W, H = 1080, 1920
-TOPO = 230            # logo abaixo da barra de cima do Reels; --topo muda por take (não cobrir o rosto)
-LARG = 900
-TAM = 62
+TOPO = 300            # logo abaixo da barra de cima do Reels; --topo muda por take (não cobrir o rosto)
+LARG = 820
+TAM = 44
 
 
 def _quebrar(draw, texto, fonte):
@@ -35,16 +38,20 @@ def _quebrar(draw, texto, fonte):
 
 
 def placa(texto, caminho, topo=None):
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
     f = ImageFont.truetype(FONTE, TAM)
+    f.set_variation_by_name(PESO)
+    letras = Image.new("L", (W, H), 0)
+    d = ImageDraw.Draw(letras)
     y = topo or TOPO
     for bloco in texto.split("\n"):           # \n na frase = quebra forçada
         for linha in _quebrar(d, bloco, f):
             x = (W - d.textlength(linha, font=f)) / 2
-            d.text((x, y), linha, font=f, fill="white", stroke_width=6, stroke_fill="black")
-            y += int(TAM * 1.22)
-        y += int(TAM * 0.35)
+            d.text((x, y), linha, font=f, fill=255)
+            y += int(TAM * 1.25)
+    sombra = letras.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(5))
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    img.paste((0, 0, 0, 255), (2, 3), sombra.point(lambda v: int(v * 0.85)))
+    img.paste((255, 255, 255, 255), (0, 0), letras)
     img.save(caminho)
 
 
@@ -62,7 +69,8 @@ def montar(take, frase, saida, inicio=0.0, dur=8.0, topo=None):
     placa(frase, png, topo)
     os.makedirs(os.path.dirname(os.path.abspath(saida)), exist_ok=True)
     filtro = (f"[0:v]setpts=PTS/{lento:.4f},scale={W}:{H}:force_original_aspect_ratio=increase,"
-              f"crop={W}:{H},fps=30,format=yuv420p[v];[v][1:v]overlay=0:0[out]")
+              f"crop={W}:{H},fps=30,eq=brightness=-0.04:contrast=1.06:saturation=0.85:gamma=0.96,"
+              f"vignette=PI/6,format=yuv420p[v];[v][1:v]overlay=0:0[out]")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(inicio), "-t", f"{trecho:.3f}", "-i", take,
                     "-i", png, "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo",
                     "-filter_complex", filtro, "-map", "[out]", "-map", "2:a", "-t", f"{trecho / lento:.3f}",
