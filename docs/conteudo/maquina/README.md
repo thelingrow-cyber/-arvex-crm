@@ -19,6 +19,7 @@
 | 10 | Opções de capa + materiais | `_paginas/capa.md` (`maquina.py legenda`) | roteiro aprovado | 3 capas + código + **`guia.md`** (o material do direct) + `legenda.txt` | 🟡 o formato do guia precisa da aprovação do Vitor; capa só em texto |
 | 10b | Guia em PDF (o arquivo que vai no direct) | `tools/maquina/guia_pdf.py` (roda dentro do `legenda`) | `guia.md` | `guia.pdf`, no molde do PDF do Fabiano | ✅ |
 | ciclo | Corrigir a página, não o caso (prompt 3 do guia dele) | `_paginas/corrigir.md` (`maquina.py corrigir`) | roteiro + nota do Vitor | `correcao-de-pagina.md`: a etapa que errou e a edição no formato antes → depois | ✅ |
+| 10c | **Agenda no Instagram** (desde 23/10) | `tools/maquina/insta.py` (Zernio, API oficial da Meta), chamado pelo maestro no "pode" | `final.mp4` + `legenda.txt` + créditos | post na fila no próximo horário livre (12h, 19h ou 21h); "cancela" tira; quando sai, arquiva e manda o link | ✅ |
 | 11 | Arquiva tudo e limpa as gravações | `maquina.py arquivar <pasta> --limpar` | pasta do rascunho | `03-Publicados/`, com o bruto apagado | ✅ |
 
 ## Quem executa cada etapa (desde 19/10)
@@ -51,7 +52,7 @@ O Vitor só conversa pelo WhatsApp (conversa "Você") e sobe a gravação no Dri
 
 | No roteiro | No vídeo editado |
 |---|---|
-| `ok` → aprovado · `troca` → outro tema do mesmo molde · qualquer outra coisa (texto ou áudio) → nota: reescreve e manda a v2 | `pode` → sobe em `Prontos/` e manda a legenda do post com créditos · `postei` → arquiva · outra coisa → vai para `ajustes-do-vitor.md` (ajuste de edição ainda é feito numa sessão com o Claude) |
+| `ok` → aprovado · `troca` → outro tema do mesmo molde · qualquer outra coisa (texto ou áudio) → nota: reescreve e manda a v2 | `pode` → sobe em `Prontos/`, manda a legenda e **agenda no Instagram** (avisa dia e hora) · `cancela` → tira da fila · publicado → arquiva sozinho e manda o link · `postei` → arquiva · outra coisa → vai para `ajustes-do-vitor.md` (ajuste de edição ainda é feito numa sessão com o Claude) |
 
 O vídeo novo no Drive é reconhecido pela fala do primeiro minuto (o roteiro enviado mais parecido); depois roda corte → edicao → `montar.py` e a prévia vai para o WhatsApp. O que a máquina mandou fica em `tools/maquina/.estado.json` (id da mensagem → roteiro/vídeo) e tudo o que ele escreve, inclusive recado solto, fica em `tools/maquina/maestro.log` (os dois fora do git). Depende do PC ligado.
 

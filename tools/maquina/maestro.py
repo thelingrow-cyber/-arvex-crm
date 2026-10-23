@@ -2,7 +2,8 @@
 
 A cada 30 s lê o que ele escreveu (ou gravou em áudio) na conversa "Você":
   roteiro  · "ok" aprova · "troca" pede outro tema do mesmo molde · qualquer outra coisa é nota: reescreve e manda a v2
-  vídeo    · "pode" sobe em Prontos/ e manda a legenda do post · "postei" arquiva · outra coisa vira pedido de ajuste
+  vídeo    · "pode" sobe em Prontos/, agenda no Instagram (Zernio, próximo horário livre) e manda a legenda
+             · "cancela" tira da fila · quando o post sai, arquiva sozinho · "postei" arquiva · outra coisa vira ajuste
 A resposta é ligada ao item pela mensagem em cima da qual ele respondeu; sem isso, pelo código (R3) no texto;
 sem código, pelo único item esperando resposta. Se ficar ambíguo, pergunta.
 
@@ -20,6 +21,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
 import zap        # noqa: E402
 import maquina    # noqa: E402
+import insta      # noqa: E402
 
 RAIZ = maquina.RAIZ
 LOG = os.path.join(AQUI, "maestro.log")
@@ -31,6 +33,7 @@ SIM = {"ok", "okay", "aprovado", "aprovo", "pode", "bora", "show", "top", "fecho
        "sim", "isso", "manda", "vai", "otimo", "👍", "✅"}
 TROCA = {"troca", "trocar", "outro", "outro tema", "proximo"}
 POSTEI = {"postei", "postado", "ja postei", "subi", "publiquei"}
+CANCELA = {"cancela", "cancelar", "cancele", "desagenda", "tira da fila", "segura"}
 trava = threading.Lock()
 
 
@@ -79,7 +82,7 @@ def alvo(m, itens):
         cands = [i for i, v in itens.items() if v.get("codigo") == f"{cod.group(1).upper()}{cod.group(2)}" and v.get("dia") == hoje]
         if cands:
             return max(cands, key=lambda i: itens[i]["enviado"])
-    abertos = [i for i, v in itens.items() if v.get("status") in ("enviado", "previa") and v.get("dia") == hoje]
+    abertos = [i for i, v in itens.items() if v.get("status") in ("enviado", "previa", "agendado") and v.get("dia") == hoje]
     return abertos[0] if len(abertos) == 1 else None
 
 
@@ -127,8 +130,55 @@ def subir_pronto(mid, item):
     cred = open(cred, encoding="utf-8").read().strip() if os.path.exists(cred) else ""
     zap.atualizar(mid, status="aprovado")
     zap.texto(f"✅ {item['codigo']} em *Prontos/{nome}*.\n\nLegenda do post (copia e cola):", citando=mid)
-    zap.texto(leg + (f"\n\n{cred}" if cred and "nenhum" not in cred.lower() else ""))
+    post = leg + (f"\n\n{cred}" if cred and "nenhum" not in cred.lower() else "")
+    zap.texto(post)
     log(f"{item['codigo']} aprovado e no Drive: {nome}")
+    # o "pode" é o APROVADO dele: agenda no Instagram no próximo horário livre (12h, 19h ou 21h)
+    r = insta.agendar(final, post)
+    quando = insta.quando_br(r["quando"])
+    zap.atualizar(mid, status="agendado", post_id=r["id"], agendado_para=r["quando"].isoformat(), dia=str(datetime.date.today()))
+    aviso = zap.texto(f"📅 {item['codigo']} agendado no Instagram: *{quando}*.\n*cancela* (em cima desta mensagem) = tira da fila. "
+                      "Quando sair, eu arquivo e te mando o link.", citando=mid)
+    zap.registrar(aviso["key"]["id"], {**item, "tipo": "video", "status": "agendado", "post_id": r["id"],
+                                       "agendado_para": r["quando"].isoformat(), "dia": str(datetime.date.today())})
+    log(f"{item['codigo']} agendado: {r['id']} · {quando}")
+
+
+def _mesmo_post(post_id, **campos):
+    """O item fica registrado em 2 mensagens (prévia e aviso de agendamento): atualiza as duas."""
+    for i, v in zap.estado()["itens"].items():
+        if v.get("post_id") == post_id:
+            zap.atualizar(i, **campos)
+
+
+def desagendar(mid, item):
+    insta.cancelar(item["post_id"])
+    _mesmo_post(item["post_id"], status="previa", post_id=None)
+    zap.texto(f"⏸️ {item['codigo']} saiu da fila do Instagram. Responde *pode* na prévia para agendar de novo.", citando=mid)
+    log(f"{item['codigo']} desagendado")
+
+
+def conferir_agendados():
+    """Post agendado que já passou do horário: publicado → arquiva e manda o link; falhou → avisa."""
+    agora = datetime.datetime.now(insta.FUSO)
+    vistos = set()
+    for mid, v in list(zap.estado()["itens"].items()):
+        pid = v.get("post_id")
+        if v.get("status") != "agendado" or not pid or pid in vistos:
+            continue
+        vistos.add(pid)
+        if datetime.datetime.fromisoformat(v["agendado_para"]) > agora:
+            continue
+        s = insta.situacao(pid)
+        if s["status"] == "published":
+            _mesmo_post(pid, status="postado")
+            maquina.arquivar(v["pasta"])
+            zap.texto(f"🟢 {v['codigo']} saiu no Instagram: {s['url'] or '(link ainda não veio)'}\n📦 Arquivado como publicado.")
+            log(f"{v['codigo']} publicado: {s['url']}")
+        elif s["status"] in ("failed", "partial"):
+            _mesmo_post(pid, status="falhou")
+            zap.texto(f"🔴 {v['codigo']} NÃO saiu no Instagram: {s['erro'] or s['status']}. O Orion vê na próxima sessão.")
+            log(f"{v['codigo']} falhou ao publicar: {s}")
 
 
 def arquivar(mid, item):
@@ -169,10 +219,14 @@ def tratar(m):
             zap.texto(f"{eco}📝 {item['codigo']}: reescrevendo com a sua nota (uns minutos).", citando=mid)
             em_segundo_plano(f"reescrita do {item['codigo']}", reescrever, mid, item, resto)
     elif item["tipo"] == "video":
-        if eh(resto, POSTEI):
+        if item.get("status") == "agendado" and eh(resto, CANCELA):
+            em_segundo_plano(f"cancelamento do {item['codigo']}", desagendar, mid, item)
+        elif item.get("status") == "agendado" and eh(resto, SIM):
+            zap.texto(f"{eco}📅 {item['codigo']} já está na fila do Instagram.", citando=mid)
+        elif eh(resto, POSTEI):
             em_segundo_plano(f"arquivo do {item['codigo']}", arquivar, mid, item)
         elif eh(resto, SIM):
-            zap.texto(f"{eco}⬆️ {item['codigo']}: subindo em Prontos e escrevendo a legenda do post.", citando=mid)
+            zap.texto(f"{eco}⬆️ {item['codigo']}: subindo em Prontos, escrevendo a legenda e agendando no Instagram.", citando=mid)
             em_segundo_plano(f"aprovação do {item['codigo']}", subir_pronto, mid, item)
         else:
             with open(os.path.join(RAIZ, item["pasta"], "ajustes-do-vitor.md"), "a", encoding="utf-8") as f:
@@ -253,7 +307,7 @@ def processar_video(nome):
     maquina.edicao(item["pasta"])
     py = sys.executable.replace("pythonw.exe", "python.exe")           # pythonw não tem console: o print do montar.py quebrava (19/10)
     subprocess.run([py, os.path.join(AQUI, "montar.py"), os.path.basename(pasta)], check=True, cwd=RAIZ)
-    r = zap.video(os.path.join(pasta, "final.mp4"), f"🎬 {item['codigo']} editado. *pode* = sobe em Prontos · "
+    r = zap.video(os.path.join(pasta, "final.mp4"), f"🎬 {item['codigo']} editado. *pode* = agenda no Instagram · "
                                                      "ou responde em cima com o que ajustar.")
     zap.registrar(r["key"]["id"], {**item, "tipo": "video", "status": "previa", "dia": str(datetime.date.today())})
     log(f"{item['codigo']}: prévia enviada ({nome})")
@@ -305,6 +359,7 @@ def main():
             ler_whatsapp()
             if n % 4 == 0:
                 ler_drive()
+                conferir_agendados()
         except Exception as e:                                          # rede caiu: tenta de novo na próxima volta
             log(f"falha na volta: {e}")
         if uma:
