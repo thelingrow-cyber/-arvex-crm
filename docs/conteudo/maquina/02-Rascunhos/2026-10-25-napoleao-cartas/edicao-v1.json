@@ -1,0 +1,67 @@
+{
+ "titulo": "VOCÊ RESPONDE TUDO NA HORA?",
+ "topo": {
+  "seq": [
+   {
+    "de": 0.0,
+    "arquivo": "tools/video-recut/videos/2026-10-napoleao/david-rosto.jpg"
+   },
+   {
+    "de": 7.3,
+    "url": "https://commons.wikimedia.org/wiki/File:Louis Bourrienne.jpg"
+   },
+   {
+    "de": 9.6,
+    "url": "https://commons.wikimedia.org/wiki/File:Qui vive -Estafette du Gouvernement. pl.8, G.9465.jpg"
+   },
+   {
+    "de": 14.8,
+    "url": "https://commons.wikimedia.org/wiki/File:Letter from Napoleon to Prince Regent, 1815 Wellcome L0013400.jpg"
+   },
+   {
+    "de": 22.6,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoleon Las Casas.jpg"
+   },
+   {
+    "de": 27.6,
+    "url": "https://commons.wikimedia.org/wiki/File:La bataille d'Austerlitz. 2 decembre 1805 (François Gérard).jpg"
+   },
+   {
+    "de": 32.6,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoleon at the Great St. Bernard - Jacques-Louis David - Google Cultural Institute.jpg"
+   },
+   {
+    "de": 39.1,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoleon bivouac Wagram.jpg"
+   },
+   {
+    "de": 48.2,
+    "url": "https://commons.wikimedia.org/wiki/File:Hippolyte Paul Delaroche (1797-1856) - Napoleon at Fontainebleau, 31 March 1814 - RCIN 405838 - Royal Collection.jpg"
+   },
+   {
+    "de": 62.0,
+    "arquivo": "tools/video-recut/videos/2026-10-napoleao/david-rosto.jpg"
+   }
+  ]
+ },
+ "laterais": [
+  {
+   "de": 7.5,
+   "ate": 10.0,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Memoires de Louis Antoine Fauvelet de Bourrienne cover vol VII.png"
+  },
+  {
+   "de": 29.0,
+   "ate": 31.4,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:La bataille d'Austerlitz. 2 decembre 1805 (François Gérard) (cropped, 1to1 portrait).jpg"
+  },
+  {
+   "de": 6.0,
+   "ate": 7.2,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:David - Napoleon crossing the Alps - Malmaison1 detail1.jpg"
+  }
+ ]
+}
