@@ -1,0 +1,162 @@
+{
+ "titulo": "DEIXE A URGÊNCIA DOS OUTROS ESPERAR",
+ "topo": {
+  "seq": [
+   {
+    "de": 0.0,
+    "arquivo": "tools/video-recut/videos/2026-10-napoleao/david-rosto.jpg"
+   },
+   {
+    "de": 7.3,
+    "url": "https://commons.wikimedia.org/wiki/File:Louis Bourrienne.jpg"
+   },
+   {
+    "de": 9.6,
+    "url": "https://commons.wikimedia.org/wiki/File:Qui vive -Estafette du Gouvernement. pl.8, G.9465.jpg"
+   },
+   {
+    "de": 14.2,
+    "url": "https://commons.wikimedia.org/wiki/File:Letter from Napoleon to Prince Regent, 1815 Wellcome L0013400.jpg"
+   },
+   {
+    "de": 20.7,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoleon Las Casas.jpg"
+   },
+   {
+    "de": 25.6,
+    "url": "https://commons.wikimedia.org/wiki/File:La bataille d'Austerlitz. 2 decembre 1805 (François Gérard).jpg"
+   },
+   {
+    "de": 30.5,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoleon at the Great St. Bernard - Jacques-Louis David - Google Cultural Institute.jpg"
+   },
+   {
+    "de": 36.0,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoleon bivouac Wagram.jpg"
+   },
+   {
+    "de": 39.6,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoleon in burning Moscow - Adam Albrecht (1841).jpg"
+   },
+   {
+    "de": 44.6,
+    "url": "https://commons.wikimedia.org/wiki/File:Hippolyte Paul Delaroche (1797-1856) - Napoleon at Fontainebleau, 31 March 1814 - RCIN 405838 - Royal Collection.jpg"
+   },
+   {
+    "de": 53.7,
+    "url": "https://commons.wikimedia.org/wiki/File:Napoléon aux Tuileries - Horace Vernet.jpg"
+   },
+   {
+    "de": 58.4,
+    "url": "https://commons.wikimedia.org/wiki/File:Ivan Aivazovsky — Fire of Moscow in 1812 (1851).jpg"
+   },
+   {
+    "de": 63.0,
+    "arquivo": "tools/video-recut/videos/2026-10-napoleao/david-rosto.jpg"
+   }
+  ]
+ },
+ "laterais": [
+  {
+   "de": 2.6,
+   "ate": 5.0,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Serafeim Xenopoulos seal 1864.jpg"
+  },
+  {
+   "de": 3.2,
+   "ate": 5.0,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Loudoun Castle wax seal.jpg"
+  },
+  {
+   "de": 6.0,
+   "ate": 7.2,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:David - Napoleon crossing the Alps - Malmaison1 detail1.jpg"
+  },
+  {
+   "de": 7.5,
+   "ate": 10.0,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Memoires de Louis Antoine Fauvelet de Bourrienne cover vol VII.png"
+  },
+  {
+   "de": 8.2,
+   "ate": 10.0,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Louis Antoine Fauvelet de Bourrienne lineart.png"
+  },
+  {
+   "de": 11.4,
+   "ate": 13.8,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Qui vive -Estafette du Gouvernement. pl.8, G.9465(2).jpg"
+  },
+  {
+   "de": 26.2,
+   "ate": 29.1,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:La bataille d'Austerlitz. 2 decembre 1805 (François Gérard) (cropped, 1to1 portrait).jpg"
+  },
+  {
+   "de": 27.7,
+   "ate": 29.1,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Loudoun Castle wax seal.jpg"
+  },
+  {
+   "de": 32.2,
+   "ate": 35.0,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:L'empereur Napoléon dans son bivouac (NAPOLEON 112).jpg"
+  },
+  {
+   "de": 33.4,
+   "ate": 35.0,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:David - Napoleon crossing the Alps - Malmaison2.jpg"
+  },
+  {
+   "de": 39.6,
+   "ate": 41.3,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Fire of Moscow 1812 (cropped, 1to1 portrait).jpg"
+  },
+  {
+   "de": 40.2,
+   "ate": 41.3,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Moscow fire (1812) battle.jpg"
+  },
+  {
+   "de": 53.7,
+   "ate": 57.9,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Letter from Napoleon to Prince Regent, 1815 Wellcome L0013400.jpg"
+  },
+  {
+   "de": 56.5,
+   "ate": 57.9,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Serafeim Xenopoulos seal 1864.jpg"
+  },
+  {
+   "de": 61.5,
+   "ate": 63.0,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Napoleon Moscow Fire.JPG"
+  },
+  {
+   "de": 61.8,
+   "ate": 63.0,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Fire of Moscow 1812.jpg"
+  }
+ ],
+ "musica": {
+  "arquivo": "tools/video-recut/videos/2026-10-napoleao/patetica-adagio.ogg",
+  "inicio": 0,
+  "volume": 0.55
+ }
+}

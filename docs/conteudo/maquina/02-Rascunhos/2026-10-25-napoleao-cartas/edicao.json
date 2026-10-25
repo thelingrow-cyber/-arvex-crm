@@ -1,9 +1,13 @@
 {
- "titulo": "DEIXE A URGÊNCIA DOS OUTROS ESPERAR",
+ "titulo": "URGÊNCIA DOS OUTROS? PROBLEMA DELES",
  "topo": {
   "seq": [
    {
     "de": 0.0,
+    "arquivo": "tools/video-recut/videos/2026-10-napoleao/cartas-collier.jpg"
+   },
+   {
+    "de": 5.9,
     "arquivo": "tools/video-recut/videos/2026-10-napoleao/david-rosto.jpg"
    },
    {
@@ -155,8 +159,8 @@
   }
  ],
  "musica": {
-  "arquivo": "tools/video-recut/videos/2026-10-napoleao/patetica-adagio.ogg",
+  "arquivo": "tools/video-recut/videos/2026-10-napoleao/luar-adagio.ogg",
   "inicio": 0,
-  "volume": 0.55
+  "volume": 2.5
  }
 }
