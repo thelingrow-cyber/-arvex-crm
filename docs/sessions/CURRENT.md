@@ -1,5 +1,26 @@
 # Ponto de retomada
 
+## ▶ RETOMAR AQUI — 25-26/10/2026 (Claude Code, Orion): marca pessoal @vitorsimoesb
+
+**Publicado (tudo via Zernio, `tools/maquina/insta.py`, com aprovação do Vitor):**
+- 25/10 Reel **Napoleão e as cartas** v4: https://www.instagram.com/reel/De6NNIdlKBT/ (`03-Publicados/2026-10-25-napoleao-cartas/`). Head no padrão Luana (ordem curta), abertura com o quadro de Collier, Sonata ao Luar (domínio público).
+- 25/10 dois **stories** (dia do 2º turno): olho + texto e vídeo meme (`03-Publicados/2026-10-25-story-comeco-do-fim/NOTAS.md`). Story pela Zernio = `platformSpecificData.contentType="story"`.
+- 26/10 Reel **POV permissão** (8 s, sem fala): https://www.instagram.com/reel/De8pK_6jdWt/ (`03-Publicados/2026-10-26-pov-permissao/NOTAS.md`, com o que ele ensinou).
+
+**Regras novas do formato POV (8 s, `tools/maquina/pov.py`):**
+- Frase reflexiva, em tom de conversa (molde: "às vezes o que falta é dar um susto na sua realidade…"). POV de piada foi reprovado. Ele mesmo escreveu a frase que foi ao ar.
+- Frase no **meio** (`--topo 820`), imagem só levemente escurecida, take HDR do iPhone com tonemap antes.
+- Música: **piano clássico conhecido em domínio público** (Satie, Beethoven via Commons/Musopen), baixa (-19 LUFS). As faixas Mixkit 31 e 620 foram chamadas de "horríveis". Eu não consigo ouvir: não escolher pela curva de volume.
+- Legenda do post: só `@vitorsimoesb` + `#empreender #negocios #empreendedorismo`.
+
+**Bloqueios / fatos:** Kie.ai sem saldo · Suno bloqueia melodia conhecida (paródia "PT tchau" parada) · PC com pouca RAM: montar vídeo longo em 3 partes.
+
+**Em aberto:**
+- Ponte WhatsApp ↔ Claude (conversa livre pelo WhatsApp via `claude -p --resume`): desenho proposto, esperando o "sim" do Vitor para o Dex construir.
+- Ligar o POV de 8 s à rotina das 9h e 15h (falta banco de takes parados + frases dele).
+- Paródia: FluidSynth + soundfont livre, ou desistir.
+- Trocar o client_id do rclone; agentes da Zernio.
+
 ## ▶ 22/10/2026 (Claude Code, Rui/editor-video): vídeo "erro aproxima" (efeito Pratfall, Aronson 1966)
 
 - **Bruto:** Drive `31C44BDD-…mp4` (96,6 s) → limpo 54,3 s. O `limpar.cjs` NÃO pegou 3 repetições (gancho dito 2×, "Agora pegadinha", fecho 3×): cortes feitos à mão em `tools/video-recut/work/2026-10-22-erro-aproxima/limpeza/cortes.json`, ficando a última tentativa. Lição: o Whisper funde gancho repetido; conferir com silencedetect.
