@@ -43,7 +43,7 @@
    "830 bilhões perdidos porque a geração Z não bebe" ≠ "quatro arquivos que você precisa".
 3. **Gancho de captura sacrifica alcance.** Antes/depois e "meu truque favorito" produzem mais comentário que
    curtida (1.986 💬 para 1.433 ❤ · 1.913 💬 para 1.670 ❤) e ficam longe do topo em alcance.
-4. **Nunca abrir em relato pessoal.** É o fundo da tabela em todos os perfis onde aparece.
+4. **Relato pessoal precisa entregar uma descoberta relevante.** Evitar preâmbulo autobiográfico sem recompensa para quem assiste. A proibição absoluta anterior foi corrigida em 28/10: Fábio Hansen abre pela própria academia, mostra evidência no ambiente e tem 69.317 views na coleta. Primeira pessoa, sozinha, não explica desempenho.
 
 **Compartilhamento tem gancho próprio:** as maiores taxas de compartilhamento vêm de ganchos com **alvo**
 (uma pessoa concreta a quem mandar o vídeo) — "a pior pessoa pra você ter por perto" (1.885 ↗ em 33 mil ❤)
@@ -106,3 +106,14 @@ O quarto caso corrige a formulação anterior: **escala tecnológica não basta*
 **Regra para o CAFEIA:** notícia só passa se responder uma decisão, uma identidade ou uma consequência humana do dono. Lançamento + números + "isso vai escalar" é boletim técnico, mesmo com boa edição.
 
 O quinto caso separa **conversa** de alcance: energia/Amazônia tem 6,5% de comentários por curtida sem isca, contra 1,2% no Navier–Stokes. Ameaça localizada e dilema moral convidam posição; escala histórica convida admiração. Para o CAFEIA, decidir antes de escrever se a peça quer ser compartilhada, discutida ou usada para captura.
+
+## Fábio Hansen — escolha visual e descoberta demonstrada (28/10/2026)
+
+[Dossiê](banco-roteiros/players/fabio-hansen/ESTUDO.md) · [Classificação dos 16](banco-roteiros/players/fabio-hansen/ANEXOS.md). Coleta limitada pelo serviço; não são 50 novos ganchos nem base integral do perfil. Métricas são views na coleta, não alcance no mesmo prazo.
+
+- **Decisão antes da explicação:** o público escolhe entre imagens e depois ouve o critério que usou. Três publicações: 233.151, 12.155 e 1.613 views. O contraste apoia testar o mecanismo, mas impede chamar o formato de garantia.
+- **Cultura com consequência pessoal:** A Origem vira uma explicação sobre percepção de competência, com 158.055 views. Um exemplar não permite estimar repetibilidade.
+- **Experiência própria com evidência:** academia, 69.317 views. A descoberta começa no ambiente e é transferível a quem assiste. Corrige a antiga lei 4 absoluta; primeira pessoa não é variável suficiente para prever alcance.
+- **Lista com expectativa final:** há publicação de 202 views no dia da coleta. Ela não deve ser usada como resultado final contra esse tipo de abertura.
+
+A regra candidata é **permitir que o espectador perceba algo antes de nomear a lição**. No território do Vitor, testar dois fluxos de uma empresa e perguntar onde o dono consegue se ausentar. Mostrar os fluxos é parte do gancho; falar a pergunta diante da câmera não reproduz o mecanismo visual. Não copiar promessa de marca pessoal ou assinatura verbal de Fábio.

@@ -1,0 +1,9 @@
+{
+  "model_id": "eleven_v3",
+  "text": "Se a ótica da esquina fizer o mesmo desconto que você, por que o cliente vai comprar na sua?\n\nSe tudo gira em torno do desconto, você pode vender mais... e terminar o mês com menos lucro.\n\nPor isso, a sua Black precisa começar antes de novembro.",
+  "language_code": "pt",
+  "voice_settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
+}

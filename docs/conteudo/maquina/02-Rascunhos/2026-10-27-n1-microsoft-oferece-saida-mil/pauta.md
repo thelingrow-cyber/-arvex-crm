@@ -1,0 +1,9 @@
+# Pauta do Caio
+
+**Título:** A Microsoft abre a porta de saída para cerca de 60 mil funcionários
+**Data da notícia:** 2026-10-26
+**Fatos conferidos:** Amy Coleman, chefe de pessoas da Microsoft, anunciou no blog oficial em 26/10 uma "Voluntary Exit Offer", que é um programa voluntário e com prazo · vale para Canadá, Índia, Reino Unido e EUA, para funcionários de "level 70 and below" · "algumas áreas oferecem e outras não", conforme as prioridades e a necessidade de pessoal de cada negócio · o post oficial **não cita número nem IA** · o número de ~60 mil aparece na GeekWire, na CNBC e na CBS (fonte secundária) · segundo a GeekWire o pacote equivale à rescisão padrão, sem o plano de saúde estendido do programa de abril, e a decisão vai até a 1ª semana de dezembro · a saída é em 31/12 (CNBC)
+**Não confere / não usar:** "60 mil" como número da Microsoft (é da imprensa, falar "a imprensa americana calcula") · "27% de 223 mil" (o percentual é conta dos veículos e não conferi o quadro de 223 mil no 10-K) · "mais de 30% aceitaram em abril" e "US$ 900 mi" do Olhar Digital (sem fonte citada) · "em meio à expansão da IA" como motivo dado pela empresa (o comunicado não fala de IA) · "vice-presidente ou abaixo" da CBS (o blog diz "level 70")
+**Concorrentes:** ninguém deu
+**Fontes:** https://blogs.microsoft.com/blog/2026/10/26/introducing-a-voluntary-exit-offer/ · https://www.geekwire.com/2026/microsoft-makes-new-voluntary-exit-offer-to-more-than-a-quarter-of-its-workforce-including-some-execs/ · https://www.cnbc.com/2026/10/26/microsoft-msft-voluntary-buyouts.html
+**E daí pro dono:** quando nem a empresa mais rica do mundo sabe quantas pessoas ainda precisa, ela paga pra quem quiser sair, e o dono pequeno faz a mesma pergunta sem pacote nenhum: que função da minha loja eu ainda contrataria hoje?

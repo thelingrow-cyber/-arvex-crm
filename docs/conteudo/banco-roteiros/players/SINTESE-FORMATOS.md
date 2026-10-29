@@ -45,3 +45,18 @@ Estudo: `matheus-gomes/ESTUDO.md`. Com algo na tela ele faz de 3 a 4 vezes mais 
 Decisão do Vitor: **1 vídeo de tela por dia** (estilo Matheus), mais os de estilo Luana e Tay.
 
 **Resolvido em 13/10:** sem dobradiça nem frase-assinatura fixa por ora (a contagem mostrou que só o Elias tem frase fixa de verdade). Os cartões viraram os moldes da grade v4, com ficha completa de cada um em `docs/conteudo/LINHA-EDITORIAL-FORMATOS.md`.
+
+## Adendo 28/10 — Fábio Hansen: julgamento antes da explicação
+
+[Dossiê](fabio-hansen/ESTUDO.md) · [Inventário](fabio-hansen/ANEXOS.md). Base limitada: 16 Reels obtidos, de 05/08 a 28/10/2026; tentativa de ampliar bloqueada por cobrança do Apify. Não foram obtidos 50 nem picos históricos independentes. Os números deste adendo não foram somados às bases antigas como se fossem uma amostra homogênea.
+
+| Evidência dentro do perfil | O que acrescenta ao sistema |
+|---|---|
+| Três quizzes visuais: 233.151, 12.155 e 1.613 views | Escolher antes de ouvir a regra é mecanismo candidato; o molde não basta para repetir o pico |
+| A Origem: 158.055 | Referência cultural pode tornar um problema abstrato observável e terminar em decisão pessoal |
+| Academia: 69.317 | Descoberta pessoal com demonstração corrige a proibição absoluta de relato pessoal |
+| Nespresso: 1.007; diagnóstico de cliente: 396 | Imagens no alto, caso de marca ou tela real não garantem alcance |
+
+Os três maiores concentram 91,8% das views coletadas. Mediana bruta 1.905; 2.675 nos 13 com pelo menos três dias. Versões semelhantes não são ideias independentes; contagens pequenas não identificam trial reprovado.
+
+**Transferência proposta ao Vitor:** fazer o empresário escolher entre dois fluxos e só depois explicar a dependência do dono; investigar um gargalo real com prova na tela; usar uma referência cultural para distinguir execução de decisão. Três briefings e plano de medição no sétimo dia estão na seção 8 do dossiê. São hipóteses editoriais, sem alteração automática da grade ou promessa de resultado.

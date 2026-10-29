@@ -1,0 +1,8 @@
+# Pauta do Caio
+
+**Título:** Delta, Yelp e grandes bancos começam a barrar os agentes de IA que compram pelo usuário
+**Data da notícia:** 2026-10-17 (The Verge; reproduzida pelo Slashdot em 18/10)
+**Fatos conferidos:** usuários do Muse (Meta), do Grok (xAI), do Dots (OpenAI) e do Instinct relatam bloqueio em sites grandes · a Delta impede que agentes comprem passagem em nome do usuário · o Yelp só deixa entrar agente de empresa que paga pelo programa de licenciamento de dados dele (declaração ao TechCrunch, 06/10) · JPMorgan Chase e Charles Schwab barram o acesso de agentes às contas por segurança (Schwab à Bloomberg, 16/10) · a Amazon disse que o acesso do Muse viola as políticas do site · do outro lado, a Meta fechou parceria com Walmart, Gap, Sephora e Best Buy (CNBC, 03/10), e a Shopify abriu as lojas da rede para agentes
+**Não confere / não usar:** não consegui abrir a matéria original da The Verge (o site recusa a leitura automática), então os fatos acima vêm da citação do Slashdot e de agregadores e são **fonte secundária**: abrir a Verge antes de gravar · Cars.com e Amtrak aparecem só como relato de usuário, sem declaração das empresas · a tese de que os bloqueios são "acidentais" (sistema antifraude pegando agente) é opinião de um especialista, nenhuma empresa confirmou · também não abri as fontes primárias do TechCrunch (Yelp), da Bloomberg (Schwab) e da CNBC (Meta)
+**Fontes:** https://www.theverge.com/ai-artificial-intelligence/1013195/ai-agents-blocked-web · https://slashdot.org/story/26/10/18/1715218/websites-are-closing-their-doors-to-ai-agents
+**E daí pro dono:** quando o cliente começar a comprar por um robô, quem fecha a porta pro robô também fecha pro cliente, e quem abre passa a ser a loja que o robô encontra

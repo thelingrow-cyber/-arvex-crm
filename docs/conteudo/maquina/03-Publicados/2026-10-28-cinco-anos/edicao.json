@@ -1,0 +1,144 @@
+{
+ "titulo": "JÁ INVESTIU DEMAIS PRA PARAR?",
+ "topo": {
+  "seq": [
+   {
+    "de": 0.0,
+    "url": "https://commons.wikimedia.org/wiki/File:StillLifeWithASkull.jpg"
+   },
+   {
+    "de": 3.5,
+    "url": "https://commons.wikimedia.org/wiki/File:Alden Library stairs Ohio University Athena yearbook, 1985 (page 115 crop).jpg"
+   },
+   {
+    "de": 7.3,
+    "url": "https://commons.wikimedia.org/wiki/File:LINE TO BUY SKI LIFT TICKETS. ON A BUSY DAY THE PURCHASE CAN TAKE ONE HOUR - NARA - 554238.jpg"
+   },
+   {
+    "de": 10.5,
+    "video": "tools/video-recut/videos/2026-10-cinco-anos/pathe.mp4",
+    "inicio": 120
+   },
+   {
+    "de": 12.7,
+    "url": "https://commons.wikimedia.org/wiki/File:WAITING TO BOARD THE GONDOLA FOR THE RIDE UP LIONSHEAD MOUNTAIN - NARA - 554243.jpg"
+   },
+   {
+    "de": 15.7,
+    "url": "https://commons.wikimedia.org/wiki/File:THE VILLAGE OF VAIL WAS BUILT EXCLUSIVELY FOR SKIERS - NARA - 554281.jpg"
+   },
+   {
+    "de": 20.3,
+    "video": "tools/video-recut/videos/2026-10-cinco-anos/pathe.mp4",
+    "inicio": 208
+   },
+   {
+    "de": 24.0,
+    "url": "https://commons.wikimedia.org/wiki/File:SKIERS RETURN TO VAIL VILLAGE AT THE END OF THE DAY - NARA - 554289.jpg"
+   },
+   {
+    "de": 27.7,
+    "video": "tools/video-recut/videos/2026-10-cinco-anos/pathe.mp4",
+    "inicio": 193
+   },
+   {
+    "de": 31.4,
+    "url": "https://commons.wikimedia.org/wiki/File:Titian - Sisyphus - Madrid - Prado.jpg"
+   },
+   {
+    "de": 38.4,
+    "url": "https://commons.wikimedia.org/wiki/File:Hourglass with sand.jpg"
+   },
+   {
+    "de": 41.5,
+    "video": "tools/video-recut/videos/2026-10-cinco-anos/pathe.mp4",
+    "inicio": 76
+   },
+   {
+    "de": 43.8,
+    "url": "https://commons.wikimedia.org/wiki/File:Le Mans (Sarthe) - Musée de Tessé - \"Vanité\" (Philippe de Champaigne, 1602-1674).jpg"
+   },
+   {
+    "de": 46.9,
+    "url": "https://commons.wikimedia.org/wiki/File:Caspar David Friedrich - Wanderer above the sea of fog.jpg"
+   }
+  ]
+ },
+ "laterais": [
+  {
+   "de": 1.0,
+   "ate": 3.1,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Wooden hourglass 3.jpg"
+  },
+  {
+   "de": 1.6,
+   "ate": 3.1,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Sand Clock.jpg"
+  },
+  {
+   "de": 5.1,
+   "ate": 7.2,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Alden library seating Ohio University Spectrum Green yearbook, 1980 (page 110 crop).jpg"
+  },
+  {
+   "de": 10.7,
+   "ate": 12.6,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Obverse of the series 2009 $100 Federal Reserve Note.jpg"
+  },
+  {
+   "de": 11.8,
+   "ate": 12.6,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:50 USD Series 2004 Note Front.jpg"
+  },
+  {
+   "de": 16.6,
+   "ate": 18.5,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:50 USD Series 2004 Note Front.jpg"
+  },
+  {
+   "de": 21.4,
+   "ate": 23.7,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Obverse of the series 2009 $100 Federal Reserve Note.jpg"
+  },
+  {
+   "de": 25.2,
+   "ate": 27.6,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:MID-VAIL RESTAURANT AT LUNCH TIME - NARA - 554265.jpg"
+  },
+  {
+   "de": 25.9,
+   "ate": 27.6,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:LINE TO BUY SKI LIFT TICKETS. ON A BUSY DAY THE PURCHASE CAN TAKE ONE HOUR - NARA - 554238.jpg"
+  },
+  {
+   "de": 33.6,
+   "ate": 35.8,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Punishment sisyph.jpg"
+  },
+  {
+   "de": 39.3,
+   "ate": 41.2,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Hourglasses.jpg"
+  }
+ ],
+ "cheia": [
+  {
+   "de": 8.4,
+   "ate": 10.4,
+   "video": "tools/video-recut/videos/2026-10-cinco-anos/engelberg.mp4",
+   "inicio": 1,
+   "modo": "cobrir"
+  }
+ ]
+}

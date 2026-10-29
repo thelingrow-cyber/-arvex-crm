@@ -1,0 +1,1116 @@
+{
+  "segments": [
+    {
+      "text": " O pior de perder 5 anos é usar isso com o motivo para perder mais 5.",
+      "start": 0.0,
+      "end": 3.34,
+      "words": [
+        {
+          "word": " O",
+          "start": 0.0,
+          "end": 0.1
+        },
+        {
+          "word": " pior",
+          "start": 0.1,
+          "end": 0.1
+        },
+        {
+          "word": " de",
+          "start": 0.1,
+          "end": 0.26
+        },
+        {
+          "word": " perder",
+          "start": 0.26,
+          "end": 0.46
+        },
+        {
+          "word": " 5",
+          "start": 0.46,
+          "end": 0.78
+        },
+        {
+          "word": " anos",
+          "start": 0.78,
+          "end": 1.08
+        },
+        {
+          "word": " é",
+          "start": 1.08,
+          "end": 1.36
+        },
+        {
+          "word": " usar",
+          "start": 1.36,
+          "end": 1.58
+        },
+        {
+          "word": " isso",
+          "start": 1.58,
+          "end": 1.88
+        },
+        {
+          "word": " com",
+          "start": 1.88,
+          "end": 2.04
+        },
+        {
+          "word": " o",
+          "start": 2.04,
+          "end": 2.08
+        },
+        {
+          "word": " motivo",
+          "start": 2.08,
+          "end": 2.4
+        },
+        {
+          "word": " para",
+          "start": 2.4,
+          "end": 2.62
+        },
+        {
+          "word": " perder",
+          "start": 2.62,
+          "end": 2.88
+        },
+        {
+          "word": " mais",
+          "start": 2.88,
+          "end": 3.06
+        },
+        {
+          "word": " 5.",
+          "start": 3.06,
+          "end": 3.34
+        }
+      ]
+    },
+    {
+      "text": " Em 1985, dois pesquisadores fizeram testes com estudantes.",
+      "start": 3.4,
+      "end": 7.04,
+      "words": [
+        {
+          "word": " Em",
+          "start": 3.4,
+          "end": 3.58
+        },
+        {
+          "word": " 1985,",
+          "start": 3.58,
+          "end": 4.28
+        },
+        {
+          "word": " dois",
+          "start": 5.08,
+          "end": 5.2
+        },
+        {
+          "word": " pesquisadores",
+          "start": 5.2,
+          "end": 5.72
+        },
+        {
+          "word": " fizeram",
+          "start": 5.72,
+          "end": 6.16
+        },
+        {
+          "word": " testes",
+          "start": 6.16,
+          "end": 6.48
+        },
+        {
+          "word": " com",
+          "start": 6.48,
+          "end": 6.62
+        },
+        {
+          "word": " estudantes.",
+          "start": 6.62,
+          "end": 7.04
+        }
+      ]
+    },
+    {
+      "text": " A situação é a seguinte, você já pagou por 2 viagens de ski, uma de 100 dólares",
+      "start": 7.34,
+      "end": 12.02,
+      "words": [
+        {
+          "word": " A",
+          "start": 7.34,
+          "end": 7.48
+        },
+        {
+          "word": " situação",
+          "start": 7.48,
+          "end": 7.64
+        },
+        {
+          "word": " é",
+          "start": 7.64,
+          "end": 7.96
+        },
+        {
+          "word": " a",
+          "start": 7.96,
+          "end": 7.98
+        },
+        {
+          "word": " seguinte,",
+          "start": 7.98,
+          "end": 8.16
+        },
+        {
+          "word": " você",
+          "start": 8.84,
+          "end": 9.04
+        },
+        {
+          "word": " já",
+          "start": 9.04,
+          "end": 9.22
+        },
+        {
+          "word": " pagou",
+          "start": 9.22,
+          "end": 9.46
+        },
+        {
+          "word": " por",
+          "start": 9.46,
+          "end": 9.64
+        },
+        {
+          "word": " 2",
+          "start": 9.64,
+          "end": 9.84
+        },
+        {
+          "word": " viagens",
+          "start": 9.84,
+          "end": 10.36
+        },
+        {
+          "word": " de",
+          "start": 10.36,
+          "end": 10.56
+        },
+        {
+          "word": " ski,",
+          "start": 10.56,
+          "end": 10.74
+        },
+        {
+          "word": " uma",
+          "start": 11.14,
+          "end": 11.34
+        },
+        {
+          "word": " de",
+          "start": 11.34,
+          "end": 11.5
+        },
+        {
+          "word": " 100",
+          "start": 11.5,
+          "end": 11.68
+        },
+        {
+          "word": " dólares",
+          "start": 11.68,
+          "end": 12.02
+        }
+      ]
+    },
+    {
+      "text": " e a outra de 50.",
+      "start": 12.02,
+      "end": 13.06,
+      "words": [
+        {
+          "word": " e",
+          "start": 12.02,
+          "end": 12.32
+        },
+        {
+          "word": " a",
+          "start": 12.32,
+          "end": 12.38
+        },
+        {
+          "word": " outra",
+          "start": 12.38,
+          "end": 12.6
+        },
+        {
+          "word": " de",
+          "start": 12.6,
+          "end": 12.76
+        },
+        {
+          "word": " 50.",
+          "start": 12.76,
+          "end": 13.06
+        }
+      ]
+    },
+    {
+      "text": " Só depois descobriu que as duas eram no mesmo final de semana.",
+      "start": 13.72,
+      "end": 16.5,
+      "words": [
+        {
+          "word": " Só",
+          "start": 13.72,
+          "end": 13.98
+        },
+        {
+          "word": " depois",
+          "start": 13.98,
+          "end": 14.28
+        },
+        {
+          "word": " descobriu",
+          "start": 14.28,
+          "end": 14.82
+        },
+        {
+          "word": " que",
+          "start": 14.82,
+          "end": 14.9
+        },
+        {
+          "word": " as",
+          "start": 14.9,
+          "end": 15.02
+        },
+        {
+          "word": " duas",
+          "start": 15.02,
+          "end": 15.2
+        },
+        {
+          "word": " eram",
+          "start": 15.2,
+          "end": 15.42
+        },
+        {
+          "word": " no",
+          "start": 15.42,
+          "end": 15.56
+        },
+        {
+          "word": " mesmo",
+          "start": 15.56,
+          "end": 15.82
+        },
+        {
+          "word": " final",
+          "start": 15.82,
+          "end": 16.1
+        },
+        {
+          "word": " de",
+          "start": 16.1,
+          "end": 16.24
+        },
+        {
+          "word": " semana.",
+          "start": 16.24,
+          "end": 16.5
+        }
+      ]
+    },
+    {
+      "text": " Você prefere ir na de 50, só que nenhuma tem rimbolso e você só pode ir em uma.",
+      "start": 16.78,
+      "end": 21.32,
+      "words": [
+        {
+          "word": " Você",
+          "start": 16.78,
+          "end": 17.0
+        },
+        {
+          "word": " prefere",
+          "start": 17.0,
+          "end": 17.42
+        },
+        {
+          "word": " ir",
+          "start": 17.42,
+          "end": 17.62
+        },
+        {
+          "word": " na",
+          "start": 17.62,
+          "end": 17.76
+        },
+        {
+          "word": " de",
+          "start": 17.76,
+          "end": 17.86
+        },
+        {
+          "word": " 50,",
+          "start": 17.86,
+          "end": 18.16
+        },
+        {
+          "word": " só",
+          "start": 18.46,
+          "end": 18.58
+        },
+        {
+          "word": " que",
+          "start": 18.58,
+          "end": 18.72
+        },
+        {
+          "word": " nenhuma",
+          "start": 18.72,
+          "end": 19.02
+        },
+        {
+          "word": " tem",
+          "start": 19.02,
+          "end": 19.22
+        },
+        {
+          "word": " rimbolso",
+          "start": 19.22,
+          "end": 19.68
+        },
+        {
+          "word": " e",
+          "start": 19.68,
+          "end": 20.02
+        },
+        {
+          "word": " você",
+          "start": 20.02,
+          "end": 20.2
+        },
+        {
+          "word": " só",
+          "start": 20.2,
+          "end": 20.38
+        },
+        {
+          "word": " pode",
+          "start": 20.38,
+          "end": 20.72
+        },
+        {
+          "word": " ir",
+          "start": 20.72,
+          "end": 20.96
+        },
+        {
+          "word": " em",
+          "start": 20.96,
+          "end": 21.12
+        },
+        {
+          "word": " uma.",
+          "start": 21.12,
+          "end": 21.32
+        }
+      ]
+    },
+    {
+      "text": " Mais da metade escolheu a de 100, mesmo achando que ia gostar menos dela.",
+      "start": 21.6,
+      "end": 25.08,
+      "words": [
+        {
+          "word": " Mais",
+          "start": 21.6,
+          "end": 21.84
+        },
+        {
+          "word": " da",
+          "start": 21.84,
+          "end": 21.98
+        },
+        {
+          "word": " metade",
+          "start": 21.98,
+          "end": 22.36
+        },
+        {
+          "word": " escolheu",
+          "start": 22.36,
+          "end": 22.82
+        },
+        {
+          "word": " a",
+          "start": 22.82,
+          "end": 22.88
+        },
+        {
+          "word": " de",
+          "start": 22.88,
+          "end": 22.96
+        },
+        {
+          "word": " 100,",
+          "start": 22.96,
+          "end": 23.22
+        },
+        {
+          "word": " mesmo",
+          "start": 23.48,
+          "end": 23.72
+        },
+        {
+          "word": " achando",
+          "start": 23.72,
+          "end": 24.06
+        },
+        {
+          "word": " que",
+          "start": 24.06,
+          "end": 24.2
+        },
+        {
+          "word": " ia",
+          "start": 24.2,
+          "end": 24.24
+        },
+        {
+          "word": " gostar",
+          "start": 24.24,
+          "end": 24.46
+        },
+        {
+          "word": " menos",
+          "start": 24.46,
+          "end": 24.78
+        },
+        {
+          "word": " dela.",
+          "start": 24.78,
+          "end": 25.08
+        }
+      ]
+    },
+    {
+      "text": " Mas escolher a máscara não devolvia dinheiro nenhum, as duas já estavam pagas.",
+      "start": 25.52,
+      "end": 29.3,
+      "words": [
+        {
+          "word": " Mas",
+          "start": 25.52,
+          "end": 25.72
+        },
+        {
+          "word": " escolher",
+          "start": 25.72,
+          "end": 26.08
+        },
+        {
+          "word": " a",
+          "start": 26.08,
+          "end": 26.18
+        },
+        {
+          "word": " máscara",
+          "start": 26.18,
+          "end": 26.56
+        },
+        {
+          "word": " não",
+          "start": 26.56,
+          "end": 26.8
+        },
+        {
+          "word": " devolvia",
+          "start": 26.8,
+          "end": 27.24
+        },
+        {
+          "word": " dinheiro",
+          "start": 27.24,
+          "end": 27.48
+        },
+        {
+          "word": " nenhum,",
+          "start": 27.48,
+          "end": 27.74
+        },
+        {
+          "word": " as",
+          "start": 28.0,
+          "end": 28.14
+        },
+        {
+          "word": " duas",
+          "start": 28.14,
+          "end": 28.4
+        },
+        {
+          "word": " já",
+          "start": 28.4,
+          "end": 28.58
+        },
+        {
+          "word": " estavam",
+          "start": 28.58,
+          "end": 28.9
+        },
+        {
+          "word": " pagas.",
+          "start": 28.9,
+          "end": 29.3
+        }
+      ]
+    },
+    {
+      "text": " A única coisa que ainda dava para escolher era como passar o final de semana.",
+      "start": 29.3,
+      "end": 32.78,
+      "words": [
+        {
+          "word": " A",
+          "start": 29.3,
+          "end": 29.52
+        },
+        {
+          "word": " única",
+          "start": 29.52,
+          "end": 29.74
+        },
+        {
+          "word": " coisa",
+          "start": 29.74,
+          "end": 30.04
+        },
+        {
+          "word": " que",
+          "start": 30.04,
+          "end": 30.24
+        },
+        {
+          "word": " ainda",
+          "start": 30.24,
+          "end": 30.34
+        },
+        {
+          "word": " dava",
+          "start": 30.34,
+          "end": 30.64
+        },
+        {
+          "word": " para",
+          "start": 30.64,
+          "end": 30.82
+        },
+        {
+          "word": " escolher",
+          "start": 30.82,
+          "end": 31.2
+        },
+        {
+          "word": " era",
+          "start": 31.2,
+          "end": 31.58
+        },
+        {
+          "word": " como",
+          "start": 31.58,
+          "end": 31.78
+        },
+        {
+          "word": " passar",
+          "start": 31.78,
+          "end": 32.1
+        },
+        {
+          "word": " o",
+          "start": 32.1,
+          "end": 32.28
+        },
+        {
+          "word": " final",
+          "start": 32.28,
+          "end": 32.4
+        },
+        {
+          "word": " de",
+          "start": 32.4,
+          "end": 32.54
+        },
+        {
+          "word": " semana.",
+          "start": 32.54,
+          "end": 32.78
+        }
+      ]
+    },
+    {
+      "text": " É o mesmo raciocínio de continuar no projeto, mas eu já coloquei tempo e energia nisso.",
+      "start": 33.1,
+      "end": 37.4,
+      "words": [
+        {
+          "word": " É",
+          "start": 33.1,
+          "end": 33.26
+        },
+        {
+          "word": " o",
+          "start": 33.26,
+          "end": 33.36
+        },
+        {
+          "word": " mesmo",
+          "start": 33.36,
+          "end": 33.54
+        },
+        {
+          "word": " raciocínio",
+          "start": 33.54,
+          "end": 34.1
+        },
+        {
+          "word": " de",
+          "start": 34.1,
+          "end": 34.18
+        },
+        {
+          "word": " continuar",
+          "start": 34.18,
+          "end": 34.54
+        },
+        {
+          "word": " no",
+          "start": 34.54,
+          "end": 34.66
+        },
+        {
+          "word": " projeto,",
+          "start": 34.66,
+          "end": 34.96
+        },
+        {
+          "word": " mas",
+          "start": 35.2,
+          "end": 35.3
+        },
+        {
+          "word": " eu",
+          "start": 35.3,
+          "end": 35.38
+        },
+        {
+          "word": " já",
+          "start": 35.38,
+          "end": 35.48
+        },
+        {
+          "word": " coloquei",
+          "start": 35.48,
+          "end": 35.94
+        },
+        {
+          "word": " tempo",
+          "start": 35.94,
+          "end": 36.36
+        },
+        {
+          "word": " e",
+          "start": 36.36,
+          "end": 36.62
+        },
+        {
+          "word": " energia",
+          "start": 36.62,
+          "end": 36.98
+        },
+        {
+          "word": " nisso.",
+          "start": 36.98,
+          "end": 37.4
+        }
+      ]
+    },
+    {
+      "text": " Eu entendo, é difícil olhar para esses fostos e pensar em parar.",
+      "start": 37.7,
+      "end": 40.0,
+      "words": [
+        {
+          "word": " Eu",
+          "start": 37.7,
+          "end": 37.78
+        },
+        {
+          "word": " entendo,",
+          "start": 37.78,
+          "end": 38.1
+        },
+        {
+          "word": " é",
+          "start": 38.2,
+          "end": 38.22
+        },
+        {
+          "word": " difícil",
+          "start": 38.22,
+          "end": 38.4
+        },
+        {
+          "word": " olhar",
+          "start": 38.4,
+          "end": 38.72
+        },
+        {
+          "word": " para",
+          "start": 38.72,
+          "end": 38.86
+        },
+        {
+          "word": " esses",
+          "start": 38.86,
+          "end": 39.0
+        },
+        {
+          "word": " fostos",
+          "start": 39.0,
+          "end": 39.36
+        },
+        {
+          "word": " e",
+          "start": 39.36,
+          "end": 39.46
+        },
+        {
+          "word": " pensar",
+          "start": 39.46,
+          "end": 39.68
+        },
+        {
+          "word": " em",
+          "start": 39.68,
+          "end": 39.82
+        },
+        {
+          "word": " parar.",
+          "start": 39.82,
+          "end": 40.0
+        }
+      ]
+    },
+    {
+      "text": " Só que continuar por mais um ano não devolve os três anteriores.",
+      "start": 40.5,
+      "end": 43.42,
+      "words": [
+        {
+          "word": " Só",
+          "start": 40.5,
+          "end": 40.64
+        },
+        {
+          "word": " que",
+          "start": 40.64,
+          "end": 40.74
+        },
+        {
+          "word": " continuar",
+          "start": 40.74,
+          "end": 41.2
+        },
+        {
+          "word": " por",
+          "start": 41.2,
+          "end": 41.42
+        },
+        {
+          "word": " mais",
+          "start": 41.42,
+          "end": 41.62
+        },
+        {
+          "word": " um",
+          "start": 41.62,
+          "end": 41.82
+        },
+        {
+          "word": " ano",
+          "start": 41.82,
+          "end": 42.04
+        },
+        {
+          "word": " não",
+          "start": 42.04,
+          "end": 42.34
+        },
+        {
+          "word": " devolve",
+          "start": 42.34,
+          "end": 42.7
+        },
+        {
+          "word": " os",
+          "start": 42.7,
+          "end": 42.92
+        },
+        {
+          "word": " três",
+          "start": 42.92,
+          "end": 43.02
+        },
+        {
+          "word": " anteriores.",
+          "start": 43.02,
+          "end": 43.42
+        }
+      ]
+    },
+    {
+      "text": " Se ainda existe um bom motivo para continuar, ótimo.",
+      "start": 43.92,
+      "end": 46.24,
+      "words": [
+        {
+          "word": " Se",
+          "start": 43.92,
+          "end": 44.26
+        },
+        {
+          "word": " ainda",
+          "start": 44.26,
+          "end": 44.36
+        },
+        {
+          "word": " existe",
+          "start": 44.36,
+          "end": 44.58
+        },
+        {
+          "word": " um",
+          "start": 44.58,
+          "end": 44.7
+        },
+        {
+          "word": " bom",
+          "start": 44.7,
+          "end": 44.8
+        },
+        {
+          "word": " motivo",
+          "start": 44.8,
+          "end": 45.08
+        },
+        {
+          "word": " para",
+          "start": 45.08,
+          "end": 45.28
+        },
+        {
+          "word": " continuar,",
+          "start": 45.28,
+          "end": 45.66
+        },
+        {
+          "word": " ótimo.",
+          "start": 45.9,
+          "end": 46.24
+        }
+      ]
+    },
+    {
+      "text": " Mas já investir demais para parar não pode ser o único motivo.",
+      "start": 46.48,
+      "end": 49.52,
+      "words": [
+        {
+          "word": " Mas",
+          "start": 46.48,
+          "end": 46.54
+        },
+        {
+          "word": " já",
+          "start": 46.54,
+          "end": 46.72
+        },
+        {
+          "word": " investir",
+          "start": 46.72,
+          "end": 47.04
+        },
+        {
+          "word": " demais",
+          "start": 47.04,
+          "end": 47.38
+        },
+        {
+          "word": " para",
+          "start": 47.38,
+          "end": 47.6
+        },
+        {
+          "word": " parar",
+          "start": 47.6,
+          "end": 47.94
+        },
+        {
+          "word": " não",
+          "start": 47.94,
+          "end": 48.48
+        },
+        {
+          "word": " pode",
+          "start": 48.48,
+          "end": 48.68
+        },
+        {
+          "word": " ser",
+          "start": 48.68,
+          "end": 48.86
+        },
+        {
+          "word": " o",
+          "start": 48.86,
+          "end": 49.0
+        },
+        {
+          "word": " único",
+          "start": 49.0,
+          "end": 49.18
+        },
+        {
+          "word": " motivo.",
+          "start": 49.18,
+          "end": 49.52
+        }
+      ]
+    },
+    {
+      "text": " A pergunta se faz é, se eu tivesse começado hoje, com o que eu sei agora,",
+      "start": 50.02,
+      "end": 53.96,
+      "words": [
+        {
+          "word": " A",
+          "start": 50.02,
+          "end": 50.1
+        },
+        {
+          "word": " pergunta",
+          "start": 50.1,
+          "end": 50.42
+        },
+        {
+          "word": " se",
+          "start": 50.42,
+          "end": 50.68
+        },
+        {
+          "word": " faz",
+          "start": 50.68,
+          "end": 50.92
+        },
+        {
+          "word": " é,",
+          "start": 50.92,
+          "end": 51.22
+        },
+        {
+          "word": " se",
+          "start": 51.48,
+          "end": 51.58
+        },
+        {
+          "word": " eu",
+          "start": 51.58,
+          "end": 51.64
+        },
+        {
+          "word": " tivesse",
+          "start": 51.64,
+          "end": 51.84
+        },
+        {
+          "word": " começado",
+          "start": 51.84,
+          "end": 52.34
+        },
+        {
+          "word": " hoje,",
+          "start": 52.34,
+          "end": 52.68
+        },
+        {
+          "word": " com",
+          "start": 53.08,
+          "end": 53.24
+        },
+        {
+          "word": " o",
+          "start": 53.24,
+          "end": 53.38
+        },
+        {
+          "word": " que",
+          "start": 53.38,
+          "end": 53.38
+        },
+        {
+          "word": " eu",
+          "start": 53.38,
+          "end": 53.46
+        },
+        {
+          "word": " sei",
+          "start": 53.46,
+          "end": 53.6
+        },
+        {
+          "word": " agora,",
+          "start": 53.6,
+          "end": 53.96
+        }
+      ]
+    },
+    {
+      "text": " eu escolheria isso de novo?",
+      "start": 54.48,
+      "end": 55.66,
+      "words": [
+        {
+          "word": " eu",
+          "start": 54.48,
+          "end": 54.5
+        },
+        {
+          "word": " escolheria",
+          "start": 54.5,
+          "end": 55.08
+        },
+        {
+          "word": " isso",
+          "start": 55.08,
+          "end": 55.34
+        },
+        {
+          "word": " de",
+          "start": 55.34,
+          "end": 55.48
+        },
+        {
+          "word": " novo?",
+          "start": 55.48,
+          "end": 55.66
+        }
+      ]
+    }
+  ]
+}

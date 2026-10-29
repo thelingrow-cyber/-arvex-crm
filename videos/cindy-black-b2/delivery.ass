@@ -1,0 +1,92 @@
+﻿[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Base,Inter ExtraBold,64,&H00F6FDFF,&H00F6FDFF,&H002E1714,&H002E1714,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+Style: Caption,Inter ExtraBold,56,&H00F6FDFF,&H00F6FDFF,&H002E1714,&H002E1714,0,0,0,0,100,100,0,0,3,18,0,5,78,128,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:45.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 260 l 1002 260 1002 323 78 323
+Dialogue: 2,0:00:00.00,0:00:45.00,Base,,0,0,0,,{\an7\pos(101,276)\fs24\1c&H70B8DD&\bord0}CINDY BATISTA
+Dialogue: 2,0:00:00.00,0:00:45.00,Base,,0,0,0,,{\an9\pos(979,276)\fs24\1c&H70B8DD&\bord0}BLACK RECORDE
+Dialogue: 0,0:00:00.00,0:00:45.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 1500 l 952 1500 952 1575 78 1575
+Dialogue: 2,0:00:00.00,0:00:45.00,Base,,0,0,0,,{\an5\pos(515,1537)\fs29\1c&H70B8DD&\bord0}27 OUT   ·   20H   ·   AO VIVO E GRATUITO
+Dialogue: 0,0:00:00.00,0:00:06.21,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 350 l 1002 350 1002 635 78 635
+Dialogue: 0,0:00:00.00,0:00:06.21,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 78 632 l 1002 632 1002 635 78 635
+Dialogue: 2,0:00:00.00,0:00:06.21,Base,,0,0,0,,{\an7\pos(114,385)\fs25\1c&H70B8DD&\bord0}MESMO DESCONTO.
+Dialogue: 2,0:00:00.00,0:00:06.21,Base,,0,0,0,,{\an7\move(114,517,114,432,0,240)\clip(114,432,966,504)\fs64\bord0}POR QUE ESCOLHER
+Dialogue: 2,0:00:00.11,0:00:06.21,Base,,0,0,0,,{\an7\move(114,589,114,504,0,210)\clip(114,504,966,576)\fs64\bord0}A SUA ÓTICA?
+Dialogue: 0,0:00:00.14,0:00:06.21,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 114 600 l 234 600 234 605 114 605
+Dialogue: 0,0:00:06.46,0:00:11.88,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 350 l 1002 350 1002 635 78 635
+Dialogue: 0,0:00:06.46,0:00:11.88,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 78 632 l 1002 632 1002 635 78 635
+Dialogue: 2,0:00:06.46,0:00:11.88,Base,,0,0,0,,{\an7\pos(114,385)\fs25\1c&H70B8DD&\bord0}VENDER MAIS
+Dialogue: 2,0:00:06.46,0:00:11.88,Base,,0,0,0,,{\an7\move(114,517,114,432,0,240)\clip(114,432,966,504)\fs64\bord0}E SOBRAR
+Dialogue: 2,0:00:06.57,0:00:11.88,Base,,0,0,0,,{\an7\move(114,589,114,504,0,210)\clip(114,504,966,576)\fs64\bord0}MENOS?
+Dialogue: 0,0:00:06.60,0:00:11.88,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 114 600 l 234 600 234 605 114 605
+Dialogue: 0,0:00:11.88,0:00:18.24,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 350 l 1002 350 1002 635 78 635
+Dialogue: 0,0:00:11.88,0:00:18.24,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 78 632 l 1002 632 1002 635 78 635
+Dialogue: 2,0:00:11.88,0:00:18.24,Base,,0,0,0,,{\an7\pos(114,385)\fs25\1c&H70B8DD&\bord0}A BLACK COMEÇA
+Dialogue: 2,0:00:11.88,0:00:18.24,Base,,0,0,0,,{\an7\move(114,517,114,432,0,240)\clip(114,432,966,504)\fs64\bord0}ANTES DE
+Dialogue: 2,0:00:11.99,0:00:18.24,Base,,0,0,0,,{\an7\move(114,589,114,504,0,210)\clip(114,504,966,576)\fs64\bord0}NOVEMBRO.
+Dialogue: 0,0:00:12.02,0:00:18.24,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 114 600 l 234 600 234 605 114 605
+Dialogue: 0,0:00:21.78,0:00:27.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 350 l 1002 350 1002 649 78 649
+Dialogue: 0,0:00:21.78,0:00:27.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 78 646 l 1002 646 1002 649 78 649
+Dialogue: 2,0:00:21.78,0:00:27.00,Base,,0,0,0,,{\an7\pos(114,385)\fs25\1c&H70B8DD&\bord0}WORKSHOP
+Dialogue: 2,0:00:21.78,0:00:27.00,Base,,0,0,0,,{\an7\move(114,517,114,432,0,240)\clip(114,432,966,511)\fs70\bord0}OPERAÇÃO
+Dialogue: 2,0:00:21.89,0:00:27.00,Base,,0,0,0,,{\an7\move(114,596,114,511,0,210)\clip(114,511,966,590)\fs70\bord0}BLACK RECORDE
+Dialogue: 0,0:00:21.92,0:00:27.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 114 614 l 234 614 234 619 114 619
+Dialogue: 0,0:00:27.00,0:00:31.66,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 350 l 1002 350 1002 635 78 635
+Dialogue: 0,0:00:27.00,0:00:31.66,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 78 632 l 1002 632 1002 635 78 635
+Dialogue: 2,0:00:27.00,0:00:31.66,Base,,0,0,0,,{\an7\pos(114,385)\fs25\1c&H70B8DD&\bord0}VAMOS MONTAR JUNTOS
+Dialogue: 2,0:00:27.00,0:00:31.66,Base,,0,0,0,,{\an7\move(114,517,114,432,0,240)\clip(114,432,966,504)\fs64\bord0}OFERTA.
+Dialogue: 2,0:00:27.11,0:00:31.66,Base,,0,0,0,,{\an7\move(114,589,114,504,0,210)\clip(114,504,966,576)\fs64\bord0}CAMPANHA.
+Dialogue: 0,0:00:27.14,0:00:31.66,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 114 600 l 234 600 234 605 114 605
+Dialogue: 0,0:00:31.66,0:00:38.55,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 350 l 1002 350 1002 635 78 635
+Dialogue: 0,0:00:31.66,0:00:38.55,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 78 632 l 1002 632 1002 635 78 635
+Dialogue: 2,0:00:31.66,0:00:38.55,Base,,0,0,0,,{\an7\pos(114,385)\fs25\1c&H70B8DD&\bord0}BUSQUE UM NOVO RECORDE
+Dialogue: 2,0:00:31.66,0:00:38.55,Base,,0,0,0,,{\an7\move(114,517,114,432,0,240)\clip(114,432,966,504)\fs64\bord0}OS MAIORES
+Dialogue: 2,0:00:31.77,0:00:38.55,Base,,0,0,0,,{\an7\move(114,589,114,504,0,210)\clip(114,504,966,576)\fs64\bord0}60 DIAS DO ANO.
+Dialogue: 0,0:00:31.80,0:00:38.55,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 114 600 l 234 600 234 605 114 605
+Dialogue: 0,0:00:38.55,0:00:45.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H2E1714&\bord0}m 78 350 l 1002 350 1002 635 78 635
+Dialogue: 0,0:00:38.55,0:00:45.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 78 632 l 1002 632 1002 635 78 635
+Dialogue: 2,0:00:38.55,0:00:45.00,Base,,0,0,0,,{\an7\pos(114,385)\fs25\1c&H70B8DD&\bord0}27/10 · 20H · GRATUITO
+Dialogue: 2,0:00:38.55,0:00:45.00,Base,,0,0,0,,{\an7\move(114,517,114,432,0,240)\clip(114,432,966,504)\fs64\bord0}ENTRE NO
+Dialogue: 2,0:00:38.66,0:00:45.00,Base,,0,0,0,,{\an7\move(114,589,114,504,0,210)\clip(114,504,966,576)\fs64\bord0}GRUPO VIP
+Dialogue: 0,0:00:38.69,0:00:45.00,Base,,0,0,0,,{\an7\pos(0,0)\p1\1c&H70B8DD&\bord0}m 114 600 l 234 600 234 605 114 605
+Dialogue: 4,0:00:00.10,0:00:01.54,Caption,,0,0,0,,{\an5\pos(515,1387)}Se a ótica da esquina
+Dialogue: 4,0:00:01.54,0:00:03.00,Caption,,0,0,0,,{\an5\pos(515,1387)}fizer o mesmo {\1c&H70B8DD&}desconto{\1c&HF6FDFF&} que
+Dialogue: 4,0:00:03.00,0:00:03.84,Caption,,0,0,0,,{\an5\pos(515,1387)}você…
+Dialogue: 4,0:00:03.92,0:00:04.77,Caption,,0,0,0,,{\an5\pos(515,1387)}por que o cliente vai
+Dialogue: 4,0:00:04.77,0:00:05.96,Caption,,0,0,0,,{\an5\pos(515,1387)}comprar na sua?
+Dialogue: 4,0:00:06.21,0:00:07.40,Caption,,0,0,0,,{\an5\pos(515,1387)}Se tudo gira em torno
+Dialogue: 4,0:00:07.40,0:00:09.19,Caption,,0,0,0,,{\an5\pos(515,1387)}do {\1c&H70B8DD&}desconto{\1c&HF6FDFF&}, você pode\Nvender
+Dialogue: 4,0:00:09.19,0:00:10.69,Caption,,0,0,0,,{\an5\pos(515,1387)}mais e terminar o mês
+Dialogue: 4,0:00:10.69,0:00:11.87,Caption,,0,0,0,,{\an5\pos(515,1387)}com menos {\1c&H70B8DD&}lucro{\1c&HF6FDFF&}.
+Dialogue: 4,0:00:11.88,0:00:13.24,Caption,,0,0,0,,{\an5\pos(515,1387)}Por isso, a sua {\1c&H70B8DD&}Black{\1c&HF6FDFF&}
+Dialogue: 4,0:00:13.24,0:00:14.53,Caption,,0,0,0,,{\an5\pos(515,1387)}precisa começar antes de
+Dialogue: 4,0:00:14.53,0:00:15.33,Caption,,0,0,0,,{\an5\pos(515,1387)}novembro.
+Dialogue: 4,0:00:15.45,0:00:16.65,Caption,,0,0,0,,{\an5\pos(515,1387)}Com a {\1c&H70B8DD&}oferta{\1c&HF6FDFF&} e a
+Dialogue: 4,0:00:16.65,0:00:18.08,Caption,,0,0,0,,{\an5\pos(515,1387)}{\1c&H70B8DD&}campanha{\1c&HF6FDFF&} prontas.
+Dialogue: 4,0:00:18.24,0:00:19.44,Caption,,0,0,0,,{\an5\pos(515,1387)}Dia vinte e sete de
+Dialogue: 4,0:00:19.44,0:00:21.38,Caption,,0,0,0,,{\an5\pos(515,1387)}outubro, às oito da noite,
+Dialogue: 4,0:00:21.38,0:00:22.81,Caption,,0,0,0,,{\an5\pos(515,1387)}eu te espero no Workshop
+Dialogue: 4,0:00:22.81,0:00:24.74,Caption,,0,0,0,,{\an5\pos(515,1387)}Operação {\1c&H70B8DD&}Black{\1c&HF6FDFF&} {\1c&H70B8DD&}Recorde{\1c&HF6FDFF&}.
+Dialogue: 4,0:00:25.06,0:00:26.87,Caption,,0,0,0,,{\an5\pos(515,1387)}Ao vivo e {\1c&H70B8DD&}gratuito{\1c&HF6FDFF&}.
+Dialogue: 4,0:00:27.00,0:00:28.43,Caption,,0,0,0,,{\an5\pos(515,1387)}Vamos montar juntos o que
+Dialogue: 4,0:00:28.43,0:00:30.48,Caption,,0,0,0,,{\an5\pos(515,1387)}oferecer, quando começar e
+Dialogue: 4,0:00:30.48,0:00:31.58,Caption,,0,0,0,,{\an5\pos(515,1387)}como divulgar.
+Dialogue: 4,0:00:31.66,0:00:33.05,Caption,,0,0,0,,{\an5\pos(515,1387)}Pra você buscar um novo
+Dialogue: 4,0:00:33.05,0:00:34.83,Caption,,0,0,0,,{\an5\pos(515,1387)}{\1c&H70B8DD&}recorde{\1c&HF6FDFF&} na sua ótica e
+Dialogue: 4,0:00:34.83,0:00:36.44,Caption,,0,0,0,,{\an5\pos(515,1387)}fazer desses últimos\Nsessenta
+Dialogue: 4,0:00:36.44,0:00:37.96,Caption,,0,0,0,,{\an5\pos(515,1387)}dias os maiores do seu
+Dialogue: 4,0:00:37.96,0:00:38.38,Caption,,0,0,0,,{\an5\pos(515,1387)}ano.
+Dialogue: 4,0:00:38.55,0:00:39.98,Caption,,0,0,0,,{\an5\pos(515,1387)}Clica em saiba mais e
+Dialogue: 4,0:00:39.98,0:00:41.37,Caption,,0,0,0,,{\an5\pos(515,1387)}entra no grupo {\1c&H70B8DD&}VIP{\1c&HF6FDFF&}.
+Dialogue: 4,0:00:41.45,0:00:42.86,Caption,,0,0,0,,{\an5\pos(515,1387)}O link do workshop vai
+Dialogue: 4,0:00:42.86,0:00:43.84,Caption,,0,0,0,,{\an5\pos(515,1387)}sair lá.

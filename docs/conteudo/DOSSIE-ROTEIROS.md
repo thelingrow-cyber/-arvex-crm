@@ -355,3 +355,13 @@ conversão, não de alcance. Falta a peça de **identidade dentro do território
 
 **O modelo operacional dele é a resposta para o gargalo de gravação do Vitor:** gravar longo uma vez
 (conversa, aula, call) e recortar em dezenas de clipes de 30-45s, cada um com uma ideia e sem CTA.
+
+## Adição em 28/10/2026 — Fábio Hansen (@fabiohansen)
+
+**[Abrir o dossiê completo](banco-roteiros/players/fabio-hansen/ESTUDO.md)** · [16 vídeos com métricas e classificação](banco-roteiros/players/fabio-hansen/ANEXOS.md) · [Ficha de A Origem](banco-roteiros/referencias/ref-fabiohansen-teu-valor-sendo-escrito-DdbwbqdKmil.md).
+
+Consultoria de marca pessoal para profissionais experientes. O mecanismo mais interessante é fazer o espectador julgar uma imagem ou situação e depois explicar o julgamento, chegando a uma consequência profissional. Há quizzes visuais com 233.151, 12.155 e 1.613 views: a estrutura merece teste, sem tratar aparência como causa suficiente. A Origem tem 158.055 e a auditoria da academia, 69.317. Os três maiores concentram 91,8% das views dos 16.
+
+**Mudança no nosso entendimento:** relato pessoal acompanhado de descoberta visível pode alcançar; não cabe uma proibição absoluta. **Aplicação proposta:** escolha entre fluxos para expor dependência do dono, auditoria de gargalo real e analogia cultural sobre execução versus decisão. Briefings no estudo, sem alterar a grade aprovada.
+
+**Limite:** alvo de 50 não atingido; tentativa de ampliar recebeu HTTP 402 do Apify. Base efetiva de 16 publicados entre 05/08 e 28/10, com transcrições lidas, todos classificados e nove folhas visuais inspecionadas. Sem acesso a retenção, vendas ou investimento. Mediana de 2.675 nos 13 com pelo menos três dias; idades diferentes e versões próximas exigem cautela.

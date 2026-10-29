@@ -1,0 +1,172 @@
+{
+ "titulo": "O PARADOXO DE JEVONS",
+ "topo": {
+  "seq": [
+   {
+    "de": 0.0,
+    "video": "tools/video-recut/videos/2026-10-jevons/vapor1.mp4",
+    "inicio": 12,
+    "crop": "972:720:154:0"
+   },
+   {
+    "de": 4.1,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/d893c7749f.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Halodi Robotics' Perception Engineer With a Humanoid Collaborative Robot.jpg"
+   },
+   {
+    "de": 6.97,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/ff63f8b816.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Loutherbourg, Coalbrookdale by Night.jpg"
+   },
+   {
+    "de": 9.07,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/c17e182d15.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:William Stanley Jevons portrait.jpg"
+   },
+   {
+    "de": 11.37,
+    "video": "tools/video-recut/videos/2026-10-jevons/vapor2.mp4",
+    "inicio": 3,
+    "crop": "960:711:0:4"
+   },
+   {
+    "de": 14.54,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/7d5cd3cf25.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:William Bell Scott - Iron and Coal.jpg"
+   },
+   {
+    "de": 17.2,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/c8572db494.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:James Nasmyth (1808-1890) - A Steam Hammer at Work - 1957-15 - Science Museum.jpg"
+   },
+   {
+    "de": 19.32,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/c1e08f408f.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Turner - Rain, Steam and Speed - National Gallery file.jpg"
+   },
+   {
+    "de": 21.11,
+    "video": "tools/video-recut/videos/2026-10-jevons/loco.mp4",
+    "inicio": 22,
+    "crop": "972:720:154:0"
+   },
+   {
+    "de": 25.06,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/360c4f4461.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:William Stanley Jevons.jpg"
+   },
+   {
+    "de": 27.48,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/05af87ec6c.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Hand holding smartphone with ChatGPT (52917076309).jpg"
+   },
+   {
+    "de": 29.6,
+    "video": "tools/video-recut/videos/2026-10-jevons/gh.mp4",
+    "inicio": 5,
+    "crop": "972:720:154:0"
+   },
+   {
+    "de": 31.65,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/cb24cfb138.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Satya Nadella Talking.jpg"
+   },
+   {
+    "de": 34.33,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/fed6388054.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:BalticServers data center.jpg"
+   },
+   {
+    "de": 36.11,
+    "video": "tools/video-recut/videos/2026-10-jevons/teclado.mp4",
+    "inicio": 2,
+    "crop": "972:720:54:0"
+   },
+   {
+    "de": 39.29,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/9602f4a878.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Smartphone with ChatGPT app and laptop (52917381683).jpg"
+   },
+   {
+    "de": 45.12,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/0e0f2d59b8.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Eatons Factory Interior.jpg"
+   },
+   {
+    "de": 49.4,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/58c1131313.png",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Lithographie en couleurs de la mine du Creusot par Ignace-François Bonhommé et Jules Férat.png"
+   },
+   {
+    "de": 52.46,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/735db98a2a.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Smartphone with ChatGPT on keyboard (52917311050).jpg"
+   }
+  ]
+ },
+ "laterais": [
+  {
+   "de": 2.33,
+   "ate": 4.05,
+   "lado": "ESQ",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/00ff61f115.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Cotton Looms in Queen Street Mill, Harle Syke, Burnley, Lancashire.jpg"
+  },
+  {
+   "de": 9.07,
+   "ate": 11.3,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/afdb73706c.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:The Coal Question 2nd Edition Cover.jpg"
+  },
+  {
+   "de": 11.4,
+   "ate": 14.4,
+   "lado": "ESQ",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/d2c17e2812.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:James Watt Thomas Lawrence (1812).jpg"
+  },
+  {
+   "de": 14.6,
+   "ate": 17.1,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/698b99c4a1.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Mine Dagmara. Lysychansk. Late XIX century.jpg"
+  },
+  {
+   "de": 20.38,
+   "ate": 23.0,
+   "lado": "ESQ",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/29c1ad2f76.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:StateLibQld 1 52836 Workers in a boot making factory, South Brisbane, 1900.jpg"
+  },
+  {
+   "de": 29.6,
+   "ate": 31.6,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/b7f44d4e43.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Sam Altman November 2022.jpg"
+  },
+  {
+   "de": 31.7,
+   "ate": 34.2,
+   "lado": "ESQ",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/30ba4a9795.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Building92microsoft.jpg"
+  },
+  {
+   "de": 37.27,
+   "ate": 39.2,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/949dd1c682.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Aspect Tel-set telephone call centre.jpg"
+  },
+  {
+   "de": 40.55,
+   "ate": 43.4,
+   "lado": "ESQ",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/00e70fb6a7.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Keyboard with fingers.jpg"
+  }
+ ]
+}

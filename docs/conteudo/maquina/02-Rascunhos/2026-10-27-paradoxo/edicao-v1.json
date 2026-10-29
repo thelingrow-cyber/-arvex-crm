@@ -1,0 +1,148 @@
+{
+ "titulo": "O PARADOXO DE JEVONS",
+ "topo": {
+  "seq": [
+   {
+    "de": 0.0,
+    "video": "tools/video-recut/videos/2026-10-jevons/vapor1.mp4",
+    "inicio": 12,
+    "crop": "972:720:154:0"
+   },
+   {
+    "de": 4.1,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/29c1ad2f76.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:StateLibQld 1 52836 Workers in a boot making factory, South Brisbane, 1900.jpg"
+   },
+   {
+    "de": 6.97,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/360c4f4461.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:William Stanley Jevons.jpg"
+   },
+   {
+    "de": 11.37,
+    "video": "tools/video-recut/videos/2026-10-jevons/vapor1.mp4",
+    "inicio": 24,
+    "crop": "972:720:154:0"
+   },
+   {
+    "de": 14.54,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/7a96fded2d.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:19th Century Coal Workings (10632709344).jpg"
+   },
+   {
+    "de": 19.32,
+    "video": "tools/video-recut/videos/2026-10-jevons/loco.mp4",
+    "inicio": 22,
+    "crop": "972:720:154:0"
+   },
+   {
+    "de": 25.06,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/c17e182d15.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:William Stanley Jevons portrait.jpg"
+   },
+   {
+    "de": 29.6,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/cb24cfb138.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Satya Nadella Talking.jpg"
+   },
+   {
+    "de": 34.33,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/fed6388054.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:BalticServers data center.jpg"
+   },
+   {
+    "de": 39.29,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/0e0f2d59b8.jpg",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Eatons Factory Interior.jpg"
+   },
+   {
+    "de": 45.12,
+    "video": "tools/video-recut/videos/2026-10-jevons/vapor2.mp4",
+    "inicio": 3,
+    "crop": "960:711:0:4"
+   },
+   {
+    "de": 49.4,
+    "arquivo": "tools/video-recut/videos/2026-10-jevons/img/58c1131313.png",
+    "fonte": "https://commons.wikimedia.org/wiki/File:Lithographie en couleurs de la mine du Creusot par Ignace-François Bonhommé et Jules Férat.png"
+   }
+  ]
+ },
+ "laterais": [
+  {
+   "de": 2.33,
+   "ate": 4.05,
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-jevons/vapor2.mp4",
+   "inicio": 8,
+   "crop": "572:720:194:0"
+  },
+  {
+   "de": 9.07,
+   "ate": 11.3,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/afdb73706c.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:The Coal Question 2nd Edition Cover.jpg"
+  },
+  {
+   "de": 11.4,
+   "ate": 14.4,
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-jevons/vapor2.mp4",
+   "inicio": 12,
+   "crop": "572:720:194:0"
+  },
+  {
+   "de": 14.6,
+   "ate": 17.1,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/698b99c4a1.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Mine Dagmara. Lysychansk. Late XIX century.jpg"
+  },
+  {
+   "de": 20.38,
+   "ate": 23.0,
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-jevons/loco.mp4",
+   "inicio": 30,
+   "crop": "572:720:600:0"
+  },
+  {
+   "de": 20.6,
+   "ate": 23.0,
+   "lado": "DIR",
+   "video": "tools/video-recut/videos/2026-10-jevons/vapor1.mp4",
+   "inicio": 18,
+   "crop": "572:720:354:0"
+  },
+  {
+   "de": 36.11,
+   "ate": 39.2,
+   "lado": "ESQ",
+   "video": "tools/video-recut/videos/2026-10-jevons/teclado.mp4",
+   "inicio": 2,
+   "crop": "572:720:254:0"
+  },
+  {
+   "de": 37.27,
+   "ate": 39.2,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/949dd1c682.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Aspect Tel-set telephone call centre.jpg"
+  },
+  {
+   "de": 40.55,
+   "ate": 43.4,
+   "lado": "ESQ",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/29c1ad2f76.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:StateLibQld 1 52836 Workers in a boot making factory, South Brisbane, 1900.jpg"
+  },
+  {
+   "de": 52.46,
+   "ate": 55.2,
+   "lado": "DIR",
+   "arquivo": "tools/video-recut/videos/2026-10-jevons/img/00e70fb6a7.jpg",
+   "fonte": "https://commons.wikimedia.org/wiki/File:Keyboard with fingers.jpg"
+  }
+ ]
+}

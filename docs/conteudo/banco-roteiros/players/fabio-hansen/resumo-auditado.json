@@ -1,0 +1,140 @@
+{
+  "collected_on": "2026-10-28",
+  "collected_timezone": "America/Sao_Paulo",
+  "target_n": 50,
+  "obtained_n": 16,
+  "window": [
+    "2026-08-05",
+    "2026-10-28"
+  ],
+  "sampling_limit": "Reel scraper returned 16 despite limit 100. Second generic collection refused with HTTP 402 Payment Required; no claim of exhaustive profile coverage or independent historical peaks.",
+  "median_views_all": 1905.0,
+  "median_views_at_least_3_days": 2675,
+  "n_at_least_3_days": 13,
+  "median_views_mature_one_early_version_per_family": 2846.5,
+  "n_mature_deduplicated": 12,
+  "median_duration_all_seconds": 57.0,
+  "median_duration_mature_seconds": 64,
+  "recent_ids": [
+    "DfCzPIZCIVY",
+    "DfCwGzbCkPB",
+    "DfCtqhzibe5"
+  ],
+  "low_views_under_500": [
+    "DfCzPIZCIVY",
+    "DfCtqhzibe5",
+    "DeC4lxgiMLh"
+  ],
+  "low_views_interpretation": "Low public view counts; trial status, ad spend and distribution unavailable. Low older post remains in baseline.",
+  "total_views_observed": 501563,
+  "top3_views_share": 0.9181757825038929,
+  "spoken_follow_cta_count": 14,
+  "ratios": {
+    "quiz_september_vs_october_9": 19.181489099136158,
+    "quiz_september_vs_october_21": 144.54494730316182,
+    "origin_vs_nespresso": 156.9563058589871,
+    "origin_vs_mature_median": 59.08598130841121,
+    "gym_vs_mature_median": 25.91289719626168
+  },
+  "formats": [
+    {
+      "format": "Lista educativa",
+      "n": 1,
+      "median_all": 202,
+      "max_views": 202,
+      "n_mature": 0,
+      "median_mature": null
+    },
+    {
+      "format": "Experimento → aplicação",
+      "n": 3,
+      "median_all": 1470,
+      "max_views": 2197,
+      "n_mature": 2,
+      "median_mature": 1454.0
+    },
+    {
+      "format": "Identificação → convite",
+      "n": 2,
+      "median_all": 721.5,
+      "max_views": 1038,
+      "n_mature": 1,
+      "median_mature": 1038
+    },
+    {
+      "format": "Escolha visual → diagnóstico",
+      "n": 3,
+      "median_all": 12155,
+      "max_views": 233151,
+      "n_mature": 3,
+      "median_mature": 12155
+    },
+    {
+      "format": "Fato histórico → regra de comunicação",
+      "n": 1,
+      "median_all": 13426,
+      "max_views": 13426,
+      "n_mature": 1,
+      "median_mature": 13426
+    },
+    {
+      "format": "Caso de marca → aplicação",
+      "n": 2,
+      "median_all": 1841.0,
+      "max_views": 2675,
+      "n_mature": 2,
+      "median_mature": 1841.0
+    },
+    {
+      "format": "Opinião → consequência reputacional",
+      "n": 1,
+      "median_all": 3018,
+      "max_views": 3018,
+      "n_mature": 1,
+      "median_mature": 3018
+    },
+    {
+      "format": "Caso de cliente → diagnóstico",
+      "n": 1,
+      "median_all": 396,
+      "max_views": 396,
+      "n_mature": 1,
+      "median_mature": 396
+    },
+    {
+      "format": "Cinema → princípios aplicados",
+      "n": 1,
+      "median_all": 158055,
+      "max_views": 158055,
+      "n_mature": 1,
+      "median_mature": 158055
+    },
+    {
+      "format": "Auditoria visual no cotidiano",
+      "n": 1,
+      "median_all": 69317,
+      "max_views": 69317,
+      "n_mature": 1,
+      "median_mature": 69317
+    }
+  ],
+  "families": [
+    {
+      "name": "Experimento sobre primeira impressão",
+      "ids": [
+        "De2DKOxCVO7",
+        "De2NWmyitqZ",
+        "DfCwGzbCkPB"
+      ],
+      "note": "Mesmo argumento e grandes blocos de fala; versões/cortes, não três ideias independentes."
+    },
+    {
+      "name": "Manifesto de identificação",
+      "ids": [
+        "De68Z30ics2",
+        "DfCtqhzibe5"
+      ],
+      "note": "Texto muito próximo, abertura ligeiramente alterada."
+    }
+  ]
+}

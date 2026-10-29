@@ -1,0 +1,17 @@
+{
+  "idempotency_key": "bb698ea7-779b-4e14-8a89-32ab9b6640e8",
+  "status": "published",
+  "account": "@vitorsimoesb",
+  "account_id": "6ada8cccf527246cdb4441da",
+  "file": "2026-10-28-fingir-musica-headline-v3.mp4",
+  "caption": "quanto mais você finge, menos você finge.\n\n@vitorsimoesb\n#empreender #negocios #empreendedorismo",
+  "authorization": "User explicitly requested smaller images/headline and authorized posting in Codex on 2026-10-28.",
+  "created_at": "2026-10-28T18:12:15.971389-03:00",
+  "media_url": "https://media.zernio.com/temp/1793221935666_12d9e9e8d5ad1a7b_2026-10-28-fingir-musica-headline-v3.mp4",
+  "post_id": "6ae26538191365efca60876a",
+  "url": "https://www.instagram.com/reel/DfDXrQ8EyS5/",
+  "platform_status": "processing",
+  "published_at": null,
+  "completed_at": "2026-10-28T18:12:30.994815-03:00",
+  "erro": null
+}

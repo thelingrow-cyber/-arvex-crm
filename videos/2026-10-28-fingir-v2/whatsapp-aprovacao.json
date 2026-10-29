@@ -1,0 +1,11 @@
+{
+  "message_id": "3EB02FD08664ADB929EC85",
+  "status": "PENDING",
+  "codigo": "R90",
+  "sent_at": 1793221453,
+  "package": "docs/conteudo/maquina/02-Rascunhos/2026-10-28-codex-fingir-v2",
+  "approval_required": true,
+  "next_time_consulted": "2026-10-28T21:00:00-03:00",
+  "caption": "quanto mais você finge, menos você finge.\n\n@vitorsimoesb\n#empreender #negocios #empreendedorismo",
+  "known_source_issue": "Distorção visual em torno de 21s já presente no arquivo do usuário, sinalizada na mensagem de aprovação."
+}

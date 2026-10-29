@@ -1,0 +1,9 @@
+# Pauta do Caio
+
+**Título:** Um hacker sozinho usou agentes de IA para invadir mais de 100 sites, a uns 50 dólares cada
+**Data da notícia:** 2026-10-19 (relatório da NorForge e Reuters). Tem 5 dias, entra pela exceção: é forte e quase não saiu no Brasil.
+**Fatos conferidos:** No relatório da NorForge (Snorre Fagerland), o maior grupo tem 14 painéis com mais de 1.100 projetos de ataque · os alvos eram lojas online de verdade nos EUA, Canadá, Japão e Austrália, com 200 mil a 1,5 milhão de acessos · a taxa média de sucesso foi de cerca de 10% · cada invasão que deu certo levou, em média, um pouco menos de 23 horas · cada tarefa custou cerca de US$ 5, e o próprio autor diz que a estimativa pode estar bem errada · a ferramenta (Cairn) é de código aberto e foi feita para teste de invasão autorizado · a Reuters confirmou vítimas como Deere, SharkNinja (um site de suporte separado) e Cummins (site de um fornecedor)
+**Não confere / não usar:** "US$ 5 mil no total" e "US$ 50 por site invadido" são de uma entrevista do Fagerland à Reuters e não estão no relatório (a conta bate com US$ 5 por tarefa e 10% de sucesso, mas tem que ser dito como estimativa) · "1.200 sites atacados" é da Reuters (o relatório fala em 1.100 projetos) · ninguém sabe se dados foram roubados · o uso de Claude Code com DeepSeek é só uma hipótese do pesquisador
+**Concorrentes:** @matheusgomes deu, em 23/10, outra notícia de segurança (falha no Node.js e no PHP achada por IA) e fez 586 mil views. É sinal de que o tema puxa público, mas esta história ninguém contou. Nosso ângulo: o alvo foi loja online média, não banco
+**Fontes:** https://norforge.com/blog/inside_cairn · https://thenextweb.com/news/ai-agents-hacker-cairn-100-sites-deere-norforge
+**E daí pro dono:** invadir uma loja online ficou mais barato que um jantar, e o alvo era justamente a loja de porte médio que acha que ninguém vai perder tempo com ela

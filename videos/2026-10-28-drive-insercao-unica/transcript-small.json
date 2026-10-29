@@ -1,0 +1,1028 @@
+{
+  "text": " Quanto mais você finge, menos você finge. É assim que funciona. Se você fingisse aquilo o tempo todo, uma hora o seu subconsciente adota aquilo como sua nova identidade. E adivinha, você se torna aquilo. Por que atletas treinam? Eles simplesmente estão fingindo que são bons naquele esporte. Contando essa história para a cabeça deles. E se você finge por tempo suficiente, uma hora dessas você fica verdadeiramente bom naquilo. E é assim que funciona para todo o resto. Você só precisa escolher o que mais você precisa fingir no momento. Comunicação, o que você precisa fingir ser o gênio de algo. Finge, conte uma história para a sua mente e faça.",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 3.86,
+      "text": " Quanto mais você finge, menos você finge. É assim que funciona.",
+      "tokens": [
+        50364,
+        2326,
+        5857,
+        2420,
+        2723,
+        3823,
+        68,
+        11,
+        8902,
+        2723,
+        3823,
+        68,
+        13,
+        4922,
+        8249,
+        631,
+        26210,
+        13,
+        50564
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " Quanto",
+          "start": 0.0,
+          "end": 0.56,
+          "probability": 0.6178405657410622
+        },
+        {
+          "word": " mais",
+          "start": 0.56,
+          "end": 1.04,
+          "probability": 0.9965707063674927
+        },
+        {
+          "word": " você",
+          "start": 1.04,
+          "end": 1.48,
+          "probability": 0.9433659315109253
+        },
+        {
+          "word": " finge,",
+          "start": 1.48,
+          "end": 1.7,
+          "probability": 0.8900661170482635
+        },
+        {
+          "word": " menos",
+          "start": 1.92,
+          "end": 2.06,
+          "probability": 0.996346652507782
+        },
+        {
+          "word": " você",
+          "start": 2.06,
+          "end": 2.54,
+          "probability": 0.9497407674789429
+        },
+        {
+          "word": " finge.",
+          "start": 2.54,
+          "end": 2.76,
+          "probability": 0.9849163889884949
+        },
+        {
+          "word": " É",
+          "start": 3.08,
+          "end": 3.14,
+          "probability": 0.9560097455978394
+        },
+        {
+          "word": " assim",
+          "start": 3.14,
+          "end": 3.32,
+          "probability": 0.9980002045631409
+        },
+        {
+          "word": " que",
+          "start": 3.32,
+          "end": 3.44,
+          "probability": 0.9953657388687134
+        },
+        {
+          "word": " funciona.",
+          "start": 3.44,
+          "end": 3.86,
+          "probability": 0.9977676868438721
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "seek": 0,
+      "start": 4.34,
+      "end": 9.36,
+      "text": " Se você fingisse aquilo o tempo todo, uma hora o seu subconsciente adota aquilo como sua nova identidade.",
+      "tokens": [
+        50564,
+        1100,
+        2723,
+        3823,
+        7746,
+        32304,
+        277,
+        8972,
+        5149,
+        11,
+        2772,
+        15098,
+        277,
+        7986,
+        1422,
+        21190,
+        537,
+        1576,
+        614,
+        5377,
+        32304,
+        2617,
+        8233,
+        28265,
+        2473,
+        6014,
+        13,
+        50840
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " Se",
+          "start": 4.34,
+          "end": 4.34,
+          "probability": 0.9785608053207397
+        },
+        {
+          "word": " você",
+          "start": 4.34,
+          "end": 4.68,
+          "probability": 0.9753296971321106
+        },
+        {
+          "word": " fingisse",
+          "start": 4.68,
+          "end": 5.02,
+          "probability": 0.9552066326141357
+        },
+        {
+          "word": " aquilo",
+          "start": 5.02,
+          "end": 5.46,
+          "probability": 0.8907411098480225
+        },
+        {
+          "word": " o",
+          "start": 5.46,
+          "end": 5.52,
+          "probability": 0.7374830842018127
+        },
+        {
+          "word": " tempo",
+          "start": 5.52,
+          "end": 5.84,
+          "probability": 0.9962389469146729
+        },
+        {
+          "word": " todo,",
+          "start": 5.84,
+          "end": 6.28,
+          "probability": 0.9938727617263794
+        },
+        {
+          "word": " uma",
+          "start": 6.32,
+          "end": 6.6,
+          "probability": 0.9710829854011536
+        },
+        {
+          "word": " hora",
+          "start": 6.6,
+          "end": 6.8,
+          "probability": 0.9957727789878845
+        },
+        {
+          "word": " o",
+          "start": 6.8,
+          "end": 6.96,
+          "probability": 0.7468454837799072
+        },
+        {
+          "word": " seu",
+          "start": 6.96,
+          "end": 7.16,
+          "probability": 0.9530383348464966
+        },
+        {
+          "word": " subconsciente",
+          "start": 7.16,
+          "end": 7.66,
+          "probability": 0.9584964364767075
+        },
+        {
+          "word": " adota",
+          "start": 7.66,
+          "end": 7.94,
+          "probability": 0.9354120790958405
+        },
+        {
+          "word": " aquilo",
+          "start": 7.94,
+          "end": 8.3,
+          "probability": 0.9915115237236023
+        },
+        {
+          "word": " como",
+          "start": 8.3,
+          "end": 8.46,
+          "probability": 0.716621458530426
+        },
+        {
+          "word": " sua",
+          "start": 8.46,
+          "end": 8.68,
+          "probability": 0.901656985282898
+        },
+        {
+          "word": " nova",
+          "start": 8.68,
+          "end": 8.86,
+          "probability": 0.99828040599823
+        },
+        {
+          "word": " identidade.",
+          "start": 8.86,
+          "end": 9.36,
+          "probability": 0.9966312050819397
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "seek": 0,
+      "start": 9.82,
+      "end": 11.34,
+      "text": " E adivinha, você se torna aquilo.",
+      "tokens": [
+        50840,
+        462,
+        614,
+        592,
+        6727,
+        11,
+        2723,
+        369,
+        3930,
+        629,
+        32304,
+        13,
+        50940
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " E",
+          "start": 9.82,
+          "end": 9.9,
+          "probability": 0.8815076947212219
+        },
+        {
+          "word": " adivinha,",
+          "start": 9.9,
+          "end": 10.26,
+          "probability": 0.7904403805732727
+        },
+        {
+          "word": " você",
+          "start": 10.34,
+          "end": 10.54,
+          "probability": 0.9858893156051636
+        },
+        {
+          "word": " se",
+          "start": 10.54,
+          "end": 10.8,
+          "probability": 0.9899606704711914
+        },
+        {
+          "word": " torna",
+          "start": 10.8,
+          "end": 11.0,
+          "probability": 0.9951965808868408
+        },
+        {
+          "word": " aquilo.",
+          "start": 11.0,
+          "end": 11.34,
+          "probability": 0.997742772102356
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "seek": 0,
+      "start": 11.78,
+      "end": 13.62,
+      "text": " Por que atletas treinam?",
+      "tokens": [
+        50940,
+        5269,
+        631,
+        412,
+        2631,
+        296,
+        2192,
+        259,
+        335,
+        30,
+        51050
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " Por",
+          "start": 11.78,
+          "end": 11.82,
+          "probability": 0.5616681575775146
+        },
+        {
+          "word": " que",
+          "start": 11.82,
+          "end": 11.92,
+          "probability": 0.8546686768531799
+        },
+        {
+          "word": " atletas",
+          "start": 11.92,
+          "end": 13.24,
+          "probability": 0.956793487071991
+        },
+        {
+          "word": " treinam?",
+          "start": 13.24,
+          "end": 13.62,
+          "probability": 0.8865065773328146
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "seek": 0,
+      "start": 13.9,
+      "end": 17.16,
+      "text": " Eles simplesmente estão fingindo que são bons naquele esporte.",
+      "tokens": [
+        51050,
+        31096,
+        44482,
+        14775,
+        3823,
+        10306,
+        631,
+        8364,
+        33922,
+        1667,
+        17012,
+        785,
+        44614,
+        13,
+        51234
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " Eles",
+          "start": 13.9,
+          "end": 14.12,
+          "probability": 0.543001651763916
+        },
+        {
+          "word": " simplesmente",
+          "start": 14.12,
+          "end": 14.96,
+          "probability": 0.9707517027854919
+        },
+        {
+          "word": " estão",
+          "start": 14.96,
+          "end": 15.3,
+          "probability": 0.977207601070404
+        },
+        {
+          "word": " fingindo",
+          "start": 15.3,
+          "end": 15.7,
+          "probability": 0.9977608323097229
+        },
+        {
+          "word": " que",
+          "start": 15.7,
+          "end": 15.88,
+          "probability": 0.9754507541656494
+        },
+        {
+          "word": " são",
+          "start": 15.88,
+          "end": 16.04,
+          "probability": 0.9850817918777466
+        },
+        {
+          "word": " bons",
+          "start": 16.04,
+          "end": 16.38,
+          "probability": 0.9933213591575623
+        },
+        {
+          "word": " naquele",
+          "start": 16.38,
+          "end": 16.84,
+          "probability": 0.9603046774864197
+        },
+        {
+          "word": " esporte.",
+          "start": 16.84,
+          "end": 17.16,
+          "probability": 0.9802226424217224
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "seek": 0,
+      "start": 18.14,
+      "end": 20.1,
+      "text": " Contando essa história para a cabeça deles.",
+      "tokens": [
+        51234,
+        4839,
+        1806,
+        7208,
+        20670,
+        1690,
+        257,
+        33056,
+        30789,
+        13,
+        51374
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " Contando",
+          "start": 18.14,
+          "end": 18.74,
+          "probability": 0.978777289390564
+        },
+        {
+          "word": " essa",
+          "start": 18.74,
+          "end": 18.92,
+          "probability": 0.9799013137817383
+        },
+        {
+          "word": " história",
+          "start": 18.92,
+          "end": 19.3,
+          "probability": 0.9973524808883667
+        },
+        {
+          "word": " para",
+          "start": 19.3,
+          "end": 19.5,
+          "probability": 0.8212240934371948
+        },
+        {
+          "word": " a",
+          "start": 19.5,
+          "end": 19.58,
+          "probability": 0.8653978705406189
+        },
+        {
+          "word": " cabeça",
+          "start": 19.58,
+          "end": 19.8,
+          "probability": 0.9970836043357849
+        },
+        {
+          "word": " deles.",
+          "start": 19.8,
+          "end": 20.1,
+          "probability": 0.9853630065917969
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "seek": 0,
+      "start": 20.52,
+      "end": 26.2,
+      "text": " E se você finge por tempo suficiente, uma hora dessas você fica verdadeiramente bom naquilo.",
+      "tokens": [
+        51374,
+        462,
+        369,
+        2723,
+        3823,
+        68,
+        1515,
+        8972,
+        33958,
+        11,
+        2772,
+        15098,
+        40083,
+        2723,
+        16868,
+        15203,
+        347,
+        3439,
+        7957,
+        1667,
+        358,
+        10720,
+        13,
+        51674
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " E",
+          "start": 20.52,
+          "end": 20.58,
+          "probability": 0.9399233460426331
+        },
+        {
+          "word": " se",
+          "start": 20.58,
+          "end": 20.64,
+          "probability": 0.9655994176864624
+        },
+        {
+          "word": " você",
+          "start": 20.64,
+          "end": 21.0,
+          "probability": 0.9913104772567749
+        },
+        {
+          "word": " finge",
+          "start": 21.0,
+          "end": 21.2,
+          "probability": 0.981689989566803
+        },
+        {
+          "word": " por",
+          "start": 21.2,
+          "end": 21.34,
+          "probability": 0.955529510974884
+        },
+        {
+          "word": " tempo",
+          "start": 21.34,
+          "end": 21.56,
+          "probability": 0.9937313199043274
+        },
+        {
+          "word": " suficiente,",
+          "start": 21.56,
+          "end": 22.24,
+          "probability": 0.9582507014274597
+        },
+        {
+          "word": " uma",
+          "start": 22.88,
+          "end": 22.96,
+          "probability": 0.9722914695739746
+        },
+        {
+          "word": " hora",
+          "start": 22.96,
+          "end": 23.86,
+          "probability": 0.9945354461669922
+        },
+        {
+          "word": " dessas",
+          "start": 23.86,
+          "end": 24.16,
+          "probability": 0.39965879917144775
+        },
+        {
+          "word": " você",
+          "start": 24.16,
+          "end": 24.44,
+          "probability": 0.39008402824401855
+        },
+        {
+          "word": " fica",
+          "start": 24.44,
+          "end": 24.8,
+          "probability": 0.9628644585609436
+        },
+        {
+          "word": " verdadeiramente",
+          "start": 24.8,
+          "end": 25.32,
+          "probability": 0.9831024408340454
+        },
+        {
+          "word": " bom",
+          "start": 25.32,
+          "end": 25.64,
+          "probability": 0.9734988212585449
+        },
+        {
+          "word": " naquilo.",
+          "start": 25.64,
+          "end": 26.2,
+          "probability": 0.9616864323616028
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "seek": 0,
+      "start": 27.28,
+      "end": 29.4,
+      "text": " E é assim que funciona para todo o resto.",
+      "tokens": [
+        51724,
+        462,
+        1136,
+        8249,
+        631,
+        26210,
+        1690,
+        5149,
+        277,
+        28247,
+        13,
+        51844
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.25156207614474824,
+      "compression_ratio": 1.7338129496402879,
+      "no_speech_prob": 0.2219257354736328,
+      "words": [
+        {
+          "word": " E",
+          "start": 27.28,
+          "end": 27.6,
+          "probability": 0.8308022022247314
+        },
+        {
+          "word": " é",
+          "start": 27.6,
+          "end": 27.7,
+          "probability": 0.9428327083587646
+        },
+        {
+          "word": " assim",
+          "start": 27.7,
+          "end": 27.82,
+          "probability": 0.9992049336433411
+        },
+        {
+          "word": " que",
+          "start": 27.82,
+          "end": 28.04,
+          "probability": 0.9977614879608154
+        },
+        {
+          "word": " funciona",
+          "start": 28.04,
+          "end": 28.44,
+          "probability": 0.9976038336753845
+        },
+        {
+          "word": " para",
+          "start": 28.44,
+          "end": 28.7,
+          "probability": 0.9553449749946594
+        },
+        {
+          "word": " todo",
+          "start": 28.7,
+          "end": 28.98,
+          "probability": 0.9809598922729492
+        },
+        {
+          "word": " o",
+          "start": 28.98,
+          "end": 29.08,
+          "probability": 0.991743266582489
+        },
+        {
+          "word": " resto.",
+          "start": 29.08,
+          "end": 29.4,
+          "probability": 0.995475709438324
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "seek": 2940,
+      "start": 29.4,
+      "end": 35.22,
+      "text": " Você só precisa escolher o que mais você precisa fingir no momento.",
+      "tokens": [
+        50364,
+        9781,
+        6238,
+        18861,
+        25603,
+        511,
+        277,
+        631,
+        2420,
+        2723,
+        18861,
+        3823,
+        347,
+        572,
+        9333,
+        13,
+        50664
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21766790354026938,
+      "compression_ratio": 1.3955223880597014,
+      "no_speech_prob": 0.009435690939426422,
+      "words": [
+        {
+          "word": " Você",
+          "start": 29.4,
+          "end": 29.96,
+          "probability": 0.5340606570243835
+        },
+        {
+          "word": " só",
+          "start": 29.96,
+          "end": 30.16,
+          "probability": 0.9910016655921936
+        },
+        {
+          "word": " precisa",
+          "start": 30.16,
+          "end": 30.92,
+          "probability": 0.9985507130622864
+        },
+        {
+          "word": " escolher",
+          "start": 30.92,
+          "end": 32.9,
+          "probability": 0.9915069043636322
+        },
+        {
+          "word": " o",
+          "start": 32.9,
+          "end": 33.26,
+          "probability": 0.9810964465141296
+        },
+        {
+          "word": " que",
+          "start": 33.26,
+          "end": 33.46,
+          "probability": 0.9951077699661255
+        },
+        {
+          "word": " mais",
+          "start": 33.46,
+          "end": 33.7,
+          "probability": 0.9642390608787537
+        },
+        {
+          "word": " você",
+          "start": 33.7,
+          "end": 33.94,
+          "probability": 0.8963843584060669
+        },
+        {
+          "word": " precisa",
+          "start": 33.94,
+          "end": 34.4,
+          "probability": 0.9905389547348022
+        },
+        {
+          "word": " fingir",
+          "start": 34.4,
+          "end": 34.78,
+          "probability": 0.9878482818603516
+        },
+        {
+          "word": " no",
+          "start": 34.78,
+          "end": 34.88,
+          "probability": 0.8360527753829956
+        },
+        {
+          "word": " momento.",
+          "start": 34.88,
+          "end": 35.22,
+          "probability": 0.9931619167327881
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "seek": 2940,
+      "start": 35.36,
+      "end": 39.24,
+      "text": " Comunicação, o que você precisa fingir ser o gênio de algo.",
+      "tokens": [
+        50664,
+        2432,
+        409,
+        37823,
+        11,
+        277,
+        631,
+        2723,
+        18861,
+        3823,
+        347,
+        816,
+        277,
+        290,
+        39266,
+        368,
+        8655,
+        13,
+        50864
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21766790354026938,
+      "compression_ratio": 1.3955223880597014,
+      "no_speech_prob": 0.009435690939426422,
+      "words": [
+        {
+          "word": " Comunicação,",
+          "start": 35.36,
+          "end": 35.86,
+          "probability": 0.9770006537437439
+        },
+        {
+          "word": " o",
+          "start": 36.46,
+          "end": 36.46,
+          "probability": 0.43210098147392273
+        },
+        {
+          "word": " que",
+          "start": 36.46,
+          "end": 36.46,
+          "probability": 0.9975364208221436
+        },
+        {
+          "word": " você",
+          "start": 36.46,
+          "end": 36.68,
+          "probability": 0.9563279151916504
+        },
+        {
+          "word": " precisa",
+          "start": 36.68,
+          "end": 36.98,
+          "probability": 0.9904944896697998
+        },
+        {
+          "word": " fingir",
+          "start": 36.98,
+          "end": 37.36,
+          "probability": 0.9962491989135742
+        },
+        {
+          "word": " ser",
+          "start": 37.36,
+          "end": 37.6,
+          "probability": 0.5408614277839661
+        },
+        {
+          "word": " o",
+          "start": 37.6,
+          "end": 38.34,
+          "probability": 0.7420395016670227
+        },
+        {
+          "word": " gênio",
+          "start": 38.34,
+          "end": 38.6,
+          "probability": 0.9264146983623505
+        },
+        {
+          "word": " de",
+          "start": 38.6,
+          "end": 38.72,
+          "probability": 0.8266047239303589
+        },
+        {
+          "word": " algo.",
+          "start": 38.72,
+          "end": 39.24,
+          "probability": 0.941109299659729
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "seek": 2940,
+      "start": 39.62,
+      "end": 42.2,
+      "text": " Finge, conte uma história para a sua mente e faça.",
+      "tokens": [
+        50864,
+        479,
+        8735,
+        11,
+        34444,
+        2772,
+        20670,
+        1690,
+        257,
+        8233,
+        26577,
+        308,
+        2050,
+        5297,
+        13,
+        51014
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21766790354026938,
+      "compression_ratio": 1.3955223880597014,
+      "no_speech_prob": 0.009435690939426422,
+      "words": [
+        {
+          "word": " Finge,",
+          "start": 39.62,
+          "end": 39.74,
+          "probability": 0.8957578539848328
+        },
+        {
+          "word": " conte",
+          "start": 40.02,
+          "end": 40.02,
+          "probability": 0.9308930039405823
+        },
+        {
+          "word": " uma",
+          "start": 40.02,
+          "end": 40.16,
+          "probability": 0.963840901851654
+        },
+        {
+          "word": " história",
+          "start": 40.16,
+          "end": 40.42,
+          "probability": 0.991474986076355
+        },
+        {
+          "word": " para",
+          "start": 40.42,
+          "end": 40.62,
+          "probability": 0.8071728348731995
+        },
+        {
+          "word": " a",
+          "start": 40.62,
+          "end": 40.76,
+          "probability": 0.6104430556297302
+        },
+        {
+          "word": " sua",
+          "start": 40.76,
+          "end": 40.82,
+          "probability": 0.9974912405014038
+        },
+        {
+          "word": " mente",
+          "start": 40.82,
+          "end": 41.56,
+          "probability": 0.9981532692909241
+        },
+        {
+          "word": " e",
+          "start": 41.56,
+          "end": 41.9,
+          "probability": 0.8521462678909302
+        },
+        {
+          "word": " faça.",
+          "start": 41.9,
+          "end": 42.2,
+          "probability": 0.9957143366336823
+        }
+      ]
+    }
+  ],
+  "language": "pt"
+}

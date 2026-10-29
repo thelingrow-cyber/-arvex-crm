@@ -1,0 +1,5 @@
+- Andon / jidoka: Toyota Production System (toyota-global.com, "Jidoka"); Taiichi Ohno, *O Sistema Toyota de Produção*.
+- NUMMI (Fremont, 1984): This American Life ep. 403 "NUMMI" (2010); MIT Sloan, John Shook, "How to Change a Culture: Lessons From NUMMI" (2010).
+- Take: Drive Takes/take-01-computador-fone.mp4 (HDR→tonemap), 2–10 s; pov.py --topo 820; Beethoven, Patética, adágio (mesmo arquivo do Napoleão).
+- v2: preto e branco + mais escuro (hue=s=0, eq brightness -0.06 contrast 1.15 gamma 0.88, grão leve), pedido do Vitor.
+- v4: take-03 varanda (HDR→tonemap), P&B mais claro (eq brightness 0.04 contrast 1.08 gamma 1.15), SEM música.

@@ -1,0 +1,1373 @@
+{
+  "language": "pt",
+  "duration": 43.3734375,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 11.24,
+      "text": "Quanto mais você finge, menos você finge, é assim que funciona. Se você fingisse aquilo o tempo todo, uma hora o seu subconsciente adota aquilo como sua nova identidade e aí devia você se torna aquilo.",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.52,
+          "text": "Quanto",
+          "probability": 0.5526612997055054
+        },
+        {
+          "start": 0.52,
+          "end": 0.84,
+          "text": "mais",
+          "probability": 0.9710000157356262
+        },
+        {
+          "start": 0.84,
+          "end": 1.22,
+          "text": "você",
+          "probability": 0.9430597424507141
+        },
+        {
+          "start": 1.22,
+          "end": 1.62,
+          "text": "finge,",
+          "probability": 0.5325336307287216
+        },
+        {
+          "start": 1.84,
+          "end": 1.96,
+          "text": "menos",
+          "probability": 0.9758251905441284
+        },
+        {
+          "start": 1.96,
+          "end": 2.26,
+          "text": "você",
+          "probability": 0.86896812915802
+        },
+        {
+          "start": 2.26,
+          "end": 2.76,
+          "text": "finge,",
+          "probability": 0.9962941110134125
+        },
+        {
+          "start": 2.88,
+          "end": 3.1,
+          "text": "é",
+          "probability": 0.9882327914237976
+        },
+        {
+          "start": 3.1,
+          "end": 3.3,
+          "text": "assim",
+          "probability": 0.9501237869262695
+        },
+        {
+          "start": 3.3,
+          "end": 3.4,
+          "text": "que",
+          "probability": 0.9909594058990479
+        },
+        {
+          "start": 3.4,
+          "end": 3.74,
+          "text": "funciona.",
+          "probability": 0.9965916872024536
+        },
+        {
+          "start": 4.22,
+          "end": 4.3,
+          "text": "Se",
+          "probability": 0.8775856494903564
+        },
+        {
+          "start": 4.3,
+          "end": 4.52,
+          "text": "você",
+          "probability": 0.9963145852088928
+        },
+        {
+          "start": 4.52,
+          "end": 5.02,
+          "text": "fingisse",
+          "probability": 0.9157721698284149
+        },
+        {
+          "start": 5.02,
+          "end": 5.34,
+          "text": "aquilo",
+          "probability": 0.8509032726287842
+        },
+        {
+          "start": 5.34,
+          "end": 5.6,
+          "text": "o",
+          "probability": 0.4939364790916443
+        },
+        {
+          "start": 5.6,
+          "end": 5.8,
+          "text": "tempo",
+          "probability": 0.9926365613937378
+        },
+        {
+          "start": 5.8,
+          "end": 6.18,
+          "text": "todo,",
+          "probability": 0.9913145899772644
+        },
+        {
+          "start": 6.36,
+          "end": 6.52,
+          "text": "uma",
+          "probability": 0.9704400300979614
+        },
+        {
+          "start": 6.52,
+          "end": 6.76,
+          "text": "hora",
+          "probability": 0.9913367033004761
+        },
+        {
+          "start": 6.76,
+          "end": 6.88,
+          "text": "o",
+          "probability": 0.23954497277736664
+        },
+        {
+          "start": 6.88,
+          "end": 7.0,
+          "text": "seu",
+          "probability": 0.9811873435974121
+        },
+        {
+          "start": 7.0,
+          "end": 7.66,
+          "text": "subconsciente",
+          "probability": 0.8035687953233719
+        },
+        {
+          "start": 7.66,
+          "end": 7.88,
+          "text": "adota",
+          "probability": 0.8701394200325012
+        },
+        {
+          "start": 7.88,
+          "end": 8.2,
+          "text": "aquilo",
+          "probability": 0.9967018961906433
+        },
+        {
+          "start": 8.2,
+          "end": 8.46,
+          "text": "como",
+          "probability": 0.8092526197433472
+        },
+        {
+          "start": 8.46,
+          "end": 8.62,
+          "text": "sua",
+          "probability": 0.9617801308631897
+        },
+        {
+          "start": 8.62,
+          "end": 8.76,
+          "text": "nova",
+          "probability": 0.4380730390548706
+        },
+        {
+          "start": 8.76,
+          "end": 9.24,
+          "text": "identidade",
+          "probability": 0.9955827593803406
+        },
+        {
+          "start": 9.24,
+          "end": 9.82,
+          "text": "e",
+          "probability": 0.25845134258270264
+        },
+        {
+          "start": 9.82,
+          "end": 9.9,
+          "text": "aí",
+          "probability": 0.7949569225311279
+        },
+        {
+          "start": 9.9,
+          "end": 10.2,
+          "text": "devia",
+          "probability": 0.651726484298706
+        },
+        {
+          "start": 10.2,
+          "end": 10.46,
+          "text": "você",
+          "probability": 0.7837405800819397
+        },
+        {
+          "start": 10.46,
+          "end": 10.62,
+          "text": "se",
+          "probability": 0.9883078932762146
+        },
+        {
+          "start": 10.62,
+          "end": 11.0,
+          "text": "torna",
+          "probability": 0.833049088716507
+        },
+        {
+          "start": 11.0,
+          "end": 11.24,
+          "text": "aquilo.",
+          "probability": 0.8632479906082153
+        }
+      ]
+    },
+    {
+      "start": 11.7,
+      "end": 26.02,
+      "text": "Por que as letras treinam? Eles simplesmente estão fingindo que são bons naquele esporte, contando essa história para a cabeça deles. E se você finge por tempo suficiente, uma hora dessas você fica verdadeiramente bom naquilo.",
+      "words": [
+        {
+          "start": 11.7,
+          "end": 11.78,
+          "text": "Por",
+          "probability": 0.6049793362617493
+        },
+        {
+          "start": 11.78,
+          "end": 11.88,
+          "text": "que",
+          "probability": 0.9431600570678711
+        },
+        {
+          "start": 11.88,
+          "end": 11.98,
+          "text": "as",
+          "probability": 0.3115549385547638
+        },
+        {
+          "start": 11.98,
+          "end": 12.26,
+          "text": "letras",
+          "probability": 0.7266088724136353
+        },
+        {
+          "start": 12.26,
+          "end": 13.62,
+          "text": "treinam?",
+          "probability": 0.6732695251703262
+        },
+        {
+          "start": 13.84,
+          "end": 13.98,
+          "text": "Eles",
+          "probability": 0.5513402819633484
+        },
+        {
+          "start": 13.98,
+          "end": 14.74,
+          "text": "simplesmente",
+          "probability": 0.8865967392921448
+        },
+        {
+          "start": 14.74,
+          "end": 15.12,
+          "text": "estão",
+          "probability": 0.9755869507789612
+        },
+        {
+          "start": 15.12,
+          "end": 15.68,
+          "text": "fingindo",
+          "probability": 0.9973031282424927
+        },
+        {
+          "start": 15.68,
+          "end": 15.82,
+          "text": "que",
+          "probability": 0.826460599899292
+        },
+        {
+          "start": 15.82,
+          "end": 15.96,
+          "text": "são",
+          "probability": 0.9561601281166077
+        },
+        {
+          "start": 15.96,
+          "end": 16.3,
+          "text": "bons",
+          "probability": 0.9898284673690796
+        },
+        {
+          "start": 16.3,
+          "end": 16.68,
+          "text": "naquele",
+          "probability": 0.917117714881897
+        },
+        {
+          "start": 16.68,
+          "end": 17.04,
+          "text": "esporte,",
+          "probability": 0.8786198794841766
+        },
+        {
+          "start": 18.08,
+          "end": 18.7,
+          "text": "contando",
+          "probability": 0.8864957690238953
+        },
+        {
+          "start": 18.7,
+          "end": 18.9,
+          "text": "essa",
+          "probability": 0.9473260045051575
+        },
+        {
+          "start": 18.9,
+          "end": 19.22,
+          "text": "história",
+          "probability": 0.9825360774993896
+        },
+        {
+          "start": 19.22,
+          "end": 19.42,
+          "text": "para",
+          "probability": 0.6909847259521484
+        },
+        {
+          "start": 19.42,
+          "end": 19.54,
+          "text": "a",
+          "probability": 0.6158469915390015
+        },
+        {
+          "start": 19.54,
+          "end": 19.7,
+          "text": "cabeça",
+          "probability": 0.9881870150566101
+        },
+        {
+          "start": 19.7,
+          "end": 20.02,
+          "text": "deles.",
+          "probability": 0.9704463481903076
+        },
+        {
+          "start": 20.44,
+          "end": 20.5,
+          "text": "E",
+          "probability": 0.9096426367759705
+        },
+        {
+          "start": 20.5,
+          "end": 20.58,
+          "text": "se",
+          "probability": 0.9700303673744202
+        },
+        {
+          "start": 20.58,
+          "end": 20.76,
+          "text": "você",
+          "probability": 0.9992461204528809
+        },
+        {
+          "start": 20.76,
+          "end": 21.14,
+          "text": "finge",
+          "probability": 0.9811708927154541
+        },
+        {
+          "start": 21.14,
+          "end": 21.28,
+          "text": "por",
+          "probability": 0.8918824195861816
+        },
+        {
+          "start": 21.28,
+          "end": 21.48,
+          "text": "tempo",
+          "probability": 0.9878749251365662
+        },
+        {
+          "start": 21.48,
+          "end": 22.0,
+          "text": "suficiente,",
+          "probability": 0.9567712545394897
+        },
+        {
+          "start": 22.74,
+          "end": 22.88,
+          "text": "uma",
+          "probability": 0.9918087124824524
+        },
+        {
+          "start": 22.88,
+          "end": 23.2,
+          "text": "hora",
+          "probability": 0.9937726855278015
+        },
+        {
+          "start": 23.2,
+          "end": 24.02,
+          "text": "dessas",
+          "probability": 0.5730513334274292
+        },
+        {
+          "start": 24.02,
+          "end": 24.32,
+          "text": "você",
+          "probability": 0.8593138456344604
+        },
+        {
+          "start": 24.32,
+          "end": 24.68,
+          "text": "fica",
+          "probability": 0.9674004316329956
+        },
+        {
+          "start": 24.68,
+          "end": 25.24,
+          "text": "verdadeiramente",
+          "probability": 0.5328960120677948
+        },
+        {
+          "start": 25.24,
+          "end": 25.58,
+          "text": "bom",
+          "probability": 0.9813573360443115
+        },
+        {
+          "start": 25.58,
+          "end": 26.02,
+          "text": "naquilo.",
+          "probability": 0.9324193199475607
+        }
+      ]
+    },
+    {
+      "start": 26.92,
+      "end": 42.16,
+      "text": "E é assim que funciona para todo o resto. Você só precisa escolher o que mais você precisa fingir no momento. Comunicação que você precisa fingir ser o gênio já finge, conto uma história para a sua mente e faça.",
+      "words": [
+        {
+          "start": 26.92,
+          "end": 27.48,
+          "text": "E",
+          "probability": 0.3328571021556854
+        },
+        {
+          "start": 27.48,
+          "end": 27.56,
+          "text": "é",
+          "probability": 0.5682523846626282
+        },
+        {
+          "start": 27.56,
+          "end": 27.76,
+          "text": "assim",
+          "probability": 0.9891510009765625
+        },
+        {
+          "start": 27.76,
+          "end": 27.94,
+          "text": "que",
+          "probability": 0.976920485496521
+        },
+        {
+          "start": 27.94,
+          "end": 28.36,
+          "text": "funciona",
+          "probability": 0.9925336837768555
+        },
+        {
+          "start": 28.36,
+          "end": 28.6,
+          "text": "para",
+          "probability": 0.8236017823219299
+        },
+        {
+          "start": 28.6,
+          "end": 28.9,
+          "text": "todo",
+          "probability": 0.9488372206687927
+        },
+        {
+          "start": 28.9,
+          "end": 29.06,
+          "text": "o",
+          "probability": 0.9772856831550598
+        },
+        {
+          "start": 29.06,
+          "end": 29.36,
+          "text": "resto.",
+          "probability": 0.9915388226509094
+        },
+        {
+          "start": 29.78,
+          "end": 29.92,
+          "text": "Você",
+          "probability": 0.953681230545044
+        },
+        {
+          "start": 29.92,
+          "end": 30.06,
+          "text": "só",
+          "probability": 0.9898473620414734
+        },
+        {
+          "start": 30.06,
+          "end": 30.48,
+          "text": "precisa",
+          "probability": 0.9933431148529053
+        },
+        {
+          "start": 30.48,
+          "end": 32.48,
+          "text": "escolher",
+          "probability": 0.9882174432277679
+        },
+        {
+          "start": 32.48,
+          "end": 33.2,
+          "text": "o",
+          "probability": 0.9745853543281555
+        },
+        {
+          "start": 33.2,
+          "end": 33.3,
+          "text": "que",
+          "probability": 0.9949144124984741
+        },
+        {
+          "start": 33.3,
+          "end": 33.54,
+          "text": "mais",
+          "probability": 0.8755372166633606
+        },
+        {
+          "start": 33.54,
+          "end": 33.88,
+          "text": "você",
+          "probability": 0.9859617352485657
+        },
+        {
+          "start": 33.88,
+          "end": 34.32,
+          "text": "precisa",
+          "probability": 0.998551070690155
+        },
+        {
+          "start": 34.32,
+          "end": 34.74,
+          "text": "fingir",
+          "probability": 0.7617988884449005
+        },
+        {
+          "start": 34.74,
+          "end": 34.88,
+          "text": "no",
+          "probability": 0.9317864775657654
+        },
+        {
+          "start": 34.88,
+          "end": 35.12,
+          "text": "momento.",
+          "probability": 0.9939290285110474
+        },
+        {
+          "start": 35.3,
+          "end": 35.82,
+          "text": "Comunicação",
+          "probability": 0.9239315191904703
+        },
+        {
+          "start": 35.82,
+          "end": 36.4,
+          "text": "que",
+          "probability": 0.2709290087223053
+        },
+        {
+          "start": 36.4,
+          "end": 36.58,
+          "text": "você",
+          "probability": 0.9638277292251587
+        },
+        {
+          "start": 36.58,
+          "end": 36.9,
+          "text": "precisa",
+          "probability": 0.9979919195175171
+        },
+        {
+          "start": 36.9,
+          "end": 37.26,
+          "text": "fingir",
+          "probability": 0.9858818054199219
+        },
+        {
+          "start": 37.26,
+          "end": 37.5,
+          "text": "ser",
+          "probability": 0.44457897543907166
+        },
+        {
+          "start": 37.5,
+          "end": 38.2,
+          "text": "o",
+          "probability": 0.7878878712654114
+        },
+        {
+          "start": 38.2,
+          "end": 38.58,
+          "text": "gênio",
+          "probability": 0.8633934855461121
+        },
+        {
+          "start": 38.58,
+          "end": 38.72,
+          "text": "já",
+          "probability": 0.35393205285072327
+        },
+        {
+          "start": 38.72,
+          "end": 39.76,
+          "text": "finge,",
+          "probability": 0.228933684527874
+        },
+        {
+          "start": 39.76,
+          "end": 40.04,
+          "text": "conto",
+          "probability": 0.22604483366012573
+        },
+        {
+          "start": 40.04,
+          "end": 40.16,
+          "text": "uma",
+          "probability": 0.2505468726158142
+        },
+        {
+          "start": 40.16,
+          "end": 40.34,
+          "text": "história",
+          "probability": 0.9184719324111938
+        },
+        {
+          "start": 40.34,
+          "end": 40.52,
+          "text": "para",
+          "probability": 0.8780873417854309
+        },
+        {
+          "start": 40.52,
+          "end": 40.68,
+          "text": "a",
+          "probability": 0.5422976016998291
+        },
+        {
+          "start": 40.68,
+          "end": 40.72,
+          "text": "sua",
+          "probability": 0.9963167905807495
+        },
+        {
+          "start": 40.72,
+          "end": 40.94,
+          "text": "mente",
+          "probability": 0.9955720901489258
+        },
+        {
+          "start": 40.94,
+          "end": 41.8,
+          "text": "e",
+          "probability": 0.9068377017974854
+        },
+        {
+          "start": 41.8,
+          "end": 42.16,
+          "text": "faça.",
+          "probability": 0.9861563444137573
+        }
+      ]
+    }
+  ],
+  "words": [
+    {
+      "start": 0.0,
+      "end": 0.52,
+      "text": "Quanto",
+      "probability": 0.5526612997055054
+    },
+    {
+      "start": 0.52,
+      "end": 0.84,
+      "text": "mais",
+      "probability": 0.9710000157356262
+    },
+    {
+      "start": 0.84,
+      "end": 1.22,
+      "text": "você",
+      "probability": 0.9430597424507141
+    },
+    {
+      "start": 1.22,
+      "end": 1.62,
+      "text": "finge,",
+      "probability": 0.5325336307287216
+    },
+    {
+      "start": 1.84,
+      "end": 1.96,
+      "text": "menos",
+      "probability": 0.9758251905441284
+    },
+    {
+      "start": 1.96,
+      "end": 2.26,
+      "text": "você",
+      "probability": 0.86896812915802
+    },
+    {
+      "start": 2.26,
+      "end": 2.76,
+      "text": "finge,",
+      "probability": 0.9962941110134125
+    },
+    {
+      "start": 2.88,
+      "end": 3.1,
+      "text": "é",
+      "probability": 0.9882327914237976
+    },
+    {
+      "start": 3.1,
+      "end": 3.3,
+      "text": "assim",
+      "probability": 0.9501237869262695
+    },
+    {
+      "start": 3.3,
+      "end": 3.4,
+      "text": "que",
+      "probability": 0.9909594058990479
+    },
+    {
+      "start": 3.4,
+      "end": 3.74,
+      "text": "funciona.",
+      "probability": 0.9965916872024536
+    },
+    {
+      "start": 4.22,
+      "end": 4.3,
+      "text": "Se",
+      "probability": 0.8775856494903564
+    },
+    {
+      "start": 4.3,
+      "end": 4.52,
+      "text": "você",
+      "probability": 0.9963145852088928
+    },
+    {
+      "start": 4.52,
+      "end": 5.02,
+      "text": "fingisse",
+      "probability": 0.9157721698284149
+    },
+    {
+      "start": 5.02,
+      "end": 5.34,
+      "text": "aquilo",
+      "probability": 0.8509032726287842
+    },
+    {
+      "start": 5.34,
+      "end": 5.6,
+      "text": "o",
+      "probability": 0.4939364790916443
+    },
+    {
+      "start": 5.6,
+      "end": 5.8,
+      "text": "tempo",
+      "probability": 0.9926365613937378
+    },
+    {
+      "start": 5.8,
+      "end": 6.18,
+      "text": "todo,",
+      "probability": 0.9913145899772644
+    },
+    {
+      "start": 6.36,
+      "end": 6.52,
+      "text": "uma",
+      "probability": 0.9704400300979614
+    },
+    {
+      "start": 6.52,
+      "end": 6.76,
+      "text": "hora",
+      "probability": 0.9913367033004761
+    },
+    {
+      "start": 6.76,
+      "end": 6.88,
+      "text": "o",
+      "probability": 0.23954497277736664
+    },
+    {
+      "start": 6.88,
+      "end": 7.0,
+      "text": "seu",
+      "probability": 0.9811873435974121
+    },
+    {
+      "start": 7.0,
+      "end": 7.66,
+      "text": "subconsciente",
+      "probability": 0.8035687953233719
+    },
+    {
+      "start": 7.66,
+      "end": 7.88,
+      "text": "adota",
+      "probability": 0.8701394200325012
+    },
+    {
+      "start": 7.88,
+      "end": 8.2,
+      "text": "aquilo",
+      "probability": 0.9967018961906433
+    },
+    {
+      "start": 8.2,
+      "end": 8.46,
+      "text": "como",
+      "probability": 0.8092526197433472
+    },
+    {
+      "start": 8.46,
+      "end": 8.62,
+      "text": "sua",
+      "probability": 0.9617801308631897
+    },
+    {
+      "start": 8.62,
+      "end": 8.76,
+      "text": "nova",
+      "probability": 0.4380730390548706
+    },
+    {
+      "start": 8.76,
+      "end": 9.24,
+      "text": "identidade",
+      "probability": 0.9955827593803406
+    },
+    {
+      "start": 9.24,
+      "end": 9.82,
+      "text": "e",
+      "probability": 0.25845134258270264
+    },
+    {
+      "start": 9.82,
+      "end": 9.9,
+      "text": "aí",
+      "probability": 0.7949569225311279
+    },
+    {
+      "start": 9.9,
+      "end": 10.2,
+      "text": "devia",
+      "probability": 0.651726484298706
+    },
+    {
+      "start": 10.2,
+      "end": 10.46,
+      "text": "você",
+      "probability": 0.7837405800819397
+    },
+    {
+      "start": 10.46,
+      "end": 10.62,
+      "text": "se",
+      "probability": 0.9883078932762146
+    },
+    {
+      "start": 10.62,
+      "end": 11.0,
+      "text": "torna",
+      "probability": 0.833049088716507
+    },
+    {
+      "start": 11.0,
+      "end": 11.24,
+      "text": "aquilo.",
+      "probability": 0.8632479906082153
+    },
+    {
+      "start": 11.7,
+      "end": 11.78,
+      "text": "Por",
+      "probability": 0.6049793362617493
+    },
+    {
+      "start": 11.78,
+      "end": 11.88,
+      "text": "que",
+      "probability": 0.9431600570678711
+    },
+    {
+      "start": 11.88,
+      "end": 11.98,
+      "text": "as",
+      "probability": 0.3115549385547638
+    },
+    {
+      "start": 11.98,
+      "end": 12.26,
+      "text": "letras",
+      "probability": 0.7266088724136353
+    },
+    {
+      "start": 12.26,
+      "end": 13.62,
+      "text": "treinam?",
+      "probability": 0.6732695251703262
+    },
+    {
+      "start": 13.84,
+      "end": 13.98,
+      "text": "Eles",
+      "probability": 0.5513402819633484
+    },
+    {
+      "start": 13.98,
+      "end": 14.74,
+      "text": "simplesmente",
+      "probability": 0.8865967392921448
+    },
+    {
+      "start": 14.74,
+      "end": 15.12,
+      "text": "estão",
+      "probability": 0.9755869507789612
+    },
+    {
+      "start": 15.12,
+      "end": 15.68,
+      "text": "fingindo",
+      "probability": 0.9973031282424927
+    },
+    {
+      "start": 15.68,
+      "end": 15.82,
+      "text": "que",
+      "probability": 0.826460599899292
+    },
+    {
+      "start": 15.82,
+      "end": 15.96,
+      "text": "são",
+      "probability": 0.9561601281166077
+    },
+    {
+      "start": 15.96,
+      "end": 16.3,
+      "text": "bons",
+      "probability": 0.9898284673690796
+    },
+    {
+      "start": 16.3,
+      "end": 16.68,
+      "text": "naquele",
+      "probability": 0.917117714881897
+    },
+    {
+      "start": 16.68,
+      "end": 17.04,
+      "text": "esporte,",
+      "probability": 0.8786198794841766
+    },
+    {
+      "start": 18.08,
+      "end": 18.7,
+      "text": "contando",
+      "probability": 0.8864957690238953
+    },
+    {
+      "start": 18.7,
+      "end": 18.9,
+      "text": "essa",
+      "probability": 0.9473260045051575
+    },
+    {
+      "start": 18.9,
+      "end": 19.22,
+      "text": "história",
+      "probability": 0.9825360774993896
+    },
+    {
+      "start": 19.22,
+      "end": 19.42,
+      "text": "para",
+      "probability": 0.6909847259521484
+    },
+    {
+      "start": 19.42,
+      "end": 19.54,
+      "text": "a",
+      "probability": 0.6158469915390015
+    },
+    {
+      "start": 19.54,
+      "end": 19.7,
+      "text": "cabeça",
+      "probability": 0.9881870150566101
+    },
+    {
+      "start": 19.7,
+      "end": 20.02,
+      "text": "deles.",
+      "probability": 0.9704463481903076
+    },
+    {
+      "start": 20.44,
+      "end": 20.5,
+      "text": "E",
+      "probability": 0.9096426367759705
+    },
+    {
+      "start": 20.5,
+      "end": 20.58,
+      "text": "se",
+      "probability": 0.9700303673744202
+    },
+    {
+      "start": 20.58,
+      "end": 20.76,
+      "text": "você",
+      "probability": 0.9992461204528809
+    },
+    {
+      "start": 20.76,
+      "end": 21.14,
+      "text": "finge",
+      "probability": 0.9811708927154541
+    },
+    {
+      "start": 21.14,
+      "end": 21.28,
+      "text": "por",
+      "probability": 0.8918824195861816
+    },
+    {
+      "start": 21.28,
+      "end": 21.48,
+      "text": "tempo",
+      "probability": 0.9878749251365662
+    },
+    {
+      "start": 21.48,
+      "end": 22.0,
+      "text": "suficiente,",
+      "probability": 0.9567712545394897
+    },
+    {
+      "start": 22.74,
+      "end": 22.88,
+      "text": "uma",
+      "probability": 0.9918087124824524
+    },
+    {
+      "start": 22.88,
+      "end": 23.2,
+      "text": "hora",
+      "probability": 0.9937726855278015
+    },
+    {
+      "start": 23.2,
+      "end": 24.02,
+      "text": "dessas",
+      "probability": 0.5730513334274292
+    },
+    {
+      "start": 24.02,
+      "end": 24.32,
+      "text": "você",
+      "probability": 0.8593138456344604
+    },
+    {
+      "start": 24.32,
+      "end": 24.68,
+      "text": "fica",
+      "probability": 0.9674004316329956
+    },
+    {
+      "start": 24.68,
+      "end": 25.24,
+      "text": "verdadeiramente",
+      "probability": 0.5328960120677948
+    },
+    {
+      "start": 25.24,
+      "end": 25.58,
+      "text": "bom",
+      "probability": 0.9813573360443115
+    },
+    {
+      "start": 25.58,
+      "end": 26.02,
+      "text": "naquilo.",
+      "probability": 0.9324193199475607
+    },
+    {
+      "start": 26.92,
+      "end": 27.48,
+      "text": "E",
+      "probability": 0.3328571021556854
+    },
+    {
+      "start": 27.48,
+      "end": 27.56,
+      "text": "é",
+      "probability": 0.5682523846626282
+    },
+    {
+      "start": 27.56,
+      "end": 27.76,
+      "text": "assim",
+      "probability": 0.9891510009765625
+    },
+    {
+      "start": 27.76,
+      "end": 27.94,
+      "text": "que",
+      "probability": 0.976920485496521
+    },
+    {
+      "start": 27.94,
+      "end": 28.36,
+      "text": "funciona",
+      "probability": 0.9925336837768555
+    },
+    {
+      "start": 28.36,
+      "end": 28.6,
+      "text": "para",
+      "probability": 0.8236017823219299
+    },
+    {
+      "start": 28.6,
+      "end": 28.9,
+      "text": "todo",
+      "probability": 0.9488372206687927
+    },
+    {
+      "start": 28.9,
+      "end": 29.06,
+      "text": "o",
+      "probability": 0.9772856831550598
+    },
+    {
+      "start": 29.06,
+      "end": 29.36,
+      "text": "resto.",
+      "probability": 0.9915388226509094
+    },
+    {
+      "start": 29.78,
+      "end": 29.92,
+      "text": "Você",
+      "probability": 0.953681230545044
+    },
+    {
+      "start": 29.92,
+      "end": 30.06,
+      "text": "só",
+      "probability": 0.9898473620414734
+    },
+    {
+      "start": 30.06,
+      "end": 30.48,
+      "text": "precisa",
+      "probability": 0.9933431148529053
+    },
+    {
+      "start": 30.48,
+      "end": 32.48,
+      "text": "escolher",
+      "probability": 0.9882174432277679
+    },
+    {
+      "start": 32.48,
+      "end": 33.2,
+      "text": "o",
+      "probability": 0.9745853543281555
+    },
+    {
+      "start": 33.2,
+      "end": 33.3,
+      "text": "que",
+      "probability": 0.9949144124984741
+    },
+    {
+      "start": 33.3,
+      "end": 33.54,
+      "text": "mais",
+      "probability": 0.8755372166633606
+    },
+    {
+      "start": 33.54,
+      "end": 33.88,
+      "text": "você",
+      "probability": 0.9859617352485657
+    },
+    {
+      "start": 33.88,
+      "end": 34.32,
+      "text": "precisa",
+      "probability": 0.998551070690155
+    },
+    {
+      "start": 34.32,
+      "end": 34.74,
+      "text": "fingir",
+      "probability": 0.7617988884449005
+    },
+    {
+      "start": 34.74,
+      "end": 34.88,
+      "text": "no",
+      "probability": 0.9317864775657654
+    },
+    {
+      "start": 34.88,
+      "end": 35.12,
+      "text": "momento.",
+      "probability": 0.9939290285110474
+    },
+    {
+      "start": 35.3,
+      "end": 35.82,
+      "text": "Comunicação",
+      "probability": 0.9239315191904703
+    },
+    {
+      "start": 35.82,
+      "end": 36.4,
+      "text": "que",
+      "probability": 0.2709290087223053
+    },
+    {
+      "start": 36.4,
+      "end": 36.58,
+      "text": "você",
+      "probability": 0.9638277292251587
+    },
+    {
+      "start": 36.58,
+      "end": 36.9,
+      "text": "precisa",
+      "probability": 0.9979919195175171
+    },
+    {
+      "start": 36.9,
+      "end": 37.26,
+      "text": "fingir",
+      "probability": 0.9858818054199219
+    },
+    {
+      "start": 37.26,
+      "end": 37.5,
+      "text": "ser",
+      "probability": 0.44457897543907166
+    },
+    {
+      "start": 37.5,
+      "end": 38.2,
+      "text": "o",
+      "probability": 0.7878878712654114
+    },
+    {
+      "start": 38.2,
+      "end": 38.58,
+      "text": "gênio",
+      "probability": 0.8633934855461121
+    },
+    {
+      "start": 38.58,
+      "end": 38.72,
+      "text": "já",
+      "probability": 0.35393205285072327
+    },
+    {
+      "start": 38.72,
+      "end": 39.76,
+      "text": "finge,",
+      "probability": 0.228933684527874
+    },
+    {
+      "start": 39.76,
+      "end": 40.04,
+      "text": "conto",
+      "probability": 0.22604483366012573
+    },
+    {
+      "start": 40.04,
+      "end": 40.16,
+      "text": "uma",
+      "probability": 0.2505468726158142
+    },
+    {
+      "start": 40.16,
+      "end": 40.34,
+      "text": "história",
+      "probability": 0.9184719324111938
+    },
+    {
+      "start": 40.34,
+      "end": 40.52,
+      "text": "para",
+      "probability": 0.8780873417854309
+    },
+    {
+      "start": 40.52,
+      "end": 40.68,
+      "text": "a",
+      "probability": 0.5422976016998291
+    },
+    {
+      "start": 40.68,
+      "end": 40.72,
+      "text": "sua",
+      "probability": 0.9963167905807495
+    },
+    {
+      "start": 40.72,
+      "end": 40.94,
+      "text": "mente",
+      "probability": 0.9955720901489258
+    },
+    {
+      "start": 40.94,
+      "end": 41.8,
+      "text": "e",
+      "probability": 0.9068377017974854
+    },
+    {
+      "start": 41.8,
+      "end": 42.16,
+      "text": "faça.",
+      "probability": 0.9861563444137573
+    }
+  ]
+}

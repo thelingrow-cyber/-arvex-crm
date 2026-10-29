@@ -1,0 +1,2 @@
+file 'C:\Users\Vitor Simões\Desktop\ARVEX\tools\video-recut\videos\2026-10-lemann-risco\tmp\lemann0.mp4'
+file 'C:\Users\Vitor Simões\Desktop\ARVEX\tools\video-recut\videos\2026-10-lemann-risco\tmp\lemann1.mp4'

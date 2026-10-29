@@ -1,0 +1,177 @@
+[
+  {
+    "clip": "duvida1",
+    "segments": [
+      {
+        "text": " Se você fingisse aquilo o tempo todo, uma hora.",
+        "words": [
+          {
+            "word": " Se",
+            "start": 0.0,
+            "end": 0.58
+          },
+          {
+            "word": " você",
+            "start": 0.58,
+            "end": 0.78
+          },
+          {
+            "word": " fingisse",
+            "start": 0.78,
+            "end": 1.32
+          },
+          {
+            "word": " aquilo",
+            "start": 1.32,
+            "end": 1.68
+          },
+          {
+            "word": " o",
+            "start": 1.68,
+            "end": 1.88
+          },
+          {
+            "word": " tempo",
+            "start": 1.88,
+            "end": 2.06
+          },
+          {
+            "word": " todo,",
+            "start": 2.06,
+            "end": 2.44
+          },
+          {
+            "word": " uma",
+            "start": 2.64,
+            "end": 2.82
+          },
+          {
+            "word": " hora.",
+            "start": 2.82,
+            "end": 2.98
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "clip": "duvida2",
+    "segments": [
+      {
+        "text": " comunicação, o que você precisa fingir ser o gênio de algo,",
+        "words": [
+          {
+            "word": " comunicação,",
+            "start": 0.0,
+            "end": 0.8
+          },
+          {
+            "word": " o",
+            "start": 1.3,
+            "end": 1.4
+          },
+          {
+            "word": " que",
+            "start": 1.4,
+            "end": 1.4
+          },
+          {
+            "word": " você",
+            "start": 1.4,
+            "end": 1.58
+          },
+          {
+            "word": " precisa",
+            "start": 1.58,
+            "end": 1.9
+          },
+          {
+            "word": " fingir",
+            "start": 1.9,
+            "end": 2.3
+          },
+          {
+            "word": " ser",
+            "start": 2.3,
+            "end": 2.5
+          },
+          {
+            "word": " o",
+            "start": 2.5,
+            "end": 2.86
+          },
+          {
+            "word": " gênio",
+            "start": 2.86,
+            "end": 3.58
+          },
+          {
+            "word": " de",
+            "start": 3.58,
+            "end": 3.7
+          },
+          {
+            "word": " algo,",
+            "start": 3.7,
+            "end": 3.86
+          }
+        ]
+      },
+      {
+        "text": " finge, conte uma história para a sua mente e faça.",
+        "words": [
+          {
+            "word": " finge,",
+            "start": 4.54,
+            "end": 4.74
+          },
+          {
+            "word": " conte",
+            "start": 4.82,
+            "end": 4.96
+          },
+          {
+            "word": " uma",
+            "start": 4.96,
+            "end": 5.14
+          },
+          {
+            "word": " história",
+            "start": 5.14,
+            "end": 5.36
+          },
+          {
+            "word": " para",
+            "start": 5.36,
+            "end": 5.54
+          },
+          {
+            "word": " a",
+            "start": 5.54,
+            "end": 5.62
+          },
+          {
+            "word": " sua",
+            "start": 5.62,
+            "end": 5.72
+          },
+          {
+            "word": " mente",
+            "start": 5.72,
+            "end": 6.08
+          },
+          {
+            "word": " e",
+            "start": 6.08,
+            "end": 6.78
+          },
+          {
+            "word": " faça.",
+            "start": 6.78,
+            "end": 7.2
+          }
+        ]
+      }
+    ]
+  }
+]

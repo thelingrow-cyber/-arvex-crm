@@ -1,0 +1,12 @@
+{
+  "language_code": "pt",
+  "model_id": "eleven_multilingual_v2",
+  "text": "Se a ótica da esquina fizer o mesmo desconto que você… por que o cliente vai comprar na sua? Se tudo gira em torno do desconto, você pode vender mais e terminar o mês com menos lucro.",
+  "voice_settings": {
+    "use_speaker_boost": true,
+    "stability": 0.4,
+    "similarity_boost": 0.75,
+    "speed": 1,
+    "style": 0
+  }
+}

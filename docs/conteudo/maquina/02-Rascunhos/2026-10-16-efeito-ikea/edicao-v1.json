@@ -1,0 +1,26 @@
+{
+ "titulo": "AMAR O QUE FEZ TRAVA O NEGÓCIO.",
+ "topo": {
+  "url": "https://commons.wikimedia.org/wiki/File:Pygmalion_and_Galatea_MET_DT1969.jpg"
+ },
+ "laterais": [
+  {
+   "de": 5.86,
+   "ate": 9.08,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Michael_Norton_Poptech.jpg"
+  },
+  {
+   "de": 9.08,
+   "ate": 16.78,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Ikea_kitchen_flatpacks.jpg"
+  },
+  {
+   "de": 19.1,
+   "ate": 24.66,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Cranes_made_by_Origami_paper.jpg"
+  }
+ ]
+}

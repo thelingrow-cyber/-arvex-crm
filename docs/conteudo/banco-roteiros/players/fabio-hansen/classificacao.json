@@ -1,0 +1,107 @@
+{
+  "usuario": "fabiohansen",
+  "videos": {
+    "DdSJsUEiJPv": [
+      "Escolha visual → diagnóstico",
+      "Pergunta com decisão imediata",
+      "Seguir"
+    ],
+    "DdbwbqdKmil": [
+      "Cinema → princípios aplicados",
+      "Objeto cultural + promessa de aprendizado",
+      "Seguir"
+    ],
+    "DbrHxedCxKG": [
+      "Auditoria visual no cotidiano",
+      "Experiência própria + descoberta concreta",
+      "Seguir"
+    ],
+    "DevKYEAi4gg": [
+      "Fato histórico → regra de comunicação",
+      "Paradoxo sobre inteligência",
+      "Seguir"
+    ],
+    "DeSPEhui2EW": [
+      "Escolha visual → diagnóstico",
+      "Pergunta com decisão imediata",
+      "Seguir"
+    ],
+    "DeMqYT0iwc4": [
+      "Opinião → consequência reputacional",
+      "Provocação a ser reavaliada",
+      "Seguir"
+    ],
+    "DekRYv9CzK1": [
+      "Caso de marca → aplicação",
+      "Marca como referência de competência",
+      "Seguir"
+    ],
+    "DfCwGzbCkPB": [
+      "Experimento → aplicação",
+      "Curiosidade sobre tempo de julgamento",
+      "Seguir"
+    ],
+    "DexlbryiAFW": [
+      "Escolha visual → diagnóstico",
+      "Desafio de julgamento com níveis",
+      "Seguir"
+    ],
+    "De2DKOxCVO7": [
+      "Experimento → aplicação",
+      "Curiosidade sobre tempo de julgamento",
+      "Seguir"
+    ],
+    "De2NWmyitqZ": [
+      "Experimento → aplicação",
+      "Pesquisa como abertura",
+      "Seguir"
+    ],
+    "De68Z30ics2": [
+      "Identificação → convite",
+      "Desejos em tensão",
+      "Acolhimento"
+    ],
+    "DefMse1i-GT": [
+      "Caso de marca → aplicação",
+      "Marca como referência de competência",
+      "Seguir"
+    ],
+    "DfCtqhzibe5": [
+      "Identificação → convite",
+      "Desejos em tensão",
+      "Acolhimento"
+    ],
+    "DeC4lxgiMLh": [
+      "Caso de cliente → diagnóstico",
+      "Analogia visual de reputação",
+      "Seguir"
+    ],
+    "DfCzPIZCIVY": [
+      "Lista educativa",
+      "Promessa de três passos",
+      "Seguir"
+    ]
+  },
+  "repostagens": [],
+  "picos": [],
+  "familias_de_versoes": [
+    {
+      "name": "Experimento sobre primeira impressão",
+      "ids": [
+        "De2DKOxCVO7",
+        "De2NWmyitqZ",
+        "DfCwGzbCkPB"
+      ],
+      "note": "Mesmo argumento e grandes blocos de fala; versões/cortes, não três ideias independentes."
+    },
+    {
+      "name": "Manifesto de identificação",
+      "ids": [
+        "De68Z30ics2",
+        "DfCtqhzibe5"
+      ],
+      "note": "Texto muito próximo, abertura ligeiramente alterada."
+    }
+  ],
+  "note": "Do not infer trial reels from a threshold or consider same-argument versions independent."
+}

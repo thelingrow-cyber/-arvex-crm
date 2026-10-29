@@ -1,0 +1,42 @@
+{
+ "usuario": "fabiohansen",
+ "n": 16,
+ "janela": [
+  "2026-08-05",
+  "2026-10-28"
+ ],
+ "mediana_views": 1905,
+ "mediana_sem_testes_e_recentes": 2846,
+ "duracao_mediana": 57,
+ "por_mes": {
+  "2026-08": {
+   "reels": 1,
+   "mediana": 69317
+  },
+  "2026-09": {
+   "reels": 2,
+   "mediana": 195603
+  },
+  "2026-10": {
+   "reels": 13,
+   "mediana": 1470
+  }
+ },
+ "testes_reprovados": [
+  "DfCzPIZCIVY",
+  "DfCtqhzibe5",
+  "DeC4lxgiMLh"
+ ],
+ "recentes_menos_de_3_dias": [
+  "DfCzPIZCIVY",
+  "DfCwGzbCkPB",
+  "DfCtqhzibe5"
+ ],
+ "repostagens": [
+  [
+   "De2DKOxCVO7",
+   "DfCwGzbCkPB"
+  ]
+ ],
+ "picos_fora_da_janela": []
+}

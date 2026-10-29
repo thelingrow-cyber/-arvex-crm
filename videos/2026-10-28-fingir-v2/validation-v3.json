@@ -1,0 +1,16 @@
+{
+  "duration": "35.571995",
+  "bytes": 29968638,
+  "width": 1080,
+  "height": 1920,
+  "fps": "30/1",
+  "audio_sha256": {
+    "source": "SHA256=9d6b28e1e4956326b64dffd27787827e13efdc1bf7f1cad43d2f99c809efe41e",
+    "final": "SHA256=9d6b28e1e4956326b64dffd27787827e13efdc1bf7f1cad43d2f99c809efe41e"
+  },
+  "audio_and_music_identical": true,
+  "decode_errors": "",
+  "images": 2,
+  "headline": "“quanto mais você finge, menos você finge.”",
+  "source_captions": "preserved, not re-created"
+}

@@ -1,0 +1,34 @@
+{
+  "duration_seconds": 38.066016,
+  "video_duration_seconds": 38.066016,
+  "expected_duration_seconds": 38.06666666666666,
+  "source_duration_seconds": 43.366667,
+  "removed_seconds": 5.300000333333337,
+  "pause_cuts": 12,
+  "bytes": 47632860,
+  "video": {
+    "codec": "h264",
+    "width": 1080,
+    "height": 1920,
+    "fps": "30/1",
+    "frames": "1142"
+  },
+  "audio": {
+    "codec": "aac",
+    "duration": "38.066009"
+  },
+  "decode_errors": "",
+  "caption_events": 108,
+  "all_transcript_words_preserved": true,
+  "photo_count": 1,
+  "review_seconds": [
+    1.5,
+    8.9,
+    12.8,
+    17.5,
+    23.8,
+    27.4,
+    31.9,
+    36.8
+  ]
+}
