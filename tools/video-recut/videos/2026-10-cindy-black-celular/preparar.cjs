@@ -28,7 +28,7 @@ const BASE = [
   ["IMG_4928.MOV", 16, "e no fim do dia", "frio"], // loja cheia, sem cor: a margem ficou na porta
   ["IMG_4934.MOV", 0.3, "eu já caí", "frio"],      // a Cindy
   ["IMG_4937.MOV", 2, "o que mudou", "quente"],    // virada (pilha de vídeos por cima)
-  ["IMG_4935.MOV", 14, "e isso se monta", "quente"],
+  ["IMG_4935.MOV", 14, "isso se monta", "quente"],
   ["IMG_4935.MOV", 4, "nesse exato", "quente"],    // volta ao balcão do gancho
   ["IMG_4928.MOV", 1, "é isso que", "quente"],     // sob o insert do evento
   ["IMG_4931.MOV", 8, "clica em saiba", "quente"], // CTA
@@ -73,7 +73,7 @@ ff([...MOS.flatMap(([a, ini]) => ["-ss", String(ini), "-t", String(EVD), "-i", p
   MOS.map((_, i) => `[${i}:v]fps=30,scale=360:640:force_original_aspect_ratio=increase,crop=360:640,eq=saturation=1.1,setsar=1[m${i}]`).join(";") + ";" +
   MOS.map((_, i) => `[m${i}]`).join("") + "xstack=inputs=9:layout=0_0|360_0|720_0|0_640|360_640|720_640|0_1280|360_1280|720_1280[v]",
   "-map", "[v]", "-t", String(EVD), "-r", "30", "-c:v", "libx264", "-preset", "medium", "-crf", "22", "-pix_fmt", "yuv420p", path.join(pub, "mosaico.mp4")]);
-const PD = +(A.at("e isso se monta") - A.at("o que mudou") + 0.4).toFixed(2);
+const PD = +(A.at("isso se monta") - A.at("o que mudou") + 0.4).toFixed(2);
 [["IMG_3148.mov", 5], ["IMG_4937.MOV", 8], ["IMG_4935.MOV", 40]].forEach(([a, ini], i) =>
   ff(["-ss", String(ini), "-t", String(PD), "-i", path.join(DL, a), "-an", "-vf", `fps=30,${QUENTE},scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1`,
     "-r", "30", "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p", path.join(pub, `pilha${i}.mp4`)]));

@@ -1,5 +1,92 @@
 # Ponto de retomada
 
+## ▶ RETOMAR AQUI — 27-29/10/2026 (Claude Code, Orion → Gage): QG do ecossistema
+
+**Feito:**
+- Recap das frentes (marca pessoal, ARVEX, Lingrow, Viziom) e respostas sobre GitHub (conta `thelingrow-cyber`, repos de terceiros usados).
+- Briefing "Operação Black Recorde" analisado; 5 entregáveis oferecidos (landing, criativos, roteiro do workshop, checagem do nome, comercial pós-evento), **sem escolha do Vitor**. Alerta: o pilar "ferramenta de disparos" conversa com o Viziom.
+- Limpeza de disco: ~9,6 GB movidos para a Lixeira (vídeos soltos de Downloads > 3 dias + `Downloads/Instaladores`). **O Vitor precisa esvaziar a Lixeira.** Ainda dá para limpar: Compactados (4,8 GB), Downloads/Videos (24 GB), Temp (0,9 GB), `.wav` em `output/`.
+
+**Em andamento — item 4 (@devops), NADA aplicado ainda:**
+- (a) Troca da chave global da Evolution: chave nova gerada e guardada na env var do usuário `EVOLUTION_API_KEY_NEW` (nunca impressa). Falta o Vitor rodar no terminal da Hostinger `docker service update --env-add AUTHENTICATION_API_KEY=<nova> evolution_evolution_api` (antes confirmar o nome da env). Depois, eu: testar a chave, atualizar o secret `EVOLUTION_API_KEY` do Supabase (`sgeoikzyahhdrncesbpn`, via Management API), copiar `_NEW` → `EVOLUTION_API_KEY` local, testar `zap.py`; o Vitor cola a chave na credencial do n8n. Atualizar também o arquivo da stack, senão um redeploy volta a chave antiga.
+- (b) Repos `thelingrow-cyber/-arvex-crm` e `thelingrow-cyber/lin` → privados: o Vitor faz no GitHub (Chrome não está logado). Não mexer em `privacy-policy` (App Store). Depois conferir arvex-crm.vercel.app.
+
+**Pendentes do Vitor:** escolher entregáveis da Black Recorde; sincronizar BACKLOG/OF-10; 2 respostas do Viziom (aprovar mensagem; quem agenda as conversas).
+
+## Black Recorde (Cindy) — 29/10/2026, sessão Claude encerrada
+
+- Evento foi ajustado de 27/10 para **28/10, 20h**, e já aconteceu. A aula vende um acompanhamento (não prometer "plano pronto" nas mensagens).
+- Mensagens de grupo do evento (prova R$ 103.679,68, amanhã, hoje, 1 hora, ao vivo) em `docs/lancamento-black-recorde/mensagens-grupos-evento.md`.
+- Criativos B16, B17, B19 e B20 no Drive "Cindy - Black Recorde - Criativos"; B17/B19/B20 falam "dia vinte e sete" na narração (desatualizados após a mudança de data).
+- Voz clonada: padrão em `memory/feedback_voz_clonada_natural.md` (bloco único, sem acelerar). Dashboard Looker com 9 de 12 cartões quebrados (sem gasto/CPL).
+- Pendências: claims da Cindy (B16, B17, B19), preço nas etiquetas dos takes, Kie.ai sem saldo, push via @devops.
+
+## Objetivo ativo — 28/10/2026: dossiê Fábio Hansen
+
+Estudar o autor do Reel `DdbwbqdKmil`, no padrão dos dossiês anteriores, e extrair estrutura aplicável à marca pessoal. A iniciativa anterior de edição foi encerrada com a v3 publicada; histórico preservado abaixo.
+
+## Estado atual — pesquisa entregue
+
+- Dossiê em `docs/conteudo/banco-roteiros/players/fabio-hansen/ESTUDO.md`; inventário dos 16 em `ANEXOS.md`; fontes/método em `FONTES.md`. Todos os 16 lidos/classificados; nove folhas visuais inspecionadas. Story `docs/stories/dossie-fabio-hansen-2026-10-28.story.md` Ready for Review, amostra limitada explícita.
+- Identificado @fabiohansen, consultoria de marca pessoal. Principal mecanismo candidato: decisão ou observação concreta antes da explicação, depois aplicação profissional. Três quizzes semelhantes tiveram 233.151, 12.155 e 1.613 views; não há garantia de repetição. A Origem 158.055; academia 69.317. Três maiores concentram 91,8% das views observadas.
+- Três briefings para o Vitor na seção 8: escolha entre fluxos para revelar dependência do dono, auditoria de gargalo real, referência cultural para execução versus decisão. Sem mudança automática da grade.
+
+## Decisões — pesquisa Fábio
+
+- Alvo de 50 não atingido: coletor retornou 16; nova tentativa de ampliar recebeu HTTP 402 de cobrança. Nenhum pico histórico independente obtido. Dossiê não afirma varredura completa nem pede nova cobrança.
+- Mediana bruta 1.905; 2.675 nos 13 com pelo menos três dias; sensibilidade de versões 2.846,5 em 12. Views baixas não identificam trial reprovado; post antigo de 396 permanece na base. Usar `resumo-auditado.json`, não as inferências automáticas de `resumo.json`.
+- Corrigida no estudo de ganchos a proibição absoluta de relato pessoal: descoberta própria com evidência visual é contraexemplo. Separar estilo de mecanismo e contagens observadas de causalidade.
+- Quiz público PERCEP inspecionado sem envio de formulário; preço, atendimento e conversão não verificados. Não reproduzir roteiros completos na entrega.
+
+## Commits relevantes — pesquisa Fábio
+
+Sem commit/push; HEAD observado `baded79`; alterações preexistentes preservadas. Além da pasta do player e ficha do Reel, atualizados `DOSSIE-ROTEIROS.md`, `ESTUDO-GANCHOS.md`, `players/SINTESE-FORMATOS.md`, story e este handoff. Nenhuma afirmação de recebimento no Cloud.
+
+## Validação — pesquisa Fábio
+
+Auditoria confirmou cobertura 16/16, transcrições, métricas recalculadas, nove folhas, ficha preenchida e links locais dos documentos. `npm run lint` e `npm run typecheck` tentados: scripts ausentes na raiz. `npm test` passou: integridade do handoff, referências e ausência de padrões de segredo. Nenhum código de produto alterado.
+
+## Bloqueios e riscos — pesquisa Fábio
+
+Coleta maior limitada pelo HTTP 402; entrega disponível com 16. Sem retenção, mídia paga, compartilhamentos, vendas ou alcance com mesma idade. Versões semelhantes não são observações independentes. Fontes de alegações científicas dos Reels não foram auditadas como fatos; verificar antes de reutilizar essas alegações.
+
+## Próximo passo recomendado — pesquisa Fábio
+
+Vitor ler as comparações e os três briefings. Se escolher uma direção, escrever um roteiro próprio a partir de artefato/fato verificável e medir no sétimo dia. Nenhuma publicação ou mensagem externa solicitada por esta pesquisa.
+
+## Como retomar — pesquisa Fábio
+
+Abrir o ESTUDO.md e FONTES.md na pasta `fabio-hansen`. Dados em reels/perfil/classificacao/resumo-auditado JSON; scripts locais auditam métricas e geram anexos. Folhas e coleta bruta no cache `tools/roteiros/work/estudo/fabiohansen/`. Não repetir chamadas pagas para ampliar sem necessidade definida.
+
+## Retomada Codex — 28/10/2026: vídeo do Drive com limpeza de pausas
+
+- **V3 PUBLICADA:** usuário pediu reduzir imagens/headline e autorizou postar nesta conversa. Reduzidos largura das imagens 900→800 px e headline 68→60 px. Música/voz mantidas com hash idêntico. Reel confirmado published por consulta GET da Zernio: https://www.instagram.com/reel/DfDXrQ8EyS5/ (post ID `6ae26538191365efca60876a`). Final `videos/2026-10-28-fingir-v2/2026-10-28-fingir-musica-headline-v3.mp4`, 35,572 s, 29.968.638 bytes, 1080×1920/30 fps. Validado e salvo também em Prontos no Drive. Arquivos `publication-v3.json`, `publication-request-v3.json`, `publish_v3.py`, `validate_v3.py`, `validation-v3.json` e `contact-v3.jpg` no projeto. Item R90 substituído no fluxo local para impedir publicação duplicada; próxima ação somente se usuário solicitar ajuste. Story marcada Done. Sem commit/push.
+
+- Revisão v2 concluída: fonte correta encontrada em `Prontos/8E65D8F0-627B-4A82-AAA3-D1A616F81A6B.mp4`, 35,566667 s, enviada às 16h22, com música e legendas incorporadas. Usuário confirmou tratar-se do vídeo sobre fingir. O arquivo de 56 s era outro roteiro e não foi usado. Projeto `videos/2026-10-28-fingir-v2/`: scripts vigentes `prepare_top.py`, `render_v2.py`, `validate_v2.py`; os scripts copiados `build.py/plan_cuts.py/validate.py` não são usados nesta revisão.
+- Visual v2: duas imagens fornecidas lado a lado cobrem integralmente atleta; headline literal “quanto mais você finge, menos você finge.” abaixo delas e sobre o alto do boné (posição autorizada), rosto livre. Música/voz/cortes/legendas da fonte mantidos. Áudio SHA-256 idêntico ao recebido; MP4 decodificado sem erros, HyperFrames lint zero erros/avisos, quatro quadros finais inspecionados; Rui revisou o layout.
+- Entrega v2: `2026-10-28-fingir-musica-headline-v2.mp4`, 35,572 s, 29.310.661 bytes, 1080×1920/30fps H.264/AAC. Drive confirmado com MD5 igual ao local: https://drive.google.com/file/d/1USRa2EwT-9cTxELW99offv85lGmSGdWM/view . Problema observado na própria fonte: distorção do rosto em transição perto de 21 s, também presente na revisão; explicitamente sinalizado ao usuário no WhatsApp antes de aprovar.
+- Histórico da aprovação v2: prévia/legenda foram enviadas ao WhatsApp como R90. Autorização posterior no Codex para reduzir e publicar substituiu essa etapa; item antigo desativado e v3 publicada diretamente. Pacote `docs/conteudo/maquina/02-Rascunhos/2026-10-28-codex-fingir-v2/` atualizado com final.mp4 da v3. Nenhum agendamento pendente das versões anteriores.
+
+- Objetivo: editar o vídeo novo do Drive com uma foto no topo e legendas; depois usuário solicitou agentes de edição para depurar pausas, repetições e falsos começos.
+- Estado: final local `videos/2026-10-28-drive-insercao-unica/fingir-insercao-legendas-cortado.mp4`, 38,066 s, 1080×1920/30 fps, H.264/AAC, 47.632.860 bytes. Story `docs/stories/video-fingir-insercao-unica-2026-10-28.story.md` Ready for Review.
+- Decisões: Rui/editor auditou independentemente; não há frase refeita, gancho repetido é intencional. Retirados 5,3 s em 12 intervalos de pausa/cauda. Todas as palavras da transcrição preservadas; legendas remapeadas, “escolher” realinhado após pausa longa. Uma foto de treino Ali/Rahaman e legenda branca no peito; sem música ou demais inserções.
+- Arquivos/commits: projeto na pasta acima, com BRIEF, build.py, plan_cuts.py/cuts.json, transcrições, revisao-rui.md, captions, validate.py/validation.json, contact-sheet.jpg e créditos. Primeira montagem integral e fonte preservadas. Sem commit/push/publicação; alterações preexistentes preservadas, HEAD observado `baded79`.
+- Validação: decodificação integral sem erros, duração de áudio/vídeo consistente, oito quadros inspecionados, igualdade textual das 112 palavras em 108 eventos. HyperFrames lint zero erros/avisos; exportação real via FFmpeg. npm lint/typecheck ausentes; npm test no fechamento.
+- Bloqueios resolvidos: envio ao Groq rejeitado pela revisão automática; transcrição feita localmente. Atualização de skills HyperFrames sem conexão; cópias existentes consultadas e render leve do projeto usado. Limite temporário da revisão automática interrompeu a primeira validação, retomada e concluída após pedido do usuário.
+- Próximo passo: usuário assistir à versão com cortes. Roteiro Halbert segue registrado na seção abaixo, com direção aprovada e texto v2 aguardando revisão.
+- Entrega: cópia final também em `C:/Users/Vitor Simões/Downloads/2026-10-28-fingir-editado.mp4`. Upload concluído em 28/10 às 16h09, após usuário confirmar conta/pasta: `Vídeos claude/Prontos/2026-10-28-fingir-editado.mp4`. Link: https://drive.google.com/file/d/1ISl2QU5OH-ZKCc4HNfEaozY79HW36gvL/view . Conferidos tamanho 47.632.860 bytes e MD5 remoto idêntico ao local. Nenhuma alteração de compartilhamento; nenhuma publicação social.
+- Integração de postagem verificada pelo Codex neste computador em 28/10: consulta de leitura `python tools/maquina/insta.py contas` respondeu com a conta Instagram da marca pessoal ativa na Zernio. Acesso local disponível para consultar fila e agendar via fluxo existente; esta verificação não publicou nem agendou conteúdo.
+
+## Retomada Codex — 28/10/2026: roteiro para gravação da marca pessoal
+
+- Objetivo: modelar estrutura, formato e mecanismo do vídeo “Capricho tem data”, aplicando a OUTRO tema para aumentar potencial de alcance.
+- Estado: direção de `docs/conteudo/banco-pautas/roteiro-mais-cinco-anos.md` aprovada; usuário pediu ativar Halbert (Copy Chief, nome confirmado) e esclarecer a lógica. V2 vigente no mesmo arquivo, v1 preservada. Aprovação do texto final pendente.
+- Decisões: transferir tensão pessoal, prova concreta e critério final aplicável; não copiar frase nem assunto capricho/perfeccionismo/medo. Análise da referência e fonte do novo exemplo no arquivo. Não foram localizados dados de retenção/compartilhamento para atribuir causalidade ou prometer viralização.
+- Revisão Halbert: ambas as viagens já pagas; escolher a mais cara não recupera dinheiro; ainda se pode escolher como passar o fim de semana. Ponte explícita para tempo investido num projeto. Skill/definição do Copy Chief e fontes Schwartz, Hormozi e heurísticas do usuário consultadas. Persona assumida nesta conversa, sem subagente.
+- Arquivos/commits: novo roteiro e este registro; sem commit ou publicação. HEAD observado: `baded79`; alterações preexistentes preservadas.
+- Validação editorial: voz v2 e referência gravada consultadas. Novo exemplo verificado no artigo Arkes e Blumer (1985), experimento 1: cenário hipotético, 33 de 61 escolheram a viagem mais cara que esperavam aproveitar menos. Nenhum relato pessoal inventado; aplicação é reflexão editorial. Aprovação e leitura em câmera pendentes. Nenhum código alterado. Checagem anterior do handoff passou; lint/typecheck ausentes no package.json.
+- Bloqueios: nenhum para entregar o texto. Próximo passo: revisar/gravar; distribuição externa depende de destino definido.
+
 ## ▶ RETOMAR AQUI — 25-26/10/2026 (Claude Code, Orion): marca pessoal @vitorsimoesb
 
 **Publicado (tudo via Zernio, `tools/maquina/insta.py`, com aprovação do Vitor):**

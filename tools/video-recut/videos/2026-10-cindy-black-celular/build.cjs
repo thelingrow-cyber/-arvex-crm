@@ -46,7 +46,7 @@ V.insertTitulo({ start: PERG.ini, end: PERG.fim, linhas: [["O QUE VOCÊ", at("o 
 V.cardTitulo("c1", at("mas a margem") - 0.1, at("eu já caí") - 0.15, { kicker: "A LOJA ENCHEU, MAS A MARGEM", titulo: "FICOU NA", gold: "PORTA", tituloAt: at("ficou"), goldAt: at("porta") });
 // virada: vídeos empilhados
 V.pilhaVideos({ start: PIL.ini, end: PIL.fim, srcs: ["pilha0.mp4", "pilha2.mp4", "pilha1.mp4"] });
-V.cardTitulo("c2", at("uma oferta") - 0.15, at("e isso se monta") - 0.15, { kicker: "UMA OFERTA QUE", titulo: "O SITE", gold: "NÃO TEM", tituloAt: at("uma oferta"), goldAt: at("não tem") });
+V.cardTitulo("c2", at("uma oferta") - 0.15, at("isso se monta") - 0.15, { kicker: "UMA OFERTA QUE", titulo: "O SITE", gold: "NÃO TEM", tituloAt: at("uma oferta"), goldAt: at("não tem") });
 // volta ao balcão do gancho: agora o celular sai de cena
 V.celular("cel2", { start: at("nesse exato") - 0.3, end: EV.ini, giraAt: at("nesse exato") - 0.25, etiqueta: "-60%", empurraAt: at("balcão") + 0.3 });
 // pico: o evento, com o mosaico de vídeos ao fundo
