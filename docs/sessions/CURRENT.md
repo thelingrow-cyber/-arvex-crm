@@ -1,5 +1,56 @@
 # Ponto de retomada
 
+## ▶ RETOMAR AQUI — 30/10/2026 (Claude Code, Orion): Cindy pós-evento + clone no WhatsApp
+
+- **Acelerador Ótica Magnética** (vendido no fim da Black Recorde, 28/10): mensagem de abertura das aplicações enviada nos grupos com foto da Cindy. Texto final e cadência até o fechamento na seção 7 de `docs/lancamento-black-recorde/mensagens-grupos-evento.md`. Usar "aplicação", nunca "candidatura". Pendentes: data de fechamento e próximas mensagens (30/10 12h objeção "já paguei mentoria"; 20h decisão em dupla).
+- **Clone do Vitor nos grupos** (`tools/maquina/clone/`): rodando desde 30/10 03h45 como tarefa "ARVEX Clone - grupos". 1º teste no Times Square (amigos): abertura 8h12 "Maravilhosa sexta pra vocês / Vamos pra cima", 40 min respondendo reações, depois só quando falam com ele + até 4 entradas espontâneas/dia. Líderes Mentoria (sócios) DESLIGADO até ele aprovar o teste. `groupsIgnore` da instância foi desligado.
+- **Próximo passo:** ler `tools/maquina/clone/clone.log` e as cópias na conversa "Você"; ajustar com o feedback dele; decidir se liga no Líderes Mentoria.
+
+## ▶ RETOMAR AQUI — 29/10/2026 noite (Claude Code, Orion → Rui): reel "arquivos chatos"
+
+**Roteiro aprovado e gravado.** Arquivo: `docs/conteudo/banco-pautas/roteiro-arquivos-chatos.md`, versão v5 vigente.
+- Gancho: "Tem laboratório de IA pagando até quatro milhões de dólares por aquela pasta que ninguém abre na tua empresa".
+- Fonte: blog oficial da Handshake, US$ 100K a US$ 4M.
+- Fecho: "você vendia?". Não tem "comenta MANUAL" em nenhum lugar.
+- Pauta veio do Bernardo Precht (`De1Z2vHE5ni`). O Vitor reprovou antes: "três coisas que o Claude faz pra mim" e "três assistentes".
+- Regra nova: roteiro sem as obras dele como prova (`memory/feedback_roteiro_sem_feitos_dele.md`).
+
+**Edição (Rui), no estilo do reel do Fabiano `DfFSOeODLJV`:** tela dividida + pixel art + pílula de legenda monoespaçada.
+- Estratégia: `02-Rascunhos/2026-10-29-arquivos-chatos/ESTRATEGIA-EDICAO.md`.
+- Bruto do Drive `6E31C50B…mp4` (134 s) → decupagem manual de 89,8 s em `tools/video-recut/work/2026-10-29-arquivos-chatos/corte/cortar.py`, ficando sempre a última tentativa. Validada retranscrevendo com large-v3.
+- Montador: `build.py` no mesmo diretório (`previa <tempos>` / `render`). Final em `02-Rascunhos/2026-10-29-arquivos-chatos/final.mp4`.
+- Fontes novas em `tools/video-recut/assets/fontes`: JetBrains Mono, Silkscreen e Press Start 2P (todas OFL).
+
+**v2 (30/10, enviada no WhatsApp e no Drive `Prontos/2026-10-29-arquivos-chatos-v2.mp4`):**
+- Os 7 cortes do Vitor (repetições que eu não tinha pegado), aplicados por alinhamento de áudio. Ficaram em `corte/cortes-vitor.json` e `corte/limpo2.mp4`.
+- Headline na abertura: "4 MILHÕES PRA VOCÊ LIBERAR O ACESSO À SUA EMPRESA".
+- Tela dividida estilo Elias: sombra de 280 px, sem linha.
+- Mídia híbrida: vídeos reais em `reais/` (The Office, Anthropic, Google, CBS/OpenAI), interfaces e 5 cenas de pixel.
+- Legenda da casa: Segoe UI Semibold 68, y 1470.
+- Montador: `build2.py`.
+
+**v3 (30/10, enviada no WhatsApp e no Drive `Prontos/…-v3.mp4`, 80,6 s):**
+- Abertura no molde da casa: inserção 540×400 + título fino.
+- Decupagem nova a partir do bruto (`corte/cortar3.py` + respiros, gerando `limpo4.mp4`): não engole fim de frase e não deixa espera.
+- Fora: "É sério, quatro milhões", o "Quatro milhões" solto e a comparação do funcionário.
+- Cenas ancoradas na fala. Montador: `build3.py`.
+
+**Pendente:**
+- O Vitor ver a v3 e aprovar. Não postar sem o "pode".
+- Disco C: com ~0,7 GB livre. A limpeza do cache npm/temp foi bloqueada pelo auto mode, e o Vitor autorizou liberar espaço.
+
+## ▶ RETOMAR AQUI — 29/10/2026 (Claude Code, Orion + Téo/Halbert/Rui): marca pessoal
+
+**Publicados 27-28/10** (notas em `docs/conteudo/maquina/03-Publicados/`):
+- Reel Toyota andon (formato Fabiano: take sem fala P&B + fato na tela + "(o motivo tá na legenda)") — DfAyQmOH1FI.
+- Reel "fingir" v3 — DfDXrQ8EyS5.
+- Reel "cinco anos" (custo afundado, Arkes e Blumer 1985) — DfDlYTDDtmv. Editado no molde da casa (montar.py + edicao.json); a v1 simplificada foi reprovada → regra em `memory/feedback_edicao_usar_molde_casa.md`. Arquivo final com música foi do próprio Vitor.
+- Stories: futebol e misericórdias.
+
+**Em andamento:** novo reel formato Fabiano SEM voz. O Vitor escolhe o take; ofereci 3 temas para a frase de tela + legenda longa terminando em pergunta: (1) Costco, combo US$ 1,50 desde 1985 + Jim Sinegal (recomendado); (2) Ferrari, "um carro a menos"; (3) McDonald's, imóveis/Harry Sonneborn. **Sem escolha.** Conferir fonte primária de todo número antes de escrever. Modelo de legenda: `03-Publicados/2026-10-27-toyota-andon/legenda.txt`. Hashtags atuais: #empreendedorismo #empreender #negocios #founder.
+
+**Abertos:** escolha A/B do roteiro Ford ($5/dia; conferir a cena da mangueira); POV B da varanda; roteiro Lincoln/Darwin/Franklin; rotina da manhã (@dev); registro de DMs/calls para revisão de 11/11; ponte WhatsApp↔Claude esperando o "sim"; trocar client_id do rclone; apagar do Drive as v1/v2 de "cinco anos" só se ele pedir.
+
 ## ▶ RETOMAR AQUI — 27-29/10/2026 (Claude Code, Orion → Gage): QG do ecossistema
 
 **Feito:**
