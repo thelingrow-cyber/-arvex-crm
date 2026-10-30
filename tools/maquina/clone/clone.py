@@ -12,7 +12,7 @@ O que o clone faz em cada grupo ligado:
 uso:  python tools/maquina/clone/clone.py            # roda em laço
       python tools/maquina/clone/clone.py --uma-vez  # uma rodada (teste)
 """
-import json, os, random, subprocess, sys, tempfile, time
+import datetime, json, os, random, re, subprocess, sys, tempfile, time
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(AQUI))
@@ -90,6 +90,22 @@ def marcar_vitor(t):
     return t
 
 
+APELIDOS = ("vitor", "vitão", "vitao", "vt", "presidente")
+
+
+def falaram_com_ele(m):
+    """Marcaram ele, chamaram pelo nome/apelido ou responderam em cima de uma mensagem dele."""
+    msg = m.get("message") or {}
+    t = marcar_vitor(zap._texto_de(msg) or "").lower()
+    if "@vitor" in t or any(re.search(r"(?<![a-zà-ú])" + a + r"(?![a-zà-ú])", t) for a in APELIDOS):
+        return True
+    for c in [m.get("contextInfo")] + [v.get("contextInfo") for v in msg.values() if isinstance(v, dict)]:
+        if c and (str(c.get("participant", "")).split("@")[0] in _MEUS
+                  or any(str(j).split("@")[0] in _MEUS for j in c.get("mentionedJid") or [])):
+            return True
+    return False
+
+
 def transcricao(recs, cache):
     linhas = []
     for m in recs:
@@ -138,6 +154,40 @@ Nunca invente fato, memória, jogo, placar ou história que não esteja na conve
     return d
 
 
+DIAS = ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"]
+
+
+def abertura(grupo, conversa, cfg):
+    """A mensagem da manhã: uma piada leve de acordar ou um "bora" pra mais um dia, no jeito do Vitor."""
+    perfil = open(PERFIL, encoding="utf-8").read()
+    hoje = datetime.date.today()
+    prompt = f"""Você é o clone do Vitor no WhatsApp. Ninguém pode perceber que não é ele.
+
+{perfil}
+
+Grupo: "{grupo['nome']}" (tom: {grupo['tom']}). {grupo.get('obs', '')}
+Hoje é {DIAS[hoje.weekday()]}, {hoje:%d/%m}, umas 8h da manhã. O Vitor vai mandar a primeira mensagem do dia no grupo.
+
+Como os amigos costumam abrir a manhã nesse grupo (exemplos reais): "Bora @Alvaro / Tira a remela", "Bom dia guerreiros /
+Vamos à luta", "Os betinhas todos dormindo", "Acorda @Gabriel", "Passarinho que acorda cedo / Bebe água limpa",
+"Levanta patrão", "Bora aprumar".
+
+Últimas mensagens do grupo (de ontem/madrugada), só pra puxar um gancho se tiver um bom:
+{conversa}
+
+Escreva a abertura: uma piadinha leve de acordar/levantar, ou um "bora" pra mais um dia, combinando com o dia da semana.
+Pode cutucar um amigo pelo nome (Alvaro, Gabriel ou Mateus), SEM o @ (ex.: "Acorda Mateus"). 1 ou 2 mensagens curtíssimas, sem ponto final.
+Nada de trabalho, política ou coisa que exija resposta séria. Não invente fato.
+Responda SÓ com um JSON: {{"mensagens": ["msg1", "msg2"]}}"""
+    os.makedirs(CWD_CLAUDE, exist_ok=True)
+    r = subprocess.run(["claude", "-p", "--model", cfg.get("modelo", "sonnet"), "--max-turns", "1"],
+                       input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180,
+                       cwd=CWD_CLAUDE, shell=(os.name == "nt"))
+    saida = r.stdout.strip()
+    d = json.loads(saida[saida.find("{"):saida.rfind("}") + 1])
+    return [str(x).strip() for x in d.get("mensagens", []) if str(x).strip()][:2]
+
+
 # ---------- envio ----------
 
 def enviar_grupo(jid, msgs):
@@ -173,6 +223,31 @@ def rodada(cfg, est):
         if g.get("modo") not in ("ativo", "sombra"):
             continue
         ge = est.setdefault(jid, {"visto": 0, "respostas": [], "audios": {}})
+        if g.get("abertura") and g["modo"] in ("ativo", "sombra"):
+            hoje = time.strftime("%Y-%m-%d")
+            if ge.get("abertura_dia") != hoje:
+                if ge.get("abertura_alvo_dia") != hoje:          # sorteia o minuto do dia (não sai sempre 8:00 cravado)
+                    h, mi = map(int, g["abertura"].split(":"))
+                    ge["abertura_alvo"] = h * 60 + mi + random.randint(0, g.get("abertura_janela_min", 20))
+                    ge["abertura_alvo_dia"] = hoje
+                lt = time.localtime(agora)
+                if ge["abertura_alvo"] <= lt.tm_hour * 60 + lt.tm_min < ge["abertura_alvo"] + 120:
+                    try:
+                        recs0 = mensagens(jid, 30)
+                        if any(do_vitor_no_celular(m) and agora - int(m["messageTimestamp"]) < 4 * 3600 for m in recs0):
+                            log(f"{g['nome']}: Vitor já falou hoje, sem abertura")
+                        else:
+                            msgs = abertura(g, transcricao(recs0[-20:], ge["audios"]), cfg)
+                            log(f"{g['nome']}: abertura {msgs}")
+                            if g["modo"] == "sombra":
+                                zap.texto(f"🤖 *Clone (sombra) · {g['nome']}* abriria a manhã com:\n" + "\n".join(f"> {x}" for x in msgs))
+                            elif msgs:
+                                enviar_grupo(jid, msgs)
+                                if cfg.get("relatar_respostas"):
+                                    zap.texto(f"🤖 *Clone · {g['nome']}* abriu a manhã:\n" + "\n".join(f"> {x}" for x in msgs))
+                        ge["abertura_dia"] = hoje
+                    except Exception as e:
+                        log(f"{g['nome']}: falha na abertura ({e})")
         try:
             recs = mensagens(jid)
         except Exception as e:
@@ -192,6 +267,10 @@ def rodada(cfg, est):
                for m in recs):
             log(f"{g['nome']}: Vitor está no grupo, clone quieto")
             continue
+        if g.get("responder") == "quando_falarem":
+            marcar_vitor("")                                     # carrega os números dele
+            if not any(falaram_com_ele(m) for m in novas):
+                continue
         ge["respostas"] = [t for t in ge["respostas"] if agora - t < 3600]
         if len(ge["respostas"]) >= cfg["max_por_hora"]:
             log(f"{g['nome']}: limite de {cfg['max_por_hora']} respostas/hora")
@@ -222,8 +301,29 @@ def rodada(cfg, est):
         ge["audios"] = dict(list(ge["audios"].items())[-200:])
 
 
+def manter_acordado():
+    """Windows: impede a suspensão enquanto o clone roda (a tela pode apagar normalmente)."""
+    if os.name == "nt":
+        import ctypes
+        ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001)   # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
+
+
+def uma_instancia():
+    """Só um clone por vez: a tarefa do Windows dispara ao logar e às 7h50; o segundo sai calado."""
+    import msvcrt
+    global _TRAVA
+    _TRAVA = open(os.path.join(AQUI, ".clone.lock"), "w")
+    try:
+        msvcrt.locking(_TRAVA.fileno(), msvcrt.LK_NBLCK, 1)
+    except OSError:
+        sys.exit(0)
+
+
 def main():
     uma = "--uma-vez" in sys.argv
+    if not uma:
+        uma_instancia()
+        manter_acordado()
     est = carregar(ESTADO, {})
     cfg = carregar(CONFIG, None)
     if not cfg:

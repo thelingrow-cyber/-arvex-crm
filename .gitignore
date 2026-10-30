@@ -70,3 +70,4 @@ docs/conteudo/maquina/**/*-previa.mp4
 docs/conteudo/maquina/_regras/.rodada.lock
 tools/maquina/clone/.estado-clone.json*
 tools/maquina/clone/clone.log
+tools/maquina/clone/.clone.lock
