@@ -10,7 +10,7 @@
       "responder": "quando_falarem",
       "abertura_estilo": "um bom dia alegre e pra cima pra mais um dia (ex.: 'Maravilhosa sexta pra vocês / Vamos pra cima'), combinando com o dia da semana; sem cutucar ninguém que está dormindo, sem piada, sem frase de coach",
       "espontaneo_chance": 1.0,
-      "espontaneo_max_dia": 6,
+      "espontaneo_max_dia": 3,
       "abertura_fixa": {
         "2026-10-30": [
           "Sextou guerreiros",
@@ -33,7 +33,7 @@
   "intervalo_s": 60,
   "pausa_s": 25,
   "silencio_se_vitor_min": 10,
-  "max_por_hora": 6,
+  "max_por_hora": 2,
   "max_msgs": 3,
   "contexto": 30,
   "atraso_s": [
