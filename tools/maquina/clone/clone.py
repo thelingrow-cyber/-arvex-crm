@@ -175,7 +175,7 @@ Vamos à luta", "Os betinhas todos dormindo", "Acorda @Gabriel", "Passarinho que
 Últimas mensagens do grupo (de ontem/madrugada), só pra puxar um gancho se tiver um bom:
 {conversa}
 
-Escreva a abertura: uma piadinha leve de acordar/levantar, ou um "bora" pra mais um dia, combinando com o dia da semana.
+Escreva a abertura: {grupo.get('abertura_estilo', 'uma motivação curta pra mais um dia (bora, pra cima), combinando com o dia da semana')}.
 Pode cutucar um amigo pelo nome (Alvaro, Gabriel ou Mateus), SEM o @ (ex.: "Acorda Mateus"). 1 ou 2 mensagens curtíssimas, sem ponto final.
 Nada de trabalho, política ou coisa que exija resposta séria. Não invente fato.
 Responda SÓ com um JSON: {{"mensagens": ["msg1", "msg2"]}}"""

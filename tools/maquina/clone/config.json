@@ -7,7 +7,8 @@
       "obs": "Amigos: Álvaro, Gabriel e Mateus. O Gabriel também é sócio do Vitor: nada de assunto de trabalho da Cindy aqui. O Álvaro faz vídeos com o Vitor: pedido de trabalho ou edição = chamar. Aqui o Vitor é muito ativo (~25% das mensagens).",
       "abertura": "08:00",
       "abertura_janela_min": 20,
-      "responder": "quando_falarem"
+      "responder": "quando_falarem",
+      "abertura_estilo": "uma motivação curta e leve pra mais um dia (estilo 'Bom dia guerreiros / Vamos à luta', 'Bora aprumar'), combinando com o dia da semana; nada de coach nem frase de efeito, sem piada por enquanto"
     },
     "120363043678206319@g.us": {
       "nome": "Líderes Mentoria",
