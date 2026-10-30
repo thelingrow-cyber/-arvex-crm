@@ -237,12 +237,14 @@ def rodada(cfg, est):
                         if any(do_vitor_no_celular(m) and agora - int(m["messageTimestamp"]) < 4 * 3600 for m in recs0):
                             log(f"{g['nome']}: Vitor já falou hoje, sem abertura")
                         else:
-                            msgs = abertura(g, transcricao(recs0[-20:], ge["audios"]), cfg)
+                            fixa = (g.get("abertura_fixa") or {}).get(hoje)   # texto escolhido pelo Vitor para o dia
+                            msgs = fixa or abertura(g, transcricao(recs0[-20:], ge["audios"]), cfg)
                             log(f"{g['nome']}: abertura {msgs}")
                             if g["modo"] == "sombra":
                                 zap.texto(f"🤖 *Clone (sombra) · {g['nome']}* abriria a manhã com:\n" + "\n".join(f"> {x}" for x in msgs))
                             elif msgs:
                                 enviar_grupo(jid, msgs)
+                                ge["abertura_ts"] = time.time()
                                 if cfg.get("relatar_respostas"):
                                     zap.texto(f"🤖 *Clone · {g['nome']}* abriu a manhã:\n" + "\n".join(f"> {x}" for x in msgs))
                         ge["abertura_dia"] = hoje
@@ -270,7 +272,8 @@ def rodada(cfg, est):
         espontaneo = False
         if g.get("responder") == "quando_falarem":
             marcar_vitor("")                                     # carrega os números dele
-            if not any(falaram_com_ele(m) for m in novas):
+            pos_abertura = time.time() - ge.get("abertura_ts", 0) < g.get("janela_pos_abertura_min", 0) * 60
+            if not pos_abertura and not any(falaram_com_ele(m) for m in novas):
                 # ninguém falou com ele: de vez em quando ele entra mesmo assim (um ou outro, com teto por dia)
                 hoje = time.strftime("%Y-%m-%d")
                 if ge.get("espont_dia") != hoje:
