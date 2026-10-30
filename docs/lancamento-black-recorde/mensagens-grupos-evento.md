@@ -148,3 +148,46 @@ Ainda dá tempo de entrar. O link está no grupo do evento:
 ```
 
 Reforço 15 min depois: "Quem chegou agora ainda pega a parte mais importante. Entra: [link]".
+
+## 7. Pós-evento: aplicações do Acelerador Ótica Magnética (29/10)
+
+> Mandar logo abaixo do print da Black 2025 (R$ 103.679,68). Sem "candidatura" (pedido do Vitor: usar "aplicação"). Revisado por Halbert (copy-chief) e Reva (email-crm-marketer) sobre a versão do Vitor. Pendentes: `[LINK DO FORMULÁRIO]`, `[DATA]` (ideal 31/10 ou 01/11, para os 60 dias cobrirem a Black) e `[NÚMERO DA EQUIPE]`.
+
+### Mensagem única (todos os grupos, logo abaixo do print)
+
+```
+👆 O caminho que me levou a esse recorde agora vai ser o caminho da sua loja. E você vai percorrer ele comigo.
+
+Ontem eu revelei a melhor condição da história: o *Acelerador Ótica Magnética*. E decidi abrir as aplicações também pra quem não estava lá.
+
+Serão *60 dias de acompanhamento comigo e com o meu time*, trabalhando três frentes da sua ótica:
+
+✅ Posicionamento
+✅ Atração de clientes
+✅ Aumento das vendas
+
+E esses 60 dias passam pela Black Friday e pelo Natal, duas das épocas mais fortes do ano pra ótica.
+
+Pra eu acompanhar cada loja de perto, *só 10 óticas vão entrar*.
+
+👉 Faz a sua aplicação aqui: [LINK DO FORMULÁRIO]
+
+⏳ Aplicações abertas até [DATA] ou até preenchermos as 10 vagas.
+
+⚠️ A aplicação não garante a vaga. A minha equipe analisa cada ótica e entra em contato com as selecionadas.
+
+Já aplicou? Fica tranquilo, a equipe vai te chamar. Ficou com dúvida? Me chama no privado: [NÚMERO DA EQUIPE]
+
+Cindy
+```
+
+### Cadência até o fechamento (Reva)
+
+| Quando | Objetivo | Gancho |
+|---|---|---|
+| 29/10, 19h30 | Abrir aplicações | Esta mensagem |
+| 30/10, 12h | Objeção "já paguei mentoria e não vi nada" | "Se você já pagou mentoria e se arrependeu, lê isso antes de aplicar." |
+| 30/10, 20h | Decisão em dupla | "Mostra essa mensagem pra quem decide a loja com você e preenchem juntos." |
+| [DATA], 9h e 20h | Fechamento | "As aplicações fecham hoje às [HORA]." / "Última chamada." (só se for verdade) |
+
+Quem chamar no privado e não aplicar vai para o closer, com a dúvida anotada.

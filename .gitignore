@@ -68,3 +68,5 @@ tools/maquina/.estado.json*
 tools/maquina/maestro.log
 docs/conteudo/maquina/**/*-previa.mp4
 docs/conteudo/maquina/_regras/.rodada.lock
+tools/maquina/clone/.estado-clone.json*
+tools/maquina/clone/clone.log
