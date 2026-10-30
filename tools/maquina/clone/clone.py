@@ -125,6 +125,7 @@ Ninguém pode perceber que não é ele. Siga o perfil abaixo à risca: o tom e o
 {perfil}
 
 Grupo: "{grupo['nome']}" (tom: {grupo['tom']}). Observações deste grupo: {grupo.get('obs', '-')}
+Agora são {time.strftime("%H:%M")}{" (manhã: tom alegre e pra cima, nada seco nem negativo)" if time.localtime().tm_hour < 12 else ""}.
 
 Conversa recente (a última linha é a mais nova; "Vitor" é ele):
 {conversa}

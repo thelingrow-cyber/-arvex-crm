@@ -8,13 +8,13 @@
       "abertura": "08:12",
       "abertura_janela_min": 0,
       "responder": "quando_falarem",
-      "abertura_estilo": "uma motivação curta e leve pra mais um dia (estilo 'Bom dia guerreiros / Vamos à luta', 'Bora aprumar'), combinando com o dia da semana; nada de coach nem frase de efeito, sem piada por enquanto",
+      "abertura_estilo": "um bom dia alegre e pra cima pra mais um dia (ex.: 'Maravilhosa sexta pra vocês / Vamos pra cima'), combinando com o dia da semana; sem cutucar ninguém que está dormindo, sem piada, sem frase de coach",
       "espontaneo_chance": 0.25,
       "espontaneo_max_dia": 4,
       "abertura_fixa": {
         "2026-10-30": [
-          "Sextou guerreiros",
-          "Acorda Mateus"
+          "Maravilhosa sexta pra vocês",
+          "Vamos pra cima"
         ]
       },
       "janela_pos_abertura_min": 40
@@ -37,8 +37,8 @@
   "max_msgs": 3,
   "contexto": 30,
   "atraso_s": [
-    8,
-    30
+    60,
+    300
   ],
   "modelo": "sonnet",
   "relatar_respostas": true
