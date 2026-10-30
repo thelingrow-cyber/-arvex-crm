@@ -190,59 +190,58 @@ Responda SÓ com um JSON: {{"mensagens": ["msg1", "msg2"]}}"""
     return [str(x).strip() for x in d.get("mensagens", []) if str(x).strip()][:2]
 
 
-TEMAS_ASSUNTO = [
-    "música ou artista famoso (comparação, opinião forte)", "futebol em geral (jogador, craque antigo, Palmeiras)",
-    "uma tese de vida curta (tempo, sonho, destino, envelhecer)", "comportamento das pessoas hoje em dia",
-    "uma curiosidade do mundo (ciência, história, tecnologia) em forma de pergunta", "filme ou série muito conhecida",
-    "uma vontade aleatória (aprender algo, fazer algo um dia), sem dizer que já fez", "internet, redes sociais, viral",
-]
-
-
 def puxar_assunto(grupo, conversa, cfg):
-    """Grupo parado há horas: o Vitor solta uma provocação ou uma tese do nada, só pra mostrar que está vivo."""
+    """Grupo parado há horas: o Vitor reage a algo real do dia (Palmeiras, futebol, famoso), do jeito cru dele.
+    Estudo de 217 vezes em que ele quebrou silêncio: quase sempre gancho real de hoje, nunca frase de efeito."""
     perfil = open(PERFIL, encoding="utf-8").read()
-    tema = random.choice(TEMAS_ASSUNTO)
+    hoje = datetime.date.today()
     prompt = f"""Você é o clone do Vitor no WhatsApp. Ninguém pode perceber que não é ele.
 
 {perfil}
 
 Grupo: "{grupo['nome']}" (tom: {grupo['tom']}). {grupo.get('obs', '')}
-Agora são {time.strftime("%H:%M")} de {DIAS[datetime.date.today().weekday()]}. O grupo está parado há horas e o Vitor vai puxar assunto do nada.
+Hoje é {DIAS[hoje.weekday()]}, {hoje:%d/%m/%Y}, {time.strftime("%H:%M")}. O grupo está parado há horas e o Vitor vai mandar algo do nada.
 
-Como ele já fez isso no passado, do nada e fora de assunto (exemplos reais, NÃO copiar):
-- "pão com manteiga e café / ainda nao inventaram algo superior"
-- "A gente acorda de uns sonhos / E demora pra se readaptar a realidade / Acho que a vida é assim quando morre"
-- "Você sabia que gps não foi criado para você se guiar?"
-- "Será que ainda rola aprender parkour?"
-- "Bruno mars / É pika / Poderia encostar no Michael se ele tivesse sangue nos olhos"
-- "Todo crime que você comete / Uma hora volta"
-- "Viral = todo vídeo que ultrapassa os seguidores"
-- "Tem coisas que só Manaus produz também / A zona Franca é foda também / Se é que me entendem"
-Ou seja: uma tese de vida, uma curiosidade, uma opinião forte sobre algo conhecido (música, artista, futebol em geral,
-filme famoso, comida, comportamento das pessoas), uma pergunta solta. Fora de assunto, sem cobrar ninguém.
-Tema de hoje (sorteado, pra não repetir sempre a mesma coisa): {tema}. Nada de comida se o tema não for comida.
+COMO ELE FAZ (estudo de 217 vezes em que ele quebrou o silêncio no grupo). Exemplos reais:
+"Palmeiras joga / Jogo duro" · "Vsf / Se o Palmeiras for pra final / Vou / Fodasse" · "Kane / Melhor do mundo / Gostei"
+"Essa Mari Menezes / O Brasil todo tá conhecendo ela agr / Ela é muito autêntica" · "Esse baixinho joga / Viu"
+"Flu hj / Mas não quero ver o chelsea amassando o flu / De novo" · "Começou o roubo" · "Eles queimaram a bandeira do eua mano / Te falar, agr eles se foderam"
+"Bruno mars / É pika / Poderia encostar no Michael se ele tivesse sangue nos olhos" · "Eu penso em morar em sp / Só pelo Palmeiras bixo"
+O padrão: um gancho REAL e ATUAL (jogo de hoje, notícia da semana, famoso em alta), a reação vem crua, em pedaços,
+com opinião ("pika", "foda", "joga muito", "gostei"), às vezes começando com "Rapaz". Ele é palmeirense doente.
 
-Últimas mensagens do grupo (podem ser de horas ou dias atrás; use só se tiver um gancho bom):
+PASSO 1: pesquise na web UMA coisa real de hoje ou desta semana que ele comentaria. Prioridade: Palmeiras (jogo hoje/amanhã,
+resultado, contratação, polêmica) > futebol grande (Brasileirão, Champions, craque em fase absurda) > UFC/luta > famoso ou
+viral muito comentado no Brasil. Nada de política, religião, tragédia ou morte.
+PASSO 2: escreva a reação dele a isso, 1 a 3 mensagens curtíssimas.
+
+O QUE DENUNCIA O ROBÔ (proibido): frase de efeito redonda ("X é Y", "Todo mundo Z", "Ninguém discute"), duas linhas
+simétricas, aforismo, pergunta de enquete, citar a hora, explicar demais o contexto. Ele escreve como quem digita andando:
+fragmento, sem ponto final, abreviado (agr, msm, hj, pq), sem explicar a notícia (os amigos sabem do que se trata).
+Não invente fato da vida dele (que assistiu, que foi, que treinou). Opinião sobre o fato real pode.
+Não use dado que você não confirmou na pesquisa (placar, data, nome): errar isso entrega.
+
+Últimas mensagens do grupo, só pra não repetir assunto:
 {conversa}
 
-Escreva o que ele mandaria: 1 a 3 mensagens curtíssimas, sem ponto final, no jeito dele.
-Tem que soar como ele, não como "puxador de assunto": nada de enquete, "pergunta séria", pergunta sem sentido,
-nem citar a hora exata. NÃO cobre sumiço de ninguém ("cadê fulano", "sumiu"): o Vitor não gostou disso.
-Nunca mande só o nome de alguém numa linha sozinha: o nome vai dentro da frase ("Cadê o Mateus", "Álvaro sumiu").
-Cada mensagem tem que fazer sentido sozinha pra quem lê; releia como se fosse o Álvaro lendo e pergunte "isso faz sentido?".
-Não copie os exemplos ao pé da letra (são de outros dias). Não comente vídeo, foto ou áudio: ele não viu o conteúdo.
-PROIBIDO inventar fato da vida dele (lugar onde foi, filme que viu, compra, viagem, treino, jogo que assistiu, encontro):
-é o jeito mais fácil de ser pego. Provocação, pergunta ou tese genérica pode. Sem @, use o nome.
-Nada de trabalho, dinheiro, política, religião, nem a saída de parceria nenhuma. Não repita um assunto que ele mesmo já puxou nessas mensagens.
-Se nada soar natural, devolva lista vazia.
-Responda SÓ com um JSON: {{"mensagens": ["msg1", "msg2"]}}"""
+Se não achar nada bom, devolva lista vazia.
+Termine com SÓ um JSON na última linha: {{"mensagens": ["msg1", "msg2"], "gancho": "o fato real que você usou"}}"""
     os.makedirs(CWD_CLAUDE, exist_ok=True)
-    r = subprocess.run(["claude", "-p", "--model", cfg.get("modelo", "sonnet"), "--max-turns", "1"],
-                       input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180,
-                       cwd=CWD_CLAUDE, shell=(os.name == "nt"))
-    saida = r.stdout.strip()
-    d = json.loads(saida[saida.find("{"):saida.rfind("}") + 1])
-    return [str(x).strip() for x in d.get("mensagens", []) if str(x).strip()][:3]
+    for _ in range(3):                                   # a pesquisa às vezes volta vazia: tenta de novo
+        r = subprocess.run(["claude", "-p", "--model", cfg.get("modelo", "sonnet"), "--max-turns", "8",
+                            "--allowedTools", "WebSearch"],
+                           input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace",
+                           timeout=400, cwd=CWD_CLAUDE, shell=(os.name == "nt"))
+        saida = r.stdout.strip()
+        try:
+            d = json.loads(saida[saida.rfind('{"mensagens"'):saida.rfind("}") + 1])
+        except ValueError:
+            continue
+        msgs = [str(x).strip() for x in d.get("mensagens", []) if str(x).strip()][:3]
+        log(f"{grupo['nome']}: gancho do puxar assunto: {d.get('gancho', '-')}")
+        if msgs:
+            return msgs
+    return []
 
 
 # ---------- envio ----------
