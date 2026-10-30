@@ -4,23 +4,29 @@
       "nome": "Times Square",
       "tom": "amigos íntimos, zoeira",
       "modo": "ativo",
-      "obs": "Amigos: Álvaro, Gabriel e Mateus. O Gabriel também é sócio do Vitor: nada de assunto de trabalho da Cindy aqui. O Álvaro faz vídeos com o Vitor: pedido de trabalho ou edição = chamar."
+      "obs": "Amigos: Álvaro, Gabriel e Mateus. O Gabriel também é sócio do Vitor: nada de assunto de trabalho da Cindy aqui. O Álvaro faz vídeos com o Vitor: pedido de trabalho ou edição = chamar. Aqui o Vitor é muito ativo (~25% das mensagens)."
     },
     "120363043678206319@g.us": {
       "nome": "Líderes Mentoria",
       "tom": "sócios (Cindy, Gabriel, Lucas), curto e direto, sem palavrão",
       "modo": "desligado",
-      "obs": "Grupo oficial. Só responder o leve (bom dia, fechou, deu bom?). Qualquer decisão, prazo, dinheiro ou pedido = chamar."
+      "obs": "Grupo oficial. Só responder o leve (bom dia, fechou, deu bom?). Qualquer decisão, prazo, dinheiro ou pedido = chamar. Aqui ele só fala o necessário."
     }
   },
-  "horario": [10, 24],
+  "horario": [
+    10,
+    24
+  ],
   "intervalo_s": 60,
   "pausa_s": 40,
   "silencio_se_vitor_min": 10,
   "max_por_hora": 6,
   "max_msgs": 3,
   "contexto": 30,
-  "atraso_s": [20, 120],
+  "atraso_s": [
+    20,
+    120
+  ],
   "modelo": "sonnet",
   "relatar_respostas": true
 }

@@ -114,21 +114,23 @@ Conversa recente (a última linha é a mais nova; "Vitor" é ele):
 {conversa}
 
 Decida UMA ação:
-- "ignorar": a conversa não pede o Vitor agora (é o padrão; o Vitor não responde tudo). Prefira ignorar quando em dúvida.
-- "responder": falaram com ele, marcaram ele, perguntaram algo leve que ele responderia, ou é uma zoeira em que ele entraria.
+- "ignorar": não há gancho pra ele (só áudios/figurinhas entre outros, assunto que ele não acrescenta nada).
+- "responder": marcaram ele (@Vitor), falaram com ele, perguntaram algo pra ele, ou a conversa tem um gancho em que ele
+  entraria com uma reação ou comentário (siga o quanto ele participa neste grupo, descrito no perfil e nas observações).
 - "chamar": o assunto precisa do Vitor de verdade (ver regras do perfil). Não responda nada no grupo nesse caso.
 
 Responda SÓ com um JSON, sem texto em volta:
 {{"acao": "ignorar|responder|chamar", "mensagens": ["msg1", "msg2"], "motivo": "uma frase", "sugestao": "o que ele poderia responder (só em chamar)"}}
-Em "responder", 1 a {cfg['max_msgs']} mensagens, cada uma curta como as dele, sem ponto final."""
+Em "responder", 1 a {cfg['max_msgs']} mensagens (uma só é o mais comum), curtas como as dele, sem ponto final.
+Nunca invente fato, memória, jogo, placar ou história que não esteja na conversa (é o jeito mais fácil de ser pego). Prefira a reação mais curta possível: uma palavra seca vale mais que uma frase. Não repita as palavras de quem falou, não comece sempre com "kkk", não dê bom dia por educação: comente por cima, com opinião."""
     os.makedirs(CWD_CLAUDE, exist_ok=True)
     r = subprocess.run(["claude", "-p", "--model", cfg.get("modelo", "sonnet"), "--max-turns", "1"],
-                       input=prompt, capture_output=True, text=True, encoding="utf-8", timeout=180, cwd=CWD_CLAUDE,
+                       input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180, cwd=CWD_CLAUDE,
                        shell=(os.name == "nt"))
     saida = r.stdout.strip()
     ini, fim = saida.find("{"), saida.rfind("}")
     if ini < 0:
-        raise ValueError(f"resposta sem JSON: {saida[:200]} {r.stderr[:200]}")
+        raise ValueError(f"resposta sem JSON: {saida[:200]} {(r.stderr or "")[:200]}")
     d = json.loads(saida[ini:fim + 1])
     if d.get("acao") not in ("ignorar", "responder", "chamar"):
         raise ValueError(f"ação inválida: {d}")
