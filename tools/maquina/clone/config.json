@@ -8,7 +8,9 @@
       "abertura": "08:00",
       "abertura_janela_min": 20,
       "responder": "quando_falarem",
-      "abertura_estilo": "uma motivação curta e leve pra mais um dia (estilo 'Bom dia guerreiros / Vamos à luta', 'Bora aprumar'), combinando com o dia da semana; nada de coach nem frase de efeito, sem piada por enquanto"
+      "abertura_estilo": "uma motivação curta e leve pra mais um dia (estilo 'Bom dia guerreiros / Vamos à luta', 'Bora aprumar'), combinando com o dia da semana; nada de coach nem frase de efeito, sem piada por enquanto",
+      "espontaneo_chance": 0.25,
+      "espontaneo_max_dia": 4
     },
     "120363043678206319@g.us": {
       "nome": "Líderes Mentoria",

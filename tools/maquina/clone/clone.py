@@ -267,10 +267,18 @@ def rodada(cfg, est):
                for m in recs):
             log(f"{g['nome']}: Vitor está no grupo, clone quieto")
             continue
+        espontaneo = False
         if g.get("responder") == "quando_falarem":
             marcar_vitor("")                                     # carrega os números dele
             if not any(falaram_com_ele(m) for m in novas):
-                continue
+                # ninguém falou com ele: de vez em quando ele entra mesmo assim (um ou outro, com teto por dia)
+                hoje = time.strftime("%Y-%m-%d")
+                if ge.get("espont_dia") != hoje:
+                    ge["espont_dia"], ge["espont_qtd"] = hoje, 0
+                if (ge["espont_qtd"] >= g.get("espontaneo_max_dia", 0)
+                        or random.random() >= g.get("espontaneo_chance", 0)):
+                    continue
+                espontaneo = True
         ge["respostas"] = [t for t in ge["respostas"] if agora - t < 3600]
         if len(ge["respostas"]) >= cfg["max_por_hora"]:
             log(f"{g['nome']}: limite de {cfg['max_por_hora']} respostas/hora")
@@ -296,6 +304,8 @@ def rodada(cfg, est):
                 continue
             enviar_grupo(jid, d["mensagens"])
             ge["respostas"].append(time.time())
+            if espontaneo:
+                ge["espont_qtd"] = ge.get("espont_qtd", 0) + 1
             if cfg.get("relatar_respostas"):
                 relatar(g, d)
         ge["audios"] = dict(list(ge["audios"].items())[-200:])
