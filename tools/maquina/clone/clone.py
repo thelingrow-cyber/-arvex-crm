@@ -117,7 +117,7 @@ def transcricao(recs, cache):
 
 # ---------- decisão ----------
 
-def decidir(grupo, conversa, cfg):
+def decidir(grupo, conversa, cfg, espontaneo=False):
     perfil = open(PERFIL, encoding="utf-8").read()
     prompt = f"""Você é o clone do Vitor no WhatsApp. Vai ler a conversa de um grupo e decidir o que o Vitor faria agora.
 Ninguém pode perceber que não é ele. Siga o perfil abaixo à risca: o tom e o tamanho das mensagens dele são o que mais importa.
@@ -130,6 +130,7 @@ Agora são {time.strftime("%H:%M")}{" (manhã: tom alegre e pra cima, nada seco 
 Conversa recente (a última linha é a mais nova; "Vitor" é ele):
 {conversa}
 
+{"Ninguém falou com ele agora. Só entre se for algo em que o Vitor de verdade comentaria (zoeira boa, notícia, foto, pergunta pro grupo todo). Na dúvida, ignorar: melhor ficar quieto do que forçar." if espontaneo else ""}
 Decida UMA ação:
 - "ignorar": não há gancho pra ele (só áudios/figurinhas entre outros, assunto que ele não acrescenta nada).
 - "responder": marcaram ele (@Vitor), falaram com ele, perguntaram algo pra ele, ou a conversa tem um gancho em que ele
@@ -289,7 +290,7 @@ def rodada(cfg, est):
             continue
         conversa = transcricao(recs[-cfg["contexto"]:], ge["audios"])
         try:
-            d = decidir(g, conversa, cfg)
+            d = decidir(g, conversa, cfg, espontaneo)
         except Exception as e:
             log(f"{g['nome']}: falha na decisão ({e})")
             continue
