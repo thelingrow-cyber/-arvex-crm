@@ -368,6 +368,9 @@ def rodada(cfg, est):
                     continue
                 espontaneo = True
         ge["respostas"] = [t for t in ge["respostas"] if agora - t < 3600]
+        espera = cfg.get("intervalo_entre_respostas_min", 30) * 60     # sem bate-bola: depois de falar, dá um tempo
+        if ge["respostas"] and agora - max(ge["respostas"]) < espera and not any(falaram_com_ele(m) for m in novas):
+            continue
         if len(ge["respostas"]) >= cfg["max_por_hora"]:
             log(f"{g['nome']}: limite de {cfg['max_por_hora']} respostas/hora")
             continue

@@ -48,5 +48,6 @@
     300
   ],
   "modelo": "sonnet",
-  "relatar_respostas": true
+  "relatar_respostas": true,
+  "intervalo_entre_respostas_min": 30
 }
