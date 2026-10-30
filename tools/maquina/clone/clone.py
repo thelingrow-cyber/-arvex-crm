@@ -190,9 +190,18 @@ Responda SÓ com um JSON: {{"mensagens": ["msg1", "msg2"]}}"""
     return [str(x).strip() for x in d.get("mensagens", []) if str(x).strip()][:2]
 
 
+TEMAS_ASSUNTO = [
+    "música ou artista famoso (comparação, opinião forte)", "futebol em geral (jogador, craque antigo, Palmeiras)",
+    "uma tese de vida curta (tempo, sonho, destino, envelhecer)", "comportamento das pessoas hoje em dia",
+    "uma curiosidade do mundo (ciência, história, tecnologia) em forma de pergunta", "filme ou série muito conhecida",
+    "uma vontade aleatória (aprender algo, fazer algo um dia), sem dizer que já fez", "internet, redes sociais, viral",
+]
+
+
 def puxar_assunto(grupo, conversa, cfg):
     """Grupo parado há horas: o Vitor solta uma provocação ou uma tese do nada, só pra mostrar que está vivo."""
     perfil = open(PERFIL, encoding="utf-8").read()
+    tema = random.choice(TEMAS_ASSUNTO)
     prompt = f"""Você é o clone do Vitor no WhatsApp. Ninguém pode perceber que não é ele.
 
 {perfil}
@@ -200,21 +209,25 @@ def puxar_assunto(grupo, conversa, cfg):
 Grupo: "{grupo['nome']}" (tom: {grupo['tom']}). {grupo.get('obs', '')}
 Agora são {time.strftime("%H:%M")} de {DIAS[datetime.date.today().weekday()]}. O grupo está parado há horas e o Vitor vai puxar assunto do nada.
 
-Como ele já fez isso no passado (exemplos reais):
-- provocar um amigo: "Sdds do Álvaro rotineiro / Por aqui", "Cadê os modao? Álvaro / Sertanejo / Mostre",
-  "E o mister?", "Fiquei curioso / Pelo seu treino / Álvaro"
-- soltar uma tese ou pergunta do nada: "pão com manteiga e café / ainda nao inventaram algo superior",
-  "A gente acorda de uns sonhos / E demora pra se readaptar a realidade", "Será que ainda rola aprender parkour?",
-  "Você sabia que gps não foi criado para você se guiar?"
-- voltar num assunto que os amigos falaram antes no grupo, com uma reação ou zoeira por cima.
+Como ele já fez isso no passado, do nada e fora de assunto (exemplos reais, NÃO copiar):
+- "pão com manteiga e café / ainda nao inventaram algo superior"
+- "A gente acorda de uns sonhos / E demora pra se readaptar a realidade / Acho que a vida é assim quando morre"
+- "Você sabia que gps não foi criado para você se guiar?"
+- "Será que ainda rola aprender parkour?"
+- "Bruno mars / É pika / Poderia encostar no Michael se ele tivesse sangue nos olhos"
+- "Todo crime que você comete / Uma hora volta"
+- "Viral = todo vídeo que ultrapassa os seguidores"
+- "Tem coisas que só Manaus produz também / A zona Franca é foda também / Se é que me entendem"
+Ou seja: uma tese de vida, uma curiosidade, uma opinião forte sobre algo conhecido (música, artista, futebol em geral,
+filme famoso, comida, comportamento das pessoas), uma pergunta solta. Fora de assunto, sem cobrar ninguém.
+Tema de hoje (sorteado, pra não repetir sempre a mesma coisa): {tema}. Nada de comida se o tema não for comida.
 
 Últimas mensagens do grupo (podem ser de horas ou dias atrás; use só se tiver um gancho bom):
 {conversa}
 
 Escreva o que ele mandaria: 1 a 3 mensagens curtíssimas, sem ponto final, no jeito dele.
-Tem que soar como um amigo de verdade, não como "puxador de assunto": nada de pergunta aleatória sem sentido
-(comida esquisita, "pergunta séria", enquete), nada de citar a hora exata. O mais seguro é cutucar um amigo pelo nome
-(sumiço, treino, rotina, time dele) ou uma tese curta sobre a vida que um amigo comentaria.
+Tem que soar como ele, não como "puxador de assunto": nada de enquete, "pergunta séria", pergunta sem sentido,
+nem citar a hora exata. NÃO cobre sumiço de ninguém ("cadê fulano", "sumiu"): o Vitor não gostou disso.
 Nunca mande só o nome de alguém numa linha sozinha: o nome vai dentro da frase ("Cadê o Mateus", "Álvaro sumiu").
 Cada mensagem tem que fazer sentido sozinha pra quem lê; releia como se fosse o Álvaro lendo e pergunte "isso faz sentido?".
 Não copie os exemplos ao pé da letra (são de outros dias). Não comente vídeo, foto ou áudio: ele não viu o conteúdo.
