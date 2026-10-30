@@ -190,6 +190,46 @@ Responda SÓ com um JSON: {{"mensagens": ["msg1", "msg2"]}}"""
     return [str(x).strip() for x in d.get("mensagens", []) if str(x).strip()][:2]
 
 
+def puxar_assunto(grupo, conversa, cfg):
+    """Grupo parado há horas: o Vitor solta uma provocação ou uma tese do nada, só pra mostrar que está vivo."""
+    perfil = open(PERFIL, encoding="utf-8").read()
+    prompt = f"""Você é o clone do Vitor no WhatsApp. Ninguém pode perceber que não é ele.
+
+{perfil}
+
+Grupo: "{grupo['nome']}" (tom: {grupo['tom']}). {grupo.get('obs', '')}
+Agora são {time.strftime("%H:%M")} de {DIAS[datetime.date.today().weekday()]}. O grupo está parado há horas e o Vitor vai puxar assunto do nada.
+
+Como ele já fez isso no passado (exemplos reais):
+- provocar um amigo: "Sdds do Álvaro rotineiro / Por aqui", "Cadê os modao? Álvaro / Sertanejo / Mostre",
+  "E o mister?", "Fiquei curioso / Pelo seu treino / Álvaro"
+- soltar uma tese ou pergunta do nada: "pão com manteiga e café / ainda nao inventaram algo superior",
+  "A gente acorda de uns sonhos / E demora pra se readaptar a realidade", "Será que ainda rola aprender parkour?",
+  "Você sabia que gps não foi criado para você se guiar?"
+- voltar num assunto que os amigos falaram antes no grupo, com uma reação ou zoeira por cima.
+
+Últimas mensagens do grupo (podem ser de horas ou dias atrás; use só se tiver um gancho bom):
+{conversa}
+
+Escreva o que ele mandaria: 1 a 3 mensagens curtíssimas, sem ponto final, no jeito dele.
+Tem que soar como um amigo de verdade, não como "puxador de assunto": nada de pergunta aleatória sem sentido
+(comida esquisita, "pergunta séria", enquete), nada de citar a hora exata. O mais seguro é cutucar um amigo pelo nome
+(sumiço, treino, rotina, time dele) ou uma tese curta sobre a vida que um amigo comentaria.
+Não copie os exemplos ao pé da letra (são de outros dias). Não comente vídeo, foto ou áudio: ele não viu o conteúdo.
+PROIBIDO inventar fato da vida dele (lugar onde foi, filme que viu, compra, viagem, treino, jogo que assistiu, encontro):
+é o jeito mais fácil de ser pego. Provocação, pergunta ou tese genérica pode. Sem @, use o nome.
+Nada de trabalho, dinheiro, política, religião, nem a saída de parceria nenhuma. Não repita um assunto que ele mesmo já puxou nessas mensagens.
+Se nada soar natural, devolva lista vazia.
+Responda SÓ com um JSON: {{"mensagens": ["msg1", "msg2"]}}"""
+    os.makedirs(CWD_CLAUDE, exist_ok=True)
+    r = subprocess.run(["claude", "-p", "--model", cfg.get("modelo", "sonnet"), "--max-turns", "1"],
+                       input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180,
+                       cwd=CWD_CLAUDE, shell=(os.name == "nt"))
+    saida = r.stdout.strip()
+    d = json.loads(saida[saida.find("{"):saida.rfind("}") + 1])
+    return [str(x).strip() for x in d.get("mensagens", []) if str(x).strip()][:3]
+
+
 # ---------- envio ----------
 
 def enviar_grupo(jid, msgs):
@@ -252,6 +292,35 @@ def rodada(cfg, est):
                         ge["abertura_dia"] = hoje
                     except Exception as e:
                         log(f"{g['nome']}: falha na abertura ({e})")
+        pa = g.get("puxar_assunto")
+        if pa and time.strftime("%Y-%m-%d") != ge.get("puxar_dia"):
+            hoje = time.strftime("%Y-%m-%d")
+            lt = time.localtime(agora)
+            minuto = lt.tm_hour * 60 + lt.tm_min
+            a, b = pa.get("janela", [13, 22])
+            if ge.get("puxar_alvo_dia") != hoje:                 # minuto sorteado dentro da janela que ainda resta
+                ge["puxar_alvo"] = random.randint(max(a * 60, minuto), max(a * 60, minuto, b * 60 - 30))
+                ge["puxar_alvo_dia"] = hoje
+            if ge["puxar_alvo"] <= minuto < b * 60:
+                try:
+                    recs0 = mensagens(jid, 60)
+                    ult = max((int(m.get("messageTimestamp", 0)) for m in recs0), default=0)
+                    vitor_recente = any(do_vitor_no_celular(m) and agora - int(m["messageTimestamp"]) < 3 * 3600
+                                        for m in recs0)
+                    if agora - ult >= pa.get("silencio_h", 3) * 3600 and not vitor_recente:
+                        msgs = puxar_assunto(g, transcricao(recs0[-40:], ge["audios"]), cfg)
+                        log(f"{g['nome']}: puxar assunto {msgs}")
+                        if msgs and g["modo"] == "sombra":
+                            zap.texto(f"🤖 *Clone (sombra) · {g['nome']}* puxaria assunto:\n" + "\n".join(f"> {x}" for x in msgs))
+                        elif msgs:
+                            enviar_grupo(jid, msgs)
+                            ge["abertura_ts"] = time.time()          # responde a quem reagir, como na abertura
+                            if cfg.get("relatar_respostas"):
+                                zap.texto(f"🤖 *Clone · {g['nome']}* puxou assunto:\n" + "\n".join(f"> {x}" for x in msgs))
+                        ge["puxar_dia"] = hoje
+                except Exception as e:
+                    log(f"{g['nome']}: falha ao puxar assunto ({e})")
+                    ge["puxar_dia"] = hoje
         try:
             recs = mensagens(jid)
         except Exception as e:

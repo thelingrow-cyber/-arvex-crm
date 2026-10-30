@@ -17,7 +17,14 @@
           "Vamos pra cima"
         ]
       },
-      "janela_pos_abertura_min": 40
+      "janela_pos_abertura_min": 40,
+      "puxar_assunto": {
+        "janela": [
+          13,
+          22
+        ],
+        "silencio_h": 3
+      }
     },
     "120363043678206319@g.us": {
       "nome": "Líderes Mentoria",
