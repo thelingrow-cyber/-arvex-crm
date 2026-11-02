@@ -1,0 +1,120 @@
+{
+ "titulo": "O mais rico do petróleo não cavava poço.",
+ "topo": {
+  "seq": [
+   {
+    "de": 0.0,
+    "arquivo": "tools/video-recut/videos/2026-11-rockefeller/rock-a.jpg"
+   },
+   {
+    "de": 9.0,
+    "video": "tools/video-recut/videos/2026-11-rockefeller/california-oil.webm",
+    "inicio": 22,
+    "crop": "1100:815:410:20"
+   },
+   {
+    "de": 11.6,
+    "url": "https://commons.wikimedia.org/wiki/File:Standard Oil Company 1889 CP04381 - DPLA - 032e381bb16b1a45abecfd1a6a86ae3a (cropped).jpg"
+   },
+   {
+    "de": 16.3,
+    "arquivo": "tools/video-recut/videos/2026-11-rockefeller/google-a.jpg"
+   },
+   {
+    "de": 20.7,
+    "video": "tools/video-recut/videos/2026-11-rockefeller/digitando.webm",
+    "inicio": 0,
+    "crop": "2900:2148:600:0"
+   },
+   {
+    "de": 29.7,
+    "video": "tools/video-recut/videos/2026-11-rockefeller/pumpjack.webm",
+    "inicio": 6,
+    "crop": "1080:800:0:120"
+   },
+   {
+    "de": 37.4,
+    "arquivo": "tools/video-recut/videos/2026-11-rockefeller/rock-b.jpg"
+   },
+   {
+    "de": 42.8,
+    "arquivo": "tools/video-recut/videos/2026-11-rockefeller/rock-a.jpg"
+   }
+  ]
+ },
+ "laterais": [
+  {
+   "de": 2.5,
+   "ate": 4.4,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Lucas gusher.jpg"
+  },
+  {
+   "de": 2.9,
+   "ate": 4.4,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Drakewellstation.jpg"
+  },
+  {
+   "de": 7.0,
+   "ate": 8.8,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:J. Campbell Cory's Cartoon.jpg"
+  },
+  {
+   "de": 12.3,
+   "ate": 13.8,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Standard Oil Works. Cleveland sixth city. - DPLA - bd0cd8963ff9d7333a37dde7b9e39406 (page 1).jpg"
+  },
+  {
+   "de": 12.7,
+   "ate": 13.8,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Barrels. (52254707001).jpg"
+  },
+  {
+   "de": 14.3,
+   "ate": 16.2,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:A kerosene lamp produced by the factory of Karlskrona Lampfabrik in Sweden c. 1890s.jpg"
+  },
+  {
+   "de": 18.0,
+   "ate": 20.4,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Google garage.JPG"
+  },
+  {
+   "de": 19.0,
+   "ate": 20.4,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Card catalog at the Indiana State Library - interior view of catalog cards.jpg"
+  },
+  {
+   "de": 31.0,
+   "ate": 33.3,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Standard Oil Refineries, Cleveland, Ohio - DPLA - 3eccc421ede7dd0d68b71833f4acf38c (page 1).jpg"
+  },
+  {
+   "de": 31.6,
+   "ate": 33.3,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Schmidt-Brin-Page-20080520 (cropped).jpg"
+  },
+  {
+   "de": 38.6,
+   "ate": 40.3,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Lucas gusher.jpg"
+  },
+  {
+   "de": 39.0,
+   "ate": 40.3,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Standard Oil Company 1870 CP05451 Walworth Run - DPLA - 95ba991d250b74de10b23e6953b22750.jpg"
+  }
+ ],
+ "titulo_tam": 42
+}

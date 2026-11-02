@@ -1,0 +1,87 @@
+{
+ "titulo": "Você só conhece alguém depois de comer sal junto.",
+ "topo": {
+  "arquivo": "tools/video-recut/videos/2026-10-comer-sal/aristoteles-escola-atenas.jpg"
+ },
+ "laterais": [
+  {
+   "de": 3.2,
+   "ate": 5.0,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Sea Salt - Macro (51840172425).jpg"
+  },
+  {
+   "de": 9.4,
+   "ate": 13.5,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Vincent van Gogh - The potato eaters - Google Art Project.jpg"
+  },
+  {
+   "de": 14.1,
+   "ate": 17.7,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Anker Die Dorfschule von 1848 1896.jpg"
+  },
+  {
+   "de": 18.2,
+   "ate": 20.5,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Jean-François Millet Angelus.jpg"
+  },
+  {
+   "de": 20.7,
+   "ate": 22.2,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Brasil coin 1 real-2.jpg"
+  },
+  {
+   "de": 26.2,
+   "ate": 28.3,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:Angelus Millet Dettaglio.png"
+  },
+  {
+   "de": 32.7,
+   "ate": 35.3,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Vincent van Gogh - The Good Samaritan, 1890 - Google Art Project.jpg"
+  },
+  {
+   "de": 35.7,
+   "ate": 37.6,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Sebastian Junger, April 2013.jpg"
+  },
+  {
+   "de": 37.8,
+   "ate": 40.3,
+   "lado": "ESQ",
+   "url": "https://commons.wikimedia.org/wiki/File:TimHetheringtonSebastianJungerFeb2011.jpg"
+  },
+  {
+   "de": 38.4,
+   "ate": 40.3,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:Korengal Valley-2009.jpg"
+  },
+  {
+   "de": 45.2,
+   "ate": 48.0,
+   "lado": "DIR",
+   "url": "https://commons.wikimedia.org/wiki/File:U.S. Soldiers carry a wounded Afghan counterpart to a waiting UH-60 Black Hawk helicopter during a medical evacuation mission at Multinational Base Tarin Kowt in Uruzgan province, Afghanistan, Feb 130220-A-FS372-263.jpg"
+  }
+ ],
+ "cheia": [
+  {
+   "de": 43.0,
+   "ate": 45.0,
+   "url": "https://commons.wikimedia.org/wiki/File:Flickr - The U.S. Army - Gunfight and Airstrike in Korengal Valley.jpg",
+   "modo": "cobrir"
+  }
+ ],
+ "musica": {
+  "arquivo": "tools/video-recut/videos/2026-10-pov-permissao/satie-gymnopedie1.ogg",
+  "inicio": 0,
+  "volume": 1.3
+ }
+}

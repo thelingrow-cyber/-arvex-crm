@@ -1,5 +1,29 @@
 # Ponto de retomada
 
+## ▶ 30-31/10/2026 (Claude Code, Orion → Téo/Halbert/Rui): marca pessoal
+
+- **Publicados:**
+  - "Comer sal" (Aristóteles, edição pesada): https://www.instagram.com/reel/DfI3JlZjXLL/
+  - Frase "nível de informação" (arquivo dele): https://www.instagram.com/reel/DfI79QMD1TS/
+  - Story "Sexta flui melhor"
+  - "Apetite pelo impossível" (formato Luana: tomada única + frase fixa, sem música, sem imagem): https://www.instagram.com/reel/DfLpcgNDiwV/
+- **Em 07/11:** comparar "sal" (edição pesada) × "apetite" (edição zero) com `insta.py posts`, olhando tempo médio assistido, compartilhamentos/salvamentos e views contra a mediana.
+- **Roteiros em `banco-pautas/`:**
+  - `roteiro-jobs-apple-hoje.md`: série "visão", ainda não gravado.
+  - `roteiro-comer-sal-junto.md`: gravado e publicado.
+  - `roteiro-apetite-impossivel.md`: v3 vigente, gravado e publicado.
+- **Regras novas:**
+  - O formato "visão/especulação" aceita IA como assunto. Ver memória `feedback_visao_especulativa_ia`.
+  - Quando ele pede para comentar, eu só comento.
+  - Story de foto: preto puro, texto dentro da foto e foto sem retoque. Prévia vai como documento no WhatsApp.
+  - Layout "Alexandre": imagem fixa em cima à esquerda e frase fixa no peito.
+
+## ▶ 30/10/2026: reels publicados
+
+- **"Arquivos chatos":** https://www.instagram.com/reel/DfHAuX0giis/ (04h08).
+- **Zappos sem voz:** https://www.instagram.com/reel/DfH4jQXgbOo/ (~12h). Notas em `02-Rascunhos/2026-10-30-zappos-pagar-pra-sair/NOTAS.md`.
+- **Temas sem voz ainda livres:** Southwest (salada), Nordstrom (pneu), Ferrari (um carro a menos), Costco (legenda narrativa pronta em `banco-pautas/sem-voz-costco-cachorro-quente.md`, precisa ir para texto corrido).
+
 ## ▶ RETOMAR AQUI — 30/10/2026 (Claude Code, Orion): Cindy pós-evento + clone no WhatsApp
 
 - **Acelerador Ótica Magnética** (vendido no fim da Black Recorde, 28/10): mensagem de abertura das aplicações enviada nos grupos com foto da Cindy. Texto final e cadência até o fechamento na seção 7 de `docs/lancamento-black-recorde/mensagens-grupos-evento.md`. Usar "aplicação", nunca "candidatura". Pendentes: data de fechamento e próximas mensagens (30/10 12h objeção "já paguei mentoria"; 20h decisão em dupla).
@@ -35,8 +59,7 @@
 - Fora: "É sério, quatro milhões", o "Quatro milhões" solto e a comparação do funcionário.
 - Cenas ancoradas na fala. Montador: `build3.py`.
 
-**Pendente:**
-- O Vitor ver a v3 e aprovar. Não postar sem o "pode".
+**PUBLICADO 30/10 04h08:** https://www.instagram.com/reel/DfHAuX0giis/ (v6 com a música dele). Aprendizados em `02-Rascunhos/2026-10-29-arquivos-chatos/NOTAS.md`.
 - Disco C: com ~0,7 GB livre. A limpeza do cache npm/temp foi bloqueada pelo auto mode, e o Vitor autorizou liberar espaço.
 
 ## ▶ RETOMAR AQUI — 29/10/2026 (Claude Code, Orion + Téo/Halbert/Rui): marca pessoal
