@@ -1,5 +1,32 @@
 # Ponto de retomada
 
+## ▶ RETOMAR AQUI — 01/11/2026 (Claude Code, Orion → Rui/Halbert): Rockefeller + story
+
+- **Publicados:**
+  - Story "Esse é abençoado." (foto da TV com F1, `Imagens stories /IMG_6166.JPG`): https://www.instagram.com/stories/vitorsimoesb/4021130105333509392. Notas em `02-Rascunhos/2026-11-01-story-abencoado/NOTAS.md`. Postado já em 1080×1920 (redução feita por nós, Lanczos q95).
+  - Reel "Rockefeller" (01/11 23h24): https://www.instagram.com/reel/DfOOtEGkjue/. Publicado o arquivo DELE, `Prontos/4BED0D44…mp4` (nossa v4 + som de fundo que ele pôs).
+- **Lição do Vitor:** "o vídeo de ontem (apetite, edição zero) não funcionou, foi muito ruim sem edição". Voltar ao **molde tradicional** (`montar.py` + `edicao.json`):
+  - topo `seq` começando na foto da pessoa citada e trocando por foto e vídeo;
+  - frase fina em cima;
+  - legenda palavra por palavra;
+  - laterais em dupla.
+- **Ajustes que ele pediu no Rockefeller (vale para os próximos):**
+  - sem tela cheia;
+  - sem música (o som de fundo ele mesmo põe);
+  - imagem do topo tem que ser forte (servidor cheio de disco = fraco; trocou por Larry e Sergey jovens);
+  - frase menor, sem ir de ponta a ponta: chave nova `"titulo_tam": 42` no `edicao.json` (commit 4726d8e).
+- **Headline:** quando ele pergunta ("e se for X?"), só opinar, NÃO aplicar. A escolhida foi "O MAIS RICO DO PETRÓLEO NÃO CAVAVA POÇO." (padrão paradoxo; "não cavava" em vez de "nunca cavou", por precisão).
+- **Legenda de post nova:** `Siga: @vitorsimoesb` + linha em branco + `#empreendedorismo #empreender #negocios #founder`.
+- **Arquivos:**
+  - pasta `02-Rascunhos/2026-11-01-rockefeller/` (edicao.json, edicao-v1.json, CREDITOS.txt, legenda.txt);
+  - mídia em `tools/video-recut/videos/2026-11-rockefeller/`;
+  - transcrição corrigida em `tools/video-recut/work/2026-11-01-rockefeller/limpeza/palavras-editado.json` (backup `-turbo`).
+- **Pendentes:**
+  - 07/11: comparar métricas de sal × apetite × Rockefeller.
+  - Roteiro Jobs (não gravado).
+  - Disco C com ~6 GB livres.
+  - Avisar o Vitor que o client_id compartilhado do rclone vai parar de funcionar em 2026.
+
 ## ▶ 29/10/2026 (Claude Code, Orion): estudo de IA — aulas do Alan
 
 - **Onde fica:** `docs/aprendizados-ia/`. O ciclo é: material cru em `inbox/` → resumo em `aulas/` (resumo + o que muda para o Vitor + 1 ação). Nome dos arquivos: `AAAA-MM-DD-alan-tema.md`.
@@ -37,8 +64,10 @@
 ## ▶ RETOMAR AQUI — 30/10/2026 (Claude Code, Orion): Cindy pós-evento + clone no WhatsApp
 
 - **Acelerador Ótica Magnética** (vendido no fim da Black Recorde, 28/10): mensagem de abertura das aplicações enviada nos grupos com foto da Cindy. Texto final e cadência até o fechamento na seção 7 de `docs/lancamento-black-recorde/mensagens-grupos-evento.md`. Usar "aplicação", nunca "candidatura". Pendentes: data de fechamento e próximas mensagens (30/10 12h objeção "já paguei mentoria"; 20h decisão em dupla).
-- **Clone do Vitor nos grupos** (`tools/maquina/clone/`): rodando desde 30/10 03h45 como tarefa "ARVEX Clone - grupos". 1º teste no Times Square (amigos): abertura 8h12 "Maravilhosa sexta pra vocês / Vamos pra cima", 40 min respondendo reações, depois só quando falam com ele + até 4 entradas espontâneas/dia. Líderes Mentoria (sócios) DESLIGADO até ele aprovar o teste. `groupsIgnore` da instância foi desligado.
-- **Próximo passo:** ler `tools/maquina/clone/clone.log` e as cópias na conversa "Você"; ajustar com o feedback dele; decidir se liga no Líderes Mentoria.
+- **Clone do Vitor nos grupos** (`tools/maquina/clone/`, atualizado 31/10): tarefa "ARVEX Clone - grupos" rodando. Teste de 30/10 no Times Square: abertura 8h12, respostas curtas, 1 erro ("Gandaia de segunda a sexta", o Vitor apagou → regras novas: rolê combinado = chamar; sem piada que insinua fato; 30 min entre respostas; máx 2/hora; 3 espontâneas/dia). Novo: **puxar assunto** 1x/dia (13–22h, grupo parado 3h) com gancho real pesquisado na web (Palmeiras primeiro), estilo cru — estudo de 217 quebras de silêncio dele. **O Vitor SAIU do Times Square em 31/10**: o clone "puxou assunto" às 20h41 sem entregar (a API não dá erro fora do grupo) → Times Square DESLIGADO no config. Líderes Mentoria também desligado. Hoje o clone roda sem nenhum grupo ativo.
+- **Pendências do clone:** detectar "não estou mais no grupo" antes de enviar (evitar aviso falso); decidir com o Vitor se volta a algum grupo; mover para a VPS.
+- **WhatsApp no SAASOPTICO:** `SAASOPTICO/tools/whatsapp/zap.py` (cópia do zap.py, mesma chave via setx), commit `f2d82e7` lá + memória do projeto.
+- **Disco C: encheu em 30/10** (0 MB): limpos Temp + cache Chrome/npm → 6,7 GB livres. Não mexido: Downloads (36 GB) e a imagem da VM do app Claude (9,2 GB). Mídias grandes do repo (mp4/wav em `output/` e `tools/video-recut/videos/`) ficam fora do git, só no disco.
 
 ## ▶ RETOMAR AQUI — 29/10/2026 noite (Claude Code, Orion → Rui): reel "arquivos chatos"
 
