@@ -116,24 +116,26 @@ def enquadrar(im, larg, alt):
     return im.crop((x0, y0, x0 + larg, y0 + alt))
 
 
-def titulo_fino(texto, dest):
+def titulo_fino(texto, dest, tam=56):
     """18/10: tipografia do post da Amazon que o Vitor mandou de referência: caixa alta, fina (Arial regular),
-    da largura da imagem do topo, em até 2 linhas equilibradas, sombra suave."""
-    ft, med = ImageFont.truetype(os.path.join(os.environ.get("WINDIR", "C:\\Windows"), "Fonts", "arial.ttf"), 56), \
+    da largura da imagem do topo, em até 2 linhas equilibradas, sombra suave.
+    01/11: "titulo_tam" no edicao.json diminui a letra (o Vitor não quer a frase de ponta a ponta)."""
+    lh = tam + 8
+    ft, med = ImageFont.truetype(os.path.join(os.environ.get("WINDIR", "C:\\Windows"), "Fonts", "arial.ttf"), tam), \
         ImageDraw.Draw(Image.new("RGB", (1, 1))).textlength
     texto, linhas = texto.upper(), [texto.upper()]
-    if med(texto, font=ft) > 900:   # 18/10: o Vitor quer o título em uma linha só
+    if med(texto, font=ft) > 900 * tam / 56:   # 18/10: o Vitor quer o título em uma linha só
         p = texto.split()
         meio = min(range(1, len(p)), key=lambda m: max(med(" ".join(p[:m]), font=ft), med(" ".join(p[m:]), font=ft)))
         linhas = [" ".join(p[:meio]), " ".join(p[meio:])]
-    out = Image.new("RGBA", (1080, 64 * len(linhas) + 40), (0, 0, 0, 0))
+    out = Image.new("RGBA", (1080, lh * len(linhas) + 40), (0, 0, 0, 0))
     sh = Image.new("RGBA", out.size, (0, 0, 0, 0))
     for i, ln in enumerate(linhas):
-        ImageDraw.Draw(sh).text(((1080 - med(ln, font=ft)) / 2, 22 + i * 64), ln, font=ft, fill=(0, 0, 0, 235),
+        ImageDraw.Draw(sh).text(((1080 - med(ln, font=ft)) / 2, 22 + i * lh), ln, font=ft, fill=(0, 0, 0, 235),
                                 stroke_width=5, stroke_fill=(0, 0, 0, 235))   # 18/10: lâmpada atrás apagava a letra fina
     out = Image.alpha_composite(out, sh.filter(ImageFilter.GaussianBlur(5)))
     for i, ln in enumerate(linhas):
-        ImageDraw.Draw(out).text(((1080 - med(ln, font=ft)) / 2, 20 + i * 64), ln, font=ft, fill=(255, 255, 255))
+        ImageDraw.Draw(out).text(((1080 - med(ln, font=ft)) / 2, 20 + i * lh), ln, font=ft, fill=(255, 255, 255))
     out.save(dest)
     return out.height
 
@@ -288,7 +290,10 @@ def montar(pasta):
             trio.append((q, x0 + k * (TRIO + TGAP)))
     tit = os.path.join(work, "titulo.png")
     estilo = titulo_png if plano.get("titulo_estilo") == "bebas" else titulo_fino   # 19/10: fino é o padrão (o Vitor mandou a referência 2x)
-    estilo(plano["titulo"], tit)
+    if estilo is titulo_fino:
+        titulo_fino(plano["titulo"], tit, plano.get("titulo_tam", 56))
+    else:
+        estilo(plano["titulo"], tit)
     y_tit = Y + A + 14 if topo else Y + TRIO + 14 if trio else Y_TIT_SEM_TOPO
     lados = []
     for i, ins in enumerate(plano.get("laterais") or []):
