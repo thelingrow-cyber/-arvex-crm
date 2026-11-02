@@ -1,5 +1,15 @@
 # Ponto de retomada
 
+## ▶ 29/10/2026 (Claude Code, Orion): estudo de IA — aulas do Alan
+
+- **Onde fica:** `docs/aprendizados-ia/`. O ciclo é: material cru em `inbox/` → resumo em `aulas/` (resumo + o que muda para o Vitor + 1 ação). Nome dos arquivos: `AAAA-MM-DD-alan-tema.md`.
+- **Nova:** `aulas/2026-10-29-alan-engenharia-reversa-rea.md`, live de engenharia reversa com REA. Tem 5 formas de fazer engenharia reversa; para o Vitor serve "modelar o padrão, não copiar". As táticas de driblar recusa da IA estão marcadas como "não adotar".
+- **Ações pendentes:**
+  - (1) Gerar de novo as chaves que passaram pela Railway, que vazou (Carol/Epic 3). Precisa do Vitor no painel.
+  - (2) VZ-18: o Vitor escolhe 1 CRM de ótica concorrente para a 1ª análise com o REA.
+  - Obs.: o MCP `rea` deu timeout em 29/10; reconectar antes.
+- **Próximo:** o Vitor vai mandar mais aulas do Alan. Seguir o mesmo formato.
+
 ## ▶ 30-31/10/2026 (Claude Code, Orion → Téo/Halbert/Rui): marca pessoal
 
 - **Publicados:**
